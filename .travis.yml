@@ -1,9 +1,6 @@
 language: r
 pandoc_version: 1.19.2.1
 
-env:
-  global:
-  	- secure: 81333ae3e8597e14e8a1362deebf994bd1924b39
 
 before_script:
   - chmod +x ./_build.sh

@@ -161,7 +161,7 @@ A good summary of why **I hate pie charts**: http://www.businessinsider.com/pie-
 ```{r, tidy=TRUE, echo=TRUE}
 
 Whickham %>%
-  count(outcome, smoker) %>% #Frequency
+  count(outcome, smoker) %>%  #Frequency
   mutate(relfreq = n / sum(n)) #Overall Relative Frequency
 
 Whickham %>%

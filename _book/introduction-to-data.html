@@ -208,9 +208,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>The height can either represent the <strong>frequency</strong> (count of cases) or the <strong>relative frequency</strong> (proportion of cases).</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&#39;mosaicData&#39;) first</span>
-<span class="kw">require</span>(mosaicData)  </code></pre></div>
-<pre><code>## Loading required package: mosaicData</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Whickham) <span class="co">#load data set from package</span>
+<span class="kw">require</span>(mosaicData)  
+<span class="kw">data</span>(Whickham) <span class="co">#load data set from package</span>
 
 Whickham &lt;-<span class="st"> </span>Whickham <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ageCat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="co">#Create a new categorical variable with 4 categories based on age (equal length of age intervals)</span>
@@ -273,13 +272,9 @@ Whickham <span class="op">%&gt;%</span>
 <li>The <strong>height</strong> of the entire bars shows the <strong>marginal distribution</strong> (frequency of the X variable, ignoring the other variable).</li>
 <li>The <strong>relative heights</strong> show <strong>conditional distributions</strong> (frequencies within subsets), but hard to compare distributions between bars.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smoker, <span class="dt">fill =</span> outcome)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Smoker Status&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>,<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smoker, <span class="dt">fill =</span> outcome)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Smoker Status&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Counts&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="st">&quot;20 Year Mortality&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, 
+    <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>What do you conclude?</p>
 </div>
@@ -430,17 +425,17 @@ ceo <span class="op">%&gt;%</span>
 <li>Uses all the data but very sensitive to outliers and skewed data.</li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diff</span>(<span class="kw">range</span>(NHANES<span class="op">$</span>SleepHrsNight,<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="co">#range gives max and min; take difference</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diff</span>(<span class="kw">range</span>(NHANES<span class="op">$</span>SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))  <span class="co">#range gives max and min; take difference</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IQR</span>(NHANES<span class="op">$</span>SleepHrsNight,<span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="co">#Q3-Q1</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IQR</span>(NHANES<span class="op">$</span>SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)  <span class="co">#Q3-Q1</span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(NHANES<span class="op">$</span>SleepHrsNight,<span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co">#standard deviation</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(NHANES<span class="op">$</span>SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)  <span class="co">#standard deviation</span></code></pre></div>
 <pre><code>## [1] 1.346729</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diff</span>(<span class="kw">range</span>(ceo<span class="op">$</span>salary))</code></pre></div>
 <pre><code>## [1] 156</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IQR</span>(ceo<span class="op">$</span>salary)</code></pre></div>
 <pre><code>## [1] 59.25</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(ceo<span class="op">$</span>salary) </code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(ceo<span class="op">$</span>salary)</code></pre></div>
 <pre><code>## [1] 39.05955</code></pre>
 <p>For a quantitative variable,</p>
 <ul>

@@ -128,7 +128,7 @@ Whickham <- Whickham %>%
   mutate(ageCat = cut(age, 4)) #Create a new categorical variable with 4 categories based on age (equal length of age intervals)
 
 Whickham %>%
-  count(ageCat) %>% #Frequency
+  count(ageCat) %>%
   mutate(relfreq = n / sum(n)) #Relative Frequency
 
 Whickham %>%
@@ -158,7 +158,7 @@ A good summary of why **I hate pie charts**: http://www.businessinsider.com/pie-
 ```{r, tidy=TRUE, echo=TRUE}
 
 Whickham %>%
-  count(outcome, smoker) %>%  #Frequency
+  count(outcome, smoker) %>%
   mutate(relfreq = n / sum(n)) #Overall Relative Frequency
 
 Whickham %>%

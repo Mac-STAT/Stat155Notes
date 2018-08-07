@@ -208,15 +208,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>The height can either represent the <strong>frequency</strong> (count of cases) or the <strong>relative frequency</strong> (proportion of cases).</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&#39;mosaicData&#39;) first</span>
-<span class="kw">require</span>(mosaicData)  </code></pre></div>
-<pre><code>## Loading required package: mosaicData</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Whickham) <span class="co">#load data set from package</span>
+<span class="kw">require</span>(mosaicData)  
+<span class="kw">data</span>(Whickham) <span class="co">#load data set from package</span>
 
 Whickham &lt;-<span class="st"> </span>Whickham <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ageCat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="co">#Create a new categorical variable with 4 categories based on age (equal length of age intervals)</span>
 
 Whickham <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>(ageCat) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Frequency</span>
+<span class="st">  </span><span class="kw">count</span>(ageCat) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">relfreq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="co">#Relative Frequency</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   ageCat          n relfreq
@@ -247,9 +246,7 @@ Whickham <span class="op">%&gt;%</span>
 <ul>
 <li>The <strong>height</strong> of the bars shows the frequency of the categories within subsets</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>(outcome, smoker) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#Frequency</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">relfreq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="co">#Overall Relative Frequency</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(outcome, smoker) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">relfreq =</span> n<span class="op">/</span><span class="kw">sum</span>(n))  <span class="co">#Overall Relative Frequency</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 4
 ##   outcome smoker     n relfreq
 ##   &lt;fct&gt;   &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt;
@@ -257,13 +254,9 @@ Whickham <span class="op">%&gt;%</span>
 ## 2 Alive   Yes      443   0.337
 ## 3 Dead    No       230   0.175
 ## 4 Dead    Yes      139   0.106</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smoker, <span class="dt">fill =</span> outcome)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>()) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Smoker Status&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>,<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smoker, <span class="dt">fill =</span> outcome)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>()) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Smoker Status&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Counts&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="st">&quot;20 Year Mortality&quot;</span>, 
+    <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()</code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>What do you conclude?</p>
 </div>

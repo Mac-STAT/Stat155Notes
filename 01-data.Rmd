@@ -198,6 +198,7 @@ What do you conclude?
 
 
 ```{r, echo=TRUE, message=FALSE}
+library(ggplot2)
 require(ggmosaic)
 
 Whickham %>%

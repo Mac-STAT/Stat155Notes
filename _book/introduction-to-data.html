@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Math 155 Notes</title>
+  <meta name="description" content="This includes notes for Math 155 at Macalester College.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Math 155 Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This includes notes for Math 155 at Macalester College." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Math 155 Notes" />
+  
+  <meta name="twitter:description" content="This includes notes for Math 155 at Macalester College." />
+  
+
+<meta name="author" content="Brianna Heggeseth">
+
+
+<meta name="date" content="2018-08-07">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="introduction-to-data.html"><a href="introduction-to-data.html"><i class="fa fa-check"></i><b>2</b> Introduction to Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#data-collection"><i class="fa fa-check"></i><b>2.1</b> Data Collection</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#observational-study-vs.experiments"><i class="fa fa-check"></i><b>2.2</b> Observational Study vs. Experiments</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-data.html"><a href="introduction-to-data.html#tidy-data"><i class="fa fa-check"></i><b>2.3</b> Tidy Data</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-data.html"><a href="introduction-to-data.html#ethical-considerations"><i class="fa fa-check"></i><b>2.4</b> Ethical Considerations</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-data.html"><a href="introduction-to-data.html#visualizing-data"><i class="fa fa-check"></i><b>2.5</b> Visualizing Data</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="introduction-to-data.html"><a href="introduction-to-data.html#categorical-variables"><i class="fa fa-check"></i><b>2.5.1</b> Categorical Variables</a></li>
+<li class="chapter" data-level="2.5.2" data-path="introduction-to-data.html"><a href="introduction-to-data.html#quantitative-variables"><i class="fa fa-check"></i><b>2.5.2</b> Quantitative Variables</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Math 155 Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction-to-data" class="section level1">
+<h1><span class="header-section-number">2</span> Introduction to Data</h1>
+<div id="data-collection" class="section level2">
+<h2><span class="header-section-number">2.1</span> Data Collection</h2>
+<p>For any data set, you should always ask yourself (or others) a few questions to provide vital <strong>context</strong>.</p>
+<ul>
+<li>Who is in the data set? (What is the observational unit or <strong>case</strong>? How were they chosen?)</li>
+<li>What is being measured or recorded on each case? (What are the characteristics or <strong>variables</strong> that were collected?)</li>
+<li>Where were they collected? (One location? Multiple locations?)</li>
+<li>When were they collected? (One point in time? Over time?)</li>
+<li>How were they collected? (Measurements? Questionnaire? By phone? In person?)</li>
+<li>Why were they collected? (Who paid? Conflicts of interest?)</li>
+</ul>
+<p>We hope that the <strong>cases</strong> in the data set represent a <strong>population of interest</strong>. In particular, we say that our data that has been collected is a <strong>sample</strong> from a population.</p>
+<p><strong>Population of Interest:</strong> <em>A collection of people, creatures, things, cases or others that we interested in knowning more about.</em></p>
+<p><strong>Sample:</strong> <em>A subset of the population of interest on which we have collected data.</em></p>
+<p>Getting information from everyone individual in a population is very difficult (it is called a <strong>census</strong>) and in many situations, impossible.</p>
+<p>We want to get a sense of the population by just collected data on a subset. Think about making a soup. We want to make sure there is enough (but not too much) salt or seasonings. We don’t need to eat the entire pot of soup to know if there is the right amount. We just need a spoonful from a well-stirred pot of soup so that it is that taste is <strong>representative</strong> of the whole pot.</p>
+<p><strong>Representative Sample:</strong><em>A group that closely matches the characteristics of its population as a whole. In other words, the sample is a fairly accurate reflection of the population from which the sample is drawn.</em></p>
+<p><strong>Sampling Bias:</strong> <em>If the sample is unrepresentative of the population of interest in a systematic way, there is sampling bias.</em></p>
+<p>Here are a few flavors of sampling bias:</p>
+<ul>
+<li><strong>Undercoverage:</strong> <em>When some members of the population are inadequately represented in the sample due to the sampling procedure (often from convenience samples). An example would be the Literary Digest 1936 poll that got the president election wrong. The survey relied on a convenience sample, drawn from telephone directories and car registration lists. In 1936, people who owned cars and telephones tended to be more affluent.</em></li>
+<li><strong>Response bias:</strong> <em>when the response does not accurately represent the true value for the individual (due to wording of the question or to increase social desirability). Most people like to present themselves in a favorable light, so they will be reluctant to admit to unsavory attitudes or illegal activities in a survey, particularly if survey results are not confidential.</em></li>
+<li><strong>Nonresponse bias:</strong> <em>When individuals chosen or selected for the sample are unwilling or unable to participate. An example would be an unreturned mail survey that is only sent to a random set of individuals.</em></li>
+<li><strong>Voluntary response bias:</strong> <em>When the individuals in the sample are self-selected volunteers (they were not chosen or selected by a researcher). An example would be call-in radio shows that solicit audience participation in surveys on controversial topics (abortion, affirmative action, gun control, etc.).</em></li>
+</ul>
+<p>To try and avoid some of these types of sampling bias, we may want to “stir the pot before taking a taste” by taking a random sample so as to make sure the sample is representative of the population. It doesn’t solve nonresponse bias, but we can take actions to try to maximize the response rate.</p>
+<p><strong>Random Sampling:</strong> <em>A procedure for sampling from a population in which (a) the selection of a sample unit is based on chance and (b) every element of the population has a known, non-zero probability of being selected. Random sampling helps produce representative samples by eliminating voluntary response bias and guarding against undercoverage bias.</em></p>
+</div>
+<div id="observational-study-vs.experiments" class="section level2">
+<h2><span class="header-section-number">2.2</span> Observational Study vs. Experiments</h2>
+<p>Data can be collected in one of two scenerios:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Observational Study:</strong> <em>Data is collected in such a way such that the researcher <strong>does not</strong> manipulate or intervene in characteristics of the individuals. Researchers simply observed or record characteristics of the sample.</em></p></li>
+<li><p><strong>Experiment:</strong> <em>Data is collected in such a way such that the researcher <strong>does</strong> manipulate or intervene characteristics of the individuals by randomly assigning individuals to treatment and control groups. Researchers then record characteristics of the individuals within the treatment and control groups.</em></p></li>
+</ol>
+<p>Confounding</p>
+<p>Causal Inference</p>
+</div>
+<div id="tidy-data" class="section level2">
+<h2><span class="header-section-number">2.3</span> Tidy Data</h2>
+<p>Raw data can come in a variety of formats. In order to analyze the data, we need to get data into a tidy format in which</p>
+<ul>
+<li>Rows represent <strong>cases</strong> (one row per observational unit – this could be an individual or an individual at a particular time)</li>
+<li>Columns represent <strong>variables</strong> (one column per characteristic)</li>
+</ul>
+<p>Variables can be either <strong>categorical</strong> or <strong>quantitative</strong> variables.</p>
+<ul>
+<li><strong>Categorical variable:</strong> <em>Characteristic with values that are names of categories; the names of categories could be numbers such as with zipcodes. If the categories have a natural ordering, it could be called an ordinal variable, but we won’t be distinguishing between different types of categorical variables.</em></li>
+<li><strong>Quantitative variable:</strong> <em>Characteristic with measured numerical values with units.</em></li>
+</ul>
+<p><em>Note: Any quantitative variable can be converted into a categorical variable by creating categories defined by intervals or bins of values.</em></p>
+</div>
+<div id="ethical-considerations" class="section level2">
+<h2><span class="header-section-number">2.4</span> Ethical Considerations</h2>
+<p>How data is collected</p>
+<p>Random assignment to treatments</p>
+<p>Data storage</p>
+<p>Data privacy</p>
+<p>Data use</p>
+<p>Training data (automating discrimination)</p>
+</div>
+<div id="visualizing-data" class="section level2">
+<h2><span class="header-section-number">2.5</span> Visualizing Data</h2>
+<div id="categorical-variables" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> Categorical Variables</h3>
+<div id="one-variable-univariate" class="section level4">
+<h4><span class="header-section-number">2.5.1.1</span> One Variable (Univariate)</h4>
+<p><strong>Data</strong>: Survey of the electoral registrar in Whickham in the UK (Source: Appleton et al 1996)</p>
+<ul>
+<li>Survey was conducted in 1972-1974 to study heart disease and thyroid disease (age and smoking status)</li>
+<li>A follow-up on those in the survey was conducted twenty years later (mortality)</li>
+</ul>
+<div id="bar-plot" class="section level5">
+<h5><span class="header-section-number">2.5.1.1.1</span> Bar Plot</h5>
+<ul>
+<li>The <strong>height</strong> of the bars is the only part that encodes the data (width is meaningless).</li>
+<li>The height can either represent the <strong>frequency</strong> (count of cases) or the <strong>relative frequency</strong> (proportion of cases).</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&#39;mosaicData&#39;) first</span>
+<span class="kw">require</span>(mosaicData)  </code></pre></div>
+<pre><code>## Loading required package: mosaicData</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Whickham) <span class="co">#load data set from package</span>
+
+Whickham &lt;-<span class="st"> </span>Whickham <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ageCat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="co">#Create a new categorical variable with 4 categories based on age (equal length of age intervals)</span>
+
+Whickham <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">count</span>(ageCat) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Frequency</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">relfreq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="co">#Relative Frequency</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##   ageCat          n relfreq
+##   &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;
+## 1 (17.9,34.5]   408   0.311
+## 2 (34.5,51]     367   0.279
+## 3 (51,67.5]     347   0.264
+## 4 (67.5,84.1]   192   0.146</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> ageCat)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">fill=</span><span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Age Categories in Years&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="pie-chart" class="section level5">
+<h5><span class="header-section-number">2.5.1.1.2</span> Pie Chart</h5>
+<p>Pie charts are only useful if you have 2 to 3 possible categories and you want to show relative group sizes.</p>
+<p><img src="Photos/pie.jpg" width="300px" /></p>
+<p>A good summary of why <strong>I hate pie charts</strong>: <a href="http://www.businessinsider.com/pie-charts-are-the-worst-2013-6" class="uri">http://www.businessinsider.com/pie-charts-are-the-worst-2013-6</a> (make sure to read if you like pie charts!)</p>
+</div>
+</div>
+<div id="two-variables-bivariate" class="section level4">
+<h4><span class="header-section-number">2.5.1.2</span> Two Variables (Bivariate)</h4>
+<div id="side-by-side-bar-plot" class="section level5">
+<h5><span class="header-section-number">2.5.1.2.1</span> Side by Side Bar Plot</h5>
+<ul>
+<li>The <strong>height</strong> of the bars shows the frequency of the categories within subsets</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">count</span>(outcome, smoker) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Frequency</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">relfreq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) <span class="co">#Overall Relative Frequency</span></code></pre></div>
+<pre><code>## # A tibble: 4 x 4
+##   outcome smoker     n relfreq
+##   &lt;fct&gt;   &lt;fct&gt;  &lt;int&gt;   &lt;dbl&gt;
+## 1 Alive   No       502   0.382
+## 2 Alive   Yes      443   0.337
+## 3 Dead    No       230   0.175
+## 4 Dead    Yes      139   0.106</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smoker, <span class="dt">fill =</span> outcome)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>()) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Smoker Status&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>,<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>What do you conclude?</p>
+</div>
+<div id="stacked-bar-plot" class="section level5">
+<h5><span class="header-section-number">2.5.1.2.2</span> Stacked Bar Plot</h5>
+<ul>
+<li>The <strong>height</strong> of the entire bars shows the <strong>marginal distribution</strong> (frequency of the X variable, ignoring the other variable).</li>
+<li>The <strong>relative heights</strong> show <strong>conditional distributions</strong> (frequencies within subsets), but hard to compare distributions between bars.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smoker, <span class="dt">fill =</span> outcome)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Smoker Status&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>,<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>What do you conclude?</p>
+</div>
+<div id="mosaic-plot" class="section level5">
+<h5><span class="header-section-number">2.5.1.2.3</span> Mosaic Plot</h5>
+<ul>
+<li>The <strong>relative height</strong> of the bars shows the <strong>conditional distribution</strong> (relative frequency within subsets).</li>
+<li>The <strong>width</strong> of the bars shows the <strong>marginal distribution</strong> (relative frequency of the X variable, ignoring the other variable).</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(ggmosaic)
+
+Whickham <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(outcome, smoker),<span class="dt">fill =</span> outcome)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Smoker Status&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>,<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(outcome, smoker),<span class="dt">fill=</span>outcome)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_grid</span>( . <span class="op">~</span><span class="st"> </span>ageCat) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Smoker Status&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>,<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<p>What do you conclude?</p>
+<p>What do conclude? Why?</p>
+<p><strong>Simpson’s Paradox</strong>: A situation in which you come to two different conclusions if you look at results overall versus within subsets (e.g. age groups).</p>
+</div>
+</div>
+</div>
+<div id="quantitative-variables" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Quantitative Variables</h3>
+<div id="one-variable-univariate-1" class="section level4">
+<h4><span class="header-section-number">2.5.2.1</span> One Variable (Univariate)</h4>
+<p><strong>Data</strong>: NHANES in 2009-2012 (Source: CDC)</p>
+<div id="histogram" class="section level5">
+<h5><span class="header-section-number">2.5.2.1.1</span> Histogram</h5>
+<ul>
+<li>The <strong>height</strong> of the bars shows either the <strong>frequency within intervals</strong> or the <strong>density</strong> (relative frequency per unit of measure, e.g. proportion of people per hour sleep)</li>
+<li>The x-axis is a number line and bars do not have to be of equal width (R defaults to equal width, but you can change how many intervals and how large they are)</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(NHANES) <span class="co">#For more info about NHANES: https://www.cdc.gov/nchs/nhanes/index.htm</span>
+
+NHANES <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Gaps are meaningful</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() </code></pre></div>
+<pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NHANES <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Gaps are meaningful</span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() </code></pre></div>
+<pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NHANES <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">adjust =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() </code></pre></div>
+<pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_density).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<p>We focus on three aspects of the distribution:</p>
+<ul>
+<li><strong>Shape:</strong> Is it <strong>symmetric</strong>? or is it<strong>skewed to the right or left</strong> (THINK: distributions are skewed to the long <strong>tail</strong> - which side has a long tail)? How many <strong>modes</strong> do you see?</li>
+<li><strong>Center:</strong> Where is a typical value located?</li>
+<li><strong>Spread</strong> (or variation): How spread out are the values? (Concentrated around one value or spread out?)</li>
+</ul>
+<p>Also, we ask: Are there any unusual features such as outliers or gaps? Why?</p>
+<p>**<a href="Data:**" class="uri">Data:**</a> CEO Salaries for highest paid CEOs in 2016 (Source: NYTimes)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nyturl &lt;-<span class="st"> &#39;https://www.nytimes.com/interactive/2017/05/26/business/highest-paid-ceos.html?mcubz=0&#39;</span>
+dat &lt;-<span class="st"> </span><span class="kw">read_html</span>(nyturl)
+ceo &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;.nytg-compensation , .nytg-year&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">str_replace</span>(<span class="st">&#39;</span><span class="ch">\\</span><span class="st">$|-&#39;</span>,<span class="st">&#39;&#39;</span>) <span class="co">#webscraping data </span>
+ceo &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(ceo,<span class="dt">ncol =</span> <span class="dv">2</span>,<span class="dt">byrow =</span> <span class="ot">TRUE</span>))
+<span class="kw">names</span>(ceo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;year&#39;</span>,<span class="st">&#39;salary&#39;</span>)
+ceo<span class="op">$</span>salary &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(ceo<span class="op">$</span>salary) 
+ceo &lt;-<span class="st"> </span>ceo <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> &#39;2016&#39;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#Highest Paid CEO&#39;s in the U.S. in 2016 (Source: NYTimes)</span>
+ceo <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> salary)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> <span class="dv">15</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">adjust =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Salary ($M)&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() </code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>For center we have some choices for numerically summarizing it:</p>
+<ul>
+<li><strong>Mean</strong>: The sum of the values divided by the number of values (sample size), <span class="math inline">\(\bar{y} = \frac{\sum^n_{i=1}y_i}{n}\)</span>
+<ul>
+<li>Sensitive to outliers, but efficiently uses all the data</li>
+</ul></li>
+<li><strong>Median</strong>: The “middle” value. The number for which half of the values are below and half are above.
+<ul>
+<li>Insensitive to outliers, but doesn’t use all the actual values</li>
+</ul></li>
+<li><strong>Trimmed means</strong>: Drop the lowest and highest k% and take the mean of the rest.
+<ul>
+<li>A good compromise, but not widely used.</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(NHANES<span class="op">$</span>SleepHrsNight)</code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##   2.000   6.000   7.000   6.928   8.000  12.000    2245</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(NHANES<span class="op">$</span>SleepHrsNight, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co">#na.rm = TRUE removew missing values</span></code></pre></div>
+<pre><code>## [1] 6.927531</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">median</span>(NHANES<span class="op">$</span>SleepHrsNight, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(NHANES<span class="op">$</span>SleepHrsNight, <span class="dt">trim =</span> <span class="fl">0.05</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co">#Trim 5% from both tails before taking mean</span></code></pre></div>
+<pre><code>## [1] 6.948431</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(ceo<span class="op">$</span>salary) <span class="co">#Note the differences between mean and median</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   20.00   36.75   58.00   68.36   96.00  176.00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(ceo<span class="op">$</span>salary) <span class="co">#Arthimetic average</span></code></pre></div>
+<pre><code>## [1] 68.36</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">median</span>(ceo<span class="op">$</span>salary) <span class="co">#Middle number</span></code></pre></div>
+<pre><code>## [1] 58</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(ceo<span class="op">$</span>salary,<span class="dt">trim =</span> <span class="fl">0.05</span>)  <span class="co">#Trimmed mean falls in between</span></code></pre></div>
+<pre><code>## [1] 66.17778</code></pre>
+<p>For spread we have several choices to numerically describe it:</p>
+<ul>
+<li><strong>Range</strong>: the maximum value - the minimum value
+<ul>
+<li>Sensitive to the outliers since it’s the difference of the extremes</li>
+</ul></li>
+<li><strong>IQR</strong>: the interquartile range = Q3 - Q1 (75th percentile - 25th percentile).
+<ul>
+<li>Like the median. Less sensitive because it doesn’t use all of the data</li>
+</ul></li>
+<li><strong>Standard deviation</strong>: Root mean squared deviations from mean, <span class="math inline">\(s = \sqrt{\frac{\sum^n_{i=1}(y_i-\bar{y})^2}{n-1}}\)</span>
+<ul>
+<li>Roughly the average deviation from the mean</li>
+<li>Uses all the data but very sensitive to outliers and skewed data.</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diff</span>(<span class="kw">range</span>(NHANES<span class="op">$</span>SleepHrsNight,<span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="co">#range gives max and min; take difference</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IQR</span>(NHANES<span class="op">$</span>SleepHrsNight,<span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="co">#Q3-Q1</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(NHANES<span class="op">$</span>SleepHrsNight,<span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="co">#standard deviation</span></code></pre></div>
+<pre><code>## [1] 1.346729</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">diff</span>(<span class="kw">range</span>(ceo<span class="op">$</span>salary))</code></pre></div>
+<pre><code>## [1] 156</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">IQR</span>(ceo<span class="op">$</span>salary)</code></pre></div>
+<pre><code>## [1] 59.25</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(ceo<span class="op">$</span>salary) </code></pre></div>
+<pre><code>## [1] 39.05955</code></pre>
+<p>For a quantitative variable,</p>
+<ul>
+<li>Use a histogram to display the distribution of one variable and describe the shape and any unusual features.</li>
+<li>For “well behaved” distributions (symmetric, unimodal, no outliers), use the mean and standard deviation to describe the center and spread.</li>
+<li>For others, use the IQR and median. You can report both mean and median, but it’s usually a good idea to state why.</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

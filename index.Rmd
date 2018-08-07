@@ -1,0 +1,17 @@
+--- 
+title: "Math 155 Notes"
+author: "Brianna Heggeseth"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+description: "This includes notes for Math 155 at Macalester College."
+---
+
+# Introduction
+
+For Math 155, we will spend our time in-class working together on real problems, asking each other questions, and expanding our understanding of the material. 
+
+This online text is a collection of notes that includes definitions, examples, and will support our discussion in class. 
+
+If you find any typos or have questions, please email bheggese@macalester.edu.

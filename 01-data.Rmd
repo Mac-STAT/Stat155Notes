@@ -212,7 +212,7 @@ Whickham %>%
 
 Whickham %>%
   ggplot() +
-  geom_mosaic(aes(x = product(outcome, smoker),fill=outcome)) + 
+  geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) + 
   facet_grid( . ~ ageCat) + 
   xlab('Smoker Status') + 
   ylab('Counts') + 

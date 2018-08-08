@@ -5,6 +5,8 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
+link-citations: yes
+github-repo: bcheggeseth/Math155Notes
 description: "This includes notes for Math 155 at Macalester College."
 ---
 

@@ -208,8 +208,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>The height can either represent the <strong>frequency</strong> (count of cases) or the <strong>relative frequency</strong> (proportion of cases).</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&#39;mosaicData&#39;) first</span>
-<span class="kw">require</span>(mosaicData)  
-<span class="kw">data</span>(Whickham) <span class="co">#load data set from package</span>
+<span class="kw">require</span>(mosaicData)  </code></pre></div>
+<pre><code>## Loading required package: mosaicData</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Whickham) <span class="co">#load data set from package</span>
 
 Whickham &lt;-<span class="st"> </span>Whickham <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ageCat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="co">#Create a new categorical variable with 4 categories based on age (equal length of age intervals)</span>

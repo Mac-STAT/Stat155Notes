@@ -10,6 +10,7 @@ output:
 
 ```{r setup, include=FALSE}
 require(tidyverse)
+require(rvest)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 

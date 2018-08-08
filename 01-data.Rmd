@@ -9,13 +9,13 @@ output:
 # Introduction to Data
 
 ```{r setup, include=FALSE}
-require(dplyr)
-require(ggplot2)
-require(stringr)
-require(rvest)
-require(mosaicData) 
-require(ggmosaic)
-require(NHANES)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(rvest)
+library(mosaicData) 
+library(ggmosaic)
+library(NHANES)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -202,10 +202,9 @@ What do you conclude?
 
 
 ```{r, echo=TRUE, message=FALSE}
-require(ggmosaic)
 Whickham %>%
   ggplot() +
-  geom_mosaic(aes(x = product(outcome, smoker),fill = outcome)) +
+  geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) +
   xlab('Smoker Status') + 
   ylab('Counts') + 
   scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 

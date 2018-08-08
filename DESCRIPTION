@@ -3,4 +3,4 @@ Type: Book
 Title: Does not matter.
 Version: 0.0.1
 Imports: tidyverse, bookdown, ggplot2, ggmosaic, NHANES, mosaicData, formatR, rvest
-Remotes: rstudio/bookdown
+Remotes: rstudio/bookdown, haleyjeppson/ggmosaic

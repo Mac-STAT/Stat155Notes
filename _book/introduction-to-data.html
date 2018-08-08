@@ -128,7 +128,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="introduction-to-data" class="section level1">
-<h1><span class="header-section-number">2</span> Introduction to Data</h1>
+<h1><span class="header-section-number">Chapter 2</span> Introduction to Data</h1>
 <div id="data-collection" class="section level2">
 <h2><span class="header-section-number">2.1</span> Data Collection</h2>
 <p>For any data set, you should always ask yourself (or others) a few questions to provide vital <strong>context</strong>.</p>
@@ -207,9 +207,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>The <strong>height</strong> of the bars is the only part that encodes the data (width is meaningless).</li>
 <li>The height can either represent the <strong>frequency</strong> (count of cases) or the <strong>relative frequency</strong> (proportion of cases).</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&#39;mosaicData&#39;) first</span>
-<span class="kw">require</span>(mosaicData)  </code></pre></div>
-<pre><code>## Loading required package: mosaicData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Whickham) <span class="co">#load data set from package</span>
 
 Whickham &lt;-<span class="st"> </span>Whickham <span class="op">%&gt;%</span>
@@ -231,7 +228,7 @@ Whickham <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Age Categories in Years&#39;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="Math155Notes_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 <div id="pie-chart" class="section level5">
 <h5><span class="header-section-number">2.5.1.1.2</span> Pie Chart</h5>
@@ -258,7 +255,7 @@ Whickham <span class="op">%&gt;%</span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smoker, <span class="dt">fill =</span> outcome)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">position =</span> <span class="kw">position_dodge</span>()) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Smoker Status&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Counts&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="st">&quot;20 Year Mortality&quot;</span>, 
     <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="Math155Notes_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>What do you conclude?</p>
 </div>
 <div id="stacked-bar-plot" class="section level5">
@@ -270,7 +267,7 @@ Whickham <span class="op">%&gt;%</span>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smoker, <span class="dt">fill =</span> outcome)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Smoker Status&quot;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Counts&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">scale_fill_manual</span>(<span class="st">&quot;20 Year Mortality&quot;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, 
     <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="Math155Notes_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>What do you conclude?</p>
 </div>
 <div id="mosaic-plot" class="section level5">
@@ -279,9 +276,7 @@ Whickham <span class="op">%&gt;%</span>
 <li>The <strong>relative height</strong> of the bars shows the <strong>conditional distribution</strong> (relative frequency within subsets).</li>
 <li>The <strong>width</strong> of the bars shows the <strong>marginal distribution</strong> (relative frequency of the X variable, ignoring the other variable).</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-<span class="kw">require</span>(ggmosaic)
-
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(ggmosaic)
 Whickham <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(outcome, smoker),<span class="dt">fill =</span> outcome)) <span class="op">+</span>
@@ -289,16 +284,16 @@ Whickham <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>,<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="Math155Notes_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Whickham <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(outcome, smoker),<span class="dt">fill=</span>outcome)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_mosaic</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">product</span>(outcome, smoker), <span class="dt">fill =</span> outcome)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">facet_grid</span>( . <span class="op">~</span><span class="st"> </span>ageCat) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Smoker Status&#39;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>,<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<p><img src="Math155Notes_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
 <p>What do you conclude?</p>
 <p>What do conclude? Why?</p>
 <p><strong>Simpson’s Paradox</strong>: A situation in which you come to two different conclusions if you look at results overall versus within subsets (e.g. age groups).</p>
@@ -316,7 +311,7 @@ Whickham <span class="op">%&gt;%</span>
 <li>The <strong>height</strong> of the bars shows either the <strong>frequency within intervals</strong> or the <strong>density</strong> (relative frequency per unit of measure, e.g. proportion of people per hour sleep)</li>
 <li>The x-axis is a number line and bars do not have to be of equal width (R defaults to equal width, but you can change how many intervals and how large they are)</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(NHANES) <span class="co">#For more info about NHANES: https://www.cdc.gov/nchs/nhanes/index.htm</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#For more info about NHANES: https://www.cdc.gov/nchs/nhanes/index.htm</span>
 
 NHANES <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span>
@@ -325,7 +320,7 @@ NHANES <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() </code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="Math155Notes_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NHANES <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co">#Gaps are meaningful</span>
@@ -333,7 +328,7 @@ NHANES <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() </code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<p><img src="Math155Notes_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NHANES <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
@@ -343,7 +338,7 @@ NHANES <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() </code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="_main_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<p><img src="Math155Notes_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
 <p>We focus on three aspects of the distribution:</p>
 <ul>
 <li><strong>Shape:</strong> Is it <strong>symmetric</strong>? or is it<strong>skewed to the right or left</strong> (THINK: distributions are skewed to the long <strong>tail</strong> - which side has a long tail)? How many <strong>modes</strong> do you see?</li>
@@ -371,7 +366,7 @@ ceo <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Salary ($M)&#39;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">theme_minimal</span>() </code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="Math155Notes_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>For center we have some choices for numerically summarizing it:</p>
 <ul>
 <li><strong>Mean</strong>: The sum of the values divided by the number of values (sample size), <span class="math inline">\(\bar{y} = \frac{\sum^n_{i=1}y_i}{n}\)</span>

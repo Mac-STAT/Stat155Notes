@@ -1,3 +1,23 @@
+--- 
+title: "Math 155 Notes"
+author: "Brianna Heggeseth"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+description: "This includes notes for Math 155 at Macalester College."
+---
+
+# Introduction
+
+For Math 155, we will spend our time in-class working together on real problems, asking each other questions, and expanding our understanding of the material. 
+
+This online text is a collection of notes that includes definitions, examples, and will support our discussion in class. 
+
+If you find any typos or have questions, please email bheggese@macalester.edu.
+
+<!--chapter:end:index.Rmd-->
+
 ---
 title: "Math 155 - Intro to Data2"
 author: "Prof. Heggeseth"
@@ -348,4 +368,7 @@ For a quantitative variable,
 - Use a histogram to display the distribution of one variable and describe the shape and any unusual features.
 - For "well behaved" distributions (symmetric, unimodal, no outliers), use the mean and standard deviation to describe the center and spread.
 - For others, use the IQR and median. You can report both mean and median, but it’s usually a good idea to state why.
+
+
+<!--chapter:end:01-data.Rmd-->
 

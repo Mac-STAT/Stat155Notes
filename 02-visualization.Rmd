@@ -14,6 +14,7 @@ library(rvest)
 library(mosaicData) 
 library(ggmosaic)
 library(NHANES)
+library(mosaic)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -465,14 +466,12 @@ What if there were no REAL difference? Then the Depressed group labels wouldn't 
 4. Look at the differences based on random shuffles & compare to the observed difference.
 
 ```{r echo=TRUE}
-require(mosaic)
-
-NHANES = NHANES %>%
+NHANES <- NHANES %>%
   mutate(DepressedMost = (Depressed == 'Most')) #TRUE or FALSE (converted to a 2 category variable)
 
-obsdiff <- data.frame(d = diff(mean(SleepHrsNight ~ DepressedMost, data = NHANES,na.rm=TRUE)))
+obsdiff <- data.frame(d = diff(mean(SleepHrsNight ~ DepressedMost, data = NHANES, na.rm = TRUE)))
 
-sim = do(1000)*diff(mean(SleepHrsNight ~ shuffle(DepressedMost), data = NHANES,na.rm=TRUE)) #Randomly shuffle the DepressedMost labels (assuming no real difference in sleep, depressed feelings shouldn't impact sleep)
+sim <- do(1000)*diff(mean(SleepHrsNight ~ shuffle(DepressedMost), data = NHANES, na.rm = TRUE)) #Randomly shuffle the DepressedMost labels (assuming no real difference in sleep, depressed feelings shouldn't impact sleep)
 
 sim %>%
   ggplot(aes(x = TRUE.)) + 

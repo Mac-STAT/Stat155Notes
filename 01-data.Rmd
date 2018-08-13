@@ -22,7 +22,8 @@ knitr::opts_chunk$set(echo = TRUE)
 We live in a data-driven world. From search engines to satellite images, from cell phones to credit cards, current technology can produce data faster than we can analyze them. Our goal in Statistics is to get information from this data. The main way we do this is by visually exploring the data and building models to try to explain observed variability, while staying grounded in the context of the data. 
 
 
-## Data Collection
+## Data Context
+
 
 For any data set, you should always ask yourself (or others) a few questions to provide vital **context** about a data set. 
 
@@ -32,6 +33,8 @@ For any data set, you should always ask yourself (or others) a few questions to 
 - When were they collected? (One point in time? Over time?)
 - How were they collected? (Measurements? Questionnaire? By phone? In person?)
 - Why were they collected? (Who paid? Conflicts of interest?)
+
+##Sampling
 
 We hope that the **cases** in the data set are representative of a **population of interest**. In particular, we say that our data that has been collected is a **sample** from a population. 
 
@@ -48,6 +51,9 @@ What would happen if we put the salt in but didn't stir. If we taste just the to
 
 **Representative Sample:***A group that closely matches the characteristics of its population as a whole. In other words, the sample is a fairly accurate reflection of the population from which the sample is drawn.*
 
+
+###Sampling Bias
+
 If we do not have a representative sample due to the way individuals were selected to be in the study, then we say that there was bias in the sampling process (sampling bias). Think about putting your spoon only on the edge or only in the middle, while not stirring.
 
 **Sampling Bias:** *If the sample is unrepresentative of the population of interest in a systematic way, there is sampling bias.* 
@@ -59,6 +65,8 @@ Here are a few flavors of sampling bias:
 - **Nonresponse bias:** *When individuals chosen or selected for the sample are unwilling or unable to participate. An example would be an unreturned mail survey that is only sent to a random set of individuals.*
 - **Voluntary response bias:** *When the individuals in the sample are self-selected volunteers (they were not chosen or selected by a researcher). An example would be call-in radio shows that solicit audience participation in surveys on controversial topics (abortion, affirmative action, gun control, etc.).* 
 
+
+###Random Sampling
 
 To try and avoid some of these types of sampling bias, we may want to "stir the pot before taking a taste" by taking a random sample so as to make sure the sample is representative of the population. It doesn't eliminate nonresponse bias, but we can take actions to try to maximize the response rate by repeatedly requesting a response (calling, emailing, going in person, etc).
 

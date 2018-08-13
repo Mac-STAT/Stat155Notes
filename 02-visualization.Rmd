@@ -245,6 +245,8 @@ ceo %>%
   theme_minimal() 
 ```
 
+###Center
+
 For center, we have some choices for numerically summarizing it:
 
 - **Mean**: The sum of the values divided by the number of values (sample size), $\bar{y} = \frac{\sum^n_{i=1}y_i}{n}$
@@ -322,7 +324,7 @@ abline(v = median(ceo$salary,na.rm=TRUE), col = 'blue',lty=3)
 What would the boxplot look like if all of the values were exactly the same?
 
 
-
+###Spread
 
 For spread we have several choices to numerically describe it:
 
@@ -365,11 +367,37 @@ What percentage of the data is between the green dashed lines (length of interva
 sum(x > -sd(x) & x < sd(x))/length(x)
 ```
 
+###Z-scores
+
+How do you decide when an outlier is really unusual (think: athletic victory being very impressive or a data point that may be an error)?
+
+If the observation is far from the rest of the measurements in the data, we tend to say that the value is more unusual. We want to quantify this idea of "unusual."
+
+To do this, we often calculate a **z-score**, a standardized data value.
+
+- Calculate how far the observation was below (or above) the mean of the sample. 
+- Then divide the difference by the standard deviation (measure of spread).
+
+\[ z = \frac{y - \bar{y}}{s_y}\]
+
+The z-score just tells you how many standard deviations the observation is above or below the mean. 
+
+Say that you got a z = 1 on an exam with mean = 80 and sd = 5. That means that you got an 85 on the exam ($mean + z*sd = 80 + 1*5$).
+
+If you got a z = -2 on an exam with mean = 80 and sd = 5, that means you got a 70 on the exam (80 + -2*5).
+
+In general, it is quite common to have z-scores between -3 and 3, but very unusual to have them greater than 3 or less than -3. In particular, if you have a unimodal, symmetric distribution z-score values will be between -1 and 1 about 68% of the time, between -2 and 2 about 95% of the time, and between -3 and 3 about 99.7% of the time. 
+
+For those of you who like mathematical theorems, go check out Chebyshev's inequality. It gives a mathematical reasoning for why z-scores of magnitude 3 or greater are very unusual. Then take probability to get an even better understanding of it! 
+
+
 In summary, for a quantitative variable,
 
 - Use a histogram to display the distribution of one variable and describe the shape and any unusual features.
-- For "well behaved" distributions (symmetric, unimodal, no outliers), use the mean and standard deviation to describe the center and spread.
+- For "well behaved" distributions (symmetric, unimodal, no outliers), use the mean and standard deviation to describe the center and spread. Then z-scores will roughly follow the 68-95-99.7 rule stated above. 
 - For others, use the IQR and median. You can report both mean and median, but it’s usually a good idea to state why.
+
+
 
 ##One Quantitive Variable and One Categorical Variable
 
@@ -485,5 +513,90 @@ sim %>%
 What do you notice? What do you wonder?
 
 ##Two Quantitative Variables
+
+Now, let's switch to another data set that includes a variety of body measurements. Imagine that you are an entreprenure and you are going to sell dress shirts. Clothing sizing is just weird (don't get me started...) so let's use this dataset to try to come up with our own data driven sizes. Two of the key measurements are the neck size and waist size. There are others, but let's focus on these for the moment.
+
+###Scatterplot
+
+When you have two quantitative variables, a **scatterplot** is one appropriate graphical display of the relationship.
+
+```{r echo=TRUE}
+par(mfrow=c(1,1))
+bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
+
+bodyfat %>%
+  ggplot(aes(x = Neck, y = Waist)) +
+  geom_point(color = 'steelblue') + 
+  theme_minimal()
+```
+
+What do you notice about:
+
+1. Direction of Relationship (positive, negative, neutral)
+2. Form of Relationship (linear, curved, none, other)
+3. Strength of Relationship (compactness around the relationship)
+4. Unusual Features (outliers, differences in variability across x)
+
+**How could you use this information to determine shirt sizes for your new business venutre? ** We'll come back to this.
+
+Suppose instead of *Waist* in inches and *Neck size* in inches, we switched to metric and plotted *Waist* and *Neck size* in cm. 
+
+**Does the strength change?**
+
+```{r}
+bodyfat %>%
+  ggplot(aes(x = Neck*2.54, y = Waist*2.54)) +
+  geom_point(color = 'steelblue') + 
+  theme_minimal()
+```
+
+
+###Correlation Coefficient
+
+Since shifting (adding or subtracting) and scaling (multiplying or dividing) make no difference, let's standardize both variables into z-scores and replot (and add some color):
+
+```{r, echo=FALSE}
+bodyfat <- bodyfat %>%
+  mutate(zNeck = scale(Neck), zWaist = scale(Waist), product = sign(zWaist*zNeck))
+
+bodyfat %>%
+  ggplot(aes(x = zNeck, y = zWaist, color = factor(product))) +
+  geom_point() +
+  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0) +
+  theme_minimal()
+```
+
+**If we were to have a weaker positive relationship, how would this plot change?**
+
+**If we were to have a negative relationship, how would this plot change?**
+
+
+We want one number to represent **strength** and **direction** of a linear relationship.
+
+- Points in the $1^{st}$ and $3^{rd}$ quadrants (blue) have the **same sign**.
+- Points in the $2^{nd}$ and $4^{th}$ (red) have **opposite signs.**
+
+**What if we took the product of the $z$-scores? What would the values look like?**
+
+
+The almost *average* of products of the $z$-scores is the **correlation coefficient,** 
+
+$$ r = \frac{\sum z_x z_y}{n-1} $$
+
+**Which points contribute the most to this average?**
+
+```{r, echo=TRUE}
+cor(bodyfat$Neck,bodyfat$Waist)
+```
+
+**Other expressions for r (for the mathematically intrigued)**
+
+$$ r = \frac{\sum z_x z_y}{n-1}  $$
+$$ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\frac{(y_i-\bar{y})}{s_y}}}{n-1}$$
+$$= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}$$
+$$= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}}{\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}}$$
+$$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}}$$
+$$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}}$$
 
 

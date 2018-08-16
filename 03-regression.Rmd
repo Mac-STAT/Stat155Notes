@@ -697,7 +697,6 @@ We see a different slopes and different intercepts for these two groups.
 - No extreme outliers (points far away in X's can have **leverage** to change the line)
 
 
-
 Interactive Visualization: http://omaymas.github.io/InfluenceAnalysis/
 
 

@@ -7,6 +7,7 @@ output:
 ---
 
 ```{r setup1, include=FALSE}
+library(broom)
 library(dplyr)
 library(ggplot2)
 library(stringr)
@@ -38,49 +39,49 @@ For any data set, you should always ask yourself (or others) a few questions to 
 
 We hope that the **cases** in the data set are representative of a **population of interest**. In particular, we say that our data that has been collected is a **sample** from a population. 
 
-**Population of Interest:**  *A collection of people, creatures, things, cases or others that we interested in knowning more about.*
+**Population of Interest:**  *A collection of people, creatures, things, cases or others that we interested in knowing more about.*
 
 **Sample:** *A subset of the population of interest on which we have collected data.* 
 
 Getting information from everyone individual in a population is very difficult (it is called a **census**) and in many situations, impossible. 
 
-We want to get a sense of the population by just collected data on a subset. Here is a metaphor to think about. Consider the process of making a soup. We want to make sure there is enough (but not too much) salt or seasonings. We don't need or want to eat the entire pot of soup to test if there is the right amount. In fact, we just need a spoonful from a well-stirred pot of soup so that it is that taste is **representative** of the whole pot. 
+We want to get a sense of the population by just collecting data on a subset. Consider the process of making a soup. We want to make sure there is enough (but not too much) salt in the soup. We don't need or want to eat the entire pot of soup to test if there is the right amount. In fact, we just need a spoonful from a well-stirred pot of soup so that the taste is **representative** of the whole pot. 
 
-What would happen if we put the salt in but didn't stir. If we taste just the top layer of the soup from the pot? It would be overly salty. But just below the surface, there would be too little. In order for our taste (sample) to be useful to us, we need to ensure that it is representative of the whole.
+What would happen if we put the salt in but didn't stir? What if we taste just the top layer of the soup from the pot? It would be overly salty. But just below the surface, there would be too little. In order for our sample taste to be useful to us, we need to ensure that it is representative of the whole.
 
 
-**Representative Sample:***A group that closely matches the characteristics of its population as a whole. In other words, the sample is a fairly accurate reflection of the population from which the sample is drawn.*
+**Representative Sample:** *A group that closely matches the characteristics of its population as a whole. In other words, the sample is a fairly accurate reflection of the population from which the sample is drawn.*
 
 
 ###Sampling Bias
 
-If we do not have a representative sample due to the way individuals were selected to be in the study, then we say that there was bias in the sampling process (sampling bias). Think about putting your spoon only on the edge or only in the middle, while not stirring.
+If we do not have a representative sample due to the way individuals were selected to be in the study, then we say that there was bias in the sampling process (this is known as sampling bias). (Think about putting your spoon only on the edge or only in the middle, while not stirring.)
 
 **Sampling Bias:** *If the sample is unrepresentative of the population of interest in a systematic way, there is sampling bias.* 
 
 Here are a few flavors of sampling bias:
 
 - **Undercoverage:** *When some members of the population are inadequately represented in the sample due to the sampling procedure (often from convenience samples). An example would be the Literary Digest 1936 poll that got the presidental election wrong. The survey relied on a convenience sample, drawn from telephone directories and car registration lists. In 1936, people who owned cars and telephones tended to be more affluent.* 
-- **Response bias:** *When the response does not accurately represent the true value for the individual (due to wording of the question or to increase social desirability). Most people like to present themselves in a favorable light, so they will be reluctant to admit to unsavory attitudes or characteristics or illegal activities in a survey, particularly if survey results are not confidential.* 
+- **Response bias:** *When the recorded response does not accurately represent the true value for the individual due to wording of the question or to increase social desirability. Most people like to present themselves in a favorable light, so they will be reluctant to admit to unsavory attitudes or characteristics or illegal activities in a survey, particularly if survey results are not confidential.* 
 - **Nonresponse bias:** *When individuals chosen or selected for the sample are unwilling or unable to participate. An example would be an unreturned mail survey that is only sent to a random set of individuals.*
 - **Voluntary response bias:** *When the individuals in the sample are self-selected volunteers (they were not chosen or selected by a researcher). An example would be call-in radio shows that solicit audience participation in surveys on controversial topics (abortion, affirmative action, gun control, etc.).* 
 
 
 ###Random Sampling
 
-To try and avoid some of these types of sampling bias, we may want to "stir the pot before taking a taste" by taking a random sample so as to make sure the sample is representative of the population. It doesn't eliminate nonresponse bias, but we can take actions to try to maximize the response rate by repeatedly requesting a response (calling, emailing, going in person, etc).
+To avoid some of these types of sampling bias, we may want to "stir the pot before taking a taste" by taking a random sample from the population so as to make sure the sample is representative of the population. Note that randomizing the sampling procedure doesn't eliminate bias (especially nonresponse bias). We can take actions to try to maximize the response rate by repeatedly requesting a response (calling, emailing, going in person, etc).
 
 **Random Sampling:** *A procedure for sampling from a population in which (a) the selection of a sample unit is based on chance and (b) every element of the population has a known, non-zero probability of being selected. Random sampling helps produce representative samples by eliminating voluntary response bias and guarding against undercoverage bias.*
 
 There are many ways to do random sampling. A few flavors are:
 
-**Simple Random Sampling:** *A simple random sample involves having a list of all of the units of a population of interest (called a sampling frame) and then randomly selecting units without replacement. In doing so, every unit has an equal chance of being selected and every sample of size $n$ has an equal chance of being selected.**
+**Simple Random Sampling:** *A simple random sample involves having a list of all of the units of a population of interest (called a sampling frame) and then randomly selecting units without replacement. In doing so, every unit has an equal chance of being selected and every sample of size $n$ has an equal chance of being selected.*
 
 **Stratified Sampling:** *A stratified sampling allows you to control the characteristics of the sample by first taking the sampling frame and separating the units into homogenous groups based on a chosen set of characteristics (ex. gender, major of study). Then you do a simple random sample within each homogenous groups, controlling the number selected from each group.* 
 
 **Cluster Sampling:** *A cluster sampling is often done for the sake of time and financial constraints and involves taking the sampling frame and separate the units into hetereogeneous groups, typically defined by physical locations, and then a simple random sample is completed on the groups, meaning that a heterogeneous group is randomly selected and every member in that group is in the sample.* 
 
-**Systematic Sampling:** *Systematic sampling involves selecting individuals from the list of units in the population, the sampling frame, by first chooing a random starting point  and then selecting all kth individuals in the list. The interval must be fixed ahead of time.* 
+**Systematic Sampling:** *Systematic sampling involves selecting individuals from the list of units in the population, the sampling frame, by first chooing a random starting point  and then selecting all kth individuals in the list. The interval must be fixed ahead of time. Before you choose your starting point, everyone has the same chance of being selected. * 
 
 ## Observational Study vs. Experiments
 
@@ -96,9 +97,9 @@ For example, imagine we want to know if taking a daily multivitamin reduces syst
 
 No, it wouldn't. Individuals that take daily multivitamins may also be more health-conscious and thus eat more fruits and vegetables and exercise, which could be related to blood pressure. The diet and exercise would be acting as **confounding variables,** making it impossible to say for certain if vitamin use has a direct impact on blood pressure.
 
-**Confounding Variables:** Third variables that are related to both a "treatment" (e.g. multivitamin) and a "response" (e.g. blood pressure). Example: Say we note that higher ice creams sales is related to a higher number of pool drownings. What could be a confounding variable in this circumstance?
+**Confounding Variables:** *Third variables that are related to both a "treatment" (e.g. multivitamin) and a "response" (e.g. blood pressure). For example, say we note that higher ice creams sales is related to a higher number of pool drownings. What could be a confounding variable in this circumstance?*
 
-In an experiment, we "manipulate" the characteristics of an individual by randomly assigning them to a treatment. This random assignment is intended to "break" the relationship between any third variable and the "treatment" so as to try to reduce the impact of confounding. It is impossible to entirely remove the possibility of confounding, but the random assignment to a treatment helps. (Note: things can get complicated if individuals don't comply with the treatment such as take the multivitamin every single day...)
+In an experiment, we "manipulate" the characteristics of an individual by randomly assigning them to a treatment group. This random assignment is intended to break the relationship between any third variable and the treatment so as to try to reduce the impact of confounding. It is impossible to entirely remove the possibility of confounding, but the random assignment to a treatment helps. (Note: things can get complicated if individuals don't comply with the treatment such as take the multivitamin every single day...)
 
 **Causal Inference:** *Causal inference is the process of making a conclusion about direct cause and effect between a "treatment" and a "response". It is very difficult to make causal inferences/statements based on data from an observational study due to the possible presence of confounding variables. There is a whole area of statistics dedicated to methods that attempt to overcome the confounding, but that is beyond the scope of this course. (If you want a "gentle" but mathematical introduction to this area of Statistics, I'd suggest reading "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell)*
 
@@ -112,8 +113,8 @@ Raw data can come in a variety of formats. In order to analyze the data, we need
 
 Variables can be either **categorical** or **quantitative** variables.
 
-- **Categorical variable:** *Characteristic with values that are names of categories; the names of categories could be numbers such as with zipcodes. If the categories have a natural ordering, it could be called an ordinal variable, but we won't be distinguishing between different types of categorical variables.* 
-- **Quantitative variable:** *Characteristic with measured numerical values with units.*
+- **Categorical variable:** *A characteristic with values that are names of categories; the names of categories could be numbers such as with zipcodes. If the categories have a natural ordering, it could be called an ordinal variable, but we won't be distinguishing between different types of categorical variables in this class.* 
+- **Quantitative variable:** *A characteristic with measured numerical values with units.*
 
 *Note: Any quantitative variable can be converted into a categorical variable by creating categories defined by intervals or bins of values.* 
 

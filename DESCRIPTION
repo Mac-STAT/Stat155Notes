@@ -2,5 +2,5 @@ Package: placeholder
 Type: Book
 Title: Does not matter.
 Version: 0.0.1
-Imports: dplyr, bookdown, ggplot2, NHANES, mosaicData, formatR, rvest, ggmosaic, mosaic
+Imports: dplyr, bookdown, ggplot2, NHANES, mosaicData, formatR, rvest, ggmosaic, mosaic, broom
 Remotes: rstudio/bookdown, haleyjeppson/ggmosaic

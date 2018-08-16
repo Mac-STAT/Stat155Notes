@@ -7,6 +7,7 @@ output:
 ---
 
 ```{r setup2, include=FALSE}
+library(broom)
 library(dplyr)
 library(ggplot2)
 library(stringr)
@@ -28,13 +29,13 @@ Here we will cover the standard appropriate graphics for univariate variation an
 
 For each type of variable, we will use a real data set to illustrate the visualizations. 
 
+
+##One Categorical Variable
+
 First, we consider survey data of the electoral registrar in Whickham in the UK (Source: Appleton et al 1996). 
 
 - Survey was conducted in 1972-1974 to study heart disease and thyroid disease (baseline characteristics: age and smoking status)
 - A follow-up on those in the survey was conducted twenty years later (followup characteristics: mortality after 20 years)
-
-
-##One Categorical Variable
 
 Let's first consider the age distribution. Age, depending on how it is measured, could act as a quantitative variable or categorical variable. In this case, age is a quantitative variable because it is recorded to the nearest year. But, for illustrative purposes, I'm going to create a categorical variable by separating age into intervals. 
 
@@ -48,7 +49,7 @@ What do I gain?
 - The height can either represent the **frequency** (count of cases) or the **relative frequency** (proportion of cases).
 
 
-```{r echo=TRUE}
+```{r}
 data(Whickham) #load data set from package
 
 Whickham <- Whickham %>%
@@ -90,7 +91,7 @@ Now, let's consider two other variables in the same data set. What is the relati
 
 - The **height** of the bars shows the frequency of the categories within subsets.
 
-```{r, tidy=TRUE, echo=TRUE}
+```{r}
 
 Whickham %>%
   count(outcome, smoker) %>%
@@ -114,7 +115,7 @@ What do you notice? What do you wonder?
 
 **Distribution:** the way something is spread out (aka the way in which values vary).
 
-```{r tidy=TRUE, echo=TRUE}
+```{r}
 Whickham %>%
   ggplot(aes(x = smoker, fill = outcome)) + 
   geom_bar() + 
@@ -133,7 +134,7 @@ What do you notice? What do you wonder?
 - The **width** of the bars shows the **marginal distribution** (relative frequency of the X variable, ignoring the other variable).
 
 
-```{r, echo=TRUE, message=FALSE}
+```{r}
 Whickham %>%
   ggplot() +
   geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) +
@@ -148,7 +149,7 @@ What do you notice? What do you wonder?
 **Gut Check:** Does our data suggest that smoking *is associated* with a lower mortality rate?  Does our data suggest that smoking *reduces* mortality? (Note the difference in these two questions - the second implies cause and effect)
 
 
-```{r, echo=TRUE, message=FALSE}
+```{r}
 Whickham %>%
   ggplot() +
   geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) + 
@@ -182,7 +183,7 @@ Since sleep is vitally important to daily functioning, let's look at the number 
 - The **height** of the bars shows either the **frequency within intervals** or the **density** (relative frequency per unit of measure, e.g. proportion of people per hour sleep)
 - The x-axis is a number line and bars do not have to be of equal width (R chooses a default bin width, but you can change how many intervals and how large they are)
 
-```{r, echo=TRUE, message=FALSE}
+```{r}
 #For more info about NHANES: https://www.cdc.gov/nchs/nhanes/index.htm
 
 NHANES %>%
@@ -234,7 +235,7 @@ ceo <- ceo %>%
   filter(year == '2016')
 ```
 
-```{r echo=TRUE}
+```{r}
 #Highest Paid CEO's in the U.S. in 2016 (Source: NYTimes)
 ceo %>%
   ggplot(aes(x = salary)) +
@@ -256,7 +257,7 @@ For center, we have some choices for numerically summarizing it:
 - **Trimmed means**:  Drop the lowest and highest k% and take the mean of the rest.
     + A good compromise, but not widely used.
 
-```{r, echo=TRUE}
+```{r}
 summary(NHANES$SleepHrsNight)
 mean(NHANES$SleepHrsNight, na.rm=TRUE) #na.rm = TRUE removes missing values
 median(NHANES$SleepHrsNight, na.rm=TRUE)
@@ -278,7 +279,7 @@ A simplification of the histogram:
 - Tails: Extend to most extreme observed values within 1.5*(Q3-Q1) from Q1 (left) or Q3 (right)
 - Points: If any points are beyond 1.5*(Q3-Q1) from the box, plot separately
 
-```{r echo=TRUE}
+```{r}
 NHANES %>%
   ggplot(aes(y = SleepHrsNight)) +
   geom_boxplot() + 
@@ -334,7 +335,7 @@ For spread we have several choices to numerically describe it:
     + Length of the box in a boxplot
     + Spread of middle 50% of data
     + Like the median. Less sensitive because it doesn't use all of the data
-- **Standard deviation**: Root mean squared deviations from mean, $s = \sqrt{\frac{\sum^n_{i=1}(y_i-\bar{y})^2}{n-1}}$
+- **Standard deviation**: Root mean squared deviations from mean, $s_y = \sqrt{\frac{\sum^n_{i=1}(y_i-\bar{y})^2}{n-1}}$
     + Roughly the average size of deviation from the mean ($n-1$ instead of $n$)
     + Uses all the data but very sensitive to outliers and skewed data (large values are first squared).
 
@@ -514,19 +515,20 @@ What do you notice? What do you wonder?
 
 ##Two Quantitative Variables
 
-Now, let's switch to another data set that includes a variety of body measurements. Imagine that you are an entreprenure and you are going to sell dress shirts. Clothing sizing is just weird (don't get me started...) so let's use this dataset to try to come up with our own data driven sizes. Two of the key measurements are the neck size and waist size. There are others, but let's focus on these for the moment.
+Now, let's switch to another data set that includes a variety of body measurements. Imagine that you are an entreprenure and you are going to sell dress shirts. Clothing sizing is just weird (don't get me started...) so let's use this dataset to try to come up with our own data driven sizes. Two of the key measurements are the neck size and chest size. There are others, but let's focus on these for the moment.
 
 ###Scatterplot
 
 When you have two quantitative variables, a **scatterplot** is one appropriate graphical display of the relationship.
 
 ```{r echo=TRUE}
-par(mfrow=c(1,1))
 bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
 
 bodyfat %>%
-  ggplot(aes(x = Neck, y = Waist)) +
+  ggplot(aes(x = Neck, y = Chest)) +
   geom_point(color = 'steelblue') + 
+  xlab('Neck size (cm)') + 
+  ylab('Chest size (cm)') +
   theme_minimal()
 ```
 
@@ -539,14 +541,16 @@ What do you notice about:
 
 **How could you use this information to determine shirt sizes for your new business venutre? ** We'll come back to this.
 
-Suppose instead of *Waist* in inches and *Neck size* in inches, we switched to metric and plotted *Waist* and *Neck size* in cm. 
+Suppose instead of *Chest* in cm and *Neck size* in cm, we switched to inches and plotted *Chest* and *Neck size* in inches. 
 
 **Does the strength change?**
 
 ```{r}
 bodyfat %>%
-  ggplot(aes(x = Neck*2.54, y = Waist*2.54)) +
+  ggplot(aes(x = Neck/2.54, y = Chest/2.54)) +
   geom_point(color = 'steelblue') + 
+  xlab('Neck size (in)') + 
+  ylab('Chest size (in)') +
   theme_minimal()
 ```
 
@@ -557,13 +561,15 @@ Since shifting (adding or subtracting) and scaling (multiplying or dividing) mak
 
 ```{r, echo=FALSE}
 bodyfat <- bodyfat %>%
-  mutate(zNeck = scale(Neck), zWaist = scale(Waist), product = sign(zWaist*zNeck))
+  mutate(zNeck = scale(Neck), zChest = scale(Chest), Product = sign(zChest*zNeck))
 
 bodyfat %>%
-  ggplot(aes(x = zNeck, y = zWaist, color = factor(product))) +
+  ggplot(aes(x = zNeck, y = zChest, color = factor(Product))) +
   geom_point() +
   geom_hline(yintercept = 0) +
   geom_vline(xintercept = 0) +
+  xlab('Z-scores of Neck size') + 
+  ylab('Z-scores of Chest size') +
   theme_minimal()
 ```
 
@@ -587,8 +593,22 @@ $$ r = \frac{\sum z_x z_y}{n-1} $$
 **Which points contribute the most to this average?**
 
 ```{r, echo=TRUE}
-cor(bodyfat$Neck,bodyfat$Waist)
+cor(bodyfat$Neck,bodyfat$Chest)
 ```
+
+###Properties
+
+* $-1 \leq r \leq 1$
+
+* Sign of $r$ goes with the direction of the relationship.
+
+* $r_{x,y} = r_{y,x}$, it doesn't matter which is $x$ and which is $y$.
+
+* $r_{ax+b, cy+d} = r_{x,y}$,   Linear change of scale doesn't affect $r$. Why?
+
+* $r$ measures strength of *linear* relationship -- not curved
+
+* one outlier can completely change $r$
 
 **Other expressions for r (for the mathematically intrigued)**
 
@@ -599,4 +619,10 @@ $$= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})
 $$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}}$$
 $$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}}$$
 
+###Is correlation always the right way to judge strength?
 
+Here is the plot of brownie quality by temperature.
+The correlation is near 0, but it doesn't mean that there's no relationship -- there's no **linear** relationship.
+
+
+![](http://sites.williams.edu/rdeveaux/files/2014/09/Brownies.png)

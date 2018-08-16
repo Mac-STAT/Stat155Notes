@@ -12,7 +12,7 @@ github-repo: bcheggeseth/Math155Notes
 description: "This includes notes for Math 155 at Macalester College."
 ---
 
-# Introduction
+# Introduction to Math 155
 
 For Math 155, we will spend our time in-class working together on real problems, asking each other questions, and expanding our understanding of the material. 
 

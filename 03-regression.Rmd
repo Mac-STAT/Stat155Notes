@@ -226,7 +226,7 @@ So, based on this line, we can predict your chest size within 5 to 10 inches.
 
 Let's see how some real companies create shirts,
 
-![](http://www.oasisamor.org/wp-content/uploads/2017/06/stylish-dress-shirt-size-size-chart-.jpg)
+![](Photos/stylish-dress-shirt-size-size-chart-.jpg)
 
 
 ```{r}

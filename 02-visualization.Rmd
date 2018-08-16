@@ -625,4 +625,4 @@ Here is the plot of brownie quality by temperature.
 The correlation is near 0, but it doesn't mean that there's no relationship -- there's no **linear** relationship.
 
 
-![](http://sites.williams.edu/rdeveaux/files/2014/09/Brownies.png)
+![](Photos/Brownies.png)

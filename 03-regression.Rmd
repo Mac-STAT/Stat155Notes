@@ -19,7 +19,7 @@ library(mosaic)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# Introduction to Regression Models
+# Regression Models
 
 ##Best Fitting Line(s)
 

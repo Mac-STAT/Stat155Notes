@@ -87,15 +87,15 @@ There are many ways to do random sampling. A few flavors are:
 
 Data can be collected in one of two scenerios:
 
-1. **Observational Study:** *Data is collected in such a way such that the researcher **does not** manipulate or intervene in characteristics of the individuals. Researchers simply observed or record characteristics of the sample through direct measurement or through a questionnaire or survey.*
+1. **Observational Study:** *Data is collected in such a way such that the researcher **does not** manipulate or intervene in characteristics of the individuals. Researchers simply observe or record characteristics of the sample through direct measurement or through a questionnaire or survey.*
 
 2. **Experiment:** *Data is collected in such a way such that the researcher **does** manipulate or intervene characteristics of the individuals by randomly assigning individuals to treatment and control groups. Researchers then record characteristics of the individuals in the sample within the treatment and control groups.*
 
-The main reason for doing an experiment is to try to estimate a relationship between a treatment and a response without the impact of **confounding variables.** 
+The main reason for doing an experiment is to estimate a relationship between a treatment and a response without the impact of **confounding variables.** 
 
-For example, imagine we want to know if taking a daily multivitamin reduces systolic blood pressure. If we did an observational study, we'd select a sample (hopefully randomly) from a population of interest and then ask whether an individual takes a daily multivitamin and measure their blood pressure. Would this data be enough evidence to conclude that vitamin use causes a reduction in blood pressure?
+For example, imagine we want to know if taking a daily multivitamin reduces systolic blood pressure. If we did an observational study, we'd select a sample (hopefully randomly) from a population of interest and then ask whether an individual takes a daily multivitamin and measure their blood pressure. Would this data provide enough evidence to conclude that vitamin use causes a reduction in blood pressure?
 
-No, it wouldn't. Individuals that take daily multivitamins may also be more health-conscious and thus eat more fruits and vegetables and exercise, which could be related to blood pressure. The diet and exercise would be acting as **confounding variables,** making it impossible to say for certain if vitamin use has a direct impact on blood pressure.
+No, it wouldn't. Individuals that take daily multivitamins may also be more health-conscious, eating more fruits and vegetables and exercising more, which may be related to blood pressure. The diet and exercise would be acting as **confounding variables,** making it impossible to say for certain if vitamin use has a direct impact on blood pressure.
 
 **Confounding Variables:** *Third variables that are related to both a "treatment" (e.g. multivitamin) and a "response" (e.g. blood pressure). For example, say we note that higher ice creams sales is related to a higher number of pool drownings. What could be a confounding variable in this circumstance?*
 
@@ -106,7 +106,7 @@ In an experiment, we "manipulate" the characteristics of an individual by random
 
 ##Tidy Data
 
-Raw data can come in a variety of formats. In order to analyze the data, we need to get data into a tidy format, in which
+Raw data can come in a variety of formats (text, images, data streams, etc). In order to analyze the data, we need to get data into a tidy format, in which
 
 - Rows represent **cases** (one row per observational unit -- this could be an individual or an individual at a particular time)
 - Columns represent **variables** (one column per characteristic)
@@ -114,6 +114,7 @@ Raw data can come in a variety of formats. In order to analyze the data, we need
 Variables can be either **categorical** or **quantitative** variables.
 
 - **Categorical variable:** *A characteristic with values that are names of categories; the names of categories could be numbers such as with zipcodes. If the categories have a natural ordering, it could be called an ordinal variable, but we won't be distinguishing between different types of categorical variables in this class.* 
+
 - **Quantitative variable:** *A characteristic with measured numerical values with units.*
 
 *Note: Any quantitative variable can be converted into a categorical variable by creating categories defined by intervals or bins of values.* 
@@ -135,5 +136,5 @@ Through this class, we are going to stop and think about the ethical considerati
 
 - Choice of sample data used for predictive modelling
 
-There will be reading to expose you to issues as well as questions in assessments asking you to consider the ethical issues with a real data set and statistical analysis. 
+There will be readings to expose you to issues as well as questions during class and on homeworks that ask you to consider the ethical issues with a real data set and statistical analysis. 
 

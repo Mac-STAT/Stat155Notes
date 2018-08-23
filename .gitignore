@@ -5,3 +5,6 @@ _publish.R
 _book
 _bookdown_files
 rsconnect
+04-variability.Rmd
+05-probability.Rmd
+06-inference.Rmd

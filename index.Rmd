@@ -6,6 +6,10 @@ site: bookdown::bookdown_site
 output: 
   bookdown::gitbook:
     split_by: section
+    config:
+      toc: 
+        collapse: subsection
+        scroll_highlight: yes
 documentclass: book
 link-citations: yes
 github-repo: bcheggeseth/Math155Notes

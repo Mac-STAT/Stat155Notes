@@ -8,7 +8,7 @@ output:
     split_by: section
     config:
       toc: 
-        collapse: subsection
+        collapse: section
         scroll_highlight: yes
 documentclass: book
 link-citations: yes

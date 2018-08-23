@@ -122,7 +122,7 @@ Variables can be either **categorical** or **quantitative** variables.
 
 ## Ethical Considerations
 
-Through this class, we are going to stop and think about the ethical considerations of what we are doing. In particular, we are going to consider the ethics of 
+Through this class, we are going to stop and think about the ethical considerations of what we are doing. Ethics are the norms or standards for conduct that distinguish between right and wrong. In particular, we are going to consider the ethics of 
 
 - How the data were collected
 
@@ -136,5 +136,7 @@ Through this class, we are going to stop and think about the ethical considerati
 
 - Choice of sample data used for predictive modelling
 
-There will be readings to expose you to issues as well as questions during class and on homeworks that ask you to consider the ethical issues with a real data set and statistical analysis. 
+We are going to pay extra attention to negative consequences of the above that may disproportionate impact marginalized groups of people. 
+
+There will be readings to expose you to issues throughout the semester. I will also ask you the question "what are the ethical considerations for this data set/analysis?" during class and on homeworks because like in any other discpline, the choices we all make will be biased by our life experience. Throughout this case, I want us all to increase our awareness of real consequences caused by decisions we make in Statistics. 
 

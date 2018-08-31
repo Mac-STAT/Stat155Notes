@@ -22,4 +22,6 @@ For Math 155, we will spend our time in-class working together on real problems,
 
 This online text is a collection of notes that includes definitions of concepts, data examples, and R code. Together, the will support our discussion in class. 
 
-If you find any typos or have questions, please email bheggese@macalester.edu.
+This is a living document, which will get updated throughout the semester. Based on your feedback, I will adjust chapters that you've already been assigned to read to clarify concepts for when you reflect back on previous material.
+
+*When* you find typos or have clarifying questions, please email bheggese@macalester.edu.

@@ -29,6 +29,24 @@ Here we will cover the standard appropriate graphics for univariate variation an
 
 For each type of variable, we will use a real data set to illustrate the visualizations. 
 
+##Good Visualization Principles
+
+Before we discuss the standard graphics, let's lay out the basic design principles for good data visualizations.
+
+1. **Show the data** This may be self-explanatory, but make sure that the data is the focus and driver of the visualization. 
+
+2. **Avoid Distoring the Data** Avoid 3D charts as the added dimension distorts the comparison. The area of a graph should equal the magnitude of the data it is representing.
+
+3. **Simplify** In 1983, Edward Tufte said that "A large share of ink on a graphic should present data-information, the ink changing as the data change. Data-ink is the non-erasable core of a graphic, the non-redundant ink arranged in response to variation in the numbers represented." Remove any unnecessary ink that doesn't present the data.
+
+3. **Facilitate Comparisons** In order to explain variation, we want the graphics to facilitate comparisons between groups. The design show make it easier to compare between groups rather than harder. 
+
+4. **Use Contrast** Humans have developed to seek out visual contrast. When choosing colors and annotation, strive to more contrast in luminance (white to dark) to make it easier for other to perceive. 
+
+5. **Use Color Appropriately** Keep in mind a small proportion of the population is color-blind. Also, every culture has different color associations. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting. 
+
+6. **Annotate Appropriately** Informative text is crucial for providing data context. Make sure to use informative axis labels and titles. It may be worth adding text to explain extreme outliers.
+
 
 ##One Categorical Variable
 
@@ -97,12 +115,13 @@ Whickham %>%
   count(outcome, smoker) %>%
   mutate(relfreq = n / sum(n)) #Overall Relative Frequency
 
+
 Whickham %>%
   ggplot(aes(x = smoker, fill = outcome)) + 
   geom_bar(position = position_dodge()) + 
   xlab('Smoker Status') + 
   ylab('Counts') + 
-  scale_fill_manual('20 Year Mortality', values=c("steelblue", "lightblue")) + 
+  scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
   theme_minimal()
 ```
 
@@ -116,6 +135,11 @@ What do you notice? What do you wonder?
 **Distribution:** the way something is spread out (aka the way in which values vary).
 
 ```{r}
+Whickham %>%
+  count(outcome, smoker) %>%
+  group_by(outcome) %>%
+  mutate(relfreq = n / sum(n)) 
+
 Whickham %>%
   ggplot(aes(x = smoker, fill = outcome)) + 
   geom_bar() + 
@@ -626,3 +650,4 @@ The correlation is near 0, but it doesn't mean that there's no relationship -- t
 
 
 ![](Photos/Brownies.png)
+

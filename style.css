@@ -1,14 +1,41 @@
 p.caption {
-  color: #777;
-  margin-top: 10px;
+	color: #777;
+	margin-top: 10px;
+	text-align: center;
 }
 p code {
-  white-space: inherit;
+	white-space: inherit;
 }
 pre {
-  word-break: normal;
-  word-wrap: normal;
+	word-break: normal;
+	word-wrap: normal;
 }
 pre code {
-  white-space: inherit;
+	white-space: inherit;
+}
+
+.header-section-number {
+	padding-right: .2em;
+	font-weight: 500;
+}
+.level1 .header-section-number {
+	display: inline-block;
+	border-bottom: 3px solid;
+}
+.level1 h1 {
+	border-bottom: 1px solid;
+}
+
+/* top, right, bottom, left */
+/* Reflection questions */
+div.reflect {
+	border: 4px solid #307eb2;
+	border-radius: 8px;
+	background-color: #c3e1f4;
+	padding: 5px 8px 2px 8px;
+	margin: 0px 10px 10px 10px;
+}
+div.reflect::before {
+	content: "Reflect: ";
+	font-weight: bold;
 }

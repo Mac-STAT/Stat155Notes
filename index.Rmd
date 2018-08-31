@@ -1,6 +1,6 @@
 --- 
 title: "Math 155 Notes"
-author: "Brianna Heggeseth"
+author: "Brianna Heggeseth & Leslie Myint"
 date: "Updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 
@@ -22,6 +22,6 @@ For Math 155, we will spend our time in-class working together on real problems,
 
 This online text is a collection of notes that includes definitions of concepts, data examples, and R code. Together, the will support our discussion in class. 
 
-This is a living document, which will get updated throughout the semester. Based on your feedback, I will adjust chapters that you've already been assigned to read to clarify concepts for when you reflect back on previous material.
+This is a living document, which will get updated throughout the semester. Based on your feedback, we will adjust chapters to clarify concepts for when you reflect back on previous material.
 
-*When* you find typos or have clarifying questions, please email bheggese@macalester.edu.
+*When* you find typos or have clarifying questions, please email bheggese@macalester.edu or lmyint@macalester.edu.

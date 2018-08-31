@@ -22,28 +22,42 @@ knitr::opts_chunk$set(echo = TRUE)
 
 We live in a data-driven world. From search engines to satellite images, from cell phones to credit cards, current technology can produce data faster than we can analyze them. Our goal in Statistics is to get information from this data. The main way we do this is by visually exploring the data and building models to try to explain observed variability, while staying grounded in the context of the data. 
 
+## What is Data?
+
+Data is anything that contains information. We typically think of data being stored in spreadsheets, but it can come in many other formats such as images and collections of text (whether tweets or novels). 
+
+In fact, we can take the pixels of digital art images and text from all State of the Union addresses and transform it into a **tidy** rectangular format. Tidy data is a table in which
+
+- Each row of a rectangular table corresponds to an **observational unit** or **case** (e.g. person, country, image,  speech at a particular time) 
+- Each column correspond to a characteristic or feature or **variable** that summarize those cases (e.g. age, average income, intensity of red pixels, Number of times the word 'Together' is used)
+
+The transformation process from raw data to a tidy data format is often called **feature extraction** and is not a short or easy task. In this introductory course, we will work with data that already "tidy."
+
+
+
 
 ## Data Context
 
 
 For any data set, you should always ask yourself (or others) a few questions to provide vital **context** about a data set. 
 
-- Who is in the data set? (What is the observational unit or **case**? How were they selected?)
-- What is being measured or recorded on each case? (What are the characteristics or **variables** that were collected?)
-- Where were they collected? (One location? Multiple locations?)
-- When were they collected? (One point in time? Over time?)
-- How were they collected? (Measurements? Questionnaire? By phone? In person?)
-- Why were they collected? (Who paid? Conflicts of interest?)
+- **Who** is in the data set? What is the observational unit or **case**? How did they end up in the data set? Were they selected randomly or were they in a particular location a particular time?
+- **What** is being measured or recorded on each case? What are the characteristics, features, or **variables** that were collected?
+- **Where** were they collected? In one location? Multiple locations?
+- **When** was the data collected? One point in time? Over time? If data quality degrades over time (e.g. lab specimens), is this a concern?
+- **How** were they collected? What instruments and methods used for measurement? What questions were asked and how? Questionnaire? By phone? In person?
+- **Why** were they collected? For profit? For academic research? Are there conflicts of interest?
+
+Thinking about this data context informs us how we analyze the data, what conclusions we can draw, and whether we can generalize our conclusions to a larger population.
 
 ##Sampling
 
-We hope that the **cases** in the data set are representative of a **population of interest**. In particular, we say that our data that has been collected is a **sample** from a population. 
+When we study a phenomenon, we typically want to make conclusions that apply to a large population of interest. However, getting data from everyone individual in a population is very difficult (it is called a **census**) and in many situations, impossible. So we collect a **sample** from a population. We hope that the **cases** in the data set are representative of the **population of interest** in the characteristics that we care about. 
 
 **Population of Interest:**  *A collection of people, creatures, things, cases or others that we interested in knowing more about.*
 
 **Sample:** *A subset of the population of interest on which we have collected data.* 
 
-Getting information from everyone individual in a population is very difficult (it is called a **census**) and in many situations, impossible. 
 
 We want to get a sense of the population by just collecting data on a subset. Consider the process of making a soup. We want to make sure there is enough (but not too much) salt in the soup. We don't need or want to eat the entire pot of soup to test if there is the right amount. In fact, we just need a spoonful from a well-stirred pot of soup so that the taste is **representative** of the whole pot. 
 
@@ -59,13 +73,15 @@ If we do not have a representative sample due to the way individuals were select
 
 **Sampling Bias:** *If the sample is unrepresentative of the population of interest in a systematic way, there is sampling bias.* 
 
-Here are a few flavors of sampling bias:
+To help our discussion about sampling, let's define **sampling frame**. 
 
-- **Undercoverage:** *When some members of the population are inadequately represented in the sample due to the sampling procedure (often from convenience samples). An example would be the Literary Digest 1936 poll that got the presidental election wrong. The survey relied on a convenience sample, drawn from telephone directories and car registration lists. In 1936, people who owned cars and telephones tended to be more affluent.* 
-- **Response bias:** *When the recorded response does not accurately represent the true value for the individual due to wording of the question or to increase social desirability. Most people like to present themselves in a favorable light, so they will be reluctant to admit to unsavory attitudes or characteristics or illegal activities in a survey, particularly if survey results are not confidential.* 
-- **Nonresponse bias:** *When individuals chosen or selected for the sample are unwilling or unable to participate. An example would be an unreturned mail survey that is only sent to a random set of individuals.*
-- **Voluntary response bias:** *When the individuals in the sample are self-selected volunteers (they were not chosen or selected by a researcher). An example would be call-in radio shows that solicit audience participation in surveys on controversial topics (abortion, affirmative action, gun control, etc.).* 
+**Sampling Frame:** A list of all of the units of a population of interest. 
 
+The following are common ways that sampling bias can arise and the share the feature that sampling frame is not used. 
+- **Convenience Sampling:** *Individuals that make up the sample are easy to contact or to reach (e.g. standing on a street corner and asking passerbys to answer a few questions)*
+- **Self-Selection and Volunteer Sampling:** *Individuals that make up the same self-select or volunteer to be in a sample. They are likely to be systematically different than the target population (e.g. reviews on Amazon, individuals that call in for radio shows).*
+
+One result of these ways of sampling is that we can get **undercoverage** in the sample. This happens when some members of the population are inadequately represented in the sample due to the sampling procedure (often from convenience samples). An example would be the Literary Digest 1936 poll that got the presidental election wrong. The survey relied on a convenience sample, drawn from telephone directories and car registration lists. In 1936, people who owned cars and telephones tended to be more affluent.
 
 ###Random Sampling
 
@@ -77,13 +93,33 @@ There are many ways to do random sampling. A few flavors are:
 
 **Simple Random Sampling:** *A simple random sample involves having a list of all of the units of a population of interest (called a sampling frame) and then randomly selecting units without replacement. In doing so, every unit has an equal chance of being selected and every sample of size $n$ has an equal chance of being selected.*
 
-**Stratified Sampling:** *A stratified sampling allows you to control the characteristics of the sample by first taking the sampling frame and separating the units into homogenous groups based on a chosen set of characteristics (ex. gender, major of study). Then you do a simple random sample within each homogenous groups, controlling the number selected from each group.* 
+**Stratified Sampling:** *A stratified sampling allows you to control the characteristics of the sample by first taking the sampling frame and separating the units into homogenous groups based on a chosen set of characteristics (ex. age, gender, major of study). Then you do a simple random sample within each homogenous groups, controlling the number selected from each group. Why do it? Simple random sampling could lead to a sample with few young individuals, just by chance. In order to ensure proportional representation within age categories, we could first separate people into strata by age and then sample within each group.* 
 
 **Cluster Sampling:** *A cluster sampling is often done for the sake of time and financial constraints and involves taking the sampling frame and separate the units into hetereogeneous groups, typically defined by physical locations, and then a simple random sample is completed on the groups, meaning that a heterogeneous group is randomly selected and every member in that group is in the sample.* 
 
 **Systematic Sampling:** *Systematic sampling involves selecting individuals from the list of units in the population, the sampling frame, by first chooing a random starting point  and then selecting all kth individuals in the list. The interval must be fixed ahead of time. Before you choose your starting point, everyone has the same chance of being selected. * 
 
-## Observational Study vs. Experiments
+
+###Nonresponse bias
+
+Even with a great random sampling method, our sample can still be unrepresentative if units in our sample do not respond to our questions. For example, if our communication method is via e-mail, units who do not read our e-mail are nonresponders. This type of nonresponse is called **unit nonresponse bias**.
+
+Let’s say that an individual opens up our e-mail survey. They may answer the first few questions but grow weary and skip the last questions. This type of nonresponse bias is called **item nonresponse bias**.
+
+- **Nonresponse bias:** *When individuals chosen or selected for the sample are unwilling or unable to participate. An example would be an unreturned mail survey that is only sent to a random set of individuals.*
+- **Voluntary response bias:** *When the individuals in the sample are self-selected volunteers (they were not chosen or selected by a researcher). 
+
+###Information bias
+
+Lastly, independent of sampling, we could get bias in how we collect the data. 
+
+- **Response bias/Self-report bias/social desirability bias:** *When the recorded response does not accurately represent the true value for the individual due to wording of the question or to increase social desirability. Most people like to present themselves in a favorable light, so they will be reluctant to admit to unsavory attitudes or characteristics (e.g. weight, income) or illegal activities in a survey, particularly if survey results are not confidential.* 
+- **Recall bias:** *People often unintentionally make mistakes in remembering details about the past.* 
+- **Measurement error:** *Technologies that measure variables of interest may not always be accurate and human calibration of those instruments may be off as well.* 
+
+
+
+## Study Design: Observational Study vs. Experiments
 
 Data can be collected in one of two scenerios:
 
@@ -91,7 +127,7 @@ Data can be collected in one of two scenerios:
 
 2. **Experiment:** *Data is collected in such a way such that the researcher **does** manipulate or intervene characteristics of the individuals by randomly assigning individuals to treatment and control groups. Researchers then record characteristics of the individuals in the sample within the treatment and control groups.*
 
-The main reason for doing an experiment is to estimate a relationship between a treatment and a response without the impact of **confounding variables.** 
+The main reason for doing an experiment is to estimate a relationship between a treatment and a response.
 
 For example, imagine we want to know if taking a daily multivitamin reduces systolic blood pressure. If we did an observational study, we'd select a sample (hopefully randomly) from a population of interest and then ask whether an individual takes a daily multivitamin and measure their blood pressure. Would this data provide enough evidence to conclude that vitamin use causes a reduction in blood pressure?
 
@@ -99,10 +135,13 @@ No, it wouldn't. Individuals that take daily multivitamins may also be more heal
 
 **Confounding Variables:** *Third variables that are related to both a "treatment" (e.g. multivitamin) and a "response" (e.g. blood pressure). For example, say we note that higher ice creams sales is related to a higher number of pool drownings. What could be a confounding variable in this circumstance?*
 
-In an experiment, we "manipulate" the characteristics of an individual by randomly assigning them to a treatment group. This random assignment is intended to break the relationship between any third variable and the treatment so as to try to reduce the impact of confounding. It is impossible to entirely remove the possibility of confounding, but the random assignment to a treatment helps. (Note: things can get complicated if individuals don't comply with the treatment such as take the multivitamin every single day...)
+In an experiment, we "manipulate" the characteristics for an individual by randomly assigning them to a treatment group. This random assignment is intended to break the relationship between any third variable and the treatment so as to try to reduce the impact of confounding. It is impossible to entirely remove the possibility of confounding, but the random assignment to a treatment helps. (Note: things can get complicated if individuals don't comply with the treatment such as take the multivitamin every single day...)
 
 **Causal Inference:** *Causal inference is the process of making a conclusion about direct cause and effect between a "treatment" and a "response". It is very difficult to make causal inferences/statements based on data from an observational study due to the possible presence of confounding variables. There is a whole area of statistics dedicated to methods that attempt to overcome the confounding, but that is beyond the scope of this course. (If you want a "gentle" but mathematical introduction to this area of Statistics, I'd suggest reading "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell)*
 
+Note that ethics play a very important role in study design, especially when humans and animals are the observational units. In the U.S., the Belmont Report (https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html) is the main federal document that provides the "Ethical Principles and Guidelines for the Protection of Human Subjects of Research". It discusses Informed Consent and other principles to follow for the protection of human rights and privacy. 
+
+For a brief history of ethics in human research, see https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3593469/. 
 
 ##Tidy Data
 
@@ -122,7 +161,7 @@ Variables can be either **categorical** or **quantitative** variables.
 
 ## Ethical Considerations
 
-Through this class, we are going to stop and think about the ethical considerations of what we are doing. Ethics are the norms or standards for conduct that distinguish between right and wrong. In particular, we are going to consider the ethics of 
+Through this class, we are going to stop and think about the ethical considerations of doing Statistics from data collection to model prediction. Ethics are the norms or standards for conduct that distinguish between right and wrong. In particular, we are going to consider the ethics of 
 
 - How the data were collected
 
@@ -138,5 +177,5 @@ Through this class, we are going to stop and think about the ethical considerati
 
 We are going to pay extra attention to negative consequences of the above that may disproportionate impact marginalized groups of people. 
 
-There will be readings to expose you to issues throughout the semester. I will also ask you the question "what are the ethical considerations for this data set/analysis?" during class and on homeworks because like in any other discpline, the choices we all make will be biased by our life experience. Throughout this case, I want us all to increase our awareness of real consequences caused by decisions we make in Statistics. 
+There will be readings to expose you to issues throughout the semester. I will also ask you the question "what are the ethical considerations for this data set/analysis?" during class and on homeworks because like in other discplines, the choices we make will be biased by our life experience. Throughout this case, I want us all to increase our awareness of real consequences caused by choices we make in Statistics. 
 

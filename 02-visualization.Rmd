@@ -85,7 +85,7 @@ Pie charts are only useful if you have 2 to 3 possible categories and you want t
 
 This is the best use for a pie chart:
 
-```{r, out.width = '2in', echo=FALSE}
+```{r, out.width = '.25\\textwidth', echo=FALSE}
 knitr::include_graphics("Photos/pie.jpg")
 ```
 
@@ -422,7 +422,7 @@ If you have a **unimodal, symmetric distribution,** z-score values will be
 
 
 ```{block, type='math'}
-Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k>0$,
+Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k$ > 0,
 
 $$P\left(\frac{|X - \mu|}{\sigma} \geq k\right) \leq \frac{1}{k^2}$$
 where $\mu$ is the mean and $\sigma$ is the standard deviation. 

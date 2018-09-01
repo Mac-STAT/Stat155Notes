@@ -1,9 +1,37 @@
 \usepackage{booktabs}
 \usepackage{amsthm}
 \usepackage{graphicx}
+\usepackage{color, colortbl}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{LightBlue}{rgb}{0.76,0.88,0.96}
+% rgb(195, 225, 244) and divide by 255
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks = true,
+    linkcolor = {blue}
+}
+
 \makeatletter
 \def\thm@space@setup{%
   \thm@preskip=8pt plus 2pt minus 4pt
   \thm@postskip=\thm@preskip
 }
 \makeatother
+
+\newenvironment{reflect}
+{
+    \begin{center}
+    
+    \begin{tabular}{|p{0.8\textwidth}|}
+    \rowcolor{LightBlue}
+    \hline\\
+    \rowcolor{LightBlue}
+    \textbf{Reflect:}
+}
+{
+    \\\rowcolor{LightBlue}
+    \\\hline
+    \end{tabular} 
+    \end{center}
+}

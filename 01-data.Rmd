@@ -18,15 +18,18 @@ library(NHANES)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Introduction to Data
+# Data Collection and Quality
 
-We live in a data-driven world. From search engines to satellite images, from cell phones to credit cards, current technology can produce data faster than we can analyze them. Our goal in Statistics is to get information from this data. The main way we do this is by visually exploring the data and building models to try to explain observed variability, while staying grounded in the context of the data. 
+We live in a world where data touch nearly every aspect of our lives: health care, online shopping, transportation, entertainment. 
+ From search engines to satellite images, from cell phones to credit cards, current technology can produce data faster than we can analyze them. 
+ 
+ This course is the beginning of your journey into the field of Statistics, a discipline whose main goal is to extract information and meaning from data. We do this is by visually exploring the data and building models to try to explain observed variability. First, we will take some time to think about where data come from and what factors might make data more or less reliable.
 
 ## What is Data?
 
-Data is anything that contains information. We typically think of data being stored in spreadsheets, but it can come in many other formats such as images and collections of text (whether tweets or novels). 
+Data is *anything* that contains information. We typically think of data being stored in spreadsheets, but it can come in many other formats such as images or collections of text (whether 280 character tweets or fictional novels). 
 
-In fact, we can take the pixels of digital art images and text from all State of the Union addresses and transform it into a **tidy** rectangular format. Tidy data is a table in which
+For example, we can take the pixels of digital images or text from all State of the Union addresses and transform them into a tidy, rectangular format. **Tidy data** is a table in which
 
 - Each row of a rectangular table corresponds to an **observational unit** or **case** (e.g. person, country, image,  speech at a particular time) 
 - Each column correspond to a characteristic or feature or **variable** that summarize those cases (e.g. age, average income, intensity of red pixels, Number of times the word 'Together' is used)

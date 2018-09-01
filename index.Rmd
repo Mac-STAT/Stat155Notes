@@ -18,10 +18,8 @@ description: "This includes notes for Math 155 at Macalester College."
 
 # Preface {-}
 
-For Math 155, we will spend our time in-class working together on real problems, asking each other questions, and expanding our understanding of the material. 
+This book contains notes for MATH 155 at Macalester College. It contains definitions, data examples, and R code explanations that provide a foundation for the activities we will do in class.
 
-This online text is a collection of notes that includes definitions of concepts, data examples, and R code. Together, the will support our discussion in class. 
-
-This is a living document, which will get updated throughout the semester. Based on your feedback, we will adjust chapters to clarify concepts for when you reflect back on previous material.
+This is a living document, which will get updated throughout the semester.
 
 *When* you find typos or have clarifying questions, please email bheggese@macalester.edu or lmyint@macalester.edu.

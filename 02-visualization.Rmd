@@ -428,6 +428,7 @@ $$P\left(\frac{|X - \mu|}{\sigma} \geq k\right) \leq \frac{1}{k^2}$$
 where $\mu$ is the mean and $\sigma$ is the standard deviation. 
 
 If we plug in values we see that the chance of getting a z-score 
+
 - at least 3 in magnitude (> 3 or < -3) is less than $(1/3^2) = 0.11$.
 - at least 4 in magnitude (> 4 or < -4) is less than $(1/4^2) = 0.06$.
 - at least 5 in magnitude (> 5 or < -5) is less than $(1/5^2) = 0.04$.

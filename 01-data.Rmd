@@ -1,11 +1,3 @@
----
-title: "Math 155 - Intro to Data"
-author: "Prof. Heggeseth"
-date: "September 6, 2018"
-output: 
-  html_document: default
----
-
 ```{r setup1, include=FALSE}
 library(broom)
 library(dplyr)

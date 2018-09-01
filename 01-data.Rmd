@@ -31,74 +31,68 @@ Data is *anything* that contains information. We typically think of data being s
 
 For example, we can take the pixels of digital images or text from all State of the Union addresses and transform them into a tidy, rectangular format. **Tidy data** is a table in which
 
-- Each row of a rectangular table corresponds to an **observational unit** or **case** (e.g. person, country, image,  speech at a particular time) 
-- Each column correspond to a characteristic or feature or **variable** that summarize those cases (e.g. age, average income, intensity of red pixels, Number of times the word 'Together' is used)
+- Each row of a rectangular table corresponds to an **observation** or **case** (e.g. person, classroom, country, image,  speech at a particular time) 
+- Each column correspond to a characteristic or feature or **variable** that summarize those cases (e.g. age, average grade, average income, intensity of red pixels, Number of times the word 'Together' is used)
 
-The transformation process from raw data to a tidy data format is often called **feature extraction** and is not a short or easy task. In this introductory course, we will work with data that already "tidy."
+The following graphic from the book (R for Data Science)[http://r4ds.had.co.nz/], by Garrett Grolemund and Hadley Wickham illustrates these features.
 
+INSERT GRAPHIC HERE
 
+The transformation process from raw data to a tidy data format is often called **feature extraction** and is not a short or easy task. In this introductory course, we will work with data that already tidy.
+
+Cases are often referred to as the **units of analysis**. As analysts, it is important for us to consider what to use as the unit of analysis when we have information, say, on both individuals and their classrooms. Do we want to understand matters at the individual or the classroom level? Answers to these questions will depend on the context and the research question.
 
 
 ## Data Context
 
 
-For any data set, you should always ask yourself (or others) a few questions to provide vital **context** about a data set. 
+For any data set, you should always ask yourself a few questions to provide vital **context** about a data set. 
 
-- **Who** is in the data set? What is the observational unit or **case**? How did they end up in the data set? Were they selected randomly or were they in a particular location a particular time?
-- **What** is being measured or recorded on each case? What are the characteristics, features, or **variables** that were collected?
-- **Where** were they collected? In one location? Multiple locations?
-- **When** was the data collected? One point in time? Over time? If data quality degrades over time (e.g. lab specimens), is this a concern?
-- **How** were they collected? What instruments and methods used for measurement? What questions were asked and how? Questionnaire? By phone? In person?
-- **Why** were they collected? For profit? For academic research? Are there conflicts of interest?
+- **Who is in the data set?** What is the observational unit or **case**? How did they end up in the data set? Were they selected randomly or were they in a particular location a particular time?
+- **What is being measured or recorded on each case?** What are the characteristics, features, or **variables** that were collected?
+- **Where were they collected?** In one location? Multiple locations?
+- **When was the data collected?** One point in time? Over time? If data quality degrades over time (e.g. lab specimens), is this a concern?
+- **How were they collected?** What instruments and methods used for measurement? What questions were asked and how? Questionnaire? By phone? In person?
+- **Why were they collected?** For profit? For academic research? Are there conflicts of interest?
+- **Who collected this data?** An agency, an individual researcher?
 
 Thinking about this data context informs us how we analyze the data, what conclusions we can draw, and whether we can generalize our conclusions to a larger population.
 
+Many of these data context questions also hint at general considerations for threats to data quality. Threats to data quality generally arise through **sampling bias**, **information bias**, and **study design.**
+
 ##Sampling
 
-When we study a phenomenon, we typically want to make conclusions that apply to a large population of interest. However, getting data from everyone individual in a population is very difficult (it is called a **census**) and in many situations, impossible. So we collect a **sample** from a population. We hope that the **cases** in the data set are representative of the **population of interest** in the characteristics that we care about. 
+When we study a phenomenon, we generally care about making a conclusion that applies to some **target population of interest**. However, we cannot feasibly collect data on that entire population (called a census), so we collect a **sample** of individuals. We want our sample to be **representative** of the target population in that we want our sample to resemble the target population in key ways.
 
-**Population of Interest:**  *A collection of people, creatures, things, cases or others that we interested in knowing more about.*
+Reflect:
+How is representativeness affected by our research question? Can a sample be representative for one goal but not another?
 
-**Sample:** *A subset of the population of interest on which we have collected data.* 
+When our method of selecting a sample is flawed, **sampling bias** results, and our sample is unrepresentative of the target population. How does this tend to happen, and how can we avoid it?
 
-
-We want to get a sense of the population by just collecting data on a subset. Consider the process of making a soup. We want to make sure there is enough (but not too much) salt in the soup. We don't need or want to eat the entire pot of soup to test if there is the right amount. In fact, we just need a spoonful from a well-stirred pot of soup so that the taste is **representative** of the whole pot. 
-
-What would happen if we put the salt in but didn't stir? What if we taste just the top layer of the soup from the pot? It would be overly salty. But just below the surface, there would be too little. In order for our sample taste to be useful to us, we need to ensure that it is representative of the whole.
-
-
-**Representative Sample:** *A group that closely matches the characteristics of its population as a whole. In other words, the sample is a fairly accurate reflection of the population from which the sample is drawn.*
-
+It is first helpful to define the term **sampling frame**. A sampling frame is the complete list of individuals/units in the target population. For example, it could be a spreadsheet listing every individual that lives in Minnesota.
 
 ###Sampling Bias
 
-If we do not have a representative sample due to the way individuals were selected to be in the study, then we say that there was bias in the sampling process (this is known as sampling bias). (Think about putting your spoon only on the edge or only in the middle, while not stirring.)
+The following are common ways that sampling bias can arise, and they all share the feature that a sampling frame is not used:
 
-**Sampling Bias:** *If the sample is unrepresentative of the population of interest in a systematic way, there is sampling bias.* 
+- **Convenience Sampling:** *Individuals that make up the sample are easy to contact or to reach (e.g. standing on a street corner and asking passerbys to answer a few questions). The people sampled will likely be systematically different than the target population.*
 
-To help our discussion about sampling, let's define **sampling frame**. 
-
-**Sampling Frame:** A list of all of the units of a population of interest. 
-
-The following are common ways that sampling bias can arise and the share the feature that sampling frame is not used. 
-- **Convenience Sampling:** *Individuals that make up the sample are easy to contact or to reach (e.g. standing on a street corner and asking passerbys to answer a few questions)*
 - **Self-Selection and Volunteer Sampling:** *Individuals that make up the same self-select or volunteer to be in a sample. They are likely to be systematically different than the target population (e.g. reviews on Amazon, individuals that call in for radio shows).*
 
 One result of these ways of sampling is that we can get **undercoverage** in the sample. This happens when some members of the population are inadequately represented in the sample due to the sampling procedure (often from convenience samples). An example would be the Literary Digest 1936 poll that got the presidental election wrong. The survey relied on a convenience sample, drawn from telephone directories and car registration lists. In 1936, people who owned cars and telephones tended to be more affluent.
 
+Without a complete sampling frame, we have no control over what units enter the sample because we do not even have a complete list of the units that could be sampled. Imagine that our target population is like a bowl of soup, these forms of sampling are similar to scooping only the bits of soup that float to the top.
+
 ###Random Sampling
 
-To avoid some of these types of sampling bias, we may want to "stir the pot before taking a taste" by taking a random sample from the population so as to make sure the sample is representative of the population. Note that randomizing the sampling procedure doesn't eliminate bias (especially nonresponse bias). We can take actions to try to maximize the response rate by repeatedly requesting a response (calling, emailing, going in person, etc).
+With a sampling frame, we can do better and hopefully avoid sampling bias by using randomization. In our soup analogy, this amounts to mixing the soup thoroughly and dipping our spoon in random locations. These strategies are called **probability sampling** strategies or, more colloquially, **random sampling** strategies. In probability sampling, each unit in the sampling frame has a known, nonzero probability of being selected, and the sampling is performed with some chance device (e.g. coin flipping, random number generation). Some probability sampling techniques include:
 
-**Random Sampling:** *A procedure for sampling from a population in which (a) the selection of a sample unit is based on chance and (b) every element of the population has a known, non-zero probability of being selected. Random sampling helps produce representative samples by eliminating voluntary response bias and guarding against undercoverage bias.*
 
-There are many ways to do random sampling. A few flavors are:
+**Simple Random Sampling:** *Each unit in the sampling frame has the same chance of being chosen and individuals are selected without replacement. In doing so, every sample of a given size are equally likely to arise.*
 
-**Simple Random Sampling:** *A simple random sample involves having a list of all of the units of a population of interest (called a sampling frame) and then randomly selecting units without replacement. In doing so, every unit has an equal chance of being selected and every sample of size $n$ has an equal chance of being selected.*
+**Stratified Sampling:** *The units in the sampling frame are first divided into categories/strata (e.g. age categories). Simple random sampling is performed in each category/stratum. Why do this? Just by chance, simple random sampling might oversample young individuals. Stratifying by age first, then performing simple random sampling in these strata ensures the desired age distribution in the sample.* 
 
-**Stratified Sampling:** *A stratified sampling allows you to control the characteristics of the sample by first taking the sampling frame and separating the units into homogenous groups based on a chosen set of characteristics (ex. age, gender, major of study). Then you do a simple random sample within each homogenous groups, controlling the number selected from each group. Why do it? Simple random sampling could lead to a sample with few young individuals, just by chance. In order to ensure proportional representation within age categories, we could first separate people into strata by age and then sample within each group.* 
-
-**Cluster Sampling:** *A cluster sampling is often done for the sake of time and financial constraints and involves taking the sampling frame and separate the units into hetereogeneous groups, typically defined by physical locations, and then a simple random sample is completed on the groups, meaning that a heterogeneous group is randomly selected and every member in that group is in the sample.* 
+**Cluster Sampling:** *Sometimes a sampling frame is more readily available for clusters of units rather than the units themselves. For example, a sampling frame of all hospitals in Minnesota might be more readily available than a sampling frame of all Minnesota hospital patients in a given time frame. In cluster sampling, the intial clusters are sampled with a probability sampling method (like simple random sampling or stratified sampling). All units in the sampled clusters may be chosen, or if sampling frames can be obtained for the sampled clusters, probability sampling is performed within the cluster. This might happen if it is more feasible to obtain patient lists for a small subset, but not all, hospitals.* 
 
 **Systematic Sampling:** *Systematic sampling involves selecting individuals from the list of units in the population, the sampling frame, by first chooing a random starting point  and then selecting all kth individuals in the list. The interval must be fixed ahead of time. Before you choose your starting point, everyone has the same chance of being selected. * 
 
@@ -108,9 +102,6 @@ There are many ways to do random sampling. A few flavors are:
 Even with a great random sampling method, our sample can still be unrepresentative if units in our sample do not respond to our questions. For example, if our communication method is via e-mail, units who do not read our e-mail are nonresponders. This type of nonresponse is called **unit nonresponse bias**.
 
 Let’s say that an individual opens up our e-mail survey. They may answer the first few questions but grow weary and skip the last questions. This type of nonresponse bias is called **item nonresponse bias**.
-
-- **Nonresponse bias:** *When individuals chosen or selected for the sample are unwilling or unable to participate. An example would be an unreturned mail survey that is only sent to a random set of individuals.*
-- **Voluntary response bias:** *When the individuals in the sample are self-selected volunteers (they were not chosen or selected by a researcher). 
 
 ###Information bias
 

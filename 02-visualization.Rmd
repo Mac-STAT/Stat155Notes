@@ -11,17 +11,17 @@ library(mosaic)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Visualizing Data
+# Visualizing Data
 
 The first step in any data analysis is to visually explore your data. 
 
 There is a saying that "a picture is worth a 1000 words." In making visualizations, our goal is to quickly and easily get a better understanding of the variability and relationships that exist in the data. 
 
-Here we will cover the standard appropriate graphics for univariate variation and bivariate relationships. The choice of the graphic depends on the type(s) of variable(s): quantitative or categorical. So the first step is to think about the variables you are interested in visualizing and determining whether they are quantitative or categorical. 
+Here we will cover the standard appropriate graphics for univariate variation and bivariate relationships. We will also cover techniques for multivariate relationships (3 or more variables). The choice of the graphic depends on the type(s) of variable(s): quantitative or categorical. So the first step is to think about the variables you are interested in visualizing and determining whether they are quantitative or categorical.
 
-For each type of variable, we will use a real data set to illustrate the visualizations. 
+For each type of variable, we will use a real data set to illustrate the visualizations.
 
-##Good Visualization Principles
+## Good Visualization Principles
 
 Before we discuss the standard graphics, let's lay out the basic design principles for good data visualizations.
 
@@ -31,29 +31,29 @@ Before we discuss the standard graphics, let's lay out the basic design principl
 
 3. **Simplify** In 1983, Edward Tufte said that "A large share of ink on a graphic should present data-information, the ink changing as the data change. Data-ink is the non-erasable core of a graphic, the non-redundant ink arranged in response to variation in the numbers represented." Remove any unnecessary ink that doesn't present the data.
 
-3. **Facilitate Comparisons** In order to explain variation, we want the graphics to facilitate comparisons between groups. The design show make it easier to compare between groups rather than harder. 
+4. **Facilitate Comparisons** In order to explain variation, we want the graphics to facilitate comparisons between groups. The design show make it easier to compare between groups rather than harder. 
 
-4. **Use Contrast** Humans have developed to seek out visual contrast. When choosing colors and annotation, strive to more contrast in luminance (white to dark) to make it easier for other to perceive. 
+5. **Use Contrast** Humans have developed to seek out visual contrast. When choosing colors and annotation, strive to more contrast in luminance (white to dark) to make it easier for other to perceive. 
 
-5. **Use Color Appropriately** Keep in mind a small proportion of the population is color-blind. Also, every culture has different color associations. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting. 
+6. **Use Color Appropriately** Keep in mind a small proportion of the population is color-blind. Also, every culture has different color associations. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting. 
 
-6. **Annotate Appropriately** Informative text is crucial for providing data context. Make sure to use informative axis labels and titles. It may be worth adding text to explain extreme outliers.
+7. **Annotate Appropriately** Informative text is crucial for providing data context. Make sure to use informative axis labels and titles. It may be worth adding text to explain extreme outliers.
 
 
-##One Categorical Variable
+## One Categorical Variable
 
 First, we consider survey data of the electoral registrar in Whickham in the UK (Source: Appleton et al 1996). 
 
 - Survey was conducted in 1972-1974 to study heart disease and thyroid disease (baseline characteristics: age and smoking status)
 - A follow-up on those in the survey was conducted twenty years later (followup characteristics: mortality after 20 years)
 
-Let's first consider the age distribution. Age, depending on how it is measured, could act as a quantitative variable or categorical variable. In this case, age is a quantitative variable because it is recorded to the nearest year. But, for illustrative purposes, I'm going to create a categorical variable by separating age into intervals. 
+Let's first consider the age distribution. Age, depending on how it is measured, could act as a quantitative variable or categorical variable. In this case, age is a quantitative variable because it is recorded to the nearest year. But, for illustrative purposes, I'm going to create a categorical variable by separating age into intervals.
 
-What do I lose when I convert a quantitative variable to a categorical variable?
+```{block, type="reflect"}
+What do I lose when I convert a quantitative variable to a categorical variable? What do I gain?
+```
 
-What do I gain?
-
-###Bar Plot
+### Bar Plot
 
 - The **height** of the bars is the only part that encodes the data (width is meaningless). 
 - The height can either represent the **frequency** (count of cases) or the **relative frequency** (proportion of cases).
@@ -79,7 +79,7 @@ Whickham %>%
 
 What do you notice? What do you wonder?
 
-###Pie Chart
+### Pie Chart
 
 Pie charts are only useful if you have 2 to 3 possible categories and you want to show relative group sizes. 
 
@@ -89,20 +89,18 @@ This is the best use for a pie chart:
 knitr::include_graphics("Photos/pie.jpg")
 ```
 
-I'm purposefully not showing you how to make a pie chart because a bar chart is a better choice. Here is a good summary of why **I hate pie charts**: http://www.businessinsider.com/pie-charts-are-the-worst-2013-6 (make sure to read if you like pie charts!)
+We are intentionally not showing you how to make a pie chart because a bar chart is a better choice. Here is a good summary of why many people strongly dislike pie charts: http://www.businessinsider.com/pie-charts-are-the-worst-2013-6. Keep in mind Visualization Principle #4: Facilitate Comparisons.
 
 
-##Two Categorical Variables
+## Two Categorical Variables
 
+Now, let's consider two other variables in the same data set. What is the relationship between the 20-year mortality outcome and smoking status at the beginning of the study?
 
-Now, let's consider two other variables in the same data set. What is the relationship between 20-year mortality outcome and smoking status at the beginning of the study.
-
-###Side by Side Bar Plot
+### Side by Side Bar Plot
 
 - The **height** of the bars shows the frequency of the categories within subsets.
 
 ```{r}
-
 Whickham %>%
   count(outcome, smoker) %>%
   mutate(relfreq = n / sum(n)) #Overall Relative Frequency
@@ -119,7 +117,7 @@ Whickham %>%
 
 What do you notice? What do you wonder?
 
-###Stacked Bar Plot
+### Stacked Bar Plot
 
 - The **height** of the entire bar shows the **marginal distribution** (frequency of the X variable, ignoring the other variable).
 - The **relative heights** show **conditional distributions** (frequencies within subsets), but it is hard to compare distributions between bars because the overall heights differ. 
@@ -144,11 +142,10 @@ Whickham %>%
 What do you notice? What do you wonder?
 
 
-###Mosaic Plot
+### Mosaic Plot
 
 - The **relative height** of the bars shows the **conditional distribution** (relative frequency within subsets).
 - The **width** of the bars shows the **marginal distribution** (relative frequency of the X variable, ignoring the other variable).
-
 
 ```{r}
 Whickham %>%
@@ -162,8 +159,7 @@ Whickham %>%
 
 What do you notice? What do you wonder?
 
-**Gut Check:** Does our data suggest that smoking *is associated* with a lower mortality rate?  Does our data suggest that smoking *reduces* mortality? (Note the difference in these two questions - the second implies cause and effect)
-
+**Gut Check:** Does our data suggest that smoking *is associated* with a lower mortality rate?  Does our data suggest that smoking *reduces* mortality? (Note the difference in these two questions - the second implies a cause and effect relationship.)
 
 ```{r}
 Whickham %>%
@@ -172,12 +168,11 @@ Whickham %>%
   facet_grid( . ~ ageCat) + 
   xlab('Smoker Status') + 
   ylab('Counts') + 
-  scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 
+  scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
   theme_minimal()
 ```
 
 What do you notice? What do you wonder?
-
 
 **Gut Check:** How is it that our conclusions are exactly the opposite if we consider the relationship between smoking and mortality within age subsets?
 
@@ -185,16 +180,16 @@ This is called **Simpson's Paradox,** which is a situation in which you come to 
 
 Let's look at the marginal distribution of smoking status within each age group. For groups of people that were 68 years of age or younger, it was about 50-50 in terms of smoker vs. non smoker. But, the oldest age group were primarily nonsmokers. 
 
-Now look at the mortality rates within each age category. The 20-year mortality rate among young people (35 or less) was very low but that increases with increased age. So the oldest age group had the highest mortality rate, due primarily to their age, and also had the highest rate of non-smokers. So when we look at everyone together (not subsetting by age), it looks like smoking is associated with a lower mortality rate, when in fact age was just confounding the relationship between smoking status and mortality. 
+Now look at the mortality rates within each age category. The 20-year mortality rate among young people (35 or less) was very low, but mortality increases with increased age. So the oldest age group had the highest mortality rate, due primarily to their age, and also had the highest rate of non-smokers. So when we look at everyone together (not subsetting by age), it looks like smoking is associated with a lower mortality rate, when in fact age was just confounding the relationship between smoking status and mortality. 
 
 
-##One Quantitative Variable
+## One Quantitative Variable
 
 Next, we will use data from one of the largest ongoing health studies in the USA, named NHANES. In particular, we will focus on data from the NHANES between 2009-2012 (Source: CDC).
 
 Since sleep is vitally important to daily functioning, let's look at the number of hours of sleep respondants reported. 
 
-###Histogram
+### Histogram
 
 - The **height** of the bars shows either the **frequency within intervals** or the **density** (relative frequency per unit of measure, e.g. proportion of people per hour sleep)
 - The x-axis is a number line and bars do not have to be of equal width (R chooses a default bin width, but you can change how many intervals and how large they are)
@@ -228,12 +223,11 @@ NHANES %>%
 
 We focus on three aspects of the histogram/distribution:
 
-- **Shape:** Is it **symmetric**? or is it**skewed to the right or left** (Distributions are skewed to the long **tail** - which side has a long tail)? How many **modes** do you see?
+- **Shape:** Is it **symmetric**? or is it **skewed to the right or left**? (A distribution is **left-skewed** if there is a long left tail and **right-skewed** if it has a long right tail.) How many **modes** ("peaks"/"bumps" in the distribution) do you see?
 - **Center:** Where is a typical value located?
 - **Spread** (or variation): How spread out are the values? (Concentrated around one or more values or spread out?)
 
 Also, we ask: Are there any unusual features such as outliers or gaps? Why?
-
 
 Here is another data set for comparison: CEO salaries for the highest paid CEOs in 2016 (Source: NYTimes).
 
@@ -262,7 +256,7 @@ ceo %>%
   theme_minimal() 
 ```
 
-###Center
+### Center
 
 For center, we have some choices for numerically summarizing it:
 
@@ -286,7 +280,7 @@ median(ceo$salary) #Middle number
 mean(ceo$salary,trim = 0.05)  #Trimmed mean falls in between
 ```
 
-###Boxplot
+### Boxplot
 
 A simplification of the histogram:
 
@@ -341,7 +335,7 @@ abline(v = median(ceo$salary,na.rm=TRUE), col = 'blue',lty=3)
 What would the boxplot look like if all of the values were exactly the same?
 
 
-###Spread
+### Spread
 
 For spread we have several choices to numerically describe it:
 
@@ -384,7 +378,7 @@ What percentage of the data is between the green dashed lines (length of interva
 sum(x > -sd(x) & x < sd(x))/length(x)
 ```
 
-###Z-scores
+### Z-scores
 
 How do you decide when an outlier is really unusual (think: athletic victory being very impressive or a data point that may be an error)?
 
@@ -395,7 +389,7 @@ To do this, we often calculate a **z-score**, a standardized data value.
 - Calculate how far the observation was below (or above) the mean of the sample. 
 - Then divide the difference by the standard deviation (measure of spread).
 
-\[ z = \frac{y - \bar{y}}{s_y}\]
+\[ z = \frac{y - \bar{y}}{s_y} \]
 
 The z-score just tells you how many standard deviations the observation is above or below the mean. 
 
@@ -416,13 +410,13 @@ In summary, for a quantitative variable,
 
 
 
-##One Quantitive Variable and One Categorical Variable
+## One Quantitive Variable and One Categorical Variable
 
 Why do some people sleep more than others?
 
 Let's look at the distribution of hours of sleep at night within subsets of the NHANES data. 
 
-###Multiple Histograms
+### Multiple Histograms
 
 
 Does the recorded binary gender explain the variability in the hours of sleep? (Quick ethics consideration: what are the implications of collecting binary gender as a variable even if gender is not considered binary?)
@@ -462,7 +456,7 @@ NHANES %>%
 
 What do you notice? What do you wonder?
 
-###Multiple Boxplots
+### Multiple Boxplots
 
 Let's try that again but with boxplots and see if we can glean any more information.
 
@@ -499,6 +493,7 @@ What do you notice? What do you wonder?
 
 
 #### Is this a Real Difference?
+
 If we notice differences in the center of these distributions, is it a REAL difference? Is there a difference in the general U.S. population? Remember, we just have a random sample of the population *NHANES is supposed to be a representative sample of the U.S. population collected using a random sampling procedure.* 
 
 What if there were no REAL difference? Then the Depressed group labels wouldn't be related to the hours of sleep.
@@ -529,11 +524,11 @@ sim %>%
 
 What do you notice? What do you wonder?
 
-##Two Quantitative Variables
+## Two Quantitative Variables
 
-Now, let's switch to another data set that includes a variety of body measurements. Imagine that you are an entreprenure and you are going to sell dress shirts. Clothing sizing is just weird (don't get me started...) so let's use this dataset to try to come up with our own data driven sizes. Two of the key measurements are the neck size and chest size. There are others, but let's focus on these for the moment.
+Now, let's switch to another data set that includes a variety of body measurements. Imagine that you are an entrepreneur selling dress shirts. Clothing sizing can be quite confusing, so let's use this dataset to try to come up with our own data-driven sizes. Two of the key measurements are the neck size and chest size. There are others, but let's focus on these for the moment.
 
-###Scatterplot
+### Scatterplot
 
 When you have two quantitative variables, a **scatterplot** is one appropriate graphical display of the relationship.
 
@@ -555,7 +550,7 @@ What do you notice about:
 3. Strength of Relationship (compactness around the relationship)
 4. Unusual Features (outliers, differences in variability across x)
 
-**How could you use this information to determine shirt sizes for your new business venutre? ** We'll come back to this.
+**How could you use this information to determine shirt sizes for your new business venutre?** We'll come back to this.
 
 Suppose instead of *Chest* in cm and *Neck size* in cm, we switched to inches and plotted *Chest* and *Neck size* in inches. 
 
@@ -571,7 +566,7 @@ bodyfat %>%
 ```
 
 
-###Correlation Coefficient
+### Correlation Coefficient
 
 Since shifting (adding or subtracting) and scaling (multiplying or dividing) make no difference, let's standardize both variables into z-scores and replot (and add some color):
 
@@ -612,7 +607,7 @@ $$ r = \frac{\sum z_x z_y}{n-1} $$
 cor(bodyfat$Neck,bodyfat$Chest)
 ```
 
-###Properties
+### Properties
 
 * $-1 \leq r \leq 1$
 
@@ -635,11 +630,45 @@ $$= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})
 $$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}}$$
 $$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}}$$
 
-###Is correlation always the right way to judge strength?
+### Is correlation always the right way to judge strength?
 
 Here is the plot of brownie quality by temperature.
 The correlation is near 0, but it doesn't mean that there's no relationship -- there's no **linear** relationship.
 
-
 ![](Photos/Brownies.png)
+
+## Three or more variables
+
+In complex data sets that measure many variables, it is necessary to get a fuller understanding of the relationships in the data than we can see with plots that look at only one or two variables.
+
+The following visual features can help us turn bivariate plots into multivariate plots:
+
+- Color of points and lines
+- Shape of points
+- Size of points
+- Panels (facets)
+
+Let's look at another data set from the 1985 Current Population Survey. This is a smaller scale survey adminstered by the United States government between the decennial census.
+
+### A bivariate plot
+
+Our primary interest is the `wage` variable which gives the wage. What is the relationship between years of education and hourly wage?
+
+```{r}
+data(CPS85) ## Load the data
+
+CPS85 %>%
+    ggplot(aes(x = educ, y = wage)) +
+    geom_point() +
+    xlab("Years of education") +
+    ylab("Hourly wage (US dollars)")
+```
+
+### Enriching with color
+
+### Enriching with shape
+
+### Enriching with size
+
+### Enriching with panels
 

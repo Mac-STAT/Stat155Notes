@@ -85,7 +85,7 @@ Pie charts are only useful if you have 2 to 3 possible categories and you want t
 
 This is the best use for a pie chart:
 
-```{r, out.width = "300px",echo=FALSE}
+```{r, out.width = '2in', echo=FALSE}
 knitr::include_graphics("Photos/pie.jpg")
 ```
 

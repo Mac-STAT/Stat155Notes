@@ -159,7 +159,9 @@ Whickham %>%
 
 What do you notice? What do you wonder?
 
-**Gut Check:** Does our data suggest that smoking *is associated* with a lower mortality rate?  Does our data suggest that smoking *reduces* mortality? (Note the difference in these two questions - the second implies a cause and effect relationship.)
+```{block, type="reflect"}
+Does our data suggest that smoking *is associated* with a lower mortality rate?  Does our data suggest that smoking *reduces* mortality? Note the difference in these two questions - the second implies a cause and effect relationship.
+```
 
 ```{r}
 Whickham %>%
@@ -174,7 +176,9 @@ Whickham %>%
 
 What do you notice? What do you wonder?
 
-**Gut Check:** How is it that our conclusions are exactly the opposite if we consider the relationship between smoking and mortality within age subsets?
+```{block, type="reflect"}
+How is it that our conclusions are exactly the opposite if we consider the relationship between smoking and mortality within age subsets? What might be going on?
+```
 
 This is called **Simpson's Paradox,** which is a situation in which you come to two different conclusions if you look at results overall versus within subsets (e.g. age groups).
 
@@ -266,6 +270,10 @@ For center, we have some choices for numerically summarizing it:
     + Insensitive to outliers, but doesn’t use all the actual values
 - **Trimmed means**:  Drop the lowest and highest k% and take the mean of the rest.
     + A good compromise, but not widely used.
+    
+```{block, type="math"}    
+The greek capital letter sigma, $\sum$, is used in mathematics to denote a sum. We let $y_i$ represent the value of the ith person for a variable called $y$. So $\sum^n_{i=1}y_i$ is the sum of all the $n$ values of a variable $y$, all the way from the 1st person to the nth person. 
+```
 
 ```{r}
 summary(NHANES$SleepHrsNight)
@@ -332,7 +340,9 @@ abline(v = mean(ceo$salary,na.rm=TRUE),col='red',lty=2)
 abline(v = median(ceo$salary,na.rm=TRUE), col = 'blue',lty=3)
 ```
 
+```{block, type="reflect"}    
 What would the boxplot look like if all of the values were exactly the same?
+```
 
 
 ### Spread
@@ -365,17 +375,21 @@ x = rnorm(1500)
 boxplot(x,horizontal = TRUE,xlab='Generated Data')
 abline(v = range(x), col='blue',lty=3) 
 abline(v = quantile(x,c(.25,.75)),col='purple',lty=1)
-abline(v = c(-sd(x),sd(x)),col='green',lty=2)
+abline(v = c(mean(x) - sd(x), mean(x) - sd(x)),col='green',lty=2)
 ```
 
+```{block, type="reflect"}  
 What percentage of the data is between the blue dotted lines (length of interval is range)?
 
 What percentage of the data is between the purple solid lines (length of interval is IQR)?
 
 What percentage of the data is between the green dashed lines (length of interval is 2*SD)?
+```
+
+Below is code to check whether a value is between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean. 
 
 ```{r}
-sum(x > -sd(x) & x < sd(x))/length(x)
+sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
 ### Z-scores
@@ -393,13 +407,33 @@ To do this, we often calculate a **z-score**, a standardized data value.
 
 The z-score just tells you how many standard deviations the observation is above or below the mean. 
 
+```{block, type='reflect'}
 Say that you got a z = 1 on an exam with mean = 80 and sd = 5. That means that you got an 85 on the exam ($mean + z*sd = 80 + 1*5$).
 
 If you got a z = -2 on an exam with mean = 80 and sd = 5, that means you got a 70 on the exam (80 + -2*5).
+```
 
-In general, it is quite common to have z-scores between -3 and 3, but very unusual to have them greater than 3 or less than -3. In particular, if you have a unimodal, symmetric distribution z-score values will be between -1 and 1 about 68% of the time, between -2 and 2 about 95% of the time, and between -3 and 3 about 99.7% of the time. 
+In general, it is quite common to have z-scores between -3 and 3, but very unusual to have them greater than 3 or less than -3. 
 
-For those of you who like mathematical theorems, go check out Chebyshev's inequality. It gives a mathematical reasoning for why z-scores of magnitude 3 or greater are very unusual. Then take probability to get an even better understanding of it! 
+If you have a **unimodal, symmetric distribution,** z-score values will be 
+- between -1 and 1 about 68% of the time, 
+- between -2 and 2 about 95% of the time, and 
+- between -3 and 3 about 99.7% of the time. 
+
+
+```{block, type='math'}
+Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k>0$,
+
+$$P\left(\frac{|X - \mu|}{\sigma} \geq k\right) \leq \frac{1}{k^2}$$
+where $\mu$ is the mean and $\sigma$ is the standard deviation. 
+
+If we plug in values we see that the chance of getting a z-score 
+- at least 3 in magnitude (> 3 or < -3) is less than $(1/3^2) = 0.11$.
+- at least 4 in magnitude (> 4 or < -4) is less than $(1/4^2) = 0.06$.
+- at least 5 in magnitude (> 5 or < -5) is less than $(1/5^2) = 0.04$.
+
+This is true for any shaped distribution (skewed, bimodal, etc.).
+```
 
 
 In summary, for a quantitative variable,
@@ -419,7 +453,11 @@ Let's look at the distribution of hours of sleep at night within subsets of the 
 ### Multiple Histograms
 
 
-Does the recorded binary gender explain the variability in the hours of sleep? (Quick ethics consideration: what are the implications of collecting binary gender as a variable even if gender is not considered binary?)
+Does the recorded binary gender explain the variability in the hours of sleep? 
+
+```{block, type='reflect'}
+What are the implications of collecting binary gender if individuals don't fit neatly into the categories?
+```
 
 ```{r}
 NHANES %>%
@@ -430,7 +468,11 @@ NHANES %>%
   theme_minimal() 
 ```
 
-Does the number of child a parents has explain the variability in the hours of sleep? (Quick ethics consideration: who have we excluded from our analysis?)
+Does the number of child a parents has explain the variability in the hours of sleep? 
+
+```{block, type='reflect'}
+Who have we excluded from our analysis?
+```
 
 ```{r}
 NHANES %>%

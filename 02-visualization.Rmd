@@ -4,7 +4,7 @@ library(dplyr)
 library(ggplot2)
 library(stringr)
 library(rvest)
-library(mosaicData) 
+library(mosaicData)
 library(ggmosaic)
 library(NHANES)
 library(mosaic)
@@ -652,7 +652,7 @@ Let's look at another data set from the 1985 Current Population Survey. This is 
 
 ### A bivariate plot
 
-Our primary interest is the `wage` variable which gives the wage. What is the relationship between years of education and hourly wage?
+Our primary interest is the `wage` variable which gives the hourly wage for each individual in the data set in US dollars. What is the relationship between years of education and hourly wage?
 
 ```{r}
 data(CPS85) ## Load the data
@@ -664,11 +664,111 @@ CPS85 %>%
     ylab("Hourly wage (US dollars)")
 ```
 
+We can see that years of education and hourly wage are positively correlated but what about the impact of other variables?
+
 ### Enriching with color
+
+We can enrich this bivariate plot by showing information via color.
+
+```{r}
+data(CPS85) ## Load the data
+
+CPS85 %>%
+    ggplot(aes(x = educ, y = wage, color = age)) +
+    geom_point() +
+    xlab("Years of education") +
+    ylab("Hourly wage (US dollars)")
+```
+
+Adding color does not reveal any obvious patterns by age; that is, we don't see obvious clustering by color. Perhaps this is because there are too many colors (remember Visualization Principle #6: Use Color Appropriately). Are any patterns revealed if we make 4 age categories instead?
+
+```{r}
+CPS85 %>%
+    mutate(age_cat = cut(age, 4)) %>%
+    ggplot(aes(x = educ, y = wage, color = age_cat)) +
+    geom_point() +
+    xlab("Years of education") +
+    ylab("Hourly wage (US dollars)") +
+    guides(color = guide_legend(title = "Age category")) ## Legend title
+```
+
+With 4 age categories, no age patterns are evident, but this does help us see that the least educated people in this data set are mostly in the youngest and oldest age categories.
 
 ### Enriching with shape
 
+We can also encode information via point shape. Here we let shape encode marriage information.
+
+```{r}
+CPS85 %>%
+    ggplot(aes(x = educ, y = wage, shape = married)) +
+    geom_point() +
+    xlab("Years of education") +
+    ylab("Hourly wage (US dollars)") +
+    guides(shape = guide_legend(title = "Marital status")) ## Legend title
+```
+
+Often encoding information with color is preferable to encoding it with shapes because differences in shapes are not as easily discernible. Remember that statistical visualizations are meant to help you better understand your data. If you are having trouble easily picking out patterns when using a certain visual feature (e.g. shape, color), try another one to see if the clarity of the plot increases for you.
+
 ### Enriching with size
+
+The size of a point is useful for conveying the magnitude of a quantitative variable. For example, we may wish to see non-categorized age information with point size.
+
+```{r}
+CPS85 %>%
+    ggplot(aes(x = educ, y = wage, size = age)) +
+    geom_point() +
+    xlab("Years of education") +
+    ylab("Hourly wage (US dollars)") +
+    guides(size = guide_legend(title = "Age")) ## Legend title
+```
 
 ### Enriching with panels
 
+Panels (or facets) are a great way to see how relationships differ between levels of a single categorical variable or between combinations of two categorical variables.
+
+Let's look at the relationship between hourly wage and years of education across job sectors. The following creates a row of plots of this relationship over job sectors.
+
+```{r}
+CPS85 %>%
+    ggplot(aes(x = educ, y = wage)) +
+    geom_point() +
+    xlab("Years of education") +
+    ylab("Hourly wage (US dollars)") +
+    facet_grid(. ~ sector)
+```
+
+With a small change in notation (`sector ~ .` versus `. ~ sector`), we can create a column of plots.
+
+```{r}
+CPS85 %>%
+    ggplot(aes(x = educ, y = wage)) +
+    geom_point() +
+    xlab("Years of education") +
+    ylab("Hourly wage (US dollars)") +
+    facet_grid(sector ~ .)
+```
+
+We can also create panels according to two categorical variables. How do the relationships additionally differ by union status?
+
+```{r}
+CPS85 %>%
+    ggplot(aes(x = educ, y = wage)) +
+    geom_point() +
+    xlab("Years of education") +
+    ylab("Hourly wage (US dollars)") +
+    facet_grid(sector ~ union)
+```
+
+### Putting everything together
+
+The combination of these different visual features can result in powerful visual understanding. Let's combine paneling with color information to explore if there are marital status patterns in these union-job sector subgroups.
+
+```{r}
+CPS85 %>%
+    ggplot(aes(x = educ, y = wage, color = married)) +
+    geom_point() +
+    xlab("Years of education") +
+    ylab("Hourly wage (US dollars)") +
+    facet_grid(sector ~ union) + 
+    guides(color = guide_legend(title = "Marital status")) ## Legend title
+```

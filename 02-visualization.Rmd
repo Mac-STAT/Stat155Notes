@@ -25,29 +25,37 @@ For each type of variable, we will use a real data set to illustrate the visuali
 
 Before we discuss the standard graphics, let's lay out the basic design principles for good data visualizations.
 
-1. **Show the data** This may be self-explanatory, but make sure that the data is the focus and driver of the visualization. 
+1. **Show the Data** This may be self-explanatory, but make sure that the data is the focus and driver of the visualization. 
 
-2. **Avoid Distoring the Data** Avoid 3D charts as the added dimension distorts the comparison. The area of a graph should equal the magnitude of the data it is representing.
+2. **Avoid Distorting the Data** Avoid 3D charts as the added dimension distorts the comparison. The areas in a graph should equal the magnitude of the data it is representing.
 
-3. **Simplify** In 1983, Edward Tufte said that "A large share of ink on a graphic should present data-information, the ink changing as the data change. Data-ink is the non-erasable core of a graphic, the non-redundant ink arranged in response to variation in the numbers represented." Remove any unnecessary ink that doesn't present the data.
+3. **Simplify** In 1983, Edward Tufte said that "A large share of ink on a graphic should present data-information, the ink changing as the data change. Data-ink is the non-erasable core of a graphic, the non-redundant ink arranged in response to variation in the numbers represented." Remove any unnecessary ink that does not assist the presentation of the data. Remove distractions.
 
-4. **Facilitate Comparisons** In order to explain variation, we want the graphics to facilitate comparisons between groups. The design show make it easier to compare between groups rather than harder. 
+4. **Facilitate Comparisons** In order to explain variation, we want the graphics to facilitate comparisons between groups. The design should make it easier to compare between groups rather than harder. 
 
-5. **Use Contrast** Humans have developed to seek out visual contrast. When choosing colors and annotation, strive to more contrast in luminance (white to dark) to make it easier for other to perceive. 
+5. **Use Contrast** Humans have developed to seek out visual contrast. When choosing colors and annotation, strive for more contrast in luminance (white to dark) to make it easier for others to visually perceive. 
 
-6. **Use Color Appropriately** Keep in mind a small proportion of the population is color-blind. Also, every culture has different color associations. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting. 
+6. **Use Color Appropriately** Think about your audience. A small proportion of the population is color-blind; try printing it in grey scale to see if it is still effective. Also, every culture has different associations with colors; ask others for feedback on color choices. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting key points. 
 
 7. **Annotate Appropriately** Informative text is crucial for providing data context. Make sure to use informative axis labels and titles. It may be worth adding text to explain extreme outliers.
 
 
 ## One Categorical Variable
 
-First, we consider survey data of the electoral registrar in Whickham in the UK (Source: Appleton et al 1996). 
+First, we consider survey data of the electoral registrar in Whickham in the UK (Source: Appleton et al 1996). A survey was conducted in 1972-1974 to study heart disease and thyroid disease and a few baseline characteristics were collected: age and smoking status. 20 years later, a follow-up was done to check on mortality status (alive/dead).
 
-- Survey was conducted in 1972-1974 to study heart disease and thyroid disease (baseline characteristics: age and smoking status)
-- A follow-up on those in the survey was conducted twenty years later (followup characteristics: mortality after 20 years)
+Let's first consider the age distribution of this sample. Age, depending on how it is measured, could act as a quantitative variable or categorical variable. In this case, age is recorded as a quantitative variable because it is recorded to the nearest year. But, for illustrative purposes, let's create a categorical variable by separating age into intervals.
 
-Let's first consider the age distribution. Age, depending on how it is measured, could act as a quantitative variable or categorical variable. In this case, age is a quantitative variable because it is recorded to the nearest year. But, for illustrative purposes, I'm going to create a categorical variable by separating age into intervals.
+**Distribution:** *the way something is spread out (aka the way in which values vary).*
+
+```{r}
+data(Whickham) #load data set from Whickham package
+
+Whickham <- Whickham %>%
+  mutate(ageCat = cut(age, 4)) #Create a new categorical variable with 4 categories based on age (equal length of age intervals)
+
+head(Whickham)
+```
 
 ```{block, type="reflect"}
 What do I lose when I convert a quantitative variable to a categorical variable? What do I gain?
@@ -55,20 +63,19 @@ What do I lose when I convert a quantitative variable to a categorical variable?
 
 ### Bar Plot
 
+One of the best ways to show the distribution of one categorical variable is with a bar plot. For a bar plot, 
+
 - The **height** of the bars is the only part that encodes the data (width is meaningless). 
 - The height can either represent the **frequency** (count of cases) or the **relative frequency** (proportion of cases).
 
 
 ```{r}
-data(Whickham) #load data set from package
-
-Whickham <- Whickham %>%
-  mutate(ageCat = cut(age, 4)) #Create a new categorical variable with 4 categories based on age (equal length of age intervals)
-
+#Numerical Summary (frequency and relative frequency)
 Whickham %>%
   count(ageCat) %>%
   mutate(relfreq = n / sum(n)) 
 
+#Graphical Summary (bar plot)
 Whickham %>%
   ggplot(aes(x = ageCat)) + 
   geom_bar(fill="steelblue") + 
@@ -77,7 +84,9 @@ Whickham %>%
   theme_minimal()
 ```
 
+```{block type='reflect'}
 What do you notice? What do you wonder?
+```
 
 ### Pie Chart
 
@@ -89,23 +98,28 @@ This is the best use for a pie chart:
 knitr::include_graphics("Photos/pie.jpg")
 ```
 
-We are intentionally not showing you how to make a pie chart because a bar chart is a better choice. Here is a good summary of why many people strongly dislike pie charts: http://www.businessinsider.com/pie-charts-are-the-worst-2013-6. Keep in mind Visualization Principle #4: Facilitate Comparisons.
+We are intentionally not showing you how to make a pie chart because a bar chart is a better choice. 
+
+Here is a good summary of why many people strongly dislike pie charts: http://www.businessinsider.com/pie-charts-are-the-worst-2013-6. Keep in mind Visualization Principle #4: Facilitate Comparisons.
 
 
 ## Two Categorical Variables
 
-Now, let's consider two other variables in the same data set. What is the relationship between the 20-year mortality outcome and smoking status at the beginning of the study?
+Now, let's consider two other variables in the same Whickham data set. What is the relationship between the 20-year mortality outcome and smoking status at the beginning of the study?
 
 ### Side by Side Bar Plot
+
+There are a few options for visualizing the relationship between two categorical variables. One option is to use a bar plot and add bars for different categories next to each other, called a **side-by-side bar plot**. For these plots,
 
 - The **height** of the bars shows the frequency of the categories within subsets.
 
 ```{r}
+#Numerical Summary (frequency and overall relative frequency)
 Whickham %>%
   count(outcome, smoker) %>%
-  mutate(relfreq = n / sum(n)) #Overall Relative Frequency
+  mutate(relfreq = n / sum(n))
 
-
+#Graphical Summary (side-by-side bar plot)
 Whickham %>%
   ggplot(aes(x = smoker, fill = outcome)) + 
   geom_bar(position = position_dodge()) + 
@@ -115,21 +129,32 @@ Whickham %>%
   theme_minimal()
 ```
 
+```{block type='reflect'}
 What do you notice? What do you wonder?
+```
 
 ### Stacked Bar Plot
+
+Another way to show the same data is by stacking the bars on top of each other with a category. For a **stacked bar plot**,
 
 - The **height** of the entire bar shows the **marginal distribution** (frequency of the X variable, ignoring the other variable).
 - The **relative heights** show **conditional distributions** (frequencies within subsets), but it is hard to compare distributions between bars because the overall heights differ. 
 
-**Distribution:** the way something is spread out (aka the way in which values vary).
 
 ```{r}
+#Numerical Summary (conditional distribution - conditioning on outcome)
 Whickham %>%
   count(outcome, smoker) %>%
   group_by(outcome) %>%
   mutate(relfreq = n / sum(n)) 
 
+#Numerical Summary (conditional distribution - conditioning on smoker)
+Whickham %>%
+  count(outcome, smoker) %>%
+  group_by(smoker) %>%
+  mutate(relfreq = n / sum(n)) 
+
+#Graphical Summary (stacked bar plot)
 Whickham %>%
   ggplot(aes(x = smoker, fill = outcome)) + 
   geom_bar() + 
@@ -139,10 +164,13 @@ Whickham %>%
   theme_minimal()
 ```
 
+```{block type='reflect'}
 What do you notice? What do you wonder?
-
+```
 
 ### Mosaic Plot
+
+The best (Prof. H's opinion) graphic for two categorical variables is a variation on the stacked bar plot. The total heights of the bars are the same so we can compare the conditional distributions. For a **mosaic plot**, 
 
 - The **relative height** of the bars shows the **conditional distribution** (relative frequency within subsets).
 - The **width** of the bars shows the **marginal distribution** (relative frequency of the X variable, ignoring the other variable).
@@ -156,12 +184,17 @@ Whickham %>%
   scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 
   theme_minimal()
 ```
-
+```{block, type="reflect"}
 What do you notice? What do you wonder?
+```
+
+With this type of plot, you can see that there are more non-smokers than smokers. Also, you see that there is a higher mortality rate for non-smokers. 
 
 ```{block, type="reflect"}
 Does our data suggest that smoking *is associated* with a lower mortality rate?  Does our data suggest that smoking *reduces* mortality? Note the difference in these two questions - the second implies a cause and effect relationship.
 ```
+
+Let's consider a third variable here, age distribution. We can create the same plot, separately for each age group. 
 
 ```{r}
 Whickham %>%
@@ -173,8 +206,9 @@ Whickham %>%
   scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
   theme_minimal()
 ```
-
+```{block, type="reflect"}
 What do you notice? What do you wonder?
+```
 
 ```{block, type="reflect"}
 How is it that our conclusions are exactly the opposite if we consider the relationship between smoking and mortality within age subsets? What might be going on?
@@ -189,39 +223,49 @@ Now look at the mortality rates within each age category. The 20-year mortality 
 
 ## One Quantitative Variable
 
-Next, we will use data from one of the largest ongoing health studies in the USA, named NHANES. In particular, we will focus on data from the NHANES between 2009-2012 (Source: CDC).
+Next, we use data from one of the largest ongoing health studies in the USA, named NHANES. In particular, we will focus on data from the NHANES between 2009-2012 (Source: CDC). For more info about NHANES: https://www.cdc.gov/nchs/nhanes/index.htm.
 
 Since sleep is vitally important to daily functioning, let's look at the number of hours of sleep respondants reported. 
 
 ### Histogram
 
+The main graphical summary we use for quantitative variables is a histogram. It resembles a bar plot, but there are a few key differences: 
+
 - The **height** of the bars shows either the **frequency within intervals** or the **density** (relative frequency per unit of measure, e.g. proportion of people per hour sleep)
+- Gaps between bars are meaningful. They indicate absense of values within an interval.
 - The x-axis is a number line and bars do not have to be of equal width (R chooses a default bin width, but you can change how many intervals and how large they are)
 
 ```{r}
-#For more info about NHANES: https://www.cdc.gov/nchs/nhanes/index.htm
+data(NHANES)
 
 NHANES %>%
   ggplot(aes(x = SleepHrsNight)) +
-  geom_histogram(fill = "steelblue") + #Gaps are meaningful
+  geom_histogram(fill = "steelblue") + 
   xlab('Hours of Sleep (hours)') + 
   ylab('Counts') + 
   theme_minimal() 
+```
 
+If we want to specify the width of the intervals or bins, we add one bit of code:
+
+```{r}
 NHANES %>%
   ggplot(aes(x = SleepHrsNight)) +
-  geom_histogram(binwidth = 1, fill = "steelblue") + #Gaps are meaningful
+  geom_histogram(binwidth = 1, fill = "steelblue") + 
   xlab('Hours of Sleep (hours)') + 
   ylab('Counts') + 
   theme_minimal() 
+```
 
+Lastly, notice the y-axis has been the counts (or frequency) within each sleep hour interval. We can adjust this to **density**, which is relative frequency adjusted for the width of interval so that the sum of the areas of the bars (height x width) equals 1. 
 
+```{r}
 NHANES %>%
   ggplot(aes(x = SleepHrsNight)) +
   geom_histogram(aes(y = ..density..), binwidth = 1, fill = "steelblue") + 
   geom_density(alpha = 0.2, fill = "steelblue", adjust = 3) + 
   xlab('Hours of Sleep (hours)') + 
-  ylab('Counts') + 
+  ylab('Density') + 
   theme_minimal() 
 ```
 

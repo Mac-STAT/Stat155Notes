@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 We live in a world where data touch nearly every aspect of our lives: health care, online shopping, transportation, entertainment. From search engines to satellite images, from cell phones to credit cards, current technology can produce data faster than we can analyze them. 
  
-This course is the beginning of your journey into the field of Statistics, a discipline whose main goal is to extract information and meaning from data. We do this is by visually exploring the data and building models to try to explain observed variability. First, we will take some time to think about where data come from and what factors might make data more or less reliable.
+This course is the beginning of your journey into the field of Statistics, a discipline whose main goal is to extract information and meaning from data. We do this is by visually exploring the data and building models to try to explain observed variability. First, we will take some time to think about the collection of data and what factors might make data more or less reliable.
 
 ## What is Data?
 
@@ -23,7 +23,7 @@ Data is *anything* that contains information. We typically think of data being s
 For example, we can take the pixels of digital images or text from all State of the Union addresses and transform them into a tidy, rectangular format. **Tidy data** is a table in which
 
 - Each row of a rectangular table corresponds to an **observation** or **case** (e.g. person, classroom, country, image,  speech at a particular time) 
-- Each column correspond to a characteristic or feature or **variable** that summarize those cases (e.g. age, average grade, average income, intensity of red pixels, number of times the word "Together" is used)
+- Each column correspond to a characteristic or feature or **variable** for those cases (e.g. age, average classroom grade, average county income, intensity of red pixels, number of times the word "Together" is used)
 
 Variables can be either **categorical** or **quantitative** variables.
 
@@ -50,17 +50,17 @@ For any data set, you should always ask yourself a few questions to provide vita
 - **What is being measured or recorded on each case?** What are the characteristics, features, or **variables** that were collected?
 - **Where were they collected?** In one location? Multiple locations?
 - **When was the data collected?** One point in time? Over time? If data quality degrades over time (e.g. lab specimens), is this a concern?
-- **How were they collected?** What instruments and methods used for measurement? What questions were asked and how? Questionnaire? By phone? In person?
+- **How were they collected?** What instruments and methods used for measurement? What questions were asked and how? Online survey? By phone? In person?
 - **Why were they collected?** For profit? For academic research? Are there conflicts of interest?
 - **Who collected this data?** An agency, an individual researcher?
 
 Thinking about this data context informs us how we analyze the data, what conclusions we can draw, and whether we can generalize our conclusions to a larger population.
 
-Many of these data context questions also hint at general considerations for threats to data quality. Threats to data quality generally arise through **sampling bias**, **information bias**, and **study design.**
+Many of these data context questions also hint at general considerations for threats to data quality. Threats to data quality generally arise through **sampling**, **information bias**, and **study design.**
 
 ## Sampling
 
-When we study a phenomenon, we generally care about making a conclusion that applies to some **target population of interest**. However, we cannot feasibly collect data on that entire population (called a census), so we collect a **sample** of individuals. We want our sample to be **representative** of the target population in that we want our sample to resemble the target population in key ways.
+When we study a phenomenon, we generally care about making a conclusion that applies to some **target population of interest** (e.g. all likely voters in the U.S., all eligible voters in the U.S., college students in Minnesota, etc.). However, we cannot feasibly collect data on that entire population (this is called a census) due to financial and time constraints, so we collect a **sample** of individuals. We want our sample to be **representative** of the target population in that we want our sample to resemble the target population in the characteristics we are studying.
 
 ```{block, type="reflect"}
 How is representativeness affected by our research question? Can a sample be representative for one goal but not another?
@@ -68,27 +68,31 @@ How is representativeness affected by our research question? Can a sample be rep
 
 When our method of selecting a sample is flawed, **sampling bias** results, and our sample is unrepresentative of the target population. How does this tend to happen, and how can we avoid it?
 
-It is first helpful to define the term **sampling frame**. A sampling frame is the complete list of individuals/units in the target population. For example, it could be a spreadsheet listing every individual that lives in Minnesota.
+It is first helpful to define the term **sampling frame**. A sampling frame is the complete list of individuals/units in the target population. For example, it could be a spreadsheet listing every college student that studies in Minnesota.
 
 ### Sampling Bias
 
 The following are common ways that sampling bias can arise, and they all share the feature that a sampling frame is not used:
 
-- **Convenience Sampling:** *Individuals that make up the sample are easy to contact or to reach (e.g. standing on a street corner and asking passerbys to answer a few questions). The people sampled will likely be systematically different than the target population.*
+- **Convenience Sampling:** *Individuals that make up a convenience sample are easy to contact or to reach (e.g. stand on a street corner and ask passerbys to answer a few questions). The people sampled will likely be systematically different than the target population.*
 
-- **Self-Selection and Volunteer Sampling:** *Individuals that make up the same self-select or volunteer to be in a sample. They are likely to be systematically different than the target population (e.g. reviews on Amazon, individuals that call in for radio shows).*
+- **Self-Selection and Volunteer Sampling:** *Individuals that make up a sample self-select or volunteer to be in a sample  (e.g. product reviews on Amazon, individuals that call in to radio shows, blood donors, etc.). They are likely to be systematically different than the target population.*
 
-One result of using these sampling techniques is that we can get **undercoverage** in the sample. This happens when some members of the population are inadequately represented in the sample due to the sampling procedure (often from convenience samples). A famous example in United States history is the 1936 Literary Digest poll that completely mispredicted the presidental election. The magazine predicted a strong victory for Alfred Landon, but Franklin Delano Roosevelt ended up winning the election by a substantial margin. The survey relied on a convenience sample, drawn from telephone directories and car registration lists. In 1936, people who owned cars and telephones tended to be more affluent.
+One result of using these sampling techniques is that we can get **undercoverage** in the sample. This happens when some groups of the population are inadequately represented in the sample due to the sampling procedure. A famous example in United States history is the 1936 Literary Digest poll that completely mispredicted the presidental election. The magazine predicted a strong victory for Alfred Landon, but Franklin Delano Roosevelt ended up winning the election by a substantial margin. The survey relied on a convenience sample, drawn from telephone directories and car registration lists. In 1936, people who owned cars and telephones tended to be more affluent and leaned to the right politically.
 
-Without a complete sampling frame, we have no control over what units enter the sample because we do not even have a complete list of the units that could be sampled. Imagine that our target population is like a bowl of soup, these forms of sampling are similar to scooping only the bits of soup that float to the top.
+Without a complete sampling frame, we have no control over what units enter the sample because we do not even have a complete list of the units that could be sampled. Imagine that our target population is like a pot of soup, these forms of sampling are similar to scooping only the bits of soup that float to the top (without stirring).
 
 ### Random Sampling
 
-With a sampling frame, we can do better and hopefully avoid sampling bias by using randomization. In our soup analogy, this amounts to mixing the soup thoroughly and dipping our spoon in random locations. These strategies are called **probability sampling** strategies or, more colloquially, **random sampling** strategies. In probability sampling, each unit in the sampling frame has a known, nonzero probability of being selected, and the sampling is performed with some chance device (e.g. coin flipping, random number generation). Some probability sampling techniques include:
+With a sampling frame, we can do better and hopefully avoid sampling bias by using randomization. In our soup analogy, this amounts to mixing the soup thoroughly and dipping our spoon in random locations. 
+
+These strategies are called **probability sampling** strategies or, more colloquially, **random sampling** strategies. In probability sampling, each unit in the sampling frame has a known, nonzero probability of being selected, and the sampling is performed with some chance device (e.g. coin flipping, random number generation). 
+
+Some probability sampling techniques include:
 
 **Simple Random Sampling:** *Each unit in the sampling frame has the same chance of being chosen and individuals are selected without replacement. In doing so, every sample of a given size are equally likely to arise.*
 
-**Stratified Sampling:** *The units in the sampling frame are first divided into categories/strata (e.g. age categories). Simple random sampling is performed in each category/stratum. Why do this? Just by chance, simple random sampling might oversample young individuals. Stratifying by age first, then performing simple random sampling in these strata ensures the desired age distribution in the sample.* 
+**Stratified Sampling:** *The units in the sampling frame are first divided into categories/strata (e.g. age categories). Simple random sampling is performed in each category/stratum. Why do this? Just by chance, simple random sampling might oversample young individuals. Stratifying by age first, then performing simple random sampling in these strata ensures a desired age distribution in the sample.* 
 
 **Cluster Sampling:** *Sometimes a sampling frame is more readily available for clusters of units rather than the units themselves. For example, a sampling frame of all hospitals in Minnesota might be more readily available than a sampling frame of all Minnesota hospital patients in a given time frame. In cluster sampling, the intial clusters are sampled with a probability sampling method (like simple random sampling or stratified sampling). All units in the sampled clusters may be chosen, or if sampling frames can be obtained for the sampled clusters, probability sampling is performed within the cluster. This might happen if it is more feasible to obtain patient lists for a small subset, but not all, hospitals.* 
 
@@ -97,57 +101,75 @@ With a sampling frame, we can do better and hopefully avoid sampling bias by usi
 
 ### Nonresponse bias
 
-Even with a great random sampling method, our sample can still be unrepresentative if units in our sample do not respond to our questions. For example, if our communication method is via e-mail, units who do not read our e-mail are nonresponders. This type of nonresponse is called **unit nonresponse bias**.
+Even with a great random sampling method, our sample can still be unrepresentative if units in our sample do not fully participate after they are selected. For example, if the communication method is via e-mail, individuals who do not read our e-mail are nonresponders. If those individuals who don't participate are systematically different than those that do, this type of nonresponse bias is called **unit nonresponse bias**.
 
-Let’s say that an individual opens up our e-mail survey. They may answer the first few questions but grow weary and skip the last questions. This type of nonresponse bias is called **item nonresponse bias**.
+Let’s say that an individual opens up our e-mail survey. They may answer the first few questions but grow weary and skip the last questions. If those individuals who don't answer particular questions are systematically different than those that do in their responses, this type of nonresponse bias is called **item nonresponse bias**.
 
 ## Information bias
 
-Lastly, independent of sampling, bias can arise in how we collect the data. 
+Lastly, separate from sampling, bias can arise in how we record or measure observations. 
 
-- **Response bias/Self-report bias/social desirability bias:** *When the recorded response does not accurately represent the true value for the individual due to wording of the question or to increase social desirability. Most people like to present themselves in a favorable light, so they will be reluctant to admit to unsavory attitudes or characteristics (e.g. weight, income) or illegal activities in a survey, particularly if survey results are not confidential.* 
+- **Response bias/Self-report bias/Social desirability bias:** *When the recorded response does not accurately represent the true value for the individual due to wording of the question or to increase social desirability. Most people like to present themselves in a favorable light, so they will be reluctant to admit to unsavory attitudes or characteristics (e.g. weight, income) or illegal activities in a survey, particularly if survey results are not confidential.* 
 - **Recall bias:** *People often unintentionally make mistakes in remembering details about the past.* 
 - **Measurement error:** *Technologies that measure variables of interest may not always be accurate and human calibration of those instruments may be off as well.* 
 
 ## Study Design: Observational Study vs. Experiments
 
-Data can be collected in one of two scenerios:
+Once we have a sample selected, data can be collected in one of two general study designs:
 
-1. **Observational Study:** *Data is collected in such a way such that the researcher **does not** manipulate or intervene in characteristics of the individuals. Researchers simply observe or record characteristics of the sample through direct measurement or through a questionnaire or survey.*
+1. **Observational Study:** *Data is collected in such a way such that the researcher **does not** manipulate or intervene in the characteristics of the individuals. Researchers simply observe or record characteristics of the sample through direct measurement or through a questionnaire or survey.*
 
 2. **Experiment:** *Data is collected in such a way such that the researcher **does** manipulate or intervene in characteristics of the individuals by randomly assigning individuals to treatment and control groups. Researchers then record characteristics of the individuals in the sample within the treatment and control groups.*
 
 The main reason for doing an experiment is to estimate a relationship between a treatment and a response.
 
-For example, imagine that we want to know if taking a daily multivitamin reduces systolic blood pressure. If we performed an observational study, we would select a sample (hopefully a representative one) from a population of interest and then ask whether an individual takes a daily multivitamin and measure their blood pressure. Would this data provide enough evidence to conclude that vitamin use causes a reduction in blood pressure?
+For example, imagine that we want to know if taking a daily multivitamin reduces systolic blood pressure. If we performed an observational study, we would select a sample (hopefully a representative one) from a population of interest and then ask whether an individual takes a daily multivitamin and measure their blood pressure. *Would this data provide enough evidence to conclude that vitamin use causes a reduction in blood pressure?*
 
-No, it wouldn't. Individuals that take daily multivitamins may also be more health-conscious, eating more fruits and vegetables and exercising more, which may be related to blood pressure. The diet and exercise would be acting as **confounding variables**, making it impossible to say for certain if vitamin use has a direct impact on blood pressure.
+Individuals that take daily multivitamins may also be more health-conscious, eating more fruits and vegetables and exercising more, which may be related to blood pressure. The diet and exercise would be acting as **confounding variables**, making it impossible to say for certain if vitamin use has a direct impact on blood pressure.
 
 **Confounding Variables:** *Third variables that are related to both a "treatment" (e.g. multivitamin) and a "response" (e.g. blood pressure).*
 
 ```{block, type="reflect"}
-For example, say we note that higher ice creams sales are related to a higher number of pool drownings. What could be a confounding variable in this circumstance?
+For example, say we note that on days with higher ice creams sales, there are typically a higher number of pool drownings. What could be a confounding variable in this circumstance?
 ```
 
 In an experiment, we "manipulate" the characteristics for an individual by randomly assigning them to a treatment group. This random assignment is intended to break the relationship between any third variable and the treatment so as to try to reduce the impact of confounding. It is impossible to entirely remove the possibility of confounding, but the random assignment to a treatment helps. (Note: things can get complicated if individuals don't comply with the treatment such as take the multivitamin every single day...)
 
 **Causal Inference:** *Causal inference is the process of making a conclusion about direct cause and effect between a "treatment" and a "response". It is very difficult to make causal inferences/statements based on data from an observational study due to the possible presence of confounding variables. There is a whole area of statistics dedicated to methods that attempt to overcome the confounding, but that is beyond the scope of this course. (If you want a "gentle" but mathematical introduction to this area of Statistics, I'd suggest reading "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell)*
 
-Note that ethics play a very important role in study design, especially when humans and animals are the observational units. In the U.S., the Belmont Report (https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html) is the main federal document that provides the "Ethical Principles and Guidelines for the Protection of Human Subjects of Research". It discusses Informed Consent and other principles to follow for the protection of human rights and privacy. 
-
-For a brief history of ethics in human research, see https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3593469/.
 
 
 ## Ethical Considerations
 
-Throughout this class, we are going to stop and think about the ethical considerations of the many parts of statistical practice, ranging from data collection to model prediction. Ethics are the norms or standards for conduct that distinguish between right and wrong. In particular, we are going to consider the ethics of 
+Note that ethics play a very important role in study design, especially when humans and animals are the observational units. In the U.S., the Belmont Report (https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html) is the main federal document that provides the "Ethical Principles and Guidelines for the Protection of Human Subjects of Research". The three fundamental ethical principles for using any human subjects for research are:
 
-- How the data were collected
+1. **Respect for persons**: protecting the autonomy of all people and treating them with courtesy and respect and allowing for informed consent. Researchers must be truthful and conduct no deception;
+
+2. **Beneficence**: The philosophy of "Do no harm" while maximizing benefits for the research project and minimizing risks to the research subjects; and
+
+3. **Justice**: ensuring reasonable, non-exploitative, and well-considered procedures are administered fairly — the fair distribution of costs and benefits to potential research participants — and equally.
+
+
+For a brief, limited history of ethical regulation in human research, see https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3593469/. A few key moments in history are
+
+- Nuremberg Code (1948) in response to medical experiments in Germany performed without consent
+- Declaration of Helskinki (originated in 1964 and frequently revised) established by World Medical Association
+- The Belmont Report written in response to the Tuskegee Syphilis Study (1932 - 1972)
+- Common Rule (1981) is regulatory policy which all U.S. government-funded research and nearly all U.S. academic institutions must abide.
+
+Macalester College has an Institutional Review Board (IRB) that oversees research that includes human participants (see: https://www.macalester.edu/irb/).
+
+Throughout this class, we are going to stop and think about the ethical considerations of the many parts of statistical practice, ranging from data collection to model prediction. 
+
+Ethics are the norms or standards for conduct that distinguish between right and wrong. In particular, we are going to consider the ethics of 
+
+- How the data are collected
 - Random assignment to treatments 
 - Data storage
 - Data privacy
 - Data use
 - Choice of sample data used for predictive modeling
+- Use of predictive modeling
 
 We are going to pay extra attention to negative consequences of the above that may disproportionately impact marginalized groups of people. 
 

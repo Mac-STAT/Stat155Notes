@@ -396,7 +396,7 @@ sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 
 How do you decide when an outlier is really unusual (think: athletic victory being very impressive or a data point that may be an error)?
 
-If the observation is far from the rest of the measurements in the data, we tend to say that the value is more unusual. We want to quantify this idea of "unusual."
+If the observation is far from the rest of the measurements in the data, we tend to say that the value is unusual. We want to quantify this idea of "unusual."
 
 To do this, we often calculate a **z-score**, a standardized data value.
 
@@ -408,30 +408,31 @@ To do this, we often calculate a **z-score**, a standardized data value.
 The z-score just tells you how many standard deviations the observation is above or below the mean. 
 
 ```{block, type='reflect'}
-Say that you got a z = 1 on an exam with mean = 80 and sd = 5. That means that you got an 85 on the exam ($mean + z*sd = 80 + 1*5$).
+Say that you got a z-score of 1 on an exam with mean = 80 and sd = 5. That means that you got an 85 on the exam because your exam is one sd above the mean ($mean + z*sd = 80 + 1*5$).
 
-If you got a z = -2 on an exam with mean = 80 and sd = 5, that means you got a 70 on the exam (80 + -2*5).
+If you got a z = -2 on an exam with mean = 80 and sd = 5, that means you got a 70 on the exam because your exam is two sd below the mean  ($mean + z*sd = 80 + -2*5$).
 ```
 
-In general, it is quite common to have z-scores between -3 and 3, but very unusual to have them greater than 3 or less than -3. 
+In general, it is quite common to have z-scores between -3 and 3, but fairly unusual to have them greater than 3 or less than -3. 
 
 If you have a **unimodal, symmetric distribution,** z-score values will be 
+
 - between -1 and 1 about 68% of the time, 
 - between -2 and 2 about 95% of the time, and 
 - between -3 and 3 about 99.7% of the time. 
 
 
 ```{block, type='math'}
-Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k$ > 0,
+Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k$ > 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than $k$ is less than or equal to $1/k^2$,
 
-$$P\left(\frac{|X - \mu|}{\sigma} \geq k\right) \leq \frac{1}{k^2}$$
-where $\mu$ is the mean and $\sigma$ is the standard deviation. 
+$$P\left(|Z| \geq k\right) \leq \frac{1}{k^2}$$
+where $Z = \frac{|X - \mu|}{\sigma}$ is a z-score, $\mu$ is the mean, and $\sigma$ is the standard deviation. 
 
-If we plug in values we see that the chance of getting a z-score 
+If we plug in values for $k$, we see that the chance of getting a z-score 
 
-- at least 3 in magnitude (> 3 or < -3) is less than $(1/3^2) = 0.11$.
-- at least 4 in magnitude (> 4 or < -4) is less than $(1/4^2) = 0.06$.
-- at least 5 in magnitude (> 5 or < -5) is less than $(1/5^2) = 0.04$.
+- at least 3 in magnitude (> 3 or < -3) is less than $(1/3^2) = 0.11 = 11\%$.
+- at least 4 in magnitude (> 4 or < -4) is less than $(1/4^2) = 0.06 = 6\%$.
+- at least 5 in magnitude (> 5 or < -5) is less than $(1/5^2) = 0.04 = 4\%$.
 
 This is true for any shaped distribution (skewed, bimodal, etc.).
 ```
@@ -447,17 +448,17 @@ In summary, for a quantitative variable,
 
 ## One Quantitive Variable and One Categorical Variable
 
-Why do some people sleep more than others?
+Let's return to the NHANES data. We noticed variation in the amount people sleep. Why do some people sleep more than others? Is there any other characteristics that may be able to *explain that variation*?
 
 Let's look at the distribution of hours of sleep at night within subsets of the NHANES data. 
 
 ### Multiple Histograms
 
 
-Does the recorded binary gender explain the variability in the hours of sleep? 
+**Does the recorded binary gender explain the variability in the hours of sleep?**
 
 ```{block, type='reflect'}
-What are the implications of collecting binary gender if individuals don't fit neatly into the categories?
+What are the ethical implications of collecting binary gender if individuals don't fit neatly into the categories?
 ```
 
 ```{r}
@@ -465,14 +466,17 @@ NHANES %>%
   ggplot(aes(x = SleepHrsNight)) +
   geom_histogram(binwidth = 1, fill = "steelblue") + 
   xlab('Hours of Sleep (hours)') + 
-  facet_grid(~Gender) + 
+  facet_grid(~ Gender) + 
   theme_minimal() 
 ```
 
-Does the number of child a parents has explain the variability in the hours of sleep? 
+
+
+
+**Does the number of children a mother has explain the variability in the hours of sleep?** 
 
 ```{block, type='reflect'}
-Who have we excluded from our analysis?
+Who have we excluded from our analysis by asking this question?
 ```
 
 ```{r}
@@ -481,27 +485,28 @@ NHANES %>%
   ggplot(aes(x = SleepHrsNight)) +
   geom_histogram(binwidth = 1, fill = "steelblue") + 
   xlab('Hours of Sleep (hours)') + 
-  facet_grid(~factor(nBabies)) + 
+  facet_grid(~ factor(nBabies)) + 
   theme_minimal() 
 ```
 
 
-Does the number of days someone has felt depressed explain the variability in the hours of sleep?
+**Does the number of days someone has felt depressed explain the variability in the hours of sleep?**
 
 ```{r}
 NHANES %>%
   ggplot(aes(x = SleepHrsNight)) +
   geom_histogram(binwidth = 1, fill = "steelblue") + 
   xlab('Hours of Sleep (hours)') + 
-  facet_grid(~Depressed) + 
+  facet_grid(~ Depressed) + 
   theme_minimal() 
 ```
 
+```{block type='reflect'}
 What do you notice? What do you wonder?
-
+```
 ### Multiple Boxplots
 
-Let's try that again but with boxplots and see if we can glean any more information.
+Let's visualize the same information but with boxplots instead of histograms and see if we can glean any other information.
 
 ```{r}
 NHANES %>%
@@ -522,6 +527,7 @@ NHANES %>%
   theme_minimal() 
 ```
 
+
 ```{r}
 NHANES %>%
   ggplot(aes(x = factor(Depressed), y = SleepHrsNight)) +
@@ -531,9 +537,9 @@ NHANES %>%
   theme_minimal() 
 ```
 
-
+```{block type='reflect'}
 What do you notice? What do you wonder?
-
+```
 
 #### Is this a Real Difference?
 

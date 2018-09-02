@@ -271,15 +271,15 @@ NHANES %>%
 
 The smooth line on this plot is called a **density plot**. It is essentially a smoother version of the histogram. Both the area under a density plot and the area of all the rectangles in a density histogram equal 1.
 
-We focus on three aspects of the histogram/distribution:
+When verbally describing a distribution, we focus on three aspects of the histogram:
 
-- **Shape:** Is it **symmetric**? or is it **skewed to the right or left**? (A distribution is **left-skewed** if there is a long left tail and **right-skewed** if it has a long right tail.) How many **modes** ("peaks"/"bumps" in the distribution) do you see?
+- **Shape:** Is it **symmetric** (can you fold it in half and the sides match up)? or is it **skewed to the right or left**? (A distribution is **left-skewed** if there is a long left tail and **right-skewed** if it has a long right tail.) How many **modes** ("peaks"/"bumps" in the distribution) do you see?
 - **Center:** Where is a typical value located?
-- **Spread** (or variation): How spread out are the values? (Concentrated around one or more values or spread out?)
+- **Spread** (or variation): How spread out are the values? Concentrated around one or more values or spread out?
+- **Unusual Features:** Are there **outliers** (points far from the rest)? Are there gaps? Why?
 
-Also, we ask: Are there any unusual features such as outliers or gaps? Why?
 
-Here is another data set for comparison: CEO salaries for the highest paid CEOs in 2016 (Source: NYTimes).
+Here is another data set for comparison. Here are the annual salaries for the highest paid CEOs in 2016 (Source: NYTimes). To get the data, we are scraping the data from a NYTimes website. For fun, you can look at the code below. 
 
 ```{r}
 nyturl <- 'https://www.nytimes.com/interactive/2017/05/26/business/highest-paid-ceos.html?mcubz=0'
@@ -295,19 +295,22 @@ ceo <- ceo %>%
   filter(year == '2016')
 ```
 
+Let's create a density histogram of the annual salaries for the highest paid CEO's in the U.S. in 2016.
+
 ```{r}
-#Highest Paid CEO's in the U.S. in 2016 (Source: NYTimes)
 ceo %>%
   ggplot(aes(x = salary)) +
   geom_histogram(aes(y = ..density..), binwidth = 15, fill = "steelblue") + 
   geom_density(alpha = 0.2, fill = "steelblue") + 
-  xlab('Salary ($M)') + 
+  xlab('Salary ($ Millions)') + 
   ylab('Counts') + 
   theme_minimal() 
 ```
 
+We note that some of the highest salaries were close to 200 million U.S. dollars (in 2016), but the majority of the salaries in this sample are closer to 50 million U.D. dollars.
+
 ```{block, type="reflect"}
-Is the distribution of salaries left-skewed or right-skewed? In what populations do you think salaries would be left-skewed? Right-skewed?
+Is this distribution of salaries left-skewed or right-skewed? In what populations do you think salaries would be left-skewed? Right-skewed?
 ```
 
 ### Center
@@ -315,9 +318,9 @@ Is the distribution of salaries left-skewed or right-skewed? In what populations
 There are some choices for numerically summarizing the center of a distribution:
 
 - **Mean**: The sum of the values divided by the number of values (sample size), $\bar{y} = \frac{\sum^n_{i=1}y_i}{n}$
-    + Sensitive to outliers, but efficiently uses all the data
+    + Sensitive to outliers, but it efficiently uses all the data
 - **Median**: The "middle" value. The number for which half of the values are below and half are above.
-    + Insensitive to outliers, but doesn't use all the actual values
+    + Insensitive to outliers, but it doesn't use all the actual values
 - **Trimmed means**:  Drop the lowest and highest k% and take the mean of the rest.
     + A good compromise, but not widely used.
     
@@ -325,11 +328,13 @@ There are some choices for numerically summarizing the center of a distribution:
 The greek capital letter sigma, $\sum$, is used in mathematics to denote a sum. We let $y_i$ represent the value of the $i$th person for a variable called $y$. So $\sum^n_{i=1}y_i$ is the sum of all the $n$ values of a variable $y$, all the way from the 1st person to the $n$th person.
 ```
 
+We can calculate all of these in R. 
+
 ```{r}
 summary(NHANES$SleepHrsNight) # The $ extracts a certain column of the data set
-mean(NHANES$SleepHrsNight, na.rm=TRUE) # na.rm = TRUE removes missing values
-median(NHANES$SleepHrsNight, na.rm=TRUE)
-mean(NHANES$SleepHrsNight, trim = 0.05, na.rm=TRUE) # Trim 5% from both tails before taking mean
+mean(NHANES$SleepHrsNight, na.rm = TRUE) # na.rm = TRUE removes missing values
+median(NHANES$SleepHrsNight, na.rm = TRUE)
+mean(NHANES$SleepHrsNight, trim = 0.05, na.rm = TRUE) # Trim 5% from both tails before taking mean
 
 
 summary(ceo$salary) # Note the differences between mean and median
@@ -340,12 +345,18 @@ mean(ceo$salary,trim = 0.05)  # Trimmed mean falls in between
 
 ### Boxplot
 
-A boxplot is a simplification of the histogram:
+An alternative graphical summary is a boxplot, which is a simplification of the histogram. The plot consists of 
 
-- Box: 25th percentile ($Q1$) to 75th percentile ($Q3$)
-- Line in box: 50th percentile (median)
-- Tails: Extend to most extreme observed values within $1.5 \times (Q3-Q1)$ from $Q1$ (left) or $Q3$ (right)
-- Points: If any points are beyond $1.5 \times (Q3-Q1)$ from the box edges, plot separately
+- A Box: the bottom of the box is at the 25th percentile ($Q1$) and top of the box is at the 75th percentile ($Q3$)
+- Line in Box: the line in the middle of the box is at the 50th percentile, the median
+- Tails/Whiskers: The lines extend out from the box to most extreme observed values within $1.5 \times (Q3-Q1)$ from $Q1$ (bottom) or $Q3$ (top)
+- Points: If any points are beyond $1.5 \times (Q3-Q1)$ from the box edges, they are considered outliers and are plotted separately
+
+```{block, type="math"}    
+A percentile is a measure indicating the value below which a given percentage of observations in a group of observations fall. So the 25th percentile is the value at which 25% of the values are below. The 95th percentile is the point at which 95% of the observations are below.
+```
+
+Here is a boxplot of the sleep amount from NHANES.
 
 ```{r}
 NHANES %>%
@@ -355,8 +366,9 @@ NHANES %>%
   theme_minimal() 
 ```
 
+Compare that to the boxplot of the CEO salaries. 
+
 ```{r echo=TRUE}
-#Highest Paid CEO's in the U.S. in 2016 (Source: NYTimes)
 ceo %>%
   ggplot(aes(y = salary)) +
   geom_boxplot() + 
@@ -366,7 +378,7 @@ ceo %>%
 
 Note: In these 2 plots above, the x-axis has number labels, but they don't mean anything.
 
-Let's put the boxplots next to the histograms so we can better compare. Also, let's add the mean (red dashed), median (blue dotted), and 5% trimmed mean (purple dash-dot).
+Let's put the boxplots next to the histograms so we can better compare the two types of visualizations. Also, let's add the mean (red dashed), median (blue dotted), and 5% trimmed mean (purple dash-dot) as annotations.
 
 ```{r echo=FALSE}
 layout(matrix(c(1,2),2,1),heights = c(10,5))
@@ -382,7 +394,7 @@ abline(v = median(NHANES$SleepHrsNight,na.rm=TRUE), col = 'blue',lty=3)
 abline(v = mean(NHANES$SleepHrsNight,trim = 0.05,na.rm=TRUE), col='purple',lty=4)
 ```
 
-For hours of sleep, the mean, median, and 5% trimmed mean are all pretty much the same. Note also that the distribution looks pretty symmetric.
+For the hours of sleep, the mean, median, and 5% trimmed mean are all pretty much the same. Note also that the distribution looks pretty symmetric based on the histogram.
 
 ```{r echo=FALSE}
 layout(matrix(c(1,2),2,1),heights = c(10,5))
@@ -398,7 +410,7 @@ abline(v = median(ceo$salary, na.rm = TRUE), col = 'blue',lty=3)
 abline(v = mean(ceo$salary, trim = 0.05, na.rm = TRUE), col='purple',lty=4)
 ```
 
-For salaries, the mean and 5% trimmed mean are a bit higher than the median. Note also that this distribution looks skewed. (Left- or right-skewed?)
+For CEO salaries, the mean and 5% trimmed mean are a bit higher than the median. Note also the mean is always pulled toward the long tail. 
 
 ```{block, type="reflect"}    
 What would the boxplot look like if all of the values were exactly the same?
@@ -424,6 +436,8 @@ There are some choices for numerically summarizing the spread of a distribution:
     + Units are the squared version of the actual data's units (e.g. squared inches, pounds)
     + Standard deviation is preferred for interpretability of units
     + Variance will come up when we discuss models in the next chapter
+
+We can calculate all of these in R.
 
 ```{r tidy=TRUE, echo=TRUE}
 diff(range(NHANES$SleepHrsNight,na.rm = TRUE)) # range gives max and min; take difference
@@ -492,7 +506,7 @@ Often, if you have a **unimodal, symmetric distribution**, z-score values will b
 - between -2 and 2 about 95% of the time, and 
 - between -3 and 3 about 99.7% of the time. 
 
-This will not be true always, but it will be true for a particularly special distribution that we will see in the next chapter when we cover models. (This distribution is called the **normal distribution** or **Gaussian distribution**.)
+This will not be true always, but it will be true for a particularly special distribution that we will see in the next few chapter when we cover models. (This distribution is called the **normal distribution** or **Gaussian distribution**.)
 
 ```{block, type='math'}
 Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k$ > 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than $k$ is less than or equal to $1/k^2$,

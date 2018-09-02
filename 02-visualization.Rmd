@@ -225,6 +225,8 @@ NHANES %>%
   theme_minimal() 
 ```
 
+The smooth line on this plot is called a **density plot**. It is essentially a smoother version of the histogram. Both the area under a density plot and the area of all the rectangles in a density histogram equal 1.
+
 We focus on three aspects of the histogram/distribution:
 
 - **Shape:** Is it **symmetric**? or is it **skewed to the right or left**? (A distribution is **left-skewed** if there is a long left tail and **right-skewed** if it has a long right tail.) How many **modes** ("peaks"/"bumps" in the distribution) do you see?
@@ -260,42 +262,46 @@ ceo %>%
   theme_minimal() 
 ```
 
+```{block, type="reflect"}
+Is the distribution of salaries left-skewed or right-skewed? In what populations do you think salaries would be left-skewed? Right-skewed?
+```
+
 ### Center
 
-For center, we have some choices for numerically summarizing it:
+There are some choices for numerically summarizing the center of a distribution:
 
 - **Mean**: The sum of the values divided by the number of values (sample size), $\bar{y} = \frac{\sum^n_{i=1}y_i}{n}$
     + Sensitive to outliers, but efficiently uses all the data
 - **Median**: The "middle" value. The number for which half of the values are below and half are above.
-    + Insensitive to outliers, but doesn’t use all the actual values
+    + Insensitive to outliers, but doesn't use all the actual values
 - **Trimmed means**:  Drop the lowest and highest k% and take the mean of the rest.
     + A good compromise, but not widely used.
     
 ```{block, type="math"}    
-The greek capital letter sigma, $\sum$, is used in mathematics to denote a sum. We let $y_i$ represent the value of the ith person for a variable called $y$. So $\sum^n_{i=1}y_i$ is the sum of all the $n$ values of a variable $y$, all the way from the 1st person to the nth person. 
+The greek capital letter sigma, $\sum$, is used in mathematics to denote a sum. We let $y_i$ represent the value of the $i$th person for a variable called $y$. So $\sum^n_{i=1}y_i$ is the sum of all the $n$ values of a variable $y$, all the way from the 1st person to the $n$th person.
 ```
 
 ```{r}
-summary(NHANES$SleepHrsNight)
-mean(NHANES$SleepHrsNight, na.rm=TRUE) #na.rm = TRUE removes missing values
+summary(NHANES$SleepHrsNight) # The $ extracts a certain column of the data set
+mean(NHANES$SleepHrsNight, na.rm=TRUE) # na.rm = TRUE removes missing values
 median(NHANES$SleepHrsNight, na.rm=TRUE)
-mean(NHANES$SleepHrsNight, trim = 0.05, na.rm=TRUE) #Trim 5% from both tails before taking mean
+mean(NHANES$SleepHrsNight, trim = 0.05, na.rm=TRUE) # Trim 5% from both tails before taking mean
 
 
-summary(ceo$salary) #Note the differences between mean and median
-mean(ceo$salary) #Arthimetic average
-median(ceo$salary) #Middle number
-mean(ceo$salary,trim = 0.05)  #Trimmed mean falls in between
+summary(ceo$salary) # Note the differences between mean and median
+mean(ceo$salary) # Arthimetic average
+median(ceo$salary) # Middle number
+mean(ceo$salary,trim = 0.05)  # Trimmed mean falls in between
 ```
 
 ### Boxplot
 
-A simplification of the histogram:
+A boxplot is a simplification of the histogram:
 
-- Box: 25th Percentile (Q1) to 75th Percentile (Q3)
-- Line in Box: 50th Percentile (Median)
-- Tails: Extend to most extreme observed values within 1.5*(Q3-Q1) from Q1 (left) or Q3 (right)
-- Points: If any points are beyond 1.5*(Q3-Q1) from the box, plot separately
+- Box: 25th percentile ($Q1$) to 75th percentile ($Q3$)
+- Line in box: 50th percentile (median)
+- Tails: Extend to most extreme observed values within $1.5 \times (Q3-Q1)$ from $Q1$ (left) or $Q3$ (right)
+- Points: If any points are beyond $1.5 \times (Q3-Q1)$ from the box edges, plot separately
 
 ```{r}
 NHANES %>%
@@ -314,6 +320,8 @@ ceo %>%
   theme_minimal() 
 ```
 
+Note: In these 2 plots above, the x-axis has number labels, but they don't mean anything.
+
 Let's put the boxplots next to the histograms so we can better compare. Also, let's add the mean (red dashed), median (blue dotted), and 5% trimmed mean (purple dash-dot).
 
 ```{r echo=FALSE}
@@ -327,48 +335,67 @@ par(mar = c(5,5,0,2),bty='n')
 boxplot(NHANES$SleepHrsNight,horizontal = TRUE,xlab='Hours of Sleep at Night')
 abline(v = mean(NHANES$SleepHrsNight,na.rm=TRUE),col='red',lty=2)
 abline(v = median(NHANES$SleepHrsNight,na.rm=TRUE), col = 'blue',lty=3)
+abline(v = mean(NHANES$SleepHrsNight,trim = 0.05,na.rm=TRUE), col='purple',lty=4)
+```
 
+For hours of sleep, the mean, median, and 5% trimmed mean are all pretty much the same. Note also that the distribution looks pretty symmetric.
+
+```{r echo=FALSE}
 layout(matrix(c(1,2),2,1),heights = c(10,5))
 par(mar = c(0,5,4,2))
 hist(ceo$salary, col="lightgreen",main="",ylab="# of people",xaxt='n',xlim=c(0,200))
-abline(v = mean(ceo$salary),col='red',lty=2) #na.rm = TRUE removes missing values
-abline(v = median(ceo$salary), col = 'blue',lty=3)
-abline(v = mean(ceo$salary,trim = 0.05,na.rm=TRUE), col='purple',lty=4)
+abline(v = mean(ceo$salary, na.rm = TRUE),col='red',lty=2) #na.rm = TRUE removes missing values
+abline(v = median(ceo$salary, na.rm = TRUE), col = 'blue',lty=3)
+abline(v = mean(ceo$salary, trim = 0.05, na.rm = TRUE), col='purple',lty=4)
 par(mar = c(5,5,0,2),bty='n')
 boxplot(ceo$salary,horizontal = TRUE,xlab='Salary ($N)',ylim=c(0,200))
-abline(v = mean(ceo$salary,na.rm=TRUE),col='red',lty=2)
-abline(v = median(ceo$salary,na.rm=TRUE), col = 'blue',lty=3)
+abline(v = mean(ceo$salary, na.rm = TRUE),col='red',lty=2)
+abline(v = median(ceo$salary, na.rm = TRUE), col = 'blue',lty=3)
+abline(v = mean(ceo$salary, trim = 0.05, na.rm = TRUE), col='purple',lty=4)
 ```
+
+For salaries, the mean and 5% trimmed mean are a bit higher than the median. Note also that this distribution looks skewed. (Left- or right-skewed?)
 
 ```{block, type="reflect"}    
 What would the boxplot look like if all of the values were exactly the same?
 ```
 
-
 ### Spread
 
-For spread we have several choices to numerically describe it:
+There are some choices for numerically summarizing the spread of a distribution:
 
 - **Range**: the maximum value - the minimum value
-    + Sensitive to the outliers since it’s the difference of the extremes
-- **IQR**: the interquartile range : Q3 - Q1 (75th percentile - 25th percentile).
+    + Sensitive to the outliers since it's the difference of the extremes
+    + Units (e.g. inches, pounds) are the same as the actual data
+- **IQR**: the interquartile range : $Q3 - Q1$ (75th percentile - 25th percentile).
     + Length of the box in a boxplot
     + Spread of middle 50% of data
     + Like the median. Less sensitive because it doesn't use all of the data
-- **Standard deviation**: Root mean squared deviations from mean, $s_y = \sqrt{\frac{\sum^n_{i=1}(y_i-\bar{y})^2}{n-1}}$
+    + Units are the same as the actual data
+- **Standard deviation** (SD): Root mean squared deviations from mean, $s_y = \sqrt{\frac{\sum^n_{i=1}(y_i-\bar{y})^2}{n-1}}$
     + Roughly the average size of deviation from the mean ($n-1$ instead of $n$)
     + Uses all the data but very sensitive to outliers and skewed data (large values are first squared).
-
+    + Units are the same as the actual data
+- **Variance**: Square of the standard deviation
+    + Units are the squared version of the actual data's units (e.g. squared inches, pounds)
+    + Standard deviation is preferred for interpretability of units
+    + Variance will come up when we discuss models in the next chapter
 
 ```{r tidy=TRUE, echo=TRUE}
-diff(range(NHANES$SleepHrsNight,na.rm = TRUE)) #range gives max and min; take difference
-IQR(NHANES$SleepHrsNight,na.rm = TRUE) #Q3-Q1
-sd(NHANES$SleepHrsNight,na.rm=TRUE) #standard deviation
+diff(range(NHANES$SleepHrsNight,na.rm = TRUE)) # range gives max and min; take difference
+IQR(NHANES$SleepHrsNight,na.rm = TRUE) # Q3-Q1
+sd(NHANES$SleepHrsNight,na.rm=TRUE) # standard deviation
+var(NHANES$SleepHrsNight,na.rm=TRUE) # variance
 
 diff(range(ceo$salary))
 IQR(ceo$salary)
-sd(ceo$salary) 
+sd(ceo$salary)
+var(ceo$salary)
 ```
+
+### Some data accounting
+
+We've looked at different measures of the spread of a distribution. Do some measures of spread encompass a lot of the data? Just a little? Can we be more precise about how much of the data is encompassed by intervals created from different spread measures?
 
 ```{r tidy=TRUE, echo=TRUE}
 x = rnorm(1500)
@@ -398,7 +425,7 @@ How do you decide when an outlier is really unusual (think: athletic victory bei
 
 If the observation is far from the rest of the measurements in the data, we tend to say that the value is unusual. We want to quantify this idea of "unusual."
 
-To do this, we often calculate a **z-score**, a standardized data value.
+To do this, we often calculate a **z-score**, a standardized data value which we will denote with $z$.
 
 - Calculate how far the observation was below (or above) the mean of the sample. 
 - Then divide the difference by the standard deviation (measure of spread).
@@ -408,19 +435,20 @@ To do this, we often calculate a **z-score**, a standardized data value.
 The z-score just tells you how many standard deviations the observation is above or below the mean. 
 
 ```{block, type='reflect'}
-Say that you got a z-score of 1 on an exam with mean = 80 and sd = 5. That means that you got an 85 on the exam because your exam is one sd above the mean ($mean + z*sd = 80 + 1*5$).
+Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5. That means that you got an 85 on the exam because your exam is one SD above the mean ($mean + z*SD = 80 + 1*5$).
 
-If you got a z = -2 on an exam with mean = 80 and sd = 5, that means you got a 70 on the exam because your exam is two sd below the mean  ($mean + z*sd = 80 + -2*5$).
+If you got a z = -2 on an exam with mean = 80 and SD = 5, that means you got a 70 on the exam because your exam is two SD below the mean  ($mean + z*SD = 80 + -2*5$).
 ```
 
 In general, it is quite common to have z-scores between -3 and 3, but fairly unusual to have them greater than 3 or less than -3. 
 
-If you have a **unimodal, symmetric distribution,** z-score values will be 
+Often, if you have a **unimodal, symmetric distribution**, z-score values will be 
 
 - between -1 and 1 about 68% of the time, 
 - between -2 and 2 about 95% of the time, and 
 - between -3 and 3 about 99.7% of the time. 
 
+This will not be true always, but it will be true for a particularly special distribution that we will see in the next chapter when we cover models. (This distribution is called the **normal distribution** or **Gaussian distribution**.)
 
 ```{block, type='math'}
 Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k$ > 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than $k$ is less than or equal to $1/k^2$,
@@ -442,13 +470,13 @@ In summary, for a quantitative variable,
 
 - Use a histogram to display the distribution of one variable and describe the shape and any unusual features.
 - For "well behaved" distributions (symmetric, unimodal, no outliers), use the mean and standard deviation to describe the center and spread. Then z-scores will roughly follow the 68-95-99.7 rule stated above. 
-- For others, use the IQR and median. You can report both mean and median, but it’s usually a good idea to state why.
+- For others, use the IQR and median. You can report both mean and median, but it's usually a good idea to state why.
 
 
 
 ## One Quantitive Variable and One Categorical Variable
 
-Let's return to the NHANES data. We noticed variation in the amount people sleep. Why do some people sleep more than others? Is there any other characteristics that may be able to *explain that variation*?
+Let's return to the NHANES data. We noticed variation in the amount people sleep. Why do some people sleep more than others? Are there any other characteristics that may be able to *explain that variation*?
 
 Let's look at the distribution of hours of sleep at night within subsets of the NHANES data. 
 
@@ -543,7 +571,7 @@ What do you notice? What do you wonder?
 
 #### Is this a Real Difference?
 
-If we notice differences in the center of these distributions, is it a REAL difference? Is there a difference in the general U.S. population? Remember, we just have a random sample of the population *NHANES is supposed to be a representative sample of the U.S. population collected using a random sampling procedure.* 
+If we notice differences in the center of these distributions, is it a REAL difference? That is, is there a difference in the general U.S. population? Remember, we only have a random *sample* of the population. *NHANES is supposed to be a representative sample of the U.S. population collected using a probability sampling procedure.*
 
 What if there were no REAL difference? Then the Depressed group labels wouldn't be related to the hours of sleep.
 
@@ -646,14 +674,28 @@ We want one number to represent **strength** and **direction** of a linear relat
 **What if we took the product of the $z$-scores? What would the values look like?**
 
 
-The almost *average* of products of the $z$-scores is the **correlation coefficient,** 
+The almost *average* of products of the $z$-scores is the **correlation coefficient**,
 
-$$ r = \frac{\sum z_x z_y}{n-1} $$
+$$ r_{x,y} = \frac{\sum z_x z_y}{n-1} $$
+
+$r_{x,y}$ is the correlation coefficient between variables $x$ and $y$.
 
 **Which points contribute the most to this average?**
 
+```{r, echo=FALSE}
+## The scale() function adds attributes to the columns zNeck, zChest, and Product
+## Makes it so that dplyr::filter doesn't work
+## Reread the data
+bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
+```
+
 ```{r, echo=TRUE}
-cor(bodyfat$Neck,bodyfat$Chest)
+cor(bodyfat$Neck, bodyfat$Chest) # All data points used in calculation
+
+subset_bodyfat <- bodyfat %>%
+    filter(Neck > 35 & Neck < 40) # Keep individuals with Neck size betwee 35cm and 40cm
+
+cor(subset_bodyfat$Neck, subset_bodyfat$Chest) # Only middle subset of data points used in calculation
 ```
 
 ### Properties
@@ -670,14 +712,21 @@ cor(bodyfat$Neck,bodyfat$Chest)
 
 * one outlier can completely change $r$
 
-**Other expressions for r (for the mathematically intrigued)**
+```{block, type='math'}
+Other expressions for r (for the mathematically intrigued):
 
-$$ r = \frac{\sum z_x z_y}{n-1}  $$
-$$ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\frac{(y_i-\bar{y})}{s_y}}}{n-1}$$
-$$= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}$$
-$$= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}}{\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}}$$
-$$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}}$$
-$$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}}$$
+$$
+\begin{align*}
+r &= \frac{\sum z_x z_y}{n-1} \\
+  &= \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\frac{(y_i-\bar{y})}{s_y}}}{n-1} \\
+  &= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y} \\
+  &= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}}{\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}} \\
+  &= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}} \\
+  &= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}}
+\end{align*}
+$$
+```
+
 
 ### Is correlation always the right way to judge strength?
 
@@ -704,13 +753,14 @@ Let's look at another data set from the 1985 Current Population Survey. This is 
 Our primary interest is the `wage` variable which gives the hourly wage for each individual in the data set in US dollars. What is the relationship between years of education and hourly wage?
 
 ```{r}
-data(CPS85) ## Load the data
+data(CPS85) # Load the data
 
 CPS85 %>%
     ggplot(aes(x = educ, y = wage)) +
     geom_point() +
     xlab("Years of education") +
-    ylab("Hourly wage (US dollars)")
+    ylab("Hourly wage (US dollars)") +
+    theme_minimal()
 ```
 
 We can see that years of education and hourly wage are positively correlated but what about the impact of other variables?
@@ -726,7 +776,8 @@ CPS85 %>%
     ggplot(aes(x = educ, y = wage, color = age)) +
     geom_point() +
     xlab("Years of education") +
-    ylab("Hourly wage (US dollars)")
+    ylab("Hourly wage (US dollars)") +
+    theme_minimal()
 ```
 
 Adding color does not reveal any obvious patterns by age; that is, we don't see obvious clustering by color. Perhaps this is because there are too many colors (remember Visualization Principle #6: Use Color Appropriately). Are any patterns revealed if we make 4 age categories instead?
@@ -738,7 +789,8 @@ CPS85 %>%
     geom_point() +
     xlab("Years of education") +
     ylab("Hourly wage (US dollars)") +
-    guides(color = guide_legend(title = "Age category")) ## Legend title
+    guides(color = guide_legend(title = "Age category")) + # Legend title
+    theme_minimal()
 ```
 
 With 4 age categories, no age patterns are evident, but this does help us see that the least educated people in this data set are mostly in the youngest and oldest age categories.
@@ -753,7 +805,8 @@ CPS85 %>%
     geom_point() +
     xlab("Years of education") +
     ylab("Hourly wage (US dollars)") +
-    guides(shape = guide_legend(title = "Marital status")) ## Legend title
+    guides(shape = guide_legend(title = "Marital status")) + # Legend title
+    theme_minimal()
 ```
 
 Often encoding information with color is preferable to encoding it with shapes because differences in shapes are not as easily discernible. Remember that statistical visualizations are meant to help you better understand your data. If you are having trouble easily picking out patterns when using a certain visual feature (e.g. shape, color), try another one to see if the clarity of the plot increases for you.
@@ -768,7 +821,8 @@ CPS85 %>%
     geom_point() +
     xlab("Years of education") +
     ylab("Hourly wage (US dollars)") +
-    guides(size = guide_legend(title = "Age")) ## Legend title
+    guides(size = guide_legend(title = "Age")) + # Legend title
+    theme_minimal()
 ```
 
 ### Enriching with panels
@@ -783,7 +837,8 @@ CPS85 %>%
     geom_point() +
     xlab("Years of education") +
     ylab("Hourly wage (US dollars)") +
-    facet_grid(. ~ sector)
+    facet_grid(. ~ sector) +
+    theme_minimal()
 ```
 
 With a small change in notation (`sector ~ .` versus `. ~ sector`), we can create a column of plots.
@@ -794,7 +849,8 @@ CPS85 %>%
     geom_point() +
     xlab("Years of education") +
     ylab("Hourly wage (US dollars)") +
-    facet_grid(sector ~ .)
+    facet_grid(sector ~ .) +
+    theme_minimal()
 ```
 
 We can also create panels according to two categorical variables. How do the relationships additionally differ by union status?
@@ -805,7 +861,8 @@ CPS85 %>%
     geom_point() +
     xlab("Years of education") +
     ylab("Hourly wage (US dollars)") +
-    facet_grid(sector ~ union)
+    facet_grid(sector ~ union) +
+    theme_minimal()
 ```
 
 ### Putting everything together
@@ -819,5 +876,8 @@ CPS85 %>%
     xlab("Years of education") +
     ylab("Hourly wage (US dollars)") +
     facet_grid(sector ~ union) + 
-    guides(color = guide_legend(title = "Marital status")) ## Legend title
+    guides(color = guide_legend(title = "Marital status")) + # Legend title
+    theme_minimal()
 ```
+
+Creating effective multivariate visualizations takes a lot of trial and error. Some visual elements will better highlight patterns than others, and often times, you'll have to try several iterations before you feel that you are learning something from the graphic. Be tenacious, and keep in mind the good visualization principles outlined at the beginning of this chapter!

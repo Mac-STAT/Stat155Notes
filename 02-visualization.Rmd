@@ -715,16 +715,12 @@ cor(subset_bodyfat$Neck, subset_bodyfat$Chest) # Only middle subset of data poin
 ```{block, type='math'}
 Other expressions for r (for the mathematically intrigued):
 
-$$
-\begin{align*}
-r = \frac{\sum z_x z_y}{n-1} \\
-  = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\frac{(y_i-\bar{y})}{s_y}}}{n-1} \\
-  = \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y} \\
-  = \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}}{\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}} \\
-  = \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}} \\
-  = \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}}
-\end{align*}
-$$
+$$ r = \frac{\sum z_x z_y}{n-1}  $$
+$$ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\frac{(y_i-\bar{y})}{s_y}}}{n-1}$$
+$$= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}$$
+$$= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}}{\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}}$$
+$$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}}$$
+$$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}}$$
 ```
 
 

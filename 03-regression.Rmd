@@ -13,9 +13,28 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Regression Models
 
-##Best Fitting Line(s)
+Now that we've visualize our data, we can attempt to build models to explain the variation we observe.
 
-Let's return to thought experiment where you were a manufacturer of shirts. 
+Given data on a **response or outcome variable** $y$ and a **predictor or explanatory variable(s)** $x$, find a function that will model and predict $y$ from $x$ (where $x$ may be a single variable, but more typically a set of variables -- we'll get there). We want to figure out $f$ such that $\hat{y} = f(x)$ is a good predictor of $y$ or in other words, we want the model prediction to be close to the observed response (we want $y-\hat{y}$ to be small). 
+
+```{block type='reflect'} 
+Can you think of some examples in which we'd want a model to do prediction?
+```
+
+Other times, we want a **model**, $f$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful it can't help us understand the relationship, but it may produce better predictions. George Box is often quoted "All models are wrong but some are useful." 
+
+```{block type='reflect'} 
+Can you think of some examples in which we'd want a model to do explain a phenomena?
+```
+
+We are going to consider a simple, but powerful model in which we limit this function $f$ to be a straight line with a y-intercept, $b_0$, and slope, $b_1$.
+
+$$\hat{y} = f(x) = b_0 + b_1x$$
+This is a **simple linear regression model**. It is the foundation of many statistical models used today and more flexible than you may think. 
+
+##Lines
+
+Let's return to the thought experiment where you were a manufacturer of dress shirts. 
 
 ```{r,echo=TRUE}
 bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
@@ -44,9 +63,9 @@ bodyfat %>%
   theme_minimal()
 ```
 
-We can see that this shirt would fit the "average person." However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller. 
+We can see that a shirt made to these specifications would fit the "average person." However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger than average. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller than average. 
 
-Let's try something else. Let's allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the Neck sizes into 5 groups of equal length and estimate the mean Chest sizes within each of these groups. 
+Let's try something else. Let's allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the Neck sizes variable into 5 groups of equal length and estimate the mean Chest sizes within each of these groups. 
 
 ```{r, echo=FALSE}
 bfmeans <- bodyfat %>%
@@ -69,11 +88,13 @@ bodyfat %>%
   theme_minimal()
 ```
 
-**What does this tell us?**
+```{block type='reflect'}
+What do these lines tell us for our business venture?
+```
 
 What if we wanted to be able to make more sizes? Could we get a pretty good sense of what the chest sizes should be for a given neck size?
 
-
+Could we find one line to describe the relationship between Neck size and Chest size?
 
 ```{r, echo=FALSE}
 bodyfat %>%
@@ -88,22 +109,24 @@ bodyfat %>%
   theme_minimal()
 ```
 
-**What does this tell us?**
+```{block type='reflect'}
+What does line tell us for our business venture?
+```
 
 If the scatterplot between two quantitative variables **resembles a straight line**,
 
-- a line could roughly **describe** the mean of Y for each value of X.
-- a line could **describe** how much we'd *expect* Y to change based on a 1 unit change in X.
-- a line could help us **predict** the Y based on a new value of X.
+- a straight line could roughly **describe** the mean of y for each value of x.
+- a straight line could **describe** how much we'd *expect* y to change based on a 1 unit change in x.
+- a straight line could help us **predict** the y based on a new value of x.
 
 
-## Choosing a line
+## Choosing the best fitting line
 
-To choose a line, we need to choose the intercept ($b_0$) and slope ($b_1$),
+To choose the best fitting line, we need to choose the right intercept ($b_0$) and slope ($b_1$),
 
-$$ \hat{y} = b_0 + b_1x $$
+$$ \hat{y} = f(x) = b_0 + b_1x $$
 
-We have $n$ points on a scatterplot, $(x_i,y_i)$. 
+We have $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$. 
 
 ### First idea
 Minimize the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( b_0 + b_1x_i)$.

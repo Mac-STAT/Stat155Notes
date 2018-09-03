@@ -129,27 +129,28 @@ $$ \hat{y} = f(x) = b_0 + b_1x $$
 We have $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$. 
 
 ### First idea
-Minimize the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( b_0 + b_1x_i)$.
+Minimize the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( b_0 + b_1x_i)$. The residual is the prediction error, the difference between what you observe and what you predict.
 
-- Problem: We will have positive and negative residuals, they will cancel each other out.
+- Problem: We will have positive and negative residuals; they will cancel each other out. This won't give us what we want.
 
 
 ### Second idea
-Minimize the $\sum_{i=1}^n |y_i - \hat{y}_i| = \sum_{i=1}^n |e_i|$.
+Minimize the sum of the absolute value of the residuals, $\sum_{i=1}^n |y_i - \hat{y}_i| = \sum_{i=1}^n |e_i|$.
 
-- Problem: This is referred to as **Least Absolute Deviations**, but this can result in multiple solutions and is generally a more unstable process (no closed form solution).
+- Problem: This is referred to as **Least Absolute Deviations**, but there isn't always one unique line that satisfies this. So, this won't give us what we want.
 
 ### Third idea
-Minimize the $\sum_{i=1}^n (y_i - \hat{y}_i)^2= \sum_{i=1}^n e_i^2$.
+Minimize the sum of squared residuals, $\sum_{i=1}^n (y_i - \hat{y}_i)^2= \sum_{i=1}^n e_i^2$.
 
-- This is referred to as **Least Squares** and has a unique solution.
+- This is referred to as **Least Squares** and has a unique solution. Yeah!!!
 
 --------
 
 ##Least Squares
 
-- Let's find the **minimum of the Sum of Squares Residuals** by searching over a grid for (intercept, slope).
-- Surface height is sum of squared residuals for each combination of slope and intercept.
+Let's try to find the **minimum of the Sum of Squares Residuals** by searching over a grid of values for (intercept, slope).
+
+Below is a visual of the sum of squared residuals for a variety of values on a grid. The surface height is sum of squared residuals for each combination of slope and intercept.
 
 ```{r, echo=FALSE}
 f <- function(b){
@@ -163,13 +164,13 @@ ss <- apply(b,1,f)
 persp(b0,b1,matrix(ss,length(b0),length(b1)),theta=65,zlab='Sum of Squares')
 ```
 
-Imagine the surface height as color (white is lowest). 
+We can see there is valley where the minimum must be. Let's visualiz this in a slightly different way. We'll encode the surface height as color (white is lowest). 
 
 ```{r, echo=FALSE}
 image(b0,b1,matrix(ss,length(b0),length(b1)),col=c('white',topo.colors(100)[100:1]))
 ```
 
-The large Sum of Square values are dominating this image, so I will change the color scheme to see more variation in smaller values (white is lowest).
+The large Sum of Square values are dominating this image, so let's change the color scheme to see more variation in smaller values (white is lowest).
 
 ```{r, echo=FALSE}
 b0 = seq(-10,10,by=.1)
@@ -189,10 +190,17 @@ ss <- apply(b,1,f)
 b[ss == min(ss),]
 ```
 
-- Or we could try a numerical optimization technique (such as steepest descent). 
-- Or we could use calculus (find partial derivatives, set equal to 0, and solve).
+We have the minimum point. Over the grid of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75. 
+```{block type='math'}
+(Optional) 
 
-If you find the minimum (via calculus), you'll find that we can write the Least Squares solution in a closed-form (as functions of summary statistics!),
+**Alternative ways to find the minimum**
+
+- We could try a numerical optimization algorithm such as steepest descent.
+- We could use multivariable calculus (find partial derivatives, set equal to 0, and solve).
+```
+
+If you find the minimum via calculus, you'll find that we can write the Least Squares solution in an equation format as functions of summary statistics!,
 
 $$ b_1  = r\frac{s_y}{s_x}$$
 
@@ -201,6 +209,8 @@ and
 $$ b_0 = \bar{y} - b_1\bar{x} $$
 
 where $\bar{x}$ is the mean of the variable on the x-axis, $\bar{y}$ is the mean of the variable on the y-axis, $s_x$ is the standard deviation of the variable on the x-axis, $s_y$ is the standard deviation of the variable on the y-axis, and $r$ is the correlation coefficient between the two variables.
+
+Let's do that calculation "by hand" first in R.
 
 ```{r echo=TRUE}
 sy = sd(bodyfat$Chest)
@@ -211,8 +221,12 @@ xbar = mean(bodyfat$Neck)
 
 (b1 = r*sy/sx)
 (b0 = ybar - b1*xbar)
+```
 
-lm(Chest~Neck, data = bodyfat)
+Now, from now on, we'll use the `lm()` function which stands for linear model. This gives us the Least Squares solution to the "best fitting line."
+
+```{r}
+lm(Chest ~ Neck, data = bodyfat)
 ```
 
 
@@ -231,15 +245,22 @@ $$s_e = \sqrt{\frac{\sum^n_{i=1} (y_i-\hat{y}_i)^2}{n-2}}  = \sqrt{\frac{\sum^n_
 In R: $s_e$ is called the "residual standard error"
 
 ```{r echo=TRUE}
-summary(lm(Chest~Neck, data = bodyfat))
-tidy(lm(Chest~Neck, data = bodyfat))
+lm.fit = lm(Chest ~ Neck, data = bodyfat)
+summary(lm.fit)
+tidy(lm.fit)
 ```
 
-So, based on this line, we can predict your chest size within 5 to 10 inches. 
+This simple linear regression line is
 
-**If you were a shirt manufacturer, what would you do with this information?**
+$$\widehat{Chest} = -3.18 + 2.73Neck$$
 
-Let's see how some real companies create shirts,
+Given your neck size, we can predict your chest size within 5 to 10 inches since $s_e = 5.22$. 
+
+```{block type='reflect'}
+If you were a shirt manufacturer, what would you do with this information?
+```
+
+Let's see how some real companies create shirts. I've added boxes to represent the advertised range for Neck and Chest sizes for each brand.
 
 ![](Photos/stylish-dress-shirt-size-size-chart-.jpg)
 
@@ -277,42 +298,46 @@ rect(16*2.54,42*2.54,16.5*2.54,44*2.54,col='red')
 rect(17*2.54,46*2.54,17.5*2.54,48*2.54,col='red')
 ```
 
-##Interpretation
-
-Let's look at the summary of the lm() in R again.
-
-```{r echo=TRUE}
-summary(lm(Chest~Neck, data = bodyfat))
+```{block type='reflect'}
+We haven't told you how the sample data we've been using was collected. As you compared the brands to this sample data, what assumptions were you making about the population that the sample was drawn from? What questions do you have about the sample data? 
 ```
 
-Least Squares/Regerssion Line ($\hat{y} = b_0 + b_1x$)
+##Interpretation
+
+Let's look at the summary of the `lm()` function in R again.
+
+```{r echo=TRUE}
+summary(lm.fit)
+```
+
+**Least Squares/Regerssion Line** ($\hat{y} = b_0 + b_1x$)
 
 - The line gives the estimated average of y for each value of x (**within observed range of x**)
-- Example: The regression line of (Predicted Chest = -3.1 + 2.7Neck) gives the estimated average Chest size for a give Neck size, based on our sample of data. 
+- Example: The regression line of (Predicted Chest = -3.18 + 2.73Neck) gives the estimated average Chest size for a given Neck size, based on our sample of data. 
 
-Intercept ($b_0$)
+**Intercept** ($b_0$)
 
 - The intercept gives the average value of y when x is zero (**think about context**)
 - Example: If Neck size = 0, then the person doesn't exist. In this context, the intercept doesn't make much sense to interpret. 
 
 
-Slope ($b_1$)
+**Slope** ($b_1$)
 
 - The slope gives the change in average y for 1 unit increase in x (**not for individuals and not causal**)
-- Example: If we consider a neck size 1 cm larger, then we'd expect the average chest size to increase by about 2.7cm.
+- Example: If we consider all individuals with a neck size 1 cm larger, then we'd expect the average chest size to be by about 2.7cm larger.
 
 
 ###Correlation or Association v. Casuation
 
 In order to say that an increase in X **will lead** to an increase in Y (causal effect), we need to control for all other possible variables that could impact both X and Y (**confounding variables**).
 
-- In order to prove a causal relationship (X causes Y), you need to keep everything *(and I mean everything)* the same or as similar as possible except the difference in X. 
+- In order to prove a causal relationship (X causes Y), you need to keep everything *(and we mean everything)* the same or as similar as possible except the difference in X. 
 
 
 
 ##Evaluation
 
-Let's consider another data example. Can I predict your college GPA based on your high school GPA? (Disclaimer: not Macalester data)
+Let's consider another data example. Can we predict your college GPA based on your high school GPA? (Disclaimer: this is not Macalester data)
 
 
 ```{r echo=TRUE}
@@ -331,10 +356,10 @@ sat %>%
 
 First things first. Describe the scatterplot. 
 
-- Direction: positive relationship (higher high school GPA is associated with higher college GPA)
-- Form: generally linear
-- Strength: There is a weak relationship when high school GPA < 3.0 (r = .32) and a fairly strong relationship when high school GPA > 3.0 (r = .68). 
-- Unusual: As seen with the strength, there is increased variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as "thickening."
+- **Direction**: positive relationship (higher high school GPA is associated with higher college GPA)
+- **Form**: generally linear
+- **Strength**: There is a weak relationship when high school GPA < 3.0 (r = .32) and a fairly strong relationship when high school GPA > 3.0 (r = .68).
+- **Unusual**: As seen with the strength, there is increased variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening."**
 
 
 
@@ -345,7 +370,7 @@ sat %>%
   summarize(Cor = cor(high_GPA,univ_GPA))
 ```
 
-Let's build a model to predict college GPA based on high school GPA. Since we noted that there was a linear relationship, let's find the least squares/regression line.
+Let's build a model to predict college GPA based on high school GPA based on this sample data. Since we noted that there was a linear relationship, let's find the least squares regression line.
 
 ```{r echo=TRUE}
 lm.gpa <- lm(univ_GPA ~ high_GPA, data = sat)
@@ -356,21 +381,21 @@ The best fitting line is (Predicted College GPA = 1.09 + 0.675High School GPA).
 
 Let's plug in a few values.
 
-- High School GPA = 2: Predicted College GPA = 1.09 + 0.675*2 = 2.44
+- If High School GPA = 2: Predicted College GPA = 1.09 + 0.675*2 = 2.44
 
 ```{r echo=TRUE}
 1.09 + 0.675*2
 predict(lm.gpa, newdata = data.frame(high_GPA = 2))
 ```
 
-- High School GPA = 3.5: Predicted College GPA = 1.09 + 0.675*3.5 = 3.45
+- If High School GPA = 3.5: Predicted College GPA = 1.09 + 0.675*3.5 = 3.45
 
 ```{r echo=TRUE}
 1.09 + 0.675*3.5
 predict(lm.gpa, newdata = data.frame(high_GPA = 3.5))
 ```
 
-- High School GPA = 4.5: Predicted College GPA = 1.09 + 0.675*4.5 = 4.13
+- If High School GPA = 4.5: Predicted College GPA = 1.09 + 0.675*4.5 = 4.13
 
 ```{r echo=TRUE}
 1.09 + 0.675*4.5
@@ -388,7 +413,7 @@ sat %>%
   summarize(max(high_GPA))
 ```
 
-Making predictions beyond the observed range of values is called **extrapolation** and is generally a risky thing to do. If you extrapolate beyond the minimum or maximum of the observed values, then you are assuming that the relationship you observe can be extended into the new prediction range. This is that main issue of **forecasting**, making predictions in the future. You have to assume that the trend that you observe now will continue in the future and that the current state of affairs will stay the same.
+Making predictions beyond the observed range of values is called **extrapolation** and is generally a risky thing to do. If you extrapolate beyond the minimum or maximum of the observed values, then you are assuming that the relationship you observe can be extended into the new prediction range. This is the main issue of **forecasting**, making predictions in the future. You have to assume that the trend that you observe now will continue in the future and that the current state of affairs will stay the same.
 
 ###Prediction Errors
 
@@ -406,7 +431,7 @@ s
 2*s
 ```
 
-So I can predict your GPA within about $0.5$ GPA points. Is this useful? 
+Using this model, we can predict your GPA within about $0.5$ GPA points. Is this useful? 
 
 
 ```{r echo=TRUE}
@@ -414,7 +439,7 @@ sd(sat$univ_GPA)
 2*sd(sat$univ_GPA)
 ```
 
-Without knowing your high school GPA, we could have guessed within $\pm 0.9$.  That was based on the sum of squared total variation,
+Without knowing your high school GPA, we could have guessed within $\pm 0.9$.  That was based on the sum of squared total variation (variation around the mean),
 
 $$ SSTO = \sum{(y_i -\bar{y})^2} $$
 
@@ -435,7 +460,9 @@ gpavar = data.frame(resids = c(residuals(lm.gpa), sat$univ_GPA-mean(sat$univ_GPA
 
 gpavar %>%
   ggplot(aes(x = type, y = resids)) +
-  geom_boxplot()
+  geom_boxplot() +
+  ylab('Residuals') +
+  xlab('Type of Residuals')
 ```
 
 
@@ -453,7 +480,8 @@ Two extreme cases:
   
   * If $SSE = SSTO$, $x$ has told us nothing about $y$.
 
-- So we define:
+- So we define a measure called **R Squared**,
+
 $$ R^2 = 1 - \frac{SSE}{SST} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}$$
 
 ```{r echo=TRUE}

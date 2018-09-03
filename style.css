@@ -51,6 +51,6 @@ div.math {
 	margin: 0px 10px 10px 10px;
 }
 div.math::before {
-	content: "Math Box (optional): ";
+	content: "Math Box: ";
 	font-weight: bold;
 }

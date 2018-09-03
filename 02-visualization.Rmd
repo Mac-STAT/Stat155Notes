@@ -509,7 +509,7 @@ Often, if you have a **unimodal, symmetric distribution**, z-score values will b
 This will not be true always, but it will be true for a particularly special distribution that we will see in the next few chapter when we cover models. (This distribution is called the **normal distribution** or **Gaussian distribution**.)
 
 ```{block, type='math'}
-Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k$ > 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than $k$ is less than or equal to $1/k^2$,
+(Optional) Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k$ > 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than $k$ is less than or equal to $1/k^2$,
 
 $$P\left(|Z| \geq k\right) \leq \frac{1}{k^2}$$
 where $Z = \frac{|X - \mu|}{\sigma}$ is a z-score, $\mu$ is the mean, and $\sigma$ is the standard deviation. 
@@ -647,7 +647,11 @@ NHANES <- NHANES %>%
 obsdiff <- data.frame(d = diff(mean(SleepHrsNight ~ DepressedMost, data = NHANES, na.rm = TRUE)))
 
 sim <- do(1000)*diff(mean(SleepHrsNight ~ shuffle(DepressedMost), data = NHANES, na.rm = TRUE)) #Randomly shuffle the DepressedMost labels (assuming no real difference in sleep, depressed feelings shouldn't impact sleep)
+```
 
+Below, we have a histogram of 1000 values calculated by randomly shuffling individuals in the sample into two groups (assuming no relationship between depression and sleep) and then finding the difference in the mean amount of sleep. The red vertical line showed the observed difference in mean amount of sleep in the data.
+
+```{r}
 sim %>%
   ggplot(aes(x = TRUE.)) + 
   geom_histogram(fill = 'steelblue') +
@@ -657,15 +661,19 @@ sim %>%
   theme_minimal() 
 ```
 
+```{block, type='reflect'}
 What do you notice? What do you wonder?
+```
 
 ## Two Quantitative Variables
 
-Now, let's switch to another data set that includes a variety of body measurements. Imagine that you are an entrepreneur selling dress shirts. Clothing sizing can be quite confusing, so let's use this dataset to try to come up with our own data-driven sizes. Two of the key measurements are the neck size and chest size. There are others, but let's focus on these for the moment.
+To discuss two quantitative variables, we will switch to new data set and consider a thought experiment. 
+
+Imagine that you are an entrepreneur selling dress shirts. Clothing sizing can be quite variable across brands, so let's use this dataset to try to come up with our own data-driven sizes. Two of the key measurements that we will use are the neck size in centimeters and chest size in centimeters. There are others in the data set, but let's focus on these for the moment.
 
 ### Scatterplot
 
-When you have two quantitative variables, a **scatterplot** is one appropriate graphical display of the relationship.
+When you have two quantitative variables, a **scatterplot** is the main appropriate graphical display of the relationship.
 
 ```{r echo=TRUE}
 bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
@@ -680,14 +688,16 @@ bodyfat %>%
 
 What do you notice about:
 
-1. Direction of Relationship (positive, negative, neutral)
-2. Form of Relationship (linear, curved, none, other)
-3. Strength of Relationship (compactness around the relationship)
-4. Unusual Features (outliers, differences in variability across x)
+1. **Direction** of Relationship (positive, negative, neutral)
+2. **Form** of Relationship (linear, curved, none, other)
+3. **Strength** of Relationship (compactness around the relationship)
+4. **Unusual** Features (outliers, differences in variability across x)
 
-**How could you use this information to determine shirt sizes for your new business venutre?** We'll come back to this.
+```{block type='reflect'}
+How might you use this information to determine shirt sizes for your new business venutre?
+```
 
-Suppose instead of *Chest* in cm and *Neck size* in cm, we switched to inches and plotted *Chest* and *Neck size* in inches. 
+Suppose instead of *Chest* in inches and *Neck size* in cm, we switched to inches and plotted *Chest* and *Neck size* in inches. 
 
 **Does the strength change?**
 
@@ -703,7 +713,7 @@ bodyfat %>%
 
 ### Correlation Coefficient
 
-Since shifting (adding or subtracting) and scaling (multiplying or dividing) make no difference, let's standardize both variables into z-scores and replot (and add some color):
+Since shifting (adding or subtracting) and scaling (multiplying or dividing) make no difference in the strength of the relationship, let's standardize both variables into z-scores and replot (and add some color):
 
 ```{r, echo=FALSE}
 bodyfat <- bodyfat %>%
@@ -716,21 +726,30 @@ bodyfat %>%
   geom_vline(xintercept = 0) +
   xlab('Z-scores of Neck size') + 
   ylab('Z-scores of Chest size') +
+  guides(color = guide_legend(title = "Sign of Product")) +
   theme_minimal()
 ```
 
-**If we were to have a weaker positive relationship, how would this plot change?**
+The blue points in the upper right and lower left quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size or they are below average in both Neck Size and Chest Size. If we multiply the x and y values for the blue points, we will get a positive value. 
 
-**If we were to have a negative relationship, how would this plot change?**
+The red points in the upper left and lower right quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size or they are below average in Neck Size and  above average in Chest Size. If we multiply the x and y values for the red points, we will get a negative value. 
 
+```{block type='reflect'}
+If we were to have a weaker positive relationship, how would this plot change?
+
+If we were to have a negative relationship, how would this plot change?
+```
 
 We want one number to represent **strength** and **direction** of a linear relationship.
 
 - Points in the $1^{st}$ and $3^{rd}$ quadrants (blue) have the **same sign**.
 - Points in the $2^{nd}$ and $4^{th}$ (red) have **opposite signs.**
 
-**What if we took the product of the $z$-scores? What would the values look like?**
+**What if we took the product of the $z$-scores for x and y variables?**
 
+An individual far above the means in both or far below the means in both will have a very large, positive product of z-scores. 
+
+An individual far above the means in x and far below the mean in y will have a very large, negative product of z-scores. 
 
 The almost *average* of products of the $z$-scores is the **correlation coefficient**,
 
@@ -739,6 +758,8 @@ $$ r_{x,y} = \frac{\sum z_x z_y}{n-1} $$
 $r_{x,y}$ is the correlation coefficient between variables $x$ and $y$.
 
 **Which points contribute the most to this average?**
+
+Let's look at the correlation for the entire sample first. Then let's calculate the correlation for individuals around the mean Neck size.
 
 ```{r, echo=FALSE}
 ## The scale() function adds attributes to the columns zNeck, zChest, and Product
@@ -751,7 +772,7 @@ bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.
 cor(bodyfat$Neck, bodyfat$Chest) # All data points used in calculation
 
 subset_bodyfat <- bodyfat %>%
-    filter(Neck > 35 & Neck < 40) # Keep individuals with Neck size betwee 35cm and 40cm
+    filter(Neck > 35 & Neck < 40) # Keep individuals with Neck size between 35cm and 40cm
 
 cor(subset_bodyfat$Neck, subset_bodyfat$Chest) # Only middle subset of data points used in calculation
 ```
@@ -771,7 +792,7 @@ cor(subset_bodyfat$Neck, subset_bodyfat$Chest) # Only middle subset of data poin
 * one outlier can completely change $r$
 
 ```{block, type='math'}
-Other expressions for r (for the mathematically intrigued):
+(Optional) Other expressions for r for the mathematically intrigued:
 
 $$ r = \frac{\sum z_x z_y}{n-1}  $$
 $$ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\frac{(y_i-\bar{y})}{s_y}}}{n-1}$$
@@ -784,8 +805,9 @@ $$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-
 
 ### Is correlation always the right way to judge strength?
 
-Here is the plot of brownie quality by temperature.
-The correlation is near 0, but it doesn't mean that there's no relationship -- there's no **linear** relationship.
+Here is the plot of brownie quality by oven temperature.
+
+The correlation is near 0, but it doesn't mean that there's no relationship -- there's just no **linear** relationship.
 
 ![](Photos/Brownies.png)
 
@@ -800,7 +822,7 @@ The following visual features can help us turn bivariate plots into multivariate
 - Size of points
 - Panels (facets)
 
-Let's look at another data set from the 1985 Current Population Survey. This is a smaller scale survey adminstered by the United States government between the decennial census.
+Let's look at another data set, the 1985 Current Population Survey. This is a smaller scale survey adminstered by the United States government between the decennial census.
 
 ### A bivariate plot
 
@@ -821,7 +843,7 @@ We can see that years of education and hourly wage are positively correlated but
 
 ### Enriching with color
 
-We can enrich this bivariate plot by showing information via color.
+We can enrich this bivariate plot by showing additional information via color.
 
 ```{r}
 data(CPS85) ## Load the data
@@ -834,7 +856,7 @@ CPS85 %>%
     theme_minimal()
 ```
 
-Adding color does not reveal any obvious patterns by age; that is, we don't see obvious clustering by color. Perhaps this is because there are too many colors (remember Visualization Principle #6: Use Color Appropriately). Are any patterns revealed if we make 4 age categories instead?
+Adding color for a quantitative variable, age, does not reveal any obvious patterns; that is, we don't see obvious clustering by color. Perhaps this is because there are too many colors (remember Visualization Principle #6: Use Color Appropriately). Are any patterns revealed if we use 4 age categories instead?
 
 ```{r}
 CPS85 %>%
@@ -851,7 +873,7 @@ With 4 age categories, no age patterns are evident, but this does help us see th
 
 ### Enriching with shape
 
-We can also encode information via point shape. Here we let shape encode marriage information.
+We can also encode information via point shape. Here we let shape encode marital status.
 
 ```{r}
 CPS85 %>%
@@ -934,4 +956,4 @@ CPS85 %>%
     theme_minimal()
 ```
 
-Creating effective multivariate visualizations takes a lot of trial and error. Some visual elements will better highlight patterns than others, and often times, you'll have to try several iterations before you feel that you are learning something from the graphic. Be tenacious, and keep in mind the good visualization principles outlined at the beginning of this chapter!
+Creating effective multivariate visualizations takes a lot of trial and error. Some visual elements will better highlight patterns than others, and often times, you'll have to try several iterations before you feel that you are learning something insightful from the graphic. Be tenacious, and keep in mind the good visualization principles outlined at the beginning of this chapter!

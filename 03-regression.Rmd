@@ -226,7 +226,7 @@ xbar = mean(bodyfat$Neck)
 Now, from now on, we'll use the `lm()` function which stands for linear model. This gives us the Least Squares solution to the "best fitting line."
 
 ```{r}
-lm(Chest ~ Neck, data = bodyfat)
+lm(Chest ~ Neck, data = bodyfat) #When you see ~, think 'as a function of'
 ```
 
 
@@ -495,14 +495,14 @@ glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 
 - $R^2$ doesn't tell you the direction or the form of the relationship.
 
-- Note: $R^2 = r^2$ for simple linear models (one x variable).
+- Note: $R^2 = r^2$ for simple linear models with one x variable.
 
 ---
 
 
 ##Diagnostics
 
-Residuals are what's left over from a linear fit. We can actually learn a lot by studying what is left over. INSERT SCATOLOGY JOKE. 
+Residuals are what's left over from a linear fit. We can actually learn a lot by studying what is left over, what is left unexplained by the model. INSERT SCATOLOGY JOKE. 
 
 What do we need for a simple linear model to make sense?
 
@@ -510,11 +510,11 @@ What do we need for a simple linear model to make sense?
   
   * Relationship is **Straight Enough**
   
-  * There are extreme **Outliers** 
+  * There are no extreme **Outliers** 
   
-  * Spread is roughly same throughout -- the **Does the Plot Thicken?** condition
+  * Spread is roughly same throughout -- **No Thickening**
   
-To check these we look at the original scatterplot and a plot of *residuals* vs. *predicted values*,
+To check these, we look at the original scatterplot and a plot of *residuals* vs. *fitted or predicted values*,
 
 ```{r echo=TRUE}
 augment(lm.gpa, data = sat) %>%
@@ -530,6 +530,8 @@ What do you think?
   * Is there equal spread across prediction values?
 
 We want to avoid extreme outliers because points that are both far from the mean of x and do not fit the overall relationship have **leverage** to change the line.
+
+See the example below. See how the relationship changes with the addition of one point, one extreme outlier.  
 
 ```{r}
 x = runif(50,0,10)
@@ -556,33 +558,38 @@ dat %>%
   theme_minimal() 
 ```
 
+Check out this interactive visualization to get a feel for leverage: http://omaymas.github.io/InfluenceAnalysis/
+
+
 ###Solutions to Issues
 
+If the observed data don't satisfy the conditions above, what can we do? Should we give up using a statistical model? No!
+
 * Problem: Both variables are NOT **Quantitative**
-- If you have the x-variable is categorical, we'll turn it into a quantitative variable using **indicator variables** (coming up) 
-- If you have a binary variable (exactly 2 categories) that you want to predict, we'll use **logistic regression** (coming up)
+- If your x-variable is categorical, we'll turn it into a quantitative variable using **indicator variables** (coming up) 
+- If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we'll use **logistic regression** (coming up)
 
 * Problem: Relationship is NOT **Straight Enough**
 - If the plot does not thicken, we can add higher degree terms to the model (**multiple linear regression** - coming up)
 - If the plot does thicken, see solutions below.
 
-* Problem: Spread is NOT roughly same throughout
-- You may be able to transform the y-variable using mathematical functions ($log(y)$, $y^2$, etc.) to make the spread more consistent (one approach is **Box-Cox** -- take more statistics classes to learn more)
+* Problem: Spread is NOT the same throughout
+- You may be able to transform the y-variable using mathematical functions ($log(y)$, $y^2$, etc.) to make the spread more consistent (one approach is to use **Box-Cox Transformation** -- take more statistics classes to learn more)
 - Be careful in interpreting the standard deviation of the residuals
 
 * Problem: You have **extreme outliers**
 - Look into the outliers. Determine if they could be due to human error. Think carefully about them, dig deep.
-- Do a sensitivity analysis: Fit a model with and without the outlier and see if your conclusions drastically change (see if those points had leverage).
+- Do a **sensitivity analysis**: Fit a model with and without the outlier and see if your conclusions drastically change (see if those points had leverage to change the model).
 
 ##Multiple Linear Regression
 
-A linear model can include many explanatory variables (X's):
+We can generalize the idea of a simple linear model by including many explanatory variables (X's). A **multiple linear regression model** can be written as:
 
 $$\hat{y}_i = b_0 + b_1x_{i1} + \cdots + b_kx_{ik}$$
 
 - Each coefficient $b_j$ can be interpreted as the increase in the predicted/average y associated with a 1 unit increase in $x_j$, **keeping all other variables constant**. (\*There are some exceptions - we'll get there)
 
-- These X's can be 
+- These X variables's can be 
     - Quantitative variables (or transformations of them)
     - Indicator variables for categorical variables (only need $k-1$ indicators for variable with $k$ categories)
     - Interaction terms (product of two variables, which allows for *effect modification*)
@@ -594,21 +601,22 @@ homes <- read.delim('http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.t
 head(homes)
 ```
 
-\*The exception to the interpretation comment above is if our variables are strongly correlated.
+\*The exception to the interpretation comment above is if our variables are strongly correlated. In this case, we cannot keep all other variables constant because if you increase the value of one, then a variable with high correlation will also likely change in value. 
 
 
 ###Indicator Variables
 
-In New England, fireplaces are often used as a way to heat the house. Let's study the impact of a fireplace has on the sale price of a home. In particular, we only care if the home has 1 or more fireplaces or no fireplaces.
+In New England, fireplaces are often used as a way to heat the house. Let's study the impact of a fireplace has on the sale price of a home. In particular, we only care if the home has 1 or more fireplaces or no fireplaces. So we make a new variable that is TRUE if there are more than 0 fireplaces in a home and FALSE otherwise. 
 
 ```{r echo=TRUE}
 homes <- homes %>%
   mutate(AnyFireplace = Fireplaces > 0)
 ```
 
-In order to include this information in our model, we need to turn that categorical variable ( AnyFireplace, TRUE or FALSE) into an **indicator variable**,
+In order to include this information in our linear regression model, we need to turn that categorical variable (`AnyFireplace`, TRUE or FALSE) into an **indicator variable**,
 
 $$ 1_{AnyFireplaceTRUE} = \begin{cases}1 \quad \text{ if a home has at least one fireplace}\\ 0\quad \text{ if a home does not have a fireplace} \end{cases}$$
+
 In fact, R creates this indicator for you when you put a categorical variable as an X variable in the model.
 
 ```{r echo=TRUE}
@@ -616,13 +624,20 @@ lm.home <- lm(Price ~ AnyFireplace, data = homes)
 tidy(lm.home)
 ```
 
-So what does this mean? Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace.
+Our "best fitting line" is
+
+$$Predicted\;Price = 174653.35 + 65260.61*1_{AnyFireplaceTRUE}$$
+
+What does this mean?
+
+Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace. Let's write out the equations for those two types of homes. 
 
 - Home with fireplace: Predicted Price = 174653.35 + 65260.61*1 = $239,914
 
 ```{r echo=TRUE}
 174653.35 + 65260.61*1
 ```
+
 - Home without fireplace: Predicted Price = 174653.35 + 65260.61*0 = $174,653.35
 
 
@@ -639,7 +654,7 @@ homes %>%
   theme_minimal()
 ```
 
-Is presence of a fireplace related to are of living space?
+Is the presence of a fireplace related to area of living space?
 
 ```{r echo=TRUE}
 homes %>%
@@ -648,35 +663,42 @@ homes %>%
   theme_minimal()
 ```
 
-Let's put Living.Area in the model along with AnyFireplace.
+So Living Area could be a confounding variable between AnyFireplace and Price. 
+
+Let's put Living.Area in the model along with AnyFireplace to account for it.
 
 ```{r echo=TRUE}
 lm.home2 <- lm(Price ~ AnyFireplace + Living.Area, data = homes)
 tidy(lm.home2)
 ```
 
-What does this mean? Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace.
+Our "best fitting line" is
+
+$$Predicted\; Price = 13599.16 + 5567.37*1_{AnyFireplaceTRUE} + 111.21*Living.Area$$
+
+What does this mean? 
+
+Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace.
 
 - Home with fireplace: Predicted Price = 13599.16 + 5567.37\*1 + 111.21\*Living.Area = \$19166.53 + \$111.21\*Living.Area
 
 ```{r echo=TRUE}
 13599.16 + 5567.37*1
 ```
+
 - Home without fireplace: Predicted Price = 13599.16 + 5567.37\*0 + 111.21\*Living.Area = \$13599.16 + \$111.21\*Living.Area
 
 
 
-If we keep Living.Area constant by considering two equally sized homes, then we'd expect the home with the fireplace to be worth \$5567.37 more than a home without a fireplace. 
-
-We see this by taking the difference between the two equations, Predicted Price (with Fireplace) - Predicted Price (without Fireplace) = (\$19166.53 + \$111.21\*Living.Area) - ( \$13599.16 + \$111.21\*Living.Area) = \$19166.53 - \$13599.16 = \$5567.37.
+If we keep Living.Area constant by considering two equally sized homes, then we'd expect the home with the fireplace to be worth \$5567.37 more than a home without a fireplace. We see this by taking the difference between the two equations, Predicted Price (with Fireplace) - Predicted Price (without Fireplace) = (\$19166.53 + \$111.21\*Living.Area) - ( \$13599.16 + \$111.21\*Living.Area) = \$19166.53 - \$13599.16 = \$5567.37, the difference in the intercepts.
 
 - Note this was the estimated coefficient for AnyFireplaceTRUE. 
 
-- So the \$5567.37 is the increase in the predicted/average Price associated with a 1 unit change in AnyFireplace (TRUE or FALSE), **keeping all other variables (Living.Area) constant**.
+- So the \$5567.37 is the increase in the predicted or average Price associated with a 1 unit change in AnyFireplace (TRUE or FALSE), **keeping all other variables (Living.Area) constant**.
 
-- Similarly, we could reason out that \$111.21 is the increase in the predicted/average Price associated with a 1 square footage increase in Living.Area,**keeping all other variables (AnyFireplace) constant**.
+- Similarly, we could reason that \$111.21 is the increase in the predicted or average Price associated with a 1 square footage increase in Living.Area, **keeping all other variables (AnyFireplace) constant**.
 
-Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. The model with AnyFireplace and Living.Area results in two lines, with different intercepts but the same slope (parallel lines). 
+Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The model with AnyFireplace and Living.Area results in two lines, with different intercepts but the same slope (parallel lines). 
 
 ```{r echo=TRUE}
 homes %>%
@@ -695,23 +717,22 @@ homes %>%
   theme_minimal()
 ```
 
-In this case, it look as though having a fireplace in your house changes the relationship between Living.Area and Price. In fact, having a fireplace in your house, the increase in your price for every 1 square foot is greater than that for homes without fireplaces (slopes are different).
+In this case, it look as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, having a fireplace in your house, the increase in your price for every 1 square foot is greater than that for homes without fireplaces (slopes are different).
 
 
 ###Interaction Variables
 
-We can actually allow for different slopes within one model. 
+We can actually allow for different slopes within one regression model, rather than fitting two separate models. 
 
-- If we add a variable in the model as is, it only changes the intercept.
+- If we add a variable in the model as is, it changes the intercept.
 
-
-- If we want different slopes such that we believe that the value of a variable, $x_1$, impacts the effect of another, $x_2$, on Y such that
+- If we want different slopes such that the value of a variable, $x_1$, impacts the effect of another, $x_2$, on Y such that the slope for $x_2$ is a function of $x_1$, 
 $$b_2 = a + bx_1$$ 
 then we allow for **effect modification**,
-$$\hat{y} = b_0 + b_1x_{1} + b_2x_{2}= b_0 + b_1x_{1} + (a+bx_1)x_{2}= b_0 + b_1x_{1} +ax_2+bx_1x_{2} $$
-using an **interaction term,** which is the product of two variables.
+$$\hat{y} = b_0 + b_1x_{1} + b_2x_{2}= b_0 + b_1x_{1} + (a+bx_1)x_{2}= b_0 + b_1x_{1} +ax_2+bx_1x_{2}$$
+using an **interaction term,** which is the product of two variables. In the case above, we have $x_1*x_2$. 
 
-Let's do that with our housing data.
+Let's do that with our housing data. Let's include an interaction term between AnyFireplace and Living.Area to allow for different slopes.
 
 
 ```{r echo=TRUE}
@@ -727,6 +748,7 @@ What does this mean? Let's think about two types of homes: a home with one or mo
 40901.29 + -37610.41*1
 92.36391 + 26.85*1
 ```
+
 - Home without fireplace: Predicted Price = 40901.29 + -37610.41\*0 + 92.36391\*Living.Area + 26.85\*Living.Area\*0 = \$40,901.29 + \$92.36\*Living.Area
 
 We see a different slopes and different intercepts for these two groups. 
@@ -735,26 +757,27 @@ We see a different slopes and different intercepts for these two groups.
 
 ###Conditions for Multiple Linear Regression
 
+In order for a multiple linear regression model to make sense, 
+
 - Relationships between each quantitative $X$'s and $Y$ are **straight enough** (check scatterplot's and residual plot)
 - About **equal spread** of residuals across fitted values (check residual plot)
 - No extreme outliers (points far away in X's can have **leverage** to change the line)
 
 
-Interactive Visualization: http://omaymas.github.io/InfluenceAnalysis/
 
 
-####Is the Difference Real? Is this the True Relationship?
+###Is the Difference Real?
 
-We could also ask, is this the true relationship between Living Area and Price?
+We could also ask, is there really a difference in the slopes for Living Area and Price between homes with and without a fireplace?
 
 ```{r echo=TRUE}
-lm.home4 <- lm(Price ~ Living.Area, data = homes) 
+lm.home4 <- lm(Price ~ Living.Area*AnyFireplace, data = homes) 
 summary(lm.home4)
 ```
 
 If we ask ourself this question, we are assuming a few things:
 
-1. We would like to make a general statement about a **population of interest**.
+1. We would like to make a general statement about a **target population of interest**.
 
 2. We don't have data for everyone in our population (we don't have a **census**).
 
@@ -764,25 +787,25 @@ If we ask ourself this question, we are assuming a few things:
 
 - Let's treat our sample (of size $n$) as our 'fake' population (since we don't have the full population).
     - Randomly sample from our sample (with replacement) a new sample of size $n$
-- Calculate the least squares line.
+- Calculate the least squares regression line.
 - Repeat.
 
 ```{r echo=TRUE}
-boot <- do(1000)*lm(Price ~ Living.Area, data = resample(homes))
+boot <- do(1000)*lm(Price ~ Living.Area*AnyFireplace, data = resample(homes))
 
 boot %>%
-  ggplot(aes(x = Living.Area)) +
+  ggplot(aes(x = Living.Area.AnyFireplaceTRUE)) +
   geom_histogram() +
-  xlab('Bootstrap Slopes')
+  xlab('Bootstrap Difference in Slopes')
 ```
 
-This is called **Bootstrapping** and it is used to 1) measure the variability in estimates (slope in this case) between random samples and 2) provide an interval of plausible values for the estimate (slope in this case).  
+This is called **Bootstrapping** and it is used to 1) measure the variability in estimates (difference in slopes in this case) between random samples and 2) provide an interval of plausible values for the estimate (difference in slopes in this case).  
 
-Let's first look at the variability of the slopes across the bootstrap samples. The standard deviation of the slopes will be similar to the std.error from the linear model output.
+Let's first look at the variability of the difference in slopes across the bootstrap samples. The standard deviation of the slopes will be similar to the std.error from the linear model output.
 
 ```{r}
 boot %>%
-  summarize(sd(Living.Area))#this is going to be of similar magnitude to the Std Error in output
+  summarize(sd(Living.Area.AnyFireplaceTRUE))#this is going to be of similar magnitude to the Std Error in output
 tidy(lm.home4)
 ```
 
@@ -790,10 +813,29 @@ To get an interval of plausible values, we look at the histogram and take the mi
 
 ```{r}
 boot %>%
-  summarize(lower = quantile(Living.Area, 0.025), upper = quantile(Living.Area, 0.975))
+  summarize(lower = quantile(Living.Area.AnyFireplaceTRUE, 0.025), upper = quantile(Living.Area.AnyFireplaceTRUE, 0.975))
 ```
 
+```{block type='reflect'}
+Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes, with and without fireplaces?
+```
 
 ##Logistic Regression
+
+If you are interested in predicting a binary categorical variable (only 2 possible outcomes), the standard linear regression models don't apply. If you let the two outcomes be 0 and 1, you'll never get a straight line relationship with an x variable. 
+
+Throughout this section, we will refer to one outcome as 'success' (denoted 1) and 'failure' (denoted 0). Depending on the context of the data, the success could be a negative thing such as 'heart attack' or '20 year mortality'. 
+
+We will let $\pi$ be the chance of success and $1-\pi$ be the chance of failure. We want to build a model to explain why the chance of success may be higher for one group of people in comparison to another. 
+
+###Logistic and Logit
+
+###Fitting the Model
+
+###Interpretation
+
+###Diagnostics
+
+
 
 

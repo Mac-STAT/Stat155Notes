@@ -830,12 +830,111 @@ We will let $\pi$ be the chance of success and $1-\pi$ be the chance of failure.
 
 ###Logistic and Logit
 
+The **logistic function** is an S shaped curve (sigmoid curve). For our purposes, the function will take the form
+
+$$f(x) = \frac{1}{1 + e^{b_0 +b_1x}}$$
+```{r}
+x <- seq(-10,10,by=.1)
+b0 <- 2
+b1 <- -0.5
+plot(x, 1/(1 + exp(b0 + b1*x)), type = 'l', ylim = c(0,1), ylab = 'f(x)')
+```
+
+For any real value x, f(x) will be a value between 0 and 1. This is perfect for us since probabilities/chances should also be between 0 and 1. 
+
+In fact, we'll let the chance of failure, $1-\pi$, be modeled by this function.
+
+$$1-\pi = \frac{1}{1 + e^{b_0 +b_1x}}$$
+With a bit of algebra and rearranging terms, we can write this in terms of $\pi$, the chance of success. 
+
+$$\pi = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}$$
+
+Let's define one more term. The **odds** of success is the ratio of the probability of success to the probability of failure, $\pi/(1-\pi)$.
+
+With a bit more algebra and rearranging terms, we can write the above model in terms of a regression model,
+
+$$\log\left(\frac{\pi}{1-\pi}\right) = b_0 +b_1x$$
+On the left hand side, we have the natural log of the odds, called the **logit** function. On the right hand side, we have an equation for a line. This is a **simple logistic regression model**.
+
+
+Just like a linear regression model, we can extend this model to a **multiple logistic regression model** by adding additional x variables,
+
+$$\log\left(\frac{\pi}{1-\pi}\right) = b_0 +b_1x_1+b_2x_2+b_3x_3+\cdots +b_kx_k$$
+
 ###Fitting the Model
+
+Based on observed data that includes responses (1 for success, 0 for failure) and predictor variables, we need to find the slope coefficients, $b_0$,...,$b_k$ that best fits the data. The way we do this is through a technique called **maximum likelihood estimation**. We will not discuss the details in this class; we'll save this for an upper level stats class.
+
+In R, we do this with a general linear model function, `glm()`.
+
+For a data set, let's go back in history to January 28, 1986. On this day, the Challenger U.S. space shuttle took off and exploded about minute after the launch. After the fact, scientists ruled that the disaster was due to o-ring seal failure. Let's look at experimental data on the o-rings prior to the fateful day.
+
+
+```{r}
+SpaceShuttle %>%
+  filter(!is.na(Fail)) %>%
+  ggplot(aes(x = Temperature, y = Fail)) + 
+  geom_point() +
+  theme_minimal()
+
+SpaceShuttle %>%
+  filter(!is.na(Fail)) %>%
+  group_by(Temperature) %>%
+  summarise(PercentFail = mean(Fail == 'yes')) %>%
+  ggplot(aes(x = Temperature, y = PercentFail)) + 
+  geom_point() +
+  theme_minimal()
+```
+
+```{r}
+require(vcd)
+data(SpaceShuttle)
+model.glm <- glm(Fail ~ Temperature, data = SpaceShuttle, family = binomial)
+summary(model.glm)
+tidy(model.glm)
+```
+
 
 ###Interpretation
 
-###Diagnostics
+Let's take a look at these estimates. What do they mean?
 
+```{r}
+tidy(model.glm)
+```
 
+If you want to get a sense of what the number -0.232 means, we need to do a bit of algebra. Our estimated model is
 
+$$\log\left(\frac{\hat{\pi}}{1-\hat{\pi}}\right) = b_0 +b_1x$$
+where $b_0 = 15$ and $b_1 = -0.232$.
+
+If we imagine increasing x by 1, then 
+
+$$\log\left(\frac{\hat{\pi}^*}{1-\hat{\pi}^*}\right) = b_0 +b_1(x+1)$$
+
+Let's find the difference between these two equations,
+
+$$\log\left(\frac{\hat{\pi}^*}{1-\hat{\pi}^*}\right) - \log\left(\frac{\hat{\pi}}{1-\hat{\pi}}\right) = b_0 +b_1(x+1) - (b_0 +b_1x)$$
+and simplify the right hand side,
+
+$$\log\left(\frac{\hat{\pi}^*}{1-\hat{\pi}^*}\right) - \log\left(\frac{\hat{\pi}}{1-\hat{\pi}}\right) = b_1$$
+and simplify the left hand side,
+
+$$\log\left( \frac{\hat{\pi}^*/(1-\hat{\pi}^*)}{\hat{\pi}/(1-\hat{\pi})}\right) = b_1$$
+
+Let's exponentiate both sides,
+
+$$\left( \frac{\hat{\pi}^*/(1-\hat{\pi}^*)}{\hat{\pi}/(1-\hat{\pi})}\right) = e^{b_1}$$
+
+We find that $e^{-0.232} = 0.793$ is the **odds ratio** based on increasing x by 1 unit. If a ratio is less than 1, that means that the denominator is greater than the numberator. In this case, it means that the estimated odds of o-ring failure decreases as you increase temperature by 1 degree. This makes sense since we saw that the chance of o-ring failure increases with colder temperatures. 
+
+###Prediction
+
+On January 28, 1986, the temperature was 26 F degrees. Let's predict the chance of "success," which is a failure of o-rings in our data context.  
+
+```{r}
+predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response')
+```
+
+They didn't have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, they predict the chance of failure to be nearly 100% (near certainty). 
 

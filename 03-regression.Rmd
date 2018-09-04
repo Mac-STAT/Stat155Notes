@@ -876,8 +876,8 @@ data(SpaceShuttle)
 
 SpaceShuttle %>%
   filter(!is.na(Fail)) %>%
-  ggplot(aes(x = Temperature, y = Fail)) + 
-  geom_point() +
+  ggplot(aes(x = factor(Fail), y = Temperature) )+ 
+  geom_boxplot() +
   theme_minimal()
 
 SpaceShuttle %>%

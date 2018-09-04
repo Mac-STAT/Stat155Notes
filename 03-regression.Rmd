@@ -871,6 +871,9 @@ For a data set, let's go back in history to January 28, 1986. On this day, the C
 
 
 ```{r}
+require(vcd)
+data(SpaceShuttle)
+
 SpaceShuttle %>%
   filter(!is.na(Fail)) %>%
   ggplot(aes(x = Temperature, y = Fail)) + 
@@ -887,8 +890,6 @@ SpaceShuttle %>%
 ```
 
 ```{r}
-require(vcd)
-data(SpaceShuttle)
 model.glm <- glm(Fail ~ Temperature, data = SpaceShuttle, family = binomial)
 summary(model.glm)
 tidy(model.glm)

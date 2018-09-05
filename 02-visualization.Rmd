@@ -40,6 +40,21 @@ Before we discuss the standard graphics, let's lay out the basic design principl
 7. **Annotate Appropriately** Informative text is crucial for providing data context. Make sure to use informative axis labels and titles. It may be worth adding text to explain extreme outliers.
 
 
+## Anatomy of a ggplot command
+
+In this course, we'll largely construct visualizations using the `ggplot` function from the `ggplot2` R package. NOTE: `gg` is short for "grammar of graphics". Plots constructed from the `ggplot` function are constructed in layers, and the syntax used to create plots is meant to reflect this layered construction. As you read through the rest of this chapter, pay attention to how the syntax generally follows this structure:
+
+```{r eval=FALSE}
+data %>%
+    ggplot(aes(x = X_AXIS_VARIABLE, y = Y_AXIS_VARIABLE)) +
+    VISUAL_LAYER1 +
+    VISUAL_LAYER2 +
+    VISUAL_LAYER3 + ...
+```
+
+The visual layers are features such as points, lines, and panels. The `+`'s allow us to add layers to build up a plot.
+
+
 ## One Categorical Variable
 
 First, we consider survey data of the electoral registrar in Whickham in the UK (Source: Appleton et al 1996). A survey was conducted in 1972-1974 to study heart disease and thyroid disease and a few baseline characteristics were collected: age and smoking status. 20 years later, a follow-up was done to check on mortality status (alive/dead).

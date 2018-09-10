@@ -13,26 +13,31 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Regression Models
 
-Now that we've visualize our data, we can attempt to build models to explain the variation we observe.
+In our visualization of data, we've seen trends, patterns, and variation. Let's now endeavor to descrbe those trends, patterns, and variation more *precisely* and *quantitatively* by building statistical *models*.
 
-Given data on a **response or outcome variable** $y$ and a **predictor or explanatory variable(s)** $x$, find a function that will model and predict $y$ from $x$ (where $x$ may be a single variable, but more typically a set of variables -- we'll get there). We want to figure out $f$ such that $\hat{y} = f(x)$ is a good predictor of $y$ or in other words, we want the model prediction to be close to the observed response (we want $y-\hat{y}$ to be small). 
+## Goals for models
 
-```{block type='reflect'} 
+Broadly, a model is a simplified representation of the world. When we build models, we may have different goals.
+
+One goal when building models is prediction. Given data on a **response or outcome variable** $y$ and one or more **predictor or explanatory variables** $x$, the goal is to find a function that will model and predict $y$ from $x$. This $x$ may be a single variable, but is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. What are the qualities of a good $f$? We want to find an $f(x)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ to be close to the observed response. We want $y-\hat{y}$ to be small. This difference $y-\hat{y}$ is called a **residual**. We'll discuss residuals more later.
+
+```{block type="reflect"} 
 Can you think of some examples in which we'd want a model to do prediction?
 ```
 
-Other times, we want a **model**, $f$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful it can't help us understand the relationship, but it may produce better predictions. George Box is often quoted "All models are wrong but some are useful." 
+Another goal when building models is description. We want a model, $f(x)$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. George Box is often quoted "All models are wrong but some are useful." 
 
-```{block type='reflect'} 
-Can you think of some examples in which we'd want a model to do explain a phenomena?
+```{block type="reflect"} 
+Can you think of some examples in which we'd want a model to do explain a phenomenon?
 ```
 
-We are going to consider a simple, but powerful model in which we limit this function $f$ to be a straight line with a y-intercept, $b_0$, and slope, $b_1$.
+To begin, we will consider a simple, but powerful model in which we limit this function $f$ to be a straight line with a y-intercept, $b_0$, and slope, $b_1$.
 
 $$\hat{y} = f(x) = b_0 + b_1x$$
-This is a **simple linear regression model**. It is the foundation of many statistical models used today and more flexible than you may think. 
 
-##Lines
+This is a **simple linear regression model**. It is the foundation of many statistical models used is modern statistics and is more flexible than you may think. 
+
+## Lines
 
 Let's return to the thought experiment where you were a manufacturer of dress shirts. 
 
@@ -40,27 +45,27 @@ Let's return to the thought experiment where you were a manufacturer of dress sh
 bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
 
 bodyfat %>%
-  ggplot(aes(x = Neck, y = Chest)) +
-  geom_point(color = 'steelblue') + 
-  xlab('Neck size (cm)') + 
-  ylab('Chest size (cm)') +
-  theme_minimal()
+    ggplot(aes(x = Neck, y = Chest)) +
+    geom_point(color = 'steelblue') + 
+    xlab('Neck size (cm)') + 
+    ylab('Chest size (cm)') +
+    theme_minimal()
 ```
 
 
 If you were to add one or multiple lines to the plot above to help you make business decisions, where would you want it (or them)?
 
-Let's say you were only going to make one size of shirt.  You might want to add a horizontal line at the mean Chest size and a vertical line at the mean Neck size. 
+Let's say you were only going to make one size of shirt. You might want to add a horizontal line at the mean Chest size and a vertical line at the mean Neck size. 
 
 ```{r, echo=TRUE}
 bodyfat %>%
-  ggplot(aes(x = Neck, y = Chest)) +
-  geom_point(color = 'steelblue') + 
-  geom_hline(yintercept = 100.662) +
-  geom_vline(xintercept = 37.9448) +
-  xlab('Neck size (cm)') + 
-  ylab('Chest size (cm)') +
-  theme_minimal()
+    ggplot(aes(x = Neck, y = Chest)) +
+    geom_point(color = 'steelblue') + 
+    geom_hline(yintercept = mean(bodyfat$Chest)) +
+    geom_vline(xintercept = mean(bodyfat$Neck)) +
+    xlab('Neck size (cm)') + 
+    ylab('Chest size (cm)') +
+    theme_minimal()
 ```
 
 We can see that a shirt made to these specifications would fit the "average person." However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger than average. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller than average. 
@@ -129,26 +134,27 @@ $$ \hat{y} = f(x) = b_0 + b_1x $$
 We have $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$. 
 
 ### First idea
+
 Minimize the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( b_0 + b_1x_i)$. The residual is the prediction error, the difference between what you observe and what you predict.
 
 - Problem: We will have positive and negative residuals; they will cancel each other out. This won't give us what we want.
 
 
 ### Second idea
+
 Minimize the sum of the absolute value of the residuals, $\sum_{i=1}^n |y_i - \hat{y}_i| = \sum_{i=1}^n |e_i|$.
 
 - Problem: This is referred to as **Least Absolute Deviations**, but there isn't always one unique line that satisfies this. So, this won't give us what we want.
 
 ### Third idea
+
 Minimize the sum of squared residuals, $\sum_{i=1}^n (y_i - \hat{y}_i)^2= \sum_{i=1}^n e_i^2$.
 
 - This is referred to as **Least Squares** and has a unique solution. Yeah!!!
 
---------
+## Least Squares
 
-##Least Squares
-
-Let's try to find the **minimum of the Sum of Squares Residuals** by searching over a grid of values for (intercept, slope).
+Let's try to find the **minimum of the Sum of Squared Residuals** by searching over a grid of values for (intercept, slope).
 
 Below is a visual of the sum of squared residuals for a variety of values on a grid. The surface height is sum of squared residuals for each combination of slope and intercept.
 
@@ -164,13 +170,13 @@ ss <- apply(b,1,f)
 persp(b0,b1,matrix(ss,length(b0),length(b1)),theta=65,zlab='Sum of Squares')
 ```
 
-We can see there is valley where the minimum must be. Let's visualiz this in a slightly different way. We'll encode the surface height as color (white is lowest). 
+We can see there is valley where the minimum must be. Let's visualize this in a slightly different way. We'll encode the surface height as color (white is lowest).
 
 ```{r, echo=FALSE}
 image(b0,b1,matrix(ss,length(b0),length(b1)),col=c('white',topo.colors(100)[100:1]))
 ```
 
-The large Sum of Square values are dominating this image, so let's change the color scheme to see more variation in smaller values (white is lowest).
+The large values of the sum of squared residuals are dominating this image, so let's change the color scheme to see more variation in smaller values (white is lowest).
 
 ```{r, echo=FALSE}
 b0 = seq(-10,10,by=.1)
@@ -181,6 +187,7 @@ image(b0,b1,matrix(log(ss),length(b0),length(b1)),col=c('white',topo.colors(100)
 ```
 
 We can limit our search to $b_0 \in (-10,10)$ and $b_1 \in (2,3)$
+
 ```{r echo=TRUE}
 b0 = seq(-10,10,by=.05)
 b1 = seq(2,3,by=.05)
@@ -190,7 +197,8 @@ ss <- apply(b,1,f)
 b[ss == min(ss),]
 ```
 
-We have the minimum point. Over the grid of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75. 
+We have the minimum point. Over the grid of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
+
 ```{block type='math'}
 (Optional) 
 
@@ -223,16 +231,14 @@ xbar = mean(bodyfat$Neck)
 (b0 = ybar - b1*xbar)
 ```
 
-Now, from now on, we'll use the `lm()` function which stands for linear model. This gives us the Least Squares solution to the "best fitting line."
+From now on, we'll use the `lm()` function which stands for linear model. This gives us the Least Squares solution to the "best fitting line".
 
 ```{r}
-lm(Chest ~ Neck, data = bodyfat) #When you see ~, think 'as a function of'
+lm(Chest ~ Neck, data = bodyfat) # When you see ~, think 'as a function of'
 ```
 
 
---------
-
-##Properties of Least Squares Line
+## Properties of Least Squares Line
 
 - $(\bar{x},\bar{y})$ is on the line. 
 
@@ -260,7 +266,9 @@ Given your neck size, we can predict your chest size within 5 to 10 inches since
 If you were a shirt manufacturer, what would you do with this information?
 ```
 
-Let's see how some real companies create shirts. I've added boxes to represent the advertised range for Neck and Chest sizes for each brand.
+### Real companies
+
+Let's see how some real companies create shirts. In the plots below, the red boxes represent the advertised range for Neck and Chest sizes for each brand.
 
 ![](Photos/stylish-dress-shirt-size-size-chart-.jpg)
 
@@ -274,6 +282,7 @@ rect(16*2.54,40*2.54,16.5*2.54,41*2.54,col='red')
 rect(17*2.54,42*2.54,17.5*2.54,43*2.54,col='red')
 ```
 
+For Calvin Klein, we see that the red boxes are below the least squares line (black line). So for a given neck size, Calvin Klein makes shirts that are a little bit too small at the chest.
 
 
 ```{r}
@@ -287,9 +296,11 @@ rect(17*2.54,45*2.54,17.5*2.54,47.5*2.54,col='red')
 rect(18*2.54,48*2.54,18.5*2.54,50.5*2.54,col='red')
 ```
 
+For Express, we see that the red boxes are generally on the least squares line, except for the smallest size. This means that Express shirts are generally a good fit at the chest and neck for the 4 largest sizes, but the smallest shirt size is a bit too small at the chest for the neck size.
+
 
 ```{r}
-with(bodyfat,plot(Chest~Neck,main='Brooks Borthers'))
+with(bodyfat,plot(Chest~Neck,main='Brooks Brothers'))
 abline(with(bodyfat,lm(Chest~Neck)))
 rect(13*2.54,32*2.54,13.5*2.54,34*2.54,col='red')
 rect(14*2.54,34*2.54,14.5*2.54,36*2.54,col='red')
@@ -298,11 +309,13 @@ rect(16*2.54,42*2.54,16.5*2.54,44*2.54,col='red')
 rect(17*2.54,46*2.54,17.5*2.54,48*2.54,col='red')
 ```
 
+For Brooks Brothers, the red boxes are a bit below the least squares line for the 3 smallest sizes and a little above the line for the largest size. This means that the 3 smallest sizes are a bit too small at the chest for those neck size and that the largest shirt is a bit big at the chest for that neck size.
+
 ```{block type='reflect'}
-We haven't told you how the sample data we've been using was collected. As you compared the brands to this sample data, what assumptions were you making about the population that the sample was drawn from? What questions do you have about the sample data? 
+We haven't told you how the sample data we've been using was collected. As you compared the brands to this sample data, what assumptions were you making about the population that the sample was drawn from? What questions do you have about the sample data?
 ```
 
-##Interpretation
+## Interpretation
 
 Let's look at the summary of the `lm()` function in R again.
 
@@ -310,34 +323,44 @@ Let's look at the summary of the `lm()` function in R again.
 summary(lm.fit)
 ```
 
-**Least Squares/Regerssion Line** ($\hat{y} = b_0 + b_1x$)
+**Least Squares/Regression Line** ($\hat{y} = b_0 + b_1x$)
 
-- The line gives the estimated average of y for each value of x (**within observed range of x**)
-- Example: The regression line of (Predicted Chest = -3.18 + 2.73Neck) gives the estimated average Chest size for a given Neck size, based on our sample of data. 
+- The line gives the estimated average of $y$ for each value of $x$ (**within observed range of x**)
+- Example: The regression line of (Predicted Chest = -3.18 + 2.73Neck) gives the estimated average Chest size for a given Neck size, based on our sample of data.
+- The "within observed range of $x$" is very important. We can't predict values of $y$ for values of $x$ that are very different from what we have in our data. Trying to do so is a big no-no called **extrapolation**. We'll discuss this more in a bit.
 
 **Intercept** ($b_0$)
 
-- The intercept gives the average value of y when x is zero (**think about context**)
-- Example: If Neck size = 0, then the person doesn't exist. In this context, the intercept doesn't make much sense to interpret. 
+- The intercept gives the average value of $y$ when $x$ is zero (**think about context**)
+- Example: If Neck size = 0, then the person doesn't exist. In this context, the intercept doesn't make much sense to interpret. For this reason, sometimes the predictor $x$ is **centered**. That is, the mean of $x$ for all individuals in the sample is computed, and this mean is subtracted from each person's $x$ value. In this case, the intercept is interpreted as the average value of $y$ when $x$ is at its (sample) mean value.
 
 
 **Slope** ($b_1$)
 
-- The slope gives the change in average y for 1 unit increase in x (**not for individuals and not causal**)
+- The slope gives the change in average $y$ per 1 unit increase in $x$ (**not for individuals and not causal**)
 - Example: If we consider all individuals with a neck size 1 cm larger, then we'd expect the average chest size to be by about 2.7cm larger.
 
 
-###Correlation or Association v. Casuation
+### Correlation or Association vs. Causation
 
-In order to say that an increase in X **will lead** to an increase in Y (causal effect), we need to control for all other possible variables that could impact both X and Y (**confounding variables**).
+![[xkcd: Correlation](https://xkcd.com/552/)](https://imgs.xkcd.com/comics/correlation.png)
 
-- In order to prove a causal relationship (X causes Y), you need to keep everything *(and we mean everything)* the same or as similar as possible except the difference in X. 
+What is causation? What is a causal effect? Are there criteria for defining a cause?
+
+These are deep questions that have been debated by scientists of all domains for a long time. We are at a point now where there is some consensus on the definition of a causal effect. The causal effect of a variable $x$ on another variable $y$ is the amount that we expect $y$ to change if we **intervene on/manipulate** $x$ by changing it by one unit.
+
+When can we interpret an estimated slope $b_1$ from a simple linear regression as a causal effect of $x$ on $y$. Well, in the simple linear regression case, almost never. To interpret the slope causally, there would have to be **no confounding variables** (no variables that impact both $x$ and $y$.) In no real world situation will this be the case.
+
+Then what are we to do? We will get to **adjusting/controlling for** confounders in the section on multiple linear regression. Multiple linear regression offers us a way to obtain causal effects of variables *if we use it carefully*. It will be tempting to say: control for everything we can! But we will see that this is not the correct thing to do, as there are very real dangers of over-controlling for variables. For now, let it suffice to say that multiple linear regression is as useful as the corn kerneler below. Immensely useful in the right cirumstances - but only those circumstances.
+
+![Source: [Gizmodo](https://gizmodo.com/5988717/12-highly-specific-kitchen-gadgets)](https://i.kinja-img.com/gawker-media/image/upload/s--ko0l0gLh--/c_scale,f_auto,fl_progressive,q_80,w_800/18gkhag74ei0njpg.jpg)
 
 
+## Evaluation
 
-##Evaluation
+In this section we consider model evaluation: is this model "good"?
 
-Let's consider another data example. Can we predict your college GPA based on your high school GPA? (Disclaimer: this is not Macalester data)
+Let's consider another data example. Can we predict your college GPA based on your high school GPA? (Disclaimer: this is not Macalester data.)
 
 
 ```{r echo=TRUE}
@@ -346,12 +369,12 @@ sat <- read.csv("Data/sat.csv")
 
 ```{r echo=TRUE}
 sat %>%
-  ggplot(aes(x = high_GPA, y = univ_GPA)) +
-  geom_point(color = 'steelblue') +
-  geom_smooth(method = 'lm', se = FALSE) +
-  xlab('HS GPA') +
-  ylab('College GPA') + 
-  theme_minimal()
+    ggplot(aes(x = high_GPA, y = univ_GPA)) +
+    geom_point(color = 'steelblue') +
+    geom_smooth(method = 'lm', se = FALSE) +
+    xlab('High School GPA') +
+    ylab('College GPA') + 
+    theme_minimal()
 ```
 
 First things first. Describe the scatterplot. 
@@ -361,13 +384,13 @@ First things first. Describe the scatterplot.
 - **Strength**: There is a weak relationship when high school GPA < 3.0 (r = .32) and a fairly strong relationship when high school GPA > 3.0 (r = .68).
 - **Unusual**: As seen with the strength, there is increased variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening."**
 
-
+The code below computes correlation coefficients separately for students with high school GPAs above 3 and for students with high school GPAs less than or equal to 3. We see that the correlation is higher for the high GPA group.
 
 ```{r echo=TRUE}
 sat %>%
-  mutate(HighHSGPA = high_GPA > 3) %>%
-  group_by(HighHSGPA) %>%
-  summarize(Cor = cor(high_GPA,univ_GPA))
+    mutate(HighHSGPA = high_GPA > 3) %>%
+    group_by(HighHSGPA) %>%
+    summarize(Cor = cor(high_GPA,univ_GPA))
 ```
 
 Let's build a model to predict college GPA based on high school GPA based on this sample data. Since we noted that there was a linear relationship, let's find the least squares regression line.
@@ -410,18 +433,20 @@ Does it make sense to use this model for high school GPA's > 4.5?  Some high sch
 
 ```{r echo=TRUE}
 sat %>%
-  summarize(max(high_GPA))
+  summarize(max(high_GPA)) # Max high school GPA in this data set
 ```
 
 Making predictions beyond the observed range of values is called **extrapolation** and is generally a risky thing to do. If you extrapolate beyond the minimum or maximum of the observed values, then you are assuming that the relationship you observe can be extended into the new prediction range. This is the main issue of **forecasting**, making predictions in the future. You have to assume that the trend that you observe now will continue in the future and that the current state of affairs will stay the same.
 
-###Prediction Errors
+### Prediction Errors
 
-If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). 
+If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section \@ref(intro-zscore).)
 
 ```{r echo=TRUE}
-hist(residuals(lm.gpa))
+hist(residuals(lm.gpa), main = "Distribution of residuals in the GPA model")
 ```
+
+Below we calculate $SSE$, the sum of squared residuals.
 
 ```{r echo=TRUE}
 SSE = sum(residuals(lm.gpa)^2)
@@ -431,15 +456,16 @@ s
 2*s
 ```
 
-Using this model, we can predict your GPA within about $0.5$ GPA points. Is this useful? 
-
+Using this model (that is, using your high school GPA), we can predict your college GPA within about $0.56$ GPA points. Is this useful? Is a margin of $0.56$ GPA points good enough?
 
 ```{r echo=TRUE}
 sd(sat$univ_GPA)
 2*sd(sat$univ_GPA)
 ```
 
-Without knowing your high school GPA, we could have guessed within $\pm 0.9$.  That was based on the sum of squared total variation (variation around the mean),
+*Without* knowing your high school GPA, we could have just guessed your college GPA as the mean college GPA in the sample, and this guess would be within $\pm 0.89$ of your actual college GPA. This is a higher margin of error than the approximate $0.56$ if we did use your high school GPA in the simple linear regression model. That model *explained* some (but not all) of the variation in college GPA.
+
+That was based on the sum of squared total variation (variation around the mean),
 
 $$ SSTO = \sum{(y_i -\bar{y})^2} $$
 

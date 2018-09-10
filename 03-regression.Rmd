@@ -21,13 +21,13 @@ Broadly, a model is a simplified representation of the world. When we build mode
 
 One goal when building models is prediction. Given data on a **response or outcome variable** $y$ and one or more **predictor or explanatory variables** $x$, the goal is to find a function that will model and predict $y$ from $x$. This $x$ may be a single variable, but is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. What are the qualities of a good $f$? We want to find an $f(x)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ to be close to the observed response. We want $y-\hat{y}$ to be small. This difference $y-\hat{y}$ is called a **residual**. We'll discuss residuals more later.
 
-```{block type="reflect"} 
+```{block, type="reflect"} 
 Can you think of some examples in which we'd want a model to do prediction?
 ```
 
 Another goal when building models is description. We want a model, $f(x)$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. George Box is often quoted "All models are wrong but some are useful." 
 
-```{block type="reflect"} 
+```{block, type="reflect"} 
 Can you think of some examples in which we'd want a model to do explain a phenomenon?
 ```
 
@@ -35,11 +35,11 @@ To begin, we will consider a simple, but powerful model in which we limit this f
 
 $$\hat{y} = f(x) = b_0 + b_1x$$
 
-This is a **simple linear regression model**. It is the foundation of many statistical models used is modern statistics and is more flexible than you may think. 
+This is a **simple linear regression model**. It is the foundation of many statistical models used in modern statistics and is more flexible than you may think. 
 
 ## Lines
 
-Let's return to the thought experiment where you were a manufacturer of dress shirts. 
+Let's return to the thought experiment in which you were a manufacturer of dress shirts.
 
 ```{r,echo=TRUE}
 bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
@@ -93,7 +93,7 @@ bodyfat %>%
   theme_minimal()
 ```
 
-```{block type='reflect'}
+```{block, type="reflect"}
 What do these lines tell us for our business venture?
 ```
 
@@ -114,7 +114,7 @@ bodyfat %>%
   theme_minimal()
 ```
 
-```{block type='reflect'}
+```{block, type='reflect'}
 What does line tell us for our business venture?
 ```
 
@@ -199,7 +199,7 @@ b[ss == min(ss),]
 
 We have the minimum point. Over the grid of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
 
-```{block type='math'}
+```{block, type="math"}
 (Optional) 
 
 **Alternative ways to find the minimum**
@@ -262,7 +262,7 @@ $$\widehat{Chest} = -3.18 + 2.73Neck$$
 
 Given your neck size, we can predict your chest size within 5 to 10 inches since $s_e = 5.22$. 
 
-```{block type='reflect'}
+```{block, type="reflect"}
 If you were a shirt manufacturer, what would you do with this information?
 ```
 
@@ -311,7 +311,7 @@ rect(17*2.54,46*2.54,17.5*2.54,48*2.54,col='red')
 
 For Brooks Brothers, the red boxes are a bit below the least squares line for the 3 smallest sizes and a little above the line for the largest size. This means that the 3 smallest sizes are a bit too small at the chest for those neck size and that the largest shirt is a bit big at the chest for that neck size.
 
-```{block type='reflect'}
+```{block, type="reflect"}
 We haven't told you how the sample data we've been using was collected. As you compared the brands to this sample data, what assumptions were you making about the population that the sample was drawn from? What questions do you have about the sample data?
 ```
 
@@ -842,11 +842,11 @@ boot %>%
   summarize(lower = quantile(Living.Area.AnyFireplaceTRUE, 0.025), upper = quantile(Living.Area.AnyFireplaceTRUE, 0.975))
 ```
 
-```{block type='reflect'}
+```{block, type="reflect"}
 Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes, with and without fireplaces?
 ```
 
-##Logistic Regression
+## Logistic Regression
 
 If you are interested in predicting a binary categorical variable (only 2 possible outcomes), the standard linear regression models don't apply. If you let the two outcomes be 0 and 1, you'll never get a straight line relationship with an x variable. 
 
@@ -854,7 +854,7 @@ Throughout this section, we will refer to one outcome as 'success' (denoted 1) a
 
 We will let $\pi$ be the chance of success and $1-\pi$ be the chance of failure. We want to build a model to explain why the chance of success may be higher for one group of people in comparison to another. 
 
-###Logistic and Logit
+### Logistic and Logit
 
 The **logistic function** is an S shaped curve (sigmoid curve). For our purposes, the function will take the form
 
@@ -887,7 +887,7 @@ Just like a linear regression model, we can extend this model to a **multiple lo
 
 $$\log\left(\frac{\pi}{1-\pi}\right) = b_0 +b_1x_1+b_2x_2+b_3x_3+\cdots +b_kx_k$$
 
-###Fitting the Model
+### Fitting the Model
 
 Based on observed data that includes responses (1 for success, 0 for failure) and predictor variables, we need to find the slope coefficients, $b_0$,...,$b_k$ that best fits the data. The way we do this is through a technique called **maximum likelihood estimation**. We will not discuss the details in this class; we'll save this for an upper level stats class.
 
@@ -922,7 +922,7 @@ tidy(model.glm)
 ```
 
 
-###Interpretation
+### Interpretation
 
 Let's take a look at these estimates. What do they mean?
 
@@ -955,7 +955,7 @@ $$\left( \frac{\hat{\pi}^*/(1-\hat{\pi}^*)}{\hat{\pi}/(1-\hat{\pi})}\right) = e^
 
 We find that $e^{-0.232} = 0.793$ is the **odds ratio** based on increasing x by 1 unit. If a ratio is less than 1, that means that the denominator is greater than the numberator. In this case, it means that the estimated odds of o-ring failure decreases as you increase temperature by 1 degree. This makes sense since we saw that the chance of o-ring failure increases with colder temperatures. 
 
-###Prediction
+### Prediction
 
 On January 28, 1986, the temperature was 26 F degrees. Let's predict the chance of "success," which is a failure of o-rings in our data context.  
 

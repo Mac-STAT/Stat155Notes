@@ -466,7 +466,7 @@ sd(ceo$salary)
 var(ceo$salary)
 ```
 
-### Some data accounting
+### Some data accounting {#intro-zscore}
 
 We've looked at different measures of the spread of a distribution. Do some measures of spread encompass a lot of the data? Just a little? Can we be more precise about how much of the data is encompassed by intervals created from different spread measures?
 

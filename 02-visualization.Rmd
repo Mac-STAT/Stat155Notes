@@ -203,6 +203,7 @@ Whickham %>%
   scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 
   theme_minimal()
 ```
+
 ### Mosaic Plot
 
 The best (Prof. H's opinion) graphic for two categorical variables is a variation on the stacked bar plot. The total heights of the bars are the same so we can compare the conditional distributions. For a **mosaic plot**, 

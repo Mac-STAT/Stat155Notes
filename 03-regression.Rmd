@@ -8,7 +8,7 @@ library(mosaicData)
 library(ggmosaic)
 library(NHANES)
 library(mosaic)
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Regression Models
@@ -21,13 +21,13 @@ Broadly, a model is a simplified representation of the world. When we build mode
 
 One goal when building models is prediction. Given data on a **response or outcome variable** $y$ and one or more **predictor or explanatory variables** $x$, the goal is to find a function that will model and predict $y$ from $x$. This $x$ may be a single variable, but is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. What are the qualities of a good $f$? We want to find an $f(x)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ to be close to the observed response. We want $y-\hat{y}$ to be small. This difference $y-\hat{y}$ is called a **residual**. We'll discuss residuals more later.
 
-```{block, type="reflect"} 
+```{block, type="reflect"}
 Can you think of some examples in which we'd want a model to do prediction?
 ```
 
 Another goal when building models is description. We want a model, $f(x)$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. George Box is often quoted "All models are wrong but some are useful." 
 
-```{block, type="reflect"} 
+```{block, type="reflect"}
 Can you think of some examples in which we'd want a model to do explain a phenomenon?
 ```
 
@@ -41,7 +41,7 @@ This is a **simple linear regression model**. It is the foundation of many stati
 
 Let's return to the thought experiment in which you were a manufacturer of dress shirts.
 
-```{r,echo=TRUE}
+```{r echo=TRUE}
 bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
 
 bodyfat %>%
@@ -57,7 +57,7 @@ If you were to add one or multiple lines to the plot above to help you make busi
 
 Let's say you were only going to make one size of shirt. You might want to add a horizontal line at the mean Chest size and a vertical line at the mean Neck size. 
 
-```{r, echo=TRUE}
+```{r echo=TRUE}
 bodyfat %>%
     ggplot(aes(x = Neck, y = Chest)) +
     geom_point(color = 'steelblue') + 
@@ -72,7 +72,7 @@ We can see that a shirt made to these specifications would fit the "average pers
 
 Let's try something else. Let's allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the Neck sizes variable into 5 groups of equal length and estimate the mean Chest sizes within each of these groups. 
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 bfmeans <- bodyfat %>%
   mutate(NeckGroups = cut(Neck, 5)) %>%
   group_by(NeckGroups) %>%
@@ -101,7 +101,7 @@ What if we wanted to be able to make more sizes? Could we get a pretty good sens
 
 Could we find one line to describe the relationship between Neck size and Chest size?
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 bodyfat %>%
   ggplot(aes(x = Neck, y = Chest)) +
   geom_point(color = 'steelblue') + 
@@ -158,7 +158,7 @@ Let's try to find the **minimum of the Sum of Squared Residuals** by searching o
 
 Below is a visual of the sum of squared residuals for a variety of values on a grid. The surface height is sum of squared residuals for each combination of slope and intercept.
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 f <- function(b){
   sum((bodyfat$Chest - (b[1] + b[2] * bodyfat$Neck))^2)
 } 
@@ -172,13 +172,13 @@ persp(b0,b1,matrix(ss,length(b0),length(b1)),theta=65,zlab='Sum of Squares')
 
 We can see there is valley where the minimum must be. Let's visualize this in a slightly different way. We'll encode the surface height as color (white is lowest).
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 image(b0,b1,matrix(ss,length(b0),length(b1)),col=c('white',topo.colors(100)[100:1]))
 ```
 
 The large values of the sum of squared residuals are dominating this image, so let's change the color scheme to see more variation in smaller values (white is lowest).
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 b0 = seq(-10,10,by=.1)
 b1 = seq(0,5,by=.1)
 b <- expand.grid(b0,b1)
@@ -477,11 +477,11 @@ SSTO is the numerator of the standard deviation of $y$ (without knowing anything
 
 
 
-###$R^2$
+### $R^2$
 
 Let's study the reduction in the unexplained variation (residuals from a linear regression model -- with $x$ v. the original deviations from the mean -- without $x$). 
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 gpavar = data.frame(resids = c(residuals(lm.gpa), sat$univ_GPA-mean(sat$univ_GPA)), type = rep(c('Linear Model Residuals','Original Deviations from Mean'), each = nrow(sat)))
 
 gpavar %>%
@@ -523,10 +523,8 @@ glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 
 - Note: $R^2 = r^2$ for simple linear models with one x variable.
 
----
 
-
-##Diagnostics
+## Diagnostics
 
 Residuals are what's left over from a linear fit. We can actually learn a lot by studying what is left over, what is left unexplained by the model. INSERT SCATOLOGY JOKE. 
 
@@ -587,7 +585,7 @@ dat %>%
 Check out this interactive visualization to get a feel for leverage: http://omaymas.github.io/InfluenceAnalysis/
 
 
-###Solutions to Issues
+### Solutions to Issues
 
 If the observed data don't satisfy the conditions above, what can we do? Should we give up using a statistical model? No!
 
@@ -607,7 +605,7 @@ If the observed data don't satisfy the conditions above, what can we do? Should 
 - Look into the outliers. Determine if they could be due to human error. Think carefully about them, dig deep.
 - Do a **sensitivity analysis**: Fit a model with and without the outlier and see if your conclusions drastically change (see if those points had leverage to change the model).
 
-##Multiple Linear Regression
+## Multiple Linear Regression
 
 We can generalize the idea of a simple linear model by including many explanatory variables (X's). A **multiple linear regression model** can be written as:
 
@@ -630,7 +628,7 @@ head(homes)
 \*The exception to the interpretation comment above is if our variables are strongly correlated. In this case, we cannot keep all other variables constant because if you increase the value of one, then a variable with high correlation will also likely change in value. 
 
 
-###Indicator Variables
+### Indicator Variables
 
 In New England, fireplaces are often used as a way to heat the house. Let's study the impact of a fireplace has on the sale price of a home. In particular, we only care if the home has 1 or more fireplaces or no fireplaces. So we make a new variable that is TRUE if there are more than 0 fireplaces in a home and FALSE otherwise. 
 
@@ -746,7 +744,7 @@ homes %>%
 In this case, it look as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, having a fireplace in your house, the increase in your price for every 1 square foot is greater than that for homes without fireplaces (slopes are different).
 
 
-###Interaction Variables
+### Interaction Variables
 
 We can actually allow for different slopes within one regression model, rather than fitting two separate models. 
 
@@ -781,7 +779,7 @@ We see a different slopes and different intercepts for these two groups.
 
 
 
-###Conditions for Multiple Linear Regression
+### Conditions for Multiple Linear Regression
 
 In order for a multiple linear regression model to make sense, 
 
@@ -792,7 +790,7 @@ In order for a multiple linear regression model to make sense,
 
 
 
-###Is the Difference Real?
+### Is the Difference Real?
 
 We could also ask, is there really a difference in the slopes for Living Area and Price between homes with and without a fireplace?
 
@@ -859,6 +857,7 @@ We will let $\pi$ be the chance of success and $1-\pi$ be the chance of failure.
 The **logistic function** is an S shaped curve (sigmoid curve). For our purposes, the function will take the form
 
 $$f(x) = \frac{1}{1 + e^{b_0 +b_1x}}$$
+
 ```{r}
 x <- seq(-10,10,by=.1)
 b0 <- 2

@@ -806,6 +806,45 @@ cor(subset_bodyfat$Neck, subset_bodyfat$Chest) # Only middle subset of data poin
 
 * one outlier can completely change $r$
 
+Let's look at a few scatterplot examples and the corresponding correlation.
+
+```{r echo=FALSE}
+require(mvtnorm)
+set.seed(123)
+d <- data.frame(rmvnorm(100,c(2,3), matrix(c(1,0,0,1),2)))
+names(d) <- c('x','y')
+d %>%
+  ggplot(aes(x=x,y=y)) +
+  geom_point() + 
+  theme_minimal() +
+  ggtitle('r = 0')
+
+d <- d %>% bind_rows(d, data.frame(x = 15, y = 15))
+d %>%
+  ggplot(aes(x=x,y=y)) +
+  geom_point() + 
+  theme_minimal() +
+  ggtitle('Was: r = 0, Now with Outlier: r = 0.38')
+
+
+d <- data.frame(rmvnorm(100,c(2,3), matrix(c(1,0.9,0.9,1),2)))
+names(d) <- c('x','y')
+d %>%
+  ggplot(aes(x=x,y=y)) +
+  geom_point() + 
+  theme_minimal() +
+  ggtitle('r = 0.9')
+
+
+d <- data.frame(rmvnorm(100,c(2,3), matrix(c(1,-0.6,-0.6,1),2)))
+names(d) <- c('x','y')
+d %>%
+  ggplot(aes(x=x,y=y)) +
+  geom_point() + 
+  theme_minimal() +
+  ggtitle('r = -0.6')
+```
+
 ```{block, type='math'}
 (Optional) Other expressions for r for the mathematically intrigued:
 

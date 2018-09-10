@@ -475,7 +475,7 @@ x = rnorm(1500)
 boxplot(x,horizontal = TRUE,xlab='Generated Data')
 abline(v = range(x), col='blue',lty=3) 
 abline(v = quantile(x,c(.25,.75)),col='purple',lty=1)
-abline(v = c(mean(x) - sd(x), mean(x) - sd(x)),col='green',lty=2)
+abline(v = c(mean(x) - sd(x), mean(x) + sd(x)),col='green',lty=2)
 ```
 
 ```{block, type="reflect"}  

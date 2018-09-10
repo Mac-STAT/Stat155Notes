@@ -64,6 +64,7 @@ Let's first consider the age distribution of this sample. Age, depending on how 
 **Distribution:** *the way something is spread out (aka the way in which values vary).*
 
 ```{r}
+require(dplyr)
 data(Whickham) #load data set from Whickham package
 
 Whickham <- Whickham %>%
@@ -192,6 +193,7 @@ We can adjust the stacked bar plot to make the heights the same, so that you can
 
 
 ```{r}
+require(ggplot2)
 Whickham %>%
   count(outcome, smoker) %>%
   group_by(smoker) %>%
@@ -212,6 +214,7 @@ The best (Prof. H's opinion) graphic for two categorical variables is a variatio
 - The **width** of the bars shows the **marginal distribution** (relative frequency of the X variable, ignoring the other variable).
 
 ```{r}
+require(ggmosaic)
 Whickham %>%
   ggplot() +
   geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) +
@@ -220,6 +223,7 @@ Whickham %>%
   scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 
   theme_minimal()
 ```
+
 ```{block, type="reflect"}
 What do you notice? What do you wonder?
 ```

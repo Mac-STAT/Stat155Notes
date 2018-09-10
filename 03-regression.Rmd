@@ -200,9 +200,7 @@ b[ss == min(ss),]
 We have the minimum point. Over the grid of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
 
 ```{block, type="math"}
-(Optional) 
-
-**Alternative ways to find the minimum**
+(Optional) Alternative ways to find the minimum
 
 - We could try a numerical optimization algorithm such as steepest descent.
 - We could use multivariable calculus (find partial derivatives, set equal to 0, and solve).
@@ -870,6 +868,7 @@ For any real value x, f(x) will be a value between 0 and 1. This is perfect for 
 In fact, we'll let the chance of failure, $1-\pi$, be modeled by this function.
 
 $$1-\pi = \frac{1}{1 + e^{b_0 +b_1x}}$$
+```{block, type='math'}
 With a bit of algebra and rearranging terms, we can write this in terms of $\pi$, the chance of success. 
 
 $$\pi = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}$$
@@ -880,7 +879,7 @@ With a bit more algebra and rearranging terms, we can write the above model in t
 
 $$\log\left(\frac{\pi}{1-\pi}\right) = b_0 +b_1x$$
 On the left hand side, we have the natural log of the odds, called the **logit** function. On the right hand side, we have an equation for a line. This is a **simple logistic regression model**.
-
+```
 
 Just like a linear regression model, we can extend this model to a **multiple logistic regression model** by adding additional x variables,
 
@@ -929,7 +928,10 @@ Let's take a look at these estimates. What do they mean?
 tidy(model.glm)
 ```
 
-If you want to get a sense of what the number -0.232 means, we need to do a bit of algebra. Our estimated model is
+If you want to get a sense of what the number -0.232 means, we need to do a bit of algebra. 
+
+```{block, type='math'}
+Our estimated model is
 
 $$\log\left(\frac{\hat{\pi}}{1-\hat{\pi}}\right) = b_0 +b_1x$$
 where $b_0 = 15$ and $b_1 = -0.232$.
@@ -951,8 +953,9 @@ $$\log\left( \frac{\hat{\pi}^*/(1-\hat{\pi}^*)}{\hat{\pi}/(1-\hat{\pi})}\right) 
 Let's exponentiate both sides,
 
 $$\left( \frac{\hat{\pi}^*/(1-\hat{\pi}^*)}{\hat{\pi}/(1-\hat{\pi})}\right) = e^{b_1}$$
+```
 
-We find that $e^{-0.232} = 0.793$ is the **odds ratio** based on increasing x by 1 unit. If a ratio is less than 1, that means that the denominator is greater than the numberator. In this case, it means that the estimated odds of o-ring failure decreases as you increase temperature by 1 degree. This makes sense since we saw that the chance of o-ring failure increases with colder temperatures. 
+We find that $e^{b_1} = e^{-0.232} = 0.793$ is the **odds ratio** based on increasing x by 1 unit. If a ratio is less than 1, that means that the denominator is greater than the numberator. In this case, it means that the estimated odds of o-ring failure decreases as you increase temperature by 1 degree. This makes sense since we saw that the chance of o-ring failure increases with colder temperatures. 
 
 ### Prediction
 

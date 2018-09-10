@@ -183,6 +183,26 @@ Whickham %>%
 What do you notice? What do you wonder?
 ```
 
+### Stacked Bar Plot (Relative Frequencies)
+
+We can adjust the stacked bar plot to make the heights the same, so that you can compare conditional distributions. For a **stacked bar plot based on proportions**,
+
+- The **relative heights** show **conditional distributions** (relative frequencies within subsets)
+- The **width** has no meaning. 
+
+
+```{r}
+Whickham %>%
+  count(outcome, smoker) %>%
+  group_by(smoker) %>%
+  mutate(relfreq = n / sum(n)) %>%
+  ggplot(aes(x = smoker, y = relfreq, fill = outcome)) + 
+  geom_bar(stat = 'identity') + 
+  xlab('Smoker Status') + 
+  ylab('Proportion') + 
+  scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 
+  theme_minimal()
+```
 ### Mosaic Plot
 
 The best (Prof. H's opinion) graphic for two categorical variables is a variation on the stacked bar plot. The total heights of the bars are the same so we can compare the conditional distributions. For a **mosaic plot**, 

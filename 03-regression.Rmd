@@ -246,7 +246,7 @@ lm(Chest ~ Neck, data = bodyfat) # When you see ~, think 'as a function of'
 
 $$s_e = \sqrt{\frac{\sum^n_{i=1} (y_i-\hat{y}_i)^2}{n-2}}  = \sqrt{\frac{\sum^n_{i=1} e_i^2}{n-2}} $$
 
-In R: $s_e$ is called the "residual standard error"
+In R: $s_e$ is called the "residual standard error".
 
 ```{r echo=TRUE}
 lm.fit = lm(Chest ~ Neck, data = bodyfat)
@@ -341,7 +341,9 @@ summary(lm.fit)
 
 ### Correlation or Association vs. Causation
 
+<center>
 ![[xkcd: Correlation](https://xkcd.com/552/)](https://imgs.xkcd.com/comics/correlation.png)
+</center>
 
 What is causation? What is a causal effect? Are there criteria for defining a cause?
 
@@ -461,23 +463,28 @@ sd(sat$univ_GPA)
 2*sd(sat$univ_GPA)
 ```
 
-*Without* knowing your high school GPA, we could have just guessed your college GPA as the mean college GPA in the sample, and this guess would be within $\pm 0.89$ of your actual college GPA. This is a higher margin of error than the approximate $0.56$ if we did use your high school GPA in the simple linear regression model. That model *explained* some (but not all) of the variation in college GPA.
+*Without* knowing your high school GPA, we could have just guessed your college GPA as the mean college GPA in the sample, and this guess would be within $\pm 0.89$ of your actual college GPA. This is a higher margin of error than the approximate $0.56$ if we did use your high school GPA (in the simple linear regression model). We are able to predict your college GPA with a smaller margin of error than if we just guessed your college GPA with the mean. Our model has *explained* some (but not all) of the variation in college GPA.
 
-That was based on the sum of squared total variation (variation around the mean),
+The standard deviation is based on the sum of squared total variation (variation around the mean),
 
 $$ SSTO = \sum{(y_i -\bar{y})^2} $$
 
-SSTO is the numerator of the standard deviation of $y$ (without knowing anything about $x$).
+$SSTO$ is the numerator of the standard deviation of $y$ (without knowing anything about $x$).
 
 ```{r echo=TRUE}
 (SSTO = sum((sat$univ_GPA - mean(sat$univ_GPA))^2))
 ```
 
-
+We define $SSTO$ because it will help to compare $SSTO$ to $SSE$ to obtain a measure of how well our models are **fitting** the data - how well they are predicting the outcome.
 
 ### $R^2$
 
-Let's study the reduction in the unexplained variation (residuals from a linear regression model -- with $x$ v. the original deviations from the mean -- without $x$). 
+Let's study how models reduce unexplained variation.
+
+- Unexplained variation is given by $SSTO$. It is just the overall variability in the outcome. Think back to interpreting standard deviation and variance as measures of spread. We used these to describe broadly how variable the outcome was.
+- Variation in the outcome that remains after trying to explain the outcome is given by $SSE$, the sum of squared residuals.
+
+So to study how models reduce unexplained variation, we will compare residuals from a linear regression model (which uses the predictor $x$) with the original deviations from the mean (which do not use the predictor $x$).
 
 ```{r echo=FALSE}
 gpavar = data.frame(resids = c(residuals(lm.gpa), sat$univ_GPA-mean(sat$univ_GPA)), type = rep(c('Linear Model Residuals','Original Deviations from Mean'), each = nrow(sat)))
@@ -500,13 +507,12 @@ We started with the sum of the deviations from the mean $SSTO = \sum{(y_i - \bar
 
 Two extreme cases: 
 
-  * If the error (SSE) goes to zero, we'd have a "perfect fit". 
-  
-  * If $SSE = SSTO$, $x$ has told us nothing about $y$.
+- If the error $SSE$ goes to zero, we'd have a "perfect fit". 
+- If $SSE = SSTO$, $x$ has told us nothing about $y$.
 
-- So we define a measure called **R Squared**,
+- So we define a measure called **R-squared**,
 
-$$ R^2 = 1 - \frac{SSE}{SST} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}$$
+$$ R^2 = 1 - \frac{SSE}{SST0} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}$$
 
 ```{r echo=TRUE}
 1 - SSE/SSTO
@@ -519,7 +525,7 @@ glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 
 - $R^2$ doesn't tell you the direction or the form of the relationship.
 
-- Note: $R^2 = r^2$ for simple linear models with one x variable.
+- Note: $R^2 = r^2$ for simple linear models with one x variable (where $r$ is the correlation coefficient).
 
 
 ## Diagnostics
@@ -540,10 +546,11 @@ To check these, we look at the original scatterplot and a plot of *residuals* vs
 
 ```{r echo=TRUE}
 augment(lm.gpa, data = sat) %>%
-  ggplot(aes(x = .fitted, y = .resid)) +
-  geom_point() +
-  geom_hline(yintercept = 0) +
-  theme_minimal()
+    ggplot(aes(x = .fitted, y = .resid)) +
+    geom_point() +
+    geom_hline(yintercept = 0) +
+    labs(x = "Fitted values (predicted values)", y = "Residuals")
+    theme_minimal()
 ```
 
 What do you think?
@@ -597,7 +604,7 @@ If the observed data don't satisfy the conditions above, what can we do? Should 
 
 * Problem: Spread is NOT the same throughout
 - You may be able to transform the y-variable using mathematical functions ($log(y)$, $y^2$, etc.) to make the spread more consistent (one approach is to use **Box-Cox Transformation** -- take more statistics classes to learn more)
-- Be careful in interpreting the standard deviation of the residuals
+- Be careful in interpreting the standard deviation of the residuals. (For example, if you take a log transformation of the outcome, the units of the standard deviation of the residuals will be on the log scale.)
 
 * Problem: You have **extreme outliers**
 - Look into the outliers. Determine if they could be due to human error. Think carefully about them, dig deep.
@@ -773,8 +780,15 @@ What does this mean? Let's think about two types of homes: a home with one or mo
 
 - Home without fireplace: Predicted Price = 40901.29 + -37610.41\*0 + 92.36391\*Living.Area + 26.85\*Living.Area\*0 = \$40,901.29 + \$92.36\*Living.Area
 
-We see a different slopes and different intercepts for these two groups. 
+We see a different slope and different intercepts for these two groups.
 
+### Causation
+
+We alluded earlier that multiple linear regression could provide estimates of causal effects in the right circumstances. What are those circumstances? In the fireplace-living area interaction model above, we could interpret the -37610 for fireplace presence causally if living area were really the only other confounding variable.
+
+Perhaps you feel let down about this. We could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn't mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible, we have a starting ground for moving forward. We collect data, analyze how well our model predicts that data, and collect more data based on that.
+
+We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for undertanding how smoking affects lung cancer development. It is very important to consider whether a variable is a **mediator** of the relationship between the cause and the outcome. A mediator in this example could be tar. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk!
 
 
 ### Conditions for Multiple Linear Regression

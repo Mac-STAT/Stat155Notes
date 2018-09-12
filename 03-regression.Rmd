@@ -8,7 +8,7 @@ library(mosaicData)
 library(ggmosaic)
 library(NHANES)
 library(mosaic)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE)
 ```
 
 # Regression Models

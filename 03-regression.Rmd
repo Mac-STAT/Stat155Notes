@@ -19,16 +19,18 @@ In our visualization of data, we've seen trends, patterns, and variation. Let's 
 
 Broadly, a model is a simplified representation of the world. When we build models, we may have different goals.
 
-One goal when building models is prediction. Given data on a **response or outcome variable** $y$ and one or more **predictor or explanatory variables** $x$, the goal is to find a function that will model and predict $y$ from $x$. This $x$ may be a single variable, but is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. What are the qualities of a good $f$? We want to find an $f(x)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ to be close to the observed response. We want $y-\hat{y}$ to be small. This difference $y-\hat{y}$ is called a **residual**. We'll discuss residuals more later.
+One goal when building models is prediction. Given data on a **response or outcome variable** $y$ and one or more **predictor or explanatory variables** $x$, the goal is to find a function, $f$ that will model and predict $y$ from $x$. This $x$ may be a single variable, but is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. 
+
+What are the qualities of a good function $f$? We want to find an $f(x)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ to be close to the observed response. We want $y-\hat{y}$ to be small. This difference $y-\hat{y}$ is called a **residual**. We'll discuss residuals more later.
 
 ```{block, type="reflect"}
-Can you think of some examples in which we'd want a model to do prediction?
+Can you think of some concrete examples in which we'd want a model to do prediction?
 ```
 
-Another goal when building models is description. We want a model, $f(x)$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. George Box is often quoted "All models are wrong but some are useful." 
+Another goal when building models is description. We want a model, $f(x)$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. George Box is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
 
 ```{block, type="reflect"}
-Can you think of some examples in which we'd want a model to do explain a phenomenon?
+Can you think of some concrete examples in which we'd want a model to do explain a phenomenon?
 ```
 
 To begin, we will consider a simple, but powerful model in which we limit this function $f$ to be a straight line with a y-intercept, $b_0$, and slope, $b_1$.
@@ -36,6 +38,17 @@ To begin, we will consider a simple, but powerful model in which we limit this f
 $$\hat{y} = f(x) = b_0 + b_1x$$
 
 This is a **simple linear regression model**. It is the foundation of many statistical models used in modern statistics and is more flexible than you may think. 
+
+```{block, type='math'}
+In the past, you may have seen the equation of a line as 
+
+$$y = mx + b$$
+
+where $m$ is the slope and $b$ is the y-intercept. We will be using different notation so that it can generalize to multiple linear regression. 
+
+The y-intercept is the value when $x=0$ and the slope is change in y for each addition value of x (rise/run). 
+```
+
 
 ## Lines
 
@@ -52,8 +65,9 @@ bodyfat %>%
     theme_minimal()
 ```
 
-
+```{block type='reflect'}
 If you were to add one or multiple lines to the plot above to help you make business decisions, where would you want it (or them)?
+```
 
 Let's say you were only going to make one size of shirt. You might want to add a horizontal line at the mean Chest size and a vertical line at the mean Neck size. 
 
@@ -135,9 +149,9 @@ We have $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$.
 
 ### First idea
 
-Minimize the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( b_0 + b_1x_i)$. The residual is the prediction error, the difference between what you observe and what you predict.
+Minimize the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( b_0 + b_1x_i)$. The residual is the prediction error, the difference between what you observe and what you predict based on the line.
 
-- Problem: We will have positive and negative residuals; they will cancel each other out. This won't give us what we want.
+- Problem: We will have positive and negative residuals; they will cancel each other out if we add them together. This won't give us what we want.
 
 
 ### Second idea
@@ -186,7 +200,7 @@ ss <- apply(b,1,f)
 image(b0,b1,matrix(log(ss),length(b0),length(b1)),col=c('white',topo.colors(100)[100:1])) #Log Sum of Squares to see variation in lower end
 ```
 
-We can limit our search to $b_0 \in (-10,10)$ and $b_1 \in (2,3)$
+We can limit our search to $b_0 \in (-10,10)$ and $b_1 \in (2,3)$.
 
 ```{r echo=TRUE}
 b0 = seq(-10,10,by=.05)
@@ -197,20 +211,27 @@ ss <- apply(b,1,f)
 b[ss == min(ss),]
 ```
 
-We have the minimum point. Over the grid of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
+We have the minimum point. Over the grid of pairs of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
 
 ```{block, type="math"}
-(Optional) Alternative ways to find the minimum
+(Optional) Alternative ways to find the minimum sum of squared residuals
 
 - We could try a numerical optimization algorithm such as steepest descent.
 - We could use multivariable calculus (find partial derivatives, set equal to 0, and solve).
+
+To get started on the calculus, solve the following two equations for the two unknowns ($b_0$ and $b_1$):
+
+$$\frac{\partial }{\partial b_0}\sum_{i=1}^n (y_i - (b_0 + b_1x_i))^2 = 0$$
+$$\frac{\partial }{\partial b_1}\sum_{i=1}^n (y_i - (b_0 + b_1x_i))^2 = 0$$
+
+If you are a math/physics/cs major, you should try this by hand and see if you can get the solutions below. 
 ```
 
-If you find the minimum via calculus, you'll find that we can write the Least Squares solution in an equation format as functions of summary statistics!,
+If you find the minimum via calculus, you'll find that we can write the Least Squares solution in an equation format as functions of summary statistics (!), the estimated slope is
 
 $$ b_1  = r\frac{s_y}{s_x}$$
 
-and
+and the estimated intercept is
 
 $$ b_0 = \bar{y} - b_1\bar{x} $$
 

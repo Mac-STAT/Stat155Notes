@@ -252,7 +252,7 @@ xbar = mean(bodyfat$Neck)
 
 From now on, we'll use the `lm()` function which stands for linear model. This gives us the Least Squares solution to the "best fitting line".
 
-```{r}
+```{r echo=TRUE}
 lm(Chest ~ Neck, data = bodyfat) # When you see ~, think 'as a function of'
 ```
 
@@ -261,7 +261,7 @@ lm(Chest ~ Neck, data = bodyfat) # When you see ~, think 'as a function of'
 
 - $(\bar{x},\bar{y})$ is on the line. 
 
-- Least squares residuals add to 0.
+- Least squares residuals sum to 0.
 
 - The standard deviation of the residuals gives us a sense of how bad our predictions (based on the line) could be. 
 
@@ -277,7 +277,7 @@ tidy(lm.fit)
 
 This simple linear regression line is
 
-$$\widehat{Chest} = -3.18 + 2.73Neck$$
+$$\widehat{Chest} = -3.18 + 2.73*Neck$$
 
 Given your neck size, we can predict your chest size within 5 to 10 inches since $s_e = 5.22$. 
 
@@ -292,7 +292,7 @@ Let's see how some real companies create shirts. In the plots below, the red box
 ![](Photos/stylish-dress-shirt-size-size-chart-.jpg)
 
 
-```{r}
+```{r echo=FALSE}
 with(bodyfat,plot(Chest~Neck,main='Calvin Klein'))
 abline(with(bodyfat,lm(Chest~Neck)))
 rect(14*2.54,36*2.54,14.5*2.54,37*2.54,col='red')
@@ -304,7 +304,7 @@ rect(17*2.54,42*2.54,17.5*2.54,43*2.54,col='red')
 For Calvin Klein, we see that the red boxes are below the least squares line (black line). So for a given neck size, Calvin Klein makes shirts that are a little bit too small at the chest.
 
 
-```{r}
+```{r echo=FALSE}
 with(bodyfat,plot(Chest~Neck,main = 'Express'))
 abline(with(bodyfat,lm(Chest~Neck)))
 rect(13*2.54,33*2.54,13.5*2.54,33.5*2.54,col='red')
@@ -318,7 +318,7 @@ rect(18*2.54,48*2.54,18.5*2.54,50.5*2.54,col='red')
 For Express, we see that the red boxes are generally on the least squares line, except for the smallest size. This means that Express shirts are generally a good fit at the chest and neck for the 4 largest sizes, but the smallest shirt size is a bit too small at the chest for the neck size.
 
 
-```{r}
+```{r echo=FALSE}
 with(bodyfat,plot(Chest~Neck,main='Brooks Brothers'))
 abline(with(bodyfat,lm(Chest~Neck)))
 rect(13*2.54,32*2.54,13.5*2.54,34*2.54,col='red')
@@ -345,7 +345,7 @@ summary(lm.fit)
 **Least Squares/Regression Line** ($\hat{y} = b_0 + b_1x$)
 
 - The line gives the estimated average of $y$ for each value of $x$ (**within observed range of x**)
-- Example: The regression line of (Predicted Chest = -3.18 + 2.73Neck) gives the estimated average Chest size for a given Neck size, based on our sample of data.
+- Example: The regression line of (Predicted Chest = -3.18 + 2.73*Neck) gives the estimated average Chest size for a given Neck size, based on our sample of data.
 - The "within observed range of $x$" is very important. We can't predict values of $y$ for values of $x$ that are very different from what we have in our data. Trying to do so is a big no-no called **extrapolation**. We'll discuss this more in a bit.
 
 **Intercept** ($b_0$)
@@ -370,16 +370,20 @@ What is causation? What is a causal effect? Are there criteria for defining a ca
 
 These are deep questions that have been debated by scientists of all domains for a long time. We are at a point now where there is some consensus on the definition of a causal effect. The causal effect of a variable $x$ on another variable $y$ is the amount that we expect $y$ to change if we **intervene on/manipulate** $x$ by changing it by one unit.
 
-When can we interpret an estimated slope $b_1$ from a simple linear regression as a causal effect of $x$ on $y$. Well, in the simple linear regression case, almost never. To interpret the slope causally, there would have to be **no confounding variables** (no variables that impact both $x$ and $y$.) In no real world situation will this be the case.
+When can we interpret an estimated slope $b_1$ from a simple linear regression as a causal effect of $x$ on $y$? Well, in the simple linear regression case, almost never. 
 
-Then what are we to do? We will get to **adjusting/controlling for** confounders in the section on multiple linear regression. Multiple linear regression offers us a way to obtain causal effects of variables *if we use it carefully*. It will be tempting to say: control for everything we can! But we will see that this is not the correct thing to do, as there are very real dangers of over-controlling for variables. For now, let it suffice to say that multiple linear regression is as useful as the corn kerneler below. Immensely useful in the right cirumstances - but only those circumstances.
+To interpret the slope causally, there would have to be **no confounding variables** (no variables that impact both $x$ and $y$.) In no real world situation will this be the case.
+
+Then what are we to do? We will get to **adjusting/controlling for** confounders in the section on multiple linear regression. 
+
+Multiple linear regression offers us a way to obtain causal effects of variables *if we use it carefully*. It will be tempting to say: control for everything we can! But we will see that this is not the correct thing to do, as there are very real dangers of over-controlling for variables. For now, let it suffice to say that multiple linear regression is as useful as the corn kerneler below. Immensely useful in the right cirumstances - but only those circumstances.
 
 ![Source: [Gizmodo](https://gizmodo.com/5988717/12-highly-specific-kitchen-gadgets)](https://i.kinja-img.com/gawker-media/image/upload/s--ko0l0gLh--/c_scale,f_auto,fl_progressive,q_80,w_800/18gkhag74ei0njpg.jpg)
 
 
 ## Evaluation
 
-In this section we consider model evaluation: is this model "good"?
+In this section we consider model evaluation: Is this model "good"?
 
 Let's consider another data example. Can we predict your college GPA based on your high school GPA? (Disclaimer: this is not Macalester data.)
 
@@ -400,12 +404,12 @@ sat %>%
 
 First things first. Describe the scatterplot. 
 
-- **Direction**: positive relationship (higher high school GPA is associated with higher college GPA)
+- **Direction**: Positive relationship (higher high school GPA is associated with higher college GPA)
 - **Form**: generally linear
 - **Strength**: There is a weak relationship when high school GPA < 3.0 (r = .32) and a fairly strong relationship when high school GPA > 3.0 (r = .68).
 - **Unusual**: As seen with the strength, there is increased variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening."**
 
-The code below computes correlation coefficients separately for students with high school GPAs above 3 and for students with high school GPAs less than or equal to 3. We see that the correlation is higher for the high GPA group.
+The code below computes the correlation coefficients separately for students with high school GPAs above 3 and for students with high school GPAs less than or equal to 3. We see that the correlation is higher for the high GPA group.
 
 ```{r echo=TRUE}
 sat %>%
@@ -421,7 +425,7 @@ lm.gpa <- lm(univ_GPA ~ high_GPA, data = sat)
 summary(lm.gpa)
 ```
 
-The best fitting line is (Predicted College GPA = 1.09 + 0.675High School GPA). 
+The best fitting line is (Predicted College GPA = 1.09 + 0.675*High School GPA). 
 
 Let's plug in a few values.
 
@@ -531,16 +535,18 @@ Two extreme cases:
 - If the error $SSE$ goes to zero, we'd have a "perfect fit". 
 - If $SSE = SSTO$, $x$ has told us nothing about $y$.
 
-- So we define a measure called **R-squared**,
+- So we define a measure called **R-squared**, which is the *fraction* or *percent* of the total variation in $y$ "accounted for" by the model in $x$. 
 
+```{block type='math'}
 $$ R^2 = 1 - \frac{SSE}{SST0} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}$$
+```
+
+In R, lm() will calculate R-Squared for us, but we can also see that it equals the value from the formula above. 
 
 ```{r echo=TRUE}
 1 - SSE/SSTO
 glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 ```
-
-- $R^2$ can be interpreted as the *fraction* or *percent* of the total variation in $y$ "accounted for" by the model in $x$. 
 
 - Is there a "good" value of $R^2$? Same answer as correlation -- no.
 
@@ -570,7 +576,7 @@ augment(lm.gpa, data = sat) %>%
     ggplot(aes(x = .fitted, y = .resid)) +
     geom_point() +
     geom_hline(yintercept = 0) +
-    labs(x = "Fitted values (predicted values)", y = "Residuals")
+    labs(x = "Fitted values (predicted values)", y = "Residuals") +
     theme_minimal()
 ```
 
@@ -583,7 +589,7 @@ We want to avoid extreme outliers because points that are both far from the mean
 
 See the example below. See how the relationship changes with the addition of one point, one extreme outlier.  
 
-```{r}
+```{r echo=FALSE}
 x = runif(50,0,10)
 y = rnorm(50)
 dat = data.frame(x,y)
@@ -616,20 +622,21 @@ Check out this interactive visualization to get a feel for leverage: http://omay
 If the observed data don't satisfy the conditions above, what can we do? Should we give up using a statistical model? No!
 
 * Problem: Both variables are NOT **Quantitative**
-- If your x-variable is categorical, we'll turn it into a quantitative variable using **indicator variables** (coming up) 
-- If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we'll use **logistic regression** (coming up)
+    - If your x-variable is categorical, we'll turn it into a quantitative variable using **indicator variables** (coming up) 
+    - If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we'll use **logistic regression** (coming up)
 
 * Problem: Relationship is NOT **Straight Enough**
-- If the plot does not thicken, we can add higher degree terms to the model (**multiple linear regression** - coming up)
-- If the plot does thicken, see solutions below.
+    - If the plot does not thicken, we can add higher degree terms to the model (**multiple linear regression** - coming up)
+    - If the plot does thicken, see solutions below.
 
 * Problem: Spread is NOT the same throughout
-- You may be able to transform the y-variable using mathematical functions ($log(y)$, $y^2$, etc.) to make the spread more consistent (one approach is to use **Box-Cox Transformation** -- take more statistics classes to learn more)
-- Be careful in interpreting the standard deviation of the residuals. (For example, if you take a log transformation of the outcome, the units of the standard deviation of the residuals will be on the log scale.)
+    - You may be able to transform the y-variable using mathematical functions ($log(y)$, $y^2$, etc.) to make the spread more consistent (one approach is to use **Box-Cox Transformation** -- take more statistics classes to learn more)
+    - Be careful in interpreting the standard deviation of the residuals. (For example, if you take a log transformation of the outcome, the units of the standard deviation of the residuals will be on the log scale.)
 
 * Problem: You have **extreme outliers**
-- Look into the outliers. Determine if they could be due to human error. Think carefully about them, dig deep.
-- Do a **sensitivity analysis**: Fit a model with and without the outlier and see if your conclusions drastically change (see if those points had leverage to change the model).
+    - Look into the outliers. Determine if they could be due to human error. Think carefully about them, dig deep.
+    - Do a **sensitivity analysis**: Fit a model with and without the outlier and see if your conclusions drastically change (see if those points had leverage to change the model).
+
 
 ## Multiple Linear Regression
 
@@ -678,7 +685,7 @@ Our "best fitting line" is
 
 $$Predicted\;Price = 174653.35 + 65260.61*1_{AnyFireplaceTRUE}$$
 
-What does this mean?
+**What does this mean?**
 
 Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace. Let's write out the equations for those two types of homes. 
 
@@ -726,7 +733,7 @@ Our "best fitting line" is
 
 $$Predicted\; Price = 13599.16 + 5567.37*1_{AnyFireplaceTRUE} + 111.21*Living.Area$$
 
-What does this mean? 
+**What does this mean?** 
 
 Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace.
 
@@ -790,7 +797,9 @@ lm.home3 <- lm(Price ~ AnyFireplace*Living.Area, data = homes)
 tidy(lm.home3)
 ```
 
-What does this mean? Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace.
+**What does this mean?** 
+
+Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace.
 
 - Home with fireplace: Predicted Price = 40901.29 + -37610.41\*1 + 92.36391\*Living.Area + 26.85\*Living.Area\*1 = \$3,290.88 + \$119.21\*Living.Area
 
@@ -809,14 +818,15 @@ We alluded earlier that multiple linear regression could provide estimates of ca
 
 Perhaps you feel let down about this. We could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn't mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible, we have a starting ground for moving forward. We collect data, analyze how well our model predicts that data, and collect more data based on that.
 
-We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for undertanding how smoking affects lung cancer development. It is very important to consider whether a variable is a **mediator** of the relationship between the cause and the outcome. A mediator in this example could be tar. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk!
+We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for understanding how smoking affects lung cancer development. It is very important to consider whether a variable is a **mediator** of the relationship between the cause and the outcome. A mediator in this example could be tar. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk!
 
+*Reminder: If you want a "gentle" but mathematical introduction to Causal Inference, I'd suggest reading "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell). Fun Fact: Nicholas Jewell was Prof. Heggeseth's PhD advisor!*
 
 ### Conditions for Multiple Linear Regression
 
 In order for a multiple linear regression model to make sense, 
 
-- Relationships between each quantitative $X$'s and $Y$ are **straight enough** (check scatterplot's and residual plot)
+- Relationships between each quantitative $X$'s and $Y$ are **straight enough** (check scatterplots and residual plot)
 - About **equal spread** of residuals across fitted values (check residual plot)
 - No extreme outliers (points far away in X's can have **leverage** to change the line)
 
@@ -860,7 +870,7 @@ This is called **Bootstrapping** and it is used to 1) measure the variability in
 
 Let's first look at the variability of the difference in slopes across the bootstrap samples. The standard deviation of the slopes will be similar to the std.error from the linear model output.
 
-```{r}
+```{r echo=TRUE}
 boot %>%
   summarize(sd(Living.Area.AnyFireplaceTRUE))#this is going to be of similar magnitude to the Std Error in output
 tidy(lm.home4)
@@ -868,7 +878,7 @@ tidy(lm.home4)
 
 To get an interval of plausible values, we look at the histogram and take the middle 95%. The lower end will be the 2.5th percentile and the upper end will be the 97.5th percentile.
 
-```{r}
+```{r echo=TRUE}
 boot %>%
   summarize(lower = quantile(Living.Area.AnyFireplaceTRUE, 0.025), upper = quantile(Living.Area.AnyFireplaceTRUE, 0.975))
 ```
@@ -891,7 +901,7 @@ The **logistic function** is an S shaped curve (sigmoid curve). For our purposes
 
 $$f(x) = \frac{1}{1 + e^{b_0 +b_1x}}$$
 
-```{r}
+```{r echo=FALSE}
 x <- seq(-10,10,by=.1)
 b0 <- 2
 b1 <- -0.5
@@ -929,7 +939,7 @@ In R, we do this with a general linear model function, `glm()`.
 For a data set, let's go back in history to January 28, 1986. On this day, the Challenger U.S. space shuttle took off and exploded about minute after the launch. After the fact, scientists ruled that the disaster was due to o-ring seal failure. Let's look at experimental data on the o-rings prior to the fateful day.
 
 
-```{r}
+```{r echo=TRUE}
 require(vcd)
 data(SpaceShuttle)
 
@@ -948,7 +958,7 @@ SpaceShuttle %>%
   theme_minimal()
 ```
 
-```{r}
+```{r echo=TRUE}
 model.glm <- glm(Fail ~ Temperature, data = SpaceShuttle, family = binomial)
 summary(model.glm)
 tidy(model.glm)
@@ -959,7 +969,7 @@ tidy(model.glm)
 
 Let's take a look at these estimates. What do they mean?
 
-```{r}
+```{r echo=TRUE}
 tidy(model.glm)
 ```
 
@@ -996,7 +1006,7 @@ We find that $e^{b_1} = e^{-0.232} = 0.793$ is the **odds ratio** based on incre
 
 On January 28, 1986, the temperature was 26 F degrees. Let's predict the chance of "success," which is a failure of o-rings in our data context.  
 
-```{r}
+```{r echo=TRUE}
 predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response')
 ```
 

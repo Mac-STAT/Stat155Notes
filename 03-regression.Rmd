@@ -358,7 +358,9 @@ Then what are we to do? We will get to **adjusting/controlling for** confounders
 
 ## Evaluation
 
-In this section we consider model evaluation: is this model "good"?
+In this section, we consider model evaluation. We seek to develop tools that allow us to answer: is this model "good"?
+
+### Prediction
 
 Let's consider another data example. Can we predict your college GPA based on your high school GPA? (Disclaimer: this is not Macalester data.)
 
@@ -400,25 +402,32 @@ lm.gpa <- lm(univ_GPA ~ high_GPA, data = sat)
 summary(lm.gpa)
 ```
 
-The best fitting line is (Predicted College GPA = 1.09 + 0.675High School GPA). 
+The best fitting line is
+
+$$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times \hbox{High School GPA} $$
 
 Let's plug in a few values.
 
-- If High School GPA = 2: Predicted College GPA = 1.09 + 0.675*2 = 2.44
+- If High School GPA = 2:    
+$$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 2 = 2.44 $$
 
 ```{r echo=TRUE}
+## Calcualtion by hand
 1.09 + 0.675*2
+## Calcuation using R's predict() function
 predict(lm.gpa, newdata = data.frame(high_GPA = 2))
 ```
 
-- If High School GPA = 3.5: Predicted College GPA = 1.09 + 0.675*3.5 = 3.45
+- If High School GPA = 3.5:    
+$$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 3.5 = 3.45 $$
 
 ```{r echo=TRUE}
 1.09 + 0.675*3.5
 predict(lm.gpa, newdata = data.frame(high_GPA = 3.5))
 ```
 
-- If High School GPA = 4.5: Predicted College GPA = 1.09 + 0.675*4.5 = 4.13
+- If High School GPA = 4.5:    
+$$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 4.5 = 4.13 $$
 
 ```{r echo=TRUE}
 1.09 + 0.675*4.5
@@ -433,12 +442,14 @@ Does it make sense to use this model for high school GPA's > 4.5?  Some high sch
 
 ```{r echo=TRUE}
 sat %>%
-  summarize(max(high_GPA)) # Max high school GPA in this data set
+    summarize(max(high_GPA)) # Max high school GPA in this data set
 ```
 
-Making predictions beyond the observed range of values is called **extrapolation** and is generally a risky thing to do. If you extrapolate beyond the minimum or maximum of the observed values, then you are assuming that the relationship you observe can be extended into the new prediction range. This is the main issue of **forecasting**, making predictions in the future. You have to assume that the trend that you observe now will continue in the future and that the current state of affairs will stay the same.
+Making predictions beyond the observed range of values is called **extrapolation** and is generally a risky thing to do. If you extrapolate beyond the minimum or maximum of the observed values, then you are assuming that the relationship you observe can be extended into the new prediction range. This is the main issue of **forecasting**, making predictions in the future. You have to assume that the trend that you observe now will continue in the future and that the current state of affairs will stay the same. For an infamous case of extrapolation, check out [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173856/) that appeared in the journal Nature.
 
 ### Prediction Errors
+
+Recall that a residual $e_i$ for data point $i$ is the difference between the actual and predicted values: $e_i = y_i = \hat{y}_i$.
 
 If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section \@ref(intro-zscore).)
 
@@ -450,13 +461,13 @@ Below we calculate $SSE$, the sum of squared residuals.
 
 ```{r echo=TRUE}
 SSE = sum(residuals(lm.gpa)^2)
-n = (length(residuals(lm.gpa)))
-s = sqrt(SSE/(n-2))
+n = length(residuals(lm.gpa)) # Sample size
+s = sqrt(SSE/(n-2)) # Residual standard error
 s
 2*s
 ```
 
-Using this model (that is, using your high school GPA), we can predict your college GPA within about $0.56$ GPA points. Is this useful? Is a margin of $0.56$ GPA points good enough?
+Using this model (that is, using your high school GPA), we can predict your college GPA within about $0.56$ GPA points. Is this useful? Is a margin of $0.56$ GPA points good enough? Let's compare this margin of error with the margin of error about the mean (the standard deviation):
 
 ```{r echo=TRUE}
 sd(sat$univ_GPA)
@@ -496,9 +507,6 @@ gpavar %>%
   xlab('Type of Residuals')
 ```
 
-
-
-
 We started with the sum of the deviations from the mean $SSTO = \sum{(y_i - \bar{y})^2}$ before we had info about high school GPA ($x$).
 
 - Now, with our knowledge of $x$, we have $SSE = \sum{(y_i - \hat{y_i})^2}$
@@ -512,7 +520,7 @@ Two extreme cases:
 
 - So we define a measure called **R-squared**,
 
-$$ R^2 = 1 - \frac{SSE}{SST0} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}$$
+$$ R^2 = 1 - \frac{SSE}{SSTO} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}$$
 
 ```{r echo=TRUE}
 1 - SSE/SSTO
@@ -599,7 +607,7 @@ If the observed data don't satisfy the conditions above, what can we do? Should 
 - If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we'll use **logistic regression** (coming up)
 
 * Problem: Relationship is NOT **Straight Enough**
-- If the plot does not thicken, we can add higher degree terms to the model (**multiple linear regression** - coming up)
+- If the plot does not thicken, we can add higher degree (e.g. $x^2, x^3, x^4$, etc.) terms to the model (**multiple linear regression** - coming up)
 - If the plot does thicken, see solutions below.
 
 * Problem: Spread is NOT the same throughout
@@ -616,14 +624,14 @@ We can generalize the idea of a simple linear model by including many explanator
 
 $$\hat{y}_i = b_0 + b_1x_{i1} + \cdots + b_kx_{ik}$$
 
-- Each coefficient $b_j$ can be interpreted as the increase in the predicted/average y associated with a 1 unit increase in $x_j$, **keeping all other variables constant**. (\*There are some exceptions - we'll get there)
+- Each coefficient $b_j$ can be interpreted as the increase in the predicted/average y associated with a 1 unit increase in $x_j$, **keeping all other variables constant**. (\*There are some exceptions - we'll get there.)
 
-- These X variables's can be 
+- These X variables can be:
     - Quantitative variables (or transformations of them)
-    - Indicator variables for categorical variables (only need $k-1$ indicators for variable with $k$ categories)
+    - Indicator variables for categorical variables (only need $k-1$ indicators for a variable with $k$ categories)
     - Interaction terms (product of two variables, which allows for *effect modification*)
     
-Let's talk about home prices. We want to build a model to predict the price of a home based on its many characteristics. Here we have a data set of homes recently sold in New England with many variables such as the age of the home, the land value, whether or not it has central air conditioning, the number of fireplaces, the sale price, and more...
+Let's talk about a new data example: home prices. We want to build a model to predict the price of a home based on its many characteristics. Here we have a data set of homes recently sold in New England with many variables such as the age of the home, the land value, whether or not it has central air conditioning, the number of fireplaces, the sale price, and more...
 
 ```{r echo=TRUE}
 homes <- read.delim('http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt')
@@ -642,7 +650,7 @@ homes <- homes %>%
   mutate(AnyFireplace = Fireplaces > 0)
 ```
 
-In order to include this information in our linear regression model, we need to turn that categorical variable (`AnyFireplace`, TRUE or FALSE) into an **indicator variable**,
+In order to include this information in our linear regression model, we need to turn that categorical variable (`AnyFireplace`, TRUE or FALSE) into an **indicator variable**, which has a numeric value of 0 or 1:
 
 $$ 1_{AnyFireplaceTRUE} = \begin{cases}1 \quad \text{ if a home has at least one fireplace}\\ 0\quad \text{ if a home does not have a fireplace} \end{cases}$$
 
@@ -655,19 +663,21 @@ tidy(lm.home)
 
 Our "best fitting line" is
 
-$$Predicted\;Price = 174653.35 + 65260.61*1_{AnyFireplaceTRUE}$$
+$$ \hbox{Predicted Price} = 174653.35 + 65260.61 \times 1_{AnyFireplaceTRUE} $$
 
 What does this mean?
 
 Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace. Let's write out the equations for those two types of homes. 
 
-- Home with fireplace: Predicted Price = 174653.35 + 65260.61*1 = $239,914
+- Home with fireplace:    
+$$ \hbox{Predicted Price} = 174653.35 + 65260.61 \times 1 = \$ 239,914 $$
 
 ```{r echo=TRUE}
 174653.35 + 65260.61*1
 ```
 
-- Home without fireplace: Predicted Price = 174653.35 + 65260.61*0 = $174,653.35
+- Home without fireplace:    
+$$ \hbox{Predicted Price} = 174653.35 + 65260.61 \times 0 = \$ 174,653.35 $$
 
 
 The difference between these predicted prices is \$65,260.61. So is this how much a fireplace is worth? If I installed a fireplace in my house, should the value of my house go up \$65,260?
@@ -678,23 +688,23 @@ Let's look at the size of the house. Is price related to the area of living spac
 
 ```{r echo=TRUE}
 homes %>%
-  ggplot(aes(x = Living.Area, y = Price)) + 
-  geom_point(color = 'steelblue') +
-  theme_minimal()
+    ggplot(aes(x = Living.Area, y = Price)) + 
+    geom_point(color = 'steelblue') +
+    theme_minimal()
 ```
 
 Is the presence of a fireplace related to area of living space?
 
 ```{r echo=TRUE}
 homes %>%
-  ggplot(aes(x = AnyFireplace, y = Living.Area)) + 
-  geom_boxplot() +
-  theme_minimal()
+    ggplot(aes(x = AnyFireplace, y = Living.Area)) + 
+    geom_boxplot() +
+    theme_minimal()
 ```
 
-So Living Area could be a confounding variable between AnyFireplace and Price. 
+We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, Living Area could confound the relationship between AnyFireplace and Price because it is related to both variables.
 
-Let's put Living.Area in the model along with AnyFireplace to account for it.
+Let's put Living Area in the model along with AnyFireplace to account for it (to control/adjust for it).
 
 ```{r echo=TRUE}
 lm.home2 <- lm(Price ~ AnyFireplace + Living.Area, data = homes)
@@ -703,23 +713,29 @@ tidy(lm.home2)
 
 Our "best fitting line" is
 
-$$Predicted\; Price = 13599.16 + 5567.37*1_{AnyFireplaceTRUE} + 111.21*Living.Area$$
+$$ \hbox{Predicted Price} = 13599.16 + 5567.37 \times 1_{AnyFireplaceTRUE} + 111.21 \times \hbox{Living.Area} $$
 
 What does this mean? 
 
 Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace.
 
-- Home with fireplace: Predicted Price = 13599.16 + 5567.37\*1 + 111.21\*Living.Area = \$19166.53 + \$111.21\*Living.Area
+- Home with fireplace:    
+$$ \hbox{Predicted Price} = 13599.16 + 5567.37 \times 1 + 111.21 \times \hbox{Living.Area} = \$19,166.53 + \$111.21 \times \hbox{Living.Area} $$
 
 ```{r echo=TRUE}
 13599.16 + 5567.37*1
 ```
 
-- Home without fireplace: Predicted Price = 13599.16 + 5567.37\*0 + 111.21\*Living.Area = \$13599.16 + \$111.21\*Living.Area
+- Home without fireplace:    
+$$ \hbox{Predicted Price} = 13599.16 + 5567.37 \times 0 + 111.21 \times \hbox{Living.Area} = \$13,599.16 + \$111.21 \times \hbox{Living.Area} $$
 
 
+If we keep Living.Area constant by considering two equally sized homes, then we'd expect the home with the fireplace to be worth \$5567.37 more than a home without a fireplace. We see this by taking the difference between the two equations:
 
-If we keep Living.Area constant by considering two equally sized homes, then we'd expect the home with the fireplace to be worth \$5567.37 more than a home without a fireplace. We see this by taking the difference between the two equations, Predicted Price (with Fireplace) - Predicted Price (without Fireplace) = (\$19166.53 + \$111.21\*Living.Area) - ( \$13599.16 + \$111.21\*Living.Area) = \$19166.53 - \$13599.16 = \$5567.37, the difference in the intercepts.
+$$ \hbox{Predicted Price (with Fireplace)} - \hbox{Predicted Price (without Fireplace)} = (\$19,166.53 + \$111.21 \times \hbox{Living.Area}) - ( \$13599.16 + \$111.21 \times \hbox{Living.Area}) $$
+$$ = \$19,166.53 - \$13,599.16 = \$5567.37 $$
+
+5567.37 is the difference between the intercepts.
 
 - Note this was the estimated coefficient for AnyFireplaceTRUE. 
 
@@ -727,23 +743,23 @@ If we keep Living.Area constant by considering two equally sized homes, then we'
 
 - Similarly, we could reason that \$111.21 is the increase in the predicted or average Price associated with a 1 square footage increase in Living.Area, **keeping all other variables (AnyFireplace) constant**.
 
-Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The model with AnyFireplace and Living.Area results in two lines, with different intercepts but the same slope (parallel lines). 
+Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines, with different intercepts but the same slope (parallel lines).
 
 ```{r echo=TRUE}
 homes %>%
-  ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
-  geom_point() +
-  theme_minimal()
+    ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
+    geom_point() +
+    theme_minimal()
 ```
 
 Let's try and fit two separate lines to these two groups of homes, home with any fireplaces and home with no fireplaces. Do these lines have the same intercepts? Same slopes?
 
 ```{r echo=TRUE}
 homes %>%
-  ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
-  geom_point() +
-  geom_smooth(method = 'lm', se = FALSE) +
-  theme_minimal()
+    ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
+    geom_point() +
+    geom_smooth(method = 'lm', se = FALSE) +
+    theme_minimal()
 ```
 
 In this case, it look as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, having a fireplace in your house, the increase in your price for every 1 square foot is greater than that for homes without fireplaces (slopes are different).
@@ -755,40 +771,54 @@ We can actually allow for different slopes within one regression model, rather t
 
 - If we add a variable in the model as is, it changes the intercept.
 
-- If we want different slopes such that the value of a variable, $x_1$, impacts the effect of another, $x_2$, on Y such that the slope for $x_2$ is a function of $x_1$, 
-$$b_2 = a + bx_1$$ 
-then we allow for **effect modification**,
+- We can achieve different slopes by allowing a variable $x_1$ to affect the slope for another variable $x_2$. That is, $x_1$ impacts the effect of $x_2$ on the outcome $y$. (Fireplace presence impacts the effect of living area on house price.)
+$$b_2 = a + bx_1$$
+This is called **effect modification** (when one variable can modify the effect of another variable on the outcome).
+- A model with effect modification looks like:
 $$\hat{y} = b_0 + b_1x_{1} + b_2x_{2}= b_0 + b_1x_{1} + (a+bx_1)x_{2}= b_0 + b_1x_{1} +ax_2+bx_1x_{2}$$
-using an **interaction term,** which is the product of two variables. In the case above, we have $x_1*x_2$. 
+The model above has an **interaction term,** which is the product of two variables. Here we have $x_1*x_2$.
 
-Let's do that with our housing data. Let's include an interaction term between AnyFireplace and Living.Area to allow for different slopes.
-
+Let's build an effect modification model for our housing data. Let's include an interaction term between AnyFireplace and Living.Area to allow for different slopes.
 
 ```{r echo=TRUE}
 lm.home3 <- lm(Price ~ AnyFireplace*Living.Area, data = homes)
 tidy(lm.home3)
 ```
 
-What does this mean? Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace.
+What does this mean?
 
-- Home with fireplace: Predicted Price = 40901.29 + -37610.41\*1 + 92.36391\*Living.Area + 26.85\*Living.Area\*1 = \$3,290.88 + \$119.21\*Living.Area
+Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace.
+
+- Home with fireplace:    
+$$
+\begin{align*}
+\hbox{Predicted Price} &= 40901.29 + -37610.41 \times 1 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 1 \\
+& = \$3,290.88 + \$119.21 \times \hbox{Living.Area}
+\end{align*}
+$$
 
 ```{r echo=TRUE}
 40901.29 + -37610.41*1
 92.36391 + 26.85*1
 ```
 
-- Home without fireplace: Predicted Price = 40901.29 + -37610.41\*0 + 92.36391\*Living.Area + 26.85\*Living.Area\*0 = \$40,901.29 + \$92.36\*Living.Area
+- Home without fireplace:    
+$$
+\begin{align*}
+\hbox{Predicted Price} &= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 0 \\
+&= \$40,901.29 + \$92.36 \times \hbox{Living.Area}
+\end{align*}
+$$
 
 We see a different slope and different intercepts for these two groups.
 
 ### Causation
 
-We alluded earlier that multiple linear regression could provide estimates of causal effects in the right circumstances. What are those circumstances? In the fireplace-living area interaction model above, we could interpret the -37610 for fireplace presence causally if living area were really the only other confounding variable.
+We alluded earlier that multiple linear regression could provide estimates of causal effects in the right circumstances. What are those circumstances? When we include **all** confounding variables. This entails being specific about what a confounding variable is. A confounder is a **common cause** of both the causal variable of interest and the outcome. (e.g. Living area could be a confounder of fireplace presence and house price.)
 
-Perhaps you feel let down about this. We could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn't mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible, we have a starting ground for moving forward. We collect data, analyze how well our model predicts that data, and collect more data based on that.
+We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for undertanding how smoking affects lung cancer development. It is very important to consider whether a variable is a **mediator** of the relationship between the cause and the outcome. A mediator in this example could be tar. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk because it is not varying!
 
-We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for undertanding how smoking affects lung cancer development. It is very important to consider whether a variable is a **mediator** of the relationship between the cause and the outcome. A mediator in this example could be tar. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk!
+Wait - we could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn't mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible, we have a starting ground for moving forward. We collect data, analyze how well our model predicts that data, and collect more data based on that, perhaps measuring more potential confounders as our scientific knowledge grows. We can also conduct sensitivity analyses by asking: how strongly must a confounder affect the variable of causal interest and the outcome to completely negate or reverse the association we see? Such endeavors and more are the subject of the field of *causal inference*.
 
 
 ### Conditions for Multiple Linear Regression
@@ -800,18 +830,16 @@ In order for a multiple linear regression model to make sense,
 - No extreme outliers (points far away in X's can have **leverage** to change the line)
 
 
-
-
 ### Is the Difference Real?
 
-We could also ask, is there really a difference in the slopes for Living Area and Price between homes with and without a fireplace?
+We could ask: is there *really* a difference in the slopes for Living Area and Price between homes with and without a fireplace?
 
 ```{r echo=TRUE}
 lm.home4 <- lm(Price ~ Living.Area*AnyFireplace, data = homes) 
 summary(lm.home4)
 ```
 
-If we ask ourself this question, we are assuming a few things:
+If we ask ourselves this question, we are assuming a few things:
 
 1. We would like to make a general statement about a **target population of interest**.
 
@@ -827,15 +855,21 @@ If we ask ourself this question, we are assuming a few things:
 - Repeat.
 
 ```{r echo=TRUE}
+set.seed(333) ## Setting the seed ensures that our results are reproducible
+## Repeat the sampling and regression modeling 1000 times
 boot <- do(1000)*lm(Price ~ Living.Area*AnyFireplace, data = resample(homes))
 
+## Plot the distribution of the 1000 slope differences
 boot %>%
-  ggplot(aes(x = Living.Area.AnyFireplaceTRUE)) +
-  geom_histogram() +
-  xlab('Bootstrap Difference in Slopes')
+    ggplot(aes(x = Living.Area.AnyFireplaceTRUE)) +
+    geom_histogram() +
+    xlab('Bootstrap Difference in Slopes')
 ```
 
-This is called **Bootstrapping** and it is used to 1) measure the variability in estimates (difference in slopes in this case) between random samples and 2) provide an interval of plausible values for the estimate (difference in slopes in this case).  
+This is called **Bootstrapping** and it is used to:
+
+1. Measure the variability in the estimate (the estimate is the difference in slopes in this case) between random samples and
+2. Provide an interval of plausible values for the estimate (the estimate is the difference in slopes in this case).
 
 Let's first look at the variability of the difference in slopes across the bootstrap samples. The standard deviation of the slopes will be similar to the std.error from the linear model output.
 
@@ -845,6 +879,8 @@ boot %>%
 tidy(lm.home4)
 ```
 
+This standard deviation is somewhat close to the $6.459$ in the Std. Error column of the `summary(lm.home4)` output above.
+
 To get an interval of plausible values, we look at the histogram and take the middle 95%. The lower end will be the 2.5th percentile and the upper end will be the 97.5th percentile.
 
 ```{r}
@@ -853,7 +889,7 @@ boot %>%
 ```
 
 ```{block, type="reflect"}
-Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes, with and without fireplaces?
+Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes (with and without fireplaces)?
 ```
 
 ## Logistic Regression
@@ -927,10 +963,16 @@ SpaceShuttle %>%
   theme_minimal()
 ```
 
+We see that for instances when the O-ring failed, the temperature of the ring tended to be lower.
+
 ```{r}
 model.glm <- glm(Fail ~ Temperature, data = SpaceShuttle, family = binomial)
 summary(model.glm)
 tidy(model.glm)
+```
+
+```{block, type="reflect"}
+What is the plot above telling us about the relationship between chance of failure and temperature?
 ```
 
 

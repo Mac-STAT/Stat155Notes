@@ -450,7 +450,7 @@ predict(lm.gpa, newdata = data.frame(high_GPA = 3.5))
 predict(lm.gpa, newdata = data.frame(high_GPA = 4.5))
 ```
 
-Does it make sense to use this model for high school GPA's > 4.5?  Some high schools have a max GPA of 5.0 due to weighting of advanced courses. 
+Does it make sense to use this model for high school GPA's > 4?  Some high schools have a max GPA of 5.0 due to weighting of advanced courses. 
 
 - What is the maximum high school GPA in this data set? 
 - What if your college doesn't allow for GPA's above 4.0? 
@@ -471,7 +471,7 @@ If the residuals were approximately unimodal and symmetric, we expect about 95% 
 hist(residuals(lm.gpa), main = "Distribution of residuals in the GPA model")
 ```
 
-Below we calculate $SSE$, the sum of squared residuals.
+Below we calculate $SSE$, the sum of squared residuals, and the standard deviation of the residuals, $s_e$.
 
 ```{r echo=TRUE}
 SSE = sum(residuals(lm.gpa)^2)
@@ -490,7 +490,7 @@ sd(sat$univ_GPA)
 
 *Without* knowing your high school GPA, we could have just guessed your college GPA as the mean college GPA in the sample, and this guess would be within $\pm 0.89$ of your actual college GPA. This is a higher margin of error than the approximate $0.56$ if we did use your high school GPA (in the simple linear regression model). We are able to predict your college GPA with a smaller margin of error than if we just guessed your college GPA with the mean. Our model has *explained* some (but not all) of the variation in college GPA.
 
-The standard deviation is based on the sum of squared total variation (variation around the mean),
+The standard deviation of college GPA is based on the sum of squared total variation, SSTO (variation around the mean),
 
 $$ SSTO = \sum{(y_i -\bar{y})^2} $$
 
@@ -500,7 +500,7 @@ $SSTO$ is the numerator of the standard deviation of $y$ (without knowing anythi
 (SSTO = sum((sat$univ_GPA - mean(sat$univ_GPA))^2))
 ```
 
-We define $SSTO$ because it will help to compare $SSTO$ to $SSE$ to obtain a measure of how well our models are **fitting** the data - how well they are predicting the outcome.
+We define $SSTO$ here because it will help to compare $SSTO$ to $SSE$ (sum of squared residuals from the model) to obtain a measure of how well our models are **fitting** the data - how well they are predicting the outcome.
 
 ### $R^2$
 
@@ -520,7 +520,6 @@ gpavar %>%
   ylab('Residuals') +
   xlab('Type of Residuals')
 ```
-
 
 
 

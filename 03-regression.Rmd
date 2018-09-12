@@ -757,22 +757,36 @@ $$ \hbox{Predicted Price} = 13599.16 + 5567.37 \times 1_{AnyFireplaceTRUE} + 111
 Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace.
 
 - Home with fireplace:    
-$$ \hbox{Predicted Price} = 13599.16 + 5567.37 \times 1 + 111.21 \times \hbox{Living.Area} = \$19,166.53 + \$111.21 \times \hbox{Living.Area} $$
+$$
+\begin{align*}
+\hbox{Predicted Price} &= 13599.16 + 5567.37 \times 1 + 111.21 \times \hbox{Living.Area} \\
+&= \$19,166.53 + \$111.21 \times \hbox{Living.Area}
+\end{align*}
+$$
 
 ```{r echo=TRUE}
 13599.16 + 5567.37*1
 ```
 
 - Home without fireplace:    
-$$ \hbox{Predicted Price} = 13599.16 + 5567.37 \times 0 + 111.21 \times \hbox{Living.Area} = \$13,599.16 + \$111.21 \times \hbox{Living.Area} $$
-
+$$
+\begin{align*}
+\hbox{Predicted Price} &= 13599.16 + 5567.37 \times 0 + 111.21 \times \hbox{Living.Area} \\
+&= \$13,599.16 + \$111.21 \times \hbox{Living.Area}
+\end{align*}
+$$
 
 If we keep Living.Area constant by considering two equally sized homes, then we'd expect the home with the fireplace to be worth \$5567.37 more than a home without a fireplace. We see this by taking the difference between the two equations:
 
-$$ \hbox{Predicted Price (with Fireplace)} - \hbox{Predicted Price (without Fireplace)} = (\$19,166.53 + \$111.21 \times \hbox{Living.Area}) - ( \$13599.16 + \$111.21 \times \hbox{Living.Area}) $$
-$$ = \$19,166.53 - \$13,599.16 = \$5567.37 $$
+$$ \hbox{Predicted Price (with Fireplace)} - \hbox{Predicted Price (without Fireplace)} $$
+$$
+\begin{align*}
+\,&= (\$19,166.53 + \$111.21 \times \hbox{Living.Area}) - ( \$13599.16 + \$111.21 \times \hbox{Living.Area})
+\,&= \$19,166.53 - \$13,599.16 = \$5567.37
+\end{align*}
+$$
 
-5567.37 is the difference between the intercepts.
+The difference between the intercepts is 5567.37.
 
 - Note this was the estimated coefficient for AnyFireplaceTRUE. 
 
@@ -828,10 +842,12 @@ Let's think about two types of homes: a home with one or more fireplaces and a h
 
 - Home with fireplace:    
 $$
+{\small
 \begin{align*}
 \hbox{Predicted Price} &= 40901.29 + -37610.41 \times 1 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 1 \\
 & = \$3,290.88 + \$119.21 \times \hbox{Living.Area}
 \end{align*}
+}
 $$
 
 ```{r echo=TRUE}
@@ -841,10 +857,12 @@ $$
 
 - Home without fireplace:    
 $$
+{\small
 \begin{align*}
 \hbox{Predicted Price} &= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 0 \\
 &= \$40,901.29 + \$92.36 \times \hbox{Living.Area}
 \end{align*}
+}
 $$
 
 We see a different slope and different intercepts for these two groups.

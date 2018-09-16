@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE)
 
 # Regression Models
 
-In our visualization of data, we've seen trends, patterns, and variation. Let's now endeavor to descrbe those trends, patterns, and variation more *precisely* and *quantitatively* by building statistical *models*.
+In our visualization of data, we've seen trends, patterns, and variation. Let's now endeavor to describe those trends, patterns, and variation more *precisely* and *quantitatively* by building statistical *models*.
 
 ## Goals for models
 
@@ -376,7 +376,7 @@ To interpret the slope causally, there would have to be **no confounding variabl
 
 Then what are we to do? We will get to **adjusting/controlling for** confounders in the section on multiple linear regression. 
 
-Multiple linear regression offers us a way to obtain causal effects of variables *if we use it carefully*. It will be tempting to say: control for everything we can! But we will see that this is not the correct thing to do, as there are very real dangers of over-controlling for variables. For now, let it suffice to say that multiple linear regression is as useful as the corn kerneler below. Immensely useful in the right cirumstances - but only those circumstances.
+Multiple linear regression offers us a way to obtain causal effects of variables *if we use it carefully*. It will be tempting to say: control for everything we can! But we will see that this is not the correct thing to do, as there are very real dangers of over-controlling for variables. For now, let it suffice to say that multiple linear regression is as useful as the corn kerneler below. Immensely useful in the right circumstances - but only those circumstances.
 
 ![Source: [Gizmodo](https://gizmodo.com/5988717/12-highly-specific-kitchen-gadgets)](https://i.kinja-img.com/gawker-media/image/upload/s--ko0l0gLh--/c_scale,f_auto,fl_progressive,q_80,w_800/18gkhag74ei0njpg.jpg)
 
@@ -871,7 +871,7 @@ We see a different slope and different intercepts for these two groups.
 
 We alluded earlier that multiple linear regression could provide estimates of causal effects in the right circumstances. What are those circumstances? When we include **all** confounding variables. This entails being specific about what a confounding variable is. A confounder is a **common cause** of both the causal variable of interest and the outcome. (e.g. Living area could be a confounder of fireplace presence and house price.)
 
-We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for undertanding how smoking affects lung cancer development. It is very important to consider whether a variable is a **mediator** of the relationship between the cause and the outcome. A mediator in this example could be tar. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk because it is not varying!
+We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for understanding how smoking affects lung cancer development. It is very important to consider whether a variable is a **mediator** of the relationship between the cause and the outcome. A mediator in this example could be tar. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk because it is not varying!
 
 Wait - we could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn't mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible, we have a starting ground for moving forward. We collect data, analyze how well our model predicts that data, and collect more data based on that, perhaps measuring more potential confounders as our scientific knowledge grows. We can also conduct sensitivity analyses by asking: how strongly must a confounder affect the variable of causal interest and the outcome to completely negate or reverse the association we see? Such endeavors and more are the subject of the field of *causal inference*.
 
@@ -1068,7 +1068,7 @@ Let's exponentiate both sides,
 $$\left( \frac{\hat{\pi}^*/(1-\hat{\pi}^*)}{\hat{\pi}/(1-\hat{\pi})}\right) = e^{b_1}$$
 ```
 
-We find that $e^{b_1} = e^{-0.232} = 0.793$ is the **odds ratio** based on increasing x by 1 unit. If a ratio is less than 1, that means that the denominator is greater than the numberator. In this case, it means that the estimated odds of o-ring failure decreases as you increase temperature by 1 degree. This makes sense since we saw that the chance of o-ring failure increases with colder temperatures. 
+We find that $e^{b_1} = e^{-0.232} = 0.793$ is the **odds ratio** based on increasing x by 1 unit. If a ratio is less than 1, that means that the denominator is greater than the numerator. In this case, it means that the estimated odds of o-ring failure decreases as you increase temperature by 1 degree. This makes sense since we saw that the chance of o-ring failure increases with colder temperatures. 
 
 ### Prediction
 

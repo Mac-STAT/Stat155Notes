@@ -39,6 +39,8 @@ Before we discuss the standard graphics, let's lay out the basic design principl
 
 7. **Annotate Appropriately** Informative text is crucial for providing data context. Make sure to use informative axis labels and titles. It may be worth adding text to explain extreme outliers.
 
+For examples of good data visualizations in the news, check out the New York Times column ["What's Going on in This Graph?"](https://www.nytimes.com/column/whats-going-on-in-this-graph).
+
 
 ## Anatomy of a ggplot command
 
@@ -68,7 +70,7 @@ require(dplyr)
 data(Whickham) #load data set from Whickham package
 
 Whickham <- Whickham %>%
-  mutate(ageCat = cut(age, 4)) #Create a new categorical variable with 4 categories based on age (equal length of age intervals)
+    mutate(ageCat = cut(age, 4)) #Create a new categorical variable with 4 categories based on age (equal length of age intervals)
 
 head(Whickham)
 ```
@@ -86,18 +88,18 @@ One of the best ways to show the distribution of one categorical variable is wit
 
 
 ```{r}
-#Numerical Summary (frequency and relative frequency)
+## Numerical summary (frequency and relative frequency)
 Whickham %>%
-  count(ageCat) %>%
-  mutate(relfreq = n / sum(n)) 
+    count(ageCat) %>%
+    mutate(relfreq = n / sum(n)) 
 
-#Graphical Summary (bar plot)
+## Graphical summary (bar plot)
 Whickham %>%
-  ggplot(aes(x = ageCat)) + 
-  geom_bar(fill="steelblue") + 
-  xlab('Age Categories in Years') + 
-  ylab('Counts') + 
-  theme_minimal()
+    ggplot(aes(x = ageCat)) + 
+    geom_bar(fill="steelblue") + 
+    xlab('Age Categories in Years') + 
+    ylab('Counts') + 
+    theme_minimal()
 ```
 
 ```{block type='reflect'}
@@ -116,7 +118,7 @@ knitr::include_graphics("Photos/pie.jpg")
 
 We are intentionally not showing you how to make a pie chart because a bar chart is a better choice. 
 
-Here is a good summary of why many people strongly dislike pie charts: http://www.businessinsider.com/pie-charts-are-the-worst-2013-6. Keep in mind Visualization Principle #4: Facilitate Comparisons.
+Here is a good summary of why many people strongly dislike pie charts: http://www.businessinsider.com/pie-charts-are-the-worst-2013-6. Keep in mind Visualization Principle #4: Facilitate Comparisons. We are much better at comparing heights of bars than areas for slices of a pie chart.
 
 
 ## Two Categorical Variables
@@ -130,12 +132,12 @@ There are a few options for visualizing the relationship between two categorical
 - The **height** of the bars shows the frequency of the categories within subsets.
 
 ```{r}
-#Numerical Summary (frequency and overall relative frequency)
+## Numerical summary (frequency and overall relative frequency)
 Whickham %>%
   count(outcome, smoker) %>%
   mutate(relfreq = n / sum(n))
 
-#Graphical Summary (side-by-side bar plot)
+## Graphical summary (side-by-side bar plot)
 Whickham %>%
   ggplot(aes(x = smoker, fill = outcome)) + 
   geom_bar(position = position_dodge()) + 
@@ -154,30 +156,31 @@ What do you notice? What do you wonder?
 Another way to show the same data is by stacking the bars on top of each other with a category. For a **stacked bar plot**,
 
 - The **height** of the entire bar shows the **marginal distribution** (frequency of the X variable, ignoring the other variable).
-- The **relative heights** show **conditional distributions** (frequencies within subsets), but it is hard to compare distributions between bars because the overall heights differ. 
+- The **relative heights** show **conditional distributions** (frequencies within subsets), but it is hard to compare distributions between bars because the overall heights differ.
+- The **widths** of the bars have no meaning.
 
 
 ```{r}
-#Numerical Summary (conditional distribution - conditioning on outcome)
+## Numerical summary (conditional distribution - conditioning on outcome)
 Whickham %>%
-  count(outcome, smoker) %>%
-  group_by(outcome) %>%
-  mutate(relfreq = n / sum(n)) 
+    count(outcome, smoker) %>%
+    group_by(outcome) %>%
+    mutate(relfreq = n / sum(n)) 
 
-#Numerical Summary (conditional distribution - conditioning on smoker)
+## Numerical summary (conditional distribution - conditioning on smoker)
 Whickham %>%
-  count(outcome, smoker) %>%
-  group_by(smoker) %>%
-  mutate(relfreq = n / sum(n)) 
+    count(outcome, smoker) %>%
+    group_by(smoker) %>%
+    mutate(relfreq = n / sum(n)) 
 
-#Graphical Summary (stacked bar plot)
+## Graphical summary (stacked bar plot)
 Whickham %>%
-  ggplot(aes(x = smoker, fill = outcome)) + 
-  geom_bar() + 
-  xlab('Smoker Status') + 
-  ylab('Counts') + 
-  scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 
-  theme_minimal()
+    ggplot(aes(x = smoker, fill = outcome)) + 
+    geom_bar() + 
+    xlab('Smoker Status') + 
+    ylab('Counts') + 
+    scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 
+    theme_minimal()
 ```
 
 ```{block type='reflect'}
@@ -186,42 +189,57 @@ What do you notice? What do you wonder?
 
 ### Stacked Bar Plot (Relative Frequencies)
 
-We can adjust the stacked bar plot to make the heights the same, so that you can compare conditional distributions. For a **stacked bar plot based on proportions**,
+We can adjust the stacked bar plot to make the heights the same, so that you can compare conditional distributions. For a **stacked bar plot based on proportions** (also called a **proportional bar plot**),
 
-- The **relative heights** show **conditional distributions** (relative frequencies within subsets)
-- The **width** has no meaning. 
+- The **relative heights** show **conditional distributions** (relative frequencies within subsets).
+- The **widths** of the bars have no meaning.
 
+The code below computes the conditional distributions manually first (fractions of outcomes within the two smoking groups). Then these calculations are plotted directly.
 
 ```{r}
 require(ggplot2)
 Whickham %>%
-  count(outcome, smoker) %>%
-  group_by(smoker) %>%
-  mutate(relfreq = n / sum(n)) %>%
-  ggplot(aes(x = smoker, y = relfreq, fill = outcome)) + 
-  geom_bar(stat = 'identity') + 
-  xlab('Smoker Status') + 
-  ylab('Proportion') + 
-  scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 
-  theme_minimal()
+    count(outcome, smoker) %>%
+    group_by(smoker) %>%
+    mutate(relfreq = n / sum(n)) %>%
+    ggplot(aes(x = smoker, y = relfreq, fill = outcome)) + 
+    geom_bar(stat = 'identity') + 
+    xlab('Smoker Status') + 
+    ylab('Proportion') + 
+    scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
+    theme_minimal()
+```
+
+Another way to make a proportional bar plot is to use the `position = "fill"`
+
+```{r}
+require(ggplot2)
+Whickham %>%
+    ggplot(aes(x = smoker, fill = outcome)) +
+    geom_bar(position = "fill") +
+    xlab('Smoker Status') + 
+    ylab('Proportion') + 
+    scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
+    theme_minimal()
 ```
 
 ### Mosaic Plot
 
-The best (Prof. H's opinion) graphic for two categorical variables is a variation on the stacked bar plot. The total heights of the bars are the same so we can compare the conditional distributions. For a **mosaic plot**, 
+The best (Prof. H's opinion) graphic for two categorical variables is a variation on the stacked bar plot called a **mosaic plot**. The total heights of the bars are the same so we can compare the conditional distributions. For a **mosaic plot**, 
 
 - The **relative height** of the bars shows the **conditional distribution** (relative frequency within subsets).
 - The **width** of the bars shows the **marginal distribution** (relative frequency of the X variable, ignoring the other variable).
+- Making mosaic plots in R requires another package: `ggmosaic`
 
 ```{r}
 require(ggmosaic)
 Whickham %>%
-  ggplot() +
-  geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) +
-  xlab('Smoker Status') + 
-  ylab('Counts') + 
-  scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 
-  theme_minimal()
+    ggplot() +
+    geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) +
+    xlab('Smoker Status') + 
+    ylab('Counts') + 
+    scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
+    theme_minimal()
 ```
 
 ```{block, type="reflect"}
@@ -238,13 +256,13 @@ Let's consider a third variable here, age distribution. We can create the same p
 
 ```{r}
 Whickham %>%
-  ggplot() +
-  geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) + 
-  facet_grid( . ~ ageCat) + 
-  xlab('Smoker Status') + 
-  ylab('Counts') + 
-  scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
-  theme_minimal()
+    ggplot() +
+    geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) + 
+    facet_grid( . ~ ageCat) + 
+    xlab('Smoker Status') + 
+    ylab('Counts') + 
+    scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
+    theme_minimal()
 ```
 ```{block, type="reflect"}
 What do you notice? What do you wonder?
@@ -269,54 +287,55 @@ Since sleep is vitally important to daily functioning, let's look at the number 
 
 ### Histogram
 
-The main graphical summary we use for quantitative variables is a histogram. It resembles a bar plot, but there are a few key differences: 
+One main graphical summary we use for quantitative variables is a histogram. It resembles a bar plot, but there are a few key differences:
 
-- The **height** of the bars shows either the **frequency within intervals** or the **density** (relative frequency per unit of measure, e.g. proportion of people per hour sleep)
+- The x-axis is a number line that is divided into intervals called **bins**. Bins technically do not all have to be of equal width but almost always are. When making histograms in R, R chooses a default bin width, but you have options to change the number and/or width of the bins/intervals.
+- The **height** of the bars shows either the **frequency within intervals** (counts of cases that fall into that bin/interval) or the **density** (fraction of cases that fall into that bin/interval).
 - Gaps between bars are meaningful. They indicate absense of values within an interval.
-- The x-axis is a number line and bars do not have to be of equal width (R chooses a default bin width, but you can change how many intervals and how large they are)
 
 ```{r}
 data(NHANES)
-
 NHANES %>%
-  ggplot(aes(x = SleepHrsNight)) +
-  geom_histogram(fill = "steelblue") + 
-  xlab('Hours of Sleep (hours)') + 
-  ylab('Counts') + 
-  theme_minimal() 
+    ggplot(aes(x = SleepHrsNight)) +
+    geom_histogram(fill = "steelblue") + 
+    xlab('Hours of Sleep (hours)') + 
+    ylab('Counts') + 
+    theme_minimal() 
 ```
 
-If we want to specify the width of the intervals or bins, we add one bit of code:
+Note the warning message above: "Removed __ rows containing non-finite values (stat_bin)." Sometimes there is missing information for a variable for some cases in the dataset. We cannot plot these because we don't know their values! This warning message is just a friendly reminder from R to let you know what it is doing.
+
+Also note the message that R gives about bin width to remind us that we can choose this if we wish. If we want to specify the width of the intervals or bins, we can specify `binwidth = DESIRED_BIN_WIDTH` within `geom_histogram`.
 
 ```{r}
 NHANES %>%
-  ggplot(aes(x = SleepHrsNight)) +
-  geom_histogram(binwidth = 1, fill = "steelblue") + 
-  xlab('Hours of Sleep (hours)') + 
-  ylab('Counts') + 
-  theme_minimal() 
+    ggplot(aes(x = SleepHrsNight)) +
+    geom_histogram(binwidth = 1, fill = "steelblue") + 
+    xlab('Hours of Sleep (hours)') + 
+    ylab('Counts') + 
+    theme_minimal() 
 ```
 
-Lastly, notice the y-axis has been the counts (or frequency) within each sleep hour interval. We can adjust this to **density**, which is relative frequency adjusted for the width of interval so that the sum of the areas of the bars (height x width) equals 1. 
+Lastly, notice that the y-axis in the previous two histograms has been the counts (or frequency) within each sleep hour interval. We can adjust this to **density**, which is relative frequency adjusted for the width of interval so that the sum of the areas of the bars (height x width) equals 1. 
 
 ```{r}
 NHANES %>%
-  ggplot(aes(x = SleepHrsNight)) +
-  geom_histogram(aes(y = ..density..), binwidth = 1, fill = "steelblue") + 
-  geom_density(alpha = 0.2, fill = "steelblue", adjust = 3) + 
-  xlab('Hours of Sleep (hours)') + 
-  ylab('Density') + 
-  theme_minimal() 
+    ggplot(aes(x = SleepHrsNight)) +
+    geom_histogram(aes(y = ..density..), binwidth = 1, fill = "steelblue") + 
+    geom_density(alpha = 0.2, fill = "steelblue", adjust = 3) + 
+    xlab('Hours of Sleep (hours)') + 
+    ylab('Density') + 
+    theme_minimal() 
 ```
 
-The smooth line on this plot is called a **density plot**. It is essentially a smoother version of the histogram. Both the area under a density plot and the area of all the rectangles in a density histogram equal 1.
+The smooth curved line on this plot is called a **density plot**. It is essentially a smoother version of the histogram. Both the area under a density plot and the total area of all the rectangles in a density histogram equal 1.
 
-When verbally describing a distribution, we focus on three aspects of the histogram:
+When describing a distribution, we focus on three aspects of the histogram:
 
 - **Shape:** Is it **symmetric** (can you fold it in half and the sides match up)? or is it **skewed to the right or left**? (A distribution is **left-skewed** if there is a long left tail and **right-skewed** if it has a long right tail.) How many **modes** ("peaks"/"bumps" in the distribution) do you see?
 - **Center:** Where is a typical value located?
 - **Spread** (or variation): How spread out are the values? Concentrated around one or more values or spread out?
-- **Unusual Features:** Are there **outliers** (points far from the rest)? Are there gaps? Why?
+- **Unusual features:** Are there **outliers** (points far from the rest)? Are there gaps? Why?
 
 
 Here is another data set for comparison. Here are the annual salaries for the highest paid CEOs in 2016 (Source: NYTimes). To get the data, we are scraping the data from a NYTimes website. For fun, you can look at the code below. 
@@ -325,32 +344,32 @@ Here is another data set for comparison. Here are the annual salaries for the hi
 nyturl <- 'https://www.nytimes.com/interactive/2017/05/26/business/highest-paid-ceos.html?mcubz=0'
 dat <- read_html(nyturl)
 ceo <- dat %>% 
-  html_nodes(".nytg-compensation , .nytg-year") %>% 
-  html_text() %>% 
-  str_replace('\\$|-','') #webscraping data 
+    html_nodes(".nytg-compensation , .nytg-year") %>% 
+    html_text() %>% 
+    str_replace('\\$|-','') #webscraping data 
 ceo <- data.frame(matrix(ceo,ncol = 2,byrow = TRUE))
 names(ceo) <- c('year','salary')
 ceo$salary <- as.numeric(ceo$salary) 
 ceo <- ceo %>% 
-  filter(year == '2016')
+    filter(year == '2016')
 ```
 
 Let's create a density histogram of the annual salaries for the highest paid CEO's in the U.S. in 2016.
 
 ```{r}
 ceo %>%
-  ggplot(aes(x = salary)) +
-  geom_histogram(aes(y = ..density..), binwidth = 15, fill = "steelblue") + 
-  geom_density(alpha = 0.2, fill = "steelblue") + 
-  xlab('Salary ($ Millions)') + 
-  ylab('Counts') + 
-  theme_minimal() 
+    ggplot(aes(x = salary)) +
+    geom_histogram(aes(y = ..density..), binwidth = 15, fill = "steelblue") + 
+    geom_density(alpha = 0.2, fill = "steelblue") + 
+    xlab('Salary ($ Millions)') + 
+    ylab('Counts') + 
+    theme_minimal() 
 ```
 
 We note that some of the highest salaries were close to 200 million U.S. dollars (in 2016), but the majority of the salaries in this sample are closer to 50 million U.D. dollars.
 
 ```{block, type="reflect"}
-Is this distribution of salaries left-skewed or right-skewed? In what populations do you think salaries would be left-skewed? Right-skewed?
+Is this distribution of salaries left-skewed or right-skewed? In what populations do you think salaries might be left-skewed? Right-skewed?
 ```
 
 ### Center
@@ -368,20 +387,29 @@ There are some choices for numerically summarizing the center of a distribution:
 The greek capital letter sigma, $\sum$, is used in mathematics to denote a sum. We let $y_i$ represent the value of the $i$th person for a variable called $y$. So $\sum^n_{i=1}y_i$ is the sum of all the $n$ values of a variable $y$, all the way from the 1st person to the $n$th person.
 ```
 
-We can calculate all of these in R. 
+We can calculate all of these in R.
+
+- **Hours of sleep per night from the NHANES dataset**
 
 ```{r}
 summary(NHANES$SleepHrsNight) # The $ extracts a certain column of the data set
 mean(NHANES$SleepHrsNight, na.rm = TRUE) # na.rm = TRUE removes missing values
 median(NHANES$SleepHrsNight, na.rm = TRUE)
-mean(NHANES$SleepHrsNight, trim = 0.05, na.rm = TRUE) # Trim 5% from both tails before taking mean
+mean(NHANES$SleepHrsNight, trim = 0.05, na.rm = TRUE) # Trimmed mean: trim 5% from both tails before taking mean
+```
 
+- **CEO salary information from NYT**
 
+```{r}
 summary(ceo$salary) # Note the differences between mean and median
 mean(ceo$salary) # Arthimetic average
 median(ceo$salary) # Middle number
 mean(ceo$salary,trim = 0.05)  # Trimmed mean falls in between
 ```
+
+Note that the mean, median, and trimmed mean are all fairly close for the sleep hours distribution, which looks fairly symmetric.
+
+Note also that the mean, median, and trimmed mean are somewhat different for the salary distribution, which looks right skewed. Often with right skewed distributions, the mean tends to be higher than the median because particularly large values are being summed in the calculation. The median and trimmed mean are not as sensitive to these outliers because of the sorting that is involved in their calculation.
 
 ### Boxplot
 
@@ -400,20 +428,20 @@ Here is a boxplot of the sleep amount from NHANES.
 
 ```{r}
 NHANES %>%
-  ggplot(aes(y = SleepHrsNight)) +
-  geom_boxplot() + 
-  ylab('Hours of Sleep (hours)') + 
-  theme_minimal() 
+    ggplot(aes(y = SleepHrsNight)) +
+    geom_boxplot() + 
+    ylab('Hours of Sleep (hours)') + 
+    theme_minimal() 
 ```
 
 Compare that to the boxplot of the CEO salaries. 
 
 ```{r echo=TRUE}
 ceo %>%
-  ggplot(aes(y = salary)) +
-  geom_boxplot() + 
-  ylab('Salary ($M)') + 
-  theme_minimal() 
+    ggplot(aes(y = salary)) +
+    geom_boxplot() + 
+    ylab('Salary ($M)') + 
+    theme_minimal() 
 ```
 
 Note: In these 2 plots above, the x-axis has number labels, but they don't mean anything.
@@ -453,7 +481,7 @@ abline(v = mean(ceo$salary, trim = 0.05, na.rm = TRUE), col='purple',lty=4)
 For CEO salaries, the mean and 5% trimmed mean are a bit higher than the median. Note also the mean is always pulled toward the long tail. 
 
 ```{block, type="reflect"}    
-What would the boxplot look like if all of the values were exactly the same?
+What would the boxplot look like if all of the values were exactly the same? Sometimes when making multiple boxplots for each of multiple groups, a group may only have one value or a small number of values that all happen to be identical. What will this look like?
 ```
 
 ### Spread
@@ -479,12 +507,18 @@ There are some choices for numerically summarizing the spread of a distribution:
 
 We can calculate all of these in R.
 
+- **Hours of sleep per night from the NHANES dataset**
+
 ```{r tidy=TRUE, echo=TRUE}
 diff(range(NHANES$SleepHrsNight,na.rm = TRUE)) # range gives max and min; take difference
 IQR(NHANES$SleepHrsNight,na.rm = TRUE) # Q3-Q1
 sd(NHANES$SleepHrsNight,na.rm=TRUE) # standard deviation
 var(NHANES$SleepHrsNight,na.rm=TRUE) # variance
+```
 
+- **CEO salary information from NYT**
+
+```{r tidy=TRUE, echo=TRUE}
 diff(range(ceo$salary))
 IQR(ceo$salary)
 sd(ceo$salary)
@@ -511,17 +545,19 @@ What percentage of the data is between the purple solid lines (length of interva
 What percentage of the data is between the green dashed lines (length of interval is 2*SD)?
 ```
 
-Below is code to check whether a value is between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean. 
+The code below computes the fraction of data points that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean. 
 
 ```{r}
 sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
+So with this generated data, about 68% of the data values fall within 1 SD of the mean.
+
 ### Z-scores
 
 How do you decide when an outlier is really unusual (think: athletic victory being very impressive or a data point that may be an error)?
 
-If the observation is far from the rest of the measurements in the data, we tend to say that the value is unusual. We want to quantify this idea of "unusual."
+If the observation is far from the rest of the measurements in the data, we tend to say that the value is unusual. We want to quantify this idea of "unusual".
 
 To do this, we often calculate a **z-score**, a standardized data value which we will denote with $z$.
 
@@ -533,9 +569,9 @@ To do this, we often calculate a **z-score**, a standardized data value which we
 The z-score just tells you how many standard deviations the observation is above or below the mean. 
 
 ```{block, type='reflect'}
-Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5. That means that you got an 85 on the exam because your exam is one SD above the mean ($mean + z*SD = 80 + 1*5$).
+Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5. That means that you got an 85 on the exam because your exam is one SD above the mean ($mean + z \times SD = 80 + 1 \times 5$).
 
-If you got a z = -2 on an exam with mean = 80 and SD = 5, that means you got a 70 on the exam because your exam is two SD below the mean  ($mean + z*SD = 80 + -2*5$).
+If you got a z = -2 on an exam with mean = 80 and SD = 5, that means you got a 70 on the exam because your exam is two SD below the mean  ($mean + z \times SD = 80 + -2 \times 5$).
 ```
 
 In general, it is quite common to have z-scores between -3 and 3, but fairly unusual to have them greater than 3 or less than -3. 
@@ -546,7 +582,7 @@ Often, if you have a **unimodal, symmetric distribution**, z-score values will b
 - between -2 and 2 about 95% of the time, and 
 - between -3 and 3 about 99.7% of the time. 
 
-This will not be true always, but it will be true for a particularly special distribution that we will see in the next few chapter when we cover models. (This distribution is called the **normal distribution** or **Gaussian distribution**.)
+This will not be true always, but it will be true for a particularly special distribution that we will see later when we cover models. (This distribution is called the **normal distribution** or **Gaussian distribution**.)
 
 ```{block, type='math'}
 (Optional) Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k$ > 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than $k$ is less than or equal to $1/k^2$,
@@ -567,7 +603,7 @@ This is true for any shaped distribution (skewed, bimodal, etc.).
 In summary, for a quantitative variable,
 
 - Use a histogram to display the distribution of one variable and describe the shape and any unusual features.
-- For "well behaved" distributions (symmetric, unimodal, no outliers), use the mean and standard deviation to describe the center and spread. Then z-scores will roughly follow the 68-95-99.7 rule stated above. 
+- For "well-behaved" distributions (symmetric, unimodal, no outliers), use the mean and standard deviation to describe the center and spread. Then z-scores will roughly follow the 68-95-99.7 rule stated above. 
 - For others, use the IQR and median. You can report both mean and median, but it's usually a good idea to state why.
 
 
@@ -589,15 +625,14 @@ What are the ethical implications of collecting binary gender if individuals don
 
 ```{r}
 NHANES %>%
-  ggplot(aes(x = SleepHrsNight)) +
-  geom_histogram(binwidth = 1, fill = "steelblue") + 
-  xlab('Hours of Sleep (hours)') + 
-  facet_grid(~ Gender) + 
-  theme_minimal() 
+    ggplot(aes(x = SleepHrsNight)) +
+    geom_histogram(binwidth = 1, fill = "steelblue") + 
+    xlab('Hours of Sleep (hours)') + 
+    facet_grid(~ Gender) + 
+    theme_minimal()
 ```
 
-
-
+Do you notice any differences in sleep hour distributions between males and females?
 
 **Does the number of children a mother has explain the variability in the hours of sleep?** 
 
@@ -605,62 +640,67 @@ NHANES %>%
 Who have we excluded from our analysis by asking this question?
 ```
 
-```{r}
+```{r fig.width=10}
 NHANES %>%
-  filter(!is.na(nBabies)) %>% 
-  ggplot(aes(x = SleepHrsNight)) +
-  geom_histogram(binwidth = 1, fill = "steelblue") + 
-  xlab('Hours of Sleep (hours)') + 
-  facet_grid(~ factor(nBabies)) + 
-  theme_minimal() 
+    filter(!is.na(nBabies)) %>% 
+    ggplot(aes(x = SleepHrsNight)) +
+    geom_histogram(binwidth = 1, fill = "steelblue") + 
+    xlab('Hours of Sleep (hours)') + 
+    facet_wrap(~ factor(nBabies), ncol = 4) + 
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    theme_minimal()
 ```
 
+The 0 to 12 labels at the top of each of these panels correspond to the number of babies a mother had. Do you notice any differences in sleep hour distributions between these groups?
 
 **Does the number of days someone has felt depressed explain the variability in the hours of sleep?**
 
 ```{r}
 NHANES %>%
-  ggplot(aes(x = SleepHrsNight)) +
-  geom_histogram(binwidth = 1, fill = "steelblue") + 
-  xlab('Hours of Sleep (hours)') + 
-  facet_grid(~ Depressed) + 
-  theme_minimal() 
+    ggplot(aes(x = SleepHrsNight)) +
+    geom_histogram(binwidth = 1, fill = "steelblue") + 
+    xlab('Hours of Sleep (hours)') + 
+    facet_grid(~ Depressed) + 
+    theme_minimal() 
 ```
 
-```{block type='reflect'}
-What do you notice? What do you wonder?
+What's the rightmost "NA" category? Some individuals in this study did not answer questions about days that they might have felt depressed, but they did report their hours of sleep per night.
+
+```{block, type='reflect'}
+What selection biases or information biases might be at play here?
 ```
+
 ### Multiple Boxplots
 
 Let's visualize the same information but with boxplots instead of histograms and see if we can glean any other information.
 
 ```{r}
 NHANES %>%
-  ggplot(aes(x = Gender, y = SleepHrsNight)) +
-  geom_boxplot() + 
-  ylab('Hours of Sleep (hours)') + 
-  xlab('Binary Gender') + 
-  theme_minimal() 
+    ggplot(aes(x = Gender, y = SleepHrsNight)) +
+    geom_boxplot() + 
+    ylab('Hours of Sleep (hours)') + 
+    xlab('Binary Gender') + 
+    theme_minimal() 
 ```
 
 
 ```{r}
 NHANES %>%
-  ggplot(aes(x = factor(nBabies), y = SleepHrsNight)) +
-  geom_boxplot() + 
-  ylab('Hours of Sleep (hours)') + 
-  xlab('Number of Babies') + 
-  theme_minimal() 
+    ggplot(aes(x = factor(nBabies), y = SleepHrsNight)) +
+    geom_boxplot() + 
+    ylab('Hours of Sleep (hours)') + 
+    xlab('Number of Babies') + 
+    theme_minimal() 
 ```
 
 
 ```{r}
 NHANES %>%
-  ggplot(aes(x = factor(Depressed), y = SleepHrsNight)) +
-  geom_boxplot() + 
-  ylab('Hours of Sleep (hours)') + 
-  xlab('Days Depressed') + 
-  theme_minimal() 
+    ggplot(aes(x = factor(Depressed), y = SleepHrsNight)) +
+    geom_boxplot() + 
+    ylab('Hours of Sleep (hours)') + 
+    xlab('Days Depressed') + 
+    theme_minimal() 
 ```
 
 ```{block type='reflect'}
@@ -675,7 +715,7 @@ What if there were no REAL difference? Then the Depressed group labels wouldn't 
 
 **Investigation Plan:**
 
-1. Take all of the observed data on sleep and randomly shuffle into new groups (of the same size as before).
+1. Take all of the observed data on sleep and randomly shuffle into new groups (of the same size as before). This breaks any associations between Depressed group labels and hours of sleep.
 2. Calculate the difference in mean hours of sleep between the groups. Record it.
 3. Repeat 1 and 2 many times (say 1000 times).
 4. Look at the differences based on random shuffles & compare to the observed difference.
@@ -702,7 +742,7 @@ sim %>%
 ```
 
 ```{block, type='reflect'}
-What do you notice? What do you wonder?
+The observed difference in mean hours of sleep (red line) is quite far from the distribution of differences that results when we break the association between depression status and sleep hours (through randomized shuffling of group labels). What do you think this indicates? What evidence for or against a real population differnce might this provide?
 ```
 
 ## Two Quantitative Variables
@@ -719,19 +759,19 @@ When you have two quantitative variables, a **scatterplot** is the main appropri
 bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
 
 bodyfat %>%
-  ggplot(aes(x = Neck, y = Chest)) +
-  geom_point(color = 'steelblue') + 
-  xlab('Neck size (cm)') + 
-  ylab('Chest size (cm)') +
-  theme_minimal()
+    ggplot(aes(x = Neck, y = Chest)) +
+    geom_point(color = 'steelblue') + 
+    xlab('Neck size (cm)') + 
+    ylab('Chest size (cm)') +
+    theme_minimal()
 ```
 
 What do you notice about:
 
-1. **Direction** of Relationship (positive, negative, neutral)
-2. **Form** of Relationship (linear, curved, none, other)
-3. **Strength** of Relationship (compactness around the relationship)
-4. **Unusual** Features (outliers, differences in variability across x)
+1. **Direction** of relationship (positive, negative, neutral)
+2. **Form** of relationship (linear, curved, none, other)
+3. **Strength** of relationship (compactness around the relationship)
+4. **Unusual** features (outliers, differences in variability across $x$)
 
 ```{block type='reflect'}
 How might you use this information to determine shirt sizes for your new business venutre?
@@ -739,7 +779,9 @@ How might you use this information to determine shirt sizes for your new busines
 
 Suppose instead of *Chest* in inches and *Neck size* in cm, we switched to inches and plotted *Chest* and *Neck size* in inches. 
 
-**Does the strength change?**
+**Does the strength of the relationship change?**
+
+Look at the plot in inches below. Does this plot look the same as the centimeters plot?
 
 ```{r}
 bodyfat %>%
@@ -753,26 +795,28 @@ bodyfat %>%
 
 ### Correlation Coefficient
 
-Since shifting (adding or subtracting) and scaling (multiplying or dividing) make no difference in the strength of the relationship, let's standardize both variables into z-scores and replot (and add some color):
+Since shifting (adding or subtracting) and scaling (multiplying or dividing) make no difference in the strength of the relationship, let's standardize both variables into z-scores (recall z-scores from Section \@ref(intro-zscore).) and replot (and add some color):
 
-```{r, echo=FALSE}
+```{r echo=FALSE}
 bodyfat <- bodyfat %>%
-  mutate(zNeck = scale(Neck), zChest = scale(Chest), Product = sign(zChest*zNeck))
+    mutate(zNeck = scale(Neck), zChest = scale(Chest), Product = sign(zChest*zNeck))
 
 bodyfat %>%
-  ggplot(aes(x = zNeck, y = zChest, color = factor(Product))) +
-  geom_point() +
-  geom_hline(yintercept = 0) +
-  geom_vline(xintercept = 0) +
-  xlab('Z-scores of Neck size') + 
-  ylab('Z-scores of Chest size') +
-  guides(color = guide_legend(title = "Sign of Product")) +
-  theme_minimal()
+    ggplot(aes(x = zNeck, y = zChest, color = factor(Product))) +
+    geom_point() +
+    geom_hline(yintercept = 0) +
+    geom_vline(xintercept = 0) +
+    xlab('Z-scores of Neck size') + 
+    ylab('Z-scores of Chest size') +
+    guides(color = guide_legend(title = "Sign of product\nof Z-scores")) +
+    theme_minimal() +
+    coord_cartesian(xlim = c(-3.5,3.5), ylim = c(-3.5,3.5)) +
+    annotate("text", x = c(3, -3, -3, 3), y = c(3.5, 3.5, -3.5, -3.5), label = paste("Quadrant", 1:4))
 ```
 
-The blue points in the upper right and lower left quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size or they are below average in both Neck Size and Chest Size. If we multiply the x and y values for the blue points, we will get a positive value. 
+The blue points in the upper right and lower left quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the x and y valeus for the blue points, we will get a positive value. 
 
-The red points in the upper left and lower right quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size or they are below average in Neck Size and  above average in Chest Size. If we multiply the x and y values for the red points, we will get a negative value. 
+The red points in the upper left and lower right quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size or they are below average in Neck Size and above average in Chest Size. If we multiply the x and y values for the red points, we will get a negative value. 
 
 ```{block type='reflect'}
 If we were to have a weaker positive relationship, how would this plot change?
@@ -782,20 +826,26 @@ If we were to have a negative relationship, how would this plot change?
 
 We want one number to represent **strength** and **direction** of a linear relationship.
 
-- Points in the $1^{st}$ and $3^{rd}$ quadrants (blue) have the **same sign**.
-- Points in the $2^{nd}$ and $4^{th}$ (red) have **opposite signs.**
+- Points in Quadrants 1 and 3 (blue) have the Z-scores of the **same sign**.
+- Points in Quadrants 2 and 4 (red) have Z-scores of the **opposite sign**.
 
-**What if we took the product of the $z$-scores for x and y variables?**
+**What if we took the product of the $z$-scores for $x$ and $y$ variables?**
 
-An individual far above the means in both or far below the means in both will have a very large, positive product of z-scores. 
+Situation 1: An individual far above the means in both the $x$ and $y$ variables or far below the means in both the $x$ and $y$ variables will have a very large, positive product of z-scores.
 
-An individual far above the means in x and far below the mean in y will have a very large, negative product of z-scores. 
+Situation 2: An individual far above the mean in $x$ and far below the mean in $y$ will have a very large, negative product of z-scores. (The same goes for low $x$ and high $y$.)
 
 The almost *average* of products of the $z$-scores is the **correlation coefficient**,
 
 $$ r_{x,y} = \frac{\sum z_x z_y}{n-1} $$
 
 $r_{x,y}$ is the correlation coefficient between variables $x$ and $y$.
+
+Some observations:
+
+- If most of our data points follow Situation 1, the correlation coefficient is an average of mostly large postive values. Thus the correlation coefficient will be high and positive.
+- If most of our data points follow Situation 2, the correlation coefficient is an average of mostly large negative values. Thus the correlation coefficient will be high and negative.
+- If about an equal number of data points follow Situation 1 and Situation 2, we will be averaging a balance of positive and negative numbers, which will be close to zero. Thus the correlation coefficient will be close to zero.
 
 **Which points contribute the most to this average?**
 
@@ -825,49 +875,68 @@ cor(subset_bodyfat$Neck, subset_bodyfat$Chest) # Only middle subset of data poin
 
 * $r_{x,y} = r_{y,x}$, it doesn't matter which is $x$ and which is $y$.
 
-* $r_{ax+b, cy+d} = r_{x,y}$,   Linear change of scale doesn't affect $r$. Why?
+* $r_{ax+b, cy+d} = r_{x,y}$, linear change of scale doesn't affect $r$. Why?
 
-* $r$ measures strength of *linear* relationship -- not curved
+* $r$ measures strength of *linear* relationship (not a curved relationship)
 
-* one outlier can completely change $r$
+* One outlier can completely change $r$.
 
 Let's look at a few scatterplot examples and the corresponding correlation.
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE}
 require(mvtnorm)
-set.seed(123)
-d <- data.frame(rmvnorm(100,c(2,3), matrix(c(1,0,0,1),2)))
-names(d) <- c('x','y')
-d %>%
-  ggplot(aes(x=x,y=y)) +
-  geom_point() + 
-  theme_minimal() +
-  ggtitle('r = 0')
+corr_explanation_plot <- function(data, title = "") {
+    data <- data %>%
+        mutate(zx = scale(x), zy = scale(y), product = zx*zy, product_sign = sign(zx*zy))
+    par(mfrow = c(1,3))
+    plot(data$x, data$y, pch = 16, bty = "n", xlab = "x", ylab = "y", main = title)
+    colors <- ifelse(data$product_sign > 0, "#00BFC4", "#F8766D")
+    plot(data$zx, data$zy, pch = 16, col = colors, bty = "n", xlab = "Z-score for x", ylab = "Z-score for y", ylim = range(data$zy)+c(0,1))
+    abline(h = 0, lty = "dashed", col = "gray50")
+    segments(x0 = 0, y0 = min(data$zy)-1, y1 = max(data$zy), lty = "dashed", col = "gray50")
+    legend(x = -1, y = max(data$zy)+1, legend = c("Pos", "Neg"), horiz = TRUE, title = "Sign of Z-score product", fill = c("#00BFC4", "#F8766D"), bty = "n")
+    # prop_pos_neg <- table(data$product_sign) %>% prop.table %>% as.matrix
+    # barplot(prop_pos_neg, col = c("#F8766D", "#00BFC4"), legend.text = c(-1,1), args.legend = c(horiz = TRUE, bty = "n", x = "top"), ylim = c(0, 1.1), main = "Fraction of points with positive\nor negative Z-score product")
+    sum_pos <- sum(data$product[data$product_sign > 0])
+    sum_neg <- abs(sum(data$product[data$product_sign < 0]))
+    barplot(matrix(c(sum_neg, sum_pos)), col = c("#F8766D", "#00BFC4"), main = "Sum (magnitude) of positive\nand negative Z-score products")
+}
 
-d <- d %>% bind_rows(d, data.frame(x = 15, y = 15))
-d %>%
-  ggplot(aes(x=x,y=y)) +
-  geom_point() + 
-  theme_minimal() +
-  ggtitle('Was: r = 0, Now with Outlier: r = 0.38')
+set.seed(1)
+d1 <- data.frame(rmvnorm(200,c(2,3), matrix(c(1,0,0,1),2)))
+names(d1) <- c("x","y")
+cor(d1$x, d1$y)
+corr_explanation_plot(d1, title = "r = 0")
 
+d2 <- d1 %>% bind_rows(d1, data.frame(x = 15, y = 15))
+new_corr <- cor(d2$x, d2$y)
+corr_explanation_plot(d2, title = paste("Previous plot + outlier: r =", round(new_corr, 2)))
 
-d <- data.frame(rmvnorm(100,c(2,3), matrix(c(1,0.9,0.9,1),2)))
-names(d) <- c('x','y')
-d %>%
-  ggplot(aes(x=x,y=y)) +
-  geom_point() + 
-  theme_minimal() +
-  ggtitle('r = 0.9')
+## Positive correlations
+d3 <- data.frame(rmvnorm(200,c(2,3), matrix(c(1,0.9,0.9,1),2)))
+names(d3) <- c("x","y")
+corr_explanation_plot(d3, title = "r = 0.9")
 
+d4 <- data.frame(rmvnorm(200,c(2,3), matrix(c(1,0.5,0.5,1),2)))
+names(d4) <- c("x","y")
+corr_explanation_plot(d4, title = "r = 0.5")
 
-d <- data.frame(rmvnorm(100,c(2,3), matrix(c(1,-0.6,-0.6,1),2)))
-names(d) <- c('x','y')
-d %>%
-  ggplot(aes(x=x,y=y)) +
-  geom_point() + 
-  theme_minimal() +
-  ggtitle('r = -0.6')
+d5 <- data.frame(rmvnorm(200,c(2,3), matrix(c(1,0.2,0.2,1),2)))
+names(d5) <- c("x","y")
+corr_explanation_plot(d5, title = "r = 0.2")
+
+## Negative correlations
+d6 <- data.frame(rmvnorm(200,c(2,3), matrix(c(1,-0.9,-0.9,1),2)))
+names(d6) <- c("x","y")
+corr_explanation_plot(d6, title = "r = -0.9")
+
+d7 <- data.frame(rmvnorm(200,c(2,3), matrix(c(1,-0.5,-0.5,1),2)))
+names(d7) <- c("x","y")
+corr_explanation_plot(d7, title = "r = -0.5")
+
+d8 <- data.frame(rmvnorm(200,c(2,3), matrix(c(1,-0.2,-0.2,1),2)))
+names(d8) <- c("x","y")
+corr_explanation_plot(d8, title = "r = -0.2")
 ```
 
 ```{block, type='math'}

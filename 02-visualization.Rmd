@@ -35,7 +35,7 @@ Before we discuss the standard graphics, let's lay out the basic design principl
 
 5. **Use Contrast** Humans have developed to seek out visual contrast. When choosing colors and annotation, strive for more contrast in luminance (white to dark) to make it easier for others to visually perceive. 
 
-6. **Use Color Appropriately** Think about your audience. A small proportion of the population is color-blind; try printing it in grey scale to see if it is still effective. Also, every culture has different associations with colors; ask others for feedback on color choices. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting key points. 
+6. **Use Color Appropriately** Think about your audience. A small proportion of the population is color-blind; try printing it in grayscale to see if it is still effective. Also, every culture has different associations with colors; ask others for feedback on color choices. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting key points. 
 
 7. **Annotate Appropriately** Informative text is crucial for providing data context. Make sure to use informative axis labels and titles. It may be worth adding text to explain extreme outliers.
 
@@ -283,7 +283,7 @@ Now look at the mortality rates within each age category. The 20-year mortality 
 
 Next, we use data from one of the largest ongoing health studies in the USA, named NHANES. In particular, we will focus on data from the NHANES between 2009-2012 (Source: CDC). For more info about NHANES: https://www.cdc.gov/nchs/nhanes/index.htm.
 
-Since sleep is vitally important to daily functioning, let's look at the number of hours of sleep respondants reported. 
+Since sleep is vitally important to daily functioning, let's look at the number of hours of sleep respondents reported. 
 
 ### Histogram
 
@@ -291,7 +291,7 @@ One main graphical summary we use for quantitative variables is a histogram. It 
 
 - The x-axis is a number line that is divided into intervals called **bins**. Bins technically do not all have to be of equal width but almost always are. When making histograms in R, R chooses a default bin width, but you have options to change the number and/or width of the bins/intervals.
 - The **height** of the bars shows either the **frequency within intervals** (counts of cases that fall into that bin/interval) or the **density** (fraction of cases that fall into that bin/interval).
-- Gaps between bars are meaningful. They indicate absense of values within an interval.
+- Gaps between bars are meaningful. They indicate absence of values within an interval.
 
 ```{r}
 data(NHANES)
@@ -384,7 +384,7 @@ There are some choices for numerically summarizing the center of a distribution:
     + A good compromise, but not widely used.
     
 ```{block, type="math"}    
-The greek capital letter sigma, $\sum$, is used in mathematics to denote a sum. We let $y_i$ represent the value of the $i$th person for a variable called $y$. So $\sum^n_{i=1}y_i$ is the sum of all the $n$ values of a variable $y$, all the way from the 1st person to the $n$th person.
+The Greek capital letter sigma, $\sum$, is used in mathematics to denote a sum. We let $y_i$ represent the value of the $i$th person for a variable called $y$. So $\sum^n_{i=1}y_i$ is the sum of all the $n$ values of a variable $y$, all the way from the 1st person to the $n$th person.
 ```
 
 We can calculate all of these in R.
@@ -608,7 +608,7 @@ In summary, for a quantitative variable,
 
 
 
-## One Quantitive Variable and One Categorical Variable
+## One Quantitative Variable and One Categorical Variable
 
 Let's return to the NHANES data. We noticed variation in the amount people sleep. Why do some people sleep more than others? Are there any other characteristics that may be able to *explain that variation*?
 
@@ -742,7 +742,7 @@ sim %>%
 ```
 
 ```{block, type='reflect'}
-The observed difference in mean hours of sleep (red line) is quite far from the distribution of differences that results when we break the association between depression status and sleep hours (through randomized shuffling of group labels). What do you think this indicates? What evidence for or against a real population differnce might this provide?
+The observed difference in mean hours of sleep (red line) is quite far from the distribution of differences that results when we break the association between depression status and sleep hours (through randomized shuffling of group labels). What do you think this indicates? What evidence for or against a real population difference might this provide?
 ```
 
 ## Two Quantitative Variables
@@ -774,7 +774,7 @@ What do you notice about:
 4. **Unusual** features (outliers, differences in variability across $x$)
 
 ```{block type='reflect'}
-How might you use this information to determine shirt sizes for your new business venutre?
+How might you use this information to determine shirt sizes for your new business venture?
 ```
 
 Suppose instead of *Chest* in inches and *Neck size* in cm, we switched to inches and plotted *Chest* and *Neck size* in inches. 
@@ -795,7 +795,7 @@ bodyfat %>%
 
 ### Correlation Coefficient
 
-Since shifting (adding or subtracting) and scaling (multiplying or dividing) make no difference in the strength of the relationship, let's standardize both variables into z-scores (recall z-scores from Section \@ref(intro-zscore).) and replot (and add some color):
+Since shifting (adding or subtracting) and scaling (multiplying or dividing) make no difference in the strength of the relationship, let's standardize both variables into z-scores (recall z-scores from Section \@ref(intro-zscore)). Then we replot and add some color:
 
 ```{r echo=FALSE}
 bodyfat <- bodyfat %>%
@@ -814,7 +814,7 @@ bodyfat %>%
     annotate("text", x = c(3, -3, -3, 3), y = c(3.5, 3.5, -3.5, -3.5), label = paste("Quadrant", 1:4))
 ```
 
-The blue points in the upper right and lower left quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the x and y valeus for the blue points, we will get a positive value. 
+The blue points in the upper right and lower left quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the x and y values for the blue points, we will get a positive value. 
 
 The red points in the upper left and lower right quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size or they are below average in Neck Size and above average in Chest Size. If we multiply the x and y values for the red points, we will get a negative value. 
 
@@ -843,7 +843,7 @@ $r_{x,y}$ is the correlation coefficient between variables $x$ and $y$.
 
 Some observations:
 
-- If most of our data points follow Situation 1, the correlation coefficient is an average of mostly large postive values. Thus the correlation coefficient will be high and positive.
+- If most of our data points follow Situation 1, the correlation coefficient is an average of mostly large positive values. Thus the correlation coefficient will be high and positive.
 - If most of our data points follow Situation 2, the correlation coefficient is an average of mostly large negative values. Thus the correlation coefficient will be high and negative.
 - If about an equal number of data points follow Situation 1 and Situation 2, we will be averaging a balance of positive and negative numbers, which will be close to zero. Thus the correlation coefficient will be close to zero.
 
@@ -883,18 +883,18 @@ cor(subset_bodyfat$Neck, subset_bodyfat$Chest) # Only middle subset of data poin
 
 Let's look at a few scatterplot examples and the corresponding correlation.
 
-```{r echo=FALSE, message=FALSE}
+```{r echo=FALSE, message=FALSE, fig.width=10}
 require(mvtnorm)
 corr_explanation_plot <- function(data, title = "") {
     data <- data %>%
         mutate(zx = scale(x), zy = scale(y), product = zx*zy, product_sign = sign(zx*zy))
-    par(mfrow = c(1,3))
+    par(mfrow = c(1,3), mar = c(5.1,3.8,4.1,0.5))
     plot(data$x, data$y, pch = 16, bty = "n", xlab = "x", ylab = "y", main = title)
     colors <- ifelse(data$product_sign > 0, "#00BFC4", "#F8766D")
     plot(data$zx, data$zy, pch = 16, col = colors, bty = "n", xlab = "Z-score for x", ylab = "Z-score for y", ylim = range(data$zy)+c(0,1))
     abline(h = 0, lty = "dashed", col = "gray50")
     segments(x0 = 0, y0 = min(data$zy)-1, y1 = max(data$zy), lty = "dashed", col = "gray50")
-    legend(x = -1, y = max(data$zy)+1, legend = c("Pos", "Neg"), horiz = TRUE, title = "Sign of Z-score product", fill = c("#00BFC4", "#F8766D"), bty = "n")
+    legend(x = "top", legend = c("Pos", "Neg"), horiz = TRUE, title = "Sign of Z-score product", fill = c("#00BFC4", "#F8766D"), bty = "n")
     # prop_pos_neg <- table(data$product_sign) %>% prop.table %>% as.matrix
     # barplot(prop_pos_neg, col = c("#F8766D", "#00BFC4"), legend.text = c(-1,1), args.legend = c(horiz = TRUE, bty = "n", x = "top"), ylim = c(0, 1.1), main = "Fraction of points with positive\nor negative Z-score product")
     sum_pos <- sum(data$product[data$product_sign > 0])
@@ -905,7 +905,6 @@ corr_explanation_plot <- function(data, title = "") {
 set.seed(1)
 d1 <- data.frame(rmvnorm(200,c(2,3), matrix(c(1,0,0,1),2)))
 names(d1) <- c("x","y")
-cor(d1$x, d1$y)
 corr_explanation_plot(d1, title = "r = 0")
 
 d2 <- d1 %>% bind_rows(d1, data.frame(x = 15, y = 15))
@@ -953,9 +952,9 @@ $$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-
 
 ### Is correlation always the right way to judge strength?
 
-Here is the plot of brownie quality by oven temperature.
+The plot below shows the relationship between brownie quality and oven temperature at which the brownie is baked.
 
-The correlation is near 0, but it doesn't mean that there's no relationship -- there's just no **linear** relationship.
+The correlation is near 0, but it doesn't mean that there's no relationship. We can clearly see a quadratic relationship, but there's just no **linear** relationship.
 
 ![](Photos/Brownies.png)
 
@@ -970,7 +969,7 @@ The following visual features can help us turn bivariate plots into multivariate
 - Size of points
 - Panels (facets)
 
-Let's look at another data set, the 1985 Current Population Survey. This is a smaller scale survey adminstered by the United States government between the decennial census.
+Let's look at another data set, the 1985 Current Population Survey. This is a smaller scale survey administered by the United States government between the decennial census.
 
 ### A bivariate plot
 

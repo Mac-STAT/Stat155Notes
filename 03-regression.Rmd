@@ -478,7 +478,7 @@ Making predictions beyond the observed range of values is called **extrapolation
 
 ### Prediction Errors
 
-Recall that a residual $e_i$ for data point $i$ is the difference between the actual and predicted values: $e_i = y_i = \hat{y}_i$.
+Recall that a residual $e_i$ for data point $i$ is the difference between the actual and predicted values: $e_i = y_i - \hat{y}_i$.
 
 If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section \@ref(intro-zscore).)
 

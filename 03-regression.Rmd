@@ -1084,3 +1084,17 @@ predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response')
 
 They didn't have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, they predict the chance of failure to be nearly 100% (near certainty). 
 
+
+##Major Takeaways
+
+1. All models are wrong, but some are useful and fair. 
+
+2. We want a model with small residuals (prediction errors).
+
+3. To determine if a model is useful and fair, we study what is left over (the residuals). 
+
+4. We use models to describe phenomena by interpreting slope estimates. Make sure you are talking about the average or predicted outcome! If you have multiple variables, you keep all others fixed (if possible).
+
+5. We also use models to prediction values, but be careful about predicting outside the observed range of our explanatory (X) variables. That is called extrapolation.
+
+

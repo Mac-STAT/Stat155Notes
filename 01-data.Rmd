@@ -174,3 +174,14 @@ Ethics are the norms or standards for conduct that distinguish between right and
 We are going to pay extra attention to negative consequences of the above that may disproportionately impact marginalized groups of people. 
 
 Throughout the semester, you will be asked to think about answers to the question: "What are the ethical considerations for this data set/analysis?" Like in other disciplines, the choices we make will be biased by our life experiences. Throughout this class, let us be mindful in increasing our awareness of the real consequences caused by choices we make in Statistics.
+
+
+## Major Takeaways
+
+1. Any observed data is a sample of a larger population or phenomenon. But you need to consider which population. Is it the population of interest? If not, then why?
+
+2. Sampling strategies impact what type of generalizations we can make about a population. Bias occurs when there are systematic differences between observed sample data and the true population of interest due to the sampling process.
+
+3. Study design impacts what type of conclusions we can make. Confounding variables prevent us from making cause and effect conclusions. 
+
+4. We need to be aware of the real consequences of our choices when working with data and building models.

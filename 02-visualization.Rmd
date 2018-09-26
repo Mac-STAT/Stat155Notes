@@ -1104,3 +1104,16 @@ CPS85 %>%
 ```
 
 Creating effective multivariate visualizations takes a lot of trial and error. Some visual elements will better highlight patterns than others, and often times, you'll have to try several iterations before you feel that you are learning something insightful from the graphic. Be tenacious, and keep in mind the good visualization principles outlined at the beginning of this chapter!
+
+
+##Major Takeaways
+
+1. STOP: Think about whether a variable is categorical or quantitative. This informs the type of graphic and summaries that is appropriate. 
+
+2. The shape of a histogram tells you about the relationships between mean and median.
+
+3. If you are describing a histogram, make sure to comment on the shape, center, spread, and outliers.
+
+4. If you are describing a scatterplot, make sure to comment about the direction, form, strength, and unusual features. 
+
+5. Visualizations are just a starting place. Stop to notice what you learn and what questions you have about the data. Let that inform the next visualization you make. 

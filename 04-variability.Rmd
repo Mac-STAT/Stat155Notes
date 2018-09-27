@@ -43,6 +43,7 @@ The data set we will work with contains ALL flights leaving New York City in 201
 We'll start by creating two new variables, `season` defined as winter (Oct - March) or summer (April - Sept) and `day_hour` defined as morning (midnight to noon) or afternoon (noon to midnight).
 
 ```{r}
+data(flights)
 flights <- flights %>% 
   na.omit() %>%
   mutate(season = case_when(

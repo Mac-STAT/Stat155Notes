@@ -958,14 +958,15 @@ What can we do?
 
 One solution to non-linear relationships is to transform the explanatory  (X) variables or transform the outcome variable (Y).
 
-Hot Tip #1: If there is unequal spread around the curved relationship, focus first on transforming Y. If the spread is roughly the same around the curved relationship, focus on transforming X. 
+**Guideline #1:** If there is unequal spread around the curved relationship, focus first on transforming Y. If the spread is roughly the same around the curved relationship, focus on transforming X. 
 
 When we say transform a variable, we are referring to taking the values of a variable and plugging them into a mathematical function such as $\sqrt{x}$, $\log(x)$ (which represents natural log, not log base 10), $x^2$, $1/x$, etc. 
 
-We will focus on power functions and organize them in a **Ladder of Powers** of y (or x):
+**Guideline #2:** We will focus on power functions and organize them in a **Ladder of Powers** of y (or x):
 
 
 $$
+\begin{align}
 \vdots\\
 y^3\\
 y^2\\
@@ -978,6 +979,7 @@ y^{-1/3}\\
 1/y\\
 1/y^2\\
 \vdots
+\end{align}
 $$
 
 We start at $y$ (power  = 1) and think about going up or down the ladder. 
@@ -986,11 +988,11 @@ But which way?
 
 Our friend J.W. Tukey (the same guy who invented the boxplot) came up with an approach to help us decide. You must ask yourself: Which part of the circle does the scatterplot most resemble (concavity and direction)? Which quadrant?
 
-The sign of x and y in the quadrant tells you the direction to move on the ladder (positive = up, negative = down).
+**Guideline #3:** The sign of x and y in the quadrant tells you the direction to move on the ladder (positive = up, negative = down).
 
 <img src="Photos/tukey.png" width="400" height="500" />
 
-Practice: Which quadrant does this relationship resemble? 
+Practice: Which quadrant does this relationship below resemble? 
 
 ```{r}
 require(gapminder)
@@ -1048,7 +1050,7 @@ gapminder %>%
   geom_point()
 ```
 
-TOO FAR! Back up.
+TOO FAR! Back up. Let's stick with log(gdpPercap).
 
 Now we see some unequal spread so let's also try transforming Y.
 
@@ -1076,6 +1078,7 @@ lm.gap <- gapminder %>%
 summary(lm.gap)
 ```
 
+**Interpretations**
 
 What does $b_1$ mean in this context?
 

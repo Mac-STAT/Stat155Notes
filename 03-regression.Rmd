@@ -1137,7 +1137,7 @@ If you are interested in predicting a binary categorical variable (only 2 possib
 
 Throughout this section, we will refer to one outcome as 'success' (denoted 1) and 'failure' (denoted 0). Depending on the context of the data, the success could be a negative thing such as 'heart attack' or '20 year mortality'. 
 
-We will let $\pi$ be the chance of success and $1-\pi$ be the chance of failure. We want to build a model to explain why the chance of success may be higher for one group of people in comparison to another. 
+We will let $p$ be the chance of success and $1- p$ be the chance of failure. We want to build a model to explain why the chance of success may be higher for one group of people in comparison to another. 
 
 ### Logistic and Logit
 
@@ -1154,25 +1154,25 @@ plot(x, 1/(1 + exp(b0 + b1*x)), type = 'l', ylim = c(0,1), ylab = 'f(x)')
 
 For any real value x, f(x) will be a value between 0 and 1. This is perfect for us since probabilities/chances should also be between 0 and 1. 
 
-In fact, we'll let the chance of failure, $1-\pi$, be modeled by this function.
+In fact, we'll let the chance of failure, $1-p$, be modeled by this function.
 
-$$1-\pi = \frac{1}{1 + e^{b_0 +b_1x}}$$
+$$1-p = \frac{1}{1 + e^{b_0 +b_1x}}$$
 ```{block, type='math'}
-With a bit of algebra and rearranging terms, we can write this in terms of $\pi$, the chance of success. 
+With a bit of algebra and rearranging terms, we can write this in terms of $p$, the chance of success. 
 
-$$\pi = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}$$
+$$p = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}$$
 
-Let's define one more term. The **odds** of success is the ratio of the probability of success to the probability of failure, $\pi/(1-\pi)$.
+Let's define one more term. The **odds** of success is the ratio of the probability of success to the probability of failure, $p/(1-p)$.
 
 With a bit more algebra and rearranging terms, we can write the above model in terms of a regression model,
 
-$$\log\left(\frac{\pi}{1-\pi}\right) = b_0 +b_1x$$
+$$\log\left(\frac{p}{1-p}\right) = b_0 +b_1x$$
 On the left hand side, we have the natural log of the odds, called the **logit** function. On the right hand side, we have an equation for a line. This is a **simple logistic regression model**.
 ```
 
 Just like a linear regression model, we can extend this model to a **multiple logistic regression model** by adding additional x variables,
 
-$$\log\left(\frac{\pi}{1-\pi}\right) = b_0 +b_1x_1+b_2x_2+b_3x_3+\cdots +b_kx_k$$
+$$\log\left(\frac{p}{1-p}\right) = b_0 +b_1x_1+b_2x_2+b_3x_3+\cdots +b_kx_k$$
 
 ### Fitting the Model
 
@@ -1228,26 +1228,26 @@ If you want to get a sense of what the number -0.232 means, we need to do a bit 
 ```{block, type='math'}
 Our estimated model is
 
-$$\log\left(\frac{\hat{\pi}}{1-\hat{\pi}}\right) = b_0 +b_1x$$
+$$\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_0 +b_1x$$
 where $b_0 = 15$ and $b_1 = -0.232$.
 
-If we imagine increasing x by 1, then we get a different set of predicted probabilities of success, $\hat{\pi}^*$,
+If we imagine increasing x by 1, then we get a different set of predicted probabilities of success, $\hat{p}^*$,
 
-$$\log\left(\frac{\hat{\pi}^*}{1-\hat{\pi}^*}\right) = b_0 +b_1(x+1)$$
+$$\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) = b_0 +b_1(x+1)$$
 
 Let's find the difference between these two equations,
 
-$$\log\left(\frac{\hat{\pi}^*}{1-\hat{\pi}^*}\right) - \log\left(\frac{\hat{\pi}}{1-\hat{\pi}}\right) = b_0 +b_1(x+1) - (b_0 +b_1x)$$
+$$\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_0 +b_1(x+1) - (b_0 +b_1x)$$
 and simplify the right hand side,
 
-$$\log\left(\frac{\hat{\pi}^*}{1-\hat{\pi}^*}\right) - \log\left(\frac{\hat{\pi}}{1-\hat{\pi}}\right) = b_1$$
+$$\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_1$$
 and then simplify the left hand side,
 
-$$\log\left( \frac{\hat{\pi}^*/(1-\hat{\pi}^*)}{\hat{\pi}/(1-\hat{\pi})}\right) = b_1$$
+$$\log\left( \frac{\hat{p}^*/(1-\hat{p}^*)}{\hat{p}/(1-\hat{p})}\right) = b_1$$
 
 Let's exponentiate both sides,
 
-$$\left( \frac{\hat{\pi}^*/(1-\hat{\pi}^*)}{\hat{\pi}/(1-\hat{\pi})}\right) = e^{b_1}$$
+$$\left( \frac{\hat{p}^*/(1-\hat{p}^*)}{\hat{p}/(1-\hat{p})}\right) = e^{b_1}$$
 ```
 
 We find that $e^{b_1} = e^{-0.232} = 0.793$ is the **odds ratio** based on increasing x by 1 unit (it is a ratio of odds). 

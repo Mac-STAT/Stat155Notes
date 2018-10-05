@@ -1267,6 +1267,8 @@ predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response')
 
 They didn't have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, they predict the chance of failure to be nearly 100% (near certainty). 
 
+#### Hard Predictions/Classifications
+
 These predicted chances of "success" are useful to give us a sense of uncertainty in our prediction, but how high should the predicted chance be to do "hard" predictions of "success"?
 
 It depends. 
@@ -1275,7 +1277,7 @@ If we used a threshold of 0.8, then we'd say that for any experiment with a pred
 
 In the table below (reading from bottom to top), we see that there were three data points in which we correctly predicted o-ring failure. There were 4 data points in which we erroneously predicted that it wouldn't fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) =  0.82. 
 
-The only errors we made were false negatives. We didn't predict failure but it did actual happen in the experiment. In the context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure. A false positive (predicting failure when it doesn't happen) would delay launch but have minimal impact on human lives. 
+The only errors we made were **false negatives**; we didn't predict failure but failure did actual happen in the experiment. In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure. A **false positive** (predicting failure when it doesn't happen) would delay launch but have minimal impact on human lives. 
 
 ```{r}
 augment(model.glm, type.predict ='response') %>%

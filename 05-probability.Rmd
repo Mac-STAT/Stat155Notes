@@ -17,33 +17,33 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Randomness and Probability
 
-This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand a random process. This provides a framework for thinking about **uncertainty,** **random variability**,  **behavior in the long run.**
+This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand random events. This provides a framework for thinking about **uncertainty,** **random variability**, and **average behavior in the long run.**
 
-
+We've used the term "chances" up until now. We had defined that the chance of an event is between 0 and 1. We are just going to add in the term "probability" as an equivalent word for "chance". The probability of an event will be between 0 and 1. 
 
 ##Three Types of Probability
 
 ```{block type='reflect'}
-What is the probability of getting a 1 from a six-sided die? How do you know that?
+What is the probability of getting a 1 from a six-sided die? Explain how do you know that.
 ```
 
 There are three types of probability.
 
-1. **Empirical Probability** If you could repeat the random process over and over again, we'd get a sense of the possible outcomes and their associated probabilities. So if you repeatedly tossed a die, then the relative frequency of 1's over time would be the empirical probability.
+1. **Empirical Probability:** If you could repeat a random process over and over again, we'd get a sense of the possible outcomes and their associated probabilities by calculating their relative frequency in the long run. If you repeatedly tossed a die, then the relative frequency of 1's after tossing the die MANY times would be the empirical probability.
 
-2. **Theoretical Probability** If you don't have time to toss a die a million times, you could calculate probabilities based on mathematical theory and assumptions. You could assume that each size is equally likely, thus the chance of getting a 1, is 1/6 for a six-sided die. 
+2. **Theoretical Probability:** If you don't have time to toss a die a million times, you could calculate probabilities based on mathematical theory and assumptions. You would assume that each side is equally likely to land up, thus the chance of getting a 1, is 1/6 for a six-sided die. 
 
 ```{block type='reflect'}
-What is the probability you'll get an A in this class? What does this number represent?
+What is the probability you'll get an A in this class? What does that number represent?
 ```
 
-3. **Subjective Probability** If you use a number between 0 and 1 (100%) to reflect your uncertainty, then you are using subjective probability.
+3. **Subjective Probability:** If you use a number between 0 and 1 (100%) to reflect your uncertainty in an outcome (rather than based on empirical evidence or mathematical theory), then you are using subjective probability.
 
 In this class, we'll focus on theoretical and empirical probability. In particular, we will use computational tools to estimate empirical probabilities and mathematical tools to estimate theoretical probabilities. 
 
 ##Probability Rules
 
-In theoretical probability, we need to define a few terms and set some rules (axioms).
+In theoretical probability, we need to define a few terms and set some rules (known as axioms).
 
 The **sample space,**  $S$, is the set of all possible outcomes of a random process.
 
@@ -51,26 +51,26 @@ The **sample space,**  $S$, is the set of all possible outcomes of a random proc
 
 A subset of outcomes is called an **event**, $A$. 
 
-- Example: If you flip two coins, an event $A$ could be that 1 of the coins lands Heads, $A = \{HT,TH\}$.
+- Example: If you flip two coins, an event $A$ could be that exactly one of the coins land Heads, $A = \{HT,TH\}$.
 
 
-For the rules of probability, we will define them with set notation as well as words. If you aren't familiar with set notation, 
+For the rules of probability, we define them with set notation as well as words. If you aren't familiar with set notation, 
 
 - $\cup$ means union (inclusive OR)
 - $\cap$ means intersection (AND)
 - $A^C$ means complement (NOT)
 
 
-For events $A$ and $B$ and sample space $S$, 
+For events $A$ and $B$ and sample space $S$, the probability of an event $A$, notated as $P(A)$ follows the rules below:
 
 - Rule 1: $0\leq P(A)\leq 1$
 - Rule 2: $P(S) = 1$
 - Rule 3: $P(A^c) = P(\text{not }A) = 1 - P(A)$
 - Rule 4: $P(A\cup B) = P(A\text{ or }B) = P(A) + P(B)$ if $A$ and $B$ are disjoint events.
-  - $A$ and $B$ are disjoint if $A$ occuring prevents $B$ from occurring (they both can't happen at the same time).
+  - $A$ and $B$ are **disjoint/mutually exclusive** if $A$ occuring prevents $B$ from occurring (they both can't happen at the same time).
 - Rule 4*: $P(A\text{ or }B) = P(A\cup B)  = P(A) + P(B) - P(A\cap B)$
 - Rule 5: $P(A\cap B) = P(A\text{ and }B) = P(A)\times P(B)$ if $A$ and $B$ are independent.
-  - $A$ and $B$ are independent if $B$ occurring doesn't change the probability of $A$ occurring.
+  - $A$ and $B$ are **independent** if $B$ occurring doesn't change the probability of $A$ occurring.
 - Rule 5*: $P(A\text{ and }B) = P(A\cap B)  = P(A~|~B)P(B) = P(B~|~A)P(A)$.
   - The **conditional probability** of A **given** that event B occurs, $P(A~|~B)$, is equal to the probability of the joint event (A and B) divided by the probability of B.
 $$P(A ~| ~B) = \frac{P(A \text{ and } B)}{P(B)} = \frac{P(A \cap B)}{P(B)}$$
@@ -80,9 +80,9 @@ $$P(A ~| ~B) = \frac{P(A \text{ and } B)}{P(B)} = \frac{P(A \cap B)}{P(B)}$$
 
 The American Red Cross estimates that 45% of U.S. population has Type O blood, 40% are Type A, 11% Type B, and 4% AB blood. 
 
-Imagine that we have a blood drive in St. Paul. The next donor's blood type can be thought of as a random outcome. The sample space for this random process is $S= \{O,A,B,AB\}$ (all possible outcomes). Assume the people who would volunteer have the same distribution of blood types as the U.S. and that St. Paul has the same distribution as the entire U.S.
+Imagine that we have a blood drive in St. Paul. The next donor's blood type can be thought of as a random outcome. The sample space for this random process includes the 4 blood types: $S= \{O,A,B,AB\}$ (all possible outcomes). Assume the people who donate blood have the same distribution of blood types as the U.S. and that St. Paul has the same distribution as the entire U.S.
 
-Think about how you'd justify your answer:
+Think about how you'd justify your answer to the following questions:
 
 1. What is the probability that the next donor is Type O blood?
 
@@ -104,7 +104,7 @@ Let's change the sample space to make it easier. Let $S$ be the set of 100 equal
 
 2. P(Type A or B or AB) = 1 - P(Type O) = 1 - 45/100 by Rule 3
 
-3. P(Type O and Type O and Type O) = $(45/100)^3$ by Rule 5 assuming donors are independent in that the probability of Type O blood stays the same
+3. P(Type O and then Type O and then Type O) = $(45/100)^3$ by Rule 5 assuming donors are independent, in that the probability of Type O blood stays the same
 
 4. P(Type A or B or AB or O) = P(S) = 1 by Rule 2
 
@@ -117,17 +117,17 @@ The sample space is below.
 
 ![](Photos/cards.png)
 
-1. What is the probability of drawing a card with a heart on it?
+1. What is the probability of drawing a card with a heart icon on it?
 
 2. What is the probability of drawing a card with a heart or Ace (A) on it?
 
 3. What is the probability of dealing a card with a heart on the table and then another heart card?
 
-Focus on how we'd justify the answer, not just the number.
+**Focus on how we'd justify the answer, not just the number.**
 
 1. P(heart) = 13/52 by equally likely outcomes
 
-2. P(heart or ace) = 13/52 + 4/52 - 1/52 = 16/52 by Rule 4*
+2. P(heart or ace) = 13/52 + 4/52 - 1/52 = 16/52 by Rule 4\*
 
 3. P(heart and then heart) = 13/52*12/51 by Rule 5\* (draws are not independent here since the probability of hearts changes after you remove a card)
 
@@ -135,7 +135,7 @@ Focus on how we'd justify the answer, not just the number.
 
 Think back to the Blood Type example.
 
-Let's say we were interested in the next two volunteers.
+Let's say we were interested in the next two donors.
 
 - P(First Type A or Second Type A) = ?
 
@@ -171,7 +171,6 @@ I am going to flip a fair coin 3 times (coin has 2-sides, we'll call one side He
 
 - Example 1 - $X$: the number of heads in 3 coin flips
 - What are the possible values of $X$?
-
 
 - Example 2 - Say I give you 3 dollars for each head
 - $Y$: the amount of money won from 3 coin flips, $Y = 3*X$
@@ -273,7 +272,7 @@ for every $x$ and $y$.
 - The **correlation** of two random variables is
 $$Cor(X,Y) =\frac{Cov(X,Y)}{SD(X)SD(Y)}$$
 
-###Name Probability Models 
+###Some Name Probability Models 
 
 ####Bernoulli Trials
 
@@ -437,7 +436,7 @@ $$Var(aX) = a^2Var(X)$$
 ###Joint Distributions
 
 The **joint density function** for two random variables is
-$$f(x,y) \geq 0\text{ such that} P(a_x \leq X \leq b_x\text{ and } a_y \leq Y \leq b_y) = \int_{a_x}^{b_x}\int_{a_y}^{b_y} f(x,y)dxdy$$
+$$f(x,y) \geq 0\text{ such that } P(a_x \leq X \leq b_x\text{ and } a_y \leq Y \leq b_y) = \int_{a_x}^{b_x}\int_{a_y}^{b_y} f(x,y)dxdy$$
 
 - The expected value for a function of two random variables is
 $$E(g(X,Y)) = \int\int g(x,y)f(x,y)dxdy$$
@@ -645,11 +644,10 @@ How has randomness come up in the course so far?
 - Random variation in general (due to biology, measurement error, etc.)
 
 
-We want to be able to harness the randomness by understanding the theoretical behavior in the long run.
+We want to be able to harness the randomness by understanding the random behavior in the long run.
 
-- If we were to repeatedly take samples from the population, how would the means differ?
+- If we were to repeatedly take samples from the population, how would the estimates (mean, odds ratio, slope etc.) differ?
 - If we were to repeat the random assignment many times, how would the estimated effects differ?
-- If we were to repeatedly take samples from the population, how would the regression slopes differ?
 
 
 Now, based on the theory we know, we could show a few things about means, $\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$.
@@ -685,5 +683,5 @@ $$C_n = \sqrt{n}\left(\frac{1}{n}\sum_{i=1}^n X_i - \mu\right) $$
 $$\lim_{n\rightarrow\infty}P(C_n \leq c) = P(Y \leq c)$$
 where $Y$ is a Normal RV with $E(Y) = 0$ and $Var(Y) = \sigma^2$.
 
-*In other words: As $n\rightarrow\infty$, the shape of the sampling distribution for the sample mean get closer and closer to Normal.*
+*In other words: The central limit theorem tells us that as the sample size get larger and larger, the shape of the sampling distribution for the sample mean get closer and closer to Normal.*
 

@@ -17,29 +17,31 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Randomness and Probability
 
-This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand random events. This provides a framework for thinking about **uncertainty,** **random variability**, and **average behavior in the long run.**
+This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand random events. For more details, take MATH 354 (Probability). This framework provides a way of thinking about **uncertainty,** **random variability**, and **average behavior in the long run.**
 
-We've used the term "chances" up until now. We had defined that the chance of an event is between 0 and 1. We are just going to add in the term "probability" as an equivalent word for "chance". The probability of an event will be between 0 and 1. 
+A **random process** or **random event** is an process/event that is not and cannot be made exact such that the outcome can not be accurately determined. Examples range from the outcome of flipping a coin to the odds ratio that is estimated in a randomly selected sample. 
+
+We've used the term "chances" up until now and we had defined that the chance of an event is between 0 and 1. We are now going to use "probability" as an equivalent word for "chance". Thus, the probability of an event will be between 0 and 1. 
 
 ##Three Types of Probability
 
 ```{block type='reflect'}
-What is the probability of getting a 1 from a six-sided die? Explain how do you know that.
+What is the probability of getting a 1 from a six-sided die? Consider how do you know that. How can you justify that number?
 ```
 
 There are three types of probability.
 
-1. **Empirical Probability:** If you could repeat a random process over and over again, we'd get a sense of the possible outcomes and their associated probabilities by calculating their relative frequency in the long run. If you repeatedly tossed a die, then the relative frequency of 1's after tossing the die MANY times would be the empirical probability.
+1. **Empirical Probability:** If you could repeat a random process over and over again, we'd get a sense of the possible outcomes and their associated probabilities by calculating their relative frequency in the long run. If you repeatedly tossed a die, then the relative frequency of 1's after tossing the die MANY times would be the empirical probability. If you repeatedly got a sample of 100 people, the relative frequency of estimated odds ratios below 1 would be the empirical probability of getting an odds ratio below 1. 
 
 2. **Theoretical Probability:** If you don't have time to toss a die a million times, you could calculate probabilities based on mathematical theory and assumptions. You would assume that each side is equally likely to land up, thus the chance of getting a 1, is 1/6 for a six-sided die. 
 
 ```{block type='reflect'}
-What is the probability you'll get an A in this class? What does that number represent?
+What is the probability you'll get an A in this class? What does that number represent? How can you justify that number?
 ```
 
 3. **Subjective Probability:** If you use a number between 0 and 1 (100%) to reflect your uncertainty in an outcome (rather than based on empirical evidence or mathematical theory), then you are using subjective probability.
 
-In this class, we'll focus on theoretical and empirical probability. In particular, we will use computational tools to estimate empirical probabilities and mathematical tools to estimate theoretical probabilities. 
+In this class, we'll focus on theoretical and empirical probability. In particular, we will use computational tools to estimate empirical probabilities (using simulations) and mathematical tools to estimate theoretical probabilities. 
 
 ##Probability Rules
 
@@ -54,18 +56,18 @@ A subset of outcomes is called an **event**, $A$.
 - Example: If you flip two coins, an event $A$ could be that exactly one of the coins land Heads, $A = \{HT,TH\}$.
 
 
-For the rules of probability, we define them with set notation as well as words. If you aren't familiar with set notation, 
+For the rules of probability, we can define them with set notation as well as words. If you aren't familiar with set notation, 
 
 - $\cup$ means union (inclusive OR)
 - $\cap$ means intersection (AND)
 - $A^C$ means complement (NOT)
 
 
-For events $A$ and $B$ and sample space $S$, the probability of an event $A$, notated as $P(A)$ follows the rules below:
+For events $A$ and $B$ and sample space $S$, the probability of an event $A$, notated as $P(A)$, follows the rules below:
 
-- Rule 1: $0\leq P(A)\leq 1$
-- Rule 2: $P(S) = 1$
-- Rule 3: $P(A^c) = P(\text{not }A) = 1 - P(A)$
+- Rule 1: $0\leq P(A)\leq 1$ (probability has to be between 0 and 1)
+- Rule 2: $P(S) = 1$ (one of the outcomes has to happen)
+- Rule 3: $P(A^c) = P(\text{not }A) = 1 - P(A)$ (if we know the chance of something happening, we also know that chance it doesn't happen)
 - Rule 4: $P(A\cup B) = P(A\text{ or }B) = P(A) + P(B)$ if $A$ and $B$ are disjoint events.
   - $A$ and $B$ are **disjoint/mutually exclusive** if $A$ occuring prevents $B$ from occurring (they both can't happen at the same time).
 - Rule 4*: $P(A\text{ or }B) = P(A\cup B)  = P(A) + P(B) - P(A\cap B)$
@@ -80,7 +82,7 @@ $$P(A ~| ~B) = \frac{P(A \text{ and } B)}{P(B)} = \frac{P(A \cap B)}{P(B)}$$
 
 The American Red Cross estimates that 45% of U.S. population has Type O blood, 40% are Type A, 11% Type B, and 4% AB blood. 
 
-Imagine that we have a blood drive in St. Paul. The next donor's blood type can be thought of as a random outcome. The sample space for this random process includes the 4 blood types: $S= \{O,A,B,AB\}$ (all possible outcomes). Assume the people who donate blood have the same distribution of blood types as the U.S. and that St. Paul has the same distribution as the entire U.S.
+Imagine that we have a blood drive in St. Paul. The next donor's blood type can be thought of as a random process. The sample space for this random process includes the 4 blood types: $S= \{O,A,B,AB\}$ (it includes all possible outcomes). Assume the people who donate blood have the same distribution of blood types as the U.S. and that St. Paul has the same distribution as the entire U.S.
 
 Think about how you'd justify your answer to the following questions:
 
@@ -98,7 +100,7 @@ $$P(A) = \frac{\text{Number of outcomes in }A}{\text{Number of possible outcomes
 
 But the chances of Type O, A, B, and AB blood are all different because they occur with different frequency in the population.
 
-Let's change the sample space to make it easier. Let $S$ be the set of 100 equally likely outcomes (45 are O, 40 are A, 11 are B, and 4 are AB). Now, you can calculate probabilities based on this framework of equally likely outcomes (after we changed the sample space).
+Let's change the sample space to make it easier. Let our sample space, $S$, be the set of 100 equally likely outcomes (45 are O, 40 are A, 11 are B, and 4 are AB). Now, you can calculate probabilities based on this framework of equally likely outcomes (after we changed the sample space).
 
 1. P(Type O) = 45/100 assuming equally likely outcomes
 
@@ -139,21 +141,31 @@ Let's say we were interested in the next two donors.
 
 - P(First Type A or Second Type A) = ?
 
-Think about all the ways this could happen. We always use an inclusive OR, which means that we care about one or the other or both happening. We just need to make sure we don't double count, which is why we subtract the chance of both. 
+Think about all the ways this could happen. 
+
+We will always use an inclusive OR, which means that we care about one or the other or both happening. We just need to make sure we don't double count, which is why we subtract the chance of both. 
 
 - P(First Type A or Second Type A) = P(First Type A) + P(Second Type A) - P(both Type A)
 
+So,
+
+- P(First Type A or Second Type A) = 0.40 + 0.40 - 0.40*0.40 = 0.64
+
+Which is the same as if we were to consider the three disjoint options (A: Type A, N: Not Type A),
+
+- P(AN or NA or AA) = 0.4\*0.6 + 0.6\*0.4 + 0.4*0.4 = 0.64
 
 ###Independence
 
-Think back to the Blood Type example.
+Let's stay with the Blood Type example for one moment more.
 
 What if there were only 50 donors in St. Paul? Say 30 of them Type 0 and the other 20 were A or B. 
 
-- Would the second donor be independent of the first donor? Would the probability of getting a Type O donors change between donors?
+- Would the second donor be independent of the first donor? In other words, would the probability of getting a Type O donors change between donors?
 
+No, they wouldn't be independent. In that case, let's calculate the probability that the first two donors are Type O.
 
-
+- P(Type O and then Type O) = P(Type O)P(2nd Type O | 1st Type O) = (30/50) * (29/49) = 0.355
 
 
 ##Random Variable
@@ -163,7 +175,7 @@ A **Random Variable** ($X$) is a real-valued function whose outcome we don't kno
 - It is a function of the outcomes from a random process.  
 
 
-I am going to flip a fair coin 3 times (coin has 2-sides, we'll call one side Heads and the other Tails).
+I am going to flip a fair coin 3 times (the coin has 2-sides, we'll call one side Heads and the other Tails).
 
 - Assume there are only 2 possible outcomes and P(Heads) = P(Tails) = 0.5 (can't land on its side).
 - Below are three possible random variables based on the same random process (flipping a 2-sided coin 3 times):
@@ -203,7 +215,10 @@ The **expected value** (or long-run average) of a discrete random variable is de
 
 $$E(X) = \sum_{all~x} xp(x)$$
 
-**Properties of Expected Value**
+So the expected value is like a mean, but over the long-run.
+
+```{block, type='math'}
+(Optional) **Properties of Expected Value**
 
 - For any function of $X$, say $g(X)$, the expected value of the function of $X$ is the weighted average of the function values,
 $$E(g(X)) = \sum_{all~x} g(x)p(x)$$
@@ -213,7 +228,7 @@ $$ E(aX) =  aE(X)$$
 $$E(X+b) = E(X) + b$$
 
 For MSCS majors, how would you go about prove these two properties using the definitions of Expected Value?
-
+```
 
 ###Variance
 
@@ -226,18 +241,29 @@ where $\mu = E(X)$.
 - But it's in squared units, so typically we talk about its square root, called the **standard deviation** of a random variable,
 $$SD(X) = \sqrt{Var(X)}$$
 
+So the standard deviation of a random variable is like the standard deviation of a set of observed values. They are measures of spread and variability. In one circumstance, we have the data to calculate it and in the other, we are considering a random process and wondering how much a value might vary. 
 
-**Properties of Variance**
+```{block, type='math'}
+(Optional) **Properties of Variance**
 - For a constants $a$ and $b$ and random variable $X$,
 $$Var(X + b) = Var(X)$$
 $$Var(aX) = a^2Var(X)$$
 
 For MSCS majors, how would you go about prove these two properties using the definitions of Variance?
+```
+
 
 ###Joint Distributions
 
 The **joint probability mass function** for two random variables is
-$$p(x,y) = P(X = x, Y = y) = P(X=x \text{ and }Y = y)$$
+$$p(x,y) = P(X=x \text{ and }Y = y)$$
+
+We can often calculate this joint probability using our probability rules from above (using multiplication...)
+
+
+
+```{block, type='math'}
+(Optional)
 
 - The expected value for a function of two random variables is
 $$E(g(X,Y)) = \sum_{all\; y}\sum_{all\; x} g(x,y)p(x,y)$$
@@ -250,15 +276,18 @@ $$E(X+Y) = E(X) + E(Y)$$
 - Using this fact, we could show that the variance can be written in this alternative form:
 
 $$Var(X) = E[(X-\mu)^2] = E(X^2) - [E(X)]^2$$
+```
 
 ###Covariance
 
-- The **covariance** of two random variables is
-$$Cov(X,Y) = E(XY) - E(X)E(Y)$$
+When consider two random variables, we may wonder whether they co-vary? In that do they vary together or vary independently? If 
 
-- Note: $Cov(X,X) = Var(X)$
+- The **covariance** of two random variables is defined as 
+$$Cov(X,Y) = E[(X - \mu_X)(Y - \mu_Y)] = E(XY) - E(X)E(Y)$$
 
-Let's show that $Var(X+Y) = Var(X)+ Var(Y) + 2Cov(X,Y)$.
+- Note: The covariance of X with itself is just the variance, $Cov(X,X) = Var(X)$
+
+We could use this to show that $Var(X+Y) = Var(X)+ Var(Y) + 2Cov(X,Y)$.
 
 
 Two discrete random variables are  **independent** if and only if
@@ -272,7 +301,7 @@ for every $x$ and $y$.
 - The **correlation** of two random variables is
 $$Cor(X,Y) =\frac{Cov(X,Y)}{SD(X)SD(Y)}$$
 
-###Some Name Probability Models 
+###A Few Named Probability Models 
 
 ####Bernoulli Trials
 
@@ -286,26 +315,30 @@ $$P(X = x) = p^x (1-p)^{x-1} \text{ for } x\in\{0,1\}$$
 $$E(X) = p$$
 $$Var(X) = p(1-p) $$
 
-**Geometric RV**: $X$ is the number of trials to the first success
-
-For general $x$, the Geometric pmf is
-
-$$P(X = x) = p (1-p)^{x-1} \text{ for } x\in\{0,1,2,....,\}$$
-$$E(X) = \frac{1}{p}$$
-$$Var(X) = \frac{1-p}{p^2} $$
-
 
 **Binomial RV**: $X$ is the total number of successes in $n$ trials
 
-For general $n$ and $x$, the Binomial pmf is
+For general $n$ and $x$, the Binomial probability for a particular value of $x$ is given by
 
-$$P(X = x) = {n \choose x} p^x (1-p)^{n-x} = \frac{n!}{(n-x)! x!} p^x (1-p)^{n-x}\text{ for } x\in\{0,1,2,...,n\}$$
+$$P(X = x) =\frac{n!}{(n-x)! x!} p^x (1-p)^{n-x}\text{ for } x\in\{0,1,2,...,n\}$$
 where $x! = x*(x-1)*(x-2)*\cdots*2*1$ and $0! = 1$, so
 
 $$\frac{n!}{(n-x)! x!} = \frac{n*(n-1)*\cdots*(n-x+1)*(n-x)!}{(n-x)! x!}$$
 $$= \frac{n*(n-1)*\cdots*(n-x+1)}{x*(x-1)*\cdots*2*1}$$ 
 
+If we break this apart, we can see where the pieces came from. Let's consider a simplified example. Let $X$ be the number of Heads in 3 coin flips (but the coin is biased such that $p=0.2$). 
+
+The probability of $2$ successes and $1$ failure in one particular order (e.g. HHT) is calculated as $p^x (1-p)^{n-x} = 0.2^2(0.8)$ due to Rule 5. However, we could have gotten a different ordering of Heads and Tails (e.g. HTH, THH). To count the number of ways we could get 2 heads and 1 tail in 3 coin flips, we use tools from combinatorics (an area of mathematics). In fact, the first part of the equation does the counting for us,
+
+$$\frac{n!}{(n-x)! x!} = \frac{n*(n-1)*\cdots*(n-x+1)*(n-x)!}{(n-x)! x!}$$
+
+So for our example, there are $\frac{3!}{2!1!} = \frac{3*2!}{2!1} = 3$ orderings of 2 heads and 1 tail. 
+
+The expected number of successes in the long run is
+
 $$E(X) = np$$
+and the variability in the number of successes is given by
+
 $$Var(X) = np(1-p) $$
 
 
@@ -333,53 +366,10 @@ p = 0.2/10
 barplot(dbinom(0:n,size = n, p = p),names.arg = 0:n,ylab='Probability',main='n = 100, p = 0.02')
 ```
 
-We will talk about two ways to approximate the Binomial distribution (the pmf).
+We will talk about two ways to approximate the Binomial distribution.
 
 - If $n$ increases while $p$ stays fixed, then we use a Normal approximation.
-- If $n$ increases and $p$ decreases, then we use a Poisson approximation.
-
-**Poisson RV**
-
-The pmf for a Poisson Random Variable $X$ is
-
-$$P(X = x) = \frac{e^{-\lambda}\lambda^x}{x!}\text{ for }x \in\{0,1,2,3,...\}\text{ and }\lambda>0$$
-
-- $X$ is number of events that occur in a fixed interval of time and/or space
-    - Assume: events occur with a known constant rate and independently of the time since the last event.
-    - Purple is Poisson pmf (below). 
-
-```{r}
-n = 10
-p = 0.2
-barplot(dbinom(0:n,size = n, p = p),names.arg = 0:n,ylab='Probability',main='n = 10, p = 0.2')
-barplot(dpois(0:n,lambda = n*p),names.arg = 0:n,ylab='Probability',add=TRUE,col=rgb(0,0,1,0.3))
-```
-
-```{r}
-n = 100
-p = 0.2/10
-barplot(dbinom(0:20,size = n, p = p),names.arg = 0:20,ylab='Probability',main='n = 100, p = 0.02')
-barplot(dpois(0:20,lambda = n*p),add=TRUE,col=rgb(0,0,1,0.3))
-```
-
-
-$$E(X) = \lambda$$
-$$Var(X) = \lambda $$
-
-
-The connection between the Binomial and the Poisson happens in $E(X)$ where $X$ is the number of successes in $n$ trials. 
-
-For a Binomial Random Variable $X$,
-$$  E(X) = np $$
-
-For a Poisson Random Variable $X$,
-$$E(X) = \lambda$$
-
-Thus, if we let $\lambda = np$, then we have the appropriate Poisson pmf to approximate a Binomial for a given $n$ and $p$. 
-
-**Why do we need an approximation?**
-
-When $n$ get quite large, $n!/(n-x)!x!$ can get very large. Back in the day, before computers, this was a huge bummer!
+- If $n$ increases and $p$ decreases, then we use a Poisson approximation (beyond the scope of this course).
 
 
 
@@ -387,18 +377,21 @@ When $n$ get quite large, $n!/(n-x)!x!$ can get very large. Back in the day, bef
 
 For continuous random variables $X$ (uncountable, infinite number of values), 
 
-- $P(X = x) = 0$
+- the probability of any one value is 0, $P(X = x) = 0$.
 
-- So we define the probability model using a **culmulative distribution function** (cdf), 
+- So we define the probability model using a **culmulative distribution function** (cdf), the probability of having a value less than $x$,
 $$F(x) = P(X\leq x)$$
 *(it is always notated with a capital letter $F$ or $G$ or $H$)*.
 
-- and a **probability density function** (pdf), $f(x)\geq 0$ such that 
+- and a **probability density function** (pdf), $f(x)\geq 0$ such that the probability is defined by the area under this curve (defined by the pdf). Using calculus, the area under the curve is
 $$P(a\leq X \leq b) = \int^b_a f(x)dx$$
-*(it is always notated with a small letter $f$ or $g$ or $h$)* and 
+*(it is always notated with a small letter $f$ or $g$ or $h$)* and the total area under the probability density function is 1, 
 $$P(S) = P(-\infty\leq X\leq \infty) = \int^\infty_{-\infty}f(x)dx = 1$$
 
-- Thus, $F(x) = P(X \leq x) = \int^x_{-\infty} f(y)dy$. 
+- Thus, we can write the cumulative distribution function as, $F(x) = P(X \leq x) = \int^x_{-\infty} f(y)dy$. 
+
+```{block, type='math'}
+(Optional)
 
 ###Expected Value
 
@@ -413,110 +406,10 @@ These properties still hold:
 
 $$ E(aX) =  aE(X)$$
 $$E(X+b) = E(X) + b$$
-
-
-###Variance
-
-The **variance** (or long-run spread) of a discrete random variable is defined as the "average" squared distance of $X$ from its expected value,
-
-
-$$Var(X) = E[(X-\mu)^2] = E(X^2) - \mu^2$$
-where $\mu = E(X)$.
-
-- But it's in squared units, so typically we talk about its square root, called the **standard deviation** of a random variable,
-$$SD(X) = \sqrt{Var(X)}$$
-
-
-**Properties of Variance**
-- For a constants $a$ and $b$ and random variable $X$,
-$$Var(X + b) = Var(X)$$
-$$Var(aX) = a^2Var(X)$$
-
-
-###Joint Distributions
-
-The **joint density function** for two random variables is
-$$f(x,y) \geq 0\text{ such that } P(a_x \leq X \leq b_x\text{ and } a_y \leq Y \leq b_y) = \int_{a_x}^{b_x}\int_{a_y}^{b_y} f(x,y)dxdy$$
-
-- The expected value for a function of two random variables is
-$$E(g(X,Y)) = \int\int g(x,y)f(x,y)dxdy$$
-
-- As with discrete random variables, the expected value of a sum is the sum of the expected values:
-
-$$E(X+Y) = E(X) + E(Y)$$
-
-
-###Covariance
-
-- The **covariance** of two random variables is
-$$Cov(X,Y) = E(XY) - E(X)E(Y)$$
-
-
-Two continuous random variables are  **independent** if and only if
-$$f(x,y) = f(x)f(y)$$
-for every $x$ and $y$. 
-
-- If two random variables, $X$ and $Y$ are independent, then $Cov(X,Y)= 0$.
-
-###Correlation
-
-- The **correlation** of two random variables is
-$$Cor(X,Y) =\frac{Cov(X,Y)}{SD(X)SD(Y)}$$
-
-###Name Probability Models 
-
-**Uniform Model**
-
-For a Uniform RV $X$ that takes values between $a$ and $b$, the pdf is
-$$f(x) = \begin{cases}
-\frac{1}{b-a}  \text{ if } a\leq x \leq b\\
-0 \text{ otherwise}
-\end{cases}$$
-
-```{r}
-a = 2
-b = 6
-f = function(x){
-  ifelse(x>a & x<b, 1/(b-a),0)
-}
-x = seq(-1,10,by=.01)
-plot(x,f(x),type='l',yaxt='n',xaxt='n',bty='n')
-axis(1,at=c(2,6),labels=c('a','b'))
-axis(2,at=c(0,0.25),labels=c('0','1/(b-a)'),las=1)
 ```
 
-- **How could we show that this is a legitimate pdf?**
 
-- **For X~Uniform(2,6), what is the $P(X\leq 4)$?**
-
-
-If we wanted to know the expected value for a Uniform Random Variable, we'd use the definition, 
-
-$$E(X) = \int^{\infty}_{-\infty} xf(x)dx = \int^b_a x\frac{1}{b-a}dx$$ 
-
-```{r}
-a = 2
-b = 6
-xf = function(x){
-  ifelse(x>a & x<b, x/(b-a),0)
-}
-x = seq(-1,10,by=.01)
-plot(x,xf(x),type='l',yaxt='n',xaxt='n',bty='n')
-segments(2,0.5,6,0.5,lty=2)
-axis(1,at=c(2,6),labels=c('a','b'))
-axis(2,at=c(0.5,1.5),labels=c('a/(b-a)','b/(b-a)'),las=1)
-```
-
-We could do the integral using calculus or find the area under the curve using the area of a triangle and rectangle. 
-
-- **Show that the expected value equals**
-$$= \frac{1}{2}(b+a) $$
-
-- To find the Variance, we'd first need to find
-$$E(X^2) = \int^b_a x^2\frac{1}{b-a}dx $$
-with a little calculus and then we could combine $E(X^2)$ and $E(X)$ to get
-$$Var(X) = \frac{(b-a)^2}{12}$$
-
+###A Few Named Probability Models 
 
 **Normal Model**
 
@@ -530,7 +423,7 @@ plot(x,f,type='l',xaxt='n',ylab='f(x)',bty='n')
 axis(1,at=c(-2,-1,0,1,2),labels=expression(mu - 2*sigma,mu - sigma,mu,mu + sigma,mu + 2*sigma))
 ```
 
-- Let $\mu = 0$ and $\sigma = 1$
+- Let the expected value be 0 and standard deviation be 1, $\mu = 0$ and $\sigma = 1$
 
 - We know that $P(-1\leq X \leq 1) = F(1) - F(-1) = 0.68$
 
@@ -652,13 +545,16 @@ We want to be able to harness the randomness by understanding the random behavio
 
 Now, based on the theory we know, we could show a few things about means, $\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$.
 
-Say we have a sequence of independent and identically distributed (iid) random variables, $X_1,...,X_n$, *(I don't know what their probability model is but $E(X_i) = \mu$ and $Var(X_i) = \sigma^2$)*
+Say we have a sequence of independent and identically distributed (iid) random variables, $X_1,...,X_n$, *(I don't know what their probability model is but the expected value and variance is the same, $E(X_i) = \mu$ and $Var(X_i) = \sigma^2$)*
+
+Then we'd expect the mean to be approximately $\mu$,
 
 $$E(\frac{1}{n}\sum_{i=1}^n X_i) = \mu$$
+and the mean would vary, but that variation would decrease with increased sample size $n$, 
 
 $$Var(\frac{1}{n}\sum_{i=1}^n X_i) = \frac{\sigma^2}{n}$$
 
-But, what is the distribution (probability model) of $Y = \frac{1}{n}\sum_{i=1}^n X_i$?
+But, what is the shape of the distribution (probability model) of the mean?
 
 Let's randomly generate data from a probability model with a skewed pdf. 
 
@@ -676,12 +572,21 @@ means = do(500)*(mean(rbeta(n,2,3)))
 hist(means[,1],xlab='Ybar',main='Sampling Distribution of Sample Means')
 ```
 
-- Let's subtract the expected value, $\mu$, and scale by $\sqrt{n}$, such that we have a new random variable,
-$$C_n = \sqrt{n}\left(\frac{1}{n}\sum_{i=1}^n X_i - \mu\right) $$
+The **Central Limit Theorem** (CLT) tells us that as the sample size get larger and larger, the shape of the sampling distribution for the sample mean get closer and closer to Normal. That is why it makes sense we've seen unimodal, symmetric distributions pop up when we simulate bootstrapping and random assignments. However, the CLT only applies when we are talking about sample means or proportions.
+
+
+
+
+```{block, type='math'}
+(Optional) 
+
+Let our sample mean be $Y_n = \frac{1}{n}\sum_{i=1}^n X_i$ based on a sample size of $n$. 
+
+- Let's subtract the expected value, $E(Y) = \mu$, and scale by $\sqrt{n}$, such that we have a new random variable,
+$$C_n = \sqrt{n}\left(Y_n - \mu\right) $$
 
 - The **Central Limit Theorem** tells us that for any $c \in \mathbb{R}$,
 $$\lim_{n\rightarrow\infty}P(C_n \leq c) = P(Y \leq c)$$
 where $Y$ is a Normal RV with $E(Y) = 0$ and $Var(Y) = \sigma^2$.
-
-*In other words: The central limit theorem tells us that as the sample size get larger and larger, the shape of the sampling distribution for the sample mean get closer and closer to Normal.*
+```
 

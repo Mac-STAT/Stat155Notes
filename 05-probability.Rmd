@@ -94,7 +94,7 @@ $$P(A ~| ~B) = \frac{P(A \text{ and } B)}{P(B)} $$
 
 For more details on theoretical probability, please see Appendex A. This material is optional but available for those of you who want to understand the mathematical reasoning behind the rest of the chapter. 
 
-##Diagnotic Testing and Probability
+###Diagnotic Testing and Probability
 
 Let's start by taking a moment to consider a recent article in the Washington Post (Link)[https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c]. Before you read the whole article, consider a question.
 
@@ -112,29 +112,89 @@ $$P(D | +) = \frac{P(D \text{ and } +)}{P(+)}$$
 
 What information were we given again? 
 
-- The prevalence of the disease is 1 in 1,000, so $P(D) = 1/1000$. Using Rule 3, the probability of no disease is $P(\text{ no }D) = 999/1000$.
+- The prevalence of the disease is 1 in 1,000, so $P(D) = 1/1000$. Using Rule 3, the probability of no disease is $P(\text{ no }D) = 999/1000$. Think of 1000 people, 1 will actually have the disease and 999 won't have the disease.
 
-- The false-positive rate is 5 percent, so $P()
+- The false-positive rate is 5 percent, so given you don't have the disease, the chance of getting a false positive is $P(+ |\text{ no } D) = 0.05$. So of the 999 that don't have the disease, about 0.05*999 = 49.95 (about 50) of them will get a false positive test result.  
 
+- While it is not stated, most medical tests have a fairly high accuracy in catching the disease so $P(+ | D) = 0.99$. Therefore, the 1 person who actually has the disease will most likely get a positive test result back (0.99*1 = 0.99). 
 
+By the definition of conditional distribution, we consider only those with positive test results (50 who were are disease free and 1 who has the disease). So the chance of actually having the disease GIVEN a positive test result is 1/51 = 0.019.
 
+In mathematical notation, that looks like this
 
+$$P(D | +) = \frac{P(D \text{ and } +)}{P(+)}= \frac{P( + | D) P(D)}{P( + | D) P(D) + P( + | \text{ no }D) P(\text{no }D)} = \frac{0.99*1/1000}{0.99*1/1000 + 0.05*999/1000} = \frac{0.99*1}{0.99*1 + 0.05*999}$$
 
-CONDITIONAL PROBABILITY AND BAYES RULE
-
-Link to article: https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c
-
-
-
-Real Example (Down syndrome? or other?)
+This is often called **Bayes Rule.** The important thing to consider is that what we condition on can make a big difference. 
 
 
-Relate this to prosecutor's fallacy (false positive, false negative) and switching the condition
- --- leading to hypothesis testing ideas
- 
+Now, go take a few minutes and read the recent article in the Washington Post (Link)[https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c].
+
+###Court Arguments and Probability
+
+The concept of conditional probability also plays an important role in the judicial system in the U.S. We assume you are innocent until proven guilt. Thus, juries are instructed to consider the likelihood of the evidence, assuming the person on trial is innocent. In other words, consider the conditional probability: $P(\text{ evidence } | \text{ innocent })$.
+
+Unfortunately, many prosecutor's try and make the wrong argument. They sometimes mistakenly try and argue that it is unlikely that a person is innocent given the evidence that is available, $P(\text{ innocent } | \text{ evidence })$. But this is not what the jury is supposed to consider, thus these types of arguments can lead to retrials.   
+
+See more here: https://en.wikipedia.org/wiki/Prosecutor%27s_fallacy
+
 
 
 ##Random Variable
+
+With a basic understanding of theoretical probability rules, we can introduce the most important concept from probability. 
+
+A **Random Variable** ($X$) is a real-valued function whose outcome we don't know beforehand. When considering data analysis and modeling, the random variables we will be thinking about will be estimate slopes, estimate odds ratios, etc. To establish our understanding, let's start with a simple example. 
+
+You are going to flip a fair coin 3 times (the coin has 2-sides, we'll call one side Heads and the other Tails).
+
+- Assume there are only 2 possible outcomes and P(Heads) = P(Tails) = 0.5 (can't land on its side).
+- Below are three possible random variables based on the same random process (flipping a 2-sided coin 3 times):
+
+- Example 1 - $X$: the number of heads in 3 coin flips
+- What are the possible values of $X$? 0, 1, 2, or 3.
+
+- Example 2 - Say I give you 3 dollars for each head
+- $Y$: the amount of money won from 3 coin flips, $Y = 3*X$
+- The possible values of $Y$ are 0, 3, 6, or 9.
+
+- Example 3 - $Z$: the number of heads on the last flip of 3 coin flips
+- The possible values are 0 or 1. 
+
+
+###Probability Models
+
+A **probability model** for random variable $X$ gives the possible values of $X$ and the associated probabilities. 
+
+- What is the probability model for $X$: the number of heads in 3 coin flips?
+
+$P(X = 0) = P(\text{three tails}) =  0.5^3$ (using Rule 5)
+$P(X = 1) = P(\text{HTT or THT or TTH }) = 3*0.5^3$ (using Rule 4 & 5)
+$P(X = 2) = P(\text{HHT or HTH or THH }) = 3*0.5^3$ (using Rule 4 & 5)
+$P(X = 3) = P(\text{three heads}) = 0.5^3$ (using Rule 5)
+
+- What is the probability model for $Y= 3*X$?
+
+$P(Y = 0) = P(\text{three tails}) =  0.5^3$ (using Rule 5)
+$P(Y = 3) = P(\text{HTT or THT or TTH }) = 3*0.5^3$ (using Rule 4 & 5)
+$P(Y = 6) = P(\text{HHT or HTH or THH }) = 3*0.5^3$ (using Rule 4 & 5)
+$P(Y = 9) = P(\text{three heads}) = 0.5^3$ (using Rule 5)
+
+- What about $Z$?
+
+$P(Z = 0) = P(\text{HHT or TTT or HTT or THT}) =  4*0.5^3 = 0.5$ (using Rule 5)
+$P(Z = 1) = P(\text{HHH or TTH or THH or HTH}) = 4*0.5^3 = 0.5$ (using Rule 4 & 5)
+
+
+For most situations in our class, we won't be using the probability rules to calculate chances by hand. 
+
+Rather, we will use a **named probability model** such that the we can calculate probabilities for particular values of the random variable using either a **probability mass function** (finite number of possible values) or a **probability density function** (infinite number of possible values). 
+
+
+
+
+
+
+
 - Probability Model: BASIC DEF, how to use pmf (assuming they are just given), pdf, to calculate probabilities
 - Expected Value and Variance as concepts, not as theory
 - Put in context of sampling variability (mean and sd of the sampling distribution) and variability from randomization assignment

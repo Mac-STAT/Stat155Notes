@@ -17,18 +17,32 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Randomness and Probability
 
-RANDOM VARIABILITY TO PROBABILITY
-- HOUSING DATA (FIREPLACE EXAMPLE)
+Recall the model we built to predict home price as a function of square footage and fireplaces. 
+
+```{r echo=TRUE}
+homes %>%
+    ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
+    geom_point() +
+    theme_minimal()
+```
+
+To allow for different slopes among home with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our sample, we observed a difference in the slopes of $26.85 per square foot. But is this true for the larger population of homes? Does each square footage worth exactly \$27 more, on average, in homes with a fireplace than in homes without a fireplace?
+
+```{r echo=TRUE}
+lm.home3 <- lm(Price ~ AnyFireplace*Living.Area, data = homes)
+tidy(lm.home3)
+```
+
+Probably not. In fact, our sample may be just one random sample from the larger population of homes in up state New York. If we had gotten a slightly different sample of homes, then we would have different estimates of each of these estimates. We explored this variation in Chapter 4 using bootstrapping. 
 
 
+This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand and discuss random events.This framework provides a way of thinking about **uncertainty,** **random variability**, and **average behavior in the long run.**
 
+A **random process** or **random event** is an process/event that is not and cannot be made exact such that the outcome can not be accurately determined. Examples range from the outcome of flipping a coin to model parameters that are estimated using a randomly selected sample. 
 
-This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand random events. For more details, take MATH 354 (Probability). This framework provides a way of thinking about **uncertainty,** **random variability**, and **average behavior in the long run.**
+We've used the term "chances" up until now and we defined that the chance of an event is between 0 and 1. We are now going to use "probability" as an equivalent word for "chance". Thus, the probability of an event will be between 0 and 1.  
 
-A **random process** or **random event** is an process/event that is not and cannot be made exact such that the outcome can not be accurately determined. Examples range from the outcome of flipping a coin to the odds ratio that is estimated in a randomly selected sample. 
-
-We've used the term "chances" up until now and we had defined that the chance of an event is between 0 and 1. We are now going to use "probability" as an equivalent word for "chance". Thus, the probability of an event will be between 0 and 1.
-
+For a much more in-depth discussion of probability, take MATH 354 (Probability). 
 
 
 ##Three Types of Probability
@@ -49,7 +63,7 @@ What is the probability you'll get an A in this class? What does that number rep
 
 3. **Subjective Probability:** If you use a number between 0 and 1 (100%) to reflect your uncertainty in an outcome (rather than based on empirical evidence or mathematical theory), then you are using subjective probability.
 
-In this class, we'll focus on theoretical and empirical probability. In particular, we will use computational tools to estimate empirical probabilities (using simulations) and mathematical tools to estimate theoretical probabilities. 
+In this class, we'll focus on theoretical and empirical probability. In particular, we will use computational tools to estimate empirical probabilities using simulations (such as bootstrapping and randomization tests) and mathematical tools to estimate theoretical probabilities. 
 
 ##Probability Rules
 
@@ -63,16 +77,14 @@ A subset of outcomes is called an **event**, $A$.
 
 - Example: If you flip two coins, an event $A$ could be that exactly one of the coins land Heads, $A = \{HT,TH\}$.
 
-
-
 For events $A$ and $B$ and sample space $S$, the probability of an event $A$, notated as $P(A)$, follows the rules below:
 
 - Rule 1: $0\leq P(A)\leq 1$ (probability has to be between 0 and 1)
-- Rule 2: $P(S) = 1$ (one of the outcomes has to happen)
+- Rule 2: $P(S) = 1$ (one of the possible outcomes has to happen)
 - Rule 3: $P(\text{not }A) = 1 - P(A)$ (if we know the chance of something happening, we also know that chance it doesn't happen)
 - Rule 4: $P(A\text{ or }B) = P(A) + P(B)$ if $A$ and $B$ are disjoint events.
-  - $A$ and $B$ are **disjoint/mutually exclusive** if $A$ occuring prevents $B$ from occurring (they both can't happen at the same time).
-- Rule 4*: $P(A\text{ or }B) = P(A) + P(B) - P(A\cap B)$
+  - $A$ and $B$ are **disjoint** if $A$ occuring prevents $B$ from occurring (they both can't happen at the same time).
+- Rule 4*: $P(A\text{ or }B) = P(A) + P(B) - P(A\text{ and } B)$ in general
 - Rule 5: $ P(A\text{ and }B) = P(A)\times P(B)$ if $A$ and $B$ are independent.
   - $A$ and $B$ are **independent** if $B$ occurring doesn't change the probability of $A$ occurring.
 - Rule 5*: $P(A\text{ and }B) =P(A~|~B)P(B) = P(B~|~A)P(A)$.
@@ -80,9 +92,33 @@ For events $A$ and $B$ and sample space $S$, the probability of an event $A$, no
 $$P(A ~| ~B) = \frac{P(A \text{ and } B)}{P(B)} $$
   - Intuition: Given that $B$ happened, we focus on the subset of outcomes in $S$ in which $B$ occurs and then figure out what the chance of $A$ happening within that subset. 
 
-For more details on theoretical probability, please see Appendex A. This material is optional for those of you who want to know the more mathematical reasoning behind the rest of the chapter. 
+For more details on theoretical probability, please see Appendex A. This material is optional but available for those of you who want to understand the mathematical reasoning behind the rest of the chapter. 
 
 ##Diagnotic Testing and Probability
+
+Let's start by taking a moment to consider a recent article in the Washington Post (Link)[https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c]. Before you read the whole article, consider a question.
+
+```{block, type="reflect"}
+Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of every 1,000 people will have it), and the test to detect it has a false-positive rate of 5 percent (meaning 5 of every 100 subjects test positive for the ailment even though they don’t really have it). If a patient’s test result comes back positive, what are the chances that she actually has the disease?
+```
+
+If you said 95% chance, then you are wrong, but almost half of the doctors surveyed in 2014 thought the exact same thing.
+
+Let's use those rules to get a sense of what the chance is. We want to know the chance they have the disease GIVEN they got a positive test result, $P(D | +)$ where $D$ stands for disease and $+$ stands for positive test result.
+
+Based on the definition of conditional probability, we must consider only those that got a positive test result back and look at the proportion of them that have the disease. In mathematical notation, that is equal to
+
+$$P(D | +) = \frac{P(D \text{ and } +)}{P(+)}$$
+
+What information were we given again? 
+
+- The prevalence of the disease is 1 in 1,000, so $P(D) = 1/1000$. Using Rule 3, the probability of no disease is $P(\text{ no }D) = 999/1000$.
+
+- The false-positive rate is 5 percent, so $P()
+
+
+
+
 
 CONDITIONAL PROBABILITY AND BAYES RULE
 

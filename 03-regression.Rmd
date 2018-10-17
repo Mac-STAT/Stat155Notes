@@ -1275,22 +1275,29 @@ It depends.
 
 If we used a threshold of 0.8, then we'd say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we'll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our **accuracy** (# of correctly predicted/# of data points)? 
 
-In the table below (reading from bottom to top), we see that there were three data points in which we correctly predicted o-ring failure. There were 4 data points in which we erroneously predicted that it wouldn't fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) =  0.82. 
+In the table below, we see that there were three data points in which we correctly predicted o-ring failure. There were 4 data points in which we erroneously predicted that it wouldn't fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) =  0.82. 
 
-The only errors we made were **false negatives**; we didn't predict failure but failure did actual happen in the experiment. In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure. A **false positive** (predicting failure when it doesn't happen) would delay launch but have minimal impact on human lives. 
+The only errors we made were **false negatives**; we didn't predict failure but failure did actual happen in the experiment. In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure. 
+
+The **false negative rate** is the number of false negatives divided by the false negatives + true positives (denominator should be total number of experiments with o-ring failures). With a threshold of 0.80, our false negative rate is 4/(3+4) = 0.57.
+
+A **false positive** (predicting failure when it doesn't happen) would delay launch but have minimal impact on human lives. 
+
+
+The **false positive rate** is the number of false positives divided by the false positives + true negatives (denominator should be total number of experiments with no o-ring failures). With a threshold of 0.80, our false positive rate is 0/16 = 0.
 
 ```{r}
 augment(model.glm, type.predict ='response') %>%
   mutate(predictOFail = .fitted >= 0.8) %>%
-  count(predictOFail, Fail)
+  count(Fail,predictOFail)
 ```
 
-What if we used a lower threshold to reduce the number of false negatives? Let's lower it to 0.25 so that we predict o-ring failure more easily. Let's find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let's check false negative rate: 3/(3+10) = 0.23. That's lower. But now we have a high false positive rate: 6/(6+4) = 0.60. So of the experiments that we predicted o-ring failure, we were wrong 60% of the time. 
+What if we used a lower threshold to reduce the number of false negatives? Let's lower it to 0.25 so that we predict o-ring failure more easily. Let's find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let's check false negative rate: 3/(3+4) = 0.43. That's lower. But now we have a fairly high false positive rate: 6/(6+10) = 0.375. So of the experiments with o-ring failure, we predicted wrong 37.5% of the time. 
 
 ```{r}
 augment(model.glm, type.predict ='response') %>%
   mutate(predictOFail = .fitted >= 0.25) %>%
-  count(predictOFail, Fail)
+  count( Fail, predictOFail)
 ```
 
 ### Model Evaluation

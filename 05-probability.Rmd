@@ -1,4 +1,3 @@
-
 ```{r setup5, echo=FALSE}
 library(stringr)
 library(infer)
@@ -20,44 +19,48 @@ knitr::opts_chunk$set(echo = FALSE)
 Recall the model we built to predict home price as a function of square footage and fireplaces. 
 
 ```{r echo=TRUE}
+homes <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt")
+homes <- homes %>%
+  mutate(AnyFireplace = Fireplaces > 0)
 homes %>%
     ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
-    geom_point() +
+    geom_point(alpha = 0.25) +
+    geom_smooth(method = "lm") +
     theme_minimal()
 ```
 
-To allow for different slopes among home with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our sample, we observed a difference in the slopes of $26.85 per square foot. But is this true for the larger population of homes? Does each square footage worth exactly \$27 more, on average, in homes with a fireplace than in homes without a fireplace?
+To allow for different slopes among home with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our sample, we observed a difference in the slopes of $26.85 per square foot. But is this true for the larger population of homes? Is each square foot worth exactly $26.85 more, on average, in homes with a fireplace than in homes without a fireplace?
 
 ```{r echo=TRUE}
 lm.home3 <- lm(Price ~ AnyFireplace*Living.Area, data = homes)
 tidy(lm.home3)
 ```
 
-Probably not. In fact, our sample may be just one random sample from the larger population of homes in up state New York. If we had gotten a slightly different sample of homes, then we would have different estimates of each of these estimates. We explored this variation in Chapter 4 using bootstrapping. 
+Probably not. In fact, our sample is just one random sample from the larger population of homes in upstate New York. If we had gotten a slightly different sample of homes, then we would have different estimates for each of the regression coefficients. We explored this sampling variation in Chapter 4 using bootstrapping.
 
+Let's connect our goals to the terms: **statistic** and **parameter**. The interaction coefficient of $26.85 is a **statistic**. It (as well as the other coefficient estimates) is a numerical summary of our data that was estimated from a **sample**. If we had a census, a full set of data on all homes in upstate New York, we could fit the same linear regression model. The coefficient estimates given to us by R would represent population **parameters** because they are computed from the whole population, rather than a sample. By understanding **how much** statistics vary from sample to sample, we can start to **quantify the amount of uncertainty** in our estimates. Because the process of obtaining a sample is a type of random chance, we will spend some time discussing formal probability.
 
-This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand and discuss random events.This framework provides a way of thinking about **uncertainty,** **random variability**, and **average behavior in the long run.**
+This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand and discuss random events. This framework provides a way of thinking about **uncertainty**, **random variability**, and **average behavior in the long run.**
 
-A **random process** or **random event** is an process/event that is not and cannot be made exact such that the outcome can not be accurately determined. Examples range from the outcome of flipping a coin to model parameters that are estimated using a randomly selected sample. 
+A **random process** or **random event** is any process/event whose outcome is governed by chance. It is any process/event that cannot be known with certainty. Examples range from the outcome of flipping a coin to estimating model parameters from randomly selected samples.
 
-We've used the term "chances" up until now and we defined that the chance of an event is between 0 and 1. We are now going to use "probability" as an equivalent word for "chance". Thus, the probability of an event will be between 0 and 1.  
+We've used the term "chances" up until now, and we defined that the chance of an event is between 0 and 1. We are now going to use "probability" as an equivalent word for "chance". Thus, the probability of an event will be between 0 and 1.
 
 For a much more in-depth discussion of probability, take MATH 354 (Probability). 
 
+## Three Types of Probability
 
-##Three Types of Probability
-
-```{block type='reflect'}
-What is the probability of getting a 1 from a six-sided die? Consider how do you know that. How can you justify that number?
+```{block type="reflect"}
+What is the probability of getting a 1 from a six-sided die? How do you know this? How can you justify that number?
 ```
 
 There are three types of probability.
 
-1. **Empirical Probability:** If you could repeat a random process over and over again, we'd get a sense of the possible outcomes and their associated probabilities by calculating their relative frequency in the long run. If you repeatedly tossed a die, then the relative frequency of 1's after tossing the die MANY times would be the empirical probability. If you repeatedly got a sample of 100 people, the relative frequency of estimated odds ratios below 1 would be the empirical probability of getting an odds ratio below 1. 
+1. **Empirical Probability:** If you could repeat a random process over and over again, we'd get a sense of the possible outcomes and their associated probabilities by calculating their relative frequency in the long run. If you repeatedly tossed a balanced die, then the relative frequency of 1's after tossing the die MANY times would be the empirical probability. If you repeatedly got a sample of 100 people, the relative frequency of estimated odds ratios below 1 would be the empirical probability of getting an odds ratio below 1. 
 
-2. **Theoretical Probability:** If you don't have time to toss a die a million times, you could calculate probabilities based on mathematical theory and assumptions. You would assume that each side is equally likely to land up, thus the chance of getting a 1, is 1/6 for a six-sided die. 
+2. **Theoretical Probability:** If you don't have time to toss a die a million times, you could calculate probabilities based on mathematical theory and assumptions. When tossing a die, you would assume that each side is equally likely to land face-up. Thus the chance of rolling a 1, is 1/6 for a six-sided die.
 
-```{block type='reflect'}
+```{block type="reflect"}
 What is the probability you'll get an A in this class? What does that number represent? How can you justify that number?
 ```
 
@@ -65,11 +68,11 @@ What is the probability you'll get an A in this class? What does that number rep
 
 In this class, we'll focus on theoretical and empirical probability. In particular, we will use computational tools to estimate empirical probabilities using simulations (such as bootstrapping and randomization tests) and mathematical tools to estimate theoretical probabilities. 
 
-##Probability Rules
+## Probability Rules
 
 In theoretical probability, we need to define a few terms and set some rules (known as axioms).
 
-The **sample space,**  $S$, is the set of all possible outcomes of a random process.
+The **sample space**, $S$, is the set of all possible outcomes of a random process.
 
 - Example: If you flip two coins (one side Heads and one side Tails), then the sample space contains four possible outcomes: Heads and Heads (HH), Heads and Tails (HT), Tails and Heads (TH), and Tails and Tails (TT), $S = \{HH,HT,TH,TT\}$.
 
@@ -87,63 +90,62 @@ For events $A$ and $B$ and sample space $S$, the probability of an event $A$, no
 - Rule 4*: $P(A\text{ or }B) = P(A) + P(B) - P(A\text{ and } B)$ in general
 - Rule 5: $ P(A\text{ and }B) = P(A)\times P(B)$ if $A$ and $B$ are independent.
   - $A$ and $B$ are **independent** if $B$ occurring doesn't change the probability of $A$ occurring.
-- Rule 5*: $P(A\text{ and }B) =P(A~|~B)P(B) = P(B~|~A)P(A)$.
-  - The **conditional probability** of A **given** that event B occurs, $P(A~|~B)$, is equal to the probability of the joint event (A and B) divided by the probability of B.
-$$P(A ~| ~B) = \frac{P(A \text{ and } B)}{P(B)} $$
+- Rule 5*: $P(A\text{ and }B) = P(A \mid B)P(B) = P(B \mid A)P(A)$.
+  - The **conditional probability** of A **given** that event B occurs, $P(A \mid B)$, is equal to the probability of the joint event (A and B) divided by the probability of B.
+$$ P(A \mid B) = \frac{P(A \text{ and } B)}{P(B)} $$
   - Intuition: Given that $B$ happened, we focus on the subset of outcomes in $S$ in which $B$ occurs and then figure out what the chance of $A$ happening within that subset. 
 
-For more details on theoretical probability, please see Appendex A. This material is optional but available for those of you who want to understand the mathematical reasoning behind the rest of the chapter. 
+For more details on theoretical probability, please see Appendix A. This material is optional but available for those of you who want to understand the mathematical reasoning behind the rest of the chapter. 
 
-###Diagnotic Testing and Probability
+### Diagnotic Testing and Probability
 
 Let's start by taking a moment to consider a recent article in the Washington Post (Link)[https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c]. Before you read the whole article, consider a question.
 
 ```{block, type="reflect"}
-Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of every 1,000 people will have it), and the test to detect it has a false-positive rate of 5 percent (meaning 5 of every 100 subjects test positive for the ailment even though they don’t really have it). If a patient’s test result comes back positive, what are the chances that she actually has the disease?
+Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of every 1,000 people will have it), and the test to detect it has a false-positive rate of 5 percent (meaning 5 of every 100 subjects test positive for the ailment even though they don’t really have it). If a patient's test result comes back positive, what are the chances that they actually has the disease?
 ```
 
-If you said 95% chance, then you are wrong, but almost half of the doctors surveyed in 2014 thought the exact same thing.
+If you said the chances are 95%, then you are wrong, but almost half of the doctors surveyed in 2014 thought the exact same thing.
 
-Let's use those rules to get a sense of what the chance is. We want to know the chance they have the disease GIVEN they got a positive test result, $P(D | +)$ where $D$ stands for disease and $+$ stands for positive test result.
+Let's use those rules to get a sense of what the chance is. We want to know the chance they have the disease GIVEN they got a positive test result, $P(D \mid +)$ where $D$ stands for disease and $+$ stands for positive test result.
 
 Based on the definition of conditional probability, we must consider only those that got a positive test result back and look at the proportion of them that have the disease. In mathematical notation, that is equal to
 
-$$P(D | +) = \frac{P(D \text{ and } +)}{P(+)}$$
+$$P(D \mid +) = \frac{P(D \text{ and } +)}{P(+)}$$
 
 What information were we given again? 
 
 - The prevalence of the disease is 1 in 1,000, so $P(D) = 1/1000$. Using Rule 3, the probability of no disease is $P(\text{ no }D) = 999/1000$. Think of 1000 people, 1 will actually have the disease and 999 won't have the disease.
 
-- The false-positive rate is 5 percent, so given you don't have the disease, the chance of getting a false positive is $P(+ |\text{ no } D) = 0.05$. So of the 999 that don't have the disease, about 0.05*999 = 49.95 (about 50) of them will get a false positive test result.  
+- The false-positive rate is 5 percent, so given you don't have the disease, the chance of getting a false positive is $P(+ \mid\text{ no } D) = 0.05$. So of the 999 that don't have the disease, about $0.05\times 999 = 49.95$ (about 50) of them will get a false positive test result.  
 
-- While it is not stated, most medical tests have a fairly high accuracy in catching the disease so $P(+ | D) = 0.99$. Therefore, the 1 person who actually has the disease will most likely get a positive test result back (0.99*1 = 0.99). 
+- While it is not stated, most medical tests have a fairly high accuracy in catching the disease so $P(+ \mid D) = 0.99$. Therefore, the 1 person who actually has the disease will most likely get a positive test result back ($0.99*1 = 0.99$). 
 
 By the definition of conditional distribution, we consider only those with positive test results (50 who were are disease free and 1 who has the disease). So the chance of actually having the disease GIVEN a positive test result is 1/51 = 0.019.
 
 In mathematical notation, that looks like this
 
-$$P(D | +) = \frac{P(D \text{ and } +)}{P(+)}= \frac{P( + | D) P(D)}{P( + | D) P(D) + P( + | \text{ no }D) P(\text{no }D)} = \frac{0.99*1/1000}{0.99*1/1000 + 0.05*999/1000} = \frac{0.99*1}{0.99*1 + 0.05*999}$$
+$$P(D \mid +) = \frac{P(D \text{ and } +)}{P(+)}= \frac{P( + \mid D) P(D)}{P( + \mid D) P(D) + P( + \mid \text{ no }D) P(\text{no }D)} = \frac{0.99*1/1000}{0.99*1/1000 + 0.05*999/1000} = \frac{0.99*1}{0.99*1 + 0.05*999}$$
 
 This is often called **Bayes Rule.** The important thing to consider is that what we condition on can make a big difference. 
 
-
 Now, go take a few minutes and read the recent article in the Washington Post (Link)[https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c].
 
-###Court Arguments and Probability
+### Court Arguments and Probability
 
-The concept of conditional probability also plays an important role in the judicial system in the U.S. We assume you are innocent until proven guilt. Thus, juries are instructed to consider the likelihood of the evidence, assuming the person on trial is innocent. In other words, consider the conditional probability: $P(\text{ evidence } | \text{ innocent })$.
+The concept of conditional probability also plays an important role in the judicial system in the U.S. We assume you are innocent until proven guilty. Thus, juries are instructed to consider the likelihood of the evidence, assuming the person on trial is innocent. In other words, consider the conditional probability: $P(\text{ evidence } \mid \text{ innocent })$.
 
-Unfortunately, many prosecutor's try and make the wrong argument. They sometimes mistakenly try and argue that it is unlikely that a person is innocent given the evidence that is available, $P(\text{ innocent } | \text{ evidence })$. But this is not what the jury is supposed to consider, thus these types of arguments can lead to retrials.   
+Unfortunately, many prosecutors try to make the wrong argument. They sometimes mistakenly try and argue that it is unlikely that a person is innocent given the evidence that is available, $P(\text{ innocent } \mid \text{ evidence })$. But this is not what the jury is supposed to consider, thus these types of arguments can lead to retrials.   
 
 See more here: https://en.wikipedia.org/wiki/Prosecutor%27s_fallacy
 
 
 
-##Random Variable
+## Random Variable
 
 With a basic understanding of theoretical probability rules, we can introduce the most important concept from probability. 
 
-A **Random Variable** ($X$) is a real-valued function whose outcome we don't know beforehand. When considering data analysis and modeling, the random variables we will be thinking about will be estimate slopes, estimate odds ratios, etc. To establish our understanding, let's start with a simple example. 
+A **random variable** ($X$) is a real-valued function whose outcome we don't know beforehand. When considering data analysis and modeling, the random variables we will be thinking about will be estimated slopes, estimate odds ratios, etc. To establish our understanding, let's start with a simple example. 
 
 You are going to flip a fair coin 3 times (the coin has 2-sides, we'll call one side Heads and the other Tails).
 
@@ -161,7 +163,7 @@ You are going to flip a fair coin 3 times (the coin has 2-sides, we'll call one 
 - The possible values are 0 or 1. 
 
 
-###Probability Models
+### Probability Models
 
 A **probability model** for random variable $X$ gives the possible values of $X$ and the associated probabilities. 
 
@@ -183,7 +185,6 @@ $P(Y = 9) = P(\text{three heads}) = 0.5^3$ (using Rule 5)
 
 $P(Z = 0) = P(\text{HHT or TTT or HTT or THT}) =  4*0.5^3 = 0.5$ (using Rule 5)
 $P(Z = 1) = P(\text{HHH or TTH or THH or HTH}) = 4*0.5^3 = 0.5$ (using Rule 4 & 5)
-
 
 For most situations in our class, we won't be using the probability rules to calculate chances by hand. 
 

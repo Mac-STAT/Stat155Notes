@@ -46,7 +46,7 @@ A **random process** or **random event** is any process/event whose outcome is g
 
 We've used the term "chances" up until now, and we defined that the chance of an event is between 0 and 1. We are now going to use "probability" as an equivalent word for "chance". Thus, the probability of an event will be between 0 and 1.
 
-For a much more in-depth discussion of probability, take MATH 354 (Probability). 
+For a much more in-depth discussion of probability (calculus-based), take MATH 354 (Probability). 
 
 ## Three Types of Probability
 
@@ -70,7 +70,7 @@ In this class, we'll focus on theoretical and empirical probability. In particul
 
 ## Probability Rules
 
-In theoretical probability, we need to define a few terms and set some rules (known as axioms).
+In theoretical probability, we need to define a few terms and set some rules for working with probabilities (known as axioms).
 
 The **sample space**, $S$, is the set of all possible outcomes of a random process.
 
@@ -95,57 +95,69 @@ For events $A$ and $B$ and sample space $S$, the probability of an event $A$, no
 $$ P(A \mid B) = \frac{P(A \text{ and } B)}{P(B)} $$
   - Intuition: Given that $B$ happened, we focus on the subset of outcomes in $S$ in which $B$ occurs and then figure out what the chance of $A$ happening within that subset. 
 
-For more details on theoretical probability, please see Appendix A. This material is optional but available for those of you who want to understand the mathematical reasoning behind the rest of the chapter. 
+For more details on theoretical probability, please see Appendix A. This material is optional but available for those of you who want to understand the mathematical reasoning behind the rest of the chapter.
 
 ### Diagnotic Testing and Probability
 
-Let's start by taking a moment to consider a recent article in the Washington Post (Link)[https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c]. Before you read the whole article, consider a question.
+Let's start by taking a moment to consider a recent [Washington Post article](https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c) that discusses the role of probability in medical diagnostics. Before you read the whole article, consider a question.
 
 ```{block, type="reflect"}
-Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of every 1,000 people will have it), and the test to detect it has a false-positive rate of 5 percent (meaning 5 of every 100 subjects test positive for the ailment even though they don’t really have it). If a patient's test result comes back positive, what are the chances that they actually has the disease?
+Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of every 1,000 people will have it). The test to detect Disease X has a false-positive rate of 5 percent (meaning that out of every 100 subjects who do not have Disease X, 5 will falsely test positive for it). If a patient's test result comes back positive, what is the probability that this patient actually has the disease?
 ```
 
-If you said the chances are 95%, then you are wrong, but almost half of the doctors surveyed in 2014 thought the exact same thing.
+If you said the probability is 95%, then you are wrong, but almost half of the doctors surveyed in 2014 thought exactly the same thing.
 
-Let's use those rules to get a sense of what the chance is. We want to know the chance they have the disease GIVEN they got a positive test result, $P(D \mid +)$ where $D$ stands for disease and $+$ stands for positive test result.
+We can use the rules of probability to get a sense of what the desired probability actually is. We want to know the probability that they have the disease GIVEN that they got a positive test result, $P(D \mid +)$ where $D$ stands for disease and $+$ stands for positive test result.
 
 Based on the definition of conditional probability, we must consider only those that got a positive test result back and look at the proportion of them that have the disease. In mathematical notation, that is equal to
 
 $$P(D \mid +) = \frac{P(D \text{ and } +)}{P(+)}$$
 
-What information were we given again? 
+What information were we given again?
 
-- The prevalence of the disease is 1 in 1,000, so $P(D) = 1/1000$. Using Rule 3, the probability of no disease is $P(\text{ no }D) = 999/1000$. Think of 1000 people, 1 will actually have the disease and 999 won't have the disease.
+- The prevalence of the disease is 1 in 1,000, so $P(D) = 1/1000$. Using Rule 3, the probability of no disease is $P(\text{ no }D) = 999/1000$. In 1000 people, 1 will actually have the disease and 999 won't have the disease.
 
-- The false-positive rate is 5 percent, so given you don't have the disease, the chance of getting a false positive is $P(+ \mid\text{ no } D) = 0.05$. So of the 999 that don't have the disease, about $0.05\times 999 = 49.95$ (about 50) of them will get a false positive test result.  
+- The false-positive rate is 5 percent, so given you don't have the disease, the probability of getting a false positive is $P(+ \mid\text{ no } D) = 0.05$. So of the 999 that don't have the disease, about $0.05\times 999 = 49.95$ (about 50) of them will get a false positive test result.
 
-- While it is not stated, most medical tests have a fairly high accuracy in catching the disease so $P(+ \mid D) = 0.99$. Therefore, the 1 person who actually has the disease will most likely get a positive test result back ($0.99*1 = 0.99$). 
+- While it is not stated, most medical tests have a fairly high accuracy in catching the disease so $P(+ \mid D) = 0.99$. Therefore, the 1 person who actually has the disease will most likely get a positive test result back ($0.99*1 = 0.99$).
 
-By the definition of conditional distribution, we consider only those with positive test results (50 who were are disease free and 1 who has the disease). So the chance of actually having the disease GIVEN a positive test result is 1/51 = 0.019.
+Remember that our interest is in $P(D \mid +)$. By the definition of conditional probability, we consider only those with positive test results (about 50 who are disease free and 1 who has the disease). So the probability of actually having the disease GIVEN a positive test result is about 1/51 = 0.019.
 
 In mathematical notation, that looks like this
 
-$$P(D \mid +) = \frac{P(D \text{ and } +)}{P(+)}= \frac{P( + \mid D) P(D)}{P( + \mid D) P(D) + P( + \mid \text{ no }D) P(\text{no }D)} = \frac{0.99*1/1000}{0.99*1/1000 + 0.05*999/1000} = \frac{0.99*1}{0.99*1 + 0.05*999}$$
+$$
+\begin{align*}
+P(D \mid +) &= \frac{P(D \text{ and } +)}{P(+)} \\
+&= \frac{P(D \text{ and } +)}{P(+ \text{ and } D) + P(+ \text{ and no } D)} \\
+&= \frac{P(+ \mid D) P(D)}{P( + \mid D) P(D) + P( + \mid \text{ no }D) P(\text{no }D)} \\
+&= \frac{0.99*1/1000}{0.99*1/1000 + 0.05*999/1000} \\
+&= \frac{0.99*1}{0.99*1 + 0.05*999}
+\end{align*}
+$$
 
-This is often called **Bayes Rule.** The important thing to consider is that what we condition on can make a big difference. 
+The first expression above ($P(D \mid +) &= \frac{P(D \text{ and } +)}{P(+)}$) is often called **Bayes' Rule**. The important idea to take from this is that what we condition on can make a big difference in the resulting probability.
 
-Now, go take a few minutes and read the recent article in the Washington Post (Link)[https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c].
+Take some time to read the full [Washington Post article](https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c). 
 
 ### Court Arguments and Probability
 
-The concept of conditional probability also plays an important role in the judicial system in the U.S. We assume you are innocent until proven guilty. Thus, juries are instructed to consider the likelihood of the evidence, assuming the person on trial is innocent. In other words, consider the conditional probability: $P(\text{ evidence } \mid \text{ innocent })$.
+The concept of conditional probability also plays an important role in the judicial system in the U.S. The basis of the judicial system is the idea of "innocent until proven guilty". Law enforcement collects evidence.
 
-Unfortunately, many prosecutors try to make the wrong argument. They sometimes mistakenly try and argue that it is unlikely that a person is innocent given the evidence that is available, $P(\text{ innocent } \mid \text{ evidence })$. But this is not what the jury is supposed to consider, thus these types of arguments can lead to retrials.   
+Thus, juries are instructed to consider the likelihood of the evidence, assuming the person on trial is innocent. In other words, consider the conditional probability: $P(\text{ evidence } \mid \text{ innocent })$.
 
-See more here: https://en.wikipedia.org/wiki/Prosecutor%27s_fallacy
+Unfortunately, many prosecutors try to make the wrong argument. They sometimes mistakenly try to argue that it is unlikely that a person is innocent given the evidence that is available, $P(\text{ innocent } \mid \text{ evidence })$. But this is not what the jury is supposed to consider, thus these types of arguments can lead to retrials.
+
+This is known as the prosecutor's fallacy. You can read more about it [here](https://en.wikipedia.org/wiki/Prosecutor%27s_fallacy).
 
 
 
 ## Random Variable
 
-With a basic understanding of theoretical probability rules, we can introduce the most important concept from probability. 
+With a basic understanding of theoretical probability rules, we can introduce the most important concept from probability for our uses in this class.
 
-A **random variable** ($X$) is a real-valued function whose outcome we don't know beforehand. When considering data analysis and modeling, the random variables we will be thinking about will be estimated slopes, estimate odds ratios, etc. To establish our understanding, let's start with a simple example. 
+A **random variable** ($X$) is variable whose outcome (the value it takes) is governed by chance. It is a variable (something capable of taking different values) whose value is random. Deterministic variables, in contrast, are ones that 
+
+When considering data analysis and modeling, the random variables we will be thinking about will be estimated slopes, estimate odds ratios, etc. To establish our understanding, let's start with a simple example. 
 
 You are going to flip a fair coin 3 times (the coin has 2-sides, we'll call one side Heads and the other Tails).
 
@@ -165,7 +177,7 @@ You are going to flip a fair coin 3 times (the coin has 2-sides, we'll call one 
 
 ### Probability Models
 
-A **probability model** for random variable $X$ gives the possible values of $X$ and the associated probabilities. 
+A **probability model** for the random variable $X$ gives the possible values of $X$ and the associated probabilities. 
 
 - What is the probability model for $X$: the number of heads in 3 coin flips?
 

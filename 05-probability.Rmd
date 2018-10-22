@@ -137,15 +137,13 @@ $$
 
 The first expression above ($P(D \mid +) &= \frac{P(D \text{ and } +)}{P(+)}$) is often called **Bayes' Rule**. The important idea to take from this is that what we condition on can make a big difference in the resulting probability.
 
-Take some time to read the full [Washington Post article](https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c). 
+Take some time to read the full [Washington Post article](https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c).
 
 ### Court Arguments and Probability
 
-The concept of conditional probability also plays an important role in the judicial system in the U.S. The basis of the judicial system is the idea of "innocent until proven guilty". Law enforcement collects evidence.
+The concept of conditional probability also plays an important role in the judicial system in the U.S. The basis of the judicial system is the idea of "innocent until proven guilty". Assuming that the defendant is innocent, what are the changes of having this evidence? That is, evidence is presented to jurors as the conditional probability: $P(\text{ evidence } \mid \text{ innocent })$.
 
-Thus, juries are instructed to consider the likelihood of the evidence, assuming the person on trial is innocent. In other words, consider the conditional probability: $P(\text{ evidence } \mid \text{ innocent })$.
-
-Unfortunately, many prosecutors try to make the wrong argument. They sometimes mistakenly try to argue that it is unlikely that a person is innocent given the evidence that is available, $P(\text{ innocent } \mid \text{ evidence })$. But this is not what the jury is supposed to consider, thus these types of arguments can lead to retrials.
+Unfortunately, many prosecutors try to make the wrong argument by flipping the conditional probability, whether maliciously or due to a lack of statistical knowledge. They sometimes mistakenly try to argue that it is unlikely that a person is innocent given the evidence that is available, $P(\text{ innocent } \mid \text{ evidence })$. This can be dangerous if a prosecutor argues that since $P(\text{ evidence } \mid \text{ innocent }) = 1/\text{1 million}$ to argue that $P(\text{ innocent } \mid \text{ evidence }) = 1/\text{1 million}$.
 
 This is known as the prosecutor's fallacy. You can read more about it [here](https://en.wikipedia.org/wiki/Prosecutor%27s_fallacy).
 
@@ -155,29 +153,32 @@ This is known as the prosecutor's fallacy. You can read more about it [here](htt
 
 With a basic understanding of theoretical probability rules, we can introduce the most important concept from probability for our uses in this class.
 
-A **random variable** ($X$) is variable whose outcome (the value it takes) is governed by chance. It is a variable (something capable of taking different values) whose value is random. Deterministic variables, in contrast, are ones that 
+A **random variable** ($X$) is variable whose outcome (the value it takes) is governed by chance. It is a variable (something capable of taking different values) whose value is random. Examples include:
 
-When considering data analysis and modeling, the random variables we will be thinking about will be estimated slopes, estimate odds ratios, etc. To establish our understanding, let's start with a simple example. 
+- $X =$ age of the next person to walk into the building
+- $X =$ the number the lands face up on a balanced 6-sided die
+
+When considering data analysis and modeling, the random variables we will be thinking about will be estimated regression coefficients, estimate odds ratios, etc. Why are these random variables? Because their values depend on the random samples that we draw. To establish our understanding, let's start with a simple example.
 
 You are going to flip a fair coin 3 times (the coin has 2-sides, we'll call one side Heads and the other Tails).
 
-- Assume there are only 2 possible outcomes and P(Heads) = P(Tails) = 0.5 (can't land on its side).
+- Assume there are only 2 possible outcomes and $P(\text{Heads}) = P(\text{Tails}) = 0.5$. (The coin can't land on its side).
 - Below are three possible random variables based on the same random process (flipping a 2-sided coin 3 times):
 
-- Example 1 - $X$: the number of heads in 3 coin flips
+- Example 1: $X =$ the number of heads in 3 coin flips
 - What are the possible values of $X$? 0, 1, 2, or 3.
 
-- Example 2 - Say I give you 3 dollars for each head
-- $Y$: the amount of money won from 3 coin flips, $Y = 3*X$
+- Example 2: Say I give you 3 dollars for each Head
+- $Y =$ the amount of money won from 3 coin flips, $Y = 3*X$
 - The possible values of $Y$ are 0, 3, 6, or 9.
 
-- Example 3 - $Z$: the number of heads on the last flip of 3 coin flips
-- The possible values are 0 or 1. 
+- Example 3: $Z =$ the number of heads on the last of the 3 coin flips
+- The possible values are 0 or 1.
 
 
-### Probability Models
+## Probability Models
 
-A **probability model** for the random variable $X$ gives the possible values of $X$ and the associated probabilities. 
+A **probability model** for a random variable $X$ gives the possible values of $X$ and the associated probabilities. 
 
 - What is the probability model for $X$: the number of heads in 3 coin flips?
 
@@ -195,20 +196,46 @@ $P(Y = 9) = P(\text{three heads}) = 0.5^3$ (using Rule 5)
 
 - What about $Z$?
 
-$P(Z = 0) = P(\text{HHT or TTT or HTT or THT}) =  4*0.5^3 = 0.5$ (using Rule 5)
-$P(Z = 1) = P(\text{HHH or TTH or THH or HTH}) = 4*0.5^3 = 0.5$ (using Rule 4 & 5)
+$P(Z = 0) = P(\text{HHT or TTT or HTT or THT}) =  4*0.5^3 = 0.5$ (using Rule 4 & 5)
+$P(Z = 1) = P(\text{HHH or TTH or HTH or THH}) = 4*0.5^3 = 0.5$ (using Rule 4 & 5)
 
 For most situations in our class, we won't be using the probability rules to calculate chances by hand. 
 
-Rather, we will use a **named probability model** such that the we can calculate probabilities for particular values of the random variable using either a **probability mass function** (finite number of possible values) or a **probability density function** (infinite number of possible values). 
+Rather, we will use a **named probability model** such that the we can calculate probabilities for particular values of the random variable using either:
+
+- a **probability mass function (pmf)** (finite number of possible values) or 
+- a **probability density function (pdf)** (infinite number of possible values)
+
+### Using probability mass functions
+
+Let's say that we are working with a random variable $X$ that represents the result of spinning the arrow on a spinner that has 3 regions labeled 1, 2, and 3. $X$ can only takes the values 1, 2, or 3. The probability mass function (pmf) for X gives the probabilities that $X=1$, $X=2$, and $X=3$ which are determined by the relative areas of the regions on the spinner. The pmf for X is frequently denoted as $p(x)$, which is shorthand for $P(X = x)$. Based on the construction of the spinner, the pmf can be denoted as below:
+
+|    $x$ |  1  |  2  |  3  |
+|-------:|:---:|:---:|:---:|
+| $p(x)$ | 0.4 | 0.5 | 0.1 |
+
+The first row indicates the values that $X$ can take. The second row indicates the associated probabilities, the values of the probability mass function. Note that this row adds up to 1 because one of these 3 outcomes must happen.
+
+We can use the pmf and the probability rules introduced earlier to calculate probabilities of different events.
+
+Example 1: $P(X = 1 \text{ or } 2)$
+
+Because the events $X = 1$ and $X = 2$ are disjoint (mutually exclusive/can't happen simultaneously), this probability is equal to $P(X = 1) + P(X = 2) = 0.4 + 0.5 = 0.9$. (Rule 4)
+
+Example 2: $P(X \neq 1)$
+
+By Rule 3, $P(X \neq 1) = 1 - P(X = 1) = 1 - 0.4 = 0.6$. Another way to arrive at this would be to see that $P(X \neq 1) = P(X = 2 \text{ or } 3) = P(X = 2) + P(X = 3) = 0.5 + 0.1$.
+
+### Using probability density functions
+
+
+### Expected value and variance
+
+Two important properties of a random variable $X$ are its **expected value** and **variance**.
 
 
 
 
-
-
-
-- Probability Model: BASIC DEF, how to use pmf (assuming they are just given), pdf, to calculate probabilities
 - Expected Value and Variance as concepts, not as theory
 - Put in context of sampling variability (mean and sd of the sampling distribution) and variability from randomization assignment
 

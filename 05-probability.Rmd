@@ -256,28 +256,64 @@ The expected value of $X$ is the long-run average of values. In other words, it 
 
 The variance of $X$ is the long-run spread of values.
 
-
 In the context of probability sampling, the expected sample mean is the average mean we'd expect if we considered all possible random samples from the population of interest. This will be equal to the population mean. In other words, we'd expect our sample mean to be on average equal to the population mean.
 
-In the context of probability sampling, the variance of a sample mean is a means of how much it will vary from sample to sample. 
+In the context of probability sampling, the variance of a sample mean is a measure of how much it will vary from sample to sample. 
 
 
+Now, we'll talk about two particular "named" probability models. 
 
-##Bernoulli/Binomial
+## Bernoulli/Binomial Model
 
-- Tie to Logistic regression
-- E(x) = p or E(x) = np or E(x/n) = p
-- tie to sampling variability and the disease we talk about previously
-- show the pmf graphically (show what it does when n get large)
+There are situations in which your response of interest only has two possible outcomes: success or failure, heart disease or no heart disease, o-ring failure or no o-ring failure, etc. We used logistic regression to create a model to predict a binary response variable. For a moment, let's just consider the response itself as a random process. 
 
-##Normal
+If a random process satisfied the following three conditions, then we can use the **Bernoulli Model**
+
+1. Two possible outcomes (success or failure)
+2. Independent "trials" (outcome of one person does not impact probabilities for anyone else)
+3. P(success) = $p$ is constant
+
+In the long run, the expected number of successes will be $p$ and the variance will be $p(1-p)$.
+
+Let's think back to the disease testing example. Say we have a very large population where 1 in every 1000 has a particular disease. We could model the disease outcome from randomly drawing an individual from the population using a Bernoulli Model $P(Disease) = 0.001$. If we just randomly drew 1 person, we'd expect 0.001 of a person to have the disease and a measure of the variability in outcomes is $0.001*0.999 = 0.000999$.
+
+Imagine we had a sample of $n$ individuals from the population. Then we are considering $n$ independent Bernoulli "trials". If we count the number of successes, then we can use the **Binomial Model.**
+
+In the long run, the expected number of successes in $n$ trials will be $np$ and the variance will be $np(1-p)$.
+
+In the long run, the expected relative frequency of successes in $n$ trials will be $p$ and the variance will be $\frac{p(1-p)}{n}$.
+
+If we randomly draw 5000 people, we'd expect 0.001\*5000 = 5 people to have the disease and a measure of the variability in count is $5000*0.001*0.999 = 4.995$. Let's adjust this to relative frequencies. We'd expect 0.1% of the people to have the disease and a measure of the variability in relative frequency is $0.001*0.999/5000 = 1.998e-7$.
+
+
+Let's look at the probability mass function for the Binomial Model for $n = 10, p = 0.001$.
+
+```{r}
+n = 10
+p = 0.001
+barplot(dbinom(0:n,size = n, p = p),names.arg = 0:n,ylab='Probability',main='n = 10, p = 0.001')
+```
+
+If we increase the sample size to n = 500, then we see this.
+
+```{r}
+n = 500
+p = 0.001
+barplot(dbinom(0:n,size = n, p = p),names.arg = 0:n,ylab='Probability',main='n = 500, p = 0.001')
+```
+
+What does this look like?
+
+
+## Normal
+
 - Many Normal curve (each with its own mean and sd)
 - Area under curve as it relates to 68-95-99.7 rule
 - relate to z-score
 - Big IDEA: +- 2SD
 
 
-##Sampling Distribution and CLT
+## Sampling Distribution and CLT
 - Connecting CLT (NORMAL) and bootstrapping
 - SE (estimate of RV SD), z-scores ( value - E(X) / SE)
 

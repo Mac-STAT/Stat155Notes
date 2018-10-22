@@ -254,7 +254,7 @@ Two important properties of a random variable $X$ are its **expected value** and
 
 The expected value of $X$ is the long-run average of values. In other words, it is the average of the values, weighted by their probability. 
 
-The variance of $X$ is the long-run spread of values.
+The variance of $X$ is the long-run spread of values. The standard deviation of $X$ is the square root of the variance. 
 
 In the context of probability sampling, the expected sample mean is the average mean we'd expect if we considered all possible random samples from the population of interest. This will be equal to the population mean. In other words, we'd expect our sample mean to be on average equal to the population mean.
 
@@ -305,16 +305,87 @@ barplot(dbinom(0:n,size = n, p = p),names.arg = 0:n,ylab='Probability',main='n =
 What does this look like?
 
 
-## Normal
 
-- Many Normal curve (each with its own mean and sd)
-- Area under curve as it relates to 68-95-99.7 rule
-- relate to z-score
-- Big IDEA: +- 2SD
+## Normal Model
+
+We've been introduced to the Normal model already as a smooth version of a unimodal, symmetric histogram. For a random variable $X$ (that can take any decimal value), if the expected value is $\mu$ and the variance is $\sigma^2$, a Normal random variable has a probability density function of
+$$f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
+
+For every, potential value of $\mu$ and $\sigma$, there is different curve.
+
+```{r}
+x = seq(-10,10,.01)
+f = dnorm(x,mean = 0, sd = 1)
+plot(x,f,type='l',xaxt='n',ylab='f(x)',bty='n')
+f2 = dnorm(x,mean = 3, sd = 1)
+lines(x,f2)
+f3 = dnorm(x,mean = 3, sd = 0.5)
+lines(x,f3)
+f3 = dnorm(x,mean = 3, sd = 0.5)
+lines(x,f3)
+f4 = dnorm(x,mean = 0, sd =5)
+lines(x,f4)
+```
+
+- Let the expected value be 0 and standard deviation be 1, $\mu = 0$ and $\sigma = 1$
+
+```{r}
+x = seq(-5,5,.01)
+f = dnorm(x,mean = 0, sd = 1)
+plot(x,f,type='l',xaxt='n',ylab='f(x)',bty='n')
+axis(1,at=c(-2,-1,0,1,2),labels=expression(mu - 2*sigma,mu - sigma,mu,mu + sigma,mu + 2*sigma))
+```
+
+- We know that $P(-1\leq X \leq 1) = 0.68$, calculated as the area under the curve between -1 and 1.
+
+```{r}
+x = seq(-5,5,.01)
+f = dnorm(x,mean = 0, sd = 1)
+plot(x,f,type='l',xaxt='n',ylab='f(x)',bty='n')
+axis(1,at=c(-2,-1,0,1,2),labels=expression(mu - 2*sigma,mu - sigma,mu,mu + sigma,mu + 2*sigma))
+x1 = seq(-5,-1,.01)
+polygon(c(x1,rev(x1)),c(rep(0,length(x1)),rev(dnorm(x1))),col='red',density=15)
+x1 = seq(-5,1,.01)
+polygon(c(x1,rev(x1)),c(rep(0,length(x1)),rev(dnorm(x1))),col='blue',density=5)
+```
+
+```{r echo=TRUE}
+pnorm(1) - pnorm(-1) #pnorm is the cdf
+```
+
+- We know that $P(-2\leq X \leq 2) = 0.95$, calculated as the area under the curve between -2 and 2.
+
+```{r}
+x = seq(-5,5,.01)
+f = dnorm(x,mean = 0, sd = 1)
+plot(x,f,type='l',xaxt='n',ylab='f(x)',bty='n')
+axis(1,at=c(-2,-1,0,1,2),labels=expression(mu - 2*sigma,mu - sigma,mu,mu + sigma,mu + 2*sigma))
+x1 = seq(-5,-2,.01)
+polygon(c(x1,rev(x1)),c(rep(0,length(x1)),rev(dnorm(x1))),col='red',density=20)
+x1 = seq(-5,2,.01)
+polygon(c(x1,rev(x1)),c(rep(0,length(x1)),rev(dnorm(x1))),col='blue',density=5)
+```
+
+```{r echo=TRUE}
+pnorm(2) - pnorm(-2)
+```
+
+- - We know that $P(-3\leq X \leq 3) = 0.997$, calculated as the area under the curve between -3 and 3.
+
+```{r echo=TRUE}
+pnorm(3) - pnorm(-3)
+```
+
+No matter what the long-run average and variability are, if we standardize our data by subtracting $\mu$ and dividing by $\sigma$, then we can focus solely on the areas based on z-score values rather that in original values. 
+
+Important: If a random variable can be modeled with a Normal model, then we know that about 95% of the time, the values will be within 2 standard deviations of the expected value. 
 
 
 ## Sampling Distribution and CLT
-- Connecting CLT (NORMAL) and bootstrapping
+
+In construction!
+
+- Connect CLT (NORMAL) and bootstrapping
 - SE (estimate of RV SD), z-scores ( value - E(X) / SE)
 
 

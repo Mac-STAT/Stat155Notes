@@ -187,15 +187,24 @@ $P(Z = 1) = P(\text{HHH or TTH or THH or HTH}) = 4*0.5^3 = 0.5$ (using Rule 4 & 
 
 For most situations in our class, we won't be using the probability rules to calculate chances by hand. 
 
-Rather, we will use a **named probability model** such that the we can calculate probabilities for particular values of the random variable using either a **probability mass function** (finite number of possible values) or a **probability density function** (infinite number of possible values). 
+Rather, we will use a **named probability model** such that the we can calculate probabilities for particular values of the random variable using either a **probability mass function** (for a random variable with a finite number of possible values) or a **probability density function** (for a random variable with infinite number of possible values). 
+
+In practice, we may be interested in the chance a random variable is within a range of values, such as $P(X < a)$ or $P(X > b)$ or $P(a < X < b)$.
+
+If we have a probability mass function, we can add the probabilities that are within those ranges,
+
+- $P(X < a) = \sum_{x < a}P(X = x)$
+- $P(X > b) = \sum_{x > b}P(X = x)$
+- $P(a < X < b) = \sum_{a < x < b}P(X = x)$
+
+If we have a probability density function, then the probability of any one particular value is 0, so we find the area under the curve (defined by the probability density function) over the range,
+
+INSERT GRAPHS for areas under curves of pdf
 
 
 
 
 
-
-
-- Probability Model: BASIC DEF, how to use pmf (assuming they are just given), pdf, to calculate probabilities
 - Expected Value and Variance as concepts, not as theory
 - Put in context of sampling variability (mean and sd of the sampling distribution) and variability from randomization assignment
 

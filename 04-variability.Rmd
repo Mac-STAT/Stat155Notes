@@ -23,20 +23,19 @@ Up until this point, we have thought about
 2. Data visualization (the first step of any data analysis)
 3. Modeling (to explain observed variation)
 
-Throughout the past three chapters, we have also sprinkled in the idea that **the sample we observe is just one random representation of the true population or phenomenon.** Therefore, any numerical summary of the sample, any **statistic**, would be an estimate the true numerical summary of the population, the corresponding unknown **parameter**.
+Throughout the past three chapters, we have also sprinkled in the idea that **the sample we observe is just one random representation of the true population or phenomenon.** Therefore, any numerical summary of the sample (any **statistic**) would be an estimate the true numerical summary of the population (the corresponding unknown **parameter**).
 
+If we could repeat the random sampling process, each sample we would get would be slightly different. The composition of cases in the sample would differ every time. Sometimes we would randomly over-represent one group of people and another time we would randomly over-represent another group of people, just by chance. The statistic (e.g. a mean, a median, a regression coefficient) that we calculate would change for every sample. 
 
-If we could repeat the random sampling process, each sample we would get would be slightly different. The individual composition would differ every time. Sometimes we would randomly over-represent one group people and another time we would randomly over-represent another group of people, just by chance. The statistic (e.g. a mean, a median, a regression coefficient) that we calculate would change slightly for every sample. 
+Another source of random variation that can arise is that of random treatment/control group assignments in an experiment. If we could repeat the randomization process in an experiment, each treatment group would be slightly different. The individual composition of the cases in the treatment and control groups would differ every time. Sometimes we would randomly over-represent one group of people in the treatment group, and another time we would randomly over-represent another group of people in the treatment group, just by chance. The statistic that we calculate and compare between groups (e.g. a difference in means, a difference in medians, a regression coefficient) would change for every reshuffling of individuals.
 
-If we could repeat the randomization process in an experiment, each treatment group would be slightly different. The individual composition of the cases in the treatment and control groups would differ every time. Sometimes we would randomly over-represent one group of people in the treatment group, and another time we would randomly over-represent another group of people in the treatment group, just by chance. The statistic that we calculate and compare between groups (e.g. a difference in means, a difference in medians, a regression coefficient) would change slightly for every reshuffling of individuals. 
-
-This is the idea of **random variability** due to random sampling or randomization, typically. The sample composition varies and therefore, the statistics that we calculate vary.
+This is the idea of **random variability**. This random variability is typically due to random sampling or randomization. The sample composition varies, and therefore, the statistics that we calculate vary.
 
 Let's explore this concept a bit more before we formally talk about probability and chance. 
 
 ## Random Sampling from a Population
 
-The data set we will work with contains ALL flights leaving New York City in 2013. This data represents a full census of the target population of flights leaving NYC in a particular year. 
+The data set that we will work with contains ALL flights leaving New York City in 2013. This data represents a full census of the target population of flights leaving NYC in a particular year. 
 
 We'll start by creating two new variables, `season` defined as winter (Oct - March) or summer (April - Sept) and `day_hour` defined as morning (midnight to noon) or afternoon (noon to midnight).
 
@@ -55,13 +54,13 @@ flights <- flights %>%
     select(arr_delay, dep_delay, season, day_hour, origin, carrier)
 ```
 
-Since we have the full population, we could just describe the flights that happened. Having data on the full population is very rare in practice. Instead, we are going to use this population to help us think about sampling variability.
+Since we have the full population, we could just describe the flights that happened. Note however that having data on the full population is very rare in practice. Instead, we are going to use this population to help us think about sampling variability.
 
 Let's take one random sample of 100 flights from the data set, using a simple random sampling strategy. Let's look at the arrival delay (in minutes) `arr_delay` with a histogram and calculate the median and mean arrival delay.
 
 ```{r}
-flights_samp1 <- flights %>% 
-    sample_n(size = 100) 
+flights_samp1 <- flights %>%
+    sample_n(size = 100) ## Sample 100 flights randomly
 
 flights_samp1 %>% 
     ggplot(aes(x = arr_delay)) +
@@ -79,10 +78,10 @@ At this point, we haven't looked at the entire population of flights. Based on a
 Now, let's take another random sample of 100 flights from the full population of flights.
 
 ```{r}
-flights_samp2 <- flights %>% 
-    sample_n(size = 100) 
+flights_samp2 <- flights %>%
+    sample_n(size = 100) ## Sample 100 flights randomly
 
-flights_samp2 %>% 
+flights_samp2 %>%
     ggplot(aes(x = arr_delay)) +
     geom_histogram() +
     theme_minimal()
@@ -97,7 +96,7 @@ How does the second sample differ from the first sample? What do they have in co
 
 We could keep the process going. Take a sample of 100 flights, look at the histogram, and calculate the median and mean. Repeat many, many times. 
 
-We can add a little bit of code to help us simulate this sampling 1000 times and calculate the median and mean for each sample of 100 flights. 
+We can add a little bit of code to help us simulate this sampling 1000 times and calculate the median and mean arrival delay for each sample of 100 flights. 
 
 ```{r}
 sim_data <- mosaic::do(1000)*( 
@@ -107,31 +106,33 @@ sim_data <- mosaic::do(1000)*(
 )
 ```
 
-Now we have 1000 medians and 1000 means, each corresponding to a sample median and sample mean of 100 random flights from the population. Let's summarize and visualize this simulation.
+Now we have 1000 medians and 1000 means, each corresponding to a sample median and sample mean from 100 random flights from the population. Let's summarize and visualize this simulation.
 
 ```{r}
 # Summarize
 summary_sim <- sim_data %>% 
-  summarize(mean_medians = mean(medians), 
-    mean_means = mean(means), 
-    sd_medians = sd(medians), 
-    sd_means = sd(means))
+    summarize(
+        mean_medians = mean(medians),
+        mean_means = mean(means),
+        sd_medians = sd(medians),
+        sd_means = sd(means)
+    )
 
 # Visualize
 sim_data %>% 
-  ggplot(aes(x = medians)) +
-  geom_histogram(bins = 15) +
-  geom_vline(data = summary_sim, aes(xintercept = mean_medians), color = "red") +
-  labs(title = "Sampling distribution of the sample median\nfrom a sample of 100 flights") +
-  theme_minimal()
+    ggplot(aes(x = medians)) +
+    geom_histogram(bins = 15) +
+    geom_vline(data = summary_sim, aes(xintercept = mean_medians), color = "red") +
+    labs(title = "Sampling distribution of the sample median\nfrom a sample of 100 flights") +
+    theme_minimal()
 
 # Visualize
 sim_data %>% 
-  ggplot(aes(x = means)) +
-  geom_histogram(bins = 15) +
-  geom_vline(data = summary_sim, aes(xintercept = mean_means), color = "red") +
-  labs(title = "Sampling distribution of the sample mean\nfrom a sample of 100 flights") +
-  theme_minimal()
+    ggplot(aes(x = means)) +
+    geom_histogram(bins = 15) +
+    geom_vline(data = summary_sim, aes(xintercept = mean_means), color = "red") +
+    labs(title = "Sampling distribution of the sample mean\nfrom a sample of 100 flights") +
+    theme_minimal()
 ```
 
 These histograms estimate the **sampling distribution** of sample median arrival delay and the **sampling distribution** of sample mean arrival delay, both of which describe the variability in the sample statistic across all possible random samples from the population. 
@@ -142,9 +143,9 @@ Describe the shape, center, and spread of the sampling distribution for the samp
 
 ### IRL: Bootstrapping 
 
-In real life (IRL), we don't have a full target population from which we can repeatedly draw samples. We only have a sample that was already drawn from the larger target population. 
+In real life (IRL), we don't have a full target population from which we can repeatedly draw samples. We only have a **sample** that was already drawn from the larger target population.
 
-To get a sense of the sampling variability, we could try to mimic this process using our best stand-in for the population, our sample. We will call the sample our "fake population" for the moment. This process of resampling our sample is called **bootstrapping**.
+To get a sense of the sampling variability, we could try to mimic this process of sampling from the full target population using our best stand-in for the population: our sample. We will call the sample our "fake population" for the moment. This process of resampling our sample is called **bootstrapping**.
 
 **1. Generate**
 
@@ -160,27 +161,29 @@ In our simulation above, we calculated the median and mean arrival delay. In the
 
 ```{r}
 boot_data <- mosaic::do(1000)*( 
-    flights_samp1 %>% # Start with sample
-      sample_frac(replace = TRUE) %>%  # Generate by resampling with replacement
-      summarize(medians = median(arr_delay), means = mean(arr_delay))  # Calculate
+    flights_samp1 %>% # Start with the SAMPLE (not the FULL POPULATION)
+      sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
+      summarize(medians = median(arr_delay), means = mean(arr_delay)) # Calculate statistics
 )
 ```
 
 **3. Summarize**
 
-Let's summarize these 1000 medians and 1000 means generated from resampling (with replacement) from our sample (our "fake population").
+Let's summarize these 1000 medians and 1000 means generated from resampling (with replacement) *from our sample* (our "fake population").
 
 ```{r}
 # Summarize
 summary_boot <- boot_data %>% 
-    summarize(mean_medians = mean(medians), 
-      mean_means = mean(means), 
-      sd_medians = sd(medians), 
-      sd_means = sd(means))
+    summarize(
+        mean_medians = mean(medians),
+        mean_means = mean(means),
+        sd_medians = sd(medians),
+        sd_means = sd(means)
+    )
 summary_boot
 ```
 
-Let's compare this to the summaries from the simulation from the population.
+Let's compare this to the summaries from the simulation *from the population*.
 
 ```{r}
 summary_sim
@@ -230,13 +233,13 @@ sim_data %>%
     theme_minimal()
 ```
 
-The process of resampling from our sample is called **bootstrapping**, and it is becoming the one of main computational tools for estimating sampling variability in Statistics. 
+The process of resampling from our sample is called **bootstrapping**, and it is becoming the one of main computational tools for estimating sampling variability in Statistics.
 
 ```{block type="reflect"}
 How well does bootstrapping do in mimicking the simulations from the population? What could we change to improve bootstrap's ability to mimic the simulations?
 ```
 
-This is a really important concept in Statistics! We'll return to the ideas of sampling variability and bootstrapping throughout the rest of the course. 
+This is a really important concept in Statistics! We'll return to the ideas of sampling variability and bootstrapping throughout the rest of the course.
 
 ```{block type="reflect"}
 What do you think the mean arrival delay is in the population? If you had to give an interval of plausible values for the population mean, what range would you give? Why?

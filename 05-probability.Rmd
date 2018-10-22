@@ -201,9 +201,33 @@ $P(Z = 1) = P(\text{HHH or TTH or HTH or THH}) = 4*0.5^3 = 0.5$ (using Rule 4 & 
 
 For most situations in our class, we won't be using the probability rules to calculate chances by hand. 
 
-Rather, we will use a **named probability model** such that the we can calculate probabilities for particular values of the random variable using either a **probability mass function** (for a random variable with a finite number of possible values) or a **probability density function** (for a random variable with infinite number of possible values). 
 
-In practice, we may be interested in the chance a random variable is within a range of values, such as $P(X < a)$ or $P(X > b)$ or $P(a < X < b)$.
+Rather, we will use a **named probability model** such that the we can calculate probabilities for particular values of the random variable using either:
+
+- a **probability mass function (pmf)** (finite number of possible values) or 
+- a **probability density function (pdf)** (infinite number of possible values)
+
+### Using probability mass functions
+
+Let's say that we are working with a random variable $X$ that represents the result of spinning the arrow on a spinner that has 3 regions labeled 1, 2, and 3. $X$ can only takes the values 1, 2, or 3. The probability mass function (pmf) for X gives the probabilities that $X=1$, $X=2$, and $X=3$ which are determined by the relative areas of the regions on the spinner. The pmf for X is frequently denoted as $p(x)$, which is shorthand for $P(X = x)$. Based on the construction of the spinner, the pmf can be denoted as below:
+
+|    $x$ |  1  |  2  |  3  |
+|-------:|:---:|:---:|:---:|
+| $p(x)$ | 0.4 | 0.5 | 0.1 |
+
+The first row indicates the values that $X$ can take. The second row indicates the associated probabilities, the values of the probability mass function. Note that this row adds up to 1 because one of these 3 outcomes must happen.
+
+We can use the pmf and the probability rules introduced earlier to calculate probabilities of different events.
+
+Example 1: $P(X = 1 \text{ or } 2)$
+
+Because the events $X = 1$ and $X = 2$ are disjoint (mutually exclusive/can't happen simultaneously), this probability is equal to $P(X = 1) + P(X = 2) = 0.4 + 0.5 = 0.9$. (Rule 4)
+
+Example 2: $P(X \neq 1)$
+
+By Rule 3, $P(X \neq 1) = 1 - P(X = 1) = 1 - 0.4 = 0.6$. Another way to arrive at this would be to see that $P(X \neq 1) = P(X = 2 \text{ or } 3) = P(X = 2) + P(X = 3) = 0.5 + 0.1$.
+
+### Using probability density functions
 
 If we have a probability mass function, we can add the probabilities that are within those ranges,
 
@@ -213,7 +237,14 @@ If we have a probability mass function, we can add the probabilities that are wi
 
 If we have a probability density function, then the probability of any one particular value is 0, so we find the area under the curve (defined by the probability density function) over the range,
 
-INSERT GRAPHS for areas under curves of pdf
+```{r}
+x = seq(30,200,by=1)
+plot(x,dnorm(x,mean = 85,sd = 20),type='l',col='red',bty='n',yaxt='n',ylab='',xlab='values',main='',xaxt='n')
+axis(1, at=c(80,95), labels = c('a','b'))
+x1 = seq(80,95,by=1)
+polygon(c(x1,rev(x1)),c(dnorm(x1,mean = 85,sd = 20),rep(0,length(x1))),col='red',border=NA)
+
+```
 
 
 ### Expected value and variance
@@ -221,9 +252,14 @@ INSERT GRAPHS for areas under curves of pdf
 
 Two important properties of a random variable $X$ are its **expected value** and **variance**.
 
+The expected value of $X$ is the long-run average of values. In other words, it is the average of the values, weighted by their probability. 
 
-- Expected Value and Variance as concepts, not as theory
-- Put in context of sampling variability (mean and sd of the sampling distribution) and variability from randomization assignment
+The variance of $X$ is the long-run spread of values.
+
+
+In the context of probability sampling, the expected sample mean is the average mean we'd expect if we considered all possible random samples from the population of interest. This will be equal to the population mean. In other words, we'd expect our sample mean to be on average equal to the population mean.
+
+In the context of probability sampling, the variance of a sample mean is a means of how much it will vary from sample to sample. 
 
 
 

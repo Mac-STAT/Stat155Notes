@@ -184,20 +184,27 @@ A **probability model** for a random variable $X$ gives the possible values of $
 - What is the probability model for $X$: the number of heads in 3 coin flips?
 
 $P(X = 0) = P(\text{three tails}) =  0.5^3$ (using Rule 5)
+
 $P(X = 1) = P(\text{HTT or THT or TTH }) = 3*0.5^3$ (using Rule 4 & 5)
+
 $P(X = 2) = P(\text{HHT or HTH or THH }) = 3*0.5^3$ (using Rule 4 & 5)
+
 $P(X = 3) = P(\text{three heads}) = 0.5^3$ (using Rule 5)
 
 - What is the probability model for $Y = 3*X$? (The total number of dollars earned when $3 is paid for each head.)
 
 $P(Y = 0) = P(\text{three tails}) =  0.5^3$ 
+
 $P(Y = 3) = P(\text{HTT or THT or TTH }) = 3*0.5^3$ 
+
 $P(Y = 6) = P(\text{HHT or HTH or THH }) = 3*0.5^3$ 
+
 $P(Y = 9) = P(\text{three heads}) = 0.5^3$
 
 - What about $Z$? (The number of heads on the last of the 3 coin flips)
 
 $P(Z = 0) = P(\text{HHT or TTT or HTT or THT}) =  4*0.5^3 = 0.5$ (using Rule 4 & 5)
+
 $P(Z = 1) = P(\text{HHH or TTH or HTH or THH}) = 4*0.5^3 = 0.5$ (using Rule 4 & 5)
 
 For most situations in our class, we won't use the probability rules to calculate chances by hand. Rather, we will use a **named probability model** such that the we can calculate probabilities for particular values of the random variable using either:

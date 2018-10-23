@@ -5,7 +5,6 @@ library(nycflights13)
 library(broom)
 library(dplyr)
 library(ggplot2)
-library(stringr)
 library(rvest)
 library(mosaicData) 
 library(ggmosaic)
@@ -21,7 +20,7 @@ Recall the model we built to predict home price as a function of square footage 
 ```{r echo=TRUE}
 homes <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt")
 homes <- homes %>%
-  mutate(AnyFireplace = Fireplaces > 0)
+    mutate(AnyFireplace = Fireplaces > 0)
 homes %>%
     ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
     geom_point(alpha = 0.25) +
@@ -29,7 +28,7 @@ homes %>%
     theme_minimal()
 ```
 
-To allow for different slopes among homes with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our sample, we observed a difference in the slopes of \$26.85 per square foot. But is this true for the larger population of homes? Is each square foot worth exactly $26.85 more, on average, in homes with a fireplace than in homes without a fireplace?
+To allow for different slopes among homes with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our sample, we observed a difference in the slopes of $26.85 per square foot. But is this true for the larger population of homes? Is each square foot worth exactly $26.85 more, on average, in homes with a fireplace than in homes without a fireplace?
 
 ```{r echo=TRUE}
 lm.home3 <- lm(Price ~ AnyFireplace*Living.Area, data = homes)
@@ -38,7 +37,7 @@ tidy(lm.home3)
 
 Probably not. In fact, our sample is just one random sample from the larger population of homes in upstate New York. If we had gotten a slightly different sample of homes, then we would have different estimates for each of the regression coefficients. We explored this sampling variation in Chapter 4 using bootstrapping.
 
-Let's connect our goals to the terms: **statistic** and **parameter**. The interaction coefficient of \$26.85 is a **statistic**. It (as well as the other coefficient estimates) is a numerical summary of our data that was estimated from a **sample**. If we had a census, a full set of data on all homes in upstate New York, we could fit the same linear regression model. The coefficient estimates given to us by R would represent population **parameters** because they are computed from the whole population, rather than a sample. By understanding **how much** statistics vary from sample to sample, we can start to **quantify the amount of uncertainty** in our estimates. Because the process of obtaining a sample is a type of random process, we will spend some time discussing formal probability.
+Let's connect our goals to the terms **statistic**, **estimate**, and **parameter**. The interaction coefficient is a **statistic**. It (as well as the other coefficient estimates) is a numerical summary of our data that was estimated from a **sample**. The actual numerical value of the interaction coefficient in the R output is called the **estimate**. If we had a census, a full set of data on all homes in upstate New York, we could fit the same linear regression model. The coefficient estimates given to us by R would represent population **parameters** because they are computed from the whole population, rather than a sample. By understanding **how much** statistics vary from sample to sample, we can start to **quantify the amount of uncertainty** in our estimates. Because the process of obtaining a sample is a type of random process, we will spend some time discussing formal probability.
 
 This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand and discuss random events. This framework provides a way of thinking about **uncertainty**, **random variability**, and **average behavior in the long run.**
 
@@ -56,9 +55,9 @@ What is the probability of getting a 1 from a six-sided die? How do you know thi
 
 There are three types of probability.
 
-1. **Empirical Probability:** If you could repeat a random process over and over again, we'd get a sense of the possible outcomes and their associated probabilities by calculating their relative frequency in the long run. If you repeatedly tossed a balanced die, then the relative frequency of 1's after tossing the die MANY times would be the empirical probability. If you repeatedly got a sample of 100 people, the relative frequency of estimated odds ratios below 1 would be the empirical probability of getting an odds ratio below 1. 
+1. **Empirical Probability:** If you could repeat a random process over and over again, you'd get a sense of the possible outcomes and their associated probabilities by calculating their relative frequency in the long run. If you repeatedly tossed a balanced die, then the relative frequency of 1's after tossing the die MANY times would be the empirical probability. If you repeatedly got a sample of 100 people, the relative frequency of estimated odds ratios below 1 would be the empirical probability of getting an odds ratio below 1. 
 
-2. **Theoretical Probability:** If you don't have time to toss a die a million times, you could calculate probabilities based on mathematical theory and assumptions. When tossing a die, you would assume that each side is equally likely to land face-up. Thus the chance of rolling a 1, is 1/6 for a six-sided die.
+2. **Theoretical Probability:** If you don't have time to toss a die a million times, you could calculate probabilities based on mathematical theory and assumptions. When tossing a balanced die, you would assume that each side is equally likely to land face-up. Thus the chance of rolling a 1, is 1/6 for a six-sided die.
 
 ```{block type="reflect"}
 What is the probability you'll get an A in this class? What does that number represent? How can you justify that number?
@@ -74,11 +73,11 @@ In theoretical probability, we need to define a few terms and set some rules for
 
 The **sample space**, $S$, is the set of all possible outcomes of a random process.
 
-- Example: If you flip two coins (one side Heads and one side Tails), then the sample space contains four possible outcomes: Heads and Heads (HH), Heads and Tails (HT), Tails and Heads (TH), and Tails and Tails (TT), $S = \{HH,HT,TH,TT\}$.
+- Example: If you flip two coins (one side Heads and one side Tails), then the sample space contains four possible outcomes: Heads and Heads (HH), Heads and Tails (HT), Tails and Heads (TH), and Tails and Tails (TT). That is, $S = \{HH,HT,TH,TT\}$.
 
 A subset of outcomes is called an **event**, $A$. 
 
-- Example: If you flip two coins, an event $A$ could be that exactly one of the coins land Heads, $A = \{HT,TH\}$.
+- Example: If you flip two coins, an event $A$ could be that exactly one of the coins lands Heads, $A = \{HT,TH\}$.
 
 For events $A$ and $B$ and sample space $S$, the probability of an event $A$, notated as $P(A)$, follows the rules below:
 
@@ -86,14 +85,14 @@ For events $A$ and $B$ and sample space $S$, the probability of an event $A$, no
 - Rule 2: $P(S) = 1$ (one of the possible outcomes has to happen)
 - Rule 3: $P(\text{not }A) = 1 - P(A)$ (if we know the chance of something happening, we also know that chance it doesn't happen)
 - Rule 4: $P(A\text{ or }B) = P(A) + P(B)$ if $A$ and $B$ are disjoint events.
-  - $A$ and $B$ are **disjoint** if $A$ occuring prevents $B$ from occurring (they both can't happen at the same time).
-- Rule 4*: $P(A\text{ or }B) = P(A) + P(B) - P(A\text{ and } B)$ in general
-- Rule 5: $ P(A\text{ and }B) = P(A)\times P(B)$ if $A$ and $B$ are independent.
-  - $A$ and $B$ are **independent** if $B$ occurring doesn't change the probability of $A$ occurring.
-- Rule 5*: $P(A\text{ and }B) = P(A \mid B)P(B) = P(B \mid A)P(A)$.
-  - The **conditional probability** of A **given** that event B occurs, $P(A \mid B)$, is equal to the probability of the joint event (A and B) divided by the probability of B.
+    - $A$ and $B$ are **disjoint** if $A$ occuring prevents $B$ from occurring (they both can't happen at the same time).
+- Rule 4\*: $P(A\text{ or }B) = P(A) + P(B) - P(A\text{ and } B)$ in general
+- Rule 5: $P(A\text{ and }B) = P(A)\times P(B)$ if $A$ and $B$ are independent.
+    - $A$ and $B$ are **independent** if $B$ occurring doesn't change the probability of $A$ occurring.
+- Rule 6\*: $P(A\text{ and }B) = P(A \mid B)P(B) = P(B \mid A)P(A)$.
+    - The **conditional probability** of A **given** that event B occurs, $P(A \mid B)$, is equal to the probability of the joint event (A and B) divided by the probability of B.
 $$ P(A \mid B) = \frac{P(A \text{ and } B)}{P(B)} $$
-  - Intuition: Given that $B$ happened, we focus on the subset of outcomes in $S$ in which $B$ occurs and then figure out what the chance of $A$ happening within that subset. 
+    - Intuition: Given that $B$ happened, we focus on the subset of outcomes in $S$ in which $B$ occurs and then figure out what the chance of $A$ happening within that subset. 
 
 For more details on theoretical probability, please see Appendix A. This material is optional but available for those of you who want to understand the mathematical reasoning behind the rest of the chapter.
 
@@ -115,7 +114,7 @@ $$P(D \mid +) = \frac{P(D \text{ and } +)}{P(+)}$$
 
 What information were we given again?
 
-- The prevalence of the disease is 1 in 1,000, so $P(D) = 1/1000$. Using Rule 3, the probability of no disease is $P(\text{ no }D) = 999/1000$. In 1000 people, 1 will actually have the disease and 999 won't have the disease.
+- The prevalence of the disease is 1 in 1,000, so $P(D) = 1/1000$. Using Rule 3, the probability of no disease is $P(\text{no }D) = 999/1000$. In 1000 people, 1 will actually have the disease and 999 won't have the disease.
 
 - The false-positive rate is 5 percent, so given you don't have the disease, the probability of getting a false positive is $P(+ \mid\text{ no } D) = 0.05$. So of the 999 that don't have the disease, about $0.05\times 999 = 49.95$ (about 50) of them will get a false positive test result.
 

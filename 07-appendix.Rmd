@@ -17,6 +17,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # Appendix A - Theoretical Probability
 
+For those of you who want a more thorough, mathematical description of the basics of theoretical probability, please read on.
+
 ##Probability Rules
 
 In theoretical probability, we need to define a few terms and set some rules (known as axioms).

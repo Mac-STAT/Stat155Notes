@@ -135,7 +135,7 @@ P(D \mid +) &= \frac{P(D \text{ and } +)}{P(+)} \\
 \end{align*}
 $$
 
-The first expression above ($P(D \mid +) &= \frac{P(+ \mid D) P(D)}{P( + \mid D) P(D) + P( + \mid \text{ no }D) P(\text{no }D)}$) is often called **Bayes' Rule**. The important idea to take from this is that what we condition on can make a big difference in the resulting probability.
+The first expression above ($P(D \mid +) = \frac{P(+ \mid D) P(D)}{P( + \mid D) P(D) + P( + \mid \text{ no }D) P(\text{no }D)}$) is often called **Bayes' Rule**. The important idea to take from this is that what we condition on can make a big difference in the resulting probability.
 
 Now, take some time to read the full [Washington Post article](https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c).
 

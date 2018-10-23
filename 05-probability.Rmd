@@ -406,7 +406,6 @@ No matter what the long-run average and variability are, if we standardize our d
 Important: If a random variable can be modeled with a Normal model, then we know that about 95% of the time, the values will be within 2 standard deviations of the expected value. 
 
 
-
 ## Sampling Distribution and CLT
 
 

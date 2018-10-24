@@ -140,7 +140,7 @@ Now, take some time to read the full [Washington Post article](https://www.washi
 
 ### Court Arguments and Probability
 
-The concept of conditional probability also plays an important role in the judicial system in the U.S. The foundation of the judicial system is the idea of "innocent until proven guilty". Assuming that the defendant is innocent, what are the changes of having this evidence? That is, evidence is presented to jurors as the conditional probability: $P(\text{ evidence } \mid \text{ innocent })$.
+The concept of conditional probability also plays an important role in the judicial system in the U.S. The foundation of the judicial system is the idea of "innocent until proven guilty". Assuming that the defendant is innocent, what are the chances of seeing this evidence? That is, evidence is presented to jurors as the conditional probability: $P(\text{ evidence } \mid \text{ innocent })$.
 
 Unfortunately, many prosecutors try to make the wrong argument by flipping the conditional probability, whether maliciously or due to a lack of statistical knowledge. They sometimes mistakenly try to argue that it is unlikely that a person is innocent given the evidence that is available, $P(\text{ innocent } \mid \text{ evidence })$. This can be dangerous if a prosecutor argues that since $P(\text{ evidence } \mid \text{ innocent }) = 1/\text{1 million}$, then $P(\text{ innocent } \mid \text{ evidence }) = 1/\text{1 million}$. We know this isn't true based on the disease testing example above. Generally $P(A \mid B)$ is not equal to (and can be very different from) $P(B \mid A)$.
 

@@ -432,6 +432,8 @@ We will call this the **68-95-99.7 rule**.
 
 ## Sampling Distribution and CLT
 
+![](Photos/sampling_variation_flowchart.png)
+
 
 In construction!
 

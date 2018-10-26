@@ -432,15 +432,29 @@ We will call this the **68-95-99.7 rule**.
 
 ## Sampling Distribution and CLT
 
-![](Photos/sampling_variation_flowchart.png)
-
-
 In construction!
 
 - Define the Central Limit Theorem
 - Connecting CLT and bootstrapping
 - SE (estimate of RV SD), z-scores ( value - E(X) / SE)
 - Brief Intro to Student T
+
+Let's remind ourselves why we need to understand randomness and the tools of formal probability.
+
+We appreciate that our estimates will vary from sample to sample because we have different cases in each sample. We care about *how much* they can vary because we want to *quantify* the amount of uncertainty in our estimates. Sure, we may use linear regression modeling to find that the estimate for an interaction coefficient is $26.85, but how different could that estimate have been if we had obtained a different sample (of the same size)?
+
+The **sampling ditribution** of a statistic (e.g. sampling distribution of the sample mean, of the sample median, of a regression coefficient) tells us exactly how that statistic would vary across all possible samples of a given size. For example, in our New York housing data (1728 homes), the sampling distribution for the interaction coefficient tells us exactly the distribution of interaction coefficient estimates that result from all possible samples of size 1728 *from the population of New York homes*. This distribution is centered at the value of the population interaction coefficient (the value we would get from linear modeling if we did indeed use the full population). The spread of the distribution gives us a measure of the precision of our estimate. If the sampling distribution is very wide, then our estimate is imprecise. Our estimate could vary widely from sample to sample. If the sampling distribution is very narrow, then our estimate is precise. Our estimate would not vary much from sample to sample.
+
+The emphasis on "from the population of New York homes" when defining the sampling distribution earlier is deliberate. We don't have the population, and we never will (usually)! The sampling distribution is a theoretical idea, but we wish to know what it looks like because we care about the precision of our estimate. We have done our best to estimate the center of the sampling distribution: our best guess is the sample estimate itself. For our housing data, we estimate an interaction coefficient of $26.85. This is our best guess for the center of the sampling distribution. What about the spread?
+
+We have looked at one way to estimate the spread of the sampling distribution: bootstrapping! In bootstrapping, we pretend that our sample is the population and look at lots of different samples from this "fake population". In bootstrapping, we have essentially tried to replicate the idea of getting "all possible samples of a given size from the population".
+
+Another powerful way to understand what the sampling distribution looks like is called the **Central Limit Theorem**. This is a famous theorem in statistics that can be stated as follows.
+
+Let $X_1, X_2, \ldots, X_n$ be random variables that denote some value measured on each of $n$ cases in a random sample. Let $\bar{X}_n$ denote the sample mean of those values. Let all of the random variables $X_1, \ldots, X_n$ have the same expected value $\mu$ and variance $\sigma^2$. Then as the sample size $n$ grows to infinity, the sample mean $\bar{X}_n$ becomes normally-distributed with mean $\mu$ (the true expected value) and variance $\sigma^2/n$.
+
+![](Photos/sampling_variation_flowchart.png)
+
 
 
 

@@ -50,7 +50,7 @@ For a much more in-depth discussion of probability (calculus-based), take MATH 3
 ## Three Types of Probability
 
 ```{block type="reflect", echo=TRUE}
-What is the probability of getting a 1 from a six-sided die? How do you know this? How can you justify that number?
+What is the probability of rolling a 1 on a six-sided die? How do you know this? How can you justify that number?
 ```
 
 There are three types of probability.
@@ -60,7 +60,7 @@ There are three types of probability.
 2. **Theoretical Probability:** If you don't have time to toss a die a million times, you could calculate probabilities based on mathematical theory and assumptions. When tossing a balanced die, you would assume that each side is equally likely to land face-up. Thus the chance of rolling a 1, is 1/6 for a six-sided die.
 
 ```{block type="reflect", echo=TRUE}
-What is the probability you'll get an A in this class? What does that number represent? How can you justify that number?
+What is the probability that you'll talk to someone new this week? What does that number represent? How can you justify that number?
 ```
 
 3. **Subjective Probability:** If you use a number between 0 and 1 (100%) to reflect your uncertainty in an outcome (rather than based on empirical evidence or mathematical theory), then you are using subjective probability. 
@@ -83,7 +83,7 @@ For events $A$ and $B$ and sample space $S$, the probability of an event $A$, no
 
 - Rule 1: $0\leq P(A)\leq 1$ (probability has to be between 0 and 1)
 - Rule 2: $P(S) = 1$ (one of the possible outcomes has to happen)
-- Rule 3: $P(\text{not }A) = 1 - P(A)$ (if we know the chance of something happening, we also know that chance it doesn't happen)
+- Rule 3: $P(\text{not }A) = 1 - P(A)$ (if we know the chance of something happening, we also know the chance that it doesn't happen)
 - Rule 4: $P(A\text{ or }B) = P(A) + P(B)$ if $A$ and $B$ are disjoint events.
     - $A$ and $B$ are **disjoint** if $A$ occuring prevents $B$ from occurring (they both can't happen at the same time).
 - Rule 4\*: $P(A\text{ or }B) = P(A) + P(B) - P(A\text{ and } B)$ in general
@@ -106,7 +106,7 @@ Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of every 1
 
 If you said the probability is 95%, then you are wrong, but almost half of the doctors surveyed in 2014 thought exactly the same thing.
 
-We can use the rules of probability to get a sense of what the desired probability actually is. We want to know the probability that they have the disease GIVEN that they got a positive test result, $P(D \mid +)$ where $D$ stands for disease and $+$ stands for positive test result.
+We can use the rules of probability to get a sense of what the desired probability actually is. We want to know the probability that they have the disease GIVEN that they got a positive test result, $P(D \mid +)$, where $D$ stands for disease and $+$ stands for positive test result.
 
 Based on the definition of conditional probability, we must consider only those that got a positive test result back and look at the proportion of them that have the disease. In mathematical notation, that is equal to
 
@@ -126,7 +126,7 @@ In mathematical notation, that looks like this
 
 $$
 \begin{align*}
-P(D \mid +) &= \frac{P(D \text{ and } +)}{P(+)} \qquad\qquad \text{Rule 5}\\
+P(D \mid +) &= \frac{P(D \text{ and } +)}{P(+)} \qquad\qquad \text{Rule 5*}\\
 &= \frac{P(D \text{ and } +)}{P(+ \text{ and } D) + P(+ \text{ and no } D)} \\
 &= \frac{P(+ \mid D) P(D)}{P( + \mid D) P(D) + P( + \mid \text{ no }D) P(\text{no }D)} \\
 &= \frac{0.99*1/1000}{0.99*1/1000 + 0.05*999/1000} \\
@@ -310,7 +310,7 @@ If a random variable $X$ follows a Bernoulli model, $X$ denotes the number of su
 
 Let's think back to the disease testing example. Say we have a very large population where 1 in every 1000 has a particular disease ($p = 1/1000$). We could model the disease outcome from randomly drawing an individual from the population using a Bernoulli Model where $P(X = 1) = 0.001$. If we just randomly drew 1 person, we'd expect 0.001 of a person to have the disease and a measure of the variability in outcomes is $0.001*0.999 = 0.000999$. These values don't make a lot of sense because we often sample more than one person.
 
-Imagine we had a sample of $n$ individuals from the population. Then we are considering $n$ independent Bernoulli "trials". If we let the random variable $X$ be the count of the number of successes in a sample of size $n$, then we can use the **Binomial Model.**
+Imagine we had a sample of $n$ individuals from the population. Then we are considering $n$ independent Bernoulli "trials". If we let the random variable $X$ be the count of the number of successes in a sample of size $n$, then we can use the **Binomial Model.** In this case we say that "$X$ follows a binomial distribution".
 
 The probability mass function for the Binomial Model is
 
@@ -355,7 +355,7 @@ What does this look like?
 We've been introduced to the Normal model already as a smooth version of a unimodal, symmetric histogram. For a quantitative random variable $X$ (whose value can be any real number), if the expected value is $\mu$ and the variance is $\sigma^2$, a Normal random variable has a probability density function of
 $$f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
 
-For every, potential value of $\mu$ and $\sigma$, there is a different curve. Som examples are shown below.
+For every, potential value of $\mu$ and $\sigma$, there is a different curve. Some examples are shown below.
 
 ```{r}
 x = seq(-10,10,.01)
@@ -370,7 +370,7 @@ lines(x,f4,col='purple')
 legend("topleft", legend = c("mu=0, sigma=1", "mu=5, sigma=1", "mu=5, sigma=0.5", "mu=0, sigma=3"), col = c("black", "red", "blue", "purple"), lwd = 1, bty = "n")
 ```
 
-If a random variable $X$ is modeled with a Normal model, we also say that "$X$ follows a normal distribution" or that "$X$ is normally distributed".
+If a random variable $X$ is modeled with a Normal model, we also say that "$X$ follows a normal distribution" or that "$X$ is normally-distributed".
 
 - In general, the center of the distribution is $\mu$ and the standard devation $\sigma$, the square root of the variance, determines the spread of the distribution.
 
@@ -421,7 +421,13 @@ $$\text{z-score} = \frac{X - \mu}{\sigma}$$
 We typically denote z-scores with $Z$. It turns out that $Z$ follows a standard normal distribution. That is $\mu=0, \sigma=1$ for $Z$. This allows us to focus solely on the areas for the standard normal distribution rather than the particular normal distribution with mean $\mu$ and standard deviation $\sigma$.
 
 
-**Important**: If a random variable can be modeled with a Normal model, then we know that about 95% of the time, the values will be within 2 standard deviations of the expected value. 
+**Important**: If a random variable can be modeled with a Normal model, then we know that:
+
+- About 68% of the time, the values will be within 1 standard deviation of the expected value.
+- About 95% of the time, the values will be within 2 standard deviations of the expected value.
+- About 99.7% of the time, the values will be within 3 standard deviations of the expected value.
+
+We will call this the **68-95-99.7 rule**.
 
 
 ## Sampling Distribution and CLT

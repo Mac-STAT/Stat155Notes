@@ -434,10 +434,10 @@ We will call this the **68-95-99.7 rule**.
 
 In construction!
 
-- Define the Central Limit Theorem
-- Connecting CLT and bootstrapping
-- SE (estimate of RV SD), z-scores ( value - E(X) / SE)
+- z-scores ( value - E(X) / SE)
 - Brief Intro to Student T
+
+### Sampling distributions
 
 Let's remind ourselves why we need to understand randomness and the tools of formal probability.
 
@@ -449,9 +449,20 @@ The emphasis on "from the population of New York homes" when defining the sampli
 
 We have looked at one way to estimate the spread of the sampling distribution: bootstrapping! In bootstrapping, we pretend that our sample is the population and look at lots of different samples from this "fake population". In bootstrapping, we have essentially tried to replicate the idea of getting "all possible samples of a given size from the population".
 
+### The Central Limit Theorem
+
 Another powerful way to understand what the sampling distribution looks like is called the **Central Limit Theorem**. This is a famous theorem in statistics that can be stated as follows.
 
-Let $X_1, X_2, \ldots, X_n$ be random variables that denote some value measured on each of $n$ cases in a random sample. Let $\bar{X}_n$ denote the sample mean of those values. Let all of the random variables $X_1, \ldots, X_n$ have the same expected value $\mu$ and variance $\sigma^2$. Then as the sample size $n$ grows to infinity, the sample mean $\bar{X}_n$ becomes normally-distributed with mean $\mu$ (the true expected value) and variance $\sigma^2/n$.
+**Central Limit Theorem (CLT)**: Let $X_1, X_2, \ldots, X_n$ be random variables that denote some value measured on each of $n$ cases in a random sample. Let $\bar{X}_n$ denote the sample mean of those values. Let all of the random variables $X_1, \ldots, X_n$ have the same expected value $\mu$ and variance $\sigma^2$. Then as the sample size $n$ grows to infinity, the sample mean $\bar{X}_n$ becomes normally-distributed with mean $\mu$ (the true expected value) and variance $\sigma^2/n$.
+
+What does the CLT tell us? It tells us that with a "sufficiently large" sample size, the sample mean is normally-distributed with a particular mean and variance. This tells us exactly what the sampling distribution is! The center and shape of the sampling distribution are given by a named probability model, the Normal distribution! Let's focus on the implications of these two parameters:
+
+- The mean: The CLT says that for large samples the sample mean is normally distributed with mean $\mu$. $\mu$ is the actual expected value of the random variables! This tells us that the sample mean estimates the population mean correctly, on average. For example, let's say that the $X$'s are house prices, and we want to know the true population mean of house prices. The CLT tells us that, **on average**, the sample mean will be correct! Another way to say this is that the sample estimates are "unbiased": underestimates are balanced by overestimates.
+- The variance: The CLT says that for large samples the sample mean is normally distributed with variance $\sigma^2/n$. Equivalently, the standard deviation is $\sigma/\sqrt{n}$. This standard deviation is also called the **standard error**. This tells us the spread of the sampling distribution! Sample estimates are more likely to be "close to" than "far from" the population parameter $\mu$. We see that the sample size $n$ plays a key role. The larger the sample size, the smaller the spread. This matches our intuition that larger samples should generate more **precise** estimates.
+
+**Where does the CLT come up in practice?** When we fit linear regression and logistic regression models, there were columns in the summarized output labeled "Std. Error". We have neglected to look at these columns...until now. Now, with our understanding of the CLT, we can understand where this column comes from. It turns out that we can apply the CLT to see that our estimated regression coefficients (our betas) are normally-distributed. That is, the theory of the CLT allows us to approximate the sampling distributions of regression coefficients. Behind the scenes, R uses that theory to give us the Standard Error column. This column gives us an estimate of the standard error of the sampling distribution for that regression coefficient.
+
+Ideas about sampling variability and the ways in which we think about them in statistics are shown in the figure below.
 
 ![](Photos/sampling_variation_flowchart.png)
 

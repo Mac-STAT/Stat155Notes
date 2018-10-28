@@ -432,11 +432,6 @@ We will call this the **68-95-99.7 rule**.
 
 ## Sampling Distribution and CLT
 
-In construction!
-
-- z-scores ( value - E(X) / SE)
-- Brief Intro to Student T
-
 ### Sampling distributions
 
 Let's remind ourselves why we need to understand randomness and the tools of formal probability.
@@ -460,13 +455,81 @@ What does the CLT tell us? It tells us that with a "sufficiently large" sample s
 - The mean: The CLT says that for large samples the sample mean is normally distributed with mean $\mu$. $\mu$ is the actual expected value of the random variables! This tells us that the sample mean estimates the population mean correctly, on average. For example, let's say that the $X$'s are house prices, and we want to know the true population mean of house prices. The CLT tells us that, **on average**, the sample mean will be correct! Another way to say this is that the sample estimates are "unbiased": underestimates are balanced by overestimates.
 - The variance: The CLT says that for large samples the sample mean is normally distributed with variance $\sigma^2/n$. Equivalently, the standard deviation is $\sigma/\sqrt{n}$. This standard deviation is also called the **standard error**. This tells us the spread of the sampling distribution! Sample estimates are more likely to be "close to" than "far from" the population parameter $\mu$. We see that the sample size $n$ plays a key role. The larger the sample size, the smaller the spread. This matches our intuition that larger samples should generate more **precise** estimates.
 
-**Where does the CLT come up in practice?** When we fit linear regression and logistic regression models, there were columns in the summarized output labeled "Std. Error". We have neglected to look at these columns...until now. Now, with our understanding of the CLT, we can understand where this column comes from. It turns out that we can apply the CLT to see that our estimated regression coefficients (our betas) are normally-distributed. That is, the theory of the CLT allows us to approximate the sampling distributions of regression coefficients. Behind the scenes, R uses that theory to give us the Standard Error column. This column gives us an estimate of the standard error of the sampling distribution for that regression coefficient.
+**Where does the CLT come up in practice?** When we fit linear regression and logistic regression models, there were columns in the summarized output labeled "Std. Error". We have neglected to look at these columns...until now. Now, with our understanding of the CLT, we can understand where this column comes from. It turns out that we can apply the CLT to see that our estimated regression coefficients (our betas) are normally-distributed. That is, the theory of the CLT allows us to approximate the sampling distributions of regression coefficients. Behind the scenes, R uses that theory to give us the Standard Error column. This column gives us an estimate of the standard deviation of the sampling distribution for that regression coefficient.
 
-Ideas about sampling variability and the ways in which we think about them in statistics are shown in the figure below.
+Let's visualize what is happening with the Central Limit Theorem. Below we have simulated (generated ourselves) data for a full population of cases. The distribution of values in the full population is shown below. The true population mean (expected value) is 4. Beneath, we show the sampling distributions of the sample mean for different sample sizes. We see the CLT in action. The center of the sampling distributions is the expected value 4. The sampling distributions look normally distributed, and the spread decreases with sample size. Note that the original population values do not look normally-distributed, and yet, by the CLT, the sample means are normally-distributed.
+
+```{r fig.width=10}
+## Population size
+N <- 1000000
+## Sample sizes
+n_vec <- c(10,100,1000,10000)
+## Number of samples to take to estimate sampling distribution
+n_sd <- 1000
+
+## Population 1: gamma distribution with shape = scale = 2
+set.seed(5)
+pop1 <- rgamma(N, shape = 2, scale = 2)
+mean_pop1 <- mean(pop1)
+## Estimate sampling distributions for the different sample sizes
+sampling_dists <- do.call(rbind, lapply(n_vec, function(n) {
+    samp_dist <- replicate(n_sd, {
+        samp <- sample(pop1, size = n)
+        mean(samp)
+    })
+    data.frame(mean = samp_dist, sample_size = paste("Sample size:", n))
+}))
+
+ggplot(data.frame(values = pop1), aes(x = values)) +
+    geom_density() +
+    geom_vline(xintercept = mean_pop1, color = "red", alpha = 0.5) +
+    theme_minimal() +
+    labs(title = "Population 1 (True mean = 4)", x = "Values", y = "Density")
+ggplot(sampling_dists, aes(x = mean)) +
+    geom_density() +
+    facet_grid(~sample_size) +
+    geom_vline(xintercept = mean_pop1, color = "red", alpha = 0.5) +
+    theme_minimal() +
+    labs(title = "Sampling distributions of the sample mean", x = "Means", y = "Density")
+```
+
+Let's look at one more example. Again, the population distribution is clearly not normally-distributed, and yet, the sample means are normally-distributed. These normal distributions are centered at the true population mean (expected value) and have smaller and smaller spread with increased sample size.
+
+```{r fig.width=10}
+## Population 2: gamma distribution with shape = scale = 2
+set.seed(6)
+pop2 <- c(rgamma(N/2, shape = 2, scale = 2), rnorm(N/2, mean = 10))
+mean_pop2 <- mean(pop2)
+## Estimate sampling distributions for the different sample sizes
+sampling_dists <- do.call(rbind, lapply(n_vec, function(n) {
+    samp_dist <- replicate(n_sd, {
+        samp <- sample(pop2, size = n)
+        mean(samp)
+    })
+    data.frame(mean = samp_dist, sample_size = paste("Sample size:", n))
+}))
+
+ggplot(data.frame(values = pop2), aes(x = values)) +
+    geom_density() +
+    geom_vline(xintercept = mean_pop2, color = "red", alpha = 0.5) +
+    theme_minimal() +
+    labs(title = "Population 2 (True mean = 7)", x = "Values", y = "Density")
+ggplot(sampling_dists, aes(x = mean)) +
+    geom_density() +
+    facet_grid(~sample_size) +
+    geom_vline(xintercept = mean_pop2, color = "red", alpha = 0.5) +
+    theme_minimal() +
+    labs(title = "Sampling distributions of the sample mean", x = "Means", y = "Density")
+```
+
+The different ways in which we think about sampling variability in statistics are shown in the figure below.
 
 ![](Photos/sampling_variation_flowchart.png)
 
 
+## Z-scores and the Student's "t" distribution
+
+In construction!
 
 
 

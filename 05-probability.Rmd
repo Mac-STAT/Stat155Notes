@@ -529,7 +529,83 @@ The different ways in which we think about sampling variability in statistics ar
 
 ## Z-scores and the Student's "t" distribution
 
-In construction!
+Let's have a little story time. Back in the early 1900's, William S. Gosset was working as a quality control chemist and mathematician for Guinness Brewery.
+
+![](http://upload.wikimedia.org/wikipedia/commons/thumb/4/42/William_Sealy_Gosset.jpg/240px-William_Sealy_Gosset.jpg)
+
+
+His research goal was to determine how to get the best yielding barley and hops through agricultural experimentation, but the main issue that he had was that he had very small sample sizes (only a handful of farms)!
+
+He was using the Normal distribution because the work underlying the Central Limit Theorem had already been worked out, but he was noticing that there were discrepancies in his work. 
+
+
+##Gosset's Work
+
+To further investigate the issues that he was noticing, Gosset performed a simulation using data on the height and left middle finger measurements of 3000 criminals. His simulations went as follows:
+
+- Split the data (3000 criminals) into samples of size 4 ($n=4$)
+- Estimate the mean and standard deviation of the height within each of the 750 samples 
+- Look at the distribution of the *z* score heights, using the mean of the 3000 as the true population mean, $\mu$, but using $s$ in the denominator from each sample instead of the population variation, $\sigma$, of the 3000:
+
+$$ z = \frac{\bar{x} - \mu}{s/\sqrt{4}}$$
+
+```{r,echo=FALSE,message=FALSE,result=FALSE}
+require(stats)
+heIn <- round(as.numeric(colnames(crimtab)) / 2.54)
+dat <- data.frame(height = rep(heIn, colSums(crimtab)))
+```
+
+```{r}
+require(mosaic)
+dat$height = sample(dat$height,replace=FALSE)
+dat$sampleId <- as.factor(rep(1:750, each = 4))
+
+h.mean <- mean(height ~ sampleId, data = dat)
+h.sd   <- sd(height ~ sampleId, data = dat)
+
+zobs <- (h.mean - mean(dat$height))/h.sd
+
+infZ <- is.infinite(zobs)
+zobs[infZ] <- 6 * sign(zobs[infZ])
+
+hist(zobs, main='', xlab='Z-scores', breaks=50)
+```
+
+- Does this distribution of z-scores look Normal?
+
+```{r}
+qqnorm(zobs)
+qqline(zobs)
+```
+
+The tails are thicker (more populous) than expected. Why? With small samples, the sample standard deviation, $s$, so we tend to get larger z-scores than we'd expect if it were Normal. 
+
+
+#$Beer Helps the Field of Statistics
+
+For the sake of making better beer, William Gosset worked out the sampling distribution of a standardized sample mean (with the sample standard deviation, $s$, plugged into the denominator),
+
+$$t = \frac{\bar{x} - \mu}{s/\sqrt{n}}$$
+
+if the histogram of the **population is unimodal and roughly symmetric** (approximately Normal). This was crucial when **sample sizes are small.** He had to publish under the pseudonym **Student** (trade secrets, etc...). Thus, the sampling distribution model that he discovered became known as **Student's model.** Later R.A. Fisher (another famous statistician) recoined it as the *Student's T model.*
+
+###Student T Model
+- The center is always 0.
+- The spread is determined by a parameter called **degrees of freedom** ($df = n - 1$).
+- As $n\rightarrow\infty$, becomes more Normal. 
+
+```{r echo=FALSE,fig.width=8,fig.height=4}
+x <- seq(-5,5,by=0.01)
+plot(x,dt(x, df = 5), type='l',ylab=' ',xlab = 'Standardized Sample Means',col='green',ylim=c(0,0.42),lwd=2,main="Student's T Model")
+abline(h=0)
+lines(x,dt(x, df = 10),col ='blue',lwd=2)
+lines(x,dt(x, df = 25),col ='red',lwd=2)
+lines(x,dt(x, df = 100),col ='purple',lwd=2)
+lines(x,dnorm(x),col ='black',lwd=2)
+legend('topright',legend=c('df = 5','df = 10','df = 25', 'df = 100','Std. Normal'),lwd=2,col=c('green','blue','red','purple','black'))
+```
+
+Since the Student T distribution is approximately Normal when sample sizes are large, we will typically use the Normal model. However, if sample sizes are small ($n<30$ or so), the Normal model is not appropriate. So, in those rare cases, we'll need to refer to Student T.
 
 
 

@@ -539,7 +539,7 @@ His research goal was to determine how to get the best yielding barley and hops 
 He was using the Normal distribution because the work underlying the Central Limit Theorem had already been worked out, but he was noticing that there were discrepancies in his work. 
 
 
-##Gosset's Work
+###Gosset's Work
 
 To further investigate the issues that he was noticing, Gosset performed a simulation using data on the height and left middle finger measurements of 3000 criminals. His simulations went as follows:
 
@@ -581,7 +581,7 @@ qqline(zobs)
 The tails are thicker (more populous) than expected. Why? With small samples, the sample standard deviation, $s$, so we tend to get larger z-scores than we'd expect if it were Normal. 
 
 
-#$Beer Helps the Field of Statistics
+###Beer Helps the Field of Statistics
 
 For the sake of making better beer, William Gosset worked out the sampling distribution of a standardized sample mean (with the sample standard deviation, $s$, plugged into the denominator),
 

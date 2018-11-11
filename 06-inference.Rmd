@@ -61,7 +61,7 @@ If we can use theoretical probability to approximate the sampling distribution, 
 
 
 
-$$\text{Estimate }\pm \text{ Margin of Error})$$
+$$\text{Estimate }\pm \text{ Margin of Error}$$
 
 The margin of error is typically constructed using z-scores from the sampling distribution (such as $z^* = 2$ that corresponds to a 95% confidence interval) and an estimate of the standard deviation of the estimate, called a **standard error**. 
 

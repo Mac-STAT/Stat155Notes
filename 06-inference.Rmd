@@ -50,7 +50,7 @@ We've already been thinking about random variation and how that plays a role in 
 
 A **confidence interval** (also known as an interval estimate) is an interval of plausible values of the unknown population parameter of interest based on randomly sampled data. However, the interval computed from a particular sample does not necessarily include the true value of the parameter. Since the observed data are random samples from the population, the confidence interval obtained from the data is also random.
 
-The **confidence level** represents the proportion of possible random samples and thus confidence intervals that contain the true value of the unknown population parameter. Typically, the confidence level is represented by $(1-\alpha/2)$ such that if $\alpha = 0.05$, then the confidence level is 95% or 0.95.
+The **confidence level** represents the proportion of possible random samples and thus confidence intervals that contain the true value of the unknown population parameter. Typically, the confidence level is represented by $(1-\alpha)$ such that if $\alpha = 0.05$, then the confidence level is 95% or 0.95.
 
 
 **Valid Interpretation:** Assuming the sampling distribution model is accurate, I am 95% confident that my confidence interval of (lower, upper) contains the true population parameter (*put in context*), which means that we'd expect 95% of samples to lead to intervals that contain the true population parameter value. We just don't know if our interval contains that true population parameter value or not. 

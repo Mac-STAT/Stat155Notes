@@ -83,10 +83,13 @@ $$ \frac{\hat\beta - \beta}{\text{ESTIMATED std. error of }\hat\beta} \sim \text
 
 From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:
 
-$$P\left(-2 < \frac{\hat\beta - \beta}{\text{ESTIMATED std. error of }\hat\beta} < 2 \right) = 0.95$$
-$$P\left(-2 SE < \hat\beta - \beta < 2 SE \right) = 0.95$$
-$$P\left(-2 SE-\hat\beta <  -\beta < 2 SE-\hat\beta \right) = 0.95$$
-$$P\left(2 SE+\hat\beta > \beta > -2 SE+\hat\beta \right) = 0.95$$
+$$P(-2 < \frac{\hat\beta - \beta}{\text{ESTIMATED std. error of }\hat\beta} < 2 ) = 0.95$$
+
+$$P(-2 SE < \hat\beta - \beta < 2 SE ) = 0.95$$
+
+$$P(-2 SE-\hat\beta <  -\beta < 2 SE-\hat\beta ) = 0.95$$
+
+$$P(2 SE+\hat\beta > \beta > -2 SE+\hat\beta ) = 0.95$$
 
 You've seen the Student t distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the t distribution is a better model for linear regression coefficients. The normal distribution is appropriate for logistic regression coefficients.
 ```

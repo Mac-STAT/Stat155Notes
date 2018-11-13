@@ -22,65 +22,85 @@ library(mosaic)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#Statistical Inference
+# Statistical Inference
 
-Let's remember our goal of "turning data into information." Based on a sample data set, we want to be able to say something about the larger population of interest. This is **statistical inference,** making inferences about the "truths" in sample and the larger population based a sample of data.
+Let's remember our goal of "turning data into information." Based on a sample data set, we want to be able to say something about the larger population of interest. This endeavor is called **statistical inference**. In statistical inference, we care about using sample data to make statements about "truths" in the larger population.
 
-- To make causal inferences in the sample, we need to account for all possible confounding variables or we need to randomize the "treatment" and assure there are no other possible reasons for an observed effect.
-- To generalize to a larger population, we need the sample to be representative of the larger population. Ideally, that sample would be randomly drawn from the population. If we actually have a census in that we have data on country, state, or county-level, then we can consider the observed data as a one realization of the underlying random process as the measurements will randomly vary with time. 
+- To make causal inferences in the sample, we need to account for all possible confounding variables, or we need to randomize the "treatment" and assure there are no other possible reasons for an observed effect.
+- To generalize to a larger population, we need the sample to be representative of the larger population. Ideally, that sample would be randomly drawn from the population. If we actually have a census in that we have data on country, state, or county-level, then we can consider the observed data as a "snapshot in time". There are random processes that govern how things behave over time, and we have just observed one period in time.
 
-Let's do some statistical inference based on a random sample (SRS) of 100 flights leaving NYC in 2013. 
+Let's do some statistical inference based on a simple random sample (SRS) of 100 flights leaving NYC in 2013. 
 
 ```{block type="reflect", echo=TRUE}
 What is our population of interest? What population could we generalize to?
 ```
 
-
 ```{r}
 set.seed(2018)
+## This creates a dataset called flights_samp
+## that contains the SRS of size 100
 flights_samp <- flights %>%
-  sample_n(size = 100)
+    sample_n(size = 100)
 ```
 
+We've already been thinking about random variation and how that plays a role in the conclusions we can draw. In this chapter, we will formalize two techniques that we use to do perform statistican inference: confidence intervals and hypothesis tests. 
 
-We've already been thinking about random variation and how that plays a role in the conclusions we can draw. In this chapter, we will formalize two techniques that we use to do this inference: confidence intervals and hypothesis tests. 
 
-
-##Confidence Intervals
+## Confidence Intervals
 
 A **confidence interval** (also known as an interval estimate) is an interval of plausible values of the unknown population parameter of interest based on randomly sampled data. However, the interval computed from a particular sample does not necessarily include the true value of the parameter. Since the observed data are random samples from the population, the confidence interval obtained from the data is also random.
 
-The **confidence level** represents the proportion of possible random samples and thus confidence intervals that contain the true value of the unknown population parameter. Typically, the confidence level is represented by $(1-\alpha)$ such that if $\alpha = 0.05$, then the confidence level is 95% or 0.95.
+The **confidence level** represents the proportion of possible random samples and thus confidence intervals that contain the true value of the unknown population parameter. Typically, the confidence level is represented by $(1-\alpha)$ such that if $\alpha = 0.05$, then the confidence level is 95% or 0.95. What is $\alpha$? We will define $\alpha$ when we get to hypothesis testing, but for now, we will describe $\alpha$ as an error probability. Because we want an error probability to be low, it makes sense that the confidence level is $(1-\alpha)$.
 
 
-**Valid Interpretation:** Assuming the sampling distribution model is accurate, I am 95% confident that my confidence interval of (lower, upper) contains the true population parameter (*put in context*), which means that we'd expect 95% of samples to lead to intervals that contain the true population parameter value. We just don't know if our interval contains that true population parameter value or not. 
+**Valid Interpretation:** Assuming the sampling distribution model is accurate, I am 95% confident that my confidence interval of (lower, upper) contains the true population parameter (*put in context*), which means that we'd expect 95% of samples to lead to intervals that contain the true population parameter value. We just don't know if our particular interval from our study contains that true population parameter value or not.
 
-###Via Classical Theory
+### Via Classical Theory
 
-If we can use theoretical probability to approximate the sampling distribution, then we can create a confidence interval by taking taking our estimate and adding and subtracting a margin of error,
-
-
+If we can use theoretical probability to approximate the sampling distribution, then we can create a confidence interval by taking taking our estimate and adding and subtracting a margin of error:
 
 $$\text{Estimate }\pm \text{ Margin of Error}$$
 
 The margin of error is typically constructed using z-scores from the sampling distribution (such as $z^* = 2$ that corresponds to a 95% confidence interval) and an estimate of the standard deviation of the estimate, called a **standard error**. 
 
-Once we have an estimate of the standard deviation (through a formula or R output) and an approximate sampling distribution, we can create the interval estimate,
+Once we have an estimate of the standard deviation (through a formula or R output) and an approximate sampling distribution, we can create the interval estimate:
 
 $$\text{Estimate }\pm z^* *SE(\text{Estimate})$$
 
+The fact that confidence intervals can be created as above is rooted in the Central Limit Theorem (CLT). If you would like to see how the form above is derived, see the Math Box below.
 
 
+```{block, type="math"}
+(Optional) Deriving confidence intervals from the CLT
 
-###Via Bootstrapping
+The CLT originally expresses that 
 
-In order to gauge the sampling variability, we can treat our sample as our "fake population" and generate data from this population using the technique of bootstrapping.
+$$ \frac{\text{sample mean} - \text{true mean}}{\text{true std. error of sample mean}} \sim \text{Normal}(0,1) $$
 
-Once we have a distribution of sample statistics based on the generated data sets, we'll create a confidence interval by finding the $\alpha/2$th percentile and the $(1-\alpha/2)$th percentile for our lower and upper bounds. 
+It turns out that the CLT also applies to regression coefficients:
 
-###Examples
+$$ \frac{\hat\beta - \beta}{\text{ESTIMATED std. error of }\hat\beta} \sim \text{Normal}(0,1) $$
 
-####Proportion Outcome
+From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:
+
+$$P\left(-2 < \frac{\hat\beta - \beta}{\text{ESTIMATED std. error of }\hat\beta} < 2 \right) = 0.95$$
+$$P\left(-2 SE < \hat\beta - \beta < 2 SE \right) = 0.95$$
+$$P\left(-2 SE-\hat\beta <  -\beta < 2 SE-\hat\beta \right) = 0.95$$
+$$P\left(2 SE+\hat\beta > \beta > -2 SE+\hat\beta \right) = 0.95$$
+$$
+
+You've seen the Student t distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the t distribution is a better model for linear regression coefficients. The normal distribution is appropriate for logistic regression coefficients.
+```
+
+### Via Bootstrapping
+
+In order to gauge the sampling variability, we can treat our sample as our "fake population" and generate repeated samples from this "population" using the technique of bootstrapping.
+
+Once we have a distribution of sample statistics based on the generated data sets, we'll create a confidence interval by finding the $\alpha/2$th percentile and the $(1-\alpha/2)$th percentile for our lower and upper bounds. For example, for a 99% bootstrap confidence interval, $\alpha = 0.01$ and you would find the 0.5th and 99.5th percentiles.
+
+## Confidence Interval Examples
+
+### Proportion Outcome
 
 Let's return to the flight data and estimate the proportion of afternoon flights based on a sample of 100 flights from NYC. 
 
@@ -111,7 +131,7 @@ boot_data %>%
 
 Our confidence interval gives a sense of the true proportion of flights departed NYC in the afternoon, keeping in mind that this sample could be one of the unlucky samples (the 5%) that have intervals that don't contain the true value.
 
-####Mean and then Median
+### Mean and then Median
 
 Perhaps you really care about the arrival delay time because you have somewhere important you need to be when you take flights out of NYC. Let's estimate the mean arrival delay based on a sample of 100 flights from NYC. 
 
@@ -150,7 +170,7 @@ boot_data %>%
     upper = quantile(medians, 1-alpha/2))
 ```
 
-####Logistic Regression Model
+### Logistic Regression Model
 
 Are the same relative numbers of morning flights in the winter and the summer? Let's fit a logistic regression model and see what our sample says.
 
@@ -193,7 +213,7 @@ boot_data %>%
 
 
 
-####Linear Regression Model Slope (Categorical Variable)
+### Linear Regression Model Slope (Categorical Variable)
 
 Everything says that there are longer delays in winter. Is that actually true? Let's fit a linear regression model to test it
 
@@ -225,7 +245,7 @@ boot_data %>%
 The 95% confidence interval gives a sense of the difference of mean arrival delays of flights between winter and summer is given by the confidence interval. Is zero in the interval? If so, what does that tell you?
 
 
-####Linear Regression Model Slope (Quantitative Var)
+### Linear Regression Model Slope (Quantitative Var)
 
 How well can the departure delay predict the arrival delay? What is the effect of departing 1 more minute later? Does that correspond to 1 minute later in arrival on average? Let's look at the estimated slope between departure and arrival delays for the sample of 100 flights from NYC.
 
@@ -257,7 +277,7 @@ boot_data %>%
 
 If the flight leaves an additional minute later, then we'd expect the arrival delay to be increased by a value in the interval above, on average. 
 
-####Confidence Intervals for Prediction
+### Confidence Intervals for Prediction
 
 Imagine we are on a plane, we left 15 minutes late, how late will arrive? Since we only have a sample of 100 flights, we are a bit unsure of our prediction. 
 
@@ -270,7 +290,7 @@ predict(lm.delay2, newdata = data.frame(dep_delay = 15), interval = 'confidence'
 This is taking into account how uncertain we are about our model prediction because our model is based on sample data rather than population data. 
 
 
-####Prediction Intervals
+### Prediction Intervals
 
 We also know that every flight is different (different length, different weather conditions, etc), so the true arrival delay won't be exactly what we predict. 
 
@@ -281,8 +301,10 @@ predict(lm.delay2, newdata = data.frame(dep_delay = 15), interval = 'prediction'
 ```
 
 
-###Theory v. Bootstrapping
+### Probability Theory vs. Bootstrapping
 
-In this day in age, we don't need mathematical theory to create confidence intervals. We just did it using bootstrapping. 
+In the modern age, computing power allows us to perform boostrapping easily to create confidence intervals. Before computing was as powerful as it is today, scientists needed mathematical theory to provide simple formulas for confidence intervals.
 
-However, if certain assumptions hold, then the mathematical theory proves to be just as accurate and less computationally intensive. Also, a good chunk of scientists "doing statistics" right now learned the theory because computers were powerful enough to consider techniques such as bootstrapping. You'll need to have an understand of what these techniques are to bridge the gap until all statistical inference is done using modern computational techniques.
+If certain assumptions hold, the mathematical theory proves to be just as accurate and less computationally-intensive than bootstrapping. Many scientists using statistics right now learned the theory because when they learned statistics, computers were not powerful enough to handle techniques such as bootstrapping.
+
+Why do we teach both the mathematical theory and bootstrapping? You will encounter both types of techniques in your fields, and you'll need to have an understanding of what these techniques are to bridge the gap until statistical inference uses modern computational techniques more widely.

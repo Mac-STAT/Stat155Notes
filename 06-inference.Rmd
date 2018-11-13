@@ -308,3 +308,180 @@ In the modern age, computing power allows us to perform boostrapping easily to c
 If certain assumptions hold, the mathematical theory proves to be just as accurate and less computationally-intensive than bootstrapping. Many scientists using statistics right now learned the theory because when they learned statistics, computers were not powerful enough to handle techniques such as bootstrapping.
 
 Why do we teach both the mathematical theory and bootstrapping? You will encounter both types of techniques in your fields, and you'll need to have an understanding of what these techniques are to bridge the gap until statistical inference uses modern computational techniques more widely.
+
+## Hypothesis Testing
+
+Hypothesis testing is another tool that can be used for statistical inference. Let's warm up to the ideas of hypothesis testing by considering two broad types of scientific questions: (1) *Is there* a relationship? (2) *What* is the relationship?
+
+Suppose that we are thinking about the relationship between housing prices and square footage. Accounting for sampling variation...
+
+- ...**is there** a relationship between price and living area?
+- ...**what** is the relationship between price and living area?
+
+Whether by the Central Limit Theorem (mathematical theory) or bootstrapping, confidence intervals provide a *range of plausible values* for the true parameter and allow us to answer both types of questions:
+
+- **Is there** a relationship between price and living area?
+    - Is the no difference/relationship value in the interval?
+- **What** is the relationship between price and living area?
+    - Look at the estimate and the values in the interval
+
+**Hypothesis testing** is a general framework for answering questions of the first type. It is a general framework for making decisions between two "theories".
+
+- **Example 1**    
+    Decide between: true support for a law = 50% vs. true support $\neq$ 50%
+
+- **Example 2**    
+    In the model $\text{Price} = \beta_0 + \beta_1\text{Area}$, decide between $\beta_1 = 0$ and $\beta_1 \neq 0$.
+
+In a hypothesis test, we use data to decide between two "hypotheses" labeled as follows:
+
+1. **Null hypothesis** ($H_0$ = "H naught")    
+Hypothesis that is assumed to be true by default.    
+A status quo hypothesis: hypothesis of no effect/relationship/difference.
+
+2. **Alternative hypothesis** ($H_A$ or $H_1$)    
+A non-status quo hypothesis.    
+Claim being made about the population.
+
+### Test statistics
+
+Let's consider the question: Is there a relationship between house price and living area? We can try to answer that with the linear regression model below:
+
+$$\text{Price} = \beta_0 + \beta_1\text{Area}$$
+
+We would phrase our null and alternative hypotheses as follows:
+
+$$H_0: \beta_1 = 0 \qquad \text{vs.} \qquad H_A: \beta_1 \neq 0$$
+
+The null hypothesis $H_0$ describes the situation of "no relationship" because it hypothesizes that the true slope $\beta_1$ is 0. The alternative hypothesis posits a relationship: the true slope $\beta_1$ is not 0. That is, there is not no relationship. (Double negatives!)
+
+To gather evidence, we collect data and fit a model. From the model, we can compute a **test statistic**, which tells us how far the observed slope is from the null hypothesis value of 0 (called the **null value**). The test statistic is a *discrepancy measure* where large values indicate higher discrepancy with $H_0$.
+
+The test statistic belo is a reasonable proposal:
+
+$$\text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}}$$
+
+It looks like a z-score. It expresses: how far away is our estimate from the null value in units of standard error? With large values (in magnitude) of the test statistic, our data (our estimate) is discrepant with what the null hypothesis proposes because our estimate is quite far away from the null value in standard error units.
+
+### Logic of hypothesis testing
+
+How large in magnitude must the test statistic be in order to make a decision between $H_0$ and $H_A$? We will use another metric called a **p-value**.
+
+**Assuming $H_0$ is true**, we ask: What is the chance of observing a test statistic which is "as or even more extreme" than the one we just saw? This probability is called a **p-value**.
+
+If the p-value is "small", then we reject $H_0$ in favor of $H_A$. Why? A small p-value (by definition) says that if the null hypotheses were indeed true, we are unlikely to have seen such an extreme discrepancy measure (test statistic). We made an assumption that the null is true, and operating under that assumption, we observed something odd.
+
+How small is small enough for a p-value?
+
+### Summary of procedure
+
+1. State hypotheses $H_0$ and $H_A$.
+2. Select $\alpha$, a threshold for what is considered to be a small p-value.
+3. Calculate a test statistic
+4. Calculate the corresponding p-value
+5. Make a decision:
+    - If p-value < $\alpha$, reject $H_0$ and accept $H_A$.
+    - Otherwise, we fail to reject $H_0$ for lack of evidence.    
+        (Jurors' decisions are "guilty" and "not guilty". Not "guilty" and "innocent".)
+
+### Testing single model coefficients
+
+A big emphasis of our course is regression models. It turns out that many scientific questions of interest can be framed with regression models.
+
+In the `summary()` output, R performs the following hypothesis test by default (for any regression coefficient $\beta$):
+
+$$H_0: \beta = 0 \qquad \text{vs} \qquad H_A: \beta \neq 0$$
+
+$$\text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}} = \frac{\text{estimate}}{\text{std. error of estimate}} $$
+
+Note that test statistics are random variables! Why? Because they are based on our random sample of data. Thus it will be helpful to understand the distributions of test statistics in terms of probability density functions.
+
+```{block type="reflect", echo=TRUE}
+If $H_0$ were true, where would the probability density function of the test statistic be centered?
+```
+
+### Distributions of test statistics
+
+What test statistics are we likely to get if $H_0$ is true? The probability density function of the test statistic "under $H_0$" (that is, if $H_0$ is true) is shown below. Note that it is centered at 0. This distribution shows that if indeed the null is true, there is variation in the test statistics we might obtain from random samples, but most test statistics are around zero.
+
+It would be very unlikely for us to get a pretty large (extreme) test statistic if indeed $H_0$ were true. Why? The density drops rapidly at more extreme values.
+
+```{r echo=FALSE, fig.align="center", fig.height=5.3, fig.width=8}
+x <- seq(-4,4,0.01)
+y1 <- dnorm(x)
+y2 <- dt(x, df = 10)
+plot(x, y1, type = "l", xlab = "Test statistic", ylab = "Density", main = expression(paste("Sampling distribution of test statistic if ", H[0], " true (\"under ", H[0], "\")")))
+lines(x, y2, col = "red", lty = "dashed")
+legend("topright", legend = c("Logistic regression\n(Normal distribution)", "", "Linear regression\n(Student's t-distribution)"), col = c("black", NA, "red"), lty = c("solid", NA, "dashed"), bty = "n", cex = 0.9)
+```
+
+### Graphical description of p-values
+
+Suppose that our observed test statistic is 2.
+
+What test statistics are "as or more extreme"?
+
+- Absolute value of test statistic is at least 2: $|\text{Test statistic}| \geq 2$
+- In other words: $\text{Test statistic} \geq 2$ and $\text{Test statistic} \leq -2$
+
+The p-value corresponding to our test statistic is the area under the probability density function in those "as or more extreme" regions.
+
+```{r echo=FALSE, fig.align="center", fig.height=4.5, fig.width=10}
+x <- seq(-4,4,0.01)
+y <- dnorm(x)
+plot(x, y, type = "l", xlab = "Test statistic", ylab = "Density", main = expression(paste("Sampling distribution of test statistic if ", H[0], " true (\"under ", H[0], "\")")))
+bool <- x >= 2 & x <= 4
+x_shaded <- x[bool]
+y_shaded <- y[bool]
+abline(v = c(-2,2), col = "red", lty = "dashed", lwd = 2)
+polygon(x = c(x_shaded, tail(x_shaded, 1), head(x_shaded, 1)), y = c(y_shaded, 0, 0), col = "darkorchid")
+bool <- x >= -4 & x <= -2
+x_shaded <- x[bool]
+y_shaded <- y[bool]
+polygon(x = c(x_shaded, tail(x_shaded, 1), head(x_shaded, 1)), y = c(y_shaded, 0, 0), col = "darkorchid")
+area <- pnorm(-2) + pnorm(2, lower.tail = FALSE)
+text(x = 3, y = 0.3, paste("Area = p-value =", round(area, 3)))
+```
+
+### Example: Linear Regression
+
+Below we fit a linear regression model of house price on living area:
+
+```{r}
+homes <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt")
+mod_homes <- lm(Price ~ Living.Area, data = homes)
+confint(mod_homes) ## 95% confidence interval by default
+summary(mod_homes)$coefficients
+```
+
+The `t value` column is the test statistic, and the `Pr(>|t|)` column is the p-value. Note that the "t" comes from the Student t distribution.
+
+- What are $H_0$ and $H_A$?    
+    We write the model $\text{Price} = \beta_0 + \beta_1\text{Area}$.    
+    $H_0: \beta_1 = 0$ (There is no relationship between price and living area.)    
+    $H_A: \beta_1 \neq 0$ (There is a relationship between price and living area.)    
+- For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?    
+    Note that when you see `e` in R output, this means "10 to the power". So `9.486240e-268` means $9.49 \times 10^{-268}$. This p-value is less than our threshold, so we reject $H_0$ and say that we have significant evidence for a relationship between price and living area.
+- Is this consistent with the confidence interval?    
+    This result is consistent with the 95% confidence interval in that the interval does not contain 0.
+
+### Example: Logistic Regression
+
+Below we fit a logistic regression model of whether a movie made a profit (response) on whether it is a history film:
+
+```{r}
+movies <- read.csv("https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1")
+mod_movies <- glm(profit==TRUE ~ History, data = movies, family = "binomial")
+confint(mod_movies) ## 95% confidence interval by default
+summary(mod_movies)$coefficients
+```
+
+The `z value` column is the test statistic, and the `Pr(>|z|)` column is the p-value. Note that the "z" refers to z-score and the Normal distribution.
+
+Try for yourselves!
+
+- What are $H_0$ and $H_A$?
+- For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?
+- Is this consistent with the confidence interval?
+
+

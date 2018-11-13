@@ -1,3 +1,218 @@
+--- 
+title: "Math 155 Notes"
+author: "Brianna Heggeseth & Leslie Myint"
+date: "Updated: `r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    split_by: section
+    config:
+      toc: 
+        collapse: section
+        scroll_highlight: yes
+documentclass: book
+link-citations: yes
+github-repo: bcheggeseth/Math155Notes
+description: "This includes notes for Math 155 at Macalester College."
+---
+--- 
+title: "Math 155 Notes"
+author: "Brianna Heggeseth & Leslie Myint"
+date: "Updated: `r Sys.Date()`"
+site: bookdown::bookdown_site
+output: 
+  bookdown::gitbook:
+    split_by: section
+    config:
+      toc: 
+        collapse: section
+        scroll_highlight: yes
+documentclass: book
+link-citations: yes
+github-repo: bcheggeseth/Math155Notes
+description: "This includes notes for Math 155 at Macalester College."
+---
+
+# Preface {-}
+
+This book contains notes for MATH 155 at Macalester College. It contains definitions, data examples, and R code explanations that provide a foundation for the activities we will do in class.
+
+This is a living document, which will get updated throughout the semester.
+
+*When* you find typos or have clarifying questions, please email bheggese@macalester.edu or lmyint@macalester.edu.
+
+<!--chapter:end:index.Rmd-->
+
+
+# Data Collection and Quality
+
+Placeholder
+
+
+## What is Data?
+## Data Context
+## Sampling
+### Sampling Bias
+### Random Sampling
+### Nonresponse bias
+## Information bias
+## Study Design: Observational Study vs. Experiments
+## Ethical Considerations
+## Major Takeaways
+
+<!--chapter:end:01-data.Rmd-->
+
+
+# Visualizing Data
+
+Placeholder
+
+
+## Good Visualization Principles
+## Anatomy of a ggplot command
+## One Categorical Variable
+### Bar Plot
+## Numerical summary (frequency and relative frequency)
+## Graphical summary (bar plot)
+### Pie Chart
+## Two Categorical Variables
+### Side by Side Bar Plot
+## Numerical summary (frequency and overall relative frequency)
+## Graphical summary (side-by-side bar plot)
+### Stacked Bar Plot
+## Numerical summary (conditional distribution - conditioning on outcome)
+## Numerical summary (conditional distribution - conditioning on smoker)
+## Graphical summary (stacked bar plot)
+### Stacked Bar Plot (Relative Frequencies)
+### Mosaic Plot
+## One Quantitative Variable
+### Histogram
+### Center
+### Boxplot
+### Spread
+### Some data accounting {#intro-zscore}
+### Z-scores
+## One Quantitative Variable and One Categorical Variable
+### Multiple Histograms
+### Multiple Boxplots
+#### Is this a Real Difference?
+## Two Quantitative Variables
+### Scatterplot
+### Correlation Coefficient
+## The scale() function adds attributes to the columns zNeck, zChest, and Product
+## Makes it so that dplyr::filter doesn't work
+## Reread the data
+### Properties
+## Positive correlations
+## Negative correlations
+### Is correlation always the right way to judge strength?
+## Three or more variables
+### A bivariate plot
+### Enriching with color
+### Enriching with shape
+### Enriching with size
+### Enriching with panels
+### Putting everything together
+## Major Takeaways
+
+<!--chapter:end:02-visualization.Rmd-->
+
+
+# Regression Models
+
+Placeholder
+
+
+## Goals for models
+## Lines
+## Choosing the best fitting line
+### First idea
+### Second idea
+### Third idea
+## Least Squares
+## Properties of Least Squares Line
+### Real companies
+## Interpretation
+### Correlation or Association vs. Causation
+## Evaluation
+### Prediction
+## Calcualtion by hand
+## Calcuation using R's predict() function
+### Prediction Errors
+### $R^2$
+## Diagnostics
+### Solutions to Issues
+## Multiple Linear Regression
+### Indicator Variables
+### Interaction Variables
+### Causation
+### Conditions for Multiple Linear Regression
+### Is the Difference Real?
+## Repeat the sampling and regression modeling 1000 times
+## Plot the distribution of the 1000 slope differences
+### Dealing with Non-Linear Relationships
+#### Transform Variables
+### Alternative Solutions
+## Logistic Regression
+### Logistic and Logit
+### Fitting the Model
+### Interpretation
+### Prediction
+#### Hard Predictions/Classifications
+### Model Evaluation
+### Alternative Classification Models
+
+<!--chapter:end:03-regression.Rmd-->
+
+
+# Random Variability
+
+Placeholder
+
+
+## Random Sampling from a Population
+### IRL: Bootstrapping 
+## Randomization into Groups
+### IRL: Randomization Tests
+
+<!--chapter:end:04-variability.Rmd-->
+
+
+# Randomness and Probability
+
+Placeholder
+
+
+## Three Types of Probability
+## Probability Rules
+### Diagnotic Testing and Probability
+### Court Arguments and Probability
+## Random Variable
+## Probability Models
+### Using probability mass functions
+### Using probability density functions
+## Plots area between x1 and x2 for the standard normal
+## To plot tails, let x1 = -4 or x2 = 4
+### Expected value and variance
+## Bernoulli/Binomial Model
+## Normal Model
+## Sampling Distribution and CLT
+### Sampling distributions
+### The Central Limit Theorem
+## Population size
+## Sample sizes
+## Number of samples to take to estimate sampling distribution
+## Population 1: gamma distribution with shape = scale = 2
+## Estimate sampling distributions for the different sample sizes
+## Population 2: gamma distribution with shape = scale = 2
+## Estimate sampling distributions for the different sample sizes
+## Z-scores and the Student's "t" distribution
+### Gosset's Work
+### Beer Helps the Field of Statistics
+### Student T Model
+
+<!--chapter:end:05-probability.Rmd-->
+
 ---
 title: "Math 155 - Statistical Inference"
 author: "Prof. Heggeseth"
@@ -418,7 +633,7 @@ y1 <- dnorm(x)
 y2 <- dt(x, df = 20)
 plot(x, y1, type = "l", xlab = "Test statistic", ylab = "Density", main = expression(paste("Sampling distribution of test statistic if ", H[0], " true (\"under ", H[0], "\")")))
 lines(x, y2, col = "red", lty = "dashed")
-legend("topright", legend = c("Logistic regression\n(Normal distribution)", "", "Linear regression\n(Student's t-distribution)\n df = 20 here"), col = c("black", NA, "red"), lty = c("solid", NA, "dashed"), bty = "n", cex = 0.9)
+legend("topright", legend = c("Logistic regression\n(Normal distribution)", "", "Linear regression\n(Student's t-distribution df = 20 here)"), col = c("black", NA, "red"), lty = c("solid", NA, "dashed"), bty = "n", cex = 0.9)
 ```
 
 ### Graphical description of p-values
@@ -490,4 +705,16 @@ Try for yourselves!
 - For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?
 - Is this consistent with the confidence interval?
 
+
+
+<!--chapter:end:06-inference.Rmd-->
+
+
+# Appendix A - Theoretical Probability
+
+Placeholder
+
+
+
+<!--chapter:end:07-appendix.Rmd-->
 

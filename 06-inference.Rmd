@@ -79,14 +79,14 @@ $$ \frac{\text{sample mean} - \text{true mean}}{\text{true std. error of sample 
 
 It turns out that the CLT also applies to regression coefficients:
 
-$$ \frac{\hat\beta - \beta}{\text{ESTIMATED std. error of }\hat\beta} \sim \text{Normal}(0,1)$$
+$$ \frac{\hat{\beta} - \beta}{\text{ESTIMATED std. error of }\hat{\beta}} \sim \text{Normal}(0,1)$$
 
 From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:
 
-$$P\left(-2 < \frac{\hat\beta - \beta}{\text{ESTIMATED std. error of }\hat\beta} < 2 \right) = 0.95$$
-$$P\left(-2 SE < \hat\beta - \beta < 2 SE \right) = 0.95$$
-$$P\left(-2 SE -\hat\beta <  -\beta < 2 SE - \hat\beta \right) = 0.95$$
-$$P\left(2 SE + \hat\beta > \beta > -2 SE + \hat\beta \right) = 0.95$$
+$$P\left(-2 < \frac{\hat{\beta} - \beta}{\text{ESTIMATED std. error of }\hat{\beta}} < 2 \right) = 0.95$$
+$$P\left(-2 SE < \hat{\beta} - \beta < 2 SE \right) = 0.95$$
+$$P\left(-2 SE -\hat{\beta} <  -\beta < 2 SE - \hat{\beta} \right) = 0.95$$
+$$P\left(2 SE + \hat{\beta} > \beta > -2 SE + \hat{\beta} \right) = 0.95$$
 
 You've seen the Student t distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the Student t distribution is more accurate for linear regression coefficients (especially if sample size is small). The normal distribution is appropriate for logistic regression coefficients.
 ```
@@ -318,12 +318,13 @@ Suppose that we are thinking about the relationship between housing prices and s
 - ...**is there** a relationship between price and living area?
 - ...**what** is the relationship between price and living area?
 
-Whether by the Central Limit Theorem (mathematical theory) or bootstrapping, confidence intervals provide a *range of plausible values* for the true parameter and allow us to answer both types of questions:
+Whether by the Central Limit Theorem (mathematical theory) or bootstrapping, confidence intervals provide a *range of plausible values* for the true population parameter and allow us to answer both types of questions:
 
 - **Is there** a relationship between price and living area?
     - Is the no difference/relationship value in the interval?
 - **What** is the relationship between price and living area?
     - Look at the estimate and the values in the interval
+
 
 **Hypothesis testing** is a general framework for answering questions of the first type. It is a general framework for making decisions between two "theories".
 
@@ -490,4 +491,41 @@ Try for yourselves!
 - For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?
 - Is this consistent with the confidence interval?
 
+###Errors 
+
+Just as with model predictions, we may make errors when doing hypothesis tests. 
+
+We may decide to reject $H_0$ when it is actually true. We may decide to not reject $H_0$ when it is actually false. 
+
+We give these two types of errors names. **Type 1 Error** is when you reject $H_0$ when it is actually true. This is a false positive because you are concluding there is a real relationship when there is none. This would happen if one study published that coffee causes cancer in one group of people, but no one else could actually replicate that result since coffee doesn't actually cause cancer.  **Type 2 Error** is when you don't reject $H_0$ when it is actually false. This is a false negative because you would conclude there is no real relationship when there is a real relationship. This happens when our sample size is not large enough to detect the real relationship due to the large amount of noise due to sampling variability.
+
+We care about both of these types of errors. Sometimes we prioritize one over the other. Based on the framework presented, we control the chance of a Type 1 error through the confidence level/p-value threshold we used. In fact, the chance of a Type 1 Error is $\alpha$,
+
+$$P(\text{ Type 1 Error }) = P(\text{ Reject }H_0 ~|~H_0\text{ is true} ) =  \alpha$$
+
+Let $\alpha = 0.05$ for a moment. If the Null Hypothesis ($H_0$) is actually true, then about 5% of the time, we'd get unusual test statistics just by chance. With those samples, we would incorrectly conclude that there was a real relationship.
+
+The chance of a Type 2 Error is often notated as $\beta$ (but this is not the same value as the slope),
+
+$$P(\text{ Type 2 Error }) = P(\text{ Fail to Reject }H_0 ~|~H_0\text{ is false} ) =  \beta$$
+
+In order to calculate this probability, we'd need to know the value (or at least a good idea) of the true effect. 
+
+
+
+## Statistical Significance v. Practical Significance
+
+The common underlying question that we ask as Statisticians is "Is there a real relationship in the population?"
+
+We can use confidence intervals or hypothesis testing to help us answer this question.
+
+If we note that the no relationship value is NOT in the confidence interval or the p-value is less then $\alpha$, we can say that there is significant evidence to suggest that there is a real relationship. We can conclude there is a **statistically significant** relationship because the relationship we observed it is unlikely be due only to sampling variabliliy.
+
+But as we discussed in class, there are two ways you can control the width of a confidence interval. If we increase the sample size $n$, the standard error decreases and thus decreasing the width of the interval. If we decrease our confidence level (increase $\alpha$), then we decrease the width of the interval. 
+
+A relationship is **practically significant** if the estimated effect is large enough to impact real life decisions. For example, an Internet company may run a study on website design. Since data on observed clicks is fairly cheap to obtain, their sample size is 1 million people (!). With large data sets, we will conclude almost every relationship is statistically significant because the variability will be incredibly small. That doesn't mean we should always change the website design. How large of an impact did the size of the font make on user behavior? That depends on the business model. On the other hand, in-person human studies are expensive to run and sample sizes tended to be in the 100's. There may be a true relationship but we can't distinguish the "signal" from the "noise" due to the higher levels of sampling variability. While we may not always have statistical significance, the estimated effect is important to consider when designing the next study. 
+
+Hypothesis tests are useful in determining statistical significance (Answering: "Is there a relationship?").
+
+Confidence intervals are more useful in determining practical significance (Answering: "What is the relationship?")
 

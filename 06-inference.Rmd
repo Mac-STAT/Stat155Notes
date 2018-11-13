@@ -87,7 +87,6 @@ $$P\left(-2 < \frac{\hat\beta - \beta}{\text{ESTIMATED std. error of }\hat\beta}
 $$P\left(-2 SE < \hat\beta - \beta < 2 SE \right) = 0.95$$
 $$P\left(-2 SE-\hat\beta <  -\beta < 2 SE-\hat\beta \right) = 0.95$$
 $$P\left(2 SE+\hat\beta > \beta > -2 SE+\hat\beta \right) = 0.95$$
-$$
 
 You've seen the Student t distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the t distribution is a better model for linear regression coefficients. The normal distribution is appropriate for logistic regression coefficients.
 ```
@@ -96,7 +95,7 @@ You've seen the Student t distribution introduced in the previous chapter. We us
 
 In order to gauge the sampling variability, we can treat our sample as our "fake population" and generate repeated samples from this "population" using the technique of bootstrapping.
 
-Once we have a distribution of sample statistics based on the generated data sets, we'll create a confidence interval by finding the $\alpha/2$th percentile and the $(1-\alpha/2)$th percentile for our lower and upper bounds. For example, for a 99% bootstrap confidence interval, $\alpha = 0.01$ and you would find the 0.5th and 99.5th percentiles.
+Once we have a distribution of sample statistics based on the generated data sets, we'll create a confidence interval by finding the $\alpha/2$th percentile and the $(1-\alpha/2)$th percentile for our lower and upper bounds. For example, for a 99% bootstrap confidence interval, $\alpha = 0.01$ and you would find the values that are the 0.5th and 99.5th percentiles.
 
 ## Confidence Interval Examples
 
@@ -357,7 +356,7 @@ The null hypothesis $H_0$ describes the situation of "no relationship" because i
 
 To gather evidence, we collect data and fit a model. From the model, we can compute a **test statistic**, which tells us how far the observed slope is from the null hypothesis value of 0 (called the **null value**). The test statistic is a *discrepancy measure* where large values indicate higher discrepancy with $H_0$.
 
-The test statistic belo is a reasonable proposal:
+The test statistic below is a reasonable proposal:
 
 $$\text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}}$$
 
@@ -371,7 +370,7 @@ How large in magnitude must the test statistic be in order to make a decision be
 
 If the p-value is "small", then we reject $H_0$ in favor of $H_A$. Why? A small p-value (by definition) says that if the null hypotheses were indeed true, we are unlikely to have seen such an extreme discrepancy measure (test statistic). We made an assumption that the null is true, and operating under that assumption, we observed something odd.
 
-How small is small enough for a p-value?
+How small is small enough for a p-value? We will set a threshold $\alpha$. p-values less than this threshold will be "small enough". When we talk about error rates of the decisions associated with rejecting or not rejecting the null hypothesis, the meaning of $\alpha$ will become more clear.
 
 ### Summary of procedure
 

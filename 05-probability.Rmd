@@ -539,7 +539,7 @@ His research goal was to determine how to get the best yielding barley and hops 
 He was using the Normal distribution because the work underlying the Central Limit Theorem had already been worked out, but he was noticing that there were discrepancies in his work. 
 
 
-###Gosset's Work
+### Gosset's Work
 
 To further investigate the issues that he was noticing, Gosset performed a simulation using data on the height and left middle finger measurements of 3000 criminals. His simulations went as follows:
 
@@ -571,25 +571,26 @@ zobs[infZ] <- 6 * sign(zobs[infZ])
 hist(zobs, main='', xlab='Z-scores', breaks=50)
 ```
 
-- Does this distribution of z-scores look Normal?
+- Does this distribution of z-scores look Normal? We can try to see more clearly by making a **Q-Q plot**, shown below.
 
 ```{r}
 qqnorm(zobs)
 qqline(zobs)
 ```
 
-The tails are thicker (more populous) than expected. Why? With small samples, the sample standard deviation, $s$, so we tend to get larger z-scores than we'd expect if it were Normal. 
+If the z-scores follow a normal distribution, the points in the Q-Q plot should fall on a straight line. However, we see some deviation at the left and right of the plots. This indicates that the tails of our z-score distribution are thicker (more populous) than expected if they were actually normally-distributed. Why? With small samples, the sample standard deviation, $s$, is smaller so we tend to get larger z-scores than we'd expect if they were normally-distributed.
 
 
-###Beer Helps the Field of Statistics
+### Beer Helps the Field of Statistics
 
-For the sake of making better beer, William Gosset worked out the sampling distribution of a standardized sample mean (with the sample standard deviation, $s$, plugged into the denominator),
+For the sake of making better beer, William Gosset worked out the sampling distribution of a standardized sample mean (with the *sample* standard deviation, $s$, plugged into the denominator),
 
 $$t = \frac{\bar{x} - \mu}{s/\sqrt{n}}$$
 
 if the histogram of the **population is unimodal and roughly symmetric** (approximately Normal). This was crucial when **sample sizes are small.** He had to publish under the pseudonym **Student** (trade secrets, etc...). Thus, the sampling distribution model that he discovered became known as **Student's model.** Later R.A. Fisher (another famous statistician) recoined it as the *Student's T model.*
 
-###Student T Model
+### Student T Model
+
 - The center is always 0.
 - The spread is determined by a parameter called **degrees of freedom** ($df = n - 1$).
 - As $n\rightarrow\infty$, becomes more Normal. 

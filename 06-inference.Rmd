@@ -532,3 +532,72 @@ Hypothesis tests are useful in determining statistical significance (Answering: 
 
 Confidence intervals are more useful in determining practical significance (Answering: "What is the relationship?")
 
+
+## Model Selection
+
+In practice, you need to decide which variables should be included in an model. This is referred to as **model selection** or **variable selection**. We have many tools that can help us make these decisions.
+
+- Exploratory visualizations give us an indication for which variables have the strongest relationship with our response of interest (also if it is not linear)
+- $R^2$ can tell us the percent of variation in our response that is explained by the model -- We want HIGH $R^2$
+- The standard deviation of the residuals, $s_e$ (residual standard error), tells us the average magnitude of our residuals (prediction errors for our data set) -- We want LOW $s_e$
+
+With the addition of statistical inference in our tool set, we now have many other ways to help guide our decision making process.
+
+
+- Confidence intervals or tests for individual coefficients or slopes ($H_0: \beta_k = 0$, population slope for kth variable is 0 meaning no relationship)
+    - See `summary(lm1)`
+- Nested tests for a subset of coefficients or slopes ($H_0: \beta_k = 0$, population slope for kth variable is 0 meaning no relationship)
+    - `anova(lm1, lm2)` for comparing two linear regression models (one larger model and one model with some variables removed)
+    - `anova(glm1, glm2, test = 'LRT')` for comparing two logistic regression models (one larger model and one model with some variables removed)
+
+In general, we want a simple model that works well. We want to follow Occam's Razor, a philosophy that suggests that it is a good principle to explain the phenomena by the simplest hypothesis possible. In our case, that mean the fewest variables in our models. 
+
+So there are model selection criteria that we can use that penalizes you for having too many variables. Here are some below.
+
+
+- Choose a model with a LOWER Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC) calculated as
+  
+ $$AIC = n\log(SSE) - n\log(n) + 2(k+1) = -2\log(L) + 2(k+1)$$
+ $$BIC = n\log(SSE) -n\log(n) + (k+1)\log(n)= -2\log(L) + (k+1)\log(n)$$  
+    - Calculated using `BIC(lm1)` and `AIC(lm1)`
+
+- Choose a model with a higher adjusted $R^2$, calculated as,
+$$R^2_{adj} = 1 - \frac{SSE/(n-k-1)}{TotSS/(n-1)}$$
+where $k$ is the number of estimated coefficients in the model. 
+    - Find the adjusted R squared in the output of `summary(lm1)`
+    
+    
+If our goal is prediction, then we will want to choose a model that has the lowest prediction error. BUT, if we fit our model to our data and then calculate the prediction error from that SAME data, we aren't getting an accurate estimate of the prediction error because we are cheating. We aren't doing predictions for new data values. 
+ 
+ 
+**Training and Testing**
+
+In order to be able to predict for new data, we can randomly split our observed data into two groups, a **training** set and a **testing** set (also known as a validation or hold-out set). 
+- Fit the model to the training set and do prediction on the observations in the testing set.
+- The prediction Mean Squared Error, $\frac{1}{n}\sum(y_i - \hat{y}_i)^2$ can be calulated based on the predictions from the testing set. 
+    
+**Drawbacks of Validation Testing**
+
+- 1) The MSE can be highly variable as it depends on how you randomly split the data. 
+- 2) We aren't fully utilizing all of our data to fit the model; therefore, we will tend to overestimate the prediction error. 
+
+
+**K-Fold Cross-Validation**
+
+If we have a small data set and we want to fully use all of the data in our training, we can do **K-Fold Cross-Validation**. The steps are as follows:
+
+- Randomly splitting the set of observations into $k$ groups, or folds, of about equal size.
+
+- The first group is treated as the test set and the method or model is fit on the remaining $k-1$ groups. The MSE is calculated on the observations in the test set. 
+
+- Repeat $k$ times; each group is treated as the test set once. 
+
+- The k-fold CV estimate of MSE is an average of these values,
+\[CV_{(k)} = \frac{1}{k}\sum^k_{i=1}MSE_i \]
+where $MSE_i$ is the MSE based on the $i$th group as the test group. In practice, one performs k-fold CV with $k=5$ or $k=10$ as it reduces the computational time and it also is more accurate. 
+
+```{r eval=FALSE}
+require(boot)
+cv.err <- cv.glm(data,glm1, K = 5)
+sqrt(cv.err$delta[1]) #out of sample average prediction error
+```

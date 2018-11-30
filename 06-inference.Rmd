@@ -562,7 +562,7 @@ So there are model selection criteria that we can use that penalizes you for hav
     - Calculated using `BIC(lm1)` and `AIC(lm1)`
 
 - Choose a model with a higher adjusted $R^2$, calculated as,
-$$R^2_{adj} = 1 - \frac{SSE/(n-k-1)}{TotSS/(n-1)}$$
+$$R^2_{adj} = 1 - \frac{SSE/(n-k-1)}{SSTO/(n-1)}$$
 where $k$ is the number of estimated coefficients in the model. 
     - Find the adjusted R squared in the output of `summary(lm1)`
     

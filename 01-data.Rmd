@@ -7,6 +7,9 @@ library(rvest)
 library(mosaicData) 
 library(ggmosaic)
 library(NHANES)
+library(tidytext)
+library(glue)
+library(readr)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -20,9 +23,26 @@ This course is the beginning of your journey into the field of Statistics, a dis
 
 Data is *anything* that contains information. We typically think of data being stored in spreadsheets, but it can come in many other formats such as images or collections of text (whether 280 character tweets or fictional novels). 
 
-For example, we can take the pixels of digital images or text from all State of the Union addresses and transform them into a tidy, rectangular format. **Tidy data** is a table in which
+For example, we can take the pixels of digital images or text from one of the State of the Union addresses and transform them into a tidy, rectangular format. Below, see the top 10 words (that are not 'the', 'and', etc.) from the most recent State of the Union address given in the United States. 
 
-- Each row of a rectangular table corresponds to an **observation** or **case** (e.g. person, classroom, country, image,  speech at a particular time) 
+```{r echo=FALSE}
+files <- list.files("./Data/sotu")
+fileName <- glue("./Data/sotu/", files[209], sep = "")
+fileName <- trimws(fileName)
+
+fileText <- glue(read_file(fileName))
+fileText <- gsub("\\$", "", fileText) 
+
+data_frame(text = fileText) %>% 
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words) %>% # remove stop words
+  count(word, sort = T) %>% # sort by frequency
+  top_n(10) # get the top 10 words
+```
+
+**Tidy data** is a table in which
+
+- Each row of a rectangular table corresponds to an **observation** or **case** (e.g. person, classroom, country, image, word) 
 - Each column correspond to a characteristic or feature or **variable** for those cases (e.g. age, average classroom grade, average county income, intensity of red pixels, number of times the word "Together" is used)
 
 Variables can be either **categorical** or **quantitative** variables.

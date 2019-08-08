@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="This includes notes for STAT 155 at Macalester College." />
   
 
-<meta name="author" content="Brianna Heggeseth &amp; Leslie Myint" />
+<meta name="author" content="Prof. Brianna Heggeseth" />
 
 
 
@@ -364,9 +364,9 @@ where <span class="math inline">\(k\)</span> is the number of estimated coeffici
 <span class="math display">\[CV_{(k)} = \frac{1}{k}\sum^k_{i=1}MSE_i \]</span>
 where <span class="math inline">\(MSE_i\)</span> is the MSE based on the <span class="math inline">\(i\)</span>th group as the test group. In practice, one performs k-fold CV with <span class="math inline">\(k=5\)</span> or <span class="math inline">\(k=10\)</span> as it reduces the computational time and it also is more accurate.</p></li>
 </ul>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="kw">require</span>(boot)</a>
-<a class="sourceLine" id="cb284-2" data-line-number="2">cv.err &lt;-<span class="st"> </span><span class="kw">cv.glm</span>(data,glm1, <span class="dt">K =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb284-3" data-line-number="3"><span class="kw">sqrt</span>(cv.err<span class="op">$</span>delta[<span class="dv">1</span>]) <span class="co">#out of sample average prediction error</span></a></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="kw">require</span>(boot)</a>
+<a class="sourceLine" id="cb287-2" data-line-number="2">cv.err &lt;-<span class="st"> </span><span class="kw">cv.glm</span>(data,glm1, <span class="dt">K =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb287-3" data-line-number="3"><span class="kw">sqrt</span>(cv.err<span class="op">$</span>delta[<span class="dv">1</span>]) <span class="co">#out of sample average prediction error</span></a></code></pre></div>
 
 </div>
 <!-- </div> -->

@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="This includes notes for STAT 155 at Macalester College." />
   
 
-<meta name="author" content="Brianna Heggeseth &amp; Leslie Myint" />
+<meta name="author" content="Prof. Brianna Heggeseth" />
 
 
 
@@ -308,30 +308,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> Random Sampling from a Population</h2>
 <p>The data set that we will work with contains ALL flights leaving New York City in 2013. This data represents a full census of the target population of flights leaving NYC in a particular year.</p>
 <p>We’ll start by creating two new variables, <code>season</code> defined as winter (Oct - March) or summer (April - Sept) and <code>day_hour</code> defined as morning (midnight to noon) or afternoon (noon to midnight).</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="kw">data</span>(flights)</a>
-<a class="sourceLine" id="cb204-2" data-line-number="2">flights &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb204-3" data-line-number="3"><span class="st">    </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb204-4" data-line-number="4"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">season =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb204-5" data-line-number="5">      month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> &quot;winter&quot;</span>,</a>
-<a class="sourceLine" id="cb204-6" data-line-number="6">      month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span><span class="op">:</span><span class="dv">9</span>) <span class="op">~</span><span class="st"> &quot;summer&quot;</span></a>
-<a class="sourceLine" id="cb204-7" data-line-number="7">    )) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb204-8" data-line-number="8"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">day_hour =</span> <span class="kw">case_when</span>(</a>
-<a class="sourceLine" id="cb204-9" data-line-number="9">      <span class="kw">between</span>(hour, <span class="dv">1</span>, <span class="dv">12</span>) <span class="op">~</span><span class="st"> &quot;morning&quot;</span>,</a>
-<a class="sourceLine" id="cb204-10" data-line-number="10">      <span class="kw">between</span>(hour, <span class="dv">13</span>, <span class="dv">24</span>) <span class="op">~</span><span class="st"> &quot;afternoon&quot;</span></a>
-<a class="sourceLine" id="cb204-11" data-line-number="11">    )) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb204-12" data-line-number="12"><span class="st">    </span><span class="kw">select</span>(arr_delay, dep_delay, season, day_hour, origin, carrier)</a></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="kw">data</span>(flights)</a>
+<a class="sourceLine" id="cb207-2" data-line-number="2">flights &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb207-3" data-line-number="3"><span class="st">    </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb207-4" data-line-number="4"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">season =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb207-5" data-line-number="5">      month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> &quot;winter&quot;</span>,</a>
+<a class="sourceLine" id="cb207-6" data-line-number="6">      month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span><span class="op">:</span><span class="dv">9</span>) <span class="op">~</span><span class="st"> &quot;summer&quot;</span></a>
+<a class="sourceLine" id="cb207-7" data-line-number="7">    )) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb207-8" data-line-number="8"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">day_hour =</span> <span class="kw">case_when</span>(</a>
+<a class="sourceLine" id="cb207-9" data-line-number="9">      <span class="kw">between</span>(hour, <span class="dv">1</span>, <span class="dv">12</span>) <span class="op">~</span><span class="st"> &quot;morning&quot;</span>,</a>
+<a class="sourceLine" id="cb207-10" data-line-number="10">      <span class="kw">between</span>(hour, <span class="dv">13</span>, <span class="dv">24</span>) <span class="op">~</span><span class="st"> &quot;afternoon&quot;</span></a>
+<a class="sourceLine" id="cb207-11" data-line-number="11">    )) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb207-12" data-line-number="12"><span class="st">    </span><span class="kw">select</span>(arr_delay, dep_delay, season, day_hour, origin, carrier)</a></code></pre></div>
 <p>Since we have the full population, we could just describe the flights that happened. Note however that having data on the full population is very rare in practice. Instead, we are going to use this population to help us think about sampling variability.</p>
 <p>Let’s take one random sample of 100 flights from the data set, using a simple random sampling strategy. Let’s look at the arrival delay (in minutes) <code>arr_delay</code> with a histogram and calculate the median and mean arrival delay.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1">flights_samp1 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb205-2" data-line-number="2"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>) <span class="co">## Sample 100 flights randomly</span></a>
-<a class="sourceLine" id="cb205-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb205-4" data-line-number="4">flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb205-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> arr_delay)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb205-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb205-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">flights_samp1 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb206-2" data-line-number="2"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay))</a></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1">flights_samp1 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb208-2" data-line-number="2"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>) <span class="co">## Sample 100 flights randomly</span></a>
+<a class="sourceLine" id="cb208-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb208-4" data-line-number="4">flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb208-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> arr_delay)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb208-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb208-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">flights_samp1 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb209-2" data-line-number="2"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay))</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##   medians means
 ##     &lt;dbl&gt; &lt;dbl&gt;
@@ -342,16 +342,16 @@ At this point, we haven’t looked at the entire population of flights. Based on
 </p>
 </div>
 <p>Now, let’s take another random sample of 100 flights from the full population of flights.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1">flights_samp2 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb208-2" data-line-number="2"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>) <span class="co">## Sample 100 flights randomly</span></a>
-<a class="sourceLine" id="cb208-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb208-4" data-line-number="4">flights_samp2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb208-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> arr_delay)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb208-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb208-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">flights_samp2 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb209-2" data-line-number="2"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay))</a></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1">flights_samp2 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb211-2" data-line-number="2"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>) <span class="co">## Sample 100 flights randomly</span></a>
+<a class="sourceLine" id="cb211-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb211-4" data-line-number="4">flights_samp2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb211-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> arr_delay)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb211-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb211-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1">flights_samp2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb212-2" data-line-number="2"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay))</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##   medians means
 ##     &lt;dbl&gt; &lt;dbl&gt;
@@ -363,37 +363,37 @@ How does the second sample differ from the first sample? What do they have in co
 </div>
 <p>We could keep the process going. Take a sample of 100 flights, look at the histogram, and calculate the median and mean. Repeat many, many times.</p>
 <p>We can add a little bit of code to help us simulate this sampling 1000 times and calculate the median and mean arrival delay for each sample of 100 flights.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1">sim_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </a>
-<a class="sourceLine" id="cb211-2" data-line-number="2">    flights <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb211-3" data-line-number="3"><span class="st">      </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Generate samples of 100 flights</span></a>
-<a class="sourceLine" id="cb211-4" data-line-number="4"><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay)) <span class="co"># Calculate the median and mean</span></a>
-<a class="sourceLine" id="cb211-5" data-line-number="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1">sim_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </a>
+<a class="sourceLine" id="cb214-2" data-line-number="2">    flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb214-3" data-line-number="3"><span class="st">      </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Generate samples of 100 flights</span></a>
+<a class="sourceLine" id="cb214-4" data-line-number="4"><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay)) <span class="co"># Calculate the median and mean</span></a>
+<a class="sourceLine" id="cb214-5" data-line-number="5">)</a></code></pre></div>
 <p>Now we have 1000 medians and 1000 means, each corresponding to a sample median and sample mean from 100 random flights from the population. Let’s summarize and visualize this simulation.</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1"><span class="co"># Summarize</span></a>
-<a class="sourceLine" id="cb212-2" data-line-number="2">summary_sim &lt;-<span class="st"> </span>sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb212-3" data-line-number="3"><span class="st">    </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb212-4" data-line-number="4">        <span class="dt">mean_medians =</span> <span class="kw">mean</span>(medians),</a>
-<a class="sourceLine" id="cb212-5" data-line-number="5">        <span class="dt">mean_means =</span> <span class="kw">mean</span>(means),</a>
-<a class="sourceLine" id="cb212-6" data-line-number="6">        <span class="dt">sd_medians =</span> <span class="kw">sd</span>(medians),</a>
-<a class="sourceLine" id="cb212-7" data-line-number="7">        <span class="dt">sd_means =</span> <span class="kw">sd</span>(means)</a>
-<a class="sourceLine" id="cb212-8" data-line-number="8">    )</a>
-<a class="sourceLine" id="cb212-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb212-10" data-line-number="10"><span class="co"># Visualize</span></a>
-<a class="sourceLine" id="cb212-11" data-line-number="11">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb212-12" data-line-number="12"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb212-13" data-line-number="13"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb212-14" data-line-number="14"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb212-15" data-line-number="15"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample median</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb212-16" data-line-number="16"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-157-1.png" width="672" /></p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1"><span class="co"># Visualize</span></a>
-<a class="sourceLine" id="cb213-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb213-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb213-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb213-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb213-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample mean</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb213-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-157-2.png" width="672" /></p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1"><span class="co"># Summarize</span></a>
+<a class="sourceLine" id="cb215-2" data-line-number="2">summary_sim &lt;-<span class="st"> </span>sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb215-3" data-line-number="3"><span class="st">    </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb215-4" data-line-number="4">        <span class="dt">mean_medians =</span> <span class="kw">mean</span>(medians),</a>
+<a class="sourceLine" id="cb215-5" data-line-number="5">        <span class="dt">mean_means =</span> <span class="kw">mean</span>(means),</a>
+<a class="sourceLine" id="cb215-6" data-line-number="6">        <span class="dt">sd_medians =</span> <span class="kw">sd</span>(medians),</a>
+<a class="sourceLine" id="cb215-7" data-line-number="7">        <span class="dt">sd_means =</span> <span class="kw">sd</span>(means)</a>
+<a class="sourceLine" id="cb215-8" data-line-number="8">    )</a>
+<a class="sourceLine" id="cb215-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb215-10" data-line-number="10"><span class="co"># Visualize</span></a>
+<a class="sourceLine" id="cb215-11" data-line-number="11">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb215-12" data-line-number="12"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb215-13" data-line-number="13"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb215-14" data-line-number="14"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb215-15" data-line-number="15"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample median</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb215-16" data-line-number="16"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="co"># Visualize</span></a>
+<a class="sourceLine" id="cb216-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb216-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb216-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb216-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb216-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample mean</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb216-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-184-2.png" width="672" /></p>
 <p>These histograms estimate the <strong>sampling distribution</strong> of sample median arrival delay and the <strong>sampling distribution</strong> of sample mean arrival delay, both of which describe the variability in the sample statistic across all possible random samples from the population.</p>
 <div class="reflect">
 <p>
@@ -413,28 +413,28 @@ What would happen if we drew WITHOUT REPLACEMENT?
 </div>
 <p><strong>2. Calculate</strong></p>
 <p>In our simulation above, we calculated the median and mean arrival delay. In theory, we could calculate any numerical summary of data (e.g. the mean, median, SD, 25th percentile, etc.)</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1">boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </a>
-<a class="sourceLine" id="cb214-2" data-line-number="2">    flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></a>
-<a class="sourceLine" id="cb214-3" data-line-number="3"><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></a>
-<a class="sourceLine" id="cb214-4" data-line-number="4"><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay)) <span class="co"># Calculate statistics</span></a>
-<a class="sourceLine" id="cb214-5" data-line-number="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </a>
+<a class="sourceLine" id="cb217-2" data-line-number="2">    flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></a>
+<a class="sourceLine" id="cb217-3" data-line-number="3"><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></a>
+<a class="sourceLine" id="cb217-4" data-line-number="4"><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay)) <span class="co"># Calculate statistics</span></a>
+<a class="sourceLine" id="cb217-5" data-line-number="5">)</a></code></pre></div>
 <p><strong>3. Summarize</strong></p>
 <p>Let’s summarize these 1000 medians and 1000 means generated from resampling (with replacement) <em>from our sample</em> (our “fake population”).</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1"><span class="co"># Summarize</span></a>
-<a class="sourceLine" id="cb215-2" data-line-number="2">summary_boot &lt;-<span class="st"> </span>boot_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb215-3" data-line-number="3"><span class="st">    </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb215-4" data-line-number="4">        <span class="dt">mean_medians =</span> <span class="kw">mean</span>(medians),</a>
-<a class="sourceLine" id="cb215-5" data-line-number="5">        <span class="dt">mean_means =</span> <span class="kw">mean</span>(means),</a>
-<a class="sourceLine" id="cb215-6" data-line-number="6">        <span class="dt">sd_medians =</span> <span class="kw">sd</span>(medians),</a>
-<a class="sourceLine" id="cb215-7" data-line-number="7">        <span class="dt">sd_means =</span> <span class="kw">sd</span>(means)</a>
-<a class="sourceLine" id="cb215-8" data-line-number="8">    )</a>
-<a class="sourceLine" id="cb215-9" data-line-number="9">summary_boot</a></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1"><span class="co"># Summarize</span></a>
+<a class="sourceLine" id="cb218-2" data-line-number="2">summary_boot &lt;-<span class="st"> </span>boot_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb218-3" data-line-number="3"><span class="st">    </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb218-4" data-line-number="4">        <span class="dt">mean_medians =</span> <span class="kw">mean</span>(medians),</a>
+<a class="sourceLine" id="cb218-5" data-line-number="5">        <span class="dt">mean_means =</span> <span class="kw">mean</span>(means),</a>
+<a class="sourceLine" id="cb218-6" data-line-number="6">        <span class="dt">sd_medians =</span> <span class="kw">sd</span>(medians),</a>
+<a class="sourceLine" id="cb218-7" data-line-number="7">        <span class="dt">sd_means =</span> <span class="kw">sd</span>(means)</a>
+<a class="sourceLine" id="cb218-8" data-line-number="8">    )</a>
+<a class="sourceLine" id="cb218-9" data-line-number="9">summary_boot</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 4
 ##   mean_medians mean_means sd_medians sd_means
 ##          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
 ## 1        -9.13       7.25       2.17     5.09</code></pre>
 <p>Let’s compare this to the summaries from the simulation <em>from the population</em>.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">summary_sim</a></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">summary_sim</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 4
 ##   mean_medians mean_means sd_medians sd_means
 ##          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -442,39 +442,39 @@ What would happen if we drew WITHOUT REPLACEMENT?
 <p>They won’t be exactly the same, but they should be of roughly similar magnitude.</p>
 <p><strong>4. Visualize</strong></p>
 <p>Let’s visualize these 1000 medians and 1000 means generated from resampling (with replacement) from our sample (our “fake population”).</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="co"># Visualize</span></a>
-<a class="sourceLine" id="cb219-2" data-line-number="2">boot_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb219-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb219-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb219-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb219-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample median&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb219-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="co"># Visualize</span></a>
-<a class="sourceLine" id="cb220-2" data-line-number="2">boot_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb220-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb220-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb220-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb220-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample mean&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb220-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-163-2.png" width="672" /></p>
-<p>Let’s compare this to the visuals from the simulation from the population.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1"><span class="co"># Visualize</span></a>
-<a class="sourceLine" id="cb221-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb221-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb221-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb221-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample median</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb221-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1"><span class="co"># Visualize</span></a>
-<a class="sourceLine" id="cb222-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb222-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb222-2" data-line-number="2">boot_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb222-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb222-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb222-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb222-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample mean</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb222-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb222-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample median&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb222-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-164-2.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1"><span class="co"># Visualize</span></a>
+<a class="sourceLine" id="cb223-2" data-line-number="2">boot_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb223-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb223-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb223-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb223-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample mean&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb223-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-190-2.png" width="672" /></p>
+<p>Let’s compare this to the visuals from the simulation from the population.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="co"># Visualize</span></a>
+<a class="sourceLine" id="cb224-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb224-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb224-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb224-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb224-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample median</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb224-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1"><span class="co"># Visualize</span></a>
+<a class="sourceLine" id="cb225-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb225-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample mean</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb225-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-191-2.png" width="672" /></p>
 <p>The process of resampling from our sample is called <strong>bootstrapping</strong>, and it is becoming the one of main computational tools for estimating sampling variability in Statistics.</p>
 <div class="reflect">
 <p>

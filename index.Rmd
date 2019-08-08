@@ -1,5 +1,5 @@
 --- 
-title: "Math 155 Notes"
+title: "Stat 155 Notes"
 author: "Brianna Heggeseth & Leslie Myint"
 date: "Updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -13,12 +13,12 @@ output:
 documentclass: book
 link-citations: yes
 github-repo: bcheggeseth/Math155Notes
-description: "This includes notes for Math 155 at Macalester College."
+description: "This includes notes for STAT 155 at Macalester College."
 ---
 
 # Preface {-}
 
-This book contains notes for MATH 155 at Macalester College. It contains definitions, data examples, and R code explanations that provide a foundation for the activities we will do in class.
+This book contains notes for STAT 155 at Macalester College. It contains definitions, data examples, and R code explanations that provide a foundation for the activities we will do in class.
 
 This is a living document, which will get updated throughout the semester.
 

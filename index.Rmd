@@ -12,7 +12,7 @@ output:
         scroll_highlight: yes
 documentclass: book
 link-citations: yes
-github-repo: bcheggeseth/Math155Notes
+github-repo: bcheggeseth/Stat155Notes
 description: "This includes notes for STAT 155 at Macalester College."
 ---
 

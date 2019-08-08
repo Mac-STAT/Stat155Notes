@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Appendix A - Theoretical Probability | Stat 155 Notes</title>
+  <meta name="description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Appendix A - Theoretical Probability | Stat 155 Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Appendix A - Theoretical Probability | Stat 155 Notes" />
+  
+  <meta name="twitter:description" content="This includes notes for STAT 155 at Macalester College." />
+  
+
+<meta name="author" content="Brianna Heggeseth &amp; Leslie Myint" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="model-selection.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"Stat 155 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="data-collection-and-quality.html"><a href="data-collection-and-quality.html"><i class="fa fa-check"></i><b>1</b> Data Collection and Quality</a><ul>
+<li class="chapter" data-level="1.1" data-path="what-is-data.html"><a href="what-is-data.html"><i class="fa fa-check"></i><b>1.1</b> What is Data?</a></li>
+<li class="chapter" data-level="1.2" data-path="data-context.html"><a href="data-context.html"><i class="fa fa-check"></i><b>1.2</b> Data Context</a></li>
+<li class="chapter" data-level="1.3" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>1.3</b> Sampling</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="sampling.html"><a href="sampling.html#sampling-bias"><i class="fa fa-check"></i><b>1.3.1</b> Sampling Bias</a></li>
+<li class="chapter" data-level="1.3.2" data-path="sampling.html"><a href="sampling.html#random-sampling"><i class="fa fa-check"></i><b>1.3.2</b> Random Sampling</a></li>
+<li class="chapter" data-level="1.3.3" data-path="sampling.html"><a href="sampling.html#nonresponse-bias"><i class="fa fa-check"></i><b>1.3.3</b> Nonresponse bias</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
+<li class="chapter" data-level="1.5" data-path="study-design-observational-study-vs-experiments.html"><a href="study-design-observational-study-vs-experiments.html"><i class="fa fa-check"></i><b>1.5</b> Study Design: Observational Study vs. Experiments</a></li>
+<li class="chapter" data-level="1.6" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.6</b> Ethical Considerations</a></li>
+<li class="chapter" data-level="1.7" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.7</b> Major Takeaways</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
+<li class="chapter" data-level="2.2" data-path="anatomy-of-a-ggplot-command.html"><a href="anatomy-of-a-ggplot-command.html"><i class="fa fa-check"></i><b>2.2</b> Anatomy of a ggplot command</a></li>
+<li class="chapter" data-level="2.3" data-path="one-categorical-variable.html"><a href="one-categorical-variable.html"><i class="fa fa-check"></i><b>2.3</b> One Categorical Variable</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="one-categorical-variable.html"><a href="one-categorical-variable.html#bar-plot"><i class="fa fa-check"></i><b>2.3.1</b> Bar Plot</a></li>
+<li class="chapter" data-level="2.3.2" data-path="one-categorical-variable.html"><a href="one-categorical-variable.html#pie-chart"><i class="fa fa-check"></i><b>2.3.2</b> Pie Chart</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html"><i class="fa fa-check"></i><b>2.4</b> Two Categorical Variables</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html#side-by-side-bar-plot"><i class="fa fa-check"></i><b>2.4.1</b> Side by Side Bar Plot</a></li>
+<li class="chapter" data-level="2.4.2" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html#stacked-bar-plot"><i class="fa fa-check"></i><b>2.4.2</b> Stacked Bar Plot</a></li>
+<li class="chapter" data-level="2.4.3" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html#stacked-bar-plot-relative-frequencies"><i class="fa fa-check"></i><b>2.4.3</b> Stacked Bar Plot (Relative Frequencies)</a></li>
+<li class="chapter" data-level="2.4.4" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html#mosaic-plot"><i class="fa fa-check"></i><b>2.4.4</b> Mosaic Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html"><i class="fa fa-check"></i><b>2.5</b> One Quantitative Variable</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#histogram"><i class="fa fa-check"></i><b>2.5.1</b> Histogram</a></li>
+<li class="chapter" data-level="2.5.2" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#center"><i class="fa fa-check"></i><b>2.5.2</b> Center</a></li>
+<li class="chapter" data-level="2.5.3" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#boxplot"><i class="fa fa-check"></i><b>2.5.3</b> Boxplot</a></li>
+<li class="chapter" data-level="2.5.4" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#spread"><i class="fa fa-check"></i><b>2.5.4</b> Spread</a></li>
+<li class="chapter" data-level="2.5.5" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#intro-zscore"><i class="fa fa-check"></i><b>2.5.5</b> Some data accounting</a></li>
+<li class="chapter" data-level="2.5.6" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#z-scores"><i class="fa fa-check"></i><b>2.5.6</b> Z-scores</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.6</b> One Quantitative Variable and One Categorical Variable</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.6.1</b> Multiple Histograms</a></li>
+<li class="chapter" data-level="2.6.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.6.2</b> Multiple Boxplots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.7</b> Two Quantitative Variables</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.7.1</b> Scatterplot</a></li>
+<li class="chapter" data-level="2.7.2" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#correlation-coefficient"><i class="fa fa-check"></i><b>2.7.2</b> Correlation Coefficient</a></li>
+<li class="chapter" data-level="2.7.3" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#properties"><i class="fa fa-check"></i><b>2.7.3</b> Properties</a></li>
+<li class="chapter" data-level="2.7.4" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#is-correlation-always-the-right-way-to-judge-strength"><i class="fa fa-check"></i><b>2.7.4</b> Is correlation always the right way to judge strength?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html"><i class="fa fa-check"></i><b>2.8</b> Three or more variables</a><ul>
+<li class="chapter" data-level="2.8.1" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#a-bivariate-plot"><i class="fa fa-check"></i><b>2.8.1</b> A bivariate plot</a></li>
+<li class="chapter" data-level="2.8.2" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-color"><i class="fa fa-check"></i><b>2.8.2</b> Enriching with color</a></li>
+<li class="chapter" data-level="2.8.3" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-shape"><i class="fa fa-check"></i><b>2.8.3</b> Enriching with shape</a></li>
+<li class="chapter" data-level="2.8.4" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-size"><i class="fa fa-check"></i><b>2.8.4</b> Enriching with size</a></li>
+<li class="chapter" data-level="2.8.5" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-panels"><i class="fa fa-check"></i><b>2.8.5</b> Enriching with panels</a></li>
+<li class="chapter" data-level="2.8.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.8.6</b> Putting everything together</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="major-takeaways-1.html"><a href="major-takeaways-1.html"><i class="fa fa-check"></i><b>2.9</b> Major Takeaways</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="regression-models.html"><a href="regression-models.html"><i class="fa fa-check"></i><b>3</b> Regression Models</a><ul>
+<li class="chapter" data-level="3.1" data-path="goals-for-models.html"><a href="goals-for-models.html"><i class="fa fa-check"></i><b>3.1</b> Goals for models</a></li>
+<li class="chapter" data-level="3.2" data-path="lines.html"><a href="lines.html"><i class="fa fa-check"></i><b>3.2</b> Lines</a></li>
+<li class="chapter" data-level="3.3" data-path="choosing-the-best-fitting-line.html"><a href="choosing-the-best-fitting-line.html"><i class="fa fa-check"></i><b>3.3</b> Choosing the best fitting line</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="choosing-the-best-fitting-line.html"><a href="choosing-the-best-fitting-line.html#first-idea"><i class="fa fa-check"></i><b>3.3.1</b> First idea</a></li>
+<li class="chapter" data-level="3.3.2" data-path="choosing-the-best-fitting-line.html"><a href="choosing-the-best-fitting-line.html#second-idea"><i class="fa fa-check"></i><b>3.3.2</b> Second idea</a></li>
+<li class="chapter" data-level="3.3.3" data-path="choosing-the-best-fitting-line.html"><a href="choosing-the-best-fitting-line.html#third-idea"><i class="fa fa-check"></i><b>3.3.3</b> Third idea</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="least-squares.html"><a href="least-squares.html"><i class="fa fa-check"></i><b>3.4</b> Least Squares</a></li>
+<li class="chapter" data-level="3.5" data-path="properties-of-least-squares-line.html"><a href="properties-of-least-squares-line.html"><i class="fa fa-check"></i><b>3.5</b> Properties of Least Squares Line</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="properties-of-least-squares-line.html"><a href="properties-of-least-squares-line.html#real-companies"><i class="fa fa-check"></i><b>3.5.1</b> Real companies</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="interpretation.html"><a href="interpretation.html"><i class="fa fa-check"></i><b>3.6</b> Interpretation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="interpretation.html"><a href="interpretation.html#correlation-or-association-vs.causation"><i class="fa fa-check"></i><b>3.6.1</b> Correlation or Association vs. Causation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="evaluation.html"><a href="evaluation.html"><i class="fa fa-check"></i><b>3.7</b> Evaluation</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="evaluation.html"><a href="evaluation.html#prediction"><i class="fa fa-check"></i><b>3.7.1</b> Prediction</a></li>
+<li class="chapter" data-level="3.7.2" data-path="evaluation.html"><a href="evaluation.html#prediction-errors"><i class="fa fa-check"></i><b>3.7.2</b> Prediction Errors</a></li>
+<li class="chapter" data-level="3.7.3" data-path="evaluation.html"><a href="evaluation.html#r2"><i class="fa fa-check"></i><b>3.7.3</b> <span class="math inline">\(R^2\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i><b>3.8</b> Diagnostics</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-issues"><i class="fa fa-check"></i><b>3.8.1</b> Solutions to Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>3.9</b> Multiple Linear Regression</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#indicator-variables"><i class="fa fa-check"></i><b>3.9.1</b> Indicator Variables</a></li>
+<li class="chapter" data-level="3.9.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.2</b> Interaction Variables</a></li>
+<li class="chapter" data-level="3.9.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#causation"><i class="fa fa-check"></i><b>3.9.3</b> Causation</a></li>
+<li class="chapter" data-level="3.9.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#conditions-for-multiple-linear-regression"><i class="fa fa-check"></i><b>3.9.4</b> Conditions for Multiple Linear Regression</a></li>
+<li class="chapter" data-level="3.9.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.5</b> Is the Difference Real?</a></li>
+<li class="chapter" data-level="3.9.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#dealing-with-non-linear-relationships"><i class="fa fa-check"></i><b>3.9.6</b> Dealing with Non-Linear Relationships</a></li>
+<li class="chapter" data-level="3.9.7" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#alternative-solutions"><i class="fa fa-check"></i><b>3.9.7</b> Alternative Solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>3.10</b> Logistic Regression</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-and-logit"><i class="fa fa-check"></i><b>3.10.1</b> Logistic and Logit</a></li>
+<li class="chapter" data-level="3.10.2" data-path="logistic-regression.html"><a href="logistic-regression.html#fitting-the-model"><i class="fa fa-check"></i><b>3.10.2</b> Fitting the Model</a></li>
+<li class="chapter" data-level="3.10.3" data-path="logistic-regression.html"><a href="logistic-regression.html#interpretation-1"><i class="fa fa-check"></i><b>3.10.3</b> Interpretation</a></li>
+<li class="chapter" data-level="3.10.4" data-path="logistic-regression.html"><a href="logistic-regression.html#prediction-1"><i class="fa fa-check"></i><b>3.10.4</b> Prediction</a></li>
+<li class="chapter" data-level="3.10.5" data-path="logistic-regression.html"><a href="logistic-regression.html#model-evaluation"><i class="fa fa-check"></i><b>3.10.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="3.10.6" data-path="logistic-regression.html"><a href="logistic-regression.html#alternative-classification-models"><i class="fa fa-check"></i><b>3.10.6</b> Alternative Classification Models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>4</b> Random Variability</a><ul>
+<li class="chapter" data-level="4.1" data-path="random-sampling-from-a-population.html"><a href="random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>4.1</b> Random Sampling from a Population</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="random-sampling-from-a-population.html"><a href="random-sampling-from-a-population.html#irl-bootstrapping"><i class="fa fa-check"></i><b>4.1.1</b> IRL: Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="randomization-into-groups.html"><a href="randomization-into-groups.html"><i class="fa fa-check"></i><b>4.2</b> Randomization into Groups</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="randomization-into-groups.html"><a href="randomization-into-groups.html#irl-randomization-tests"><i class="fa fa-check"></i><b>4.2.1</b> IRL: Randomization Tests</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
+<li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>5.2</b> Probability Rules</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="probability-rules.html"><a href="probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>5.2.1</b> Diagnotic Testing and Probability</a></li>
+<li class="chapter" data-level="5.2.2" data-path="probability-rules.html"><a href="probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>5.2.2</b> Court Arguments and Probability</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="random-variable.html"><a href="random-variable.html"><i class="fa fa-check"></i><b>5.3</b> Random Variable</a></li>
+<li class="chapter" data-level="5.4" data-path="probability-models.html"><a href="probability-models.html"><i class="fa fa-check"></i><b>5.4</b> Probability Models</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="probability-models.html"><a href="probability-models.html#using-probability-mass-functions"><i class="fa fa-check"></i><b>5.4.1</b> Using probability mass functions</a></li>
+<li class="chapter" data-level="5.4.2" data-path="probability-models.html"><a href="probability-models.html#using-probability-density-functions"><i class="fa fa-check"></i><b>5.4.2</b> Using probability density functions</a></li>
+<li class="chapter" data-level="5.4.3" data-path="probability-models.html"><a href="probability-models.html#expected-value-and-variance"><i class="fa fa-check"></i><b>5.4.3</b> Expected value and variance</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="bernoullibinomial-model.html"><a href="bernoullibinomial-model.html"><i class="fa fa-check"></i><b>5.5</b> Bernoulli/Binomial Model</a></li>
+<li class="chapter" data-level="5.6" data-path="normal-model.html"><a href="normal-model.html"><i class="fa fa-check"></i><b>5.6</b> Normal Model</a></li>
+<li class="chapter" data-level="5.7" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html"><i class="fa fa-check"></i><b>5.7</b> Sampling Distribution and CLT</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html#sampling-distributions"><i class="fa fa-check"></i><b>5.7.1</b> Sampling distributions</a></li>
+<li class="chapter" data-level="5.7.2" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>5.7.2</b> The Central Limit Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html"><i class="fa fa-check"></i><b>5.8</b> Z-scores and the Student’s “t” distribution</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#gossets-work"><i class="fa fa-check"></i><b>5.8.1</b> Gosset’s Work</a></li>
+<li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
+<li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#student-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student T Model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
+<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6.1</b> Confidence Intervals</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#via-classical-theory"><i class="fa fa-check"></i><b>6.1.1</b> Via Classical Theory</a></li>
+<li class="chapter" data-level="6.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#via-bootstrapping"><i class="fa fa-check"></i><b>6.1.2</b> Via Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html"><i class="fa fa-check"></i><b>6.2</b> Confidence Interval Examples</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#proportion-outcome"><i class="fa fa-check"></i><b>6.2.1</b> Proportion Outcome</a></li>
+<li class="chapter" data-level="6.2.2" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#mean-and-then-median"><i class="fa fa-check"></i><b>6.2.2</b> Mean and then Median</a></li>
+<li class="chapter" data-level="6.2.3" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#logistic-regression-model"><i class="fa fa-check"></i><b>6.2.3</b> Logistic Regression Model</a></li>
+<li class="chapter" data-level="6.2.4" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#linear-regression-model-slope-categorical-variable"><i class="fa fa-check"></i><b>6.2.4</b> Linear Regression Model Slope (Categorical Variable)</a></li>
+<li class="chapter" data-level="6.2.5" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#linear-regression-model-slope-quantitative-var"><i class="fa fa-check"></i><b>6.2.5</b> Linear Regression Model Slope (Quantitative Var)</a></li>
+<li class="chapter" data-level="6.2.6" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#confidence-intervals-for-prediction"><i class="fa fa-check"></i><b>6.2.6</b> Confidence Intervals for Prediction</a></li>
+<li class="chapter" data-level="6.2.7" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#prediction-intervals"><i class="fa fa-check"></i><b>6.2.7</b> Prediction Intervals</a></li>
+<li class="chapter" data-level="6.2.8" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#probability-theory-vs.bootstrapping"><i class="fa fa-check"></i><b>6.2.8</b> Probability Theory vs. Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6.3</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#test-statistics"><i class="fa fa-check"></i><b>6.3.1</b> Test statistics</a></li>
+<li class="chapter" data-level="6.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#logic-of-hypothesis-testing"><i class="fa fa-check"></i><b>6.3.2</b> Logic of hypothesis testing</a></li>
+<li class="chapter" data-level="6.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#summary-of-procedure"><i class="fa fa-check"></i><b>6.3.3</b> Summary of procedure</a></li>
+<li class="chapter" data-level="6.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#testing-single-model-coefficients"><i class="fa fa-check"></i><b>6.3.4</b> Testing single model coefficients</a></li>
+<li class="chapter" data-level="6.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#distributions-of-test-statistics"><i class="fa fa-check"></i><b>6.3.5</b> Distributions of test statistics</a></li>
+<li class="chapter" data-level="6.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#graphical-description-of-p-values"><i class="fa fa-check"></i><b>6.3.6</b> Graphical description of p-values</a></li>
+<li class="chapter" data-level="6.3.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#example-linear-regression"><i class="fa fa-check"></i><b>6.3.7</b> Example: Linear Regression</a></li>
+<li class="chapter" data-level="6.3.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#example-logistic-regression"><i class="fa fa-check"></i><b>6.3.8</b> Example: Logistic Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="statistical-significance-v-practical-significance.html"><a href="statistical-significance-v-practical-significance.html"><i class="fa fa-check"></i><b>6.4</b> Statistical Significance v. Practical Significance</a></li>
+<li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Stat 155 Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="appendix-a---theoretical-probability" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Appendix A - Theoretical Probability</h1>
+<p>For those of you who want a more thorough, mathematical description of the basics of theoretical probability, please read on.</p>
+<p>##Probability Rules</p>
+<p>In theoretical probability, we need to define a few terms and set some rules (known as axioms).</p>
+<p>The <strong>sample space,</strong> <span class="math inline">\(S\)</span>, is the set of all possible outcomes of a random process.</p>
+<ul>
+<li>Example: If you flip two coins (one side Heads and one side Tails), then the sample space contains four possible outcomes: Heads and Heads (HH), Heads and Tails (HT), Tails and Heads (TH), and Tails and Tails (TT), <span class="math inline">\(S = \{HH,HT,TH,TT\}\)</span>.</li>
+</ul>
+<p>A subset of outcomes is called an <strong>event</strong>, <span class="math inline">\(A\)</span>.</p>
+<ul>
+<li>Example: If you flip two coins, an event <span class="math inline">\(A\)</span> could be that exactly one of the coins land Heads, <span class="math inline">\(A = \{HT,TH\}\)</span>.</li>
+</ul>
+<p>For the rules of probability, we can define them with set notation as well as words. If you aren’t familiar with set notation,</p>
+<ul>
+<li><span class="math inline">\(\cup\)</span> means union (inclusive OR)</li>
+<li><span class="math inline">\(\cap\)</span> means intersection (AND)</li>
+<li><span class="math inline">\(A^C\)</span> means complement (NOT)</li>
+</ul>
+<p>For events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> and sample space <span class="math inline">\(S\)</span>, the probability of an event <span class="math inline">\(A\)</span>, notated as <span class="math inline">\(P(A)\)</span>, follows the rules below:</p>
+<ul>
+<li>Rule 1: <span class="math inline">\(0\leq P(A)\leq 1\)</span> (probability has to be between 0 and 1)</li>
+<li>Rule 2: <span class="math inline">\(P(S) = 1\)</span> (one of the outcomes has to happen)</li>
+<li>Rule 3: <span class="math inline">\(P(A^c) = P(\text{not }A) = 1 - P(A)\)</span> (if we know the chance of something happening, we also know that chance it doesn’t happen)</li>
+<li>Rule 4: <span class="math inline">\(P(A\cup B) = P(A\text{ or }B) = P(A) + P(B)\)</span> if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are disjoint events.
+<ul>
+<li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>disjoint/mutually exclusive</strong> if <span class="math inline">\(A\)</span> occuring prevents <span class="math inline">\(B\)</span> from occurring (they both can’t happen at the same time).</li>
+</ul></li>
+<li>Rule 4*: <span class="math inline">\(P(A\text{ or }B) = P(A\cup B) = P(A) + P(B) - P(A\cap B)\)</span></li>
+<li>Rule 5: <span class="math inline">\(P(A\cap B) = P(A\text{ and }B) = P(A)\times P(B)\)</span> if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent.
+<ul>
+<li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>independent</strong> if <span class="math inline">\(B\)</span> occurring doesn’t change the probability of <span class="math inline">\(A\)</span> occurring.</li>
+</ul></li>
+<li>Rule 5*: <span class="math inline">\(P(A\text{ and }B) = P(A\cap B) = P(A~|~B)P(B) = P(B~|~A)P(A)\)</span>.
+<ul>
+<li>The <strong>conditional probability</strong> of A <strong>given</strong> that event B occurs, <span class="math inline">\(P(A~|~B)\)</span>, is equal to the probability of the joint event (A and B) divided by the probability of B.
+<span class="math display">\[P(A ~| ~B) = \frac{P(A \text{ and } B)}{P(B)} = \frac{P(A \cap B)}{P(B)}\]</span></li>
+<li>Intuition: Given that <span class="math inline">\(B\)</span> happened, we focus on the subset of outcomes in <span class="math inline">\(S\)</span> in which <span class="math inline">\(B\)</span> occurs and then figure out what the chance of <span class="math inline">\(A\)</span> happening within that subset.</li>
+</ul></li>
+</ul>
+<p>####Example: Blood Types</p>
+<p>The American Red Cross estimates that 45% of U.S. population has Type O blood, 40% are Type A, 11% Type B, and 4% AB blood.</p>
+<p>Imagine that we have a blood drive in St. Paul. The next donor’s blood type can be thought of as a random process. The sample space for this random process includes the 4 blood types: <span class="math inline">\(S= \{O,A,B,AB\}\)</span> (it includes all possible outcomes). Assume the people who donate blood have the same distribution of blood types as the U.S. and that St. Paul has the same distribution as the entire U.S.</p>
+<p>Think about how you’d justify your answer to the following questions:</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the probability that the next donor is Type O blood?</p></li>
+<li><p>What is the probability that the next donor is Type A or Type B or Type AB blood?</p></li>
+<li><p>What is the probability the next three donors are all Type O blood?</p></li>
+<li><p>What is the probability the next donor is Type O or Type A or Type B or Type AB?</p></li>
+</ol>
+<p>If the possible outcomes were equally likely, we could calculate probabilities
+<span class="math display">\[P(A) = \frac{\text{Number of outcomes in }A}{\text{Number of possible outcomes}}\]</span></p>
+<p>But the chances of Type O, A, B, and AB blood are all different because they occur with different frequency in the population.</p>
+<p>Let’s change the sample space to make it easier. Let our sample space, <span class="math inline">\(S\)</span>, be the set of 100 equally likely outcomes (45 are O, 40 are A, 11 are B, and 4 are AB). Now, you can calculate probabilities based on this framework of equally likely outcomes (after we changed the sample space).</p>
+<ol style="list-style-type: decimal">
+<li><p>P(Type O) = 45/100 assuming equally likely outcomes</p></li>
+<li><p>P(Type A or B or AB) = 1 - P(Type O) = 1 - 45/100 by Rule 3</p></li>
+<li><p>P(Type O and then Type O and then Type O) = <span class="math inline">\((45/100)^3\)</span> by Rule 5 assuming donors are independent, in that the probability of Type O blood stays the same</p></li>
+<li><p>P(Type A or B or AB or O) = P(S) = 1 by Rule 2</p></li>
+</ol>
+<p>####Example: 52 Cards</p>
+<p>Let’s consider a perfectly shuffled deck of playing cards. Each card has an icon and a number (or A, J, Q, K) on it. The icon is either a red heart, red diamond, black spade (leaf), or black club (3 leaf clover). The numbers range for 2 to 10 and A is for Ace, J is for Jack, Q is for Queen, K is for King.</p>
+<p>The sample space is below.</p>
+<p><img src="Photos/cards.png" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the probability of drawing a card with a heart icon on it?</p></li>
+<li><p>What is the probability of drawing a card with a heart or Ace (A) on it?</p></li>
+<li><p>What is the probability of dealing a card with a heart on the table and then another heart card?</p></li>
+</ol>
+<p><strong>Focus on how we’d justify the answer, not just the number.</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>P(heart) = 13/52 by equally likely outcomes</p></li>
+<li><p>P(heart or ace) = 13/52 + 4/52 - 1/52 = 16/52 by Rule 4*</p></li>
+<li><p>P(heart and then heart) = 13/52*12/51 by Rule 5* (draws are not independent here since the probability of hearts changes after you remove a card)</p></li>
+</ol>
+<p>###Disjoint/Mutually Exclusive</p>
+<p>Think back to the Blood Type example.</p>
+<p>Let’s say we were interested in the next two donors.</p>
+<ul>
+<li>P(First Type A or Second Type A) = ?</li>
+</ul>
+<p>Think about all the ways this could happen.</p>
+<p>We will always use an inclusive OR, which means that we care about one or the other or both happening. We just need to make sure we don’t double count, which is why we subtract the chance of both.</p>
+<ul>
+<li>P(First Type A or Second Type A) = P(First Type A) + P(Second Type A) - P(both Type A)</li>
+</ul>
+<p>So,</p>
+<ul>
+<li>P(First Type A or Second Type A) = 0.40 + 0.40 - 0.40*0.40 = 0.64</li>
+</ul>
+<p>Which is the same as if we were to consider the three disjoint options (A: Type A, N: Not Type A),</p>
+<ul>
+<li>P(AN or NA or AA) = 0.4*0.6 + 0.6*0.4 + 0.4*0.4 = 0.64</li>
+</ul>
+<p>###Independence</p>
+<p>Let’s stay with the Blood Type example for one moment more.</p>
+<p>What if there were only 50 donors in St. Paul? Say 30 of them Type 0 and the other 20 were A or B.</p>
+<ul>
+<li>Would the second donor be independent of the first donor? In other words, would the probability of getting a Type O donors change between donors?</li>
+</ul>
+<p>No, they wouldn’t be independent. In that case, let’s calculate the probability that the first two donors are Type O.</p>
+<ul>
+<li>P(Type O and then Type O) = P(Type O)P(2nd Type O | 1st Type O) = (30/50) * (29/49) = 0.355</li>
+</ul>
+<p>##Random Variable</p>
+<p>A <strong>Random Variable</strong> (<span class="math inline">\(X\)</span>) is a real-valued function whose outcome we don’t know beforehand.</p>
+<ul>
+<li>It is a function of the outcomes from a random process.</li>
+</ul>
+<p>I am going to flip a fair coin 3 times (the coin has 2-sides, we’ll call one side Heads and the other Tails).</p>
+<ul>
+<li>Assume there are only 2 possible outcomes and P(Heads) = P(Tails) = 0.5 (can’t land on its side).</li>
+<li><p>Below are three possible random variables based on the same random process (flipping a 2-sided coin 3 times):</p></li>
+<li>Example 1 - <span class="math inline">\(X\)</span>: the number of heads in 3 coin flips</li>
+<li><p>What are the possible values of <span class="math inline">\(X\)</span>?</p></li>
+<li>Example 2 - Say I give you 3 dollars for each head</li>
+<li><p><span class="math inline">\(Y\)</span>: the amount of money won from 3 coin flips, <span class="math inline">\(Y = 3*X\)</span></p></li>
+<li>Example 3 - <span class="math inline">\(Z\)</span>: the number of heads on the last flip of 3 coin flips</li>
+<li><p>The possible values are 0 or 1.</p></li>
+</ul>
+<p>###Probability Models</p>
+<p>A <strong>probability model</strong> for random variable <span class="math inline">\(X\)</span> gives the possible values of <span class="math inline">\(X\)</span> and the associated probabilities.</p>
+<ul>
+<li>We have the probability model for <span class="math inline">\(X\)</span>: the number of heads in 3 coin flips.</li>
+<li>What is the probability model for <span class="math inline">\(Y= 3*X\)</span>?</li>
+<li>What about <span class="math inline">\(Z\)</span>?</li>
+</ul>
+<p>##Discrete Random Variables</p>
+<ul>
+<li><p>If there are a finite (more generally, countable) number of possible values, we say that <span class="math inline">\(X\)</span> is a <strong>discrete random variable</strong>.</p></li>
+<li><p>We often can write the probability as a function of values, <span class="math inline">\(x\)</span>, and we call this function the <strong>probability mass function (pmf),</strong>
+<span class="math display">\[p(x) = P(X = x)\]</span></p></li>
+<li><p>and we know that
+<span class="math display">\[\sum_{all~x}p(x) = 1\]</span></p></li>
+</ul>
+<p>###Expected Value</p>
+<p>The <strong>expected value</strong> (or long-run average) of a discrete random variable is defined as the weighted average of the possible values, weighted by the probability,</p>
+<p><span class="math display">\[E(X) = \sum_{all~x} xp(x)\]</span></p>
+<p>So the expected value is like a mean, but over the long-run.</p>
+<p>###Variance</p>
+<p>The <strong>variance</strong> (or long-run spread) of a discrete random variable is defined as the “average” squared distance of <span class="math inline">\(X\)</span> from its expected value,</p>
+<p><span class="math display">\[Var(X) = E[(X-\mu)^2]\]</span>
+where <span class="math inline">\(\mu = E(X)\)</span>.</p>
+<ul>
+<li>But it’s in squared units, so typically we talk about its square root, called the <strong>standard deviation</strong> of a random variable,
+<span class="math display">\[SD(X) = \sqrt{Var(X)}\]</span></li>
+</ul>
+<p>So the standard deviation of a random variable is like the standard deviation of a set of observed values. They are measures of spread and variability. In one circumstance, we have the data to calculate it and in the other, we are considering a random process and wondering how much a value might vary.</p>
+<p>###Joint Distributions</p>
+<p>The <strong>joint probability mass function</strong> for two random variables is
+<span class="math display">\[p(x,y) = P(X=x \text{ and }Y = y)\]</span></p>
+<p>We can often calculate this joint probability using our probability rules from above (using multiplication…)</p>
+<ul>
+<li><p>The expected value for a function of two random variables is
+<span class="math display">\[E(g(X,Y)) = \sum_{all\; y}\sum_{all\; x} g(x,y)p(x,y)\]</span></p></li>
+<li><p>We could show that the expected value of a sum is the sum of the expected values:</p></li>
+</ul>
+<p><span class="math display">\[E(X+Y) = E(X) + E(Y)\]</span></p>
+<ul>
+<li>Using this fact, we could show that the variance can be written in this alternative form:</li>
+</ul>
+<p><span class="math display">\[Var(X) = E[(X-\mu)^2] = E(X^2) - [E(X)]^2\]</span></p>
+<p>###Covariance</p>
+<p>When consider two random variables, we may wonder whether they co-vary? In that do they vary together or vary independently? If</p>
+<ul>
+<li><p>The <strong>covariance</strong> of two random variables is defined as
+<span class="math display">\[Cov(X,Y) = E[(X - \mu_X)(Y - \mu_Y)] = E(XY) - E(X)E(Y)\]</span></p></li>
+<li><p>Note: The covariance of X with itself is just the variance, <span class="math inline">\(Cov(X,X) = Var(X)\)</span></p></li>
+</ul>
+<p>We could use this to show that <span class="math inline">\(Var(X+Y) = Var(X)+ Var(Y) + 2Cov(X,Y)\)</span>.</p>
+<p>Two discrete random variables are <strong>independent</strong> if and only if
+<span class="math display">\[P(X = x\text{ and } Y = y)  = P(X=x)P(Y=y)\]</span>
+for every <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<ul>
+<li>If two random variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then <span class="math inline">\(Cov(X,Y)= 0\)</span>.</li>
+</ul>
+<p>###Correlation</p>
+<ul>
+<li>The <strong>correlation</strong> of two random variables is
+<span class="math display">\[Cor(X,Y) =\frac{Cov(X,Y)}{SD(X)SD(Y)}\]</span></li>
+</ul>
+<p>###A Few Named Probability Models</p>
+<p>####Bernoulli Trials</p>
+<p><strong>Three conditions</strong></p>
+<ul>
+<li>Two possible outcomes on each trial (success or failure)</li>
+<li>Independent Trials (result of one trial does not impact probabilities on next trial)</li>
+<li>P(success) = <span class="math inline">\(p\)</span> is constant</li>
+</ul>
+<p><span class="math display">\[P(X = x) = p^x (1-p)^{x-1} \text{ for } x\in\{0,1\}\]</span>
+<span class="math display">\[E(X) = p\]</span>
+<span class="math display">\[Var(X) = p(1-p) \]</span></p>
+<p><strong>Binomial RV</strong>: <span class="math inline">\(X\)</span> is the total number of successes in <span class="math inline">\(n\)</span> trials</p>
+<p>For general <span class="math inline">\(n\)</span> and <span class="math inline">\(x\)</span>, the Binomial probability for a particular value of <span class="math inline">\(x\)</span> is given by</p>
+<p><span class="math display">\[P(X = x) =\frac{n!}{(n-x)! x!} p^x (1-p)^{n-x}\text{ for } x\in\{0,1,2,...,n\}\]</span>
+where <span class="math inline">\(x! = x*(x-1)*(x-2)*\cdots*2*1\)</span> and <span class="math inline">\(0! = 1\)</span>, so</p>
+<p><span class="math display">\[\frac{n!}{(n-x)! x!} = \frac{n*(n-1)*\cdots*(n-x+1)*(n-x)!}{(n-x)! x!}\]</span>
+<span class="math display">\[= \frac{n*(n-1)*\cdots*(n-x+1)}{x*(x-1)*\cdots*2*1}\]</span></p>
+<p>If we break this apart, we can see where the pieces came from. Let’s consider a simplified example. Let <span class="math inline">\(X\)</span> be the number of Heads in 3 coin flips (but the coin is biased such that <span class="math inline">\(p=0.2\)</span>).</p>
+<p>The probability of <span class="math inline">\(2\)</span> successes and <span class="math inline">\(1\)</span> failure in one particular order (e.g. HHT) is calculated as <span class="math inline">\(p^x (1-p)^{n-x} = 0.2^2(0.8)\)</span> due to Rule 5. However, we could have gotten a different ordering of Heads and Tails (e.g. HTH, THH). To count the number of ways we could get 2 heads and 1 tail in 3 coin flips, we use tools from combinatorics (an area of mathematics). In fact, the first part of the equation does the counting for us,</p>
+<p><span class="math display">\[\frac{n!}{(n-x)! x!} = \frac{n*(n-1)*\cdots*(n-x+1)*(n-x)!}{(n-x)! x!}\]</span></p>
+<p>So for our example, there are <span class="math inline">\(\frac{3!}{2!1!} = \frac{3*2!}{2!1} = 3\)</span> orderings of 2 heads and 1 tail.</p>
+<p>The expected number of successes in the long run is</p>
+<p><span class="math display">\[E(X) = np\]</span>
+and the variability in the number of successes is given by</p>
+<p><span class="math display">\[Var(X) = np(1-p) \]</span></p>
+<p>Let’s plot the pmf of the Binomial in a bar plot,</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<p>If we increase <span class="math inline">\(n\)</span>, but leave <span class="math inline">\(p\)</span>, then</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-226-1.png" width="672" /></p>
+<p>If we increase <span class="math inline">\(n\)</span>, but decrease <span class="math inline">\(p\)</span> proportionally (such that <span class="math inline">\(np\)</span> stays the same), then</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
+<p>We will talk about two ways to approximate the Binomial distribution.</p>
+<ul>
+<li>If <span class="math inline">\(n\)</span> increases while <span class="math inline">\(p\)</span> stays fixed, then we use a Normal approximation.</li>
+<li>If <span class="math inline">\(n\)</span> increases and <span class="math inline">\(p\)</span> decreases, then we use a Poisson approximation (beyond the scope of this course).</li>
+</ul>
+<p>##Continuous Random Variables</p>
+<p>For continuous random variables <span class="math inline">\(X\)</span> (uncountable, infinite number of values),</p>
+<ul>
+<li><p>the probability of any one value is 0, <span class="math inline">\(P(X = x) = 0\)</span>.</p></li>
+<li><p>So we define the probability model using a <strong>culmulative distribution function</strong> (cdf), the probability of having a value less than <span class="math inline">\(x\)</span>,
+<span class="math display">\[F(x) = P(X\leq x)\]</span>
+<em>(it is always notated with a capital letter <span class="math inline">\(F\)</span> or <span class="math inline">\(G\)</span> or <span class="math inline">\(H\)</span>)</em>.</p></li>
+<li><p>and a <strong>probability density function</strong> (pdf), <span class="math inline">\(f(x)\geq 0\)</span> such that the probability is defined by the area under this curve (defined by the pdf). Using calculus, the area under the curve is
+<span class="math display">\[P(a\leq X \leq b) = \int^b_a f(x)dx\]</span>
+<em>(it is always notated with a small letter <span class="math inline">\(f\)</span> or <span class="math inline">\(g\)</span> or <span class="math inline">\(h\)</span>)</em> and the total area under the probability density function is 1,
+<span class="math display">\[P(S) = P(-\infty\leq X\leq \infty) = \int^\infty_{-\infty}f(x)dx = 1\]</span></p></li>
+<li><p>Thus, we can write the cumulative distribution function as, <span class="math inline">\(F(x) = P(X \leq x) = \int^x_{-\infty} f(y)dy\)</span>.</p></li>
+</ul>
+<p>###Expected Value</p>
+<p>Let <span class="math inline">\(X\)</span> be a continuous RV with pdf <span class="math inline">\(f(x)\)</span>. The expected value of <span class="math inline">\(X\)</span> is defined as
+<span class="math display">\[E(X)= \int^\infty_{-\infty} xf(x)dx \]</span>
+and
+<span class="math display">\[E(g(X))= \int^\infty_{-\infty} g(x)f(x)dx\]</span></p>
+<p><strong>Properties of Expected Value</strong></p>
+<p>These properties still hold:</p>
+<p><span class="math display">\[ E(aX) =  aE(X)\]</span>
+<span class="math display">\[E(X+b) = E(X) + b\]</span></p>
+<p>###A Few Named Probability Models</p>
+<p><strong>Normal Model</strong></p>
+<p>For <span class="math inline">\(X\)</span> such that <span class="math inline">\(E(X) = \mu\)</span> and <span class="math inline">\(SD(X) = \sigma\)</span>, a Normal random variable has a pdf of
+<span class="math display">\[f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]</span></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
+<ul>
+<li><p>Let the expected value be 0 and standard deviation be 1, <span class="math inline">\(\mu = 0\)</span> and <span class="math inline">\(\sigma = 1\)</span></p></li>
+<li><p>We know that <span class="math inline">\(P(-1\leq X \leq 1) = F(1) - F(-1) = 0.68\)</span></p></li>
+</ul>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) <span class="co">#pnorm is the cdf</span></a></code></pre></div>
+<pre><code>## [1] 0.6826895</code></pre>
+<ul>
+<li><span class="math inline">\(P(-2\leq X \leq 2) = F(2) - F(-2) = 0.95\)</span></li>
+</ul>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 0.9544997</code></pre>
+<ul>
+<li><span class="math inline">\(P(-3\leq X \leq 3) = F(3) - F(-3) = 0.997\)</span></li>
+</ul>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</a></code></pre></div>
+<pre><code>## [1] 0.9973002</code></pre>
+<p>Let <span class="math inline">\(X\)</span> be a Binomial Random Variable and <span class="math inline">\(Y\)</span> be a Normal Random Variable.</p>
+<p>As <span class="math inline">\(n\rightarrow \infty\)</span> (<span class="math inline">\(p\)</span> is fixed), the <span class="math inline">\(P(X = x) \approx P(x-0.5 \leq Y \leq x+0.5)\)</span>.</p>
+<p><em>Note: adding and subtracting 0.5 is the continuity correction</em></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-234-1.png" width="672" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-234-2.png" width="672" /></p>
+<p>If <span class="math inline">\(n=1000\)</span> and <span class="math inline">\(p=0.2\)</span>, let’s compare <span class="math inline">\(P(X=200)\)</span> and <span class="math inline">\(P(199.5\leq Y\leq 200.5)\)</span>.</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="kw">dbinom</span>(<span class="dv">200</span>,<span class="dt">size =</span> n, <span class="dt">p =</span> p)</a></code></pre></div>
+<pre><code>## [1] 0.03152536</code></pre>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">200.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p))) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">199.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p)))</a></code></pre></div>
+<pre><code>## [1] 0.03153095</code></pre>
+<p>If <span class="math inline">\(n=1000\)</span> and <span class="math inline">\(p=0.2\)</span>, let’s compare <span class="math inline">\(P(200\leq X\leq 210)\)</span> and <span class="math inline">\(P(199.5\leq Y\leq 210.5)\)</span>.</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1"><span class="kw">sum</span>(<span class="kw">dbinom</span>(<span class="dv">200</span><span class="op">:</span><span class="dv">210</span>,<span class="dt">size =</span> n, <span class="dt">p =</span> p))</a></code></pre></div>
+<pre><code>## [1] 0.3100719</code></pre>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">210.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p))) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">199.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p)))</a></code></pre></div>
+<pre><code>## [1] 0.3125238</code></pre>
+<p>How big does <span class="math inline">\(n\)</span> have to be for the Normal approximation to be appropriate?</p>
+<ul>
+<li><strong>Rule of Thumb</strong>: <span class="math inline">\(np \geq 10\)</span> and <span class="math inline">\(n(1-p)\geq 10\)</span> because that makes sure that <span class="math inline">\(E(X)-0&gt;3SD(X)\)</span> (mean is at least 3 SD’s from 0).</li>
+</ul>
+<p>For <span class="math inline">\(p=0.2\)</span>, that means that <span class="math inline">\(n\geq 50\)</span>.</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">n =<span class="st"> </span><span class="dv">50</span></a>
+<a class="sourceLine" id="cb299-2" data-line-number="2">p =<span class="st"> </span><span class="fl">0.2</span></a>
+<a class="sourceLine" id="cb299-3" data-line-number="3"><span class="kw">barplot</span>(<span class="kw">dbinom</span>(<span class="dv">0</span><span class="op">:</span>n,<span class="dt">size =</span> n, <span class="dt">p =</span> p),<span class="dt">names.arg=</span><span class="dv">0</span><span class="op">:</span>n,<span class="dt">ylab=</span><span class="st">&#39;Probability&#39;</span>,<span class="dt">main=</span><span class="st">&#39;n = 50, p = 0.2&#39;</span>)</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
+<p>##Random Variation</p>
+<p>How has randomness come up in the course so far?</p>
+<ul>
+<li>Random sampling (sampling variation)</li>
+<li>Random assignment of treatment</li>
+<li>Random variation in general (due to biology, measurement error, etc.)</li>
+</ul>
+<p>We want to be able to harness the randomness by understanding the random behavior in the long run.</p>
+<ul>
+<li>If we were to repeatedly take samples from the population, how would the estimates (mean, odds ratio, slope etc.) differ?</li>
+<li>If we were to repeat the random assignment many times, how would the estimated effects differ?</li>
+</ul>
+<p>Now, based on the theory we know, we could show a few things about means, <span class="math inline">\(\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i\)</span>.</p>
+<p>Say we have a sequence of independent and identically distributed (iid) random variables, <span class="math inline">\(X_1,...,X_n\)</span>, <em>(I don’t know what their probability model is but the expected value and variance is the same, <span class="math inline">\(E(X_i) = \mu\)</span> and <span class="math inline">\(Var(X_i) = \sigma^2\)</span>)</em></p>
+<p>Then we’d expect the mean to be approximately <span class="math inline">\(\mu\)</span>,</p>
+<p><span class="math display">\[E(\frac{1}{n}\sum_{i=1}^n X_i) = \mu\]</span>
+and the mean would vary, but that variation would decrease with increased sample size <span class="math inline">\(n\)</span>,</p>
+<p><span class="math display">\[Var(\frac{1}{n}\sum_{i=1}^n X_i) = \frac{\sigma^2}{n}\]</span></p>
+<p>But, what is the shape of the distribution (probability model) of the mean?</p>
+<p>Let’s randomly generate data from a probability model with a skewed pdf.</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
+<p>Let <span class="math inline">\(\bar{y}\)</span> be the mean of those <span class="math inline">\(n\)</span> random values. If we repeat the process multiple times, we get a sense of the <strong>sampling distribution for <span class="math inline">\(\bar{y}\)</span></strong>, the mean of a sample of <span class="math inline">\(n\)</span> random values from the population distribution above.</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-241-1.png" width="672" /></p>
+<p>The <strong>Central Limit Theorem</strong> (CLT) tells us that as the sample size get larger and larger, the shape of the sampling distribution for the sample mean get closer and closer to Normal. That is why it makes sense we’ve seen unimodal, symmetric distributions pop up when we simulate bootstrapping and random assignments. However, the CLT only applies when we are talking about sample means or proportions.</p>
+<p>Let our sample mean be <span class="math inline">\(Y_n = \frac{1}{n}\sum_{i=1}^n X_i\)</span> based on a sample size of <span class="math inline">\(n\)</span>.</p>
+<ul>
+<li><p>Let’s subtract the expected value, <span class="math inline">\(E(Y) = \mu\)</span>, and scale by <span class="math inline">\(\sqrt{n}\)</span>, such that we have a new random variable,
+<span class="math display">\[C_n = \sqrt{n}\left(Y_n - \mu\right) \]</span></p></li>
+<li><p>The <strong>Central Limit Theorem</strong> tells us that for any <span class="math inline">\(c \in \mathbb{R}\)</span>,
+<span class="math display">\[\lim_{n\rightarrow\infty}P(C_n \leq c) = P(Y \leq c)\]</span>
+where <span class="math inline">\(Y\)</span> is a Normal RV with <span class="math inline">\(E(Y) = 0\)</span> and <span class="math inline">\(Var(Y) = \sigma^2\)</span>.</p></li>
+</ul>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="model-selection.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-appendix.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Stat155Notes.pdf"],
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

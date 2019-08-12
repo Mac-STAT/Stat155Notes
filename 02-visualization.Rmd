@@ -15,11 +15,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The first step in any data analysis is to visually explore your data. 
 
-There is a saying that "a picture is worth a 1000 words." In making visualizations, our goal is to quickly and easily get a better understanding of the variability and relationships that exist in the data. 
+There is a saying that "a picture is worth a 1000 words." In making visualizations, our goal is to quickly and easily get a better understanding of the variability, structure, and relationships that exist in the data. 
 
 Here we will cover the standard appropriate graphics for univariate variation and bivariate relationships. We will also cover techniques for multivariate relationships (3 or more variables). The choice of the graphic depends on the type(s) of variable(s): quantitative or categorical. So the first step is to think about the variables you are interested in visualizing and determining whether they are quantitative or categorical.
 
-For each type of variable, we will use a real data set to illustrate the visualizations.
+For each type of variable, we use a real data set to illustrate the visualizations.
 
 ## Good Visualization Principles
 
@@ -27,24 +27,81 @@ Before we discuss the standard graphics, let's lay out the basic design principl
 
 1. **Show the Data** This may be self-explanatory, but make sure that the data is the focus and driver of the visualization. 
 
-2. **Avoid Distorting the Data** Avoid 3D charts as the added dimension distorts the comparison. The areas in a graph should equal the magnitude of the data it is representing.
+2. **Avoid Distorting the Data** Avoid 3D charts as the added dimension distorts the comparison. The area in a graph should equal the magnitude of the data it is representing.
 
-3. **Simplify** In 1983, Edward Tufte said that "A large share of ink on a graphic should present data-information, the ink changing as the data change. Data-ink is the non-erasable core of a graphic, the non-redundant ink arranged in response to variation in the numbers represented." Remove any unnecessary ink that does not assist the presentation of the data. Remove distractions.
+3. **Simplify** In 1983, Edward Tufte said that "A large share of ink on a graphic should present data-information, the ink changing as the data change. Data-ink is the non-erasable core of a graphic, the non-redundant ink arranged in response to variation in the numbers represented." Remove any unnecessary "ink" that does not assist in the presentation of the data. Remove distractions.
 
 4. **Facilitate Comparisons** In order to explain variation, we want the graphics to facilitate comparisons between groups. The design should make it easier to compare between groups rather than harder. 
 
-5. **Use Contrast** Humans have developed to seek out visual contrast. When choosing colors and annotation, strive for more contrast in luminance (white to dark) to make it easier for others to visually perceive. 
+5. **Use Contrast** Humans have developed to seek out visual contrast. When choosing colors and annotation, strive for more contrast in luminance (white to dark) to make it easier for everyone to visually perceive. 
 
-6. **Use Color Appropriately** Think about your audience. A small proportion of the population is color-blind; try printing it in grayscale to see if it is still effective. Also, every culture has different associations with colors; ask others for feedback on color choices. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting key points. 
+6. **Use Color Appropriately** Think about your audience. A small proportion of the population is color-blind; try printing it in grayscale to see if the color palette is still effective. Also, every culture has different associations with colors; ask others for feedback on color choices. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting key points. 
 
 7. **Annotate Appropriately** Informative text is crucial for providing data context. Make sure to use informative axis labels and titles. It may be worth adding text to explain extreme outliers.
 
-For examples of good data visualizations in the news, check out the New York Times column ["What's Going on in This Graph?"](https://www.nytimes.com/column/whats-going-on-in-this-graph).
+For examples of good data visualizations in the news and discussion around them, check out the New York Times column ["What's Going on in This Graph?"](https://www.nytimes.com/column/whats-going-on-in-this-graph).
+
+## Brief Intro to R
+
+Throughout this class, we use R and RStudio to visualize, analyze, and model real data. To straighten out which is which: [R](https://cran.r-project.org/) is the name of the language itself (syntax, words, etc.) and [RStudio](https://www.rstudio.com/) is a convenient software interface that you'll interact with on the computer.
+
+While you'll be learning about and using R throughout the course, this is not a course on R. Our focus will be on data and statistical modelling. We will be using R and RStudio as tools to help us get information from data. 
+
+### Basic Syntax
+
+For this class, we will have data that we want to pass to a function that performs a particular operation (does something cool) on our data. Thus, we'll pass **inputs** as arguments to a **function**:
+
+```
+FunctionName(argument1 = a1, argument2 = a2,..., argumentk = ak)
+```
+
+Note the `FunctionName` and the use of parantheses. Inside the parantheses, the argument name (`argument1`) goes first and the value you are passing as an input is after = (`a1`). 
+
+
+We may want to save the **output** of the function by assigning it a name using the assignment operator, `<-`:
+
+```
+OutputName <- FunctionName(argument1 = a1, argument2 = a2,..., argumentk = ak)
+```
+
+
+R allows us to be lazy and not include the argument name as long as we provide the input in the correct order:
+
+```
+OutputName <- FunctionName(a1, a2,..., ak)
+```
+
+We can also **nest** functions by first performing one operation and then passing that as an input into another function. In the code below, `Function1()` would first run with the input `data` and create some output that is then passed as the first input in `Function2()`. So R evaluates functions from the inside-out. 
+
+```
+Function2(Function1(data))
+```
+
+As we go through real examples below, notice the names of the functions that we use. The name comes right before `(` and the inputs we pass in right after `(`. 
+
+Additionally, we are going to use a shortcut that makes our code more readable. It is called a **pipe** and looks like `%>%`. What this does is pass the output on its left as the first argument to the function on the right. The following two sections of code do exactly the same thing but the second is easier to read. For this code, we take data and select the variable height and then take the mean of the heights. 
+
+```
+mean(select(data, height))
+
+data %>%
+  select(height) %>%
+  mean()
+```
+
+There is so much more we could say about functions in R, but we will stop here for now. 
+
+
+With this in mind, we'll point to external references if you'd like to go deeper in your understanding of R as a programming language throughout this class. 
+
+To get a broad sense of R, you can work through R primers (https://rstudio.cloud/learn/primers) in RStudio Cloud in addition to any coursework and use the R cheatsheets available (https://rstudio.cloud/learn/cheat-sheets).
 
 
 ## Anatomy of a ggplot command
 
-In this course, we'll largely construct visualizations using the `ggplot` function from the `ggplot2` R package. NOTE: `gg` is short for "grammar of graphics". Plots constructed from the `ggplot` function are constructed in layers, and the syntax used to create plots is meant to reflect this layered construction. As you read through the rest of this chapter, pay attention to how the syntax generally follows this structure:
+To learn more about visualizing data with the ggplot2 R package, see [Hadley Wickham's textbook](https://r4ds.had.co.nz/data-visualisation.html).
+
+In this course, we'll largely construct visualizations using the `ggplot()` function from the `ggplot2` R package. NOTE: `gg` is short for "grammar of graphics". Plots constructed from the `ggplot()` function are constructed in layers, and the syntax used to create plots is meant to reflect this layered construction. As you read through the rest of this chapter, pay attention to how the syntax generally follows this structure:
 
 ```{r eval=FALSE}
 data %>%
@@ -54,7 +111,12 @@ data %>%
     VISUAL_LAYER3 + ...
 ```
 
-The visual layers are features such as points, lines, and panels. The `+`'s allow us to add layers to build up a plot.
+We pass the aesthetic mapping from the data set to the plot with `aes()`. The visual layers are features such as points, lines, and panels. We'll introduce these soon. The `+`'s allow us to add layers to build up a plot (note this is not the pipe!).
+
+
+```{block, type="reflect"}
+What are the function names in the example above? There are only two as it is written right now. 
+```
 
 
 ## One Categorical Variable
@@ -63,11 +125,14 @@ First, we consider survey data of the electoral registrar in Whickham in the UK 
 
 Let's first consider the age distribution of this sample. Age, depending on how it is measured, could act as a quantitative variable or categorical variable. In this case, age is recorded as a quantitative variable because it is recorded to the nearest year. But, for illustrative purposes, let's create a categorical variable by separating age into intervals.
 
-**Distribution:** *the way something is spread out (aka the way in which values vary).*
+**Distribution:** *the way something is spread out (the way in which values vary).*
 
 ```{r}
-require(dplyr)
-data(Whickham) #load data set from Whickham package
+#Note: anything to the left of a hashtag is a comment and is not evaluated as R code
+
+library(dplyr) #load the dplyr package
+library(ggplot2) #load the ggplot2 package
+data(Whickham) #load the data set from Whickham R package
 
 Whickham <- Whickham %>%
     mutate(ageCat = cut(age, 4)) #Create a new categorical variable with 4 categories based on age (equal length of age intervals)
@@ -76,14 +141,14 @@ head(Whickham)
 ```
 
 ```{block, type="reflect"}
-What do I lose when I convert a quantitative variable to a categorical variable? What do I gain?
+What do you lose when you convert a quantitative variable to a categorical variable? What do you gain?
 ```
 
 ### Bar Plot
 
 One of the best ways to show the distribution of one categorical variable is with a bar plot. For a bar plot, 
 
-- The **height** of the bars is the only part that encodes the data (width is meaningless). 
+- The **height of the bars** is the only part that encodes the data (width is meaningless). 
 - The height can either represent the **frequency** (count of cases) or the **relative frequency** (proportion of cases).
 
 
@@ -118,7 +183,7 @@ knitr::include_graphics("Photos/pie.jpg")
 
 We are intentionally not showing you how to make a pie chart because a bar chart is a better choice. 
 
-Here is a good summary of why many people strongly dislike pie charts: http://www.businessinsider.com/pie-charts-are-the-worst-2013-6. Keep in mind Visualization Principle #4: Facilitate Comparisons. We are much better at comparing heights of bars than areas for slices of a pie chart.
+Here is a good summary of why many people strongly dislike pie charts: http://www.businessinsider.com/pie-charts-are-the-worst-2013-6. Keep in mind Visualization Principle #4: Facilitate Comparisons. We are much better at comparing heights of bars than areas of slices of a pie chart.
 
 
 ## Two Categorical Variables
@@ -129,7 +194,7 @@ Now, let's consider two other variables in the same Whickham data set. What is t
 
 There are a few options for visualizing the relationship between two categorical variables. One option is to use a bar plot and add bars for different categories next to each other, called a **side-by-side bar plot**. For these plots,
 
-- The **height** of the bars shows the frequency of the categories within subsets.
+- The **height of the bars** shows the frequency of the categories within subsets.
 
 ```{r}
 ## Numerical summary (frequency and overall relative frequency)
@@ -197,7 +262,6 @@ We can adjust the stacked bar plot to make the heights the same, so that you can
 The code below computes the conditional distributions manually first (fractions of outcomes within the two smoking groups). Then these calculations are plotted directly.
 
 ```{r}
-require(ggplot2)
 Whickham %>%
     count(outcome, smoker) %>%
     group_by(smoker) %>%
@@ -213,7 +277,6 @@ Whickham %>%
 Another way to make a proportional bar plot is to use the `position = "fill"`
 
 ```{r}
-require(ggplot2)
 Whickham %>%
     ggplot(aes(x = smoker, fill = outcome)) +
     geom_bar(position = "fill") +
@@ -225,14 +288,14 @@ Whickham %>%
 
 ### Mosaic Plot
 
-The best (Prof. H's opinion) graphic for two categorical variables is a variation on the stacked bar plot called a **mosaic plot**. The total heights of the bars are the same so we can compare the conditional distributions. For a **mosaic plot**, 
+The best (Prof. Heggeseth's opinion) graphic for two categorical variables is a variation on the stacked bar plot called a **mosaic plot**. The total heights of the bars are the same so we can compare the conditional distributions. For a **mosaic plot**, 
 
 - The **relative height** of the bars shows the **conditional distribution** (relative frequency within subsets).
 - The **width** of the bars shows the **marginal distribution** (relative frequency of the X variable, ignoring the other variable).
 - Making mosaic plots in R requires another package: `ggmosaic`
 
 ```{r}
-require(ggmosaic)
+library(ggmosaic)
 Whickham %>%
     ggplot() +
     geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) +
@@ -264,6 +327,7 @@ Whickham %>%
     scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
     theme_minimal()
 ```
+
 ```{block, type="reflect"}
 What do you notice? What do you wonder?
 ```
@@ -392,19 +456,24 @@ We can calculate all of these in R.
 - **Hours of sleep per night from the NHANES dataset**
 
 ```{r}
-summary(NHANES$SleepHrsNight) # The $ extracts a certain column of the data set
-mean(NHANES$SleepHrsNight, na.rm = TRUE) # na.rm = TRUE removes missing values
-median(NHANES$SleepHrsNight, na.rm = TRUE)
-mean(NHANES$SleepHrsNight, trim = 0.05, na.rm = TRUE) # Trimmed mean: trim 5% from both tails before taking mean
+NHANES %>%
+  select(SleepHrsNight) %>%
+  summary()
+
+NHANES %>%
+  summarize(mean(SleepHrsNight, na.rm = TRUE), median(SleepHrsNight, na.rm = TRUE), mean(SleepHrsNight, trim = 0.05, na.rm = TRUE)) # na.rm = TRUE removes missing values; Trimmed mean: trim 5% from both tails before taking mean
+
 ```
 
 - **CEO salary information from NYT**
 
 ```{r}
-summary(ceo$salary) # Note the differences between mean and median
-mean(ceo$salary) # Arthimetic average
-median(ceo$salary) # Middle number
-mean(ceo$salary,trim = 0.05)  # Trimmed mean falls in between
+ceo %>%
+  select(salary) %>%
+  summary()  # Note the differences between mean and median
+
+ceo %>%
+  summarize(mean(salary), median(salary), mean(salary, trim = 0.05))
 ```
 
 Note that the mean, median, and trimmed mean are all fairly close for the sleep hours distribution, which looks fairly symmetric.
@@ -478,7 +547,7 @@ abline(v = median(ceo$salary, na.rm = TRUE), col = 'blue',lty=3)
 abline(v = mean(ceo$salary, trim = 0.05, na.rm = TRUE), col='purple',lty=4)
 ```
 
-For CEO salaries, the mean and 5% trimmed mean are a bit higher than the median. Note also the mean is always pulled toward the long tail. 
+For CEO salaries, the mean and 5% trimmed mean are a bit higher than the median. **The mean is always pulled toward the long tail.** 
 
 ```{block, type="reflect"}    
 What would the boxplot look like if all of the values were exactly the same? Sometimes when making multiple boxplots for each of multiple groups, a group may only have one value or a small number of values that all happen to be identical. What will this look like?
@@ -510,19 +579,20 @@ We can calculate all of these in R.
 - **Hours of sleep per night from the NHANES dataset**
 
 ```{r tidy=TRUE, echo=TRUE}
-diff(range(NHANES$SleepHrsNight,na.rm = TRUE)) # range gives max and min; take difference
-IQR(NHANES$SleepHrsNight,na.rm = TRUE) # Q3-Q1
-sd(NHANES$SleepHrsNight,na.rm=TRUE) # standard deviation
-var(NHANES$SleepHrsNight,na.rm=TRUE) # variance
+NHANES %>%
+  summarize(diff(range(SleepHrsNight, na.rm = TRUE)), IQR(SleepHrsNight, na.rm = TRUE), sd(SleepHrsNight, na.rm = TRUE), var(SleepHrsNight, na.rm = TRUE))
+
+# range gives max and min; take difference betwee max and min
+# IQR = Q3-Q1
+# sd = standard deviation
+# var = variance
 ```
 
 - **CEO salary information from NYT**
 
 ```{r tidy=TRUE, echo=TRUE}
-diff(range(ceo$salary))
-IQR(ceo$salary)
-sd(ceo$salary)
-var(ceo$salary)
+ceo %>%
+  summarize(diff(range(salary)), IQR(salary), sd(salary), var(salary))
 ```
 
 ### Some data accounting {#intro-zscore}
@@ -884,7 +954,7 @@ cor(subset_bodyfat$Neck, subset_bodyfat$Chest) # Only middle subset of data poin
 Let's look at a few scatterplot examples and the corresponding correlation.
 
 ```{r echo=FALSE, message=FALSE, fig.width=10}
-require(mvtnorm)
+library(mvtnorm)
 corr_explanation_plot <- function(data, title = "") {
     data <- data %>%
         mutate(zx = scale(x), zy = scale(y), product = zx*zy, product_sign = sign(zx*zy))

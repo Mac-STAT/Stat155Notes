@@ -1,6 +1,6 @@
 --- 
 title: "Stat 155 Notes"
-author: "Prof. Brianna Heggeseth"
+author: "Macalester Statistics Faculty (Heggeseth, Myint)"
 date: "Updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
 output: 

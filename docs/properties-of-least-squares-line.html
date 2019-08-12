@@ -137,9 +137,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.3" data-path="sampling.html"><a href="sampling.html#nonresponse-bias"><i class="fa fa-check"></i><b>1.3.3</b> Nonresponse bias</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
-<li class="chapter" data-level="1.5" data-path="study-design-observational-study-vs-experiments.html"><a href="study-design-observational-study-vs-experiments.html"><i class="fa fa-check"></i><b>1.5</b> Study Design: Observational Study vs. Experiments</a></li>
-<li class="chapter" data-level="1.6" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.6</b> Ethical Considerations</a></li>
-<li class="chapter" data-level="1.7" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.7</b> Major Takeaways</a></li>
+<li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
+<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
+<li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
 <li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
@@ -313,8 +314,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><span class="math display">\[s_e = \sqrt{\frac{\sum^n_{i=1} (y_i-\hat{y}_i)^2}{n-2}}  = \sqrt{\frac{\sum^n_{i=1} e_i^2}{n-2}} \]</span></p>
 <p>In R: <span class="math inline">\(s_e\)</span> is called the “residual standard error”.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">lm.fit =<span class="st"> </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> bodyfat)</a>
-<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="kw">summary</span>(lm.fit)</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">lm.fit =<span class="st"> </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> bodyfat)</a>
+<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="kw">summary</span>(lm.fit)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Chest ~ Neck, data = bodyfat)
@@ -333,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Residual standard error: 5.225 on 248 degrees of freedom
 ## Multiple R-squared:  0.5911, Adjusted R-squared:  0.5894 
 ## F-statistic: 358.5 on 1 and 248 DF,  p-value: &lt; 2.2e-16</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="kw">tidy</span>(lm.fit)</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="kw">tidy</span>(lm.fit)</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -351,11 +352,11 @@ If you were a shirt manufacturer, what would you do with this information?
 <h3><span class="header-section-number">3.5.1</span> Real companies</h3>
 <p>Let’s see how some real companies create shirts. In the plots below, the red boxes represent the advertised range for Neck and Chest sizes for each brand.</p>
 <p><img src="Photos/stylish-dress-shirt-size-size-chart-.jpg" /></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
 <p>For Calvin Klein, we see that the red boxes are below the least squares line (black line). So for a given neck size, Calvin Klein makes shirts that are a little bit too small at the chest.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
 <p>For Express, we see that the red boxes are generally on the least squares line, except for the smallest size. This means that Express shirts are generally a good fit at the chest and neck for the 4 largest sizes, but the smallest shirt size is a bit too small at the chest for the neck size.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
 <p>For Brooks Brothers, the red boxes are a bit below the least squares line for the 3 smallest sizes and a little above the line for the largest size. This means that the 3 smallest sizes are a bit too small at the chest for those neck size and that the largest shirt is a bit big at the chest for that neck size.</p>
 <div class="reflect">
 <p>

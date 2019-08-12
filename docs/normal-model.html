@@ -137,9 +137,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.3" data-path="sampling.html"><a href="sampling.html#nonresponse-bias"><i class="fa fa-check"></i><b>1.3.3</b> Nonresponse bias</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
-<li class="chapter" data-level="1.5" data-path="study-design-observational-study-vs-experiments.html"><a href="study-design-observational-study-vs-experiments.html"><i class="fa fa-check"></i><b>1.5</b> Study Design: Observational Study vs. Experiments</a></li>
-<li class="chapter" data-level="1.6" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.6</b> Ethical Considerations</a></li>
-<li class="chapter" data-level="1.7" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.7</b> Major Takeaways</a></li>
+<li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
+<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
+<li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
 <li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
@@ -309,31 +310,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We’ve been introduced to the Normal model already as a smooth version of a unimodal, symmetric histogram. For a quantitative random variable <span class="math inline">\(X\)</span> (whose value can be any real number), if the expected value is <span class="math inline">\(\mu\)</span> and the variance is <span class="math inline">\(\sigma^2\)</span>, a Normal random variable has a probability density function of
 <span class="math display">\[f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]</span></p>
 <p>For every, potential value of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, there is a different curve. Some examples are shown below.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-210-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 <p>If a random variable <span class="math inline">\(X\)</span> is modeled with a Normal model, we also say that “<span class="math inline">\(X\)</span> follows a normal distribution” or that “<span class="math inline">\(X\)</span> is normally-distributed”.</p>
 <ul>
 <li>In general, the center of the distribution is <span class="math inline">\(\mu\)</span> and the standard devation <span class="math inline">\(\sigma\)</span>, the square root of the variance, determines the spread of the distribution.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 <ul>
 <li>Let’s consider the particular Normal model with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma=1\)</span>. This is called the <strong>standard normal distribution</strong>. We know that <span class="math inline">\(P(-1\leq X \leq 1) = 0.68\)</span>, calculated as the area under the curve between -1 and 1.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) </a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) </a></code></pre></div>
 <pre><code>## [1] 0.6826895</code></pre>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1"><span class="co">#pnorm(1) gives the area under the curve to the left of 1</span></a>
-<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="co">#pnorm(-1) gives the area under the curve to the left of -1</span></a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1"><span class="co">#pnorm(1) gives the area under the curve to the left of 1</span></a>
+<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="co">#pnorm(-1) gives the area under the curve to the left of -1</span></a></code></pre></div>
 <ul>
 <li>We know that <span class="math inline">\(P(-2\leq X \leq 2) = 0.95\)</span>, calculated as the area under the curve between -2 and 2.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 0.9544997</code></pre>
 <ul>
 <li>We know that <span class="math inline">\(P(-3\leq X \leq 3) = 0.997\)</span>, calculated as the area under the curve between -3 and 3.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## [1] 0.9973002</code></pre>
 <p>The standard normal distribution is very convenient to work with. No matter what the long-run average <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> are for a normally-distributed random variable <span class="math inline">\(X\)</span>, we can standardize the values to obtain <strong>z-scores</strong> by subtracting <span class="math inline">\(\mu\)</span> and dividing by <span class="math inline">\(\sigma\)</span>:</p>
 <p><span class="math display">\[\text{z-score} = \frac{X - \mu}{\sigma}\]</span></p>

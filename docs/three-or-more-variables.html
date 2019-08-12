@@ -137,9 +137,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.3" data-path="sampling.html"><a href="sampling.html#nonresponse-bias"><i class="fa fa-check"></i><b>1.3.3</b> Nonresponse bias</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
-<li class="chapter" data-level="1.5" data-path="study-design-observational-study-vs-experiments.html"><a href="study-design-observational-study-vs-experiments.html"><i class="fa fa-check"></i><b>1.5</b> Study Design: Observational Study vs. Experiments</a></li>
-<li class="chapter" data-level="1.6" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.6</b> Ethical Considerations</a></li>
-<li class="chapter" data-level="1.7" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.7</b> Major Takeaways</a></li>
+<li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
+<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
+<li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
 <li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
@@ -318,109 +319,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-bivariate-plot" class="section level3">
 <h3><span class="header-section-number">2.8.1</span> A bivariate plot</h3>
 <p>Our primary interest is the <code>wage</code> variable which gives the hourly wage for each individual in the data set in US dollars. What is the relationship between years of education and hourly wage?</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">data</span>(CPS85) <span class="co"># Load the data</span></a>
-<a class="sourceLine" id="cb91-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb91-3" data-line-number="3">CPS85 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb91-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb91-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb91-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">data</span>(CPS85) <span class="co"># Load the data</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb94-3" data-line-number="3">CPS85 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb94-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb94-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb94-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb94-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb94-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
 <p>We can see that years of education and hourly wage are positively correlated but what about the impact of other variables?</p>
 </div>
 <div id="enriching-with-color" class="section level3">
 <h3><span class="header-section-number">2.8.2</span> Enriching with color</h3>
 <p>We can enrich this bivariate plot by showing additional information via color.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">data</span>(CPS85) <span class="co">## Load the data</span></a>
-<a class="sourceLine" id="cb92-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb92-3" data-line-number="3">CPS85 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb92-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage, <span class="dt">color =</span> age)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb92-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb92-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb92-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb92-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">data</span>(CPS85) <span class="co">## Load the data</span></a>
+<a class="sourceLine" id="cb95-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb95-3" data-line-number="3">CPS85 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb95-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage, <span class="dt">color =</span> age)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb95-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb95-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb95-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb95-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
 <p>Adding color for a quantitative variable, age, does not reveal any obvious patterns; that is, we don’t see obvious clustering by color. Perhaps this is because there are too many colors (remember Visualization Principle #6: Use Color Appropriately). Are any patterns revealed if we use 4 age categories instead?</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">age_cat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb93-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage, <span class="dt">color =</span> age_cat)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb93-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb93-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb93-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb93-7" data-line-number="7"><span class="st">    </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Age category&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></a>
-<a class="sourceLine" id="cb93-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">age_cat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb96-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage, <span class="dt">color =</span> age_cat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-7" data-line-number="7"><span class="st">    </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Age category&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></a>
+<a class="sourceLine" id="cb96-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
 <p>With 4 age categories, no age patterns are evident, but this does help us see that the least educated people in this data set are mostly in the youngest and oldest age categories.</p>
 </div>
 <div id="enriching-with-shape" class="section level3">
 <h3><span class="header-section-number">2.8.3</span> Enriching with shape</h3>
 <p>We can also encode information via point shape. Here we let shape encode marital status.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb94-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage, <span class="dt">shape =</span> married)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb94-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb94-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb94-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb94-6" data-line-number="6"><span class="st">    </span><span class="kw">guides</span>(<span class="dt">shape =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Marital status&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></a>
-<a class="sourceLine" id="cb94-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage, <span class="dt">shape =</span> married)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb97-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb97-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb97-6" data-line-number="6"><span class="st">    </span><span class="kw">guides</span>(<span class="dt">shape =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Marital status&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></a>
+<a class="sourceLine" id="cb97-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
 <p>Often encoding information with color is preferable to encoding it with shapes because differences in shapes are not as easily discernible. Remember that statistical visualizations are meant to help you better understand your data. If you are having trouble easily picking out patterns when using a certain visual feature (e.g. shape, color), try another one to see if the clarity of the plot increases for you.</p>
 </div>
 <div id="enriching-with-size" class="section level3">
 <h3><span class="header-section-number">2.8.4</span> Enriching with size</h3>
 <p>The size of a point is useful for conveying the magnitude of a quantitative variable. For example, we may wish to see non-categorized age information with point size.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage, <span class="dt">size =</span> age)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb95-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb95-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb95-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb95-6" data-line-number="6"><span class="st">    </span><span class="kw">guides</span>(<span class="dt">size =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Age&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></a>
-<a class="sourceLine" id="cb95-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage, <span class="dt">size =</span> age)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb98-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb98-6" data-line-number="6"><span class="st">    </span><span class="kw">guides</span>(<span class="dt">size =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Age&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></a>
+<a class="sourceLine" id="cb98-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 </div>
 <div id="enriching-with-panels" class="section level3">
 <h3><span class="header-section-number">2.8.5</span> Enriching with panels</h3>
 <p>Panels (or facets) are a great way to see how relationships differ between levels of a single categorical variable or between combinations of two categorical variables.</p>
 <p>Let’s look at the relationship between hourly wage and years of education across job sectors. The following creates a row of plots of this relationship over job sectors.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb96-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb96-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb96-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb96-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>sector) <span class="op">+</span></a>
-<a class="sourceLine" id="cb96-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb99-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb99-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb99-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb99-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>sector) <span class="op">+</span></a>
+<a class="sourceLine" id="cb99-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
 <p>With a small change in notation (<code>sector ~ .</code> versus <code>. ~ sector</code>), we can create a column of plots.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb97-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb97-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb97-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_grid</span>(sector <span class="op">~</span><span class="st"> </span>.) <span class="op">+</span></a>
-<a class="sourceLine" id="cb97-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb100-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb100-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb100-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_grid</span>(sector <span class="op">~</span><span class="st"> </span>.) <span class="op">+</span></a>
+<a class="sourceLine" id="cb100-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 <p>We can also create panels according to two categorical variables. How do the relationships additionally differ by union status?</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb98-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb98-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_grid</span>(sector <span class="op">~</span><span class="st"> </span>union) <span class="op">+</span></a>
-<a class="sourceLine" id="cb98-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb101-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb101-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb101-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_grid</span>(sector <span class="op">~</span><span class="st"> </span>union) <span class="op">+</span></a>
+<a class="sourceLine" id="cb101-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
 </div>
 <div id="putting-everything-together" class="section level3">
 <h3><span class="header-section-number">2.8.6</span> Putting everything together</h3>
 <p>The combination of these different visual features can result in powerful visual understanding. Let’s combine paneling with color information to explore if there are marital status patterns in these union-job sector subgroups.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage, <span class="dt">color =</span> married)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb99-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb99-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb99-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb99-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_grid</span>(sector <span class="op">~</span><span class="st"> </span>union) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb99-7" data-line-number="7"><span class="st">    </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Marital status&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></a>
-<a class="sourceLine" id="cb99-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">CPS85 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage, <span class="dt">color =</span> married)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb102-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb102-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb102-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_grid</span>(sector <span class="op">~</span><span class="st"> </span>union) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-7" data-line-number="7"><span class="st">    </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Marital status&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></a>
+<a class="sourceLine" id="cb102-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p>Creating effective multivariate visualizations takes a lot of trial and error. Some visual elements will better highlight patterns than others, and often times, you’ll have to try several iterations before you feel that you are learning something insightful from the graphic. Be tenacious, and keep in mind the good visualization principles outlined at the beginning of this chapter!</p>
 </div>
 </div>

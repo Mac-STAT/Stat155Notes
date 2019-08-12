@@ -137,9 +137,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.3" data-path="sampling.html"><a href="sampling.html#nonresponse-bias"><i class="fa fa-check"></i><b>1.3.3</b> Nonresponse bias</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
-<li class="chapter" data-level="1.5" data-path="study-design-observational-study-vs-experiments.html"><a href="study-design-observational-study-vs-experiments.html"><i class="fa fa-check"></i><b>1.5</b> Study Design: Observational Study vs. Experiments</a></li>
-<li class="chapter" data-level="1.6" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.6</b> Ethical Considerations</a></li>
-<li class="chapter" data-level="1.7" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.7</b> Major Takeaways</a></li>
+<li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
+<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
+<li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
 <li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
@@ -307,18 +308,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="randomness-and-probability" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Randomness and Probability</h1>
 <p>Recall the model we built to predict home price as a function of square footage and fireplaces.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb232-2" data-line-number="2">homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb232-3" data-line-number="3"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb232-4" data-line-number="4">homes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb232-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb232-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb232-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb232-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb235-2" data-line-number="2">homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb235-3" data-line-number="3"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb235-4" data-line-number="4">homes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb235-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb235-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb235-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb235-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 <p>To allow for different slopes among homes with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our sample, we observed a difference in the slopes of $26.85 per square foot. But is this true for the larger population of homes? Is each square foot worth exactly $26.85 more, on average, in homes with a fireplace than in homes without a fireplace?</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">lm.home3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace<span class="op">*</span>Living.Area, <span class="dt">data =</span> homes)</a>
-<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="kw">tidy</span>(lm.home3)</a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1">lm.home3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace<span class="op">*</span>Living.Area, <span class="dt">data =</span> homes)</a>
+<a class="sourceLine" id="cb236-2" data-line-number="2"><span class="kw">tidy</span>(lm.home3)</a></code></pre></div>
 <pre><code>## # A tibble: 4 x 5
 ##   term                         estimate std.error statistic  p.value
 ##   &lt;chr&gt;                           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;

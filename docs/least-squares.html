@@ -137,9 +137,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.3" data-path="sampling.html"><a href="sampling.html#nonresponse-bias"><i class="fa fa-check"></i><b>1.3.3</b> Nonresponse bias</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
-<li class="chapter" data-level="1.5" data-path="study-design-observational-study-vs-experiments.html"><a href="study-design-observational-study-vs-experiments.html"><i class="fa fa-check"></i><b>1.5</b> Study Design: Observational Study vs. Experiments</a></li>
-<li class="chapter" data-level="1.6" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.6</b> Ethical Considerations</a></li>
-<li class="chapter" data-level="1.7" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.7</b> Major Takeaways</a></li>
+<li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
+<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
+<li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
 <li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
@@ -308,18 +309,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.4</span> Least Squares</h2>
 <p>Let’s try to find the <strong>minimum of the Sum of Squared Residuals</strong> by searching over a grid of values for (intercept, slope).</p>
 <p>Below is a visual of the sum of squared residuals for a variety of values on a grid. The surface height is sum of squared residuals for each combination of slope and intercept.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <p>We can see there is valley where the minimum must be. Let’s visualize this in a slightly different way. We’ll encode the surface height as color (white is lowest).</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-112-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
 <p>The large values of the sum of squared residuals are dominating this image, so let’s change the color scheme to see more variation in smaller values (white is lowest).</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-113-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <p>We can limit our search to <span class="math inline">\(b_0 \in (-10,10)\)</span> and <span class="math inline">\(b_1 \in (2,3)\)</span>.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">b0 =<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dt">by=</span>.<span class="dv">05</span>)</a>
-<a class="sourceLine" id="cb102-2" data-line-number="2">b1 =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dt">by=</span>.<span class="dv">05</span>)</a>
-<a class="sourceLine" id="cb102-3" data-line-number="3">b &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(b0,b1)</a>
-<a class="sourceLine" id="cb102-4" data-line-number="4">ss &lt;-<span class="st"> </span><span class="kw">apply</span>(b,<span class="dv">1</span>,f)</a>
-<a class="sourceLine" id="cb102-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb102-6" data-line-number="6">b[ss <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(ss),]</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">b0 =<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dt">by=</span>.<span class="dv">05</span>)</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2">b1 =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dt">by=</span>.<span class="dv">05</span>)</a>
+<a class="sourceLine" id="cb105-3" data-line-number="3">b &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(b0,b1)</a>
+<a class="sourceLine" id="cb105-4" data-line-number="4">ss &lt;-<span class="st"> </span><span class="kw">apply</span>(b,<span class="dv">1</span>,f)</a>
+<a class="sourceLine" id="cb105-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb105-6" data-line-number="6">b[ss <span class="op">==</span><span class="st"> </span><span class="kw">min</span>(ss),]</a></code></pre></div>
 <pre><code>##      Var1 Var2
 ## 6142 -3.7 2.75</code></pre>
 <p>We have the minimum point. Over the grid of pairs of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.</p>
@@ -351,18 +352,18 @@ If you are a math/physics/cs major, you should try this by hand and see if you c
 <p><span class="math display">\[ b_0 = \bar{y} - b_1\bar{x} \]</span></p>
 <p>where <span class="math inline">\(\bar{x}\)</span> is the mean of the variable on the x-axis, <span class="math inline">\(\bar{y}\)</span> is the mean of the variable on the y-axis, <span class="math inline">\(s_x\)</span> is the standard deviation of the variable on the x-axis, <span class="math inline">\(s_y\)</span> is the standard deviation of the variable on the y-axis, and <span class="math inline">\(r\)</span> is the correlation coefficient between the two variables.</p>
 <p>Let’s do that calculation “by hand” first in R.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">sy =<span class="st"> </span><span class="kw">sd</span>(bodyfat<span class="op">$</span>Chest)</a>
-<a class="sourceLine" id="cb104-2" data-line-number="2">sx =<span class="st"> </span><span class="kw">sd</span>(bodyfat<span class="op">$</span>Neck)</a>
-<a class="sourceLine" id="cb104-3" data-line-number="3">r =<span class="st"> </span><span class="kw">cor</span>(bodyfat<span class="op">$</span>Chest,bodyfat<span class="op">$</span>Neck)</a>
-<a class="sourceLine" id="cb104-4" data-line-number="4">ybar =<span class="st"> </span><span class="kw">mean</span>(bodyfat<span class="op">$</span>Chest)</a>
-<a class="sourceLine" id="cb104-5" data-line-number="5">xbar =<span class="st"> </span><span class="kw">mean</span>(bodyfat<span class="op">$</span>Neck)</a>
-<a class="sourceLine" id="cb104-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb104-7" data-line-number="7">(<span class="dt">b1 =</span> r<span class="op">*</span>sy<span class="op">/</span>sx)</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">sy =<span class="st"> </span><span class="kw">sd</span>(bodyfat<span class="op">$</span>Chest)</a>
+<a class="sourceLine" id="cb107-2" data-line-number="2">sx =<span class="st"> </span><span class="kw">sd</span>(bodyfat<span class="op">$</span>Neck)</a>
+<a class="sourceLine" id="cb107-3" data-line-number="3">r =<span class="st"> </span><span class="kw">cor</span>(bodyfat<span class="op">$</span>Chest,bodyfat<span class="op">$</span>Neck)</a>
+<a class="sourceLine" id="cb107-4" data-line-number="4">ybar =<span class="st"> </span><span class="kw">mean</span>(bodyfat<span class="op">$</span>Chest)</a>
+<a class="sourceLine" id="cb107-5" data-line-number="5">xbar =<span class="st"> </span><span class="kw">mean</span>(bodyfat<span class="op">$</span>Neck)</a>
+<a class="sourceLine" id="cb107-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb107-7" data-line-number="7">(<span class="dt">b1 =</span> r<span class="op">*</span>sy<span class="op">/</span>sx)</a></code></pre></div>
 <pre><code>## [1] 2.736883</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">(<span class="dt">b0 =</span> ybar <span class="op">-</span><span class="st"> </span>b1<span class="op">*</span>xbar)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">(<span class="dt">b0 =</span> ybar <span class="op">-</span><span class="st"> </span>b1<span class="op">*</span>xbar)</a></code></pre></div>
 <pre><code>## [1] -3.188483</code></pre>
 <p>From now on, we’ll use the <code>lm()</code> function which stands for linear model. This gives us the Least Squares solution to the “best fitting line”.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1"><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> bodyfat) <span class="co"># When you see ~, think &#39;as a function of&#39;</span></a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> bodyfat) <span class="co"># When you see ~, think &#39;as a function of&#39;</span></a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Chest ~ Neck, data = bodyfat)

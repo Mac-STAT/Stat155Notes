@@ -137,9 +137,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.3" data-path="sampling.html"><a href="sampling.html#nonresponse-bias"><i class="fa fa-check"></i><b>1.3.3</b> Nonresponse bias</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
-<li class="chapter" data-level="1.5" data-path="study-design-observational-study-vs-experiments.html"><a href="study-design-observational-study-vs-experiments.html"><i class="fa fa-check"></i><b>1.5</b> Study Design: Observational Study vs. Experiments</a></li>
-<li class="chapter" data-level="1.6" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.6</b> Ethical Considerations</a></li>
-<li class="chapter" data-level="1.7" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.7</b> Major Takeaways</a></li>
+<li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
+<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
+<li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
 <li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
@@ -319,11 +320,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Look at the distribution of the <em>z</em> score heights, using the mean of the 3000 as the true population mean, <span class="math inline">\(\mu\)</span>, but using <span class="math inline">\(s\)</span> in the denominator from each sample instead of the population variation, <span class="math inline">\(\sigma\)</span>, of the 3000:</li>
 </ul>
 <p><span class="math display">\[ z = \frac{\bar{x} - \mu}{s/\sqrt{4}}\]</span></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
 <ul>
 <li>Does this distribution of z-scores look Normal? We can try to see more clearly by making a <strong>Q-Q plot</strong>, shown below.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-209-1.png" width="672" /></p>
 <p>If the z-scores follow a normal distribution, the points in the Q-Q plot should fall on a straight line. However, we see some deviation at the left and right of the plots. This indicates that the tails of our z-score distribution are thicker (more populous) than expected if they were actually normally-distributed. Why? With small samples, the sample standard deviation, <span class="math inline">\(s\)</span>, is smaller so we tend to get larger z-scores than we’d expect if they were normally-distributed.</p>
 </div>
 <div id="beer-helps-the-field-of-statistics" class="section level3">
@@ -339,7 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The spread is determined by a parameter called <strong>degrees of freedom</strong> (<span class="math inline">\(df = n - 1\)</span>).</li>
 <li>As <span class="math inline">\(n\rightarrow\infty\)</span>, becomes more Normal.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-223-1.png" width="768" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-210-1.png" width="768" /></p>
 <p>Since the Student T distribution is approximately Normal when sample sizes are large, we will typically use the Normal model. However, if sample sizes are small (<span class="math inline">\(n&lt;30\)</span> or so), the Normal model is not appropriate. So, in those rare cases, we’ll need to refer to Student T.</p>
 
 </div>

@@ -137,9 +137,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.3" data-path="sampling.html"><a href="sampling.html#nonresponse-bias"><i class="fa fa-check"></i><b>1.3.3</b> Nonresponse bias</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
-<li class="chapter" data-level="1.5" data-path="study-design-observational-study-vs-experiments.html"><a href="study-design-observational-study-vs-experiments.html"><i class="fa fa-check"></i><b>1.5</b> Study Design: Observational Study vs. Experiments</a></li>
-<li class="chapter" data-level="1.6" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.6</b> Ethical Considerations</a></li>
-<li class="chapter" data-level="1.7" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.7</b> Major Takeaways</a></li>
+<li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
+<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
+<li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
 <li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
@@ -308,6 +309,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.1</span> What is Data?</h2>
 <p>Data is <em>anything</em> that contains information. We typically think of data being stored in spreadsheets, but it can come in many other formats such as images or collections of text (whether 280 character tweets or fictional novels).</p>
 <p>For example, we can take the pixels of digital images or text from one of the State of the Union addresses and transform them into a tidy, rectangular format. Below, see the top 10 words (that are not ‘the’, ‘and’, etc.) from the most recent State of the Union address given in the United States.</p>
+<pre><code>## Warning: `data_frame()` is deprecated, use `tibble()`.
+## This warning is displayed once per session.</code></pre>
 <pre><code>## Joining, by = &quot;word&quot;</code></pre>
 <pre><code>## Selecting by n</code></pre>
 <pre><code>## # A tibble: 11 x 2
@@ -327,11 +330,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Tidy data</strong> is a table in which</p>
 <ul>
 <li>Each row of a rectangular table corresponds to an <strong>observation</strong> or <strong>case</strong> (e.g. person, classroom, country, image, word)</li>
-<li>Each column correspond to a characteristic or feature or <strong>variable</strong> for those cases (e.g. age, average classroom grade, average county income, intensity of red pixels, number of times the word “Together” is used)</li>
+<li>Each column correspond to a characteristic or feature or <strong>variable</strong> for those cases (e.g. age, average classroom grade, average county income, intensity of red pixels, number of times the word “together” is used)</li>
 </ul>
 <p>Variables can be either <strong>categorical</strong> or <strong>quantitative</strong> variables.</p>
 <ul>
-<li><p><strong>Categorical variable:</strong> <em>A characteristic with values that are names of categories; the names of categories could be numbers such as with zipcodes. If the categories have a natural ordering, it could be called an ordinal variable, but we won’t be distinguishing between different types of categorical variables in this class.</em></p></li>
+<li><p><strong>Categorical variable:</strong> <em>A characteristic with values that are names of categories; the names of categories could be numbers such as with zipcodes. If the categories have a natural ordering, it may be called an ordinal variable, but we won’t be distinguishing between different types of categorical variables in this class.</em></p></li>
 <li><p><strong>Quantitative variable:</strong> <em>A characteristic with measured numerical values with units.</em></p></li>
 </ul>
 <p><em>Note: Any quantitative variable can be converted into a categorical variable by creating categories defined by intervals or bins of values.</em></p>
@@ -340,8 +343,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="Photos/tidy.png" alt="The components of a tidy dataset. Chapter 12 of R for Data Science" />
 <p class="caption">The components of a tidy dataset. <a href="http://r4ds.had.co.nz/tidy-data.html">Chapter 12</a> of R for Data Science</p>
 </div>
-<p>The transformation process from raw data to a tidy data format is often called <strong>feature extraction</strong> and is not a short or easy task. In this introductory course, we will work with data that are already tidy.</p>
-<p>Cases are often referred to as the <strong>units of analysis</strong>. As analysts, it is important for us to consider what to use as the unit of analysis when we have information, say, on both individuals and their classrooms. Do we want to understand matters at the individual or the classroom level? Answers to these questions will depend on the context and our research questions.</p>
+<p>The transformation process from raw data to a tidy data format is often called <strong>feature extraction</strong> and is not a short or easy task. In this introductory course, we will typically work with data that are already in a tidy format.</p>
+<p>Cases are often referred to as the <strong>units of analysis</strong>. As data analysts, it is important for us to consider what to use as the unit of analysis when we have information, say, on both individual presidents and their speeches Do we want to understand matters at the individual or the speech level? Answers to these questions will depend on the context and the research questions.</p>
 </div>
             </section>
 

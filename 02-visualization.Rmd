@@ -600,7 +600,7 @@ ceo %>%
 We've looked at different measures of the spread of a distribution. Do some measures of spread encompass a lot of the data? Just a little? Can we be more precise about how much of the data is encompassed by intervals created from different spread measures?
 
 ```{r tidy=TRUE, echo=TRUE}
-x = rnorm(1500)
+x <- rnorm(1500)
 boxplot(x,horizontal = TRUE,xlab='Generated Data')
 abline(v = range(x), col='blue',lty=3) 
 abline(v = quantile(x,c(.25,.75)),col='purple',lty=1)
@@ -615,28 +615,38 @@ What percentage of the data is between the purple solid lines (length of interva
 What percentage of the data is between the green dashed lines (length of interval is 2*SD)?
 ```
 
-The code below computes the fraction of data points that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean. 
+The code below computes the fraction of data points, `x`, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean. 
 
 ```{r}
 sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
-So with this generated data, about 68% of the data values fall within 1 SD of the mean.
+So with this data set, about 68% of the data values fall within 1 SD of the mean.
+
+```{block, type="reflect"}  
+If we had a different data set, do you know that answer to the following questions? *You should know the answer to 2 of them at this point...*
+
+- What percentage of the data would be between the minimum and maximum (blue dotted lines above)?
+
+- What percentage of the data would be between bottom and top of the box (purple solid lines above)?
+
+- What percentage of the data would be between 1 SD below the mean and 1 SD above the mean (green dashed lines)?
+```
 
 ### Z-scores
 
-How do you decide when an outlier is really unusual (think: athletic victory being very impressive or a data point that may be an error)?
+How do you decide when an outlier is really unusual (think: athletic victory being very impressive or a data point that may be a typing error such as a human weight of 3000 lbs)?
 
 If the observation is far from the rest of the measurements in the data, we tend to say that the value is unusual. We want to quantify this idea of "unusual".
 
-To do this, we often calculate a **z-score**, a standardized data value which we will denote with $z$.
+To do this, we often calculate a **z-score**, a standardized data value which we denote with the letter, $z$. To calculate a z-score,
 
-- Calculate how far the observation was below (or above) the mean of the sample. 
-- Then divide the difference by the standard deviation (measure of spread).
+- Calculate how far an observation, $y$, is below (or above) the mean of the sample, denoted as $\bar{y}$. 
+- Then divide the difference by the standard deviation (measure of spread), denoted as $s_y$.
 
 \[ z = \frac{y - \bar{y}}{s_y} \]
 
-The z-score just tells you how many standard deviations the observation is above or below the mean. 
+The z-score tells you how many standard deviations the observation is above or below the mean. 
 
 ```{block, type='reflect'}
 Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5. That means that you got an 85 on the exam because your exam is one SD above the mean ($mean + z \times SD = 80 + 1 \times 5$).
@@ -646,13 +656,15 @@ If you got a z = -2 on an exam with mean = 80 and SD = 5, that means you got a 7
 
 In general, it is quite common to have z-scores between -3 and 3, but fairly unusual to have them greater than 3 or less than -3. 
 
-Often, if you have a **unimodal, symmetric distribution**, z-score values will be 
+Often, if you have data with a **unimodal, symmetric distribution**, 
 
-- between -1 and 1 about 68% of the time, 
-- between -2 and 2 about 95% of the time, and 
-- between -3 and 3 about 99.7% of the time. 
+- about 68% of the z-scores are between -1 and 1, 
+- about 95% of the z-scores are between -2 and 2,
+- about 99.7% of the z-scores are between -3 and 3.
 
-This will not be true always, but it will be true for a particularly special distribution that we will see later when we cover models. (This distribution is called the **normal distribution** or **Gaussian distribution**.)
+This is not true for every histogram, but it will be true for a particularly special distribution that we will see later when we cover models. (This distribution is called the **normal distribution** or **Gaussian distribution**.)
+
+However, we do know that z-scores of 5 or larger in magnitude (ignoring negative sign) are very unusual, no matter the shape of the histogram/distribution. For those inclined, see the mathematical theorem below that tells us this. 
 
 ```{block, type='math'}
 (Optional) Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k$ > 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than $k$ is less than or equal to $1/k^2$,
@@ -666,7 +678,7 @@ If we plug in values for $k$, we see that the chance of getting a z-score
 - at least 4 in magnitude (> 4 or < -4) is less than $(1/4^2) = 0.06 = 6\%$.
 - at least 5 in magnitude (> 5 or < -5) is less than $(1/5^2) = 0.04 = 4\%$.
 
-This is true for any shaped distribution (skewed, bimodal, etc.).
+This is true for any shaped distribution (skewed, bimodal, etc.). See [proof here](https://en.wikipedia.org/wiki/Markov%27s_inequality) based on probability theory. 
 ```
 
 
@@ -674,7 +686,7 @@ In summary, for a quantitative variable,
 
 - Use a histogram to display the distribution of one variable and describe the shape and any unusual features.
 - For "well-behaved" distributions (symmetric, unimodal, no outliers), use the mean and standard deviation to describe the center and spread. Then z-scores will roughly follow the 68-95-99.7 rule stated above. 
-- For others, use the IQR and median. You can report both mean and median, but it's usually a good idea to state why.
+- For other distributions (skewed or bimodal), use the IQR and median. You can report both mean and median, but it's usually a good idea to state why.
 
 
 
@@ -682,7 +694,7 @@ In summary, for a quantitative variable,
 
 Let's return to the NHANES data. We noticed variation in the amount people sleep. Why do some people sleep more than others? Are there any other characteristics that may be able to *explain that variation*?
 
-Let's look at the distribution of hours of sleep at night within subsets of the NHANES data. 
+Let's look at the distribution of hours of sleep at night within subsets or groups of the NHANES data. 
 
 ### Multiple Histograms
 
@@ -690,21 +702,29 @@ Let's look at the distribution of hours of sleep at night within subsets of the 
 **Does the recorded binary gender explain the variability in the hours of sleep?**
 
 ```{block, type='reflect'}
-What are the ethical implications of collecting binary gender if individuals don't fit neatly into the categories?
+What are the *ethical implications* of collecting gender identity as a binary variable (male/female) if some individuals do not identify with these categories?  
+
+What might be the *causal mechanism* between gender identity and sleep? Might you be more interested in hormone levels, which might not necessarily correspond to gender identity? How might you change the data collection procedure so that the data can address the underlying research question?
 ```
+
+Let's make a histogram for each gender category by adding `facet_grid(. ~ Gender)` which separates the data into groups defined by the variable, `Gender`, and creates two plots along the x-axis. 
 
 ```{r}
 NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(binwidth = 1, fill = "steelblue") + 
     xlab('Hours of Sleep (hours)') + 
-    facet_grid(~ Gender) + 
+    facet_grid(. ~ Gender) + 
     theme_minimal()
 ```
 
-Do you notice any differences in sleep hour distributions between males and females?
+```{block, type='reflect'}
+Do you notice any differences in sleep hour distributions between males and females? 
 
-**Does the number of children a mother has explain the variability in the hours of sleep?** 
+What is easy to compare and what is hard to compare between the two histograms?
+```
+
+**Does the number of children a woman has explain the variability in the hours of sleep?** 
 
 ```{block, type='reflect'}
 Who have we excluded from our analysis by asking this question?
@@ -716,12 +736,18 @@ NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(binwidth = 1, fill = "steelblue") + 
     xlab('Hours of Sleep (hours)') + 
-    facet_wrap(~ factor(nBabies), ncol = 4) + 
+    facet_wrap(. ~ factor(nBabies), ncol = 4) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
     theme_minimal()
 ```
 
-The 0 to 12 labels at the top of each of these panels correspond to the number of babies a mother had. Do you notice any differences in sleep hour distributions between these groups?
+The 0 to 12 labels at the top of each of these panels correspond to the number of babies a woman had. 
+
+```{block, type='reflect'}
+Do you notice any differences in sleep hour distributions between these groups?
+
+Note the x and y axes are the same for all of the groups to facilitate comparison. What is easy to compare and what is hard to compare between the histograms?
+```
 
 **Does the number of days someone has felt depressed explain the variability in the hours of sleep?**
 
@@ -730,14 +756,14 @@ NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(binwidth = 1, fill = "steelblue") + 
     xlab('Hours of Sleep (hours)') + 
-    facet_grid(~ Depressed) + 
+    facet_grid(. ~ Depressed) + 
     theme_minimal() 
 ```
 
 What's the rightmost "NA" category? Some individuals in this study did not answer questions about days that they might have felt depressed, but they did report their hours of sleep per night.
 
 ```{block, type='reflect'}
-What selection biases or information biases might be at play here?
+What type of biases might be at play here?
 ```
 
 ### Multiple Boxplots
@@ -774,25 +800,28 @@ NHANES %>%
 ```
 
 ```{block type='reflect'}
-What do you notice? What do you wonder?
+What is easy to compare and what is hard to compare between the boxplots?
+
+Why might you use multiple boxplots instead of multiple histograms?
 ```
 
-#### Is this a Real Difference?
+### Is this a Real Difference?
 
-If we notice differences in the center of these distributions, is it a REAL difference? That is, is there a difference in the general U.S. population? Remember, we only have a random *sample* of the population. *NHANES is supposed to be a representative sample of the U.S. population collected using a probability sampling procedure.*
+If we notice differences in the the sleep distributions for groups based on self-reported Depression, is it a "REAL" difference? That is, is there a difference in the general U.S. population? Remember, we only have a random *sample* of the population. *NHANES is supposed to be a representative sample of the U.S. population collected using a probability sampling procedure.*
 
-What if there were no REAL difference? Then the Depressed group labels wouldn't be related to the hours of sleep.
+What if there were no "REAL" difference? Then the Depressed group labels wouldn't be related to the hours of sleep.
 
 **Investigation Plan:**
 
-1. Take all of the observed data on sleep and randomly shuffle into new groups (of the same size as before). This breaks any associations between Depressed group labels and hours of sleep.
+1. Take all of the observed data on the hours of sleep and randomly shuffle them into new groups (of the same sizes as before). This breaks any associations between the Depressed group labels and the reported hours of sleep.
 2. Calculate the difference in mean hours of sleep between the groups. Record it.
-3. Repeat 1 and 2 many times (say 1000 times).
+3. Repeat steps 1 and 2 many times (say 1000 times).
 4. Look at the differences based on random shuffles & compare to the observed difference.
 
 ```{r echo=TRUE}
+library(mosaic) 
 NHANES <- NHANES %>%
-  mutate(DepressedMost = (Depressed == 'Most')) #TRUE or FALSE (converted to a 2 category variable)
+  mutate(DepressedMost = (Depressed == 'Most')) #TRUE or FALSE (converted Depressed to a 2 category variable)
 
 obsdiff <- data.frame(d = diff(mean(SleepHrsNight ~ DepressedMost, data = NHANES, na.rm = TRUE)))
 
@@ -812,18 +841,22 @@ sim %>%
 ```
 
 ```{block, type='reflect'}
-The observed difference in mean hours of sleep (red line) is quite far from the distribution of differences that results when we break the association between depression status and sleep hours (through randomized shuffling of group labels). What do you think this indicates? What evidence for or against a real population difference might this provide?
+The observed difference in mean hours of sleep (red line) is quite far from the distribution of differences that results when we break the association between depression status and sleep hours (through randomized shuffling of group labels). Thus, it is unlikely to get a difference that large if there were no relationhip. 
+
+What do you think this indicates? How might you use this as evidence for or against a "real" population difference?
 ```
+
+
 
 ## Two Quantitative Variables
 
-To discuss two quantitative variables, we will switch to new data set and consider a thought experiment. 
+To discuss two quantitative variables, let's switch to new data set and consider a thought experiment. 
 
-Imagine that you are an entrepreneur selling dress shirts. Clothing sizing can be quite variable across brands, so let's use this dataset to try to come up with our own data-driven sizes. Two of the key measurements that we will use are the neck size in centimeters and chest size in centimeters. There are others in the data set, but let's focus on these for the moment.
+Imagine that you are an entrepreneur selling button-down dress shirts. Clothing sizing are quite variable across clothing brands, so we are going to use our own data to come up with appropriate sizes for our customers. Two of the key measurements that we will use are the neck size in centimeters and chest size in centimeters of a customer. There are other variables in the data set, but let's focus on these two for the moment.
 
 ### Scatterplot
 
-When you have two quantitative variables, a **scatterplot** is the main appropriate graphical display of the relationship.
+When you have two quantitative variables, a **scatterplot** is the main appropriate graphical display of the relationship. Each point represents the neck and chest size of one customer.
 
 ```{r echo=TRUE}
 bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
@@ -838,18 +871,18 @@ bodyfat %>%
 
 What do you notice about:
 
-1. **Direction** of relationship (positive, negative, neutral)
-2. **Form** of relationship (linear, curved, none, other)
-3. **Strength** of relationship (compactness around the relationship)
-4. **Unusual** features (outliers, differences in variability across $x$)
+1. **Direction** of relationship (positive, negative, or neutral)
+2. **Form** of relationship (linear, curved, none, or other)
+3. **Strength** of relationship (compactness around the average relationship)
+4. **Unusual** features (outliers, differences in variability in $y$ variable across different values of $x$ variable)
 
 ```{block type='reflect'}
-How might you use this information to determine shirt sizes for your new business venture?
+How might you use this information to determine shirt sizes for your new business venture? Come up with a few ways you could define sizes such as small, medium, large, extra large, etc. 
 ```
 
-Suppose instead of *Chest* in inches and *Neck size* in cm, we switched to inches and plotted *Chest* and *Neck size* in inches. 
+Suppose instead of *Chest* in inches and *Neck size* in cm, we plotted *Chest* in inches and *Neck size* in inches. 
 
-**Does the strength of the relationship change?**
+**Does the strength of the relationship change after transformation?**
 
 Look at the plot in inches below. Does this plot look the same as the centimeters plot?
 
@@ -862,60 +895,65 @@ bodyfat %>%
   theme_minimal()
 ```
 
+You should see that the x-axes changed but the overall shape of the plot stayed the same. Thus, the strength of the relationship was not affected by tranforming neck size from centimeters to inches (by dividing by 2.54). 
 
 ### Correlation Coefficient
 
-Since shifting (adding or subtracting) and scaling (multiplying or dividing) make no difference in the strength of the relationship, let's standardize both variables into z-scores (recall z-scores from Section \@ref(intro-zscore)). Then we replot and add some color:
+Since **shifting** (adding or subtracting) and **scaling** (multiplying or dividing) make no difference in the strength of the relationship, let's standardize both variables into z-scores (recall z-scores from Section \@ref(intro-zscore)). 
+
+Below we plot Neck and Chest sizes after changing them to z-scores with the function `scale()` and we add some color:
 
 ```{r echo=FALSE}
 bodyfat <- bodyfat %>%
-    mutate(zNeck = scale(Neck), zChest = scale(Chest), Product = sign(zChest*zNeck))
+    mutate(zNeck = scale(Neck), zChest = scale(Chest), Product = factor(sign(zChest*zNeck)))
 
 bodyfat %>%
-    ggplot(aes(x = zNeck, y = zChest, color = factor(Product))) +
+    ggplot(aes(x = zNeck, y = zChest, color = Product)) +
     geom_point() +
     geom_hline(yintercept = 0) +
     geom_vline(xintercept = 0) +
     xlab('Z-scores of Neck size') + 
     ylab('Z-scores of Chest size') +
-    guides(color = guide_legend(title = "Sign of product\nof Z-scores")) +
+    guides(color = guide_legend(title = "Sign of the product\n of the z-scores")) +
     theme_minimal() +
     coord_cartesian(xlim = c(-3.5,3.5), ylim = c(-3.5,3.5)) +
     annotate("text", x = c(3, -3, -3, 3), y = c(3.5, 3.5, -3.5, -3.5), label = paste("Quadrant", 1:4))
 ```
 
-The blue points in the upper right and lower left quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the x and y values for the blue points, we will get a positive value. 
+The blue points in the upper right (Quadrant 1) and lower left (Quadrant 3) quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the z-scores of the Neck and Chest values for the blue points, we will get a positive value. 
 
-The red points in the upper left and lower right quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size or they are below average in Neck Size and above average in Chest Size. If we multiply the x and y values for the red points, we will get a negative value. 
+The red points in the upper left (Quadrant 2) and lower right (Quadrant 4) quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size (lower right) or they are below average in Neck Size and above average in Chest Size (upper left). If we multiply the z-scores of the Neck and Chest values for the red points, we will get a negative value. 
 
 ```{block type='reflect'}
 If we were to have a weaker positive relationship, how would this plot change?
+
+If we were to have a stronger positive relationship, how would this plot change?
 
 If we were to have a negative relationship, how would this plot change?
 ```
 
 We want one number to represent **strength** and **direction** of a linear relationship.
 
-- Points in Quadrants 1 and 3 (blue) have the Z-scores of the **same sign**.
-- Points in Quadrants 2 and 4 (red) have Z-scores of the **opposite sign**.
+- Points in Quadrants 1 and 3 (blue) have the z-scores of the **same sign**.
+- Points in Quadrants 2 and 4 (red) have z-scores of the **opposite sign**.
 
 **What if we took the product of the $z$-scores for $x$ and $y$ variables?**
 
-Situation 1: An individual far above the means in both the $x$ and $y$ variables or far below the means in both the $x$ and $y$ variables will have a very large, positive product of z-scores.
+Situation 1: An individual far above the means in both the $x$ and $y$ variables or far below the means in both the $x$ and $y$ variables has a very large, positive product of z-scores.
 
-Situation 2: An individual far above the mean in $x$ and far below the mean in $y$ will have a very large, negative product of z-scores. (The same goes for low $x$ and high $y$.)
+Situation 2: An individual far above the mean in $x$ and far below the mean in $y$ has a very large, negative product of z-scores. (The same goes for low $x$ and high $y$.)
 
-The almost *average* of products of the $z$-scores is the **correlation coefficient**,
+The (almost) *average* of products of the $z$-scores is the **correlation coefficient**,
 
 $$ r_{x,y} = \frac{\sum z_x z_y}{n-1} $$
 
-$r_{x,y}$ is the correlation coefficient between variables $x$ and $y$.
+We notate the correlation coefficient between variables $x$ and $y$ as $r_{x,y}$.
 
 Some observations:
 
-- If most of our data points follow Situation 1, the correlation coefficient is an average of mostly large positive values. Thus the correlation coefficient will be high and positive.
-- If most of our data points follow Situation 2, the correlation coefficient is an average of mostly large negative values. Thus the correlation coefficient will be high and negative.
-- If about an equal number of data points follow Situation 1 and Situation 2, we will be averaging a balance of positive and negative numbers, which will be close to zero. Thus the correlation coefficient will be close to zero.
+- If most of our data points follow Situation 1, the correlation coefficient is an average of mostly large positive values. Thus the correlation coefficient will be large and positive.
+- If most of our data points follow Situation 2, the correlation coefficient is an average of mostly large negative values. Thus the correlation coefficient will be large and negative.
+- If about an equal number of data points follow Situation 1 and Situation 2, we will be balancing positive and negative numbers, which results in a value close to zero. Thus, the correlation coefficient will be close to zero.
 
 **Which points contribute the most to this average?**
 
@@ -929,25 +967,27 @@ bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.
 ```
 
 ```{r, echo=TRUE}
-cor(bodyfat$Neck, bodyfat$Chest) # All data points used in calculation
-
-subset_bodyfat <- bodyfat %>%
-    filter(Neck > 35 & Neck < 40) # Keep individuals with Neck size between 35cm and 40cm
-
-cor(subset_bodyfat$Neck, subset_bodyfat$Chest) # Only middle subset of data points used in calculation
+bodyfat %>%
+  summarize(cor(Neck, Chest)) # All data points used in calculation
+ 
+bodyfat %>%
+    filter(Neck > 35 & Neck < 40) %>% # Keep individuals with Neck size between 35cm and 40cm
+      summarize(cor(Neck, Chest)) # Only middle subset of data points used in calculation
 ```
+
+The value is much larger and more positive when all data points are used. The points that are far from the means of x and y have a larger product of z-scores and thus increase the correlation coefficient value. 
 
 ### Properties
 
-* $-1 \leq r \leq 1$
+* $-1 \leq r \leq 1$ (due to the [Cauchy-Schwarz Inequality](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality) for those are inclined)
 
-* Sign of $r$ goes with the direction of the relationship.
+* The sign of $r$ goes with the direction of the relationship.
 
-* $r_{x,y} = r_{y,x}$, it doesn't matter which is $x$ and which is $y$.
+* $r_{x,y} = r_{y,x}$, it doesn't matter which variable is $x$ and which is $y$.
 
 * $r_{ax+b, cy+d} = r_{x,y}$, linear change of scale doesn't affect $r$. Why?
 
-* $r$ measures strength of *linear* relationship (not a curved relationship)
+* $r$ measures strength of *linear* relationship (not a curved relationship).
 
 * One outlier can completely change $r$.
 
@@ -964,12 +1004,12 @@ corr_explanation_plot <- function(data, title = "") {
     plot(data$zx, data$zy, pch = 16, col = colors, bty = "n", xlab = "Z-score for x", ylab = "Z-score for y", ylim = range(data$zy)+c(0,1))
     abline(h = 0, lty = "dashed", col = "gray50")
     segments(x0 = 0, y0 = min(data$zy)-1, y1 = max(data$zy), lty = "dashed", col = "gray50")
-    legend(x = "top", legend = c("Pos", "Neg"), horiz = TRUE, title = "Sign of Z-score product", fill = c("#00BFC4", "#F8766D"), bty = "n")
+    legend(x = "top", legend = c("Pos", "Neg"), horiz = TRUE, title = "Sign of z-score product", fill = c("#00BFC4", "#F8766D"), bty = "n")
     # prop_pos_neg <- table(data$product_sign) %>% prop.table %>% as.matrix
     # barplot(prop_pos_neg, col = c("#F8766D", "#00BFC4"), legend.text = c(-1,1), args.legend = c(horiz = TRUE, bty = "n", x = "top"), ylim = c(0, 1.1), main = "Fraction of points with positive\nor negative Z-score product")
     sum_pos <- sum(data$product[data$product_sign > 0])
     sum_neg <- abs(sum(data$product[data$product_sign < 0]))
-    barplot(matrix(c(sum_neg, sum_pos)), col = c("#F8766D", "#00BFC4"), main = "Sum (magnitude) of positive\nand negative Z-score products")
+    barplot(matrix(c(sum_neg, sum_pos)), col = c("#F8766D", "#00BFC4"), main = "Frequency of positive\n and negative z-score products")
 }
 
 set.seed(1)
@@ -1009,10 +1049,10 @@ corr_explanation_plot(d8, title = "r = -0.2")
 ```
 
 ```{block, type='math'}
-(Optional) Other expressions for r for the mathematically intrigued:
+(Optional) Here are other equivalent expressions for $r$ for the mathematically intrigued:
 
 $$ r = \frac{\sum z_x z_y}{n-1}  $$
-$$ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\frac{(y_i-\bar{y})}{s_y}}}{n-1}$$
+$$ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\times\frac{(y_i-\bar{y})}{s_y}}}{n-1}$$
 $$= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}$$
 $$= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}}{\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}}$$
 $$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}}$$
@@ -1024,13 +1064,15 @@ $$=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-
 
 The plot below shows the relationship between brownie quality and oven temperature at which the brownie is baked.
 
-The correlation is near 0, but it doesn't mean that there's no relationship. We can clearly see a quadratic relationship, but there's just no **linear** relationship.
+The correlation coefficient is near 0, but it doesn't mean that there's no relationship. We can clearly see a quadratic relationship, but there's not a **linear** relationship.
 
 ![](Photos/Brownies.png)
 
+The correlation coefficient, $r$, is more formally called the Pearson correlation coefficient, named after Karl Pearson who published this work in 1895. Read more about this measure of linear relationship   [here](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient).
+
 ## Three or more variables
 
-In complex data sets that measure many variables, it is necessary to get a fuller understanding of the relationships in the data than we can see with plots that look at only one or two variables.
+In complex data sets that contain many variables, it is necessary to get a fuller understanding of the relationships in the data than we can see with plots that look at only one or two variables.
 
 The following visual features can help us turn bivariate plots into multivariate plots:
 
@@ -1039,14 +1081,14 @@ The following visual features can help us turn bivariate plots into multivariate
 - Size of points
 - Panels (facets)
 
-Let's look at another data set, the 1985 Current Population Survey. This is a smaller scale survey administered by the United States government between the decennial census.
+Let's look at another data set, the 1985 Current Population Survey. This is a smaller scale survey administered by the United States government in the intervening years of the decennial census.
 
-### A bivariate plot
+### A bivariate scatterplot
 
 Our primary interest is the `wage` variable which gives the hourly wage for each individual in the data set in US dollars. What is the relationship between years of education and hourly wage?
 
 ```{r}
-data(CPS85) # Load the data
+data(CPS85) # Load the data from the R package CPS85
 
 CPS85 %>%
     ggplot(aes(x = educ, y = wage)) +
@@ -1056,15 +1098,13 @@ CPS85 %>%
     theme_minimal()
 ```
 
-We can see that years of education and hourly wage are positively correlated but what about the impact of other variables?
+We can see that years of education and hourly wage are positively correlated. What about the impact of other variables?
 
 ### Enriching with color
 
-We can enrich this bivariate plot by showing additional information via color.
+We can enrich this bivariate scatterplot by showing additional information via color.
 
 ```{r}
-data(CPS85) ## Load the data
-
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, color = age)) +
     geom_point() +
@@ -1102,7 +1142,7 @@ CPS85 %>%
     theme_minimal()
 ```
 
-Often encoding information with color is preferable to encoding it with shapes because differences in shapes are not as easily discernible. Remember that statistical visualizations are meant to help you better understand your data. If you are having trouble easily picking out patterns when using a certain visual feature (e.g. shape, color), try another one to see if the clarity of the plot increases for you.
+Often encoding information with color is preferable to encoding it with shapes because differences in shapes are not as easily discernible. Remember that statistical visualizations are meant to help you better understand your data. If you are having trouble easily picking out patterns when using a certain visual feature (e.g. shape, color), try another feature to see if the clarity of the plot increases for you.
 
 ### Enriching with size
 
@@ -1111,7 +1151,7 @@ The size of a point is useful for conveying the magnitude of a quantitative vari
 ```{r}
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, size = age)) +
-    geom_point() +
+    geom_point(alpha = 0.5) + #alpha specifies the level of transparency of the points
     xlab("Years of education") +
     ylab("Hourly wage (US dollars)") +
     guides(size = guide_legend(title = "Age")) + # Legend title
@@ -1158,6 +1198,23 @@ CPS85 %>%
     theme_minimal()
 ```
 
+
+### Enriching with smoothing
+
+If we have a scatterplot, we may want to get an understanding of the overal relationship between x and y within subsets. We can add `geom_smooth(method = 'lm')` to estimate and plot the linear relationships.
+
+
+```{r}
+CPS85 %>%
+    ggplot(aes(x = educ, y = wage)) +
+    geom_point() +
+    geom_smooth(method = 'lm') +
+    xlab("Years of education") +
+    ylab("Hourly wage (US dollars)") +
+    facet_grid(sector ~ .) +
+    theme_minimal()
+```
+
 ### Putting everything together
 
 The combination of these different visual features can result in powerful visual understanding. Let's combine paneling with color information to explore if there are marital status patterns in these union-job sector subgroups.
@@ -1166,9 +1223,10 @@ The combination of these different visual features can result in powerful visual
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, color = married)) +
     geom_point() +
+    geom_smooth(method = 'lm') +
     xlab("Years of education") +
     ylab("Hourly wage (US dollars)") +
-    facet_grid(sector ~ union) + 
+    facet_grid(. ~ sector) + 
     guides(color = guide_legend(title = "Marital status")) + # Legend title
     theme_minimal()
 ```
@@ -1178,7 +1236,7 @@ Creating effective multivariate visualizations takes a lot of trial and error. S
 
 ## Major Takeaways
 
-1. STOP: Think about whether a variable is categorical or quantitative. This informs the type of graphic and summaries that is appropriate. 
+1. STOP: Think about whether a variable is categorical or quantitative. This informs the type of graphic and summaries that are appropriate. 
 
 2. The shape of a histogram tells you about the relationships between mean and median.
 
@@ -1186,4 +1244,6 @@ Creating effective multivariate visualizations takes a lot of trial and error. S
 
 4. If you are describing a scatterplot, make sure to comment about the direction, form, strength, and unusual features. 
 
-5. Visualizations are just a starting place. Stop to notice what you learn and what questions you have about the data. Let that inform the next visualization you make. 
+5. Be vigilant for unusual points as they could be due to human error in the data collection, but do not automatically throw away unusual or outlying points. Think about whether they are feasible first. 
+
+6. Visualizations are just a starting place. Stop to notice what you learn and what questions you have about the data. Let that inform the next visualization you make. 

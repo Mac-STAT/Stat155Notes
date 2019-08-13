@@ -169,6 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quantitative Variable and One Categorical Variable</a><ul>
 <li class="chapter" data-level="2.7.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
 <li class="chapter" data-level="2.7.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
@@ -177,12 +178,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8.4" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#is-correlation-always-the-right-way-to-judge-strength"><i class="fa fa-check"></i><b>2.8.4</b> Is correlation always the right way to judge strength?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html"><i class="fa fa-check"></i><b>2.9</b> Three or more variables</a><ul>
-<li class="chapter" data-level="2.9.1" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#a-bivariate-plot"><i class="fa fa-check"></i><b>2.9.1</b> A bivariate plot</a></li>
+<li class="chapter" data-level="2.9.1" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#a-bivariate-scatterplot"><i class="fa fa-check"></i><b>2.9.1</b> A bivariate scatterplot</a></li>
 <li class="chapter" data-level="2.9.2" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-color"><i class="fa fa-check"></i><b>2.9.2</b> Enriching with color</a></li>
 <li class="chapter" data-level="2.9.3" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-shape"><i class="fa fa-check"></i><b>2.9.3</b> Enriching with shape</a></li>
 <li class="chapter" data-level="2.9.4" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-size"><i class="fa fa-check"></i><b>2.9.4</b> Enriching with size</a></li>
 <li class="chapter" data-level="2.9.5" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-panels"><i class="fa fa-check"></i><b>2.9.5</b> Enriching with panels</a></li>
-<li class="chapter" data-level="2.9.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.9.6</b> Putting everything together</a></li>
+<li class="chapter" data-level="2.9.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-smoothing"><i class="fa fa-check"></i><b>2.9.6</b> Enriching with smoothing</a></li>
+<li class="chapter" data-level="2.9.7" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.9.7</b> Putting everything together</a></li>
 </ul></li>
 <li class="chapter" data-level="2.10" data-path="major-takeaways-1.html"><a href="major-takeaways-1.html"><i class="fa fa-check"></i><b>2.10</b> Major Takeaways</a></li>
 </ul></li>
@@ -324,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb4-3" data-line-number="3">                  <span class="dt">x=</span> <span class="st">&quot;Multivitamin</span><span class="ch">\n</span><span class="st"> Use&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw">ggdag</span>( <span class="dt">text =</span> <span class="ot">FALSE</span>, <span class="dt">use_labels =</span> <span class="st">&quot;label&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_dag_blank</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 For example, say we note that on days with higher ice cream sales, there are typically a higher number of pool drownings. What variable could be confounding the relationship between ice cream sales and pool drownings?

@@ -169,6 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quantitative Variable and One Categorical Variable</a><ul>
 <li class="chapter" data-level="2.7.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
 <li class="chapter" data-level="2.7.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
@@ -177,12 +178,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8.4" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#is-correlation-always-the-right-way-to-judge-strength"><i class="fa fa-check"></i><b>2.8.4</b> Is correlation always the right way to judge strength?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html"><i class="fa fa-check"></i><b>2.9</b> Three or more variables</a><ul>
-<li class="chapter" data-level="2.9.1" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#a-bivariate-plot"><i class="fa fa-check"></i><b>2.9.1</b> A bivariate plot</a></li>
+<li class="chapter" data-level="2.9.1" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#a-bivariate-scatterplot"><i class="fa fa-check"></i><b>2.9.1</b> A bivariate scatterplot</a></li>
 <li class="chapter" data-level="2.9.2" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-color"><i class="fa fa-check"></i><b>2.9.2</b> Enriching with color</a></li>
 <li class="chapter" data-level="2.9.3" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-shape"><i class="fa fa-check"></i><b>2.9.3</b> Enriching with shape</a></li>
 <li class="chapter" data-level="2.9.4" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-size"><i class="fa fa-check"></i><b>2.9.4</b> Enriching with size</a></li>
 <li class="chapter" data-level="2.9.5" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-panels"><i class="fa fa-check"></i><b>2.9.5</b> Enriching with panels</a></li>
-<li class="chapter" data-level="2.9.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.9.6</b> Putting everything together</a></li>
+<li class="chapter" data-level="2.9.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-smoothing"><i class="fa fa-check"></i><b>2.9.6</b> Enriching with smoothing</a></li>
+<li class="chapter" data-level="2.9.7" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.9.7</b> Putting everything together</a></li>
 </ul></li>
 <li class="chapter" data-level="2.10" data-path="major-takeaways-1.html"><a href="major-takeaways-1.html"><i class="fa fa-check"></i><b>2.10</b> Major Takeaways</a></li>
 </ul></li>
@@ -310,11 +312,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="two-quantitative-variables" class="section level2">
 <h2><span class="header-section-number">2.8</span> Two Quantitative Variables</h2>
-<p>To discuss two quantitative variables, we will switch to new data set and consider a thought experiment.</p>
-<p>Imagine that you are an entrepreneur selling dress shirts. Clothing sizing can be quite variable across brands, so let’s use this dataset to try to come up with our own data-driven sizes. Two of the key measurements that we will use are the neck size in centimeters and chest size in centimeters. There are others in the data set, but let’s focus on these for the moment.</p>
+<p>To discuss two quantitative variables, let’s switch to new data set and consider a thought experiment.</p>
+<p>Imagine that you are an entrepreneur selling button-down dress shirts. Clothing sizing are quite variable across clothing brands, so we are going to use our own data to come up with appropriate sizes for our customers. Two of the key measurements that we will use are the neck size in centimeters and chest size in centimeters of a customer. There are other variables in the data set, but let’s focus on these two for the moment.</p>
 <div id="scatterplot" class="section level3">
 <h3><span class="header-section-number">2.8.1</span> Scatterplot</h3>
-<p>When you have two quantitative variables, a <strong>scatterplot</strong> is the main appropriate graphical display of the relationship.</p>
+<p>When you have two quantitative variables, a <strong>scatterplot</strong> is the main appropriate graphical display of the relationship. Each point represents the neck and chest size of one customer.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">bodyfat &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt&quot;</span>)</a>
 <a class="sourceLine" id="cb73-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb73-3" data-line-number="3">bodyfat <span class="op">%&gt;%</span></a>
@@ -323,21 +325,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb73-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb73-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb73-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <p>What do you notice about:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Direction</strong> of relationship (positive, negative, neutral)</li>
-<li><strong>Form</strong> of relationship (linear, curved, none, other)</li>
-<li><strong>Strength</strong> of relationship (compactness around the relationship)</li>
-<li><strong>Unusual</strong> features (outliers, differences in variability across <span class="math inline">\(x\)</span>)</li>
+<li><strong>Direction</strong> of relationship (positive, negative, or neutral)</li>
+<li><strong>Form</strong> of relationship (linear, curved, none, or other)</li>
+<li><strong>Strength</strong> of relationship (compactness around the average relationship)</li>
+<li><strong>Unusual</strong> features (outliers, differences in variability in <span class="math inline">\(y\)</span> variable across different values of <span class="math inline">\(x\)</span> variable)</li>
 </ol>
 <div class="reflect">
 <p>
-How might you use this information to determine shirt sizes for your new business venture?
+How might you use this information to determine shirt sizes for your new business venture? Come up with a few ways you could define sizes such as small, medium, large, extra large, etc.
 </p>
 </div>
-<p>Suppose instead of <em>Chest</em> in inches and <em>Neck size</em> in cm, we switched to inches and plotted <em>Chest</em> and <em>Neck size</em> in inches.</p>
-<p><strong>Does the strength of the relationship change?</strong></p>
+<p>Suppose instead of <em>Chest</em> in inches and <em>Neck size</em> in cm, we plotted <em>Chest</em> in inches and <em>Neck size</em> in inches.</p>
+<p><strong>Does the strength of the relationship change after transformation?</strong></p>
 <p>Look at the plot in inches below. Does this plot look the same as the centimeters plot?</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">bodyfat <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb74-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck<span class="op">/</span><span class="fl">2.54</span>, <span class="dt">y =</span> Chest<span class="op">/</span><span class="fl">2.54</span>)) <span class="op">+</span></a>
@@ -345,17 +347,22 @@ How might you use this information to determine shirt sizes for your new busines
 <a class="sourceLine" id="cb74-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (in)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb74-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (in)&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb74-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p>You should see that the x-axes changed but the overall shape of the plot stayed the same. Thus, the strength of the relationship was not affected by tranforming neck size from centimeters to inches (by dividing by 2.54).</p>
 </div>
 <div id="correlation-coefficient" class="section level3">
 <h3><span class="header-section-number">2.8.2</span> Correlation Coefficient</h3>
-<p>Since shifting (adding or subtracting) and scaling (multiplying or dividing) make no difference in the strength of the relationship, let’s standardize both variables into z-scores (recall z-scores from Section <a href="one-quantitative-variable.html#intro-zscore">2.6.5</a>). Then we replot and add some color:</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
-<p>The blue points in the upper right and lower left quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the x and y values for the blue points, we will get a positive value.</p>
-<p>The red points in the upper left and lower right quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size or they are below average in Neck Size and above average in Chest Size. If we multiply the x and y values for the red points, we will get a negative value.</p>
+<p>Since <strong>shifting</strong> (adding or subtracting) and <strong>scaling</strong> (multiplying or dividing) make no difference in the strength of the relationship, let’s standardize both variables into z-scores (recall z-scores from Section <a href="one-quantitative-variable.html#intro-zscore">2.6.5</a>).</p>
+<p>Below we plot Neck and Chest sizes after changing them to z-scores with the function <code>scale()</code> and we add some color:</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p>The blue points in the upper right (Quadrant 1) and lower left (Quadrant 3) quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the z-scores of the Neck and Chest values for the blue points, we will get a positive value.</p>
+<p>The red points in the upper left (Quadrant 2) and lower right (Quadrant 4) quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size (lower right) or they are below average in Neck Size and above average in Chest Size (upper left). If we multiply the z-scores of the Neck and Chest values for the red points, we will get a negative value.</p>
 <div class="reflect">
 <p>
 If we were to have a weaker positive relationship, how would this plot change?
+</p>
+<p>
+If we were to have a stronger positive relationship, how would this plot change?
 </p>
 <p>
 If we were to have a negative relationship, how would this plot change?
@@ -363,57 +370,61 @@ If we were to have a negative relationship, how would this plot change?
 </div>
 <p>We want one number to represent <strong>strength</strong> and <strong>direction</strong> of a linear relationship.</p>
 <ul>
-<li>Points in Quadrants 1 and 3 (blue) have the Z-scores of the <strong>same sign</strong>.</li>
-<li>Points in Quadrants 2 and 4 (red) have Z-scores of the <strong>opposite sign</strong>.</li>
+<li>Points in Quadrants 1 and 3 (blue) have the z-scores of the <strong>same sign</strong>.</li>
+<li>Points in Quadrants 2 and 4 (red) have z-scores of the <strong>opposite sign</strong>.</li>
 </ul>
 <p><strong>What if we took the product of the <span class="math inline">\(z\)</span>-scores for <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> variables?</strong></p>
-<p>Situation 1: An individual far above the means in both the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> variables or far below the means in both the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> variables will have a very large, positive product of z-scores.</p>
-<p>Situation 2: An individual far above the mean in <span class="math inline">\(x\)</span> and far below the mean in <span class="math inline">\(y\)</span> will have a very large, negative product of z-scores. (The same goes for low <span class="math inline">\(x\)</span> and high <span class="math inline">\(y\)</span>.)</p>
-<p>The almost <em>average</em> of products of the <span class="math inline">\(z\)</span>-scores is the <strong>correlation coefficient</strong>,</p>
+<p>Situation 1: An individual far above the means in both the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> variables or far below the means in both the <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> variables has a very large, positive product of z-scores.</p>
+<p>Situation 2: An individual far above the mean in <span class="math inline">\(x\)</span> and far below the mean in <span class="math inline">\(y\)</span> has a very large, negative product of z-scores. (The same goes for low <span class="math inline">\(x\)</span> and high <span class="math inline">\(y\)</span>.)</p>
+<p>The (almost) <em>average</em> of products of the <span class="math inline">\(z\)</span>-scores is the <strong>correlation coefficient</strong>,</p>
 <p><span class="math display">\[ r_{x,y} = \frac{\sum z_x z_y}{n-1} \]</span></p>
-<p><span class="math inline">\(r_{x,y}\)</span> is the correlation coefficient between variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>We notate the correlation coefficient between variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> as <span class="math inline">\(r_{x,y}\)</span>.</p>
 <p>Some observations:</p>
 <ul>
-<li>If most of our data points follow Situation 1, the correlation coefficient is an average of mostly large positive values. Thus the correlation coefficient will be high and positive.</li>
-<li>If most of our data points follow Situation 2, the correlation coefficient is an average of mostly large negative values. Thus the correlation coefficient will be high and negative.</li>
-<li>If about an equal number of data points follow Situation 1 and Situation 2, we will be averaging a balance of positive and negative numbers, which will be close to zero. Thus the correlation coefficient will be close to zero.</li>
+<li>If most of our data points follow Situation 1, the correlation coefficient is an average of mostly large positive values. Thus the correlation coefficient will be large and positive.</li>
+<li>If most of our data points follow Situation 2, the correlation coefficient is an average of mostly large negative values. Thus the correlation coefficient will be large and negative.</li>
+<li>If about an equal number of data points follow Situation 1 and Situation 2, we will be balancing positive and negative numbers, which results in a value close to zero. Thus, the correlation coefficient will be close to zero.</li>
 </ul>
 <p><strong>Which points contribute the most to this average?</strong></p>
 <p>Let’s look at the correlation for the entire sample first. Then let’s calculate the correlation for individuals around the mean Neck size.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">cor</span>(bodyfat<span class="op">$</span>Neck, bodyfat<span class="op">$</span>Chest) <span class="co"># All data points used in calculation</span></a></code></pre></div>
-<pre><code>## [1] 0.7688109</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">subset_bodyfat &lt;-<span class="st"> </span>bodyfat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(Neck <span class="op">&gt;</span><span class="st"> </span><span class="dv">35</span> <span class="op">&amp;</span><span class="st"> </span>Neck <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>) <span class="co"># Keep individuals with Neck size between 35cm and 40cm</span></a>
-<a class="sourceLine" id="cb77-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb77-4" data-line-number="4"><span class="kw">cor</span>(subset_bodyfat<span class="op">$</span>Neck, subset_bodyfat<span class="op">$</span>Chest) <span class="co"># Only middle subset of data points used in calculation</span></a></code></pre></div>
-<pre><code>## [1] 0.5658835</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">bodyfat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># All data points used in calculation</span></a></code></pre></div>
+<pre><code>##   cor(Neck, Chest)
+## 1        0.7688109</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">bodyfat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(Neck <span class="op">&gt;</span><span class="st"> </span><span class="dv">35</span> <span class="op">&amp;</span><span class="st"> </span>Neck <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Keep individuals with Neck size between 35cm and 40cm</span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="st">      </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># Only middle subset of data points used in calculation</span></a></code></pre></div>
+<pre><code>##   cor(Neck, Chest)
+## 1        0.5658835</code></pre>
+<p>The value is much larger and more positive when all data points are used. The points that are far from the means of x and y have a larger product of z-scores and thus increase the correlation coefficient value.</p>
 </div>
 <div id="properties" class="section level3">
 <h3><span class="header-section-number">2.8.3</span> Properties</h3>
 <ul>
-<li><p><span class="math inline">\(-1 \leq r \leq 1\)</span></p></li>
-<li><p>Sign of <span class="math inline">\(r\)</span> goes with the direction of the relationship.</p></li>
-<li><p><span class="math inline">\(r_{x,y} = r_{y,x}\)</span>, it doesn’t matter which is <span class="math inline">\(x\)</span> and which is <span class="math inline">\(y\)</span>.</p></li>
+<li><p><span class="math inline">\(-1 \leq r \leq 1\)</span> (due to the <a href="https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality">Cauchy-Schwarz Inequality</a> for those are inclined)</p></li>
+<li><p>The sign of <span class="math inline">\(r\)</span> goes with the direction of the relationship.</p></li>
+<li><p><span class="math inline">\(r_{x,y} = r_{y,x}\)</span>, it doesn’t matter which variable is <span class="math inline">\(x\)</span> and which is <span class="math inline">\(y\)</span>.</p></li>
 <li><p><span class="math inline">\(r_{ax+b, cy+d} = r_{x,y}\)</span>, linear change of scale doesn’t affect <span class="math inline">\(r\)</span>. Why?</p></li>
-<li><p><span class="math inline">\(r\)</span> measures strength of <em>linear</em> relationship (not a curved relationship)</p></li>
+<li><p><span class="math inline">\(r\)</span> measures strength of <em>linear</em> relationship (not a curved relationship).</p></li>
 <li><p>One outlier can completely change <span class="math inline">\(r\)</span>.</p></li>
 </ul>
 <p>Let’s look at a few scatterplot examples and the corresponding correlation.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-2.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-3.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-4.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-5.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-6.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-7.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-8.png" width="960" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-2.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-3.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-4.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-5.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-6.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-7.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-8.png" width="960" /></p>
 <div class="math">
 <p>
-(Optional) Other expressions for r for the mathematically intrigued:
+(Optional) Here are other equivalent expressions for <span class="math inline"><span class="math inline">\(r\)</span></span> for the mathematically intrigued:
 </p>
 <p>
-<span class="math display"><span class="math display">\[ r = \frac{\sum z_x z_y}{n-1}  \]</span></span> <span class="math display"><span class="math display">\[ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\frac{(y_i-\bar{y})}{s_y}}}{n-1}\]</span></span> <span class="math display"><span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}\]</span></span> <span class="math display"><span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}}{\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}}\]</span></span> <span class="math display"><span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}}\]</span></span> <span class="math display"><span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}}\]</span></span>
+<span class="math display"><span class="math display">\[ r = \frac{\sum z_x z_y}{n-1}  \]</span></span> <span class="math display"><span class="math display">\[ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\times\frac{(y_i-\bar{y})}{s_y}}}{n-1}\]</span></span> <span class="math display"><span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}\]</span></span> <span class="math display"><span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}}{\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}}\]</span></span> <span class="math display"><span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}}\]</span></span> <span class="math display"><span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}}\]</span></span>
 </p>
 </div>
 </div>
 <div id="is-correlation-always-the-right-way-to-judge-strength" class="section level3">
 <h3><span class="header-section-number">2.8.4</span> Is correlation always the right way to judge strength?</h3>
 <p>The plot below shows the relationship between brownie quality and oven temperature at which the brownie is baked.</p>
-<p>The correlation is near 0, but it doesn’t mean that there’s no relationship. We can clearly see a quadratic relationship, but there’s just no <strong>linear</strong> relationship.</p>
+<p>The correlation coefficient is near 0, but it doesn’t mean that there’s no relationship. We can clearly see a quadratic relationship, but there’s not a <strong>linear</strong> relationship.</p>
 <p><img src="Photos/Brownies.png" /></p>
+<p>The correlation coefficient, <span class="math inline">\(r\)</span>, is more formally called the Pearson correlation coefficient, named after Karl Pearson who published this work in 1895. Read more about this measure of linear relationship <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">here</a>.</p>
 </div>
 </div>
             </section>

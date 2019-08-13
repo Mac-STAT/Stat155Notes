@@ -169,6 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quantitative Variable and One Categorical Variable</a><ul>
 <li class="chapter" data-level="2.7.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
 <li class="chapter" data-level="2.7.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
@@ -177,12 +178,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8.4" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#is-correlation-always-the-right-way-to-judge-strength"><i class="fa fa-check"></i><b>2.8.4</b> Is correlation always the right way to judge strength?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html"><i class="fa fa-check"></i><b>2.9</b> Three or more variables</a><ul>
-<li class="chapter" data-level="2.9.1" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#a-bivariate-plot"><i class="fa fa-check"></i><b>2.9.1</b> A bivariate plot</a></li>
+<li class="chapter" data-level="2.9.1" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#a-bivariate-scatterplot"><i class="fa fa-check"></i><b>2.9.1</b> A bivariate scatterplot</a></li>
 <li class="chapter" data-level="2.9.2" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-color"><i class="fa fa-check"></i><b>2.9.2</b> Enriching with color</a></li>
 <li class="chapter" data-level="2.9.3" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-shape"><i class="fa fa-check"></i><b>2.9.3</b> Enriching with shape</a></li>
 <li class="chapter" data-level="2.9.4" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-size"><i class="fa fa-check"></i><b>2.9.4</b> Enriching with size</a></li>
 <li class="chapter" data-level="2.9.5" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-panels"><i class="fa fa-check"></i><b>2.9.5</b> Enriching with panels</a></li>
-<li class="chapter" data-level="2.9.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.9.6</b> Putting everything together</a></li>
+<li class="chapter" data-level="2.9.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-smoothing"><i class="fa fa-check"></i><b>2.9.6</b> Enriching with smoothing</a></li>
+<li class="chapter" data-level="2.9.7" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.9.7</b> Putting everything together</a></li>
 </ul></li>
 <li class="chapter" data-level="2.10" data-path="major-takeaways-1.html"><a href="major-takeaways-1.html"><i class="fa fa-check"></i><b>2.10</b> Major Takeaways</a></li>
 </ul></li>
@@ -323,11 +325,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Look at the distribution of the <em>z</em> score heights, using the mean of the 3000 as the true population mean, <span class="math inline">\(\mu\)</span>, but using <span class="math inline">\(s\)</span> in the denominator from each sample instead of the population variation, <span class="math inline">\(\sigma\)</span>, of the 3000:</li>
 </ul>
 <p><span class="math display">\[ z = \frac{\bar{x} - \mu}{s/\sqrt{4}}\]</span></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
 <ul>
 <li>Does this distribution of z-scores look Normal? We can try to see more clearly by making a <strong>Q-Q plot</strong>, shown below.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
 <p>If the z-scores follow a normal distribution, the points in the Q-Q plot should fall on a straight line. However, we see some deviation at the left and right of the plots. This indicates that the tails of our z-score distribution are thicker (more populous) than expected if they were actually normally-distributed. Why? With small samples, the sample standard deviation, <span class="math inline">\(s\)</span>, is smaller so we tend to get larger z-scores than we’d expect if they were normally-distributed.</p>
 </div>
 <div id="beer-helps-the-field-of-statistics" class="section level3">
@@ -343,7 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The spread is determined by a parameter called <strong>degrees of freedom</strong> (<span class="math inline">\(df = n - 1\)</span>).</li>
 <li>As <span class="math inline">\(n\rightarrow\infty\)</span>, becomes more Normal.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-233-1.png" width="768" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-241-1.png" width="768" /></p>
 <p>Since the Student T distribution is approximately Normal when sample sizes are large, we will typically use the Normal model. However, if sample sizes are small (<span class="math inline">\(n&lt;30\)</span> or so), the Normal model is not appropriate. So, in those rare cases, we’ll need to refer to Student T.</p>
 
 </div>

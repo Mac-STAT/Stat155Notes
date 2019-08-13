@@ -169,6 +169,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.7" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quantitative Variable and One Categorical Variable</a><ul>
 <li class="chapter" data-level="2.7.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
 <li class="chapter" data-level="2.7.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
@@ -177,12 +178,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8.4" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#is-correlation-always-the-right-way-to-judge-strength"><i class="fa fa-check"></i><b>2.8.4</b> Is correlation always the right way to judge strength?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html"><i class="fa fa-check"></i><b>2.9</b> Three or more variables</a><ul>
-<li class="chapter" data-level="2.9.1" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#a-bivariate-plot"><i class="fa fa-check"></i><b>2.9.1</b> A bivariate plot</a></li>
+<li class="chapter" data-level="2.9.1" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#a-bivariate-scatterplot"><i class="fa fa-check"></i><b>2.9.1</b> A bivariate scatterplot</a></li>
 <li class="chapter" data-level="2.9.2" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-color"><i class="fa fa-check"></i><b>2.9.2</b> Enriching with color</a></li>
 <li class="chapter" data-level="2.9.3" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-shape"><i class="fa fa-check"></i><b>2.9.3</b> Enriching with shape</a></li>
 <li class="chapter" data-level="2.9.4" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-size"><i class="fa fa-check"></i><b>2.9.4</b> Enriching with size</a></li>
 <li class="chapter" data-level="2.9.5" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-panels"><i class="fa fa-check"></i><b>2.9.5</b> Enriching with panels</a></li>
-<li class="chapter" data-level="2.9.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.9.6</b> Putting everything together</a></li>
+<li class="chapter" data-level="2.9.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-smoothing"><i class="fa fa-check"></i><b>2.9.6</b> Enriching with smoothing</a></li>
+<li class="chapter" data-level="2.9.7" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.9.7</b> Putting everything together</a></li>
 </ul></li>
 <li class="chapter" data-level="2.10" data-path="major-takeaways-1.html"><a href="major-takeaways-1.html"><i class="fa fa-check"></i><b>2.10</b> Major Takeaways</a></li>
 </ul></li>
@@ -329,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb29-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <p>Note the warning message above: “Removed __ rows containing non-finite values (stat_bin).” Sometimes there is missing information for a variable for some cases in the dataset. We cannot plot these because we don’t know their values! This warning message is just a friendly reminder from R to let you know what it is doing.</p>
 <p>Also note the message that R gives about bin width to remind us that we can choose this if we wish. If we want to specify the width of the intervals or bins, we can specify <code>binwidth = DESIRED_BIN_WIDTH</code> within <code>geom_histogram</code>.</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
@@ -339,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb32-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb32-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <p>Lastly, notice that the y-axis in the previous two histograms has been the counts (or frequency) within each sleep hour interval. We can adjust this to <strong>density</strong>, which is relative frequency adjusted for the width of interval so that the sum of the areas of the bars (height x width) equals 1.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span></a>
@@ -350,7 +352,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb34-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-60-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>The smooth curved line on this plot is called a <strong>density plot</strong>. It is essentially a smoother version of the histogram. Both the area under a density plot and the total area of all the rectangles in a density histogram equal 1.</p>
 <p>When describing a distribution, we focus on three aspects of the histogram:</p>
 <ul>
@@ -379,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb38-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Salary ($ Millions)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb38-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb38-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
 <p>We note that some of the highest salaries were close to 200 million U.S. dollars (in 2016), but the majority of the salaries in this sample are closer to 50 million U.D. dollars.</p>
 <div class="reflect">
 <p>
@@ -471,19 +473,19 @@ A percentile is a measure indicating the value below which a given percentage of
 <a class="sourceLine" id="cb47-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb47-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 <p>Compare that to the boxplot of the CEO salaries.</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">ceo <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb49-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> salary)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb49-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb49-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Salary ($M)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb49-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p>Note: In these 2 plots above, the x-axis has number labels, but they don’t mean anything.</p>
 <p>Let’s put the boxplots next to the histograms so we can better compare the two types of visualizations. Also, let’s add the mean (red dashed), median (blue dotted), and 5% trimmed mean (purple dash-dot) as annotations.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 <p>For the hours of sleep, the mean, median, and 5% trimmed mean are all pretty much the same. Note also that the distribution looks pretty symmetric based on the histogram.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 <p>For CEO salaries, the mean and 5% trimmed mean are a bit higher than the median. <strong>The mean is always pulled toward the long tail.</strong></p>
 <div class="reflect">
 <p>
@@ -542,12 +544,12 @@ What would the boxplot look like if all of the values were exactly the same? Som
 <div id="intro-zscore" class="section level3">
 <h3><span class="header-section-number">2.6.5</span> Some data accounting</h3>
 <p>We’ve looked at different measures of the spread of a distribution. Do some measures of spread encompass a lot of the data? Just a little? Can we be more precise about how much of the data is encompassed by intervals created from different spread measures?</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">x =<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1500</span>)</a>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1500</span>)</a>
 <a class="sourceLine" id="cb55-2" data-line-number="2"><span class="kw">boxplot</span>(x, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="st">&quot;Generated Data&quot;</span>)</a>
 <a class="sourceLine" id="cb55-3" data-line-number="3"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">range</span>(x), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lty =</span> <span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb55-4" data-line-number="4"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)), <span class="dt">col =</span> <span class="st">&quot;purple&quot;</span>, <span class="dt">lty =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb55-5" data-line-number="5"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">c</span>(<span class="kw">mean</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(x), <span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(x)), <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What percentage of the data is between the blue dotted lines (length of interval is range)?
@@ -559,22 +561,44 @@ What percentage of the data is between the purple solid lines (length of interva
 What percentage of the data is between the green dashed lines (length of interval is 2*SD)?
 </p>
 </div>
-<p>The code below computes the fraction of data points that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean.</p>
+<p>The code below computes the fraction of data points, <code>x</code>, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean.</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">sum</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(x) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(x))<span class="op">/</span><span class="kw">length</span>(x)</a></code></pre></div>
-<pre><code>## [1] 0.6746667</code></pre>
-<p>So with this generated data, about 68% of the data values fall within 1 SD of the mean.</p>
+<pre><code>## [1] 0.6793333</code></pre>
+<p>So with this data set, about 68% of the data values fall within 1 SD of the mean.</p>
+<div class="reflect">
+<p>
+If we had a different data set, do you know that answer to the following questions? <em>You should know the answer to 2 of them at this point…</em>
+</p>
+<ul>
+<li>
+<p>
+What percentage of the data would be between the minimum and maximum (blue dotted lines above)?
+</p>
+</li>
+<li>
+<p>
+What percentage of the data would be between bottom and top of the box (purple solid lines above)?
+</p>
+</li>
+<li>
+<p>
+What percentage of the data would be between 1 SD below the mean and 1 SD above the mean (green dashed lines)?
+</p>
+</li>
+</ul>
+</div>
 </div>
 <div id="z-scores" class="section level3">
 <h3><span class="header-section-number">2.6.6</span> Z-scores</h3>
-<p>How do you decide when an outlier is really unusual (think: athletic victory being very impressive or a data point that may be an error)?</p>
+<p>How do you decide when an outlier is really unusual (think: athletic victory being very impressive or a data point that may be a typing error such as a human weight of 3000 lbs)?</p>
 <p>If the observation is far from the rest of the measurements in the data, we tend to say that the value is unusual. We want to quantify this idea of “unusual”.</p>
-<p>To do this, we often calculate a <strong>z-score</strong>, a standardized data value which we will denote with <span class="math inline">\(z\)</span>.</p>
+<p>To do this, we often calculate a <strong>z-score</strong>, a standardized data value which we denote with the letter, <span class="math inline">\(z\)</span>. To calculate a z-score,</p>
 <ul>
-<li>Calculate how far the observation was below (or above) the mean of the sample.</li>
-<li>Then divide the difference by the standard deviation (measure of spread).</li>
+<li>Calculate how far an observation, <span class="math inline">\(y\)</span>, is below (or above) the mean of the sample, denoted as <span class="math inline">\(\bar{y}\)</span>.</li>
+<li>Then divide the difference by the standard deviation (measure of spread), denoted as <span class="math inline">\(s_y\)</span>.</li>
 </ul>
 <p><span class="math display">\[ z = \frac{y - \bar{y}}{s_y} \]</span></p>
-<p>The z-score just tells you how many standard deviations the observation is above or below the mean.</p>
+<p>The z-score tells you how many standard deviations the observation is above or below the mean.</p>
 <div class="reflect">
 <p>
 Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5. That means that you got an 85 on the exam because your exam is one SD above the mean (<span class="math inline"><span class="math inline">\(mean + z \times SD = 80 + 1 \times 5\)</span></span>).
@@ -584,13 +608,14 @@ If you got a z = -2 on an exam with mean = 80 and SD = 5, that means you got a 7
 </p>
 </div>
 <p>In general, it is quite common to have z-scores between -3 and 3, but fairly unusual to have them greater than 3 or less than -3.</p>
-<p>Often, if you have a <strong>unimodal, symmetric distribution</strong>, z-score values will be</p>
+<p>Often, if you have data with a <strong>unimodal, symmetric distribution</strong>,</p>
 <ul>
-<li>between -1 and 1 about 68% of the time,</li>
-<li>between -2 and 2 about 95% of the time, and</li>
-<li>between -3 and 3 about 99.7% of the time.</li>
+<li>about 68% of the z-scores are between -1 and 1,</li>
+<li>about 95% of the z-scores are between -2 and 2,</li>
+<li>about 99.7% of the z-scores are between -3 and 3.</li>
 </ul>
-<p>This will not be true always, but it will be true for a particularly special distribution that we will see later when we cover models. (This distribution is called the <strong>normal distribution</strong> or <strong>Gaussian distribution</strong>.)</p>
+<p>This is not true for every histogram, but it will be true for a particularly special distribution that we will see later when we cover models. (This distribution is called the <strong>normal distribution</strong> or <strong>Gaussian distribution</strong>.)</p>
+<p>However, we do know that z-scores of 5 or larger in magnitude (ignoring negative sign) are very unusual, no matter the shape of the histogram/distribution. For those inclined, see the mathematical theorem below that tells us this.</p>
 <div class="math">
 <p>
 (Optional) Chebyshev’s inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number <span class="math inline"><span class="math inline">\(k\)</span></span> &gt; 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than <span class="math inline"><span class="math inline">\(k\)</span></span> is less than or equal to <span class="math inline"><span class="math inline">\(1/k^2\)</span></span>,
@@ -613,14 +638,14 @@ at least 5 in magnitude (&gt; 5 or &lt; -5) is less than <span class="math inlin
 </li>
 </ul>
 <p>
-This is true for any shaped distribution (skewed, bimodal, etc.).
+This is true for any shaped distribution (skewed, bimodal, etc.). See <a href="https://en.wikipedia.org/wiki/Markov%27s_inequality">proof here</a> based on probability theory.
 </p>
 </div>
 <p>In summary, for a quantitative variable,</p>
 <ul>
 <li>Use a histogram to display the distribution of one variable and describe the shape and any unusual features.</li>
 <li>For “well-behaved” distributions (symmetric, unimodal, no outliers), use the mean and standard deviation to describe the center and spread. Then z-scores will roughly follow the 68-95-99.7 rule stated above.</li>
-<li>For others, use the IQR and median. You can report both mean and median, but it’s usually a good idea to state why.</li>
+<li>For other distributions (skewed or bimodal), use the IQR and median. You can report both mean and median, but it’s usually a good idea to state why.</li>
 </ul>
 </div>
 </div>

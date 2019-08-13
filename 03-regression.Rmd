@@ -322,7 +322,7 @@ body %>%
 ```
 
 
-Given your neck size, we can probably predict your chest size within 5 to 10 cm since $s_e = 5.22$ (1 to 2 SD's -- remember our discussion of z-scores). 
+Given your neck size, we can probably predict your chest size within 5 to 10 cm since $s_e = 5.22$ (1 to 2 SD's -- recall Section \@ref(intro-zscore)). 
 
 ```{block, type="reflect"}
 If you were a shirt manufacturer, is this a good enough prediction? What is the impact on the customer? Think of if the prediction were an overestimate (loose) or an underestimate (too tight).
@@ -374,34 +374,52 @@ rect(17*2.54,46*2.54,17.5*2.54,48*2.54,col='red')
 For Brooks Brothers, the red boxes are a bit below the least squares line for the 3 smallest sizes and a little above the line for the largest size. This means that the 3 smallest sizes are a bit too small in the chest for our customers (in our data set) with those neck sizes and that the largest shirt is a bit big at the chest for that neck size.
 
 ```{block, type="reflect"}
-We haven't told you how the customer data we've been using was collected. As you compared the brands to this sample data, what assumptions were you making about the population that the sample was drawn from? What questions do you have about the sample data?
+We haven't told you how the customer data we've been using was collected. As you compared the brands to this sample data, what assumptions were you making about the population that the sample was drawn from? 
+
+What questions do you have about the sampling procedure?
 ```
 
 ## Interpretation
 
-Let's look at the summary of the `lm()` function in R again.
+Let's look at the summary print out of the `lm()` function in R again. We'll highlight some of the most important pieces of the print out and discuss how you interpret them.
 
 ```{r echo=TRUE}
-summary(lm.fit)
+body %>%
+  lm(Chest ~ Neck, data = .) %>% 
+  summary()
 ```
-
-**Least Squares/Regression Line** ($\hat{y} = b_0 + b_1x$)
-
-- The line gives the estimated average of $y$ for each value of $x$ (**within observed range of x**)
-- Example: The regression line of (Predicted Chest = -3.18 + 2.73*Neck) gives the estimated average Chest size for a given Neck size, based on our sample of data.
-- The "within observed range of $x$" is very important. We can't predict values of $y$ for values of $x$ that are very different from what we have in our data. Trying to do so is a big no-no called **extrapolation**. We'll discuss this more in a bit.
 
 **Intercept** ($b_0$)
 
-- The intercept gives the average value of $y$ when $x$ is zero (**think about context**)
-- Example: If Neck size = 0, then the person doesn't exist. In this context, the intercept doesn't make much sense to interpret. For this reason, sometimes the predictor $x$ is **centered**. That is, the mean of $x$ for all individuals in the sample is computed, and this mean is subtracted from each person's $x$ value. In this case, the intercept is interpreted as the average value of $y$ when $x$ is at its (sample) mean value.
+- **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for "(Intercept)". It is -3.1885 for this model. 
+- **Definition:** The intercept gives the average value of $y$ when $x$ is zero (**think about context**)
+- **Interpretation:** If Neck size = 0, then the person doesn't exist. In this context, the intercept doesn't make much sense to interpret. 
+- **Discussion:** If the intercept doesn't make sense in the context, we might refit the model with the $x$ variable once it is **centered**. That is, the mean of $x$ for all individuals in the sample is computed, and this mean is subtracted from each person's $x$ value. In this case, the intercept is interpreted as the average value of $y$ when $x$ is at its (sample) mean value. See the example below -- we get an intercept of 100.66, which is the average Chest size for customers with average Neck size.
+
+```{r echo=TRUE}
+body %>%
+  mutate(CNeck = Neck - mean(Neck)) %>%
+  lm(Chest ~ CNeck, data = .) %>% 
+  summary()
+```
+
 
 
 **Slope** ($b_1$)
 
-- The slope gives the change in average $y$ per 1 unit increase in $x$ (**not for individuals and not causal**)
-- Example: If we consider all individuals with a neck size 1 cm larger, then we'd expect the average chest size to be by about 2.7cm larger.
+- **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for the namve of the variable, "Neck" or "CNeck". It is 2.7369 for this model. 
+- **Definition:** The slope gives the change in average $y$ per 1 unit increase in $x$ (**not for individuals and not causal statement**)
+- **Interpretation:** If we compare two groups of individuals with a 1 cm difference in the neck size (e.g. 38 cm and 39 cm OR 40 cm and 41 cm), then we'd expect the average chest sizes to be different by about 2.7cm.
+- **Another Interpretation:** We'd expect the average chest size to increase by about 2.7 cm for each centimeter increase in neck size.
+- **Discussion:** Note that both interpretations are not written about an individual because we can't easily change our neck size by 1 cm. The slope describes the change in the average in our sample data set, not the change for one person. 
 
+**Least Squares/Regression Line** ($\hat{y} = b_0 + b_1x$)
+
+- **Where to find:** In the table called "Coefficients", all of the values you need to write down the line are under "Estimate".
+
+- **Definition:** The line gives the estimated average of $y$ for each value of $x$ (**within the observed range of x**)
+- **Interpretation:** The regression line of (Predicted Chest = -3.18 + 2.73*Neck) gives the estimated average Chest size for a given Neck size, based on our sample of data.
+- **Discussion:** The "within the observed range of $x$" phrase is very important. We can't predict values of $y$ for values of $x$ that are very different from what we have in our data. Trying to do so is a big no-no called **extrapolation**. We'll discuss this more in a bit.
 
 ### Correlation or Association vs. Causation
 
@@ -411,28 +429,29 @@ summary(lm.fit)
 
 What is causation? What is a causal effect? Are there criteria for defining a cause?
 
-These are deep questions that have been debated by scientists of all domains for a long time. We are at a point now where there is some consensus on the definition of a causal effect. The causal effect of a variable $x$ on another variable $y$ is the amount that we expect $y$ to change if we **intervene on/manipulate** $x$ by changing it by one unit.
+These are deep questions that have been debated by scientists of all domains for a long time.We are at a point now where there is some consensus on the definition of a causal effect. The causal effect of a variable $x$ on another variable $y$ is the amount that we expect $y$ to change if we **intervene on/manipulate** $x$ by changing it by one unit.
 
-When can we interpret an estimated slope $b_1$ from a simple linear regression as a causal effect of $x$ on $y$? Well, in the simple linear regression case, almost never. 
+When can we interpret an estimated slope $b_1$ from a simple linear regression as a causal effect of $x$ on $y$? Well, in the simple linear regression case, almost never. To interpret the slope causally, there would have to be **no confounding variables** (no variables that impact both $x$ and $y$). If we performed an experiment, this might be possible, but in most cases, it will not be the possible.
 
-To interpret the slope causally, there would have to be **no confounding variables** (no variables that impact both $x$ and $y$.) In no real world situation will this be the case.
+Then what are we to do? 
 
-Then what are we to do? We will get to **adjusting/controlling for** confounders in the section on multiple linear regression. 
+1. Think about the possible causal pathways and try and create a DAG (from the first chapter).
+2. Try to **adjust/control for** possible confounders using multiple linear regression (coming up soon). 
+3. After fitting a model, we should step back and consider other criteria such as [Hill's Criteria](https://en.wikipedia.org/wiki/Bradford_Hill_criteria) before concluding there is a cause and effect relationship. Think about whether there is a large effect, whether it can be reproduced in another sample, whether the the effect happens before the cause in time, etc. 
 
-Multiple linear regression offers us a way to obtain causal effects of variables *if we use it carefully*. It will be tempting to say: control for everything we can! But we will see that this is not the correct thing to do, as there are very real dangers of over-controlling for variables. For now, let it suffice to say that multiple linear regression is as useful as the corn kerneler below. Immensely useful in the right circumstances - but only those circumstances.
+**Multiple linear regression** offers us a way to estimate causal effects of variables *if we use it carefully*. It will be tempting to say: control for everything we can! But we will see that this is not the correct thing to do, as there are very real dangers of over-controlling for variables (known as throwing everything in the model). For now, let it suffice to say that multiple linear regression is as useful as the corn kerneler below. Immensely useful in the right circumstances - but only those circumstances.
 
 ![Source: [Gizmodo](https://gizmodo.com/5988717/12-highly-specific-kitchen-gadgets)](https://i.kinja-img.com/gawker-media/image/upload/s--ko0l0gLh--/c_scale,f_auto,fl_progressive,q_80,w_800/18gkhag74ei0njpg.jpg)
 
 
 ## Evaluation
 
-
-In this section, we consider model evaluation. We seek to develop tools that allow us to answer: is this model "good"?
+In this section, we consider model evaluation. We seek to develop tools that allow us to answer: is this a "good" model?
 
 ### Prediction
 
 
-Let's consider another data example. Can we predict your college GPA based on your high school GPA? (Disclaimer: this is not Macalester data.)
+Let's consider another data example. Can we predict your college GPA based on your high school GPA? (Disclaimer: this is not Macalester data)
 
 
 ```{r echo=TRUE}
@@ -453,8 +472,8 @@ First things first. Describe the scatterplot.
 
 - **Direction**: Positive relationship (higher high school GPA is associated with higher college GPA)
 - **Form**: generally linear
-- **Strength**: There is a weak relationship when high school GPA < 3.0 (r = .32) and a fairly strong relationship when high school GPA > 3.0 (r = .68).
-- **Unusual**: As seen with the strength, there is increased variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening."**
+- **Strength**: There is a weak relationship when high school GPA < 3.0 ($r = 0.32$) and a fairly strong relationship when high school GPA > 3.0 ($r = 0.68$).
+- **Unusual**: As seen with the strength, there is greater variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening"** or **heteroscedasticity** (this terms is used quite a bit in econometrics). 
 
 The code below computes the correlation coefficients separately for students with high school GPAs above 3 and for students with high school GPAs less than or equal to 3. We see that the correlation is higher for the high GPA group.
 
@@ -468,8 +487,9 @@ sat %>%
 Let's build a model to predict college GPA based on high school GPA based on this sample data. Since we noted that there was a linear relationship, let's find the least squares regression line.
 
 ```{r echo=TRUE}
-lm.gpa <- lm(univ_GPA ~ high_GPA, data = sat)
-summary(lm.gpa)
+sat %>%
+  lm(univ_GPA ~ high_GPA, data = .) %>%
+  summary()
 ```
 
 
@@ -484,29 +504,37 @@ Let's plug in a few values.
 $$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 2 = 2.44 $$
 
 ```{r echo=TRUE}
-## Calcualtion by hand
+## Calculation by hand; rounded before prediction
 1.09 + 0.675*2
 ## Calcuation using R's predict() function
-predict(lm.gpa, newdata = data.frame(high_GPA = 2))
+sat %>%
+  lm(univ_GPA ~ high_GPA, data = .) %>%
+  predict(newdata = data.frame(high_GPA = 2))
 ```
 
 - If High School GPA = 3.5:    
 $$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 3.5 = 3.45 $$
 
 ```{r echo=TRUE}
-1.09 + 0.675*3.5
-predict(lm.gpa, newdata = data.frame(high_GPA = 3.5))
+1.09 + 0.675*3.5 #rounded before prediction
+sat %>%
+  lm(univ_GPA ~ high_GPA, data = .) %>%
+  predict(newdata = data.frame(high_GPA = 3.5)) #rounded after prediction
 ```
 
 - If High School GPA = 4.5:    
 $$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 4.5 = 4.13 $$
 
 ```{r echo=TRUE}
-1.09 + 0.675*4.5
-predict(lm.gpa, newdata = data.frame(high_GPA = 4.5))
+1.09 + 0.675*4.5 #rounded before prediction
+sat %>%
+  lm(univ_GPA ~ high_GPA, data = .) %>%
+  predict(newdata = data.frame(high_GPA = 4.5)) #rounded after prediction 
 ```
 
-Does it make sense to use this model for high school GPA's > 4?  Some high schools have a max GPA of 5.0 due to weighting of advanced courses. 
+```{block, type='reflect'}
+Does it make sense to use this model for high school GPA's > 4?  Some high schools have a max GPA of 5.0 due to the weighting of advanced courses. 
+```
 
 - What is the maximum high school GPA in this data set? 
 - What if your college doesn't allow for GPA's above 4.0? 
@@ -517,36 +545,41 @@ sat %>%
     summarize(max(high_GPA)) # Max high school GPA in this data set
 ```
 
-Making predictions beyond the observed range of values is called **extrapolation** and is generally a risky thing to do. If you extrapolate beyond the minimum or maximum of the observed values, then you are assuming that the relationship you observe can be extended into the new prediction range. This is the main issue of **forecasting**, making predictions in the future. You have to assume that the trend that you observe now will continue in the future and that the current state of affairs will stay the same. For an infamous case of extrapolation, check out [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173856/) that appeared in the journal Nature.
+Making predictions beyond the observed range of values is called **extrapolation** and is generally a risky thing to do. If you make prediction for values of $x$ beyond the minimum or maximum of the observed values, then you are assuming that the relationship you observe can be extended into the new prediction range. This is the main issue of **forecasting**, making predictions in the future. You have to assume that the trend that you observe now will continue in the future and that the current state of affairs will stay the same. For an infamous case of extrapolation, check out [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173856/) that appeared in the journal Nature.
 
 ### Prediction Errors
 
-Recall that a residual $e_i$ for data point $i$ is the difference between the actual and predicted values: $e_i = y_i - \hat{y}_i$.
+Recall that a residual, $e_i$, for the $i$th data point is the difference between the actual and predicted values: $e_i = y_i - \hat{y}_i$.
 
 If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section \@ref(intro-zscore).)
 
 ```{r echo=TRUE}
-hist(residuals(lm.gpa), main = "Distribution of residuals in the GPA model")
+sat %>%
+  lm(univ_GPA ~ high_GPA, data = .) %>%
+  residuals() %>%
+  hist(main = "Distribution of residuals in the GPA model")
 ```
 
-Below we calculate $SSE$, the sum of squared residuals, and the standard deviation of the residuals, $s_e$.
+Below we calculate $SSE$ (the sum of squared errors/residuals), and the standard deviation of the residuals ($s_e$).
 
 ```{r echo=TRUE}
-SSE = sum(residuals(lm.gpa)^2)
-n = length(residuals(lm.gpa)) # Sample size
-s = sqrt(SSE/(n-2)) # Residual standard error
+lm.gpa <- sat %>%
+  lm(univ_GPA ~ high_GPA, data = .)
+SSE <- sum(residuals(lm.gpa)^2)
+n <- length(residuals(lm.gpa)) # Sample size
+s <- sqrt(SSE/(n-2)) #sd of residuals
 s
 2*s
 ```
 
-Using this model (that is, using your high school GPA), we can predict your college GPA within about $0.56$ GPA points. Is this useful? Is a margin of $0.56$ GPA points good enough? Let's compare this margin of error with the margin of error about the mean (the standard deviation):
+Using this model (that is, using your high school GPA), we can predict your college GPA within about $0.56$ GPA points. Is this useful? Is predicting within a margin of $0.56$ GPA points good enough? Let's compare this margin of error with the margin of error about the mean (the standard deviation):
 
 ```{r echo=TRUE}
 sd(sat$univ_GPA)
 2*sd(sat$univ_GPA)
 ```
 
-*Without* knowing your high school GPA, we could have just guessed your college GPA as the mean college GPA in the sample, and this guess would be within $\pm 0.89$ of your actual college GPA. This is a higher margin of error than the approximate $0.56$ if we did use your high school GPA (in the simple linear regression model). We are able to predict your college GPA with a smaller margin of error than if we just guessed your college GPA with the mean. Our model has *explained* some (but not all) of the variation in college GPA.
+*Without* knowing your high school GPA, we could have just guessed your college GPA as the overall mean college GPA in the sample, and this guess would probably be within $\pm 0.89$ of your actual college GPA. This is a higher margin of error than the approximate $0.56$ if we did use your high school GPA (in the simple linear regression model). We are able to predict your college GPA with a smaller margin of error than if we just guessed your college GPA with the mean. Our model has *explained* some (but not all) of the variation in college GPA.
 
 The standard deviation of college GPA is based on the sum of squared total variation, SSTO (variation around the mean),
 
@@ -562,15 +595,15 @@ We define $SSTO$ here because it will help to compare $SSTO$ to $SSE$ (sum of sq
 
 ### $R^2$
 
-Let's study how models reduce unexplained variation.
+Let's study how *models reduce unexplained variation*.
 
-- Unexplained variation is given by $SSTO$. It is just the overall variability in the outcome. Think back to interpreting standard deviation and variance as measures of spread. We used these to describe broadly how variable the outcome was.
-- Variation in the outcome that remains after trying to explain the outcome is given by $SSE$, the sum of squared residuals.
+- Before a model is fit, the unexplained variation is given by $SSTO$. It is the overall variability in the outcome. Think back to interpreting standard deviation and variance as measures of spread. We used these to describe broadly how much the outcome varys
+- Unexplained variation in the outcome that remains after modeling is given by $SSE$, the sum of squared residuals.
 
-So to study how models reduce unexplained variation, we will compare residuals from a linear regression model (which uses the predictor $x$) with the original deviations from the mean (which do not use the predictor $x$).
+So to study how models reduce unexplained variation, we compare the magnitude of the residuals from a linear regression model (which uses the predictor $x$) with the original deviations from the mean (which do not use the predictor $x$).
 
 ```{r echo=FALSE}
-gpavar = data.frame(resids = c(residuals(lm.gpa), sat$univ_GPA-mean(sat$univ_GPA)), type = rep(c('Linear Model Residuals','Original Deviations from Mean'), each = nrow(sat)))
+gpavar <- data.frame(resids = c(residuals(lm.gpa), sat$univ_GPA-mean(sat$univ_GPA)), type = rep(c('Linear Model Residuals','Original Deviations from Mean'), each = nrow(sat)))
 
 gpavar %>%
   ggplot(aes(x = type, y = resids)) +
@@ -591,7 +624,7 @@ Two extreme cases:
 - If the error $SSE$ goes to zero, we'd have a "perfect fit". 
 - If $SSE = SSTO$, $x$ has told us nothing about $y$.
 
-- So we define a measure called **R-squared**, which is the *fraction* or *percent* of the total variation in $y$ "accounted for" by the model in $x$. 
+- So we define a measure called **R-squared**, which is the *fraction* or *proportion* of the total variation in $y$ "accounted for" or "explained" by the model in $x$. 
 
 
 
@@ -599,7 +632,7 @@ Two extreme cases:
 $$ R^2 = 1 - \frac{SSE}{SSTO} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}$$
 ```
 
-In R, lm() will calculate R-Squared for us, but we can also see that it equals the value from the formula above. 
+In R, `lm()` will calculate R-Squared ($R^2$) for us, but we can also see that it equals the value from the formula above. 
 
 
 ```{r echo=TRUE}

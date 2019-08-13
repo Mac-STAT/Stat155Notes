@@ -351,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb101-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Neck =</span> <span class="dv">38</span>)) <span class="co">#the intercept and slope are not rounded before prediction (better!)</span></a></code></pre></div>
 <pre><code>##        1 
 ## 100.8131</code></pre>
-<p>Given your neck size, we can probably predict your chest size within 5 to 10 cm since <span class="math inline">\(s_e = 5.22\)</span> (1 to 2 SD’s – remember our discussion of z-scores).</p>
+<p>Given your neck size, we can probably predict your chest size within 5 to 10 cm since <span class="math inline">\(s_e = 5.22\)</span> (1 to 2 SD’s – recall Section <a href="one-quantitative-variable.html#intro-zscore">2.6.5</a>).</p>
 <div class="reflect">
 <p>
 If you were a shirt manufacturer, is this a good enough prediction? What is the impact on the customer? Think of if the prediction were an overestimate (loose) or an underestimate (too tight).
@@ -361,15 +361,18 @@ If you were a shirt manufacturer, is this a good enough prediction? What is the 
 <h3><span class="header-section-number">3.5.1</span> Real companies</h3>
 <p>Let’s see how some real companies create shirts. In the plots below, the red boxes represent the advertised range (in cm) for Neck and Chest sizes for each brand.</p>
 <p><img src="Photos/stylish-dress-shirt-size-size-chart-.jpg" /></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
 <p>For Calvin Klein, we see that the red boxes are below the least squares line (black line). So for a given neck size, Calvin Klein makes shirts that are a little bit too small at the chest.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 <p>For Express, we see that the red boxes are generally on the least squares line, except for the smallest size. This means that Express shirts are generally a good fit at the chest and neck for the 4 largest sizes, but the smallest shirt size is a bit too small at the chest for the neck size.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
 <p>For Brooks Brothers, the red boxes are a bit below the least squares line for the 3 smallest sizes and a little above the line for the largest size. This means that the 3 smallest sizes are a bit too small in the chest for our customers (in our data set) with those neck sizes and that the largest shirt is a bit big at the chest for that neck size.</p>
 <div class="reflect">
 <p>
-We haven’t told you how the customer data we’ve been using was collected. As you compared the brands to this sample data, what assumptions were you making about the population that the sample was drawn from? What questions do you have about the sample data?
+We haven’t told you how the customer data we’ve been using was collected. As you compared the brands to this sample data, what assumptions were you making about the population that the sample was drawn from?
+</p>
+<p>
+What questions do you have about the sampling procedure?
 </p>
 </div>
 </div>

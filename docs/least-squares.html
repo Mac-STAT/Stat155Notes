@@ -314,11 +314,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.4</span> Least Squares</h2>
 <p>Let’s try to find the line that <strong>minimizes the Sum of Squared Residuals</strong> by searching over a grid of values for (intercept, slope).</p>
 <p>Below is a visual of the sum of squared residuals for a variety of values of the intercept and slope. The surface height is sum of squared residuals for each combination of slope and intercept.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
 <p>We can see there is valley where the minimum must be. Let’s visualize this in a slightly different way. We’ll encode the surface height as color (white is lowest).</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
 <p>The large values of the sum of squared residuals are dominating this image, so let’s change the color scheme to see more variation in smaller values (white is lowest).</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
 <p>We can limit our search to <span class="math inline">\(b_0 \in (-10,10)\)</span> and <span class="math inline">\(b_1 \in (2,3)\)</span>.</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">b0 =<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dt">by=</span>.<span class="dv">05</span>)</a>
 <a class="sourceLine" id="cb91-2" data-line-number="2">b1 =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dt">by=</span>.<span class="dv">05</span>)</a>

@@ -166,10 +166,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.5" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#intro-zscore"><i class="fa fa-check"></i><b>2.6.5</b> Some data accounting</a></li>
 <li class="chapter" data-level="2.6.6" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#z-scores"><i class="fa fa-check"></i><b>2.6.6</b> Z-scores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quantitative Variable and One Categorical Variable</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
-<li class="chapter" data-level="2.7.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
-<li class="chapter" data-level="2.7.3" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
+<li class="chapter" data-level="2.7" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quant. and One Categorical Variable</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
+<li class="chapter" data-level="2.7.2" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
@@ -314,11 +314,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.4</span> Least Squares</h2>
 <p>Let’s try to find the <strong>minimum of the Sum of Squared Residuals</strong> by searching over a grid of values for (intercept, slope).</p>
 <p>Below is a visual of the sum of squared residuals for a variety of values on a grid. The surface height is sum of squared residuals for each combination of slope and intercept.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
 <p>We can see there is valley where the minimum must be. Let’s visualize this in a slightly different way. We’ll encode the surface height as color (white is lowest).</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 <p>The large values of the sum of squared residuals are dominating this image, so let’s change the color scheme to see more variation in smaller values (white is lowest).</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-94-1.png" width="672" /></p>
 <p>We can limit our search to <span class="math inline">\(b_0 \in (-10,10)\)</span> and <span class="math inline">\(b_1 \in (2,3)\)</span>.</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">b0 =<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">10</span>,<span class="dv">10</span>,<span class="dt">by=</span>.<span class="dv">05</span>)</a>
 <a class="sourceLine" id="cb91-2" data-line-number="2">b1 =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dt">by=</span>.<span class="dv">05</span>)</a>

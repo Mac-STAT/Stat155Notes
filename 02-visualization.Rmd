@@ -690,7 +690,7 @@ In summary, for a quantitative variable,
 
 
 
-## One Quantitative Variable and One Categorical Variable
+## One Quant. and One Categorical Variable
 
 Let's return to the NHANES data. We noticed variation in the amount people sleep. Why do some people sleep more than others? Are there any other characteristics that may be able to *explain that variation*?
 

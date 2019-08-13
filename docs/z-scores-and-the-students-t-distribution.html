@@ -166,10 +166,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.5" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#intro-zscore"><i class="fa fa-check"></i><b>2.6.5</b> Some data accounting</a></li>
 <li class="chapter" data-level="2.6.6" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#z-scores"><i class="fa fa-check"></i><b>2.6.6</b> Z-scores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quantitative Variable and One Categorical Variable</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
-<li class="chapter" data-level="2.7.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
-<li class="chapter" data-level="2.7.3" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
+<li class="chapter" data-level="2.7" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quant. and One Categorical Variable</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
+<li class="chapter" data-level="2.7.2" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
@@ -325,11 +325,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Look at the distribution of the <em>z</em> score heights, using the mean of the 3000 as the true population mean, <span class="math inline">\(\mu\)</span>, but using <span class="math inline">\(s\)</span> in the denominator from each sample instead of the population variation, <span class="math inline">\(\sigma\)</span>, of the 3000:</li>
 </ul>
 <p><span class="math display">\[ z = \frac{\bar{x} - \mu}{s/\sqrt{4}}\]</span></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 <ul>
 <li>Does this distribution of z-scores look Normal? We can try to see more clearly by making a <strong>Q-Q plot</strong>, shown below.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-240-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
 <p>If the z-scores follow a normal distribution, the points in the Q-Q plot should fall on a straight line. However, we see some deviation at the left and right of the plots. This indicates that the tails of our z-score distribution are thicker (more populous) than expected if they were actually normally-distributed. Why? With small samples, the sample standard deviation, <span class="math inline">\(s\)</span>, is smaller so we tend to get larger z-scores than we’d expect if they were normally-distributed.</p>
 </div>
 <div id="beer-helps-the-field-of-statistics" class="section level3">
@@ -345,7 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The spread is determined by a parameter called <strong>degrees of freedom</strong> (<span class="math inline">\(df = n - 1\)</span>).</li>
 <li>As <span class="math inline">\(n\rightarrow\infty\)</span>, becomes more Normal.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-241-1.png" width="768" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-204-1.png" width="768" /></p>
 <p>Since the Student T distribution is approximately Normal when sample sizes are large, we will typically use the Normal model. However, if sample sizes are small (<span class="math inline">\(n&lt;30\)</span> or so), the Normal model is not appropriate. So, in those rare cases, we’ll need to refer to Student T.</p>
 
 </div>

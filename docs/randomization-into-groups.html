@@ -166,10 +166,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.5" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#intro-zscore"><i class="fa fa-check"></i><b>2.6.5</b> Some data accounting</a></li>
 <li class="chapter" data-level="2.6.6" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#z-scores"><i class="fa fa-check"></i><b>2.6.6</b> Z-scores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quantitative Variable and One Categorical Variable</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
-<li class="chapter" data-level="2.7.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
-<li class="chapter" data-level="2.7.3" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
+<li class="chapter" data-level="2.7" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quant. and One Categorical Variable</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
+<li class="chapter" data-level="2.7.2" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
@@ -329,7 +329,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb218-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hour, <span class="dt">y =</span> arr_delay)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb218-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb218-4" data-line-number="4"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 Based solely on the visual and numerical summary, are arrival delays shorter in the morning than in the afternoon?
@@ -363,7 +363,7 @@ Based solely on the visual and numerical summary, are arrival delays shorter in 
 <a class="sourceLine" id="cb220-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb220-8" data-line-number="8"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">xintercept =</span> stat), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb220-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 Do you think that the mean arrival delay is different for morning and afternoon? Is the observed difference in means likely to have occurred if there were no relationship?

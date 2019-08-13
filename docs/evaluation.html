@@ -166,10 +166,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.5" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#intro-zscore"><i class="fa fa-check"></i><b>2.6.5</b> Some data accounting</a></li>
 <li class="chapter" data-level="2.6.6" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#z-scores"><i class="fa fa-check"></i><b>2.6.6</b> Z-scores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quantitative Variable and One Categorical Variable</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
-<li class="chapter" data-level="2.7.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
-<li class="chapter" data-level="2.7.3" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
+<li class="chapter" data-level="2.7" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quant. and One Categorical Variable</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
+<li class="chapter" data-level="2.7.2" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
@@ -324,7 +324,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb106-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;High School GPA&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb106-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;College GPA&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb106-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
 <p>First things first. Describe the scatterplot.</p>
 <ul>
 <li><strong>Direction</strong>: Positive relationship (higher high school GPA is associated with higher college GPA)</li>
@@ -411,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Recall that a residual <span class="math inline">\(e_i\)</span> for data point <span class="math inline">\(i\)</span> is the difference between the actual and predicted values: <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>.</p>
 <p>If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section <a href="one-quantitative-variable.html#intro-zscore">2.6.5</a>.)</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">hist</span>(<span class="kw">residuals</span>(lm.gpa), <span class="dt">main =</span> <span class="st">&quot;Distribution of residuals in the GPA model&quot;</span>)</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 <p>Below we calculate <span class="math inline">\(SSE\)</span>, the sum of squared residuals, and the standard deviation of the residuals, <span class="math inline">\(s_e\)</span>.</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">SSE =<span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(lm.gpa)<span class="op">^</span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb126-2" data-line-number="2">n =<span class="st"> </span><span class="kw">length</span>(<span class="kw">residuals</span>(lm.gpa)) <span class="co"># Sample size</span></a>
@@ -441,7 +441,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Variation in the outcome that remains after trying to explain the outcome is given by <span class="math inline">\(SSE\)</span>, the sum of squared residuals.</li>
 </ul>
 <p>So to study how models reduce unexplained variation, we will compare residuals from a linear regression model (which uses the predictor <span class="math inline">\(x\)</span>) with the original deviations from the mean (which do not use the predictor <span class="math inline">\(x\)</span>).</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
 <p>We started with the sum of the deviations from the mean <span class="math inline">\(SSTO = \sum{(y_i - \bar{y})^2}\)</span> before we had info about high school GPA (<span class="math inline">\(x\)</span>).</p>
 <ul>
 <li><p>Now, with our knowledge of <span class="math inline">\(x\)</span>, we have <span class="math inline">\(SSE = \sum{(y_i - \hat{y_i})^2}\)</span></p></li>

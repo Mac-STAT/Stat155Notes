@@ -166,10 +166,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.5" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#intro-zscore"><i class="fa fa-check"></i><b>2.6.5</b> Some data accounting</a></li>
 <li class="chapter" data-level="2.6.6" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#z-scores"><i class="fa fa-check"></i><b>2.6.6</b> Z-scores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quantitative Variable and One Categorical Variable</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
-<li class="chapter" data-level="2.7.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
-<li class="chapter" data-level="2.7.3" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
+<li class="chapter" data-level="2.7" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quant. and One Categorical Variable</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
+<li class="chapter" data-level="2.7.2" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
@@ -321,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb89-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb89-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb89-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 If you were to add one or multiple lines to the plot above to help you make business decisions, where would you want it (or them)?
@@ -336,10 +336,10 @@ If you were to add one or multiple lines to the plot above to help you make busi
 <a class="sourceLine" id="cb90-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb90-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb90-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-124-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p>We can see that a shirt made to these specifications would fit the “average person.” However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger than average. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller than average.</p>
 <p>Let’s try something else. Let’s allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the Neck sizes variable into 5 groups of equal length and estimate the mean Chest sizes within each of these groups.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-125-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What do these lines tell us for our business venture?
@@ -347,7 +347,7 @@ What do these lines tell us for our business venture?
 </div>
 <p>What if we wanted to be able to make more sizes? Could we get a pretty good sense of what the chest sizes should be for a given neck size?</p>
 <p>Could we find one line to describe the relationship between Neck size and Chest size?</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What does line tell us for our business venture?

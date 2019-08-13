@@ -166,10 +166,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.5" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#intro-zscore"><i class="fa fa-check"></i><b>2.6.5</b> Some data accounting</a></li>
 <li class="chapter" data-level="2.6.6" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#z-scores"><i class="fa fa-check"></i><b>2.6.6</b> Z-scores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quantitative Variable and One Categorical Variable</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
-<li class="chapter" data-level="2.7.2" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
-<li class="chapter" data-level="2.7.3" data-path="one-quantitative-variable-and-one-categorical-variable.html"><a href="one-quantitative-variable-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
+<li class="chapter" data-level="2.7" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quant. and One Categorical Variable</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
+<li class="chapter" data-level="2.7.2" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quant-and-one-categorical-variable.html"><a href="one-quant-and-one-categorical-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
@@ -386,13 +386,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb148-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb148-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb148-4" data-line-number="4"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-127-1.png" width="672" /></p>
 <p>Is the presence of a fireplace related to area of living space?</p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">homes <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb149-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> AnyFireplace, <span class="dt">y =</span> Living.Area)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb149-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb149-4" data-line-number="4"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <p>We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, Living Area could confound the relationship between AnyFireplace and Price because it is related to both variables.</p>
 <p>Let’s put Living Area in the model along with AnyFireplace to account for it (to control/adjust for it).</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">lm.home2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace <span class="op">+</span><span class="st"> </span>Living.Area, <span class="dt">data =</span> homes)</a>
@@ -446,14 +446,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb154-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb154-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb154-4" data-line-number="4"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-168-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <p>Let’s try and fit two separate lines to these two groups of homes, home with any fireplaces and home with no fireplaces. Do these lines have the same intercepts? Same slopes?</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">homes <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb155-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb155-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb155-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb155-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 <p>In this case, it look as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, having a fireplace in your house, the increase in your price for every 1 square foot is greater than that for homes without fireplaces (slopes are different).</p>
 </div>
 <div id="interaction-variables" class="section level3">
@@ -573,7 +573,7 @@ The model above has an <strong>interaction term,</strong> which is the product o
 <a class="sourceLine" id="cb164-7" data-line-number="7"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area.AnyFireplaceTRUE)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb164-8" data-line-number="8"><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb164-9" data-line-number="9"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Bootstrap Difference in Slopes&#39;</span>)</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
 <p>This is called <strong>Bootstrapping</strong> and it is used to:</p>
 <ol style="list-style-type: decimal">
 <li>Measure the variability in the estimate (the estimate is the difference in slopes in this case) between random samples and</li>
@@ -642,7 +642,7 @@ y^{-1/3}\\
 <a class="sourceLine" id="cb171-4" data-line-number="4"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb171-5" data-line-number="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  gdpPercap)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb171-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
 <p>Based on this plot, we see that the spread is roughly equal around the curved relationship and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with x.</p>
 <p>Try these transformations until you find a relationship that is roughly straight. If you go too far, the relationship will become more curved.</p>
 <p>Let’s try going down the ladder.</p>
@@ -651,28 +651,28 @@ y^{-1/3}\\
 <a class="sourceLine" id="cb172-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">sqrt</span>(gdpPercap)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb172-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb172-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
 <p>Not quite straight. Let’s keep going.</p>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb173-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb173-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> gdpPercap<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb173-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb173-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
 <p>Not quite straight. Let’s keep going.</p>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb174-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb174-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb174-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb174-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
 <p>Getting better. Let’s try to keep going.</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb175-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb175-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="dv">-1</span><span class="op">/</span>gdpPercap) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb175-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb175-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
 <p>TOO FAR! Back up. Let’s stick with log(gdpPercap).</p>
 <p>Now we see some unequal spread so let’s also try transforming Y.</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -681,7 +681,7 @@ y^{-1/3}\\
 <a class="sourceLine" id="cb176-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TlifeExp =</span> lifeExp<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb176-5" data-line-number="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> TlifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb176-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <p>That doesn’t change it much. Maybe this is as good as we are going to get.</p>
 <p>Transformations can’t make relationships look exactly linear with equal spread, but sometimes we can make it closer to that ideal.</p>
 <p>Let’s try and fit a model with just these two variables.</p>
@@ -739,7 +739,7 @@ The additive increase in <span class="math inline">\(log(LifeExp)\)</span> is a 
 <a class="sourceLine" id="cb179-5" data-line-number="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb179-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb179-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_smooth</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(x, <span class="dt">degree =</span> <span class="dv">2</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>), <span class="dt">data =</span> dat)</a></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -755,7 +755,7 @@ The additive increase in <span class="math inline">\(log(LifeExp)\)</span> is a 
 <a class="sourceLine" id="cb182-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">gam</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x), <span class="dt">data =</span> dat))</a></code></pre></div>
 <pre><code>## Warning in model.matrix.default(mt, mf, contrasts): non-list contrasts
 ## argument ignored</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
 </div>
 </div>
             </section>

@@ -690,7 +690,7 @@ In summary, for a quantitative variable,
 
 
 
-## One Quant. and One Categorical Variable
+## One Quant. and One Cat. Variable
 
 Let's return to the NHANES data. We noticed variation in the amount people sleep. Why do some people sleep more than others? Are there any other characteristics that may be able to *explain that variation*?
 
@@ -859,9 +859,9 @@ Imagine that you are an entrepreneur selling button-down dress shirts. Clothing 
 When you have two quantitative variables, a **scatterplot** is the main appropriate graphical display of the relationship. Each point represents the neck and chest size of one customer.
 
 ```{r echo=TRUE}
-bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
+body <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
 
-bodyfat %>%
+body %>%
     ggplot(aes(x = Neck, y = Chest)) +
     geom_point(color = 'steelblue') + 
     xlab('Neck size (cm)') + 
@@ -887,7 +887,7 @@ Suppose instead of *Chest* in inches and *Neck size* in cm, we plotted *Chest* i
 Look at the plot in inches below. Does this plot look the same as the centimeters plot?
 
 ```{r}
-bodyfat %>%
+body %>%
   ggplot(aes(x = Neck/2.54, y = Chest/2.54)) +
   geom_point(color = 'steelblue') + 
   xlab('Neck size (in)') + 
@@ -904,10 +904,10 @@ Since **shifting** (adding or subtracting) and **scaling** (multiplying or divid
 Below we plot Neck and Chest sizes after changing them to z-scores with the function `scale()` and we add some color:
 
 ```{r echo=FALSE}
-bodyfat <- bodyfat %>%
+body <- body %>%
     mutate(zNeck = scale(Neck), zChest = scale(Chest), Product = factor(sign(zChest*zNeck)))
 
-bodyfat %>%
+body %>%
     ggplot(aes(x = zNeck, y = zChest, color = Product)) +
     geom_point() +
     geom_hline(yintercept = 0) +
@@ -963,14 +963,14 @@ Let's look at the correlation for the entire sample first. Then let's calculate 
 ## The scale() function adds attributes to the columns zNeck, zChest, and Product
 ## Makes it so that dplyr::filter doesn't work
 ## Reread the data
-bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
+body <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
 ```
 
 ```{r, echo=TRUE}
-bodyfat %>%
+body %>%
   summarize(cor(Neck, Chest)) # All data points used in calculation
  
-bodyfat %>%
+body %>%
     filter(Neck > 35 & Neck < 40) %>% # Keep individuals with Neck size between 35cm and 40cm
       summarize(cor(Neck, Chest)) # Only middle subset of data points used in calculation
 ```

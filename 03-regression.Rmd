@@ -15,25 +15,25 @@ knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE)
 
 In our visualization of data, we've seen trends, patterns, and variation. Let's now endeavor to describe those trends, patterns, and variation more *precisely* and *quantitatively* by building statistical *models*.
 
-## Goals for models
+## Modeling Goals
 
 Broadly, a model is a simplified representation of the world. When we build models, we may have different goals.
 
-One goal when building models is prediction. Given data on a **response or outcome variable** $y$ and one or more **predictor or explanatory variables** $x$, the goal is to find a function, $f$ that will model and predict $y$ from $x$. This $x$ may be a single variable, but is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. 
-
-What are the qualities of a good function $f$? We want to find an $f(x)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ to be close to the observed response. We want $y-\hat{y}$ to be small. This difference $y-\hat{y}$ is called a **residual**. We'll discuss residuals more later.
+One goal when building models is **prediction**. Given data on a **response or outcome variable**, $y$, and one or more **predictor or explanatory variables**, $x$, the goal is to find a mathematical function, $f$, of $x$ that gives good predictions of $y$.  For example, we might want to be able to predict a customer's chest size knowing their neck size. This $x$ may be a single variable, but it is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. 
 
 ```{block, type="reflect"}
-Can you think of some concrete examples in which we'd want a model to do prediction?
+Can you think of some other concrete examples in which we'd want a model to do prediction? Consider what predictions might be made about you every day...
 ```
 
-Another goal when building models is description. We want a model, $f(x)$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. George Box is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
+What are the qualities of a good model and function, $f$? We want to find an $f(x)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ to be close to the observed response. We want $y-\hat{y}$ to be small. This difference between the observed value and the prediction, $y-\hat{y}$, is called a **residual**. We'll discuss residuals more later.
+
+Another goal when building models is **description**. We want a model, $f(x)$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. [George Box](https://en.wikipedia.org/wiki/George_E._P._Box) is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
 
 ```{block, type="reflect"}
-Can you think of some concrete examples in which we'd want a model to do explain a phenomenon?
+Can you think of some concrete examples in which we'd want a model to do explain a phenomenon? Consider how policy decisions get made...
 ```
 
-To begin, we will consider a simple, but powerful model in which we limit this function $f$ to be a straight line with a y-intercept, $b_0$, and slope, $b_1$.
+To begin, we will consider a simple, but powerful model in which we limit this function, $f(x)$, to be a straight line with a y-intercept, $b_0$, and slope, $b_1$.
 
 $$\hat{y} = f(x) = b_0 + b_1x$$
 
@@ -46,18 +46,18 @@ $$y = mx + b$$
 
 where $m$ is the slope and $b$ is the y-intercept. We will be using different notation so that it can generalize to multiple linear regression. 
 
-The y-intercept is the value when $x=0$ and the slope is change in y for each addition value of x (rise/run). 
+The y-intercept is the value when $x=0$ and the slope is change in $y$ for each 1 unit increase of $x$ ("rise over run"). 
 ```
 
 
 ## Lines
 
-Let's return to the thought experiment in which you were a manufacturer of dress shirts.
+Let's return to the thought experiment in which you were a manufacturer of button-down dress shirts.
 
 ```{r echo=TRUE}
-bodyfat <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
+body <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
 
-bodyfat %>%
+body %>%
     ggplot(aes(x = Neck, y = Chest)) +
     geom_point(color = 'steelblue') + 
     xlab('Neck size (cm)') + 
@@ -72,11 +72,11 @@ If you were to add one or multiple lines to the plot above to help you make busi
 Let's say you were only going to make one size of shirt. You might want to add a horizontal line at the mean Chest size and a vertical line at the mean Neck size. 
 
 ```{r echo=TRUE}
-bodyfat %>%
+body %>%
     ggplot(aes(x = Neck, y = Chest)) +
     geom_point(color = 'steelblue') + 
-    geom_hline(yintercept = mean(bodyfat$Chest)) +
-    geom_vline(xintercept = mean(bodyfat$Neck)) +
+    geom_hline(yintercept = mean(body$Chest)) +
+    geom_vline(xintercept = mean(body$Neck)) +
     xlab('Neck size (cm)') + 
     ylab('Chest size (cm)') +
     theme_minimal()
@@ -87,7 +87,7 @@ We can see that a shirt made to these specifications would fit the "average pers
 Let's try something else. Let's allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the Neck sizes variable into 5 groups of equal length and estimate the mean Chest sizes within each of these groups. 
 
 ```{r echo=FALSE}
-bfmeans <- bodyfat %>%
+bfmeans <- body %>%
   mutate(NeckGroups = cut(Neck, 5)) %>%
   group_by(NeckGroups) %>%
   summarize(Means = mean(Chest))
@@ -96,7 +96,7 @@ labs <- levels(bfmeans$NeckGroups)
 bfmeans <- cbind(bfmeans, lower = as.numeric( sub("\\((.+),.*", "\\1", labs) ),
       upper = as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", labs) ))
 
-bodyfat %>%
+body %>%
   ggplot(aes(x = Neck, y = Chest)) +
   geom_point(color = 'steelblue') + 
   geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
@@ -111,12 +111,42 @@ bodyfat %>%
 What do these lines tell us for our business venture?
 ```
 
-What if we wanted to be able to make more sizes? Could we get a pretty good sense of what the chest sizes should be for a given neck size?
-
-Could we find one line to describe the relationship between Neck size and Chest size?
+What if we wanted to be able to make more sizes? Could we get a pretty good sense of what the chest sizes should be for a given neck size? Let's try allowing for 8 different sizes. 
 
 ```{r echo=FALSE}
-bodyfat %>%
+bfmeans <- body %>%
+  mutate(NeckGroups = cut(Neck, 8)) %>%
+  group_by(NeckGroups) %>%
+  summarize(Means = mean(Chest))
+
+labs <- levels(bfmeans$NeckGroups)
+bfmeans <- cbind(bfmeans, lower = as.numeric( sub("\\((.+),.*", "\\1", labs) ),
+      upper = as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", labs) ))
+
+body %>%
+  ggplot(aes(x = Neck, y = Chest)) +
+  geom_point(color = 'steelblue') + 
+  geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
+  geom_vline(aes(xintercept = upper), data = bfmeans) +
+  geom_vline(aes(xintercept = lower), data = bfmeans) +
+  xlab('Neck size (cm)') + 
+  ylab('Chest size (cm)') +
+  theme_minimal()
+```
+
+```{block, type="reflect"}
+What are the pros and cons of having a larger number of sizes?
+```
+
+```{block, type="reflect"}
+Stop and think about the data collection process. If you were measuring your own neck size, how precise do you think you could get? What factors might impact that precision?
+```
+
+
+We notice that there is a generally linear relationship between neck and chest size. Perhaps we find one line to describe the relationship between Neck size and Chest size and use that to decide on sizes later?
+
+```{r echo=FALSE}
+body %>%
   ggplot(aes(x = Neck, y = Chest)) +
   geom_point(color = 'steelblue') + 
   geom_smooth(method = 'lm', se = FALSE) +
@@ -134,47 +164,51 @@ What does line tell us for our business venture?
 
 If the scatterplot between two quantitative variables **resembles a straight line**,
 
-- a straight line could roughly **describe** the mean of y for each value of x.
-- a straight line could **describe** how much we'd *expect* y to change based on a 1 unit change in x.
-- a straight line could help us **predict** the y based on a new value of x.
+- a straight line could roughly **describe** the mean of $y$ for each value of $x$.
+- a straight line could **describe** how much we'd *expect* $y$ to change based on a 1 unit change in $x$.
+- a straight line could help us **predict** the $y$ based on a new value of $x$.
 
 
-## Choosing the best fitting line
+## "Best" fitting line
 
-To choose the best fitting line, we need to choose the right intercept ($b_0$) and slope ($b_1$),
+To choose the "best" fitting line, we need to choose the intercept ($b_0$) and slope ($b_1$),
 
 $$ \hat{y} = f(x) = b_0 + b_1x $$
 
-We have $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$. 
+that gives us the "best" fit to the $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$. 
+
+```{block, type='reflect'}
+What do we mean by "best"? In general, we'd like good predictions and a model that describes the average relationship. But we need to be more precise about what we mean by "best". 
+```
 
 ### First idea
 
-Minimize the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( b_0 + b_1x_i)$. The residual is the prediction error, the difference between what you observe and what you predict based on the line.
+One idea of "best" is that we want the line that minimizes the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( b_0 + b_1x_i)$. The residual is the error in our prediction, the difference between what you observe and what you predict based on the line.
 
-- Problem: We will have positive and negative residuals; they will cancel each other out if we add them together. This won't give us what we want.
+- **Problem**: We will have positive and negative residuals; they will cancel each other out if we add them together. While a good idea, this definition of "best" won't give us what we want. We'll want an idea that deals with the negative signs. 
 
 
 ### Second idea
 
-Minimize the sum of the absolute value of the residuals, $\sum_{i=1}^n |y_i - \hat{y}_i| = \sum_{i=1}^n |e_i|$.
+Another idea of "best" is that we want the line that minimizes the sum of the absolute value of the residuals, $\sum_{i=1}^n |y_i - \hat{y}_i| = \sum_{i=1}^n |e_i|$.
 
-- Problem: This is referred to as **Least Absolute Deviations**, but there isn't always one unique line that satisfies this. So, this won't give us what we want.
+- **Problem**: This definition of "best" results in a procedure referred to as **Least Absolute Deviations**, but there isn't always one unique line that satisfies this. So, while this is a valid definition of "best," this isn't stable as there isn't always one "best" line. 
 
 ### Third idea
 
-Minimize the sum of squared residuals, $\sum_{i=1}^n (y_i - \hat{y}_i)^2= \sum_{i=1}^n e_i^2$.
+Lastly, another idea of "best" is that we want the line that minimizes the sum of squared residuals, $\sum_{i=1}^n (y_i - \hat{y}_i)^2= \sum_{i=1}^n e_i^2$.
 
-- This is referred to as **Least Squares** and has a unique solution. Yeah!!!
+- This is referred to as **Least Squares** and has a unique solution. We'll will focus on this definition of "best" in this class. It also has some really nice mathematical properties and [connections to linear algebra](https://medium.com/@andrew.chamberlain/the-linear-algebra-view-of-least-squares-regression-f67044b7f39b). 
 
 ## Least Squares
 
-Let's try to find the **minimum of the Sum of Squared Residuals** by searching over a grid of values for (intercept, slope).
+Let's try to find the line that **minimizes the Sum of Squared Residuals** by searching over a grid of values for (intercept, slope).
 
-Below is a visual of the sum of squared residuals for a variety of values on a grid. The surface height is sum of squared residuals for each combination of slope and intercept.
+Below is a visual of the sum of squared residuals for a variety of values of the intercept and slope. The surface height is sum of squared residuals for each combination of slope and intercept.
 
 ```{r echo=FALSE}
 f <- function(b){
-  sum((bodyfat$Chest - (b[1] + b[2] * bodyfat$Neck))^2)
+  sum((body$Chest - (b[1] + b[2] * body$Neck))^2)
 } 
 b0 = seq(-20,20,by=.5)
 b1 = seq(-10,20,by=1)
@@ -214,7 +248,7 @@ b[ss == min(ss),]
 We have the minimum point. Over the grid of pairs of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
 
 ```{block, type="math"}
-(Optional) Alternative ways to find the minimum sum of squared residuals
+(Optional) Alternative ways (faster than exhaustive search) to find the minimum sum of squared residuals
 
 - We could try a numerical optimization algorithm such as steepest descent.
 - We could use multivariable calculus (find partial derivatives, set equal to 0, and solve).
@@ -224,10 +258,10 @@ To get started on the calculus, solve the following two equations for the two un
 $$\frac{\partial }{\partial b_0}\sum_{i=1}^n (y_i - (b_0 + b_1x_i))^2 = 0$$
 $$\frac{\partial }{\partial b_1}\sum_{i=1}^n (y_i - (b_0 + b_1x_i))^2 = 0$$
 
-If you are a math/physics/cs major, you should try this by hand and see if you can get the solutions below. 
+If you are a math/stat/physics/cs major, you should try this by hand and see if you can get the solutions below. 
 ```
 
-If you find the minimum via calculus, you'll find that we can write the Least Squares solution in an equation format as functions of summary statistics (!), the estimated slope is
+If you find the minimum using calculus (super useful class!), you'll find that we can write the Least Squares solution in an equation format as functions of summary statistics (!), the estimated slope is
 
 $$ b_1  = r\frac{s_y}{s_x}$$
 
@@ -240,61 +274,70 @@ where $\bar{x}$ is the mean of the variable on the x-axis, $\bar{y}$ is the mean
 Let's do that calculation "by hand" first in R.
 
 ```{r echo=TRUE}
-sy = sd(bodyfat$Chest)
-sx = sd(bodyfat$Neck)
-r = cor(bodyfat$Chest,bodyfat$Neck)
-ybar = mean(bodyfat$Chest)
-xbar = mean(bodyfat$Neck)
-
-(b1 = r*sy/sx)
-(b0 = ybar - b1*xbar)
+body %>%
+  summarize(sy = sd(Chest), sx = sd(Neck), r = cor(Chest,Neck), ybar = mean(Chest), xbar = mean(Neck)) %>%
+  mutate(b1 = r*sy/sx, b0 = ybar - b1*xbar) %>%
+  select(b0, b1)
 ```
 
-From now on, we'll use the `lm()` function which stands for linear model. This gives us the Least Squares solution to the "best fitting line".
+Wow. That was quite a bit of coding. From now on, we'll take the shortcut and use the `lm()` function which stands for **l**inear **m**odel. This function gives us the Least Squares solution to the "best" fitting line, as defined by minimizing the sum of squared residuals.
 
 ```{r echo=TRUE}
-lm(Chest ~ Neck, data = bodyfat) # When you see ~, think 'as a function of'
+lm(Chest ~ Neck, data = body) # When you see ~, think 'as a function of'
 ```
 
 
 ## Properties of Least Squares Line
 
-- $(\bar{x},\bar{y})$ is on the line. 
+- $(\bar{x},\bar{y})$ is ALWAYS on the least squares line. 
 
-- Least squares residuals sum to 0.
+- The residuals from the least squares line ALWAYS sum to 0.
 
-- The standard deviation of the residuals gives us a sense of how bad our predictions (based on the line) could be. 
+- The mean of the residuals from the least squares line is ALWAYS 0.
 
-$$s_e = \sqrt{\frac{\sum^n_{i=1} (y_i-\hat{y}_i)^2}{n-2}}  = \sqrt{\frac{\sum^n_{i=1} e_i^2}{n-2}} $$
+- The **standard deviation of the residuals** gives us a sense of how bad our predictions (based on the line) could be. 
 
-In R: $s_e$ is called the "residual standard error".
+$$s_e = \sqrt{\frac{\sum^n_{i=1} (y_i-\hat{y}_i)^2}{n-2}}  = \sqrt{\frac{\sum^n_{i=1} (e_i-0)^2}{n-2}} $$
+
+In R: the standard deviation of the residuals, $s_e$, is referred to as the "residual standard error". Don't confuse this with "Std. Error," that is something else that we'll get to. 
 
 ```{r echo=TRUE}
-lm.fit = lm(Chest ~ Neck, data = bodyfat)
-summary(lm.fit)
-tidy(lm.fit)
+body %>%
+  lm(Chest ~ Neck, data = .) %>% #If you don't want the pipe to pass to the first argument, you can specify the argument with .
+  summary()
 ```
 
 This simple linear regression line is
 
 $$\widehat{Chest} = -3.18 + 2.73*Neck$$
 
-Given your neck size, we can predict your chest size within 5 to 10 inches since $s_e = 5.22$. 
+If you have a neck size of 38 cm, then we predict the chest size of an ideal shirt is about 100.5 cm (~ -3.18 + 2.73*38) 
+
+```{r}
+-3.18 + 2.73*38 #the intercept and slope are rounded here first (not great)
+
+body %>%
+  lm(Chest ~ Neck, data = .) %>% 
+  predict(newdata = data.frame(Neck = 38)) #the intercept and slope are not rounded before prediction (better!)
+```
+
+
+Given your neck size, we can probably predict your chest size within 5 to 10 cm since $s_e = 5.22$ (1 to 2 SD's -- remember our discussion of z-scores). 
 
 ```{block, type="reflect"}
-If you were a shirt manufacturer, what would you do with this information?
+If you were a shirt manufacturer, is this a good enough prediction? What is the impact on the customer? Think of if the prediction were an overestimate (loose) or an underestimate (too tight).
 ```
 
 ### Real companies
 
-Let's see how some real companies create shirts. In the plots below, the red boxes represent the advertised range for Neck and Chest sizes for each brand.
+Let's see how some real companies create shirts. In the plots below, the red boxes represent the advertised range (in cm) for Neck and Chest sizes for each brand.
 
 ![](Photos/stylish-dress-shirt-size-size-chart-.jpg)
 
 
 ```{r echo=FALSE}
-with(bodyfat,plot(Chest~Neck,main='Calvin Klein'))
-abline(with(bodyfat,lm(Chest~Neck)))
+with(body,plot(Chest~Neck,main='Calvin Klein'))
+abline(with(body,lm(Chest~Neck)))
 rect(14*2.54,36*2.54,14.5*2.54,37*2.54,col='red')
 rect(15*2.54,38*2.54,15.5*2.54,39*2.54,col='red')
 rect(16*2.54,40*2.54,16.5*2.54,41*2.54,col='red')
@@ -305,8 +348,8 @@ For Calvin Klein, we see that the red boxes are below the least squares line (bl
 
 
 ```{r echo=FALSE}
-with(bodyfat,plot(Chest~Neck,main = 'Express'))
-abline(with(bodyfat,lm(Chest~Neck)))
+with(body,plot(Chest~Neck,main = 'Express'))
+abline(with(body,lm(Chest~Neck)))
 rect(13*2.54,33*2.54,13.5*2.54,33.5*2.54,col='red')
 rect(14*2.54,36.5*2.54,14.5*2.54,38.5*2.54,col='red')
 rect(15*2.54,39*2.54,15.5*2.54,41.5*2.54,col='red')
@@ -319,8 +362,8 @@ For Express, we see that the red boxes are generally on the least squares line, 
 
 
 ```{r echo=FALSE}
-with(bodyfat,plot(Chest~Neck,main='Brooks Brothers'))
-abline(with(bodyfat,lm(Chest~Neck)))
+with(body,plot(Chest~Neck,main='Brooks Brothers'))
+abline(with(body,lm(Chest~Neck)))
 rect(13*2.54,32*2.54,13.5*2.54,34*2.54,col='red')
 rect(14*2.54,34*2.54,14.5*2.54,36*2.54,col='red')
 rect(15*2.54,38*2.54,15.5*2.54,40*2.54,col='red')
@@ -328,10 +371,10 @@ rect(16*2.54,42*2.54,16.5*2.54,44*2.54,col='red')
 rect(17*2.54,46*2.54,17.5*2.54,48*2.54,col='red')
 ```
 
-For Brooks Brothers, the red boxes are a bit below the least squares line for the 3 smallest sizes and a little above the line for the largest size. This means that the 3 smallest sizes are a bit too small at the chest for those neck size and that the largest shirt is a bit big at the chest for that neck size.
+For Brooks Brothers, the red boxes are a bit below the least squares line for the 3 smallest sizes and a little above the line for the largest size. This means that the 3 smallest sizes are a bit too small in the chest for our customers (in our data set) with those neck sizes and that the largest shirt is a bit big at the chest for that neck size.
 
 ```{block, type="reflect"}
-We haven't told you how the sample data we've been using was collected. As you compared the brands to this sample data, what assumptions were you making about the population that the sample was drawn from? What questions do you have about the sample data?
+We haven't told you how the customer data we've been using was collected. As you compared the brands to this sample data, what assumptions were you making about the population that the sample was drawn from? What questions do you have about the sample data?
 ```
 
 ## Interpretation

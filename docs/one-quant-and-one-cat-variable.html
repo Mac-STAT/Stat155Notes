@@ -209,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.3" data-path="evaluation.html"><a href="evaluation.html#r2"><i class="fa fa-check"></i><b>3.7.3</b> <span class="math inline">\(R^2\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.8" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i><b>3.8</b> Diagnostics</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-issues"><i class="fa fa-check"></i><b>3.8.1</b> Solutions to Issues</a></li>
+<li class="chapter" data-level="3.8.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-regression-issues"><i class="fa fa-check"></i><b>3.8.1</b> Solutions to Regression Issues</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>3.9</b> Multiple Linear Regression</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#indicator-variables"><i class="fa fa-check"></i><b>3.9.1</b> Indicator Variables</a></li>
@@ -333,7 +333,7 @@ What might be the <em>causal mechanism</em> between gender identity and sleep? M
 <a class="sourceLine" id="cb58-5" data-line-number="5"><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>Gender) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb58-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 Do you notice any differences in sleep hour distributions between males and females?
@@ -357,7 +357,7 @@ Who have we excluded from our analysis by asking this question?
 <a class="sourceLine" id="cb60-7" data-line-number="7"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb60-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <pre><code>## Warning: Removed 8 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-64-1.png" width="960" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-65-1.png" width="960" /></p>
 <p>The 0 to 12 labels at the top of each of these panels correspond to the number of babies a woman had.</p>
 <div class="reflect">
 <p>
@@ -375,7 +375,7 @@ Note the x and y axes are the same for all of the groups to facilitate compariso
 <a class="sourceLine" id="cb62-5" data-line-number="5"><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>Depressed) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb62-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 <p>What’s the rightmost “NA” category? Some individuals in this study did not answer questions about days that they might have felt depressed, but they did report their hours of sleep per night.</p>
 <div class="reflect">
 <p>
@@ -393,7 +393,7 @@ What type of biases might be at play here?
 <a class="sourceLine" id="cb64-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Binary Gender&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb64-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(nBabies), <span class="dt">y =</span> SleepHrsNight)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
@@ -401,7 +401,7 @@ What type of biases might be at play here?
 <a class="sourceLine" id="cb66-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Number of Babies&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb66-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb68-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Depressed), <span class="dt">y =</span> SleepHrsNight)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb68-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
@@ -409,7 +409,7 @@ What type of biases might be at play here?
 <a class="sourceLine" id="cb68-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Days Depressed&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb68-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_boxplot).</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What is easy to compare and what is hard to compare between the boxplots?
@@ -446,7 +446,7 @@ Why might you use multiple boxplots instead of multiple histograms?
 <a class="sourceLine" id="cb71-6" data-line-number="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb71-7" data-line-number="7"><span class="st">  </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 The observed difference in mean hours of sleep (red line) is quite far from the distribution of differences that results when we break the association between depression status and sleep hours (through randomized shuffling of group labels). Thus, it is unlikely to get a difference that large if there were no relationhip.

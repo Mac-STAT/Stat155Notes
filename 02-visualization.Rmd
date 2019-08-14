@@ -859,7 +859,7 @@ Imagine that you are an entrepreneur selling button-down dress shirts. Clothing 
 When you have two quantitative variables, a **scatterplot** is the main appropriate graphical display of the relationship. Each point represents the neck and chest size of one customer.
 
 ```{r echo=TRUE}
-body <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
+body <- read.delim("Data/bodyfat.txt")
 
 body %>%
     ggplot(aes(x = Neck, y = Chest)) +
@@ -963,7 +963,7 @@ Let's look at the correlation for the entire sample first. Then let's calculate 
 ## The scale() function adds attributes to the columns zNeck, zChest, and Product
 ## Makes it so that dplyr::filter doesn't work
 ## Reread the data
-body <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt")
+body <- read.delim("Data/bodyfat.txt")
 ```
 
 ```{r, echo=TRUE}

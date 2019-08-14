@@ -209,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.3" data-path="evaluation.html"><a href="evaluation.html#r2"><i class="fa fa-check"></i><b>3.7.3</b> <span class="math inline">\(R^2\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.8" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i><b>3.8</b> Diagnostics</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-issues"><i class="fa fa-check"></i><b>3.8.1</b> Solutions to Issues</a></li>
+<li class="chapter" data-level="3.8.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-regression-issues"><i class="fa fa-check"></i><b>3.8.1</b> Solutions to Regression Issues</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>3.9</b> Multiple Linear Regression</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#indicator-variables"><i class="fa fa-check"></i><b>3.9.1</b> Indicator Variables</a></li>
@@ -314,22 +314,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.2</span> Randomization into Groups</h2>
 <p>We have been thinking about arrival delays in general. Let’s move now to comparing arrival delays between groups. If you were planning a trip, you may be able to choose between two flights that leave at different times of day. Do morning flights have shorter arrival delays on average than afternoon flights? If so, book the early flight!</p>
 <p>Let’s look at the data! We use a random sample of 500 flights from the population to investigate this question.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">flights_samp500 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb217-2" data-line-number="2"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">500</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">flights_samp500 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb215-2" data-line-number="2"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">500</span>) </a></code></pre></div>
 <p>Let’s summarize and visualize the relationship between hour of the day (morning or afternoon) and the arrival delay.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">flights_samp500 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb218-2" data-line-number="2"><span class="st">    </span><span class="kw">group_by</span>(day_hour) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb218-3" data-line-number="3"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">median =</span> <span class="kw">median</span>(arr_delay), <span class="dt">mean =</span> <span class="kw">mean</span>(arr_delay))</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">flights_samp500 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb216-2" data-line-number="2"><span class="st">    </span><span class="kw">group_by</span>(day_hour) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb216-3" data-line-number="3"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">median =</span> <span class="kw">median</span>(arr_delay), <span class="dt">mean =</span> <span class="kw">mean</span>(arr_delay))</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   day_hour  median  mean
 ##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
 ## 1 afternoon     -1 12.6 
 ## 2 morning       -7 -2.39</code></pre>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">flights_samp500 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb220-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hour, <span class="dt">y =</span> arr_delay)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb220-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb220-4" data-line-number="4"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">flights_samp500 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb218-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hour, <span class="dt">y =</span> arr_delay)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb218-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb218-4" data-line-number="4"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 Based solely on the visual and numerical summary, are arrival delays shorter in the morning than in the afternoon?
@@ -346,24 +346,24 @@ Based solely on the visual and numerical summary, are arrival delays shorter in 
 <p>Our <strong>null hypothesis</strong> (a hypothesis that is conservative) is that there is no relationship between time of day and the arrival delay.</p>
 <p><strong>2. Generate</strong></p>
 <p>We can generate 1000 new data sets based on randomly reshuffling the labels of <code>day_hour</code>. For each of these data sets, we calculate the difference in mean arrival delay between morning and afternoon groups.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1"><span class="kw">require</span>(infer)</a>
-<a class="sourceLine" id="cb221-2" data-line-number="2">null_dist &lt;-<span class="st">  </span>flights_samp500 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb221-3" data-line-number="3"><span class="st">    </span><span class="kw">specify</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb221-4" data-line-number="4"><span class="st">    </span><span class="kw">hypothesize</span>(<span class="dt">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Hypothesize</span></a>
-<a class="sourceLine" id="cb221-5" data-line-number="5"><span class="st">    </span><span class="kw">generate</span>(<span class="dt">reps =</span> <span class="dv">1000</span>, <span class="dt">type =</span> <span class="st">&quot;permute&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate permutations</span></a>
-<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="st">    </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;diff in means&quot;</span>, <span class="dt">order =</span> <span class="kw">c</span>(<span class="st">&quot;morning&quot;</span>, <span class="st">&quot;afternoon&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1"><span class="kw">require</span>(infer)</a>
+<a class="sourceLine" id="cb219-2" data-line-number="2">null_dist &lt;-<span class="st">  </span>flights_samp500 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb219-3" data-line-number="3"><span class="st">    </span><span class="kw">specify</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb219-4" data-line-number="4"><span class="st">    </span><span class="kw">hypothesize</span>(<span class="dt">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Hypothesize</span></a>
+<a class="sourceLine" id="cb219-5" data-line-number="5"><span class="st">    </span><span class="kw">generate</span>(<span class="dt">reps =</span> <span class="dv">1000</span>, <span class="dt">type =</span> <span class="st">&quot;permute&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate permutations</span></a>
+<a class="sourceLine" id="cb219-6" data-line-number="6"><span class="st">    </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;diff in means&quot;</span>, <span class="dt">order =</span> <span class="kw">c</span>(<span class="st">&quot;morning&quot;</span>, <span class="st">&quot;afternoon&quot;</span>))</a></code></pre></div>
 <p><strong>3. Visualize</strong></p>
 <p>The histogram below shows the histogram of differences in means if the null hypothesis were true. The vertical line shows the observed difference in means.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">obs &lt;-<span class="st"> </span>flights_samp500 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb222-2" data-line-number="2"><span class="st">    </span><span class="kw">specify</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb222-3" data-line-number="3"><span class="st">    </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;diff in means&quot;</span>, <span class="dt">order =</span> <span class="kw">c</span>(<span class="st">&quot;morning&quot;</span>, <span class="st">&quot;afternoon&quot;</span>))</a>
-<a class="sourceLine" id="cb222-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb222-5" data-line-number="5">null_dist <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb222-6" data-line-number="6"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stat)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb222-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb222-8" data-line-number="8"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">xintercept =</span> stat), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb222-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1">obs &lt;-<span class="st"> </span>flights_samp500 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb220-2" data-line-number="2"><span class="st">    </span><span class="kw">specify</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb220-3" data-line-number="3"><span class="st">    </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;diff in means&quot;</span>, <span class="dt">order =</span> <span class="kw">c</span>(<span class="st">&quot;morning&quot;</span>, <span class="st">&quot;afternoon&quot;</span>))</a>
+<a class="sourceLine" id="cb220-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb220-5" data-line-number="5">null_dist <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb220-6" data-line-number="6"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stat)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb220-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb220-8" data-line-number="8"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">xintercept =</span> stat), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb220-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 Do you think that the mean arrival delay is different for morning and afternoon? Is the observed difference in means likely to have occurred if there were no relationship?

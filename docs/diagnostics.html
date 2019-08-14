@@ -209,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.3" data-path="evaluation.html"><a href="evaluation.html#r2"><i class="fa fa-check"></i><b>3.7.3</b> <span class="math inline">\(R^2\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.8" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i><b>3.8</b> Diagnostics</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-issues"><i class="fa fa-check"></i><b>3.8.1</b> Solutions to Issues</a></li>
+<li class="chapter" data-level="3.8.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-regression-issues"><i class="fa fa-check"></i><b>3.8.1</b> Solutions to Regression Issues</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>3.9</b> Multiple Linear Regression</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#indicator-variables"><i class="fa fa-check"></i><b>3.9.1</b> Indicator Variables</a></li>
@@ -312,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="diagnostics" class="section level2">
 <h2><span class="header-section-number">3.8</span> Diagnostics</h2>
-<p>Residuals are what’s left over from a linear fit. We can actually learn a lot by studying what is left over, what is left unexplained by the model. INSERT SCATOLOGY JOKE.</p>
+<p>Residuals are what’s left over from a model. We can actually learn a lot by studying what is left over, what is left unexplained by the model. INSERT SCATOLOGY JOKE.</p>
 <p>What do we need for a simple linear model to make sense?</p>
 <ul>
 <li><p>Variables are both <strong>Quantitative</strong></p></li>
@@ -320,26 +320,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>There are no extreme <strong>Outliers</strong></p></li>
 <li><p>Spread is roughly same throughout – <strong>No Thickening</strong></p></li>
 </ul>
-<p>To check these, we look at the original scatterplot and a plot of <em>residuals</em> vs. <em>fitted or predicted values</em>,</p>
+<p>To check these, we look at the original scatterplot as well as a plot of the <em>residuals</em> against <em>fitted or predicted values</em>,</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">augment</span>(lm.gpa, <span class="dt">data =</span> sat) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb142-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb142-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Fitted values (predicted values)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb142-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
+<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb142-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Fitted values (predicted values)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb142-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
 <p>What do you think?</p>
 <ul>
-<li>Is there any pattern? (Is the original scatterplot straight enough?)</li>
-<li>Is there equal spread across prediction values?</li>
+<li>Is there any pattern in the residuals? (Is the original scatterplot straight enough?)</li>
+<li>Is there equal spread in residuals across prediction values?</li>
 </ul>
-<p>We want to avoid extreme outliers because points that are both far from the mean of x and do not fit the overall relationship have <strong>leverage</strong> to change the line.</p>
+<p>Studying the residuals can highlight subtle non-linear patterns and thickening in the original scatterplot. Think of it as a magnifying glass that helps you see these patterns.</p>
+<p>Additionally, we want to avoid extreme outliers because points that are both far from the mean of <span class="math inline">\(x\)</span> and do not fit the overall relationship have <strong>leverage</strong> or the ability to change the line.</p>
 <p>See the example below. See how the relationship changes with the addition of one point, one extreme outlier.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-141-1.png" width="672" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-141-2.png" width="672" /></p>
-<p>Check out this interactive visualization to get a feel for leverage: <a href="http://omaymas.github.io/InfluenceAnalysis/" class="uri">http://omaymas.github.io/InfluenceAnalysis/</a></p>
-<div id="solutions-to-issues" class="section level3">
-<h3><span class="header-section-number">3.8.1</span> Solutions to Issues</h3>
-<p>If the observed data don’t satisfy the conditions above, what can we do? Should we give up using a statistical model? No!</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-142-1.png" width="672" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-142-2.png" width="672" /></p>
+<p>Check out this interactive visualization to get a feel for outlier points and their potential leverage: <a href="http://omaymas.github.io/InfluenceAnalysis/" class="uri">http://omaymas.github.io/InfluenceAnalysis/</a></p>
+<div id="solutions-to-regression-issues" class="section level3">
+<h3><span class="header-section-number">3.8.1</span> Solutions to Regression Issues</h3>
+<p>If the observed data do not satisfy the conditions above, what can we do? Should we give up using a statistical model? No!</p>
 <ul>
 <li>Problem: Both variables are NOT <strong>Quantitative</strong>
 <ul>
@@ -351,14 +353,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If the plot does not thicken, we can add higher degree (e.g. <span class="math inline">\(x^2, x^3, x^4\)</span>, etc.) terms to the model (<strong>multiple linear regression</strong> - coming up).</li>
 <li>If the plot does thicken, see solutions below.</li>
 </ul></li>
-<li>Problem: Spread is NOT the same throughout
+<li>Problem: <strong>Spread</strong> is NOT the same throughout
 <ul>
-<li>You may be able to transform the y-variable using mathematical functions (<span class="math inline">\(log(y)\)</span>, <span class="math inline">\(y^2\)</span>, etc.) to make the spread more consistent (one approach is to use <strong>Box-Cox Transformation</strong> – take more statistics classes to learn more)</li>
-<li>Be careful in interpreting the standard deviation of the residuals. (For example, if you take a log transformation of the outcome, the units of the standard deviation of the residuals will be on the log scale.)</li>
+<li>You may be able to transform the y-variable using mathematical functions (<span class="math inline">\(log(y)\)</span>, <span class="math inline">\(y^2\)</span>, etc.) to make the spread more consistent (one approach is to use <a href="https://en.wikipedia.org/wiki/Power_transform#Box%E2%80%93Cox_transformation"><strong>Box-Cox Transformation</strong></a> – take more statistics classes to learn more)</li>
+<li>Be careful in interpreting the standard deviation of the residuals; be aware of the units. (For example, if you take a log transformation of the outcome, the units of the standard deviation of the residuals will be on the log scale.)</li>
 </ul></li>
 <li>Problem: You have <strong>extreme outliers</strong>
 <ul>
-<li>Look into the outliers. Determine if they could be due to human error. Think carefully about them, dig deep.</li>
+<li>Look into the outliers. Determine if they could be due to human error or explain their unusual nature using the context. Think carefully about them, dig deep.</li>
 <li>Do a <strong>sensitivity analysis</strong>: Fit a model with and without the outlier and see if your conclusions drastically change (see if those points had leverage to change the model).</li>
 </ul></li>
 </ul>

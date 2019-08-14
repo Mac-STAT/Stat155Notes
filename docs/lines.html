@@ -209,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.3" data-path="evaluation.html"><a href="evaluation.html#r2"><i class="fa fa-check"></i><b>3.7.3</b> <span class="math inline">\(R^2\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="3.8" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i><b>3.8</b> Diagnostics</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-issues"><i class="fa fa-check"></i><b>3.8.1</b> Solutions to Issues</a></li>
+<li class="chapter" data-level="3.8.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-regression-issues"><i class="fa fa-check"></i><b>3.8.1</b> Solutions to Regression Issues</a></li>
 </ul></li>
 <li class="chapter" data-level="3.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>3.9</b> Multiple Linear Regression</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#indicator-variables"><i class="fa fa-check"></i><b>3.9.1</b> Indicator Variables</a></li>
@@ -313,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="lines" class="section level2">
 <h2><span class="header-section-number">3.2</span> Lines</h2>
 <p>Let’s return to the thought experiment in which you were a manufacturer of button-down dress shirts.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">body &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/bodyfat.txt&quot;</span>)</a>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">body &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;Data/bodyfat.txt&quot;</span>)</a>
 <a class="sourceLine" id="cb89-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb89-3" data-line-number="3">body <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb89-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck, <span class="dt">y =</span> Chest)) <span class="op">+</span></a>
@@ -321,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb89-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb89-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb89-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-97-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-98-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 If you were to add one or multiple lines to the plot above to help you make business decisions, where would you want it (or them)?
@@ -336,17 +336,17 @@ If you were to add one or multiple lines to the plot above to help you make busi
 <a class="sourceLine" id="cb90-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb90-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb90-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-99-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
 <p>We can see that a shirt made to these specifications would fit the “average person.” However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger than average. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller than average.</p>
 <p>Let’s try something else. Let’s allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the Neck sizes variable into 5 groups of equal length and estimate the mean Chest sizes within each of these groups.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-100-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What do these lines tell us for our business venture?
 </p>
 </div>
 <p>What if we wanted to be able to make more sizes? Could we get a pretty good sense of what the chest sizes should be for a given neck size? Let’s try allowing for 8 different sizes.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What are the pros and cons of having a larger number of sizes?
@@ -358,7 +358,7 @@ Stop and think about the data collection process. If you were measuring your own
 </p>
 </div>
 <p>We notice that there is a generally linear relationship between neck and chest size. Perhaps we find one line to describe the relationship between Neck size and Chest size and use that to decide on sizes later?</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-105-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What does line tell us for our business venture?

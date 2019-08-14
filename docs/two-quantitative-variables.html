@@ -138,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
 <li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
-<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.6" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
 <li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
 <li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
 </ul></li>
@@ -317,15 +317,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="scatterplot" class="section level3">
 <h3><span class="header-section-number">2.8.1</span> Scatterplot</h3>
 <p>When you have two quantitative variables, a <strong>scatterplot</strong> is the main appropriate graphical display of the relationship. Each point represents the neck and chest size of one customer.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">body &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;Data/bodyfat.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb73-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb73-3" data-line-number="3">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb73-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck, <span class="dt">y =</span> Chest)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb73-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb73-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb73-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb73-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">body &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;Data/bodyfat.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb69-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb69-3" data-line-number="3">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck, <span class="dt">y =</span> Chest)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb69-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb69-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb69-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
 <p>What do you notice about:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Direction</strong> of relationship (positive, negative, or neutral)</li>
@@ -341,20 +341,20 @@ How might you use this information to determine shirt sizes for your new busines
 <p>Suppose instead of <em>Chest</em> in inches and <em>Neck size</em> in cm, we plotted <em>Chest</em> in inches and <em>Neck size</em> in inches.</p>
 <p><strong>Does the strength of the relationship change after transformation?</strong></p>
 <p>Look at the plot in inches below. Does this plot look the same as the centimeters plot?</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb74-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck<span class="op">/</span><span class="fl">2.54</span>, <span class="dt">y =</span> Chest<span class="op">/</span><span class="fl">2.54</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb74-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb74-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (in)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb74-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (in)&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb74-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck<span class="op">/</span><span class="fl">2.54</span>, <span class="dt">y =</span> Chest<span class="op">/</span><span class="fl">2.54</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (in)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb70-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (in)&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb70-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-133-1.png" width="672" /></p>
 <p>You should see that the x-axes changed but the overall shape of the plot stayed the same. Thus, the strength of the relationship was not affected by tranforming neck size from centimeters to inches (by dividing by 2.54).</p>
 </div>
 <div id="correlation-coefficient" class="section level3">
 <h3><span class="header-section-number">2.8.2</span> Correlation Coefficient</h3>
 <p>Since <strong>shifting</strong> (adding or subtracting) and <strong>scaling</strong> (multiplying or dividing) make no difference in the strength of the relationship, let’s standardize both variables into z-scores (recall z-scores from Section <a href="one-quantitative-variable.html#intro-zscore">2.6.5</a>).</p>
 <p>Below we plot Neck and Chest sizes after changing them to z-scores with the function <code>scale()</code> and we add some color:</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 <p>The blue points in the upper right (Quadrant 1) and lower left (Quadrant 3) quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the z-scores of the Neck and Chest values for the blue points, we will get a positive value.</p>
 <p>The red points in the upper left (Quadrant 2) and lower right (Quadrant 4) quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size (lower right) or they are below average in Neck Size and above average in Chest Size (upper left). If we multiply the z-scores of the Neck and Chest values for the red points, we will get a negative value.</p>
 <div class="reflect">
@@ -387,13 +387,13 @@ If we were to have a negative relationship, how would this plot change?
 </ul>
 <p><strong>Which points contribute the most to this average?</strong></p>
 <p>Let’s look at the correlation for the entire sample first. Then let’s calculate the correlation for individuals around the mean Neck size.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># All data points used in calculation</span></a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># All data points used in calculation</span></a></code></pre></div>
 <pre><code>##   cor(Neck, Chest)
 ## 1        0.7688109</code></pre>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(Neck <span class="op">&gt;</span><span class="st"> </span><span class="dv">35</span> <span class="op">&amp;</span><span class="st"> </span>Neck <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Keep individuals with Neck size between 35cm and 40cm</span></a>
-<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="st">      </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># Only middle subset of data points used in calculation</span></a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(Neck <span class="op">&gt;</span><span class="st"> </span><span class="dv">35</span> <span class="op">&amp;</span><span class="st"> </span>Neck <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Keep individuals with Neck size between 35cm and 40cm</span></a>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="st">      </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># Only middle subset of data points used in calculation</span></a></code></pre></div>
 <pre><code>##   cor(Neck, Chest)
 ## 1        0.5658835</code></pre>
 <p>The value is much larger and more positive when all data points are used. The points that are far from the means of x and y have a larger product of z-scores and thus increase the correlation coefficient value.</p>
@@ -409,7 +409,7 @@ If we were to have a negative relationship, how would this plot change?
 <li><p>One outlier can completely change <span class="math inline">\(r\)</span>.</p></li>
 </ul>
 <p>Let’s look at a few scatterplot examples and the corresponding correlation.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-83-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-83-2.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-83-3.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-83-4.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-83-5.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-83-6.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-83-7.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-83-8.png" width="960" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-138-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-138-2.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-138-3.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-138-4.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-138-5.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-138-6.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-138-7.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-138-8.png" width="960" /></p>
 <div class="math">
 <p>
 (Optional) Here are other equivalent expressions for <span class="math inline"><span class="math inline">\(r\)</span></span> for the mathematically intrigued:

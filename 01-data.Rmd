@@ -166,7 +166,7 @@ For example, say we note that on days with higher ice cream sales, there are typ
 
 In an experiment, we "manipulate" the characteristics for an individual by randomly assigning them to a treatment group. This random assignment is intended to break the relationship between any common causes and the treatment so as to try to reduce the impact of confounding. It is impossible to entirely remove the possibility of confounding, but the random assignment to a treatment helps. (Note: things can get complicated if individuals don't comply with the treatment such as take the multivitamin every single day...)
 
-## Causal Inference 
+## Causal Inference {#dag}
 
 Causal inference is the process of making a conclusion about direct cause and effect between a "treatment" and a "response". It is difficult to make causal inferences/statements based on data from an observational study due to the possible presence of confounding variables. 
 

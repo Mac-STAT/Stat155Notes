@@ -138,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
 <li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
-<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.6" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
 <li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
 <li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
 </ul></li>
@@ -401,7 +401,7 @@ If <span class="math inline"><span class="math inline">\(H_0\)</span></span> wer
 <h3><span class="header-section-number">6.3.5</span> Distributions of test statistics</h3>
 <p>What test statistics are we likely to get if <span class="math inline">\(H_0\)</span> is true? The probability density function of the test statistic “under <span class="math inline">\(H_0\)</span>” (that is, if <span class="math inline">\(H_0\)</span> is true) is shown below. Note that it is centered at 0. This distribution shows that if indeed the null is true, there is variation in the test statistics we might obtain from random samples, but most test statistics are around zero.</p>
 <p>It would be very unlikely for us to get a pretty large (extreme) test statistic if indeed <span class="math inline">\(H_0\)</span> were true. Why? The density drops rapidly at more extreme values.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-247-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-302-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
 <div id="graphical-description-of-p-values" class="section level3">
 <h3><span class="header-section-number">6.3.6</span> Graphical description of p-values</h3>
@@ -412,18 +412,18 @@ If <span class="math inline"><span class="math inline">\(H_0\)</span></span> wer
 <li>In other words: <span class="math inline">\(\text{Test statistic} \geq 2\)</span> and <span class="math inline">\(\text{Test statistic} \leq -2\)</span></li>
 </ul>
 <p>The p-value corresponding to our test statistic is the area under the probability density function in those “as or more extreme” regions.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-248-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-303-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="example-linear-regression" class="section level3">
 <h3><span class="header-section-number">6.3.7</span> Example: Linear Regression</h3>
 <p>Below we fit a linear regression model of house price on living area:</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb268-2" data-line-number="2">mod_homes &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area, <span class="dt">data =</span> homes)</a>
-<a class="sourceLine" id="cb268-3" data-line-number="3"><span class="kw">confint</span>(mod_homes) <span class="co">## 95% confidence interval by default</span></a></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb264-2" data-line-number="2">mod_homes &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area, <span class="dt">data =</span> homes)</a>
+<a class="sourceLine" id="cb264-3" data-line-number="3"><span class="kw">confint</span>(mod_homes) <span class="co">## 95% confidence interval by default</span></a></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 3647.6958 23231.0922
 ## Living.Area  107.8616   118.3835</code></pre>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="kw">summary</span>(mod_homes)<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1"><span class="kw">summary</span>(mod_homes)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##               Estimate  Std. Error   t value      Pr(&gt;|t|)
 ## (Intercept) 13439.3940 4992.352849  2.691996  7.171207e-03
 ## Living.Area   113.1225    2.682341 42.173065 9.486240e-268</code></pre>
@@ -443,13 +443,13 @@ This result is consistent with the 95% confidence interval in that the interval 
 <div id="example-logistic-regression" class="section level3">
 <h3><span class="header-section-number">6.3.8</span> Example: Logistic Regression</h3>
 <p>Below we fit a logistic regression model of whether a movie made a profit (response) on whether it is a history film:</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">movies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</a>
-<a class="sourceLine" id="cb272-2" data-line-number="2">mod_movies &lt;-<span class="st"> </span><span class="kw">glm</span>(profit<span class="op">==</span><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>History, <span class="dt">data =</span> movies, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</a>
-<a class="sourceLine" id="cb272-3" data-line-number="3"><span class="kw">confint</span>(mod_movies) <span class="co">## 95% confidence interval by default</span></a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">movies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</a>
+<a class="sourceLine" id="cb268-2" data-line-number="2">mod_movies &lt;-<span class="st"> </span><span class="kw">glm</span>(profit<span class="op">==</span><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>History, <span class="dt">data =</span> movies, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</a>
+<a class="sourceLine" id="cb268-3" data-line-number="3"><span class="kw">confint</span>(mod_movies) <span class="co">## 95% confidence interval by default</span></a></code></pre></div>
 <pre><code>##                   2.5 %    97.5 %
 ## (Intercept)  0.09438169 0.2102419
 ## HistoryTRUE -0.26484980 0.3085225</code></pre>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1"><span class="kw">summary</span>(mod_movies)<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="kw">summary</span>(mod_movies)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##               Estimate Std. Error   z value     Pr(&gt;|z|)
 ## (Intercept) 0.15226921 0.02955458 5.1521364 2.575356e-07
 ## HistoryTRUE 0.02074995 0.14604883 0.1420754 8.870204e-01</code></pre>

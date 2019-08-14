@@ -977,19 +977,21 @@ We alluded earlier that multiple linear regression could provide estimates of ca
 
 Remember, a confounder is a **common cause** of both the causal variable of interest and the outcome (e.g. living area could be a confounder of fireplace presence and house price).
 
-We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for understanding how smoking affects lung cancer development. It is very important to consider whether a variable is a **mediator** of the relationship between the cause and the outcome. A mediator in this example could be tar. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk because it is not varying!
+We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for understanding how smoking affects lung cancer development. It is very important to consider whether a variable is a **mediator** of the relationship between the cause and the outcome. A mediator  is a variable in a chain or along the path (Section \@ref(dag)) between the cause and the outcome. In the smoking and lung cancer example, one mediator could be tar in the lungs. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk because it is not varying!
 
-Wait - we could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn't mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible, we have a starting ground for moving forward. We collect data, analyze how well our model predicts that data, and collect more data based on that, perhaps measuring more potential confounders as our scientific knowledge grows. We can also conduct sensitivity analyses by asking: how strongly must a confounder affect the variable of causal interest and the outcome to completely negate or reverse the association we see? Such endeavors and more are the subject of the field of *causal inference*.
+Wait - we could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn't mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible with writing down a DAG (causal model), we have a starting ground for moving forward. 
 
-*Reminder: If you want a "gentle" but mathematical introduction to Causal Inference, I'd suggest reading "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell). Fun Fact: Nicholas Jewell was Prof. Heggeseth's PhD advisor!*
+We collect data, analyze how well our model predicts that data, and collect more data based on that, perhaps measuring more potential confounders as our scientific knowledge grows. We can also conduct sensitivity analyses by asking: how strongly must a confounder affect the variable of causal interest and the outcome to completely negate or reverse the association we see? Such endeavors and more are the subject of the field of *causal inference*.
+
+*Reminder: If you want a "gentle" but mathematical introduction to Causal Inference, we suggest taking the class at Macalester and/or reading "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell). Fun Fact: Nicholas Jewell was Prof. Heggeseth's PhD advisor!*
 
 ### Conditions for Multiple Linear Regression
 
 In order for a multiple linear regression model to make sense, 
 
-- Relationships between each quantitative $X$'s and $Y$ are **straight enough** (check scatterplots and residual plot)
-- About **equal spread** of residuals across fitted values (check residual plot)
-- No extreme outliers (points far away in X's can have **leverage** to change the line)
+1. Relationships between each pair of quantitative $x$'s and $y$ are **straight enough** (check scatterplots and residual plot)
+2. There is about **equal spread** of residuals across fitted values (check residual plot)
+3. There are no extreme outliers (points far away in $x$'s can have **leverage** to change the line)
 
 
 ### Is the Difference Real?
@@ -1007,13 +1009,13 @@ If we ask ourselves this question, we are assuming a few things:
 
 2. We don't have data for everyone in our population (we don't have a **census**).
 
-3. Depending on who ends up in our **sample**, the relationship/difference/estimate may change a bit.
+3. Depending on who **randomly** ends up in our **sample**, the relationship may change a bit.
 
-4. We want to know how much the relationship/difference/estimate may change based on **sampling variation.**  
+4. We want to know how much the relationship may change based on **sampling variation.**  
 
-- Let's treat our sample (of size $n$) as our 'fake' population (since we don't have the full population).
-    - Randomly sample from our sample (with replacement) a new sample of size $n$
-- Calculate the least squares regression line.
+- Let's treat our sample (of size $n$) as a 'fake' population (we don't have the full population but if the sample is representative, then it will be a good proxy).
+    - Randomly resample from our sample (with replacement) a new sample of size $n$
+- Estimate the least squares regression line.
 - Repeat.
 
 ```{r echo=TRUE}
@@ -1025,25 +1027,28 @@ boot <- do(1000)*lm(Price ~ Living.Area*AnyFireplace, data = resample(homes))
 boot %>%
     ggplot(aes(x = Living.Area.AnyFireplaceTRUE)) +
     geom_histogram() +
-    xlab('Bootstrap Difference in Slopes')
+    xlab('Bootstrap Difference in Slopes') +
+    theme_minimal()
 ```
 
-This is called **Bootstrapping** and it is used to:
+We see that if we were to have a slightly different sample (drawn from our "fake" population), then the difference in the slope could be as long as 0 and as large as 50.
 
-1. Measure the variability in the estimate (the estimate is the difference in slopes in this case) between random samples and
-2. Provide an interval of plausible values for the estimate (the estimate is the difference in slopes in this case).
+This process of resampling from the sample is called **Bootstrapping** and it is used to:
 
-Let's first look at the variability of the difference in slopes across the bootstrap samples. The standard deviation of the slopes will be similar to the std.error from the linear model output.
+1. Measure the variability in the estimate (here we are interested in the difference in slopes) between random samples and
+2. Provide an interval of plausible values for the estimate (the difference in slopes here).
+
+Let's first look at the variability of the difference in slopes across the bootstrap samples. The standard deviation of the slopes will be similar to the `Std. Error` from the linear model output.
 
 ```{r echo=TRUE}
 boot %>%
-  summarize(sd(Living.Area.AnyFireplaceTRUE))#this is going to be of similar magnitude to the Std Error in output
-tidy(lm.home4)
+  summarize(sd(Living.Area.AnyFireplaceTRUE)) #this is going to be of similar magnitude (not exactly the same) to the Std. Error in output
+summary(lm.home4)
 ```
 
 This standard deviation is somewhat close to the $6.459$ in the Std. Error column of the `summary(lm.home4)` output above.
 
-To get an interval of plausible values, we look at the histogram and take the middle 95%. The lower end will be the 2.5th percentile and the upper end will be the 97.5th percentile.
+To get an interval of plausible values for the difference in the slopes, we look at the histogram and take the middle 95%. The lower end will be the 2.5th percentile and the upper end will be the 97.5th percentile.
 
 ```{r echo=TRUE}
 boot %>%
@@ -1051,7 +1056,7 @@ boot %>%
 ```
 
 ```{block, type="reflect"}
-Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes (with and without fireplaces)?
+Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes (with and without fireplaces)? How would you justify your answer?
 ```
 
 ### Dealing with Non-Linear Relationships

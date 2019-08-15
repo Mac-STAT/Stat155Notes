@@ -213,7 +213,7 @@ Whickham %>%
 ```
 
 ```{block type='reflect'}
-What do you notice? What do you wonder?
+What additional information do you gain by considering smoking status?
 ```
 
 ### Stacked Bar Plot
@@ -249,7 +249,7 @@ Whickham %>%
 ```
 
 ```{block type='reflect'}
-What do you notice? What do you wonder?
+What information is highlighted when you stack the bars as compared to having them side-by-side?
 ```
 
 ### Stacked Bar Plot (Relative Frequencies)
@@ -306,7 +306,7 @@ Whickham %>%
 ```
 
 ```{block, type="reflect"}
-What do you notice? What do you wonder?
+What information is highlighted when you focus on relative frequency in the mosaic plots as compared to other bar plots?
 ```
 
 With this type of plot, you can see that there are more non-smokers than smokers. Also, you see that there is a higher mortality rate for non-smokers. 
@@ -329,7 +329,7 @@ Whickham %>%
 ```
 
 ```{block, type="reflect"}
-What do you notice? What do you wonder?
+What do you gain by creating plots within subgroups?
 ```
 
 ```{block, type="reflect"}

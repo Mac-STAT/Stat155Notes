@@ -218,7 +218,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#conditions-for-multiple-linear-regression"><i class="fa fa-check"></i><b>3.9.4</b> Conditions for Multiple Linear Regression</a></li>
 <li class="chapter" data-level="3.9.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.5</b> Is the Difference Real?</a></li>
 <li class="chapter" data-level="3.9.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#dealing-with-non-linear-relationships"><i class="fa fa-check"></i><b>3.9.6</b> Dealing with Non-Linear Relationships</a></li>
-<li class="chapter" data-level="3.9.7" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#alternative-solutions"><i class="fa fa-check"></i><b>3.9.7</b> Alternative Solutions</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>3.10</b> Logistic Regression</a><ul>
 <li class="chapter" data-level="3.10.1" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-and-logit"><i class="fa fa-check"></i><b>3.10.1</b> Logistic and Logit</a></li>
@@ -324,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb104-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;High School GPA&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb104-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;College GPA&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb104-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
 <p>First things first. Describe the scatterplot.</p>
 <ul>
 <li><strong>Direction</strong>: Positive relationship (higher high school GPA is associated with higher college GPA)</li>
@@ -425,7 +424,7 @@ Does it make sense to use this model for high school GPA’s &gt; 4? Some high s
 <a class="sourceLine" id="cb123-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb123-3" data-line-number="3"><span class="st">  </span><span class="kw">residuals</span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb123-4" data-line-number="4"><span class="st">  </span><span class="kw">hist</span>(<span class="dt">main =</span> <span class="st">&quot;Distribution of residuals in the GPA model&quot;</span>)</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-134-1.png" width="672" /></p>
 <p>Below we calculate <span class="math inline">\(SSE\)</span> (the sum of squared errors/residuals), and the standard deviation of the residuals (<span class="math inline">\(s_e\)</span>).</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">lm.gpa &lt;-<span class="st"> </span>sat <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb124-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .)</a>
@@ -457,7 +456,7 @@ Does it make sense to use this model for high school GPA’s &gt; 4? Some high s
 <li>Unexplained variation in the outcome that remains after modeling is given by <span class="math inline">\(SSE\)</span>, the sum of squared residuals.</li>
 </ul>
 <p>So to study how models reduce unexplained variation, we compare the magnitude of the residuals from a linear regression model (which uses the predictor <span class="math inline">\(x\)</span>) with the original deviations from the mean (which do not use the predictor <span class="math inline">\(x\)</span>).</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-193-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
 <p>We started with the sum of the deviations from the mean <span class="math inline">\(SSTO = \sum{(y_i - \bar{y})^2}\)</span> before we had info about high school GPA (<span class="math inline">\(x\)</span>).</p>
 <ul>
 <li><p>Now, with our knowledge of <span class="math inline">\(x\)</span>, we have <span class="math inline">\(SSE = \sum{(y_i - \hat{y_i})^2}\)</span></p></li>

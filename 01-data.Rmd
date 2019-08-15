@@ -197,9 +197,9 @@ Below we discuss the three basic DAG structures.
 
 - **Chain**: *A chain includes three nodes and two edges, with one directed into and one edge directed out of the middle variable.* In the above example, we see a few chains. There is a chain that suggests an unhealthy lifestyle leads to smoking which directly impacts cholesterol levels. Another chain suggests an unhealthy lifestyle direclty impacts human weight which impacts cholesterol levels. By our DAG, there are two causal pathways directly impacts cholesterol levels. 
 
--**Fork**: *A fork includes three nodes with two arrows emanating from the middle variable*. The only fork in the example above involves unhealthy lifestyle (middle variable), weight, and smoking. In this case, we are assuming that an unhealthy lifestyle is a **common cause** of both weight and smoking. Thus, the lifestyle could confound the relationship between smoking and weight in that smoking and weight may look to be associated with each other because they have a common cause. 
+- **Fork**: *A fork includes three nodes with two arrows emanating from the middle variable*. The only fork in the example above involves unhealthy lifestyle (middle variable), weight, and smoking. In this case, we are assuming that an unhealthy lifestyle is a **common cause** of both weight and smoking. Thus, the lifestyle could confound the relationship between smoking and weight in that smoking and weight may look to be associated with each other because they have a common cause. 
 
--**Colliders**: *A collider occurs when one node receives edges from two other nodes.* In the example above, smoking and weight have a **common effect**, cholesterol.
+- **Colliders**: *A collider occurs when one node receives edges from two other nodes.* In the example above, smoking and weight have a **common effect**, cholesterol.
 
 These structures are important to understand because they can help guide our analysis and modeling. Assuming the causal model is correct (which is might not be...), we have a better sense of how smoking might be related to cardiac arrest. 
 

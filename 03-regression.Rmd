@@ -389,7 +389,7 @@ body %>%
   summary()
 ```
 
-**Intercept** ($b_0$)
+### Intercept ($b_0$)
 
 - **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for "(Intercept)". It is -3.1885 for this model. 
 - **Definition:** The intercept gives the average value of $y$ when $x$ is zero (**think about context**)
@@ -405,7 +405,7 @@ body %>%
 
 
 
-**Slope** ($b_1$)
+### Slope ($b_1$)
 
 - **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for the namve of the variable, "Neck" or "CNeck". It is 2.7369 for this model. 
 - **Definition:** The slope gives the change in average $y$ per 1 unit increase in $x$ (**not for individuals and not causal statement**)
@@ -413,7 +413,7 @@ body %>%
 - **Another Interpretation:** We'd expect the average chest size to increase by about 2.7 cm for each centimeter increase in neck size.
 - **Discussion:** Note that both interpretations are not written about an individual because we can't easily change our neck size by 1 cm. The slope describes the change in the average in our sample data set, not the change for one person. 
 
-**Least Squares/Regression Line** ($\hat{y} = b_0 + b_1x$)
+### Least Squares/Regression Line ($\hat{y} = b_0 + b_1x$)
 
 - **Where to find:** In the table called "Coefficients", all of the values you need to write down the line are under "Estimate".
 
@@ -444,7 +444,7 @@ Then what are we to do?
 ![Source: [Gizmodo](https://gizmodo.com/5988717/12-highly-specific-kitchen-gadgets)](https://i.kinja-img.com/gawker-media/image/upload/s--ko0l0gLh--/c_scale,f_auto,fl_progressive,q_80,w_800/18gkhag74ei0njpg.jpg)
 
 
-## Evaluation
+## Model Evaluation
 
 In this section, we consider model evaluation. We seek to develop tools that allow us to answer: is this a "good" model?
 
@@ -1067,13 +1067,13 @@ What can we do?
 
 #### Transform Variables
 
-One solution to non-linear relationships is to transform the explanatory  (X) variables or transform the outcome variable (Y).
+One solution to deal with non-linear relationships is to transform the explanatory ($x$) variables or transform the outcome variable ($y$).
 
-**Guideline #1:** If there is unequal spread around the curved relationship, focus first on transforming Y. If the spread is roughly the same around the curved relationship, focus on transforming X. 
+**Guideline #1:** If there is unequal spread around the curved relationship, focus first on transforming $y$. If the spread is roughly the same around the curved relationship, focus on transforming $x$. 
 
 When we say transform a variable, we are referring to taking the values of a variable and plugging them into a mathematical function such as $\sqrt{x}$, $\log(x)$ (which represents natural log, not log base 10), $x^2$, $1/x$, etc. 
 
-**Guideline #2:** We will focus on power functions and organize them in a **Ladder of Powers** of y (or x):
+**Guideline #2:** To choose the mathematical function, we focus on power functions and organize them in a **Ladder of Powers** of $y$ (or $x$):
 
 
 $$
@@ -1084,7 +1084,7 @@ y^2\\
 \mathbf{y = y^1}\\
 \sqrt{y}\\
 y^{1/3}\\
-y^{0} ~~~  (we~use~\log(y)~here )\\
+y^{0} ~~~  (we~use~\log(y)~here; natural log)\\
 y^{-1/3}\\
 1/\sqrt{y}\\
 1/y\\
@@ -1093,13 +1093,13 @@ y^{-1/3}\\
 \end{align}
 $$
 
-We start at $y$ (power  = 1) and think about going up or down the ladder. 
+To choose a transformation, we start at $y$ (power  = 1) and think about going up or down the ladder. 
 
 But which way?
 
-Our friend J.W. Tukey (the same guy who invented the boxplot) came up with an approach to help us decide. You must ask yourself: Which part of the circle does the scatterplot most resemble (concavity and direction)? Which quadrant?
+Our friend [J.W. Tukey](https://en.wikipedia.org/wiki/John_Tukey) (the same guy who invented the boxplot) came up with an approach to help us decide. You must ask yourself: Which part of the circle does the scatterplot most resemble (in terms of concavity and direction)? Which quadrant?
 
-**Guideline #3:** The sign of x and y in the quadrant tells you the direction to move on the ladder (positive = up, negative = down).
+**Guideline #3:** The sign of $x$ and $y$ in the quadrant tells you the direction to move on the ladder (positive = up, negative = down).
 
 <img src="Photos/tukey.png" width="400" height="500" />
 
@@ -1114,16 +1114,16 @@ gapminder %>%
   geom_point()
 ```
 
-Based on this plot, we see that the spread is roughly equal around the curved relationship and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with x. 
+Based on this plot, we see that the spread is roughly equal around the curved relationship (-> focus on transforming $x$) and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with $x$. 
 
-Try these transformations until you find a relationship that is roughly straight. If you go too far, the relationship will become more curved.
+Try these transformations until you find a relationship that is roughly straight. If you go too far, the relationship will become more curved again.
 
 Let's try going down the ladder.
 
 ```{r}
 gapminder %>% 
   filter(year > 2005) %>%
-  mutate(TgdpPercap = sqrt(gdpPercap)) %>%
+  mutate(TgdpPercap = sqrt(gdpPercap)) %>% #power = 1/2
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
   geom_point()
 ```
@@ -1134,7 +1134,7 @@ Not quite straight. Let's keep going.
 ```{r}
 gapminder %>% 
   filter(year > 2005) %>%
-  mutate(TgdpPercap = gdpPercap^(1/3)) %>%
+  mutate(TgdpPercap = gdpPercap^(1/3)) %>% #power = 1/3
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
   geom_point()
 ```
@@ -1145,25 +1145,24 @@ Not quite straight. Let's keep going.
 ```{r}
 gapminder %>% 
   filter(year > 2005) %>%
-  mutate(TgdpPercap = log(gdpPercap)) %>% 
+  mutate(TgdpPercap = log(gdpPercap)) %>% #power = 0
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
   geom_point()
 ```
 
 Getting better. Let's try to keep going.
 
-
 ```{r}
 gapminder %>% 
   filter(year > 2005) %>%
-  mutate(TgdpPercap = -1/gdpPercap) %>% 
+  mutate(TgdpPercap = -1/gdpPercap) %>%  #power = -1 (added a negative sign to maintain positive relationship)
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
   geom_point()
 ```
 
 TOO FAR! Back up. Let's stick with log(gdpPercap).
 
-Now we see some unequal spread so let's also try transforming Y.
+Now we see some unequal spread so let's also try transforming $y$.
 
 ```{r}
 gapminder %>% 
@@ -1178,7 +1177,7 @@ That doesn't change it much. Maybe this is as good as we are going to get.
 
 Transformations can't make relationships look exactly linear with equal spread, but sometimes we can make it closer to that ideal.
 
-Let's try and fit a model with just these two variables.
+Let's try and fit a model with these two variables.
 
 ```{r}
 lm.gap <- gapminder %>% 
@@ -1191,12 +1190,12 @@ summary(lm.gap)
 
 **Interpretations**
 
-What does $b_1$ mean in this context?
+What does the slope of this model, $b_1 = 7.2028$, mean in this data context?
 
 $$\widehat{LifeExp} = b_0 + b_1 log(Income)$$
 
 
-- The slope is the the additive increase in $\widehat{LifeExp}$ when $log(Income)$ increases to $log(Income) + 1$.
+- The slope is the the additive increase in the predicted $\widehat{LifeExp}$ when $log(Income)$ increases to $log(Income) + 1$.
 
 - Let's think about $log(Income) + 1$. Using some rules of logarithms:
 
@@ -1204,10 +1203,10 @@ $$log(Income) + 1 = log(Income) + log(e^1) = log(e*Income) = log(2.71*Income)$$
 So adding 1 to $log(Income)$ is equivalent to multiplying Income by 2.71.
 
 
-In our model, we note that if GDP is increased by 271% (multiplying by 2.71) the predicted average life expectancy of a country increases by about 7.2 years. 
+In our model, we note that if a country's income measured by GDP increased by a multiplicative factor of 2.71, the predicted average life expectancy of a country increases by about 7.2 years. 
 
 
-For the sake of illustration, imagine we fit a model where we had transformed life expectancy. What does $b_1$ mean in this context?
+For the sake of illustration, imagine we fit a model where we had transformed life expectancy with a log transformation. What would the slope, $b_1$, mean in this context?
 
 $$\widehat{log(LifeExp)} = b_0 + b_1 Income$$
 
@@ -1217,9 +1216,9 @@ $$\widehat{log(LifeExp)} = b_0 + b_1 Income$$
 
 - Let's think about $\widehat{log(LifeExp)} + b_1$. Using rules of logarithms: 
 $$\widehat{log(LifeExp)} + b_1 = \widehat{log(LifeExp)} + log(e^{b_1}) = log(\widehat{LifeExp} * e^{b_1}) $$
-The additive increase in $log(LifeExp)$ is a multiplicative increase of $LifeExp$ by a factor of $e^{b_1}$.
+The additive increase of $b_1$ units in $\widehat{log(LifeExp)}$ is a multiplicative increase of $\widehat{LifeExp}$ by a factor of $e^{b_1}$.
 
-### Alternative Solutions
+#### Alternative Solutions
 
 We could also model non-linear relationships by including higher degree terms in a linear model like the example below. By using poly(), we now include $x$ and $x^2$ as variables in the model.
 
@@ -1230,11 +1229,11 @@ dat <- data.frame(x,y)
 dat %>%
   ggplot(aes(x = x, y = y)) +
   geom_point() + 
-  geom_smooth()
+  geom_smooth(se = FALSE)
 lm(y ~ poly(x, degree = 2, raw = TRUE), data = dat)
 ```
 
-A more advanced solution (which is not going to be covered in class) is a generalized additive model, which allows you to specify which variables have non-linear relationships with y and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there!
+A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there!
 
 ```{r}
 require(gam)
@@ -1244,11 +1243,11 @@ plot(gam(y ~ s(x), data = dat))
 
 ## Logistic Regression
 
-If you are interested in predicting a binary categorical variable (only 2 possible outcomes), the standard linear regression models don't apply. If you let the two outcomes be 0 and 1, you'll never get a straight line relationship with an x variable. 
+If you want to predict a binary categorical variable (only 2 possible outcomes), the standard linear regression models don't apply. If you let the two possible outcomes be 0 and 1, you'll never get a straight line relationship with any $x$ variable. 
 
-Throughout this section, we will refer to one outcome as 'success' (denoted 1) and 'failure' (denoted 0). Depending on the context of the data, the success could be a negative thing such as 'heart attack' or '20 year mortality'. 
+Throughout this section, we will refer to one outcome as 'success' (denoted 1) and 'failure' (denoted 0). Depending on the context of the data, the success could be a negative thing such as 'heart attack' or '20 year mortality' or it could be a positive thing such as 'passing a course.'  
 
-We will let $p$ be the chance of success and $1- p$ be the chance of failure. We want to build a model to explain why the chance of success may be higher for one group of people in comparison to another. 
+We will denote $p$ to be the chance of success and $1- p$ be the chance of failure. We want to build a model to explain why the chance of one outcome (success) may be higher for one group of people in comparison to another. 
 
 ### Logistic and Logit
 
@@ -1258,41 +1257,54 @@ $$f(x) = \frac{1}{1 + e^{b_0 +b_1x}}$$
 
 ```{r echo=FALSE}
 x <- seq(-10,10,by=.1)
-b0 <- 2
+b0 <- 0
 b1 <- -0.5
 plot(x, 1/(1 + exp(b0 + b1*x)), type = 'l', ylim = c(0,1), ylab = 'f(x)')
 ```
 
-For any real value x, f(x) will be a value between 0 and 1. This is perfect for us since probabilities/chances should also be between 0 and 1. 
+For any real value $x$, this function, $f(x)$, will be a value between 0 and 1. This is perfect for us since probabilities or chances should also be between 0 and 1. 
 
-In fact, we'll let the chance of failure, $1-p$, be modeled by this function.
+In fact, we'll let the chance of the other outcome (failure), $1-p$, be modeled by this S function.
 
 $$1-p = \frac{1}{1 + e^{b_0 +b_1x}}$$
 ```{block, type='math'}
-With a bit of algebra and rearranging terms, we can write this in terms of $p$, the chance of success. 
+With a bit of algebra and rearranging terms, we can write this equation in terms of $p$, the chance of success. 
+
+$$1-p = \frac{1}{1 + e^{b_0 +b_1x}}$$
+$$p = 1-\frac{1}{1 + e^{b_0 +b_1x}}$$
+
+$$p = 
+\frac{1 + e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}-\frac{1}{1 + e^{b_0 +b_1x}}$$
 
 $$p = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}$$
 
-Let's define one more term. The **odds** of success is the ratio of the probability of success to the probability of failure, $p/(1-p)$.
-
-With a bit more algebra and rearranging terms, we can write the above model in terms of a regression model,
-
-$$\log\left(\frac{p}{1-p}\right) = b_0 +b_1x$$
-On the left hand side, we have the natural log of the odds, called the **logit** function. On the right hand side, we have an equation for a line. This is a **simple logistic regression model**.
 ```
 
-Just like a linear regression model, we can extend this model to a **multiple logistic regression model** by adding additional x variables,
+Let's define one more term. The **odds** of an success outcome is the ratio of the chance of success to the chance of failure, odds $=p/(1-p)$.
+
+```{block, type='math'}
+With a bit more algebra and rearranging terms, we can write the above model as a linear regression model.
+
+$$p/(1-p) = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}/\frac{1}{1 + e^{b_0 +b_1x}}$$
+$$p/(1-p) = e^{b_0 +b_1x}$$
+$$\log(p/(1-p)) = b_0 +b_1x$$
+```
+
+This is a **simple logistic regression model**. On the left hand side, we have the natural log of the odds, called the **logit** function. Think of this as a transformed version of our outcome. On the right hand side, we have a familiar linear equation. 
+
+$$\log\left(\frac{p}{1-p}\right) = b_0 +b_1x$$
+
+Like a linear regression model, we can extend this model to a **multiple logistic regression model** by adding additional $x$ variables,
 
 $$\log\left(\frac{p}{1-p}\right) = b_0 +b_1x_1+b_2x_2+b_3x_3+\cdots +b_kx_k$$
 
 ### Fitting the Model
 
-Based on observed data that includes responses (1 for success, 0 for failure) and predictor variables, we need to find the slope coefficients, $b_0$,...,$b_k$ that best fits the data. The way we do this is through a technique called **maximum likelihood estimation**. We will not discuss the details in this class; we'll save this for an upper level stats class.
+Based on observed data that includes an indicator variable for the responses (1 for success, 0 for failure) and predictor variables, we need to find the slope coefficients, $b_0$,...,$b_k$ that best fits the data. The way we do this is through a technique called **maximum likelihood estimation**. We will not discuss the details in this class; we'll save this for an upper level stats class such as Mathematical Statistics.
 
-In R, we do this with a general linear model function, `glm()`.
+In R, we do this with the **g**eneral **l**inear **m**odel function, `glm()`.
 
-For a data set, let's go back in history to January 28, 1986. On this day, the Challenger U.S. space shuttle took off and exploded about minute after the launch. After the fact, scientists ruled that the disaster was due to o-ring seal failure. Let's look at experimental data on the o-rings prior to the fateful day.
-
+For a data set, let's go back in history to January 28, 1986. On this day, the U.S. space shuttle called Challenger took off and tragically exploded about minute after the launch. After the fact, scientists ruled that the disaster was due to an o-ring seal failure. Let's look at experimental data on the o-rings prior to the fateful day.
 
 ```{r echo=TRUE}
 require(vcd)
@@ -1314,45 +1326,49 @@ SpaceShuttle %>%
 ```
 
 ```{block, type="reflect"}
-What is the plot above telling us about the relationship between chance of o-ring failure and temperature?
+What are the plots above telling us about the relationship between chance of o-ring failure and temperature?
 ```
 
 
-Let's fit a simple logistic regression model to predict the chance of o-ring failure based on the temperature using the experimental data. 
+Let's fit a simple logistic regression model to predict the chance of o-ring failure (which is our "success" here -- we know it sounds morbid) based on the temperature using the experimental data. 
 
 ```{r echo=TRUE}
 model.glm <- glm(Fail ~ Temperature, data = SpaceShuttle, family = binomial)
 summary(model.glm)
 ```
 
+Based on a logistic regression model, the predicted log odds of an o-ring failure is given by
+
+$$\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = 15.0429 -0.2322\cdot Temperature$$
+
 
 ### Interpretation
 
-Let's take a look at these estimates from the model. What do they mean?
+Let's take a look at the estimates from the model. What do they mean?
 
 ```{r echo=TRUE}
-tidy(model.glm)
+summary(model.glm)
 ```
 
-If you want to get a sense of what the number -0.232 means, we need to do a bit of algebra. 
+The slope coefficient (-0.232) tells you how much the predicted log odds increase with an increase of 1 degree increase in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra. 
 
 ```{block, type='math'}
 Our estimated model is
 
 $$\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_0 +b_1x$$
-where $b_0 = 15$ and $b_1 = -0.232$.
+where $b_0 = 15.04$ and $b_1 = -0.232$.
 
-If we imagine increasing x by 1, then we get a different set of predicted probabilities of success, $\hat{p}^*$,
+If we imagine increasing $x$ by 1, then we get a different set of predicted chances of success, $\hat{p}^*$,
 
 $$\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) = b_0 +b_1(x+1)$$
 
 Let's find the difference between these two equations,
 
-$$\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_0 +b_1(x+1) - (b_0 +b_1x)$$
-and simplify the right hand side,
+$$\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = (b_0 +b_1(x+1)) - (b_0 +b_1x)$$
+and simplify the right hand side (don't you love it when things cancel!),
 
 $$\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_1$$
-and then simplify the left hand side,
+and then simplify the left hand side (using our rules of logarithms),
 
 $$\log\left( \frac{\hat{p}^*/(1-\hat{p}^*)}{\hat{p}/(1-\hat{p})}\right) = b_1$$
 
@@ -1361,88 +1377,92 @@ Let's exponentiate both sides,
 $$\left( \frac{\hat{p}^*/(1-\hat{p}^*)}{\hat{p}/(1-\hat{p})}\right) = e^{b_1}$$
 ```
 
-We find that $e^{b_1} = e^{-0.232} = 0.793$ is the **odds ratio** based on increasing x by 1 unit (it is a ratio of odds). 
+We find that $e^{b_1} = e^{-0.232} = 0.793$ is the **odds ratio** based on increasing $x$ by 1 unit (it is a ratio of odds). The odds ratio is the ratio of the odds of success between two groups of units (those with temperature = T and those with temperature = T + 1 such as 28 v 29 degrees)
 
-If a ratio is greater than 1, that means that the denominator is less than the numerator or numerator is greater than denominator. If a ratio is less than 1, that means that the denominator is greater than the numerator or numerator is less than denominator. If the ratio is equal to one, the numerator equals the denominator (odds are equal).
+If a ratio is greater than 1, that means that the denominator is less than the numerator or equivalently the numerator is greater than denominator (odds of success are greater with T+1 as compared to T --> positive relationship between $x$ variable and odds of success). If a ratio is less than 1, that means that the denominator is greater than the numerator or equivalently the numerator is less than denominator (odds of success are less with T+1 as compared to T --> negative relationship between $x$ variable and odds of success). If the ratio is equal to one, the numerator equals the denominator (odds of success are equal for the two groups --> no relationship).
 
 
-In this case, we have a ratio < 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree). This makes sense since we saw that the chance of o-ring failure decrease with warmer temperatures. 
+In this case, we have an odds ratio < 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree). This makes sense since we saw that the chance of o-ring failure decrease with warmer temperatures. 
 
 ### Prediction
 
 On January 28, 1986, the temperature was 26 F degrees. Let's predict the chance of "success," which is a failure of o-rings in our data context, at that temperature.  
 
 ```{r echo=TRUE}
-predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response')
+predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response') #type = 'response' gives chance, rather than odds
 ```
 
-They didn't have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, they predict the chance of failure to be nearly 100% (near certainty). 
+They didn't have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, we predict the chance of failure to be nearly 1 (near certainty). 
 
 #### Hard Predictions/Classifications
 
-These predicted chances of "success" are useful to give us a sense of uncertainty in our prediction, but how high should the predicted chance be to do "hard" predictions of "success"?
+These predicted chances of "success" are useful to give us a sense of uncertainty in our prediction. If the chance of o-ring failure were 0.8, we would be fairly certain that a failure were likely but not absolutely. If the chance of o-ring failure were 0.01, we would be very certain that a failure were not likely to occur. 
+
+
+But if we had to decide whether or not we should let the shuttle launch go, how high should the predicted chance be to delay the launch (even if it would cost a lot of money to delay)?
 
 It depends. 
 
 If we used a threshold of 0.8, then we'd say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we'll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our **accuracy** (# of correctly predicted/# of data points)? 
 
-In the table below, we see that there were three data points in which we correctly predicted o-ring failure. There were 4 data points in which we erroneously predicted that it wouldn't fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) =  0.82. 
+In the table below, we see that there were three data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn't fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) =  0.82 or 82%. 
 
-The only errors we made were **false negatives**; we didn't predict failure but failure did actual happen in the experiment. In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure. 
+The only errors we made were **false negatives**; we didn't predict o-ring failure but the o-rings did actual happen in the experiment. In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure. 
 
-The **false negative rate** is the number of false negatives divided by the false negatives + true positives (denominator should be total number of experiments with o-ring failures). With a threshold of 0.80, our false negative rate is 4/(3+4) = 0.57.
+The **false negative rate** is the number of false negatives divided by the false negatives + true positives (denominator should be total number of experiments with actual o-ring failures). With a threshold of 0.80, our false negative rate is 4/(3+4) = 0.57 = 57%. We failed to predict 57% of the o-ring failures. This is fairly high when there are lives on the line.
 
 A **false positive** (predicting failure when it doesn't happen) would delay launch but have minimal impact on human lives. 
 
-
-The **false positive rate** is the number of false positives divided by the false positives + true negatives (denominator should be total number of experiments with no o-ring failures). With a threshold of 0.80, our false positive rate is 0/16 = 0.
+The **false positive rate** is the number of false positives divided by the false positives + true negatives (denominator should be total number of experiments with no o-ring failures). With a threshold of 0.80, our false positive rate is 0/16 = 0. We always accurately predicted the o-rings would not fail.
 
 ```{r}
 augment(model.glm, type.predict ='response') %>%
   mutate(predictOFail = .fitted >= 0.8) %>%
-  count(Fail,predictOFail)
+  count(Fail, predictOFail)
 ```
 
-What if we used a lower threshold to reduce the number of false negatives? Let's lower it to 0.25 so that we predict o-ring failure more easily. Let's find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let's check false negative rate: 3/(3+4) = 0.43. That's lower. But now we have a fairly high false positive rate: 6/(6+10) = 0.375. So of the experiments with o-ring failure, we predicted wrong 37.5% of the time. 
+What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let's lower it to 0.25 so that we predict o-ring failure more easily. Let's find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let's check false negative rate: 3/(3+4) = 0.43. That's lower. But now we have a non-zero false positive rate: 6/(6+10) = 0.375. So of the experiments with no o-ring failure, we predicted wrong 37.5% of the time. 
 
 ```{r}
 augment(model.glm, type.predict ='response') %>%
   mutate(predictOFail = .fitted >= 0.25) %>%
-  count( Fail, predictOFail)
+  count(Fail, predictOFail)
 ```
+
+Where the threshold goes depends on the real consequences of making those two types of errors. 
 
 ### Model Evaluation
 
-In deciding whether a logistic regression model is a good and useful model, we need to consider the accuracy, the false positive rate and the false negative rate. Depending on the context, we may focus on maximizing the overall accuracy or we may focus on minimizing the false negative rate or minimizing the false positive rate. 
+In deciding whether a logistic regression model is a good and useful model, we need to consider the accuracy, the false positive rate, and the false negative rate. Depending on the context, we may focus on maximizing the overall accuracy or we may focus on minimizing the false negative rate or minimizing the false positive rate. 
 
+There are other measures of model fit for a logistic regression such as AIC and BIC (lower is better), but those are beyond the scope of this course. You'll learn about them in future statistics courses. 
 
 ### Alternative Classification Models
 
-Logistic regression is a very useful model to predict a binary outcome that is an extension of linear regression. However, it has its limitations. We are assuming a linear relationship between explanatory variables and the log odds. This is hard to check because we don't have a variable for odds that we could then quickly plot. 
+Logistic regression is a very useful model to predict a binary outcome. However, it has its limitations. We are assuming a linear relationship between explanatory variables and the log odds of success. This is hard to check because we don't have a variable for odds that we could quickly plot. 
 
-Other methods out there are more flexible but also more complex. Sometimes for a task, complex is not necessary: see https://www.huffingtonpost.com/2014/02/10/klemens-torggler-evolution-door_n_4762261.html. 
+Other methods out there are more flexible but also more complex. Here is a list of some of the most popular classification methods. 
 
 - Classification Trees can predict a binary outcome and choose the variables that are most important by recursively partitioning the data into groups that are more similar in terms of the outcome as well as in chosen predictor variables.
 
-- Random Forests are a collection of classification tress that are more stable than one classification tree.
+- Random Forests are an ensemble of classification tress that together are more stable than any one classification tree.
 
 - Boosted Trees are classification trees that are sequentially created to target the errors from the last tree.
 
 - Neural Networks are a type of classification algorithm that creates new features based on the original data that are the best predictors of the outcome. 
 
-Take Machine Learning to learn more about these methods. 
+Take Statistical Machine Learning to learn more about these methods. But keep in mind that sometimes for a task, complex is not necessary: see https://www.huffingtonpost.com/2014/02/10/klemens-torggler-evolution-door_n_4762261.html. 
 
+## Major Takeaways
 
-##Major Takeaways
+1. All models are wrong, but some are useful and fair for our goals (prediction or description). 
 
-1. All models are wrong, but some are useful and fair. 
-
-2. We want a model with small residuals (prediction errors).
+2. We want a model with small residuals or a low number of prediction errors.
 
 3. To determine if a model is useful and fair, we study what is left over (the residuals). 
 
-4. We use models to describe phenomena by interpreting slope estimates. Make sure you are talking about the average or predicted outcome! If you have multiple variables, you keep all others fixed (if possible).
+4. We use models to describe phenomena by interpreting slope coefficients. But make sure you are talking about the average or predicted outcome! If you have multiple variables, you are keeping all others fixed (if possible).
 
-5. We also use models to prediction values, but be careful about predicting outside the observed range of our explanatory (X) variables. That is called extrapolation.
+5. We also use models to prediction values, but be careful about predicting outside the observed range of our explanatory ($x$) variables. That is called extrapolation.
 
 

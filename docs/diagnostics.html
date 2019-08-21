@@ -292,7 +292,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="statistical-significance-v-practical-significance.html"><a href="statistical-significance-v-practical-significance.html"><i class="fa fa-check"></i><b>6.4</b> Statistical Significance v. Practical Significance</a></li>
 <li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a></li>
+<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a><ul>
+<li class="chapter" data-level="7.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
+<li class="chapter" data-level="7.1.2" data-path="probability-rules-1.html"><a href="probability-rules-1.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>7.2</b> Random Variable</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>7.2.1</b> Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>7.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>7.3.1</b> Expected Value</a></li>
+<li class="chapter" data-level="7.3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>7.3.2</b> Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#joint-distributions"><i class="fa fa-check"></i><b>7.3.3</b> Joint Distributions</a></li>
+<li class="chapter" data-level="7.3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#covariance"><i class="fa fa-check"></i><b>7.3.4</b> Covariance</a></li>
+<li class="chapter" data-level="7.3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#correlation"><i class="fa fa-check"></i><b>7.3.5</b> Correlation</a></li>
+<li class="chapter" data-level="7.3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#a-few-named-probability-models"><i class="fa fa-check"></i><b>7.3.6</b> A Few Named Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>7.4</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-value-1"><i class="fa fa-check"></i><b>7.4.1</b> Expected Value</a></li>
+<li class="chapter" data-level="7.4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#a-few-named-probability-models-1"><i class="fa fa-check"></i><b>7.4.2</b> A Few Named Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -324,13 +345,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Spread is roughly same throughout – <strong>No Thickening</strong></p></li>
 </ul>
 <p>To check these, we look at the original scatterplot as well as a plot of the <em>residuals</em> against <em>fitted or predicted values</em>,</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="kw">augment</span>(lm.gpa, <span class="dt">data =</span> sat) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Fitted values (predicted values)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb138-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">augment</span>(lm.gpa, <span class="dt">data =</span> sat) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb143-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Fitted values (predicted values)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb143-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
 <p>What do you think?</p>
 <ul>
@@ -348,12 +369,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Problem: Both variables are NOT <strong>Quantitative</strong>
 <ul>
-<li>If your x-variable is categorical, we’ll turn it into a quantitative variable using <strong>indicator variables</strong> (coming up)</li>
-<li>If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we’ll use <strong>logistic regression</strong> (coming up)</li>
+<li>If your x-variable is categorical, we’ll turn it into a quantitative variable using <a href="multiple-linear-regression.html#indicator-variables"><strong>indicator variables</strong></a> (coming up)</li>
+<li>If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we’ll use <a href="logistic-regression.html#logistic-regression"><strong>logistic regression</strong></a> (coming up)</li>
 </ul></li>
 <li><p>Problem: Relationship is NOT <strong>Straight Enough</strong></p>
 <ul>
-<li>If the plot does not thicken, we can add higher degree (e.g. <span class="math inline">\(x^2, x^3, x^4\)</span>, etc.) terms to the model (<strong>multiple linear regression</strong> - coming up).</li>
+<li>If the plot does not thicken, we can add higher degree (e.g. <span class="math inline">\(x^2, x^3, x^4\)</span>, etc.) terms to the model (<a href="multiple-linear-regression.html#multiple-linear-regression"><strong>multiple linear regression</strong></a> - coming up).</li>
 <li>If the plot does thicken, see solutions below.</li>
 </ul></li>
 <li>Problem: <strong>Spread</strong> is NOT the same throughout

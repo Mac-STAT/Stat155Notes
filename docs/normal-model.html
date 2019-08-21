@@ -292,7 +292,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="statistical-significance-v-practical-significance.html"><a href="statistical-significance-v-practical-significance.html"><i class="fa fa-check"></i><b>6.4</b> Statistical Significance v. Practical Significance</a></li>
 <li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a></li>
+<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a><ul>
+<li class="chapter" data-level="7.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
+<li class="chapter" data-level="7.1.2" data-path="probability-rules-1.html"><a href="probability-rules-1.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>7.2</b> Random Variable</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>7.2.1</b> Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>7.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>7.3.1</b> Expected Value</a></li>
+<li class="chapter" data-level="7.3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>7.3.2</b> Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#joint-distributions"><i class="fa fa-check"></i><b>7.3.3</b> Joint Distributions</a></li>
+<li class="chapter" data-level="7.3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#covariance"><i class="fa fa-check"></i><b>7.3.4</b> Covariance</a></li>
+<li class="chapter" data-level="7.3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#correlation"><i class="fa fa-check"></i><b>7.3.5</b> Correlation</a></li>
+<li class="chapter" data-level="7.3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#a-few-named-probability-models"><i class="fa fa-check"></i><b>7.3.6</b> A Few Named Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>7.4</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-value-1"><i class="fa fa-check"></i><b>7.4.1</b> Expected Value</a></li>
+<li class="chapter" data-level="7.4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#a-few-named-probability-models-1"><i class="fa fa-check"></i><b>7.4.2</b> A Few Named Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -328,21 +349,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Let’s consider the particular Normal model with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma=1\)</span>. This is called the <strong>standard normal distribution</strong>. We know that <span class="math inline">\(P(-1\leq X \leq 1) = 0.68\)</span>, calculated as the area under the curve between -1 and 1.</li>
 </ul>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) </a></code></pre></div>
 <pre><code>## [1] 0.6826895</code></pre>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1"><span class="co">#pnorm(1) gives the area under the curve to the left of 1</span></a>
-<a class="sourceLine" id="cb222-2" data-line-number="2"><span class="co">#pnorm(-1) gives the area under the curve to the left of -1</span></a></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="co">#pnorm(1) gives the area under the curve to the left of 1</span></a>
+<a class="sourceLine" id="cb227-2" data-line-number="2"><span class="co">#pnorm(-1) gives the area under the curve to the left of -1</span></a></code></pre></div>
 <ul>
 <li>We know that <span class="math inline">\(P(-2\leq X \leq 2) = 0.95\)</span>, calculated as the area under the curve between -2 and 2.</li>
 </ul>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 0.9544997</code></pre>
 <ul>
 <li>We know that <span class="math inline">\(P(-3\leq X \leq 3) = 0.997\)</span>, calculated as the area under the curve between -3 and 3.</li>
 </ul>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb225-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</a></code></pre></div>
 <pre><code>## [1] 0.9973002</code></pre>
 <p>The standard normal distribution is very convenient to work with. No matter what the long-run average <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> are for a normally-distributed random variable <span class="math inline">\(X\)</span>, we can standardize the values to obtain <strong>z-scores</strong> by subtracting <span class="math inline">\(\mu\)</span> and dividing by <span class="math inline">\(\sigma\)</span>:</p>
 <p><span class="math display">\[\text{z-score} = \frac{X - \mu}{\sigma}\]</span></p>

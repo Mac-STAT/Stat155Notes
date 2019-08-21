@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.3 Hypothesis Testing | Stat 155 Notes</title>
+  <title>7.3 Discrete Random Variables | Stat 155 Notes</title>
   <meta name="description" content="This includes notes for STAT 155 at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.3 Hypothesis Testing | Stat 155 Notes" />
+  <meta property="og:title" content="7.3 Discrete Random Variables | Stat 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.3 Hypothesis Testing | Stat 155 Notes" />
+  <meta name="twitter:title" content="7.3 Discrete Random Variables | Stat 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for STAT 155 at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="confidence-interval-examples.html">
-<link rel="next" href="statistical-significance-v-practical-significance.html">
+<link rel="prev" href="random-variable-1.html">
+<link rel="next" href="continuous-random-variables.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -334,166 +334,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="hypothesis-testing" class="section level2">
-<h2><span class="header-section-number">6.3</span> Hypothesis Testing</h2>
-<p>Hypothesis testing is another tool that can be used for statistical inference. Let’s warm up to the ideas of hypothesis testing by considering two broad types of scientific questions: (1) <em>Is there</em> a relationship? (2) <em>What</em> is the relationship?</p>
-<p>Suppose that we are thinking about the relationship between housing prices and square footage. Accounting for sampling variation…</p>
+<div id="discrete-random-variables" class="section level2">
+<h2><span class="header-section-number">7.3</span> Discrete Random Variables</h2>
 <ul>
-<li>…<strong>is there</strong> a relationship between price and living area?</li>
-<li>…<strong>what</strong> is the relationship between price and living area?</li>
+<li><p>If there are a finite (more generally, countable) number of possible values, we say that <span class="math inline">\(X\)</span> is a <strong>discrete random variable</strong>.</p></li>
+<li><p>We often can write the probability as a function of values, <span class="math inline">\(x\)</span>, and we call this function the <strong>probability mass function (pmf),</strong>
+<span class="math display">\[p(x) = P(X = x)\]</span></p></li>
+<li><p>and we know that
+<span class="math display">\[\sum_{all~x}p(x) = 1\]</span></p></li>
 </ul>
-<p>Whether by the Central Limit Theorem (mathematical theory) or bootstrapping, confidence intervals provide a <em>range of plausible values</em> for the true population parameter and allow us to answer both types of questions:</p>
+<div id="expected-value" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Expected Value</h3>
+<p>The <strong>expected value</strong> (or long-run average) of a discrete random variable is defined as the weighted average of the possible values, weighted by the probability,</p>
+<p><span class="math display">\[E(X) = \sum_{all~x} xp(x)\]</span></p>
+<p>So the expected value is like a mean, but over the long-run.</p>
+</div>
+<div id="variance" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Variance</h3>
+<p>The <strong>variance</strong> (or long-run spread) of a discrete random variable is defined as the “average” squared distance of <span class="math inline">\(X\)</span> from its expected value,</p>
+<p><span class="math display">\[Var(X) = E[(X-\mu)^2]\]</span>
+where <span class="math inline">\(\mu = E(X)\)</span>.</p>
 <ul>
-<li><strong>Is there</strong> a relationship between price and living area?
-<ul>
-<li>Is the no difference/relationship value in the interval?</li>
-</ul></li>
-<li><strong>What</strong> is the relationship between price and living area?
-<ul>
-<li>Look at the estimate and the values in the interval</li>
-</ul></li>
+<li>But it’s in squared units, so typically we talk about its square root, called the <strong>standard deviation</strong> of a random variable,
+<span class="math display">\[SD(X) = \sqrt{Var(X)}\]</span></li>
 </ul>
-<p><strong>Hypothesis testing</strong> is a general framework for answering questions of the first type. It is a general framework for making decisions between two “theories”.</p>
+<p>So the standard deviation of a random variable is like the standard deviation of a set of observed values. They are measures of spread and variability. In one circumstance, we have the data to calculate it and in the other, we are considering a random process and wondering how much a value might vary.</p>
+</div>
+<div id="joint-distributions" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> Joint Distributions</h3>
+<p>The <strong>joint probability mass function</strong> for two random variables is
+<span class="math display">\[p(x,y) = P(X=x \text{ and }Y = y)\]</span></p>
+<p>We can often calculate this joint probability using our probability rules from above (using multiplication…)</p>
 <ul>
-<li><p><strong>Example 1</strong><br />
-Decide between: true support for a law = 50% vs. true support <span class="math inline">\(\neq\)</span> 50%</p></li>
-<li><p><strong>Example 2</strong><br />
-In the model <span class="math inline">\(\text{Price} = \beta_0 + \beta_1\text{Area}\)</span>, decide between <span class="math inline">\(\beta_1 = 0\)</span> and <span class="math inline">\(\beta_1 \neq 0\)</span>.</p></li>
+<li><p>The expected value for a function of two random variables is
+<span class="math display">\[E(g(X,Y)) = \sum_{all\; y}\sum_{all\; x} g(x,y)p(x,y)\]</span></p></li>
+<li><p>We could show that the expected value of a sum is the sum of the expected values:</p></li>
 </ul>
-<p>In a hypothesis test, we use data to decide between two “hypotheses” labeled as follows:</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Null hypothesis</strong> (<span class="math inline">\(H_0\)</span> = “H naught”)<br />
-Hypothesis that is assumed to be true by default.<br />
-A status quo hypothesis: hypothesis of no effect/relationship/difference.</p></li>
-<li><p><strong>Alternative hypothesis</strong> (<span class="math inline">\(H_A\)</span> or <span class="math inline">\(H_1\)</span>)<br />
-A non-status quo hypothesis.<br />
-Claim being made about the population.</p></li>
-</ol>
-<div id="test-statistics" class="section level3">
-<h3><span class="header-section-number">6.3.1</span> Test statistics</h3>
-<p>Let’s consider the question: Is there a relationship between house price and living area? We can try to answer that with the linear regression model below:</p>
-<p><span class="math display">\[\text{Price} = \beta_0 + \beta_1\text{Area}\]</span></p>
-<p>We would phrase our null and alternative hypotheses as follows:</p>
-<p><span class="math display">\[H_0: \beta_1 = 0 \qquad \text{vs.} \qquad H_A: \beta_1 \neq 0\]</span></p>
-<p>The null hypothesis <span class="math inline">\(H_0\)</span> describes the situation of “no relationship” because it hypothesizes that the true slope <span class="math inline">\(\beta_1\)</span> is 0. The alternative hypothesis posits a relationship: the true slope <span class="math inline">\(\beta_1\)</span> is not 0. That is, there is not no relationship. (Double negatives!)</p>
-<p>To gather evidence, we collect data and fit a model. From the model, we can compute a <strong>test statistic</strong>, which tells us how far the observed slope is from the null hypothesis value of 0 (called the <strong>null value</strong>). The test statistic is a <em>discrepancy measure</em> where large values indicate higher discrepancy with <span class="math inline">\(H_0\)</span>.</p>
-<p>The test statistic below is a reasonable proposal:</p>
-<p><span class="math display">\[\text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}}\]</span></p>
-<p>It looks like a z-score. It expresses: how far away is our estimate from the null value in units of standard error? With large values (in magnitude) of the test statistic, our data (our estimate) is discrepant with what the null hypothesis proposes because our estimate is quite far away from the null value in standard error units.</p>
-</div>
-<div id="logic-of-hypothesis-testing" class="section level3">
-<h3><span class="header-section-number">6.3.2</span> Logic of hypothesis testing</h3>
-<p>How large in magnitude must the test statistic be in order to make a decision between <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>? We will use another metric called a <strong>p-value</strong>.</p>
-<p><strong>Assuming <span class="math inline">\(H_0\)</span> is true</strong>, we ask: What is the chance of observing a test statistic which is “as or even more extreme” than the one we just saw? This probability is called a <strong>p-value</strong>.</p>
-<p>If our test statistic is large, then our estimate is quite far away from the null value (in standard error units), and then the chance of observing someone this large or larger (assuming <span class="math inline">\(H_0\)</span> is true) would be very small. <strong>A large test statistic leads to a small p-value.</strong></p>
-<p>If our test statistic is small, then our estimate is quite close to the null value (in standard error units), and then the chance of observing someone this large or larger (assuming <span class="math inline">\(H_0\)</span> is true) would be very large. <strong>A small test statistic leads to a large p-value.</strong></p>
-<div id="making-decisions" class="section level4">
-<h4><span class="header-section-number">6.3.2.1</span> Making Decisions</h4>
-<p>If the p-value is “small”, then we reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span>. Why? A small p-value (by definition) says that if the null hypotheses were indeed true, we are unlikely to have seen such an extreme discrepancy measure (test statistic). We made an assumption that the null is true, and operating under that assumption, we observed something odd and unusual. This makes us reconsider our null hypothesis.</p>
-<p>How small is small enough for a p-value? We will set a threshold <span class="math inline">\(\alpha\)</span>. P-values less than this threshold will be “small enough”. When we talk about error rates of the decisions associated with rejecting or not rejecting the null hypothesis, the meaning of <span class="math inline">\(\alpha\)</span> will become more clear.</p>
-</div>
-</div>
-<div id="summary-of-procedure" class="section level3">
-<h3><span class="header-section-number">6.3.3</span> Summary of procedure</h3>
-<ol style="list-style-type: decimal">
-<li>State hypotheses <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>.</li>
-<li>Select <span class="math inline">\(\alpha\)</span>, a threshold for what is considered to be a small enough p-value.</li>
-<li>Calculate a test statistic</li>
-<li>Calculate the corresponding p-value</li>
-<li>Make a decision:
+<p><span class="math display">\[E(X+Y) = E(X) + E(Y)\]</span></p>
 <ul>
-<li>If p-value &lt; <span class="math inline">\(\alpha\)</span>, reject <span class="math inline">\(H_0\)</span> and accept <span class="math inline">\(H_A\)</span>.</li>
-<li>Otherwise, we fail to reject <span class="math inline">\(H_0\)</span> for lack of evidence.<br />
-(Jurors’ decisions are “guilty” and “not guilty”. Not “guilty” and “innocent”.)</li>
-</ul></li>
-</ol>
-</div>
-<div id="testing-single-model-coefficients" class="section level3">
-<h3><span class="header-section-number">6.3.4</span> Testing single model coefficients</h3>
-<p>A big emphasis of our course is regression models. It turns out that many scientific questions of interest can be framed with regression models.</p>
-<p>In the <code>summary()</code> output, R performs the following hypothesis test by default (for any regression coefficient <span class="math inline">\(\beta\)</span>):</p>
-<p><span class="math display">\[H_0: \beta = 0 \qquad \text{vs} \qquad H_A: \beta \neq 0\]</span></p>
-<p><span class="math display">\[\text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}} = \frac{\text{estimate} - 0}{\text{std. error of estimate}} \]</span></p>
-<p>Note that test statistics are random variables! Why? Because they are based on our random sample of data. Thus it will be helpful to understand the distributions of test statistics in terms of probability density functions.</p>
-<div class="reflect">
-<p>
-If <span class="math inline"><span class="math inline">\(H_0\)</span></span> were true, where would the probability density function of the test statistic be centered?
-</p>
-</div>
-</div>
-<div id="distributions-of-test-statistics" class="section level3">
-<h3><span class="header-section-number">6.3.5</span> Distributions of test statistics</h3>
-<p>What test statistics are we likely to get if <span class="math inline">\(H_0\)</span> is true? The probability density function of the test statistic “under <span class="math inline">\(H_0\)</span>” (that is, if <span class="math inline">\(H_0\)</span> is true) is shown below. Note that it is centered at 0. This distribution shows that if indeed the null is true, there is variation in the test statistics we might obtain from random samples, but most test statistics are around zero.</p>
-<p>It would be very unlikely for us to get a pretty large (extreme) test statistic if indeed <span class="math inline">\(H_0\)</span> were true. Why? The density drops rapidly at more extreme values.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-235-1.png" width="768" style="display: block; margin: auto;" /></p>
-</div>
-<div id="graphical-description-of-p-values" class="section level3">
-<h3><span class="header-section-number">6.3.6</span> Graphical description of p-values</h3>
-<p>Suppose that our observed test statistic is 2.</p>
-<p>What test statistics are “as or more extreme”?</p>
-<ul>
-<li>Absolute value of test statistic is at least 2: <span class="math inline">\(|\text{Test statistic}| \geq 2\)</span></li>
-<li>In other words: <span class="math inline">\(\text{Test statistic} \geq 2\)</span> and <span class="math inline">\(\text{Test statistic} \leq -2\)</span></li>
+<li>Using this fact, we could show that the variance can be written in this alternative form:</li>
 </ul>
-<p>The p-value corresponding to our test statistic is the area under the probability density function in those “as or more extreme” regions.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-236-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><span class="math display">\[Var(X) = E[(X-\mu)^2] = E(X^2) - [E(X)]^2\]</span></p>
 </div>
-<div id="example-linear-regression" class="section level3">
-<h3><span class="header-section-number">6.3.7</span> Example: Linear Regression</h3>
-<p>Below we fit a linear regression model of house price on living area:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb269-2" data-line-number="2">mod_homes &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area, <span class="dt">data =</span> homes)</a>
-<a class="sourceLine" id="cb269-3" data-line-number="3"><span class="kw">confint</span>(mod_homes) <span class="co">## 95% confidence interval by default</span></a></code></pre></div>
-<pre><code>##                 2.5 %     97.5 %
-## (Intercept) 3647.6958 23231.0922
-## Living.Area  107.8616   118.3835</code></pre>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="kw">summary</span>(mod_homes)<span class="op">$</span>coefficients</a></code></pre></div>
-<pre><code>##               Estimate  Std. Error   t value      Pr(&gt;|t|)
-## (Intercept) 13439.3940 4992.352849  2.691996  7.171207e-03
-## Living.Area   113.1225    2.682341 42.173065 9.486240e-268</code></pre>
-<p>The <code>t value</code> column is the test statistic, and the <code>Pr(&gt;|t|)</code> column is the p-value. Note that the “t” comes from the Student t distribution.</p>
+<div id="covariance" class="section level3">
+<h3><span class="header-section-number">7.3.4</span> Covariance</h3>
+<p>When consider two random variables, we may wonder whether they co-vary? In that do they vary together or vary independently? If</p>
 <ul>
-<li>What are <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>?<br />
-We write the model <span class="math inline">\(\text{Price} = \beta_0 + \beta_1\text{Area}\)</span>.<br />
-<span class="math inline">\(H_0: \beta_1 = 0\)</span> (There is no relationship between price and living area.)<br />
-<span class="math inline">\(H_A: \beta_1 \neq 0\)</span> (There is a relationship between price and living area.)<br />
-</li>
-<li>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?<br />
-Note that when you see <code>e</code> in R output, this means “10 to the power”. So <code>9.486240e-268</code> means <span class="math inline">\(9.49 \times 10^{-268}\)</span>. This p-value is less than our threshold, so we reject <span class="math inline">\(H_0\)</span> and say that we have significant evidence for a relationship between price and living area.</li>
-<li>Is this consistent with the confidence interval?<br />
-This result is consistent with the 95% confidence interval in that the interval does not contain 0.</li>
+<li><p>The <strong>covariance</strong> of two random variables is defined as
+<span class="math display">\[Cov(X,Y) = E[(X - \mu_X)(Y - \mu_Y)] = E(XY) - E(X)E(Y)\]</span></p></li>
+<li><p>Note: The covariance of X with itself is just the variance, <span class="math inline">\(Cov(X,X) = Var(X)\)</span></p></li>
+</ul>
+<p>We could use this to show that <span class="math inline">\(Var(X+Y) = Var(X)+ Var(Y) + 2Cov(X,Y)\)</span>.</p>
+<p>Two discrete random variables are <strong>independent</strong> if and only if
+<span class="math display">\[P(X = x\text{ and } Y = y)  = P(X=x)P(Y=y)\]</span>
+for every <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<ul>
+<li>If two random variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then <span class="math inline">\(Cov(X,Y)= 0\)</span>.</li>
 </ul>
 </div>
-<div id="example-logistic-regression" class="section level3">
-<h3><span class="header-section-number">6.3.8</span> Example: Logistic Regression</h3>
-<p>Below we fit a logistic regression model of whether a movie made a profit (response) on whether it is a history film:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1">movies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</a>
-<a class="sourceLine" id="cb273-2" data-line-number="2">mod_movies &lt;-<span class="st"> </span><span class="kw">glm</span>(profit<span class="op">==</span><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>History, <span class="dt">data =</span> movies, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</a>
-<a class="sourceLine" id="cb273-3" data-line-number="3"><span class="kw">confint</span>(mod_movies) <span class="co">## 95% confidence interval by default</span></a></code></pre></div>
-<pre><code>##                   2.5 %    97.5 %
-## (Intercept)  0.09438169 0.2102419
-## HistoryTRUE -0.26484980 0.3085225</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="kw">summary</span>(mod_movies)<span class="op">$</span>coefficients</a></code></pre></div>
-<pre><code>##               Estimate Std. Error   z value     Pr(&gt;|z|)
-## (Intercept) 0.15226921 0.02955458 5.1521364 2.575356e-07
-## HistoryTRUE 0.02074995 0.14604883 0.1420754 8.870204e-01</code></pre>
-<p>The <code>z value</code> column is the test statistic, and the <code>Pr(&gt;|z|)</code> column is the p-value. Note that the “z” refers to z-score and the Normal distribution.</p>
-<p>Try for yourselves!</p>
+<div id="correlation" class="section level3">
+<h3><span class="header-section-number">7.3.5</span> Correlation</h3>
 <ul>
-<li>What are <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>?</li>
-<li>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?</li>
-<li>Is this consistent with the confidence interval?</li>
+<li>The <strong>correlation</strong> of two random variables is
+<span class="math display">\[Cor(X,Y) =\frac{Cov(X,Y)}{SD(X)SD(Y)}\]</span></li>
 </ul>
-<p>###Errors</p>
-<p>Just as with model predictions, we may make errors when doing hypothesis tests.</p>
-<p>We may decide to reject <span class="math inline">\(H_0\)</span> when it is actually true. We may decide to not reject <span class="math inline">\(H_0\)</span> when it is actually false.</p>
-<p>We give these two types of errors names. <strong>Type 1 Error</strong> is when you reject <span class="math inline">\(H_0\)</span> when it is actually true. This is a false positive because you are concluding there is a real relationship when there is none. This would happen if one study published that coffee causes cancer in one group of people, but no one else could actually replicate that result since coffee doesn’t actually cause cancer. <strong>Type 2 Error</strong> is when you don’t reject <span class="math inline">\(H_0\)</span> when it is actually false. This is a false negative because you would conclude there is no real relationship when there is a real relationship. This happens when our sample size is not large enough to detect the real relationship due to the large amount of noise due to sampling variability.</p>
-<p>We care about both of these types of errors. Sometimes we prioritize one over the other. Based on the framework presented, we control the chance of a Type 1 error through the confidence level/p-value threshold we used. In fact, the chance of a Type 1 Error is <span class="math inline">\(\alpha\)</span>,</p>
-<p><span class="math display">\[P(\text{ Type 1 Error }) = P(\text{ Reject }H_0 ~|~H_0\text{ is true} ) =  \alpha\]</span></p>
-<p>Let <span class="math inline">\(\alpha = 0.05\)</span> for a moment. If the Null Hypothesis (<span class="math inline">\(H_0\)</span>) is actually true, then about 5% of the time, we’d get unusual test statistics just by chance. With those samples, we would incorrectly conclude that there was a real relationship.</p>
-<p>The chance of a Type 2 Error is often notated as <span class="math inline">\(\beta\)</span> (but this is not the same value as the slope),</p>
-<p><span class="math display">\[P(\text{ Type 2 Error }) = P(\text{ Fail to Reject }H_0 ~|~H_0\text{ is false} ) =  \beta\]</span></p>
-<p>In order to calculate this probability, we’d need to know the value (or at least a good idea) of the true effect.</p>
+</div>
+<div id="a-few-named-probability-models" class="section level3">
+<h3><span class="header-section-number">7.3.6</span> A Few Named Probability Models</h3>
+<div id="bernoulli-trials" class="section level4">
+<h4><span class="header-section-number">7.3.6.1</span> Bernoulli Trials</h4>
+<p><strong>Three conditions</strong></p>
+<ul>
+<li>Two possible outcomes on each trial (success or failure)</li>
+<li>Independent Trials (result of one trial does not impact probabilities on next trial)</li>
+<li>P(success) = <span class="math inline">\(p\)</span> is constant</li>
+</ul>
+<p><span class="math display">\[P(X = x) = p^x (1-p)^{x-1} \text{ for } x\in\{0,1\}\]</span>
+<span class="math display">\[E(X) = p\]</span>
+<span class="math display">\[Var(X) = p(1-p) \]</span></p>
+<p><strong>Binomial RV</strong>: <span class="math inline">\(X\)</span> is the total number of successes in <span class="math inline">\(n\)</span> trials</p>
+<p>For general <span class="math inline">\(n\)</span> and <span class="math inline">\(x\)</span>, the Binomial probability for a particular value of <span class="math inline">\(x\)</span> is given by</p>
+<p><span class="math display">\[P(X = x) =\frac{n!}{(n-x)! x!} p^x (1-p)^{n-x}\text{ for } x\in\{0,1,2,...,n\}\]</span>
+where <span class="math inline">\(x! = x*(x-1)*(x-2)*\cdots*2*1\)</span> and <span class="math inline">\(0! = 1\)</span>, so</p>
+<p><span class="math display">\[\frac{n!}{(n-x)! x!} = \frac{n*(n-1)*\cdots*(n-x+1)*(n-x)!}{(n-x)! x!}\]</span>
+<span class="math display">\[= \frac{n*(n-1)*\cdots*(n-x+1)}{x*(x-1)*\cdots*2*1}\]</span></p>
+<p>If we break this apart, we can see where the pieces came from. Let’s consider a simplified example. Let <span class="math inline">\(X\)</span> be the number of Heads in 3 coin flips (but the coin is biased such that <span class="math inline">\(p=0.2\)</span>).</p>
+<p>The probability of <span class="math inline">\(2\)</span> successes and <span class="math inline">\(1\)</span> failure in one particular order (e.g. HHT) is calculated as <span class="math inline">\(p^x (1-p)^{n-x} = 0.2^2(0.8)\)</span> due to Rule 5. However, we could have gotten a different ordering of Heads and Tails (e.g. HTH, THH). To count the number of ways we could get 2 heads and 1 tail in 3 coin flips, we use tools from combinatorics (an area of mathematics). In fact, the first part of the equation does the counting for us,</p>
+<p><span class="math display">\[\frac{n!}{(n-x)! x!} = \frac{n*(n-1)*\cdots*(n-x+1)*(n-x)!}{(n-x)! x!}\]</span></p>
+<p>So for our example, there are <span class="math inline">\(\frac{3!}{2!1!} = \frac{3*2!}{2!1} = 3\)</span> orderings of 2 heads and 1 tail.</p>
+<p>The expected number of successes in the long run is</p>
+<p><span class="math display">\[E(X) = np\]</span>
+and the variability in the number of successes is given by</p>
+<p><span class="math display">\[Var(X) = np(1-p) \]</span></p>
+<p>Let’s plot the pmf of the Binomial in a bar plot,</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-242-1.png" width="672" /></p>
+<p>If we increase <span class="math inline">\(n\)</span>, but leave <span class="math inline">\(p\)</span>, then</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
+<p>If we increase <span class="math inline">\(n\)</span>, but decrease <span class="math inline">\(p\)</span> proportionally (such that <span class="math inline">\(np\)</span> stays the same), then</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
+<p>We will talk about two ways to approximate the Binomial distribution.</p>
+<ul>
+<li>If <span class="math inline">\(n\)</span> increases while <span class="math inline">\(p\)</span> stays fixed, then we use a Normal approximation.</li>
+<li>If <span class="math inline">\(n\)</span> increases and <span class="math inline">\(p\)</span> decreases, then we use a Poisson approximation (beyond the scope of this course).</li>
+</ul>
+</div>
 </div>
 </div>
             </section>
@@ -501,8 +445,8 @@ This result is consistent with the 95% confidence interval in that the interval 
           </div>
         </div>
       </div>
-<a href="confidence-interval-examples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="statistical-significance-v-practical-significance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="random-variable-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="continuous-random-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -532,7 +476,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-inference.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-appendix.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 For those of you who want a more thorough, mathematical description of the basics of theoretical probability, please read on.
 
-##Probability Rules
+## Probability Rules
 
 In theoretical probability, we need to define a few terms and set some rules (known as axioms).
 
@@ -55,7 +55,7 @@ $$P(A ~| ~B) = \frac{P(A \text{ and } B)}{P(B)} = \frac{P(A \cap B)}{P(B)}$$
   - Intuition: Given that $B$ happened, we focus on the subset of outcomes in $S$ in which $B$ occurs and then figure out what the chance of $A$ happening within that subset. 
 
 
-####Example: Blood Types
+#### Example: Blood Types
 
 The American Red Cross estimates that 45% of U.S. population has Type O blood, 40% are Type A, 11% Type B, and 4% AB blood. 
 
@@ -88,7 +88,7 @@ Let's change the sample space to make it easier. Let our sample space, $S$, be t
 4. P(Type A or B or AB or O) = P(S) = 1 by Rule 2
 
 
-####Example: 52 Cards
+#### Example: 52 Cards
 
 Let's consider a perfectly shuffled deck of playing cards. Each card has an icon and a number (or A, J, Q, K) on it. The icon is either a red heart, red diamond, black spade (leaf), or black club (3 leaf clover). The numbers range for 2 to 10 and A is for Ace, J is for Jack, Q is for Queen, K is for King. 
 
@@ -110,7 +110,7 @@ The sample space is below.
 
 3. P(heart and then heart) = 13/52*12/51 by Rule 5\* (draws are not independent here since the probability of hearts changes after you remove a card)
 
-###Disjoint/Mutually Exclusive
+### Disjoint/Mutually Exclusive
 
 Think back to the Blood Type example.
 
@@ -132,7 +132,7 @@ Which is the same as if we were to consider the three disjoint options (A: Type 
 
 - P(AN or NA or AA) = 0.4\*0.6 + 0.6\*0.4 + 0.4*0.4 = 0.64
 
-###Independence
+### Independence
 
 Let's stay with the Blood Type example for one moment more.
 
@@ -149,7 +149,7 @@ No, they wouldn't be independent. In that case, let's calculate the probability 
 
 
 
-##Random Variable
+## Random Variable
 
 A **Random Variable** ($X$) is a real-valued function whose outcome we don't know beforehand.
 
@@ -172,7 +172,7 @@ I am going to flip a fair coin 3 times (the coin has 2-sides, we'll call one sid
 - The possible values are 0 or 1. 
 
 
-###Probability Models
+### Probability Models
 
 A **probability model** for random variable $X$ gives the possible values of $X$ and the associated probabilities. 
 
@@ -180,7 +180,7 @@ A **probability model** for random variable $X$ gives the possible values of $X$
 - What is the probability model for $Y= 3*X$?
 - What about $Z$?
 
-##Discrete Random Variables
+## Discrete Random Variables
 
 - If there are a finite (more generally, countable) number of possible values, we say that $X$ is a **discrete random variable**.
 
@@ -190,7 +190,7 @@ $$p(x) = P(X = x)$$
 - and we know that
 $$\sum_{all~x}p(x) = 1$$
 
-###Expected Value
+### Expected Value
 
 The **expected value** (or long-run average) of a discrete random variable is defined as the weighted average of the possible values, weighted by the probability,
 
@@ -211,7 +211,7 @@ $$E(X+b) = E(X) + b$$
 For MSCS majors, how would you go about prove these two properties using the definitions of Expected Value?
 ```
 
-###Variance
+### Variance
 
 The **variance** (or long-run spread) of a discrete random variable is defined as the "average" squared distance of $X$ from its expected value,
 
@@ -234,7 +234,7 @@ For MSCS majors, how would you go about prove these two properties using the def
 ```
 
 
-###Joint Distributions
+### Joint Distributions
 
 The **joint probability mass function** for two random variables is
 $$p(x,y) = P(X=x \text{ and }Y = y)$$
@@ -254,7 +254,7 @@ $$E(X+Y) = E(X) + E(Y)$$
 $$Var(X) = E[(X-\mu)^2] = E(X^2) - [E(X)]^2$$
 
 
-###Covariance
+### Covariance
 
 When consider two random variables, we may wonder whether they co-vary? In that do they vary together or vary independently? If 
 
@@ -272,14 +272,14 @@ for every $x$ and $y$.
 
 - If two random variables, $X$ and $Y$ are independent, then $Cov(X,Y)= 0$.
 
-###Correlation
+### Correlation
 
 - The **correlation** of two random variables is
 $$Cor(X,Y) =\frac{Cov(X,Y)}{SD(X)SD(Y)}$$
 
-###A Few Named Probability Models 
+### A Few Named Probability Models 
 
-####Bernoulli Trials
+#### Bernoulli Trials
 
 **Three conditions**
 
@@ -349,7 +349,7 @@ We will talk about two ways to approximate the Binomial distribution.
 
 
 
-##Continuous Random Variables
+## Continuous Random Variables
 
 For continuous random variables $X$ (uncountable, infinite number of values), 
 
@@ -367,7 +367,7 @@ $$P(S) = P(-\infty\leq X\leq \infty) = \int^\infty_{-\infty}f(x)dx = 1$$
 - Thus, we can write the cumulative distribution function as, $F(x) = P(X \leq x) = \int^x_{-\infty} f(y)dy$. 
 
 
-###Expected Value
+### Expected Value
 
 Let $X$ be a continuous RV with pdf $f(x)$. The expected value of $X$ is defined as
 $$E(X)= \int^\infty_{-\infty} xf(x)dx $$
@@ -383,7 +383,7 @@ $$E(X+b) = E(X) + b$$
 
 
 
-###A Few Named Probability Models 
+### A Few Named Probability Models 
 
 **Normal Model**
 
@@ -502,7 +502,7 @@ barplot(dbinom(0:n,size = n, p = p),names.arg=0:n,ylab='Probability',main='n = 5
 
 
 
-##Random Variation
+## Random Variation
 
 How has randomness come up in the course so far?
 

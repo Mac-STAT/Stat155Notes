@@ -37,7 +37,7 @@ fileText <- gsub("\\$", "", fileText)
 data_frame(text = fileText) %>% 
   unnest_tokens(word, text) %>%
   anti_join(stop_words) %>% # remove stop words
-  count(word, sort = T) %>% # sort by frequency
+  count(word, sort = TRUE) %>% # sort by frequency
   top_n(10) # get the top 10 words
 ```
 

@@ -292,7 +292,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="statistical-significance-v-practical-significance.html"><a href="statistical-significance-v-practical-significance.html"><i class="fa fa-check"></i><b>6.4</b> Statistical Significance v. Practical Significance</a></li>
 <li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a></li>
+<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a><ul>
+<li class="chapter" data-level="7.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
+<li class="chapter" data-level="7.1.2" data-path="probability-rules-1.html"><a href="probability-rules-1.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>7.2</b> Random Variable</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>7.2.1</b> Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>7.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>7.3.1</b> Expected Value</a></li>
+<li class="chapter" data-level="7.3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>7.3.2</b> Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#joint-distributions"><i class="fa fa-check"></i><b>7.3.3</b> Joint Distributions</a></li>
+<li class="chapter" data-level="7.3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#covariance"><i class="fa fa-check"></i><b>7.3.4</b> Covariance</a></li>
+<li class="chapter" data-level="7.3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#correlation"><i class="fa fa-check"></i><b>7.3.5</b> Correlation</a></li>
+<li class="chapter" data-level="7.3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#a-few-named-probability-models"><i class="fa fa-check"></i><b>7.3.6</b> A Few Named Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>7.4</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-value-1"><i class="fa fa-check"></i><b>7.4.1</b> Expected Value</a></li>
+<li class="chapter" data-level="7.4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#a-few-named-probability-models-1"><i class="fa fa-check"></i><b>7.4.2</b> A Few Named Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -316,18 +337,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="randomness-and-probability" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Randomness and Probability</h1>
 <p>Recall the model we built to predict home price as a function of square footage and fireplaces.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb217-2" data-line-number="2">homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb217-3" data-line-number="3"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb217-4" data-line-number="4">homes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb217-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb217-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb217-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb217-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb222-2" data-line-number="2">homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb222-3" data-line-number="3"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb222-4" data-line-number="4">homes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb222-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb222-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb222-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb222-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
 <p>To allow for different slopes among homes with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our sample, we observed a difference in the slopes of $26.85 per square foot. But is this true for the larger population of homes? Is each square foot worth exactly $26.85 more, on average, in homes with a fireplace than in homes without a fireplace?</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">lm.home3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace<span class="op">*</span>Living.Area, <span class="dt">data =</span> homes)</a>
-<a class="sourceLine" id="cb218-2" data-line-number="2"><span class="kw">tidy</span>(lm.home3)</a></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1">lm.home3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace<span class="op">*</span>Living.Area, <span class="dt">data =</span> homes)</a>
+<a class="sourceLine" id="cb223-2" data-line-number="2"><span class="kw">tidy</span>(lm.home3)</a></code></pre></div>
 <pre><code>## # A tibble: 4 x 5
 ##   term                         estimate std.error statistic  p.value
 ##   &lt;chr&gt;                           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;

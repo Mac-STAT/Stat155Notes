@@ -717,12 +717,12 @@ Check out this interactive visualization to get a feel for outlier points and th
 If the observed data do not satisfy the conditions above, what can we do? Should we give up using a statistical model? No!
 
 * Problem: Both variables are NOT **Quantitative**
-    - If your x-variable is categorical, we'll turn it into a quantitative variable using **indicator variables** (coming up) 
-    - If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we'll use **logistic regression** (coming up)
+    - If your x-variable is categorical, we'll turn it into a quantitative variable using [**indicator variables**][Indicator Variables] (coming up) 
+    - If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we'll use [**logistic regression**][Logistic Regression] (coming up)
 
 * Problem: Relationship is NOT **Straight Enough**
 
-    - If the plot does not thicken, we can add higher degree (e.g. $x^2, x^3, x^4$, etc.) terms to the model (**multiple linear regression** - coming up).
+    - If the plot does not thicken, we can add higher degree (e.g. $x^2, x^3, x^4$, etc.) terms to the model ([**multiple linear regression**][Multiple Linear Regression] - coming up).
     - If the plot does thicken, see solutions below.
 
 * Problem: **Spread** is NOT the same throughout
@@ -744,8 +744,8 @@ $$\hat{y} = b_0 + b_1x_{1} + \cdots + b_kx_{k}$$
 
 - These explanatory variables can be:
     - Quantitative variables (or transformations of them)
-    - Indicator variables for categorical variables (only need $l-1$ indicators for a variable with $l$ categories)
-    - Interaction terms (product of two variables, which allows for *effect modification*)
+    - [Indicator variables][Indicator Variables] for categorical variables (only need $l-1$ indicators for a variable with $l$ categories)
+    - [Interaction terms][Interaction Variables] (product of two variables, which allows for *effect modification*)
     
 Let's talk about a new data example: home prices. We want to build a model to predict the price of a home based on its many characteristics. Here we have a data set of homes recently sold in New England with many variables such as the age of the home, the land value, whether or not it has central air conditioning, the number of fireplaces, the sale price, and more...
 

@@ -292,7 +292,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="statistical-significance-v-practical-significance.html"><a href="statistical-significance-v-practical-significance.html"><i class="fa fa-check"></i><b>6.4</b> Statistical Significance v. Practical Significance</a></li>
 <li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a></li>
+<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a><ul>
+<li class="chapter" data-level="7.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
+<li class="chapter" data-level="7.1.2" data-path="probability-rules-1.html"><a href="probability-rules-1.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>7.2</b> Random Variable</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>7.2.1</b> Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>7.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>7.3.1</b> Expected Value</a></li>
+<li class="chapter" data-level="7.3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>7.3.2</b> Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#joint-distributions"><i class="fa fa-check"></i><b>7.3.3</b> Joint Distributions</a></li>
+<li class="chapter" data-level="7.3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#covariance"><i class="fa fa-check"></i><b>7.3.4</b> Covariance</a></li>
+<li class="chapter" data-level="7.3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#correlation"><i class="fa fa-check"></i><b>7.3.5</b> Correlation</a></li>
+<li class="chapter" data-level="7.3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#a-few-named-probability-models"><i class="fa fa-check"></i><b>7.3.6</b> A Few Named Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>7.4</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-value-1"><i class="fa fa-check"></i><b>7.4.1</b> Expected Value</a></li>
+<li class="chapter" data-level="7.4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#a-few-named-probability-models-1"><i class="fa fa-check"></i><b>7.4.2</b> A Few Named Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -326,11 +347,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 What is our population of interest? What population could we generalize to?
 </p>
 </div>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">2018</span>)</a>
-<a class="sourceLine" id="cb227-2" data-line-number="2"><span class="co">## This creates a dataset called flights_samp</span></a>
-<a class="sourceLine" id="cb227-3" data-line-number="3"><span class="co">## that contains the SRS of size 100</span></a>
-<a class="sourceLine" id="cb227-4" data-line-number="4">flights_samp &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb227-5" data-line-number="5"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">2018</span>)</a>
+<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="co">## This creates a dataset called flights_samp</span></a>
+<a class="sourceLine" id="cb232-3" data-line-number="3"><span class="co">## that contains the SRS of size 100</span></a>
+<a class="sourceLine" id="cb232-4" data-line-number="4">flights_samp &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb232-5" data-line-number="5"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>)</a></code></pre></div>
 <p>We’ve already been thinking about random variation and how that plays a role in the conclusions we can draw. In this chapter, we will formalize two techniques that we use to do perform statistican inference: confidence intervals and hypothesis tests.</p> 
 </div>
             </section>

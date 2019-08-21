@@ -292,7 +292,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.4" data-path="statistical-significance-v-practical-significance.html"><a href="statistical-significance-v-practical-significance.html"><i class="fa fa-check"></i><b>6.4</b> Statistical Significance v. Practical Significance</a></li>
 <li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a></li>
+<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a><ul>
+<li class="chapter" data-level="7.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
+<li class="chapter" data-level="7.1.2" data-path="probability-rules-1.html"><a href="probability-rules-1.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>7.2</b> Random Variable</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>7.2.1</b> Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>7.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>7.3.1</b> Expected Value</a></li>
+<li class="chapter" data-level="7.3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>7.3.2</b> Variance</a></li>
+<li class="chapter" data-level="7.3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#joint-distributions"><i class="fa fa-check"></i><b>7.3.3</b> Joint Distributions</a></li>
+<li class="chapter" data-level="7.3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#covariance"><i class="fa fa-check"></i><b>7.3.4</b> Covariance</a></li>
+<li class="chapter" data-level="7.3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#correlation"><i class="fa fa-check"></i><b>7.3.5</b> Correlation</a></li>
+<li class="chapter" data-level="7.3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#a-few-named-probability-models"><i class="fa fa-check"></i><b>7.3.6</b> A Few Named Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>7.4</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-value-1"><i class="fa fa-check"></i><b>7.4.1</b> Expected Value</a></li>
+<li class="chapter" data-level="7.4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#a-few-named-probability-models-1"><i class="fa fa-check"></i><b>7.4.2</b> A Few Named Probability Models</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -320,14 +341,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="scatterplot" class="section level3">
 <h3><span class="header-section-number">2.8.1</span> Scatterplot</h3>
 <p>When you have two quantitative variables, a <strong>scatterplot</strong> is the main appropriate graphical display of the relationship. Each point represents the neck and chest size of one customer.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">body &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;Data/bodyfat.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb69-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb69-3" data-line-number="3">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck, <span class="dt">y =</span> Chest)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb69-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">body &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;Data/bodyfat.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb74-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb74-3" data-line-number="3">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb74-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck, <span class="dt">y =</span> Chest)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb74-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb74-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb74-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb74-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
 <p>What do you notice about:</p>
 <ol style="list-style-type: decimal">
@@ -344,12 +365,12 @@ How might you use this information to determine shirt sizes for your new busines
 <p>Suppose instead of <em>Chest</em> in inches and <em>Neck size</em> in cm, we plotted <em>Chest</em> in inches and <em>Neck size</em> in inches.</p>
 <p><strong>Does the strength of the relationship change after transformation?</strong></p>
 <p>Look at the plot in inches below. Does this plot look the same as the centimeters plot?</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck<span class="op">/</span><span class="fl">2.54</span>, <span class="dt">y =</span> Chest<span class="op">/</span><span class="fl">2.54</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (in)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb70-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (in)&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb70-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck<span class="op">/</span><span class="fl">2.54</span>, <span class="dt">y =</span> Chest<span class="op">/</span><span class="fl">2.54</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb75-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (in)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb75-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (in)&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb75-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
 <p>You should see that the x-axes changed but the overall shape of the plot stayed the same. Thus, the strength of the relationship was not affected by tranforming neck size from centimeters to inches (by dividing by 2.54).</p>
 </div>
@@ -390,13 +411,13 @@ If we were to have a negative relationship, how would this plot change?
 </ul>
 <p><strong>Which points contribute the most to this average?</strong></p>
 <p>Let’s look at the correlation for the entire sample first. Then let’s calculate the correlation for individuals around the mean Neck size.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># All data points used in calculation</span></a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># All data points used in calculation</span></a></code></pre></div>
 <pre><code>##   cor(Neck, Chest)
 ## 1        0.7688109</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(Neck <span class="op">&gt;</span><span class="st"> </span><span class="dv">35</span> <span class="op">&amp;</span><span class="st"> </span>Neck <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Keep individuals with Neck size between 35cm and 40cm</span></a>
-<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="st">      </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># Only middle subset of data points used in calculation</span></a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb78-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(Neck <span class="op">&gt;</span><span class="st"> </span><span class="dv">35</span> <span class="op">&amp;</span><span class="st"> </span>Neck <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Keep individuals with Neck size between 35cm and 40cm</span></a>
+<a class="sourceLine" id="cb78-3" data-line-number="3"><span class="st">      </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># Only middle subset of data points used in calculation</span></a></code></pre></div>
 <pre><code>##   cor(Neck, Chest)
 ## 1        0.5658835</code></pre>
 <p>The value is much larger and more positive when all data points are used. The points that are far from the means of x and y have a larger product of z-scores and thus increase the correlation coefficient value.</p>

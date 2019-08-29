@@ -466,24 +466,20 @@ So is this how much a fireplace is worth? If I installed a fireplace in my house
 <p><strong>What does this mean?</strong></p>
 <p>Let’s think about two types of homes: a home with one or more fireplaces and a home without a fireplace.</p>
 <ul>
-<li>Home with fireplace (indicator = 1):<br />
-<span class="math display">\[
-\begin{align*}
+<li>Home with fireplace (indicator = 1):</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
 \hbox{Predicted Price} &amp;= 13599.16 + 5567.37 \times 1 + 111.21 \times \hbox{Living.Area} \\
 &amp;= \$19,166.53 + \$111.21 \times \hbox{Living.Area}
-\end{align*}
-\]</span></li>
-</ul>
+\end{align*}\]</span></p>
 <p><em>Among homes with a fireplace, we have one linear relationship between living area and price.</em></p>
 <ul>
-<li>Home without fireplace (indicator = 0):<br />
-<span class="math display">\[
-\begin{align*}
+<li>Home without fireplace (indicator = 0):</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
 \hbox{Predicted Price} &amp;= 13599.16 + 5567.37 \times 0 + 111.21 \times \hbox{Living.Area} \\
 &amp;= \$13,599.16 + \$111.21 \times \hbox{Living.Area}
-\end{align*}
-\]</span></li>
-</ul>
+\end{align*}\]</span></p>
 <p><em>Among homes without a fireplace, we have a different linear relationship between living area and price.</em></p>
 <ul>
 <li>For either type of home, $111.21 is the increase in the predicted or average Price associated with a 1 square footage increase in Living.Area, <strong>keeping the number of fireplaces constant</strong>.</li>
@@ -491,13 +487,11 @@ So is this how much a fireplace is worth? If I installed a fireplace in my house
 <p>Now let’s compare homes that are the same size.</p>
 <p><em>If we keep Living.Area constant by considering two equally sized homes, then we’d expect the home with the fireplace to be worth $5567.37 more than a home without a fireplace.</em></p>
 <p>We see this by taking the difference between the two equations:</p>
-<p><span class="math display">\[ \hbox{Predicted Price (with Fireplace)} - \hbox{Predicted Price (without Fireplace)} \]</span>
-<span class="math display">\[
-\begin{align*}
+<p><span class="math display">\[ \hbox{Predicted Price (with Fireplace)} - \hbox{Predicted Price (without Fireplace)} \]</span></p>
+<p><span class="math display">\[\begin{align*}
 \,&amp;= (\$19,166.53 + \$111.21 \times \hbox{Living.Area}) - ( \$13599.16 + \$111.21 \times \hbox{Living.Area})
 \,&amp;= \$19,166.53 - \$13,599.16 = \$5567.37
-\end{align*}
-\]</span></p>
+\end{align*}\]</span></p>
 <p>The difference between the intercepts is 5567.37.</p>
 <ul>
 <li><p>This was the estimated coefficient or slope for AnyFireplaceTRUE.</p></li>
@@ -570,31 +564,23 @@ The model above has an <strong>interaction term,</strong> which is the product o
 <p><strong>What does this mean?</strong></p>
 <p>Let’s think about two types of homes: a home with one or more fireplaces and a home without a fireplace.</p>
 <ul>
-<li>Home with fireplace (indicator = 1):<br />
-<span class="math display">\[
-{\small
-\begin{align*}
+<li>Home with fireplace (indicator = 1):</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
 \hbox{Predicted Price} &amp;= 40901.29 + -37610.41 \times 1 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 1 \\
 &amp; = \$3,290.88 + \$119.21 \times \hbox{Living.Area}
-\end{align*}
-}
-\]</span></li>
-</ul>
+\end{align*}\]</span></p>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="fl">40901.29</span> <span class="op">+</span><span class="st"> </span><span class="fl">-37610.41</span><span class="op">*</span><span class="dv">1</span></a></code></pre></div>
 <pre><code>## [1] 3290.88</code></pre>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="fl">92.36391</span> <span class="op">+</span><span class="st"> </span><span class="fl">26.85</span><span class="op">*</span><span class="dv">1</span></a></code></pre></div>
 <pre><code>## [1] 119.2139</code></pre>
 <ul>
-<li>Home without fireplace (indicator = 0):<br />
-<span class="math display">\[
-{\small
-\begin{align*}
+<li>Home without fireplace (indicator = 0):</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
 \hbox{Predicted Price} &amp;= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 0 \\
 &amp;= \$40,901.29 + \$92.36 \times \hbox{Living.Area}
-\end{align*}
-}
-\]</span></li>
-</ul>
+\end{align*}\]</span></p>
 <p>We note different slopes and different intercepts for these two groups.</p>
 </div>
 <div id="causation" class="section level3">
@@ -720,8 +706,7 @@ Based on this evidence, do you think it is possible that the slopes are the same
 <p><strong>Guideline #1:</strong> If there is unequal spread around the curved relationship, focus first on transforming <span class="math inline">\(y\)</span>. If the spread is roughly the same around the curved relationship, focus on transforming <span class="math inline">\(x\)</span>.</p>
 <p>When we say transform a variable, we are referring to taking the values of a variable and plugging them into a mathematical function such as <span class="math inline">\(\sqrt{x}\)</span>, <span class="math inline">\(\log(x)\)</span> (which represents natural log, not log base 10), <span class="math inline">\(x^2\)</span>, <span class="math inline">\(1/x\)</span>, etc.</p>
 <p><strong>Guideline #2:</strong> To choose the mathematical function, we focus on power functions and organize them in a <strong>Ladder of Powers</strong> of <span class="math inline">\(y\)</span> (or <span class="math inline">\(x\)</span>):</p>
-<p><span class="math display">\[
-\begin{align}
+<p><span class="math display">\[\begin{align}
 \vdots\\
 y^3\\
 y^2\\
@@ -734,8 +719,7 @@ y^{-1/3}\\
 1/y\\
 1/y^2\\
 \vdots
-\end{align}
-\]</span></p>
+\end{align}\]</span></p>
 <p>To choose a transformation, we start at <span class="math inline">\(y\)</span> (power = 1) and think about going up or down the ladder.</p>
 <p>But which way?</p>
 <p>Our friend <a href="https://en.wikipedia.org/wiki/John_Tukey">J.W. Tukey</a> (the same guy who invented the boxplot) came up with an approach to help us decide. You must ask yourself: Which part of the circle does the scatterplot most resemble (in terms of concavity and direction)? Which quadrant?</p>

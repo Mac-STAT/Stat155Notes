@@ -1,0 +1,161 @@
+\contentsline {section}{\numberline {0.1}Acknowledgments}{7}{section.0.1}
+\contentsline {chapter}{\numberline {1}Data Collection and Quality}{9}{chapter.1}
+\contentsline {section}{\numberline {1.1}What is Data?}{9}{section.1.1}
+\contentsline {section}{\numberline {1.2}Data Context}{11}{section.1.2}
+\contentsline {section}{\numberline {1.3}Sampling}{11}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Sampling Bias}{12}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Random Sampling}{13}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Nonresponse bias}{13}{subsection.1.3.3}
+\contentsline {section}{\numberline {1.4}Information bias}{14}{section.1.4}
+\contentsline {section}{\numberline {1.5}Study Design}{14}{section.1.5}
+\contentsline {section}{\numberline {1.6}Causal Inference}{16}{section.1.6}
+\contentsline {section}{\numberline {1.7}Ethical Considerations}{18}{section.1.7}
+\contentsline {section}{\numberline {1.8}Major Takeaways}{20}{section.1.8}
+\contentsline {chapter}{\numberline {2}Visualizing Data}{21}{chapter.2}
+\contentsline {section}{\numberline {2.1}Good Visualization Principles}{21}{section.2.1}
+\contentsline {section}{\numberline {2.2}Brief Intro to R}{22}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Basic Syntax}{22}{subsection.2.2.1}
+\contentsline {section}{\numberline {2.3}Anatomy of a ggplot command}{23}{section.2.3}
+\contentsline {section}{\numberline {2.4}One Categorical Variable}{24}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Bar Plot}{25}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Pie Chart}{26}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Two Categorical Variables}{27}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Side by Side Bar Plot}{27}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Stacked Bar Plot}{28}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Stacked Bar Plot (Relative Frequencies)}{30}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Mosaic Plot}{32}{subsection.2.5.4}
+\contentsline {section}{\numberline {2.6}One Quantitative Variable}{35}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Histogram}{35}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Center}{40}{subsection.2.6.2}
+\contentsline {subsection}{\numberline {2.6.3}Boxplot}{41}{subsection.2.6.3}
+\contentsline {subsection}{\numberline {2.6.4}Spread}{44}{subsection.2.6.4}
+\contentsline {subsection}{\numberline {2.6.5}Some data accounting}{45}{subsection.2.6.5}
+\contentsline {subsection}{\numberline {2.6.6}Z-scores}{47}{subsection.2.6.6}
+\contentsline {section}{\numberline {2.7}One Quant. and One Cat. Variable}{49}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Multiple Histograms}{49}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}Multiple Boxplots}{52}{subsection.2.7.2}
+\contentsline {subsection}{\numberline {2.7.3}Is this a Real Difference?}{55}{subsection.2.7.3}
+\contentsline {section}{\numberline {2.8}Two Quantitative Variables}{57}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Scatterplot}{57}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.2}Correlation Coefficient}{59}{subsection.2.8.2}
+\contentsline {subsection}{\numberline {2.8.3}Properties}{62}{subsection.2.8.3}
+\contentsline {subsection}{\numberline {2.8.4}Is correlation always the right way to judge strength?}{65}{subsection.2.8.4}
+\contentsline {section}{\numberline {2.9}Three or more variables}{66}{section.2.9}
+\contentsline {subsection}{\numberline {2.9.1}A bivariate scatterplot}{66}{subsection.2.9.1}
+\contentsline {subsection}{\numberline {2.9.2}Enriching with color}{67}{subsection.2.9.2}
+\contentsline {subsection}{\numberline {2.9.3}Enriching with shape}{69}{subsection.2.9.3}
+\contentsline {subsection}{\numberline {2.9.4}Enriching with size}{70}{subsection.2.9.4}
+\contentsline {subsection}{\numberline {2.9.5}Enriching with panels}{71}{subsection.2.9.5}
+\contentsline {subsection}{\numberline {2.9.6}Enriching with smoothing}{74}{subsection.2.9.6}
+\contentsline {subsection}{\numberline {2.9.7}Putting everything together}{75}{subsection.2.9.7}
+\contentsline {section}{\numberline {2.10}Major Takeaways}{76}{section.2.10}
+\contentsline {chapter}{\numberline {3}Regression Models}{79}{chapter.3}
+\contentsline {section}{\numberline {3.1}Modeling Goals}{79}{section.3.1}
+\contentsline {section}{\numberline {3.2}Lines}{80}{section.3.2}
+\contentsline {section}{\numberline {3.3}``Best'' fitting line}{85}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}First idea}{86}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Second idea}{86}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}Third idea}{86}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}Least Squares}{86}{section.3.4}
+\contentsline {section}{\numberline {3.5}Properties of Least Squares Line}{90}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Real companies}{91}{subsection.3.5.1}
+\contentsline {section}{\numberline {3.6}Interpretation}{93}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Intercept (\(b_0\))}{94}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Slope (\(b_1\))}{95}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Least Squares/Regression Line (\(\mathaccentV {hat}05E{y} = b_0 + b_1x\))}{95}{subsection.3.6.3}
+\contentsline {subsection}{\numberline {3.6.4}Correlation or Association vs.\nobreakspace {}Causation}{96}{subsection.3.6.4}
+\contentsline {section}{\numberline {3.7}Model Evaluation}{97}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}Prediction}{97}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Prediction Errors}{101}{subsection.3.7.2}
+\contentsline {subsection}{\numberline {3.7.3}\(R^2\)}{103}{subsection.3.7.3}
+\contentsline {section}{\numberline {3.8}Diagnostics}{104}{section.3.8}
+\contentsline {subsection}{\numberline {3.8.1}Solutions to Regression Issues}{107}{subsection.3.8.1}
+\contentsline {section}{\numberline {3.9}Multiple Linear Regression}{107}{section.3.9}
+\contentsline {subsection}{\numberline {3.9.1}Indicator Variables}{109}{subsection.3.9.1}
+\contentsline {subsection}{\numberline {3.9.2}Interaction Variables}{115}{subsection.3.9.2}
+\contentsline {subsection}{\numberline {3.9.3}Causation}{117}{subsection.3.9.3}
+\contentsline {subsection}{\numberline {3.9.4}Conditions for Multiple Linear Regression}{118}{subsection.3.9.4}
+\contentsline {subsection}{\numberline {3.9.5}Is the Difference Real?}{118}{subsection.3.9.5}
+\contentsline {subsection}{\numberline {3.9.6}Dealing with Non-Linear Relationships}{121}{subsection.3.9.6}
+\contentsline {subsubsection}{\numberline {3.9.6.1}Transform Variables}{121}{subsubsection.3.9.6.1}
+\contentsline {subsubsection}{\numberline {3.9.6.2}Alternative Solutions}{129}{subsubsection.3.9.6.2}
+\contentsline {section}{\numberline {3.10}Logistic Regression}{131}{section.3.10}
+\contentsline {subsection}{\numberline {3.10.1}Logistic and Logit}{131}{subsection.3.10.1}
+\contentsline {subsection}{\numberline {3.10.2}Fitting the Model}{133}{subsection.3.10.2}
+\contentsline {subsection}{\numberline {3.10.3}Interpretation}{136}{subsection.3.10.3}
+\contentsline {subsection}{\numberline {3.10.4}Prediction}{138}{subsection.3.10.4}
+\contentsline {subsubsection}{\numberline {3.10.4.1}Hard Predictions/Classifications}{138}{subsubsection.3.10.4.1}
+\contentsline {subsection}{\numberline {3.10.5}Model Evaluation}{140}{subsection.3.10.5}
+\contentsline {subsection}{\numberline {3.10.6}Alternative Classification Models}{140}{subsection.3.10.6}
+\contentsline {section}{\numberline {3.11}Major Takeaways}{141}{section.3.11}
+\contentsline {chapter}{\numberline {4}Random Variability}{143}{chapter.4}
+\contentsline {section}{\numberline {4.1}Sampling Variability}{143}{section.4.1}
+\contentsline {section}{\numberline {4.2}Randomization Variability}{143}{section.4.2}
+\contentsline {section}{\numberline {4.3}Simulating Random Sampling from a Population}{144}{section.4.3}
+\contentsline {section}{\numberline {4.4}IRL: Bootstrapping}{149}{section.4.4}
+\contentsline {section}{\numberline {4.5}Simulating Randomization into Groups}{154}{section.4.5}
+\contentsline {section}{\numberline {4.6}IRL: Randomization Tests}{156}{section.4.6}
+\contentsline {chapter}{\numberline {5}Randomness and Probability}{159}{chapter.5}
+\contentsline {section}{\numberline {5.1}Three Types of Probability}{161}{section.5.1}
+\contentsline {section}{\numberline {5.2}Theoretical Probability Rules}{162}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Diagnotic Testing and Probability}{163}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Court Arguments and Probability}{165}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Random Variable}{165}{section.5.3}
+\contentsline {section}{\numberline {5.4}Probability Models}{166}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Using probability mass functions}{167}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Using probability density functions}{168}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Expected value and variance}{170}{subsection.5.4.3}
+\contentsline {section}{\numberline {5.5}Bernoulli/Binomial Model}{172}{section.5.5}
+\contentsline {section}{\numberline {5.6}Normal Model}{174}{section.5.6}
+\contentsline {section}{\numberline {5.7}Sampling Distribution and CLT}{179}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Sampling distributions}{179}{subsection.5.7.1}
+\contentsline {subsection}{\numberline {5.7.2}The Central Limit Theorem}{180}{subsection.5.7.2}
+\contentsline {section}{\numberline {5.8}Z-scores and the Student's ``t'' distribution}{183}{section.5.8}
+\contentsline {subsection}{\numberline {5.8.1}Gosset's Work}{184}{subsection.5.8.1}
+\contentsline {subsection}{\numberline {5.8.2}Beer Helps the Field of Statistics}{185}{subsection.5.8.2}
+\contentsline {subsection}{\numberline {5.8.3}Student's T Model}{186}{subsection.5.8.3}
+\contentsline {chapter}{\numberline {6}Statistical Inference}{187}{chapter.6}
+\contentsline {section}{\numberline {6.1}Confidence Intervals}{188}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Via Classical Theory}{188}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Via Bootstrapping}{189}{subsection.6.1.2}
+\contentsline {section}{\numberline {6.2}Confidence Interval Examples}{190}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Proportion Outcome}{190}{subsection.6.2.1}
+\contentsline {subsection}{\numberline {6.2.2}Mean and then Median}{191}{subsection.6.2.2}
+\contentsline {subsection}{\numberline {6.2.3}Logistic Regression Model}{192}{subsection.6.2.3}
+\contentsline {subsection}{\numberline {6.2.4}Linear Regression Model Slope (Categorical Variable)}{193}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Linear Regression Model Slope (Quantitative Var)}{194}{subsection.6.2.5}
+\contentsline {subsection}{\numberline {6.2.6}Confidence Intervals for Prediction}{196}{subsection.6.2.6}
+\contentsline {subsection}{\numberline {6.2.7}Prediction Intervals}{196}{subsection.6.2.7}
+\contentsline {subsection}{\numberline {6.2.8}Probability Theory vs.\nobreakspace {}Bootstrapping}{196}{subsection.6.2.8}
+\contentsline {section}{\numberline {6.3}Hypothesis Testing}{197}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Test statistics}{197}{subsection.6.3.1}
+\contentsline {subsection}{\numberline {6.3.2}Logic of hypothesis testing}{198}{subsection.6.3.2}
+\contentsline {subsubsection}{\numberline {6.3.2.1}Making Decisions}{198}{subsubsection.6.3.2.1}
+\contentsline {subsection}{\numberline {6.3.3}Summary of procedure}{199}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}Testing single model coefficients}{199}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.5}Distributions of test statistics}{200}{subsection.6.3.5}
+\contentsline {subsection}{\numberline {6.3.6}Graphical description of p-values}{200}{subsection.6.3.6}
+\contentsline {subsection}{\numberline {6.3.7}Example: Linear Regression}{201}{subsection.6.3.7}
+\contentsline {subsection}{\numberline {6.3.8}Example: Logistic Regression}{202}{subsection.6.3.8}
+\contentsline {section}{\numberline {6.4}Statistical Significance v. Practical Significance}{203}{section.6.4}
+\contentsline {section}{\numberline {6.5}Model Selection}{204}{section.6.5}
+\contentsline {chapter}{\numberline {7}Appendix A - Theoretical Probability}{207}{chapter.7}
+\contentsline {section}{\numberline {7.1}Probability Rules}{207}{section.7.1}
+\contentsline {subsubsection}{\numberline {7.1.0.1}Example: Blood Types}{208}{subsubsection.7.1.0.1}
+\contentsline {subsubsection}{\numberline {7.1.0.2}Example: 52 Cards}{209}{subsubsection.7.1.0.2}
+\contentsline {subsection}{\numberline {7.1.1}Disjoint/Mutually Exclusive}{210}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Independence}{210}{subsection.7.1.2}
+\contentsline {section}{\numberline {7.2}Random Variable}{211}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Probability Models}{211}{subsection.7.2.1}
+\contentsline {section}{\numberline {7.3}Discrete Random Variables}{211}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Expected Value}{212}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Variance}{212}{subsection.7.3.2}
+\contentsline {subsection}{\numberline {7.3.3}Joint Distributions}{212}{subsection.7.3.3}
+\contentsline {subsection}{\numberline {7.3.4}Covariance}{213}{subsection.7.3.4}
+\contentsline {subsection}{\numberline {7.3.5}Correlation}{213}{subsection.7.3.5}
+\contentsline {subsection}{\numberline {7.3.6}A Few Named Probability Models}{214}{subsection.7.3.6}
+\contentsline {subsubsection}{\numberline {7.3.6.1}Bernoulli Trials}{214}{subsubsection.7.3.6.1}
+\contentsline {section}{\numberline {7.4}Continuous Random Variables}{217}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}Expected Value}{217}{subsection.7.4.1}
+\contentsline {subsection}{\numberline {7.4.2}A Few Named Probability Models}{218}{subsection.7.4.2}
+\contentsline {section}{\numberline {7.5}Random Variation}{222}{section.7.5}

@@ -5,3 +5,4 @@ language:
 rmd_files: ["index.Rmd", "01-data.Rmd", "02-visualization.Rmd", "03-regression.Rmd", "04-variability.Rmd", "05-probability.Rmd", "06-inference.Rmd", "07-appendix.Rmd"]
 delete_merged_file: true
 output_dir: "docs"
+repo: https://github.com/bcheggeseth/Stat155Notes/

@@ -1,11 +1,11 @@
 \usepackage{booktabs}
-\usepackage{amsthm}
-\usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{color, colortbl}
 \usepackage[dvipsnames]{xcolor}
 \definecolor{LightBlue}{rgb}{0.76,0.88,0.96}
 % rgb(195, 225, 244) and divide by 255
+\definecolor{LightYellow}{rgb}{	0.98, 0.988, 0.737}
+% rgb(250,252,188) and divide by 255
 
 \usepackage{hyperref}
 \hypersetup{
@@ -13,12 +13,10 @@
     linkcolor = {blue}
 }
 
-\makeatletter
-\def\thm@space@setup{%
-  \thm@preskip=8pt plus 2pt minus 4pt
-  \thm@postskip=\thm@preskip
-}
-\makeatother
+\usepackage{makeidx}
+\makeindex
+
+\urlstyle{tt}
 
 \newenvironment{reflect}
 {
@@ -32,6 +30,23 @@
 }
 {
     \\\rowcolor{LightBlue}
+    \\\hline
+    \end{tabular} 
+    \end{center}
+}
+
+\newenvironment{mathbox}
+{
+    \begin{center}
+    
+    \begin{tabular}{|p{0.8\textwidth}|}
+    \rowcolor{LightYellow}
+    \hline\\
+    \rowcolor{LightYellow}
+    \textbf{Math Box:}
+}
+{
+    \\\rowcolor{LightYellow}
     \\\hline
     \end{tabular} 
     \end{center}

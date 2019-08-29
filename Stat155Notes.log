@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  16 AUG 2018 14:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  29 AUG 2019 16:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Math155Notes.tex
-(./Math155Notes.tex
+**Stat155Notes.tex
+(./Stat155Notes.tex
 LaTeX2e <2018-04-01> patch level 2
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/book.cls
@@ -142,10 +142,7 @@ LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 Package: inputenc 2018/04/06 v1.3b Input encoding file
 \inpenc@prehook=\toks20
 \inpenc@posthook=\toks21
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/upquote/upquote.sty
-Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
-tim
-(/usr/local/texlive/2018/texmf-dist/tex/latex/base/textcomp.sty
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
@@ -299,7 +296,10 @@ Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
 Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
-)) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/microtype.sty
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2018/01/14 v2.7a Micro-typographical refinements (RS)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
@@ -321,26 +321,8 @@ LaTeX Info: Redefining \lslig on input line 913.
 Package microtype Info: Loading configuration file microtype.cfg.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2018/01/14 v2.7a microtype main configuration file (RS)
-)) (/usr/local/texlive/2018/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2018/03/24 v5.7 Page Geometry
-(/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
-) (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/ifvtex.sty
-Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-)
-\Gm@cnth=\count103
-\Gm@cntv=\count104
-\c@Gm@tempcnt=\count105
-\Gm@bindingoffset=\dimen113
-\Gm@wd@mp=\dimen114
-\Gm@odd@mp=\dimen115
-\Gm@even@mp=\dimen116
-\Gm@layoutwidth=\dimen117
-\Gm@layoutheight=\dimen118
-\Gm@layouthoffset=\dimen119
-\Gm@layoutvoffset=\dimen120
-\Gm@dimlist=\toks24
+)) (/usr/local/texlive/2018/texmf-dist/tex/latex/parskip/parskip.sty
+Package: parskip 2001/04/09 non-zero parskip adjustments
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
@@ -352,9 +334,10 @@ Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 Package hobsub Info: Skipping package `ifluatex' (already loaded).
-Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
 Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
-Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
@@ -388,17 +371,23 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
-\@linkdim=\dimen121
-\Hy@linkcounter=\count106
-\Hy@pagecounter=\count107
+\@linkdim=\dimen113
+\Hy@linkcounter=\count103
+\Hy@pagecounter=\count104
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count108
+\Hy@SavedSpaceFactor=\count105
 (/usr/local/texlive/2018/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `unicode' set `true' on input line 4383.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2018/02/06 v6.86b Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
 )
 Package hyperref Info: Hyper figures OFF on input line 4509.
 Package hyperref Info: Link nesting OFF on input line 4514.
@@ -407,16 +396,16 @@ Package hyperref Info: Plain pages OFF on input line 4524.
 Package hyperref Info: Backreferencing OFF on input line 4529.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4762.
-\c@Hy@tempcnt=\count109
+\c@Hy@tempcnt=\count106
 (/usr/local/texlive/2018/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5115.
-\XeTeXLinkMargin=\dimen122
-\Fld@menulength=\count110
-\Field@Width=\dimen123
-\Fld@charsize=\dimen124
+\XeTeXLinkMargin=\dimen114
+\Fld@menulength=\count107
+\Field@Width=\dimen115
+\Fld@charsize=\dimen116
 Package hyperref Info: Hyper figures OFF on input line 6369.
 Package hyperref Info: Link nesting OFF on input line 6374.
 Package hyperref Info: Hyper index ON on input line 6377.
@@ -426,15 +415,15 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6394.
 Package hyperref Info: PDF/A mode OFF on input line 6399.
 LaTeX Info: Redefining \ref on input line 6439.
 LaTeX Info: Redefining \pageref on input line 6443.
-\Hy@abspage=\count111
-\c@Item=\count112
-\c@Hfootnote=\count113
+\Hy@abspage=\count108
+\c@Item=\count109
+\c@Hfootnote=\count110
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
-\Fld@listcount=\count114
-\c@bookmark@seq@number=\count115
+\Fld@listcount=\count111
+\c@bookmark@seq@number=\count112
 (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -442,13 +431,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip47
 )
-Package hyperref Info: Option `unicode' set `true' on input line 30.
-(/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2018/02/06 v6.86b Hyperref: PDF Unicode definition (HO)
-Now handling font encoding PU ...
-... no UTF-8 mapping file for font encoding PU
-)
-Package hyperref Info: Option `breaklinks' set `true' on input line 30.
+Package hyperref Info: Option `breaklinks' set `true' on input line 35.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -462,55 +445,59 @@ Package: fancyvrb 2008/02/07
 
 Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
 <2008/02/07> (tvz)
-\FV@CodeLineNo=\count116
+\FV@CodeLineNo=\count113
 \FV@InFile=\read1
 \FV@TabBox=\box28
-\c@FancyVerbLine=\count117
-\FV@StepNumber=\count118
+\c@FancyVerbLine=\count114
+\FV@StepNumber=\count115
 \FV@OutFile=\write3
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip48
-\fb@frw=\dimen125
-\fb@frh=\dimen126
-\FrameRule=\dimen127
-\FrameSep=\dimen128
+\fb@frw=\dimen117
+\fb@frh=\dimen118
+\FrameRule=\dimen119
+\FrameSep=\dimen120
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip49
 \LTright=\skip50
 \LTpre=\skip51
 \LTpost=\skip52
-\LTchunksize=\count119
-\LTcapwidth=\dimen129
+\LTchunksize=\count116
+\LTcapwidth=\dimen121
 \LT@head=\box29
 \LT@firsthead=\box30
 \LT@foot=\box31
 \LT@lastfoot=\box32
-\LT@cols=\count120
-\LT@rows=\count121
-\c@LT@tables=\count122
-\c@LT@chunks=\count123
-\LT@p@ftn=\toks25
+\LT@cols=\count117
+\LT@rows=\count118
+\c@LT@tables=\count119
+\c@LT@chunks=\count120
+\LT@p@ftn=\toks24
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2016/04/27 v1.618033 publication quality tables
-\heavyrulewidth=\dimen130
-\lightrulewidth=\dimen131
-\cmidrulewidth=\dimen132
-\belowrulesep=\dimen133
-\belowbottomsep=\dimen134
-\aboverulesep=\dimen135
-\abovetopsep=\dimen136
-\cmidrulesep=\dimen137
-\cmidrulekern=\dimen138
-\defaultaddspace=\dimen139
-\@cmidla=\count124
-\@cmidlb=\count125
-\@aboverulesep=\dimen140
-\@belowrulesep=\dimen141
-\@thisruleclass=\count126
-\@lastruleclass=\count127
-\@thisrulewidth=\dimen142
+\heavyrulewidth=\dimen122
+\lightrulewidth=\dimen123
+\cmidrulewidth=\dimen124
+\belowrulesep=\dimen125
+\belowbottomsep=\dimen126
+\aboverulesep=\dimen127
+\abovetopsep=\dimen128
+\cmidrulesep=\dimen129
+\cmidrulekern=\dimen130
+\defaultaddspace=\dimen131
+\@cmidla=\count121
+\@cmidlb=\count122
+\@aboverulesep=\dimen132
+\@belowrulesep=\dimen133
+\@thisruleclass=\count123
+\@lastruleclass=\count124
+\@thisrulewidth=\dimen134
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/mdwtools/footnote.sty
+Package: footnote 1997/01/28 1.13 Save footnotes around boxes
+\fn@notes=\box33
+\fn@width=\dimen135
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/graphics.sty
@@ -522,71 +509,93 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 )
-\Gin@req@height=\dimen143
-\Gin@req@width=\dimen144
+\Gin@req@height=\dimen136
+\Gin@req@width=\dimen137
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/grffile.sty
 Package: grffile 2017/06/30 v1.18 Extended file name support for graphics (HO)
 Package grffile Info: Option `multidot' is set to `true'.
 Package grffile Info: Option `extendedchars' is set to `false'.
 Package grffile Info: Option `space' is set to `true'.
 Package grffile Info: \Gin@ii of package `graphicx' fixed on input line 494.
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/parskip/parskip.sty
-Package: parskip 2001/04/09 non-zero parskip adjustments
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/titling/titling.sty
-Package: titling 2009/09/04 v2.1d maketitle typesetting
-\thanksmarkwidth=\skip53
-\thanksmargin=\skip54
-\droptitle=\skip55
-) (/usr/local/texlive/2018/texmf-dist/tex/latex/amscls/amsthm.sty
-Package: amsthm 2017/10/31 v2.20.4
-\thm@style=\toks26
-\thm@bodyfont=\toks27
-\thm@headfont=\toks28
-\thm@notefont=\toks29
-\thm@headpunct=\toks30
-\thm@preskip=\skip56
-\thm@postskip=\skip57
-\thm@headsep=\skip58
-\dth@everypar=\toks31
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/tools/array.sty
+Package: array 2018/04/07 v2.4g Tabular extension package (FMi)
+\col@sep=\dimen138
+\ar@mcellbox=\box34
+\extrarowheight=\dimen139
+\NC@list=\toks25
+\extratabsurround=\skip53
+\backup@length=\skip54
+\ar@cellbox=\box35
 )
-\c@theorem=\count128
-\c@lemma=\count129
-\c@definition=\count130
-\c@corollary=\count131
-\c@proposition=\count132
-\c@example=\count133
-\c@exercise=\count134
-No file Math155Notes.aux.
-\openout1 = `Math155Notes.aux'.
+\everycr=\toks26
+\minrowclearance=\skip55
+) (/usr/local/texlive/2018/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 709.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+))
+Package hyperref Info: Option `colorlinks' set `true' on input line 121.
+(/usr/local/texlive/2018/texmf-dist/tex/latex/base/makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+\@indexfile=\write4
+\openout4 = `Stat155Notes.idx'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 143.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 143.
+Writing index file Stat155Notes.idx
+(/usr/local/texlive/2018/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip56
+\bibsep=\skip57
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count125
+)
+No file Stat155Notes.aux.
+\openout1 = `Stat155Notes.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 168.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 168.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 143.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 168.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Info: Redefining \microtypecontext on input line 143.
+LaTeX Info: Redefining \microtypecontext on input line 168.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -600,68 +609,34 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-*geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
-*geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
-* paper: <default>
-* layout: <same size as paper>
-* layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
-* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
-* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=469.75502pt
-* \textheight=650.43001pt
-* \oddsidemargin=0.0pt
-* \evensidemargin=0.0pt
-* \topmargin=-30.06749pt
-* \headheight=12.0pt
-* \headsep=18.06749pt
-* \topskip=10.0pt
-* \footskip=25.29494pt
-* \marginparwidth=125.0pt
-* \marginparsep=7.0pt
-* \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
-* \hoffset=0.0pt
-* \voffset=0.0pt
-* \mag=1000
-* \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
-* \@reversemarginfalse
-* (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-\AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring OFF on input line 143.
+\AtBeginShipoutBox=\box36
+Package hyperref Info: Link coloring ON on input line 168.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count135
+\c@section@level=\count126
 )
-LaTeX Info: Redefining \ref on input line 143.
-LaTeX Info: Redefining \pageref on input line 143.
-LaTeX Info: Redefining \nameref on input line 143.
-\@outlinefile=\write4
-\openout4 = `Math155Notes.out'.
+LaTeX Info: Redefining \ref on input line 168.
+LaTeX Info: Redefining \pageref on input line 168.
+LaTeX Info: Redefining \nameref on input line 168.
+\@outlinefile=\write5
+\openout5 = `Stat155Notes.out'.
 
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count136
-\scratchdimen=\dimen145
-\scratchbox=\box34
-\nofMPsegments=\count137
-\nofMParguments=\count138
-\everyMPshowfont=\toks32
-\MPscratchCnt=\count139
-\MPscratchDim=\dimen146
-\MPnumerator=\count140
-\makeMPintoPDFobject=\count141
-\everyMPtoPDFconversion=\toks33
+\scratchcounter=\count127
+\scratchdimen=\dimen140
+\scratchbox=\box37
+\nofMPsegments=\count128
+\nofMParguments=\count129
+\everyMPshowfont=\toks27
+\MPscratchCnt=\count130
+\MPscratchDim=\dimen141
+\MPnumerator=\count131
+\makeMPintoPDFobject=\count132
+\everyMPtoPDFconversion=\toks28
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -676,446 +651,1493 @@ G,.JBIG2,.JB2,.eps]
 (/usr/local/texlive/2018/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
-)) [1
-
-
-{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
-
-]
-\tf@toc=\write5
-\openout5 = `Math155Notes.toc'.
-
-[3] [4
-
-]
-Chapter 1.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 160.
+))
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 170.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 160.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 170.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 160
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 170
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 160
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 170
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 160.
+(Font)              <12> on input line 170.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 160.
+(Font)              <8> on input line 170.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 160.
-LaTeX Font Info:    Try loading font information for U+msa on input line 160.
+(Font)              <6> on input line 170.
+LaTeX Font Info:    Try loading font information for U+msa on input line 170.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 160.
+LaTeX Font Info:    Try loading font information for U+msb on input line 170.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [5] [6
+) [1
+
+
+{/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
 
 ]
-Chapter 2.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 179.
+\tf@toc=\write6
+\openout6 = `Stat155Notes.toc'.
 
-(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [7] [8] [9] [10]
-Chapter 3.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 500.
+[3] [4
+
+]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 183.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 501.
-[11
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 183.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 183.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 183.
+<Photos/by-nc-sa.png, id=29, 97.0827pt x 33.9669pt>
+File: Photos/by-nc-sa.png Graphic file (type png)
+<use Photos/by-nc-sa.png>
+Package pdftex.def Info: Photos/by-nc-sa.png  used on input line 187.
+(pdftex.def)             Requested size: 75.28421pt x 26.34013pt.
+[5 <./Photos/by-nc-sa.png>] [6
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 527
+Chapter 1.
+[7]
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 244.
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+<Photos/tidy.png, id=61, 1927.2pt x 602.25pt>
+File: Photos/tidy.png Graphic file (type png)
+<use Photos/tidy.png>
+Package pdftex.def Info: Photos/tidy.png  used on input line 264.
+(pdftex.def)             Requested size: 344.99901pt x 107.81218pt.
+[8 <./Photos/tidy.png>] [9] [10] [11] [12]
+
+Package xcolor Warning: Incompatible color definition on input line 389.
+
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 391.
+
+Package xcolor Warning: Incompatible color definition on input line 397.
+
+
+Package xcolor Warning: Incompatible color definition on input line 397.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-4-1.pdf, id=103, 431.6125pt x 29
+9.1175pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type 
+pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-4-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-4-1.pdf 
+ used on input line 399.
+(pdftex.def)             Requested size: 345.01385pt x 239.10262pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[13] [14 <./Stat155Notes_files/figure-latex/unnamed-chunk-4-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 418.
+
+
+Package xcolor Warning: Incompatible color definition on input line 436.
+
+
+Package xcolor Warning: Incompatible color definition on input line 436.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-6-1.pdf, id=130, 446.66875pt x 2
+99.1175pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type 
+pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-6-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-6-1.pdf 
+ used on input line 438.
+(pdftex.def)             Requested size: 345.00604pt x 231.03775pt.
+
+Underfull \vbox (badness 2213) has occurred while \output is active []
+
+[15 <./Stat155Notes_files/figure-latex/unnamed-chunk-6-1.pdf>] [16] [17] [18]
+Chapter 2.
+[19
+
+] [20]
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 599--599
+[]\T1/lmtt/m/n/10 OutputName <- FunctionName(argument1 = a1, argument2 = a2,...
+, argumentk = ak)[] 
+ []
+
+[21]
+
+Package xcolor Warning: Incompatible color definition on input line 638.
+
+
+Package xcolor Warning: Incompatible color definition on input line 646.
+
+
+Package xcolor Warning: Incompatible color definition on input line 646.
+
+
+Package xcolor Warning: Incompatible color definition on input line 664.
+
+
+Package xcolor Warning: Incompatible color definition on input line 677.
+
+
+Package xcolor Warning: Incompatible color definition on input line 677.
+
+[22]
+
+Package xcolor Warning: Incompatible color definition on input line 707.
+
+
+Package xcolor Warning: Incompatible color definition on input line 714.
+
+
+Package xcolor Warning: Incompatible color definition on input line 714.
+
+
+Package xcolor Warning: Incompatible color definition on input line 726.
+
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 732
 .
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-<Math155Notes_files/figure-latex/unnamed-chunk-1-1.pdf, id=79, 459.7175pt x 316
-.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-1-1.pdf Graphic file (type 
-pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-1-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-1-1.pdf 
- used on input line 533.
-(pdftex.def)             Requested size: 459.74442pt x 316.19975pt.
-[12 <./Math155Notes_files/figure-latex/unnamed-chunk-1-1.pdf>]
-<Photos/pie.jpg, id=93, 3276.24pt x 2457.18pt>
+
+Package xcolor Warning: Incompatible color definition on input line 736.
+
+
+Package xcolor Warning: Incompatible color definition on input line 736.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-11-1.pdf, id=225, 459.7175pt x 3
+15.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-11-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-11-1.pdf
+  used on input line 738.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
+
+Underfull \vbox (badness 3895) has occurred while \output is active []
+
+[23]
+<Photos/pie.jpg, id=233, 3276.24pt x 2457.18pt>
 File: Photos/pie.jpg Graphic file (type jpg)
 <use Photos/pie.jpg>
-Package pdftex.def Info: Photos/pie.jpg  used on input line 544.
-(pdftex.def)             Requested size: 301.0978pt x 225.82335pt.
-<Math155Notes_files/figure-latex/unnamed-chunk-3-1.pdf, id=95, 453.695pt x 316.
-18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type 
-pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-3-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-3-1.pdf 
- used on input line 597.
-(pdftex.def)             Requested size: 453.6939pt x 316.18047pt.
-[13 <./Photos/pie.jpg>]
-<Math155Notes_files/figure-latex/unnamed-chunk-4-1.pdf, id=103, 453.695pt x 316
-.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type 
-pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-4-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-4-1.pdf 
- used on input line 630.
-(pdftex.def)             Requested size: 453.6939pt x 316.18047pt.
+Package pdftex.def Info: Photos/pie.jpg  used on input line 751.
+(pdftex.def)             Requested size: 86.23505pt x 64.67628pt.
+[24 <./Stat155Notes_files/figure-latex/unnamed-chunk-11-1.pdf> <./Photos/pie.jp
+g>]
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 773.
 
-[14 <./Math155Notes_files/figure-latex/unnamed-chunk-3-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-5-1.pdf, id=116, 453.695pt x 316
-.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type 
-pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-5-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-5-1.pdf 
- used on input line 659.
-(pdftex.def)             Requested size: 453.6939pt x 316.18047pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 780.
 
-[15 <./Math155Notes_files/figure-latex/unnamed-chunk-4-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-6-1.pdf, id=129, 453.695pt x 310
-.15875pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type 
-pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-6-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-6-1.pdf 
- used on input line 681.
-(pdftex.def)             Requested size: 453.6939pt x 310.15799pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 780.
 
-[16 <./Math155Notes_files/figure-latex/unnamed-chunk-5-1.pdf>] [17 <./Math155No
-tes_files/figure-latex/unnamed-chunk-6-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-7-1.pdf, id=161, 459.7175pt x 31
-6.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type 
-pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-7-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-7-1.pdf 
- used on input line 751.
-(pdftex.def)             Requested size: 459.74442pt x 316.19975pt.
-<Math155Notes_files/figure-latex/unnamed-chunk-7-2.pdf, id=162, 459.7175pt x 31
-6.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-7-2.pdf Graphic file (type 
-pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-7-2.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-7-2.pdf 
- used on input line 768.
-(pdftex.def)             Requested size: 459.74442pt x 316.19975pt.
-[18 <./Math155Notes_files/figure-latex/unnamed-chunk-7-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-7-3.pdf, id=175, 459.7175pt x 31
-6.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-7-3.pdf Graphic file (type 
-pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-7-3.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-7-3.pdf 
- used on input line 790.
-(pdftex.def)             Requested size: 459.74442pt x 316.19975pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 792.
 
-[19 <./Math155Notes_files/figure-latex/unnamed-chunk-7-2.pdf>] [20 <./Math155No
-tes_files/figure-latex/unnamed-chunk-7-3.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-9-1.pdf, id=203, 459.7175pt x 31
-6.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-9-1.pdf Graphic file (type 
-pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-9-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-9-1.pdf 
- used on input line 842.
-(pdftex.def)             Requested size: 459.74442pt x 316.19975pt.
-[21 <./Math155Notes_files/figure-latex/unnamed-chunk-9-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-11-1.pdf, id=224, 463.7325pt x 3
-16.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-11-1.pdf Graphic file (type
+
+Package xcolor Warning: Incompatible color definition on input line 803.
+
+
+Package xcolor Warning: Incompatible color definition on input line 803.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-14-1.pdf, id=254, 453.695pt x 31
+3.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-14-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-11-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-11-1.pdf
-  used on input line 993.
-(pdftex.def)             Requested size: 463.73842pt x 316.18529pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-14-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-14-1.pdf
+  used on input line 805.
+(pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[22]
-<Math155Notes_files/figure-latex/unnamed-chunk-12-1.pdf, id=230, 463.7325pt x 3
-13.17pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-12-1.pdf Graphic file (type
+[25]
+
+Package xcolor Warning: Incompatible color definition on input line 826.
+
+
+Package xcolor Warning: Incompatible color definition on input line 834.
+
+
+Package xcolor Warning: Incompatible color definition on input line 834.
+
+[26 <./Stat155Notes_files/figure-latex/unnamed-chunk-14-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 847.
+
+
+Package xcolor Warning: Incompatible color definition on input line 855.
+
+
+Package xcolor Warning: Incompatible color definition on input line 855.
+
+
+Package xcolor Warning: Incompatible color definition on input line 868.
+
+
+Package xcolor Warning: Incompatible color definition on input line 879.
+
+
+Package xcolor Warning: Incompatible color definition on input line 879.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-16-1.pdf, id=281, 453.695pt x 31
+3.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-12-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-12-1.pdf
-  used on input line 1006.
-(pdftex.def)             Requested size: 463.73842pt x 313.174pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[23 <./Math155Notes_files/figure-latex/unnamed-chunk-11-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-13-1.pdf, id=242, 421.575pt x 25
-4.9525pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type
- pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-13-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-13-1.pdf
-  used on input line 1012.
-(pdftex.def)             Requested size: 421.58038pt x 254.95573pt.
-<Math155Notes_files/figure-latex/unnamed-chunk-13-2.pdf, id=243, 425.59pt x 254
-.9525pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-13-2.pdf Graphic file (type
- pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-13-2.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-13-2.pdf
-  used on input line 1013.
-(pdftex.def)             Requested size: 425.60841pt x 254.96352pt.
-
-Overfull \hbox (379.65599pt too wide) in paragraph at lines 1012--1014
-[][] [] 
- []
-
-
-Underfull \vbox (badness 7047) has occurred while \output is active []
-
-[24 <./Math155Notes_files/figure-latex/unnamed-chunk-12-1.pdf> <./Math155Notes_
-files/figure-latex/unnamed-chunk-13-1.pdf> <./Math155Notes_files/figure-latex/u
-nnamed-chunk-13-2.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-15-1.pdf, id=269, 382.42876pt x 
-251.94125pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type
- pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-15-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-15-1.pdf
-  used on input line 1131.
-(pdftex.def)             Requested size: 382.42781pt x 251.94063pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[25] [26 <./Math155Notes_files/figure-latex/unnamed-chunk-15-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-17-1.pdf, id=291, 459.7175pt x 3
-10.15875pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type
- pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-17-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-17-1.pdf
-  used on input line 1242.
-(pdftex.def)             Requested size: 459.71637pt x 310.15799pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-16-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-16-1.pdf
+  used on input line 881.
+(pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [27]
-<Math155Notes_files/figure-latex/unnamed-chunk-18-1.pdf, id=298, 464.73625pt x 
+
+Package xcolor Warning: Incompatible color definition on input line 903.
+
+
+Package xcolor Warning: Incompatible color definition on input line 916.
+
+
+Package xcolor Warning: Incompatible color definition on input line 916.
+
+
+Package xcolor Warning: Incompatible color definition on input line 916.
+
+[28 <./Stat155Notes_files/figure-latex/unnamed-chunk-16-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 916.
+
+
+Package xcolor Warning: Incompatible color definition on input line 916.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-18-1.pdf, id=303, 453.695pt x 31
+3.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-18-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-18-1.pdf
+  used on input line 918.
+(pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
+
+Package xcolor Warning: Incompatible color definition on input line 922.
+
+
+Package xcolor Warning: Incompatible color definition on input line 932.
+
+
+Package xcolor Warning: Incompatible color definition on input line 932.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-19-1.pdf, id=304, 453.695pt x 31
+3.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-19-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-19-1.pdf
+  used on input line 934.
+(pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[29 <./Stat155Notes_files/figure-latex/unnamed-chunk-18-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 951.
+
+
+Package xcolor Warning: Incompatible color definition on input line 962.
+
+
+Package xcolor Warning: Incompatible color definition on input line 962.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-20-1.pdf, id=320, 453.695pt x 31
+3.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-20-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-20-1.pdf
+  used on input line 964.
+(pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
+
+Underfull \vbox (badness 7379) has occurred while \output is active []
+
+[30 <./Stat155Notes_files/figure-latex/unnamed-chunk-19-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 982.
+
+
+Package xcolor Warning: Incompatible color definition on input line 993.
+
+
+Package xcolor Warning: Incompatible color definition on input line 993.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-23-1.pdf, id=338, 453.695pt x 30
+8.15125pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-23-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-23-1.pdf
+  used on input line 995.
+(pdftex.def)             Requested size: 344.9987pt x 234.32433pt.
+[31 <./Stat155Notes_files/figure-latex/unnamed-chunk-20-1.pdf>]
+Underfull \vbox (badness 1072) has occurred while \output is active []
+
+[32 <./Stat155Notes_files/figure-latex/unnamed-chunk-23-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1035.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1045.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1045.
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1049--1049
+[]\T1/lmtt/m/n/10 ## \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 stat_bin()\TS1/lmtt/m/n/
+10 ` \T1/lmtt/m/n/10 using \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 bins = 30\TS1/lmtt
+/m/n/10 `\T1/lmtt/m/n/10 . Pick better value with \TS1/lmtt/m/n/10 `\T1/lmtt/m/
+n/10 binwidth\TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 .[] 
+ []
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1053--1053
+[]\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
+tat_bin).[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-26-1.pdf, id=372, 459.7175pt x 3
+15.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-26-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-26-1.pdf
+  used on input line 1055.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[33]
+
+Package xcolor Warning: Incompatible color definition on input line 1061.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1070.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1070.
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1074--1074
+[]\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
+tat_bin).[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-27-1.pdf, id=381, 459.7175pt x 3
+15.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-27-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-27-1.pdf
+  used on input line 1076.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[34 <./Stat155Notes_files/figure-latex/unnamed-chunk-26-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1080.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1090.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1090.
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1094--1094
+[]\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
+tat_bin).[] 
+ []
+
+
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 1098--1098
+[]\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
+tat_density).[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-28-1.pdf, id=397, 459.7175pt x 3
+15.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-28-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-28-1.pdf
+  used on input line 1100.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[35 <./Stat155Notes_files/figure-latex/unnamed-chunk-27-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1120.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1134.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1134.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1134.
+
+[36 <./Stat155Notes_files/figure-latex/unnamed-chunk-28-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1134.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1134.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1138.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1148.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1148.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-30-1.pdf, id=429, 459.7175pt x 3
+15.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-30-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-30-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-30-1.pdf
+  used on input line 1150.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
+
+Underfull \vbox (badness 1348) has occurred while \output is active []
+
+[37 <./Stat155Notes_files/figure-latex/unnamed-chunk-30-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1208.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1214.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1214.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1227.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1232.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1232.
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1239--1239
+[]\T1/lmtt/m/n/10 ##   \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 mean(SleepHrsNight, n~
+ \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 median(SleepHrsNight~ \TS1/lmtt/m/n/10 `\T1/
+lmtt/m/n/10 mean(SleepHrsNight, trim~[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1239--1239
+[]\T1/lmtt/m/n/10 ##                     <dbl>                  <int>          
+            <dbl>[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1239--1239
+[]\T1/lmtt/m/n/10 ## 1                    6.93                      7          
+             6.95[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1247.
+
+[38]
+
+Package xcolor Warning: Incompatible color definition on input line 1253.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1253.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1265.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1270.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1270.
+
+
+Underfull \vbox (badness 5175) has occurred while \output is active []
+
+[39]
+
+Package xcolor Warning: Incompatible color definition on input line 1307.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1315.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1315.
+
+
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 1319--1319
+[]\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
+tat_boxplot).[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-36-1.pdf, id=466, 459.7175pt x 3
+16.18124pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-36-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-36-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-36-1.pdf
+  used on input line 1321.
+(pdftex.def)             Requested size: 345.01875pt x 237.29456pt.
+
+Package xcolor Warning: Incompatible color definition on input line 1325.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1333.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1333.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-37-1.pdf, id=467, 460.72125pt x 
+313.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-37-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-37-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-37-1.pdf
+  used on input line 1335.
+(pdftex.def)             Requested size: 344.99878pt x 234.50896pt.
+
+Underfull \vbox (badness 6348) has occurred while \output is active []
+
+[40 <./Stat155Notes_files/figure-latex/unnamed-chunk-36-1.pdf>]
+<Stat155Notes_files/figure-latex/unnamed-chunk-38-1.pdf, id=483, 416.55624pt x 
+253.94875pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-38-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-38-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-38-1.pdf
+  used on input line 1341.
+(pdftex.def)             Requested size: 345.01698pt x 210.33565pt.
+[41 <./Stat155Notes_files/figure-latex/unnamed-chunk-37-1.pdf> <./Stat155Notes_
+files/figure-latex/unnamed-chunk-38-1.pdf
+
+pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
+38-1.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
+>]
+<Stat155Notes_files/figure-latex/unnamed-chunk-39-1.pdf, id=509, 420.57124pt x 
+253.94875pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-39-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-39-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-39-1.pdf
+  used on input line 1345.
+(pdftex.def)             Requested size: 345.00542pt x 208.32068pt.
+[42 <./Stat155Notes_files/figure-latex/unnamed-chunk-39-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1421.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1426.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1426.
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1433--1433
+[]\T1/lmtt/m/n/10 ##   \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 diff(range(Sleep~ \TS1
+/lmtt/m/n/10 `\T1/lmtt/m/n/10 IQR(SleepHrsNigh~ \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/
+10 sd(SleepHrsNigh~ \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 var(SleepHrsNig~[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1433--1433
+[]\T1/lmtt/m/n/10 ##                <int>              <dbl>             <dbl> 
+            <dbl>[] 
+ []
+
+
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1433--1433
+[]\T1/lmtt/m/n/10 ## 1                 10                  2              1.35 
+             1.81[] 
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 1435.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1440.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1440.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1448.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1452.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1452.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1464.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1472.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1472.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-43-1.pdf, id=527, 382.42876pt x 
+248.93pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-43-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-43-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-43-1.pdf
+  used on input line 1474.
+(pdftex.def)             Requested size: 345.01715pt x 224.57808pt.
+[43]
+
+Package xcolor Warning: Incompatible color definition on input line 1489.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1493.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1493.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[44 <./Stat155Notes_files/figure-latex/unnamed-chunk-43-1.pdf>] [45] [46]
+
+Package xcolor Warning: Incompatible color definition on input line 1638.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1647.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1647.
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1651--1651
+[]\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
+tat_bin).[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-50-1.pdf, id=564, 458.71375pt x 
 310.15875pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type
+File: Stat155Notes_files/figure-latex/unnamed-chunk-50-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-18-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-18-1.pdf
-  used on input line 1264.
-(pdftex.def)             Requested size: 464.7351pt x 310.15799pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-50-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-50-1.pdf
+  used on input line 1653.
+(pdftex.def)             Requested size: 345.01439pt x 233.28105pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[28 <./Math155Notes_files/figure-latex/unnamed-chunk-17-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-19-1.pdf, id=311, 463.7325pt x 3
-11.1625pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type
+[47]
+
+Package xcolor Warning: Incompatible color definition on input line 1669.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1680.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1680.
+
+
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 1684--1684
+[]\T1/lmtt/m/n/10 ## Warning: Removed 8 rows containing non-finite values (stat
+_bin).[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-53-1.pdf, id=572, 712.6625pt x 3
+09.155pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-53-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-19-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-19-1.pdf
-  used on input line 1284.
-(pdftex.def)             Requested size: 463.73842pt x 311.16649pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-53-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-53-1.pdf
+  used on input line 1686.
+(pdftex.def)             Requested size: 344.99931pt x 149.66167pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[29 <./Math155Notes_files/figure-latex/unnamed-chunk-18-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-20-1.pdf, id=323, 463.7325pt x 3
-19.1925pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (type
+[48 <./Stat155Notes_files/figure-latex/unnamed-chunk-50-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1701.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1710.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1710.
+
+
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1714--1714
+[]\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
+tat_bin).[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-55-1.pdf, id=588, 462.72874pt x 
+310.15875pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-55-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-20-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-20-1.pdf
-  used on input line 1308.
-(pdftex.def)             Requested size: 463.73135pt x 319.19171pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-55-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-55-1.pdf
+  used on input line 1716.
+(pdftex.def)             Requested size: 345.00517pt x 231.25075pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[30 <./Math155Notes_files/figure-latex/unnamed-chunk-19-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-21-1.pdf, id=336, 463.7325pt x 3
-19.1925pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (type
+[49 <./Stat155Notes_files/figure-latex/unnamed-chunk-53-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1729.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1738.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1738.
+
+
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 1742--1742
+[]\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
+tat_boxplot).[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-57-1.pdf, id=605, 459.7175pt x 3
+18.18875pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-57-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-21-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-21-1.pdf
-  used on input line 1325.
-(pdftex.def)             Requested size: 463.73135pt x 319.19171pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-57-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-57-1.pdf
+  used on input line 1744.
+(pdftex.def)             Requested size: 345.01875pt x 238.80118pt.
+
+Package xcolor Warning: Incompatible color definition on input line 1746.
+
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[31 <./Math155Notes_files/figure-latex/unnamed-chunk-20-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-22-1.pdf, id=349, 463.7325pt x 3
-19.1925pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type
- pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-22-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-22-1.pdf
-  used on input line 1342.
-(pdftex.def)             Requested size: 463.73135pt x 319.19171pt.
+[50 <./Stat155Notes_files/figure-latex/unnamed-chunk-55-1.pdf>]
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 1755.
 
-[32 <./Math155Notes_files/figure-latex/unnamed-chunk-21-1.pdf>] [33 <./Math155N
-otes_files/figure-latex/unnamed-chunk-22-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-23-1.pdf, id=377, 459.7175pt x 3
-19.1925pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (type
- pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-23-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-23-1.pdf
-  used on input line 1399.
-(pdftex.def)             Requested size: 459.71637pt x 319.19171pt.
-[34 <./Math155Notes_files/figure-latex/unnamed-chunk-23-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-24-1.pdf, id=391, 463.7325pt x 3
+
+Package xcolor Warning: Incompatible color definition on input line 1755.
+
+
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 1759--1759
+[]\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
+tat_boxplot).[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-58-1.pdf, id=623, 459.7175pt x 3
 16.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-24-1.pdf Graphic file (type
+File: Stat155Notes_files/figure-latex/unnamed-chunk-58-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-24-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-24-1.pdf
-  used on input line 1430.
-(pdftex.def)             Requested size: 463.73842pt x 316.18529pt.
-<Math155Notes_files/figure-latex/unnamed-chunk-25-1.pdf, id=392, 463.7325pt x 3
-16.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (type
- pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-25-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-25-1.pdf
-  used on input line 1467.
-(pdftex.def)             Requested size: 463.73842pt x 316.18529pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-58-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-58-1.pdf
+  used on input line 1761.
+(pdftex.def)             Requested size: 345.01875pt x 237.29456pt.
 
-Underfull \vbox (badness 4366) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 1763.
 
-[35 <./Math155Notes_files/figure-latex/unnamed-chunk-24-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-26-1.pdf, id=408, 457.71pt x 316
-.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type
- pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-26-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-26-1.pdf
-  used on input line 1475.
-(pdftex.def)             Requested size: 457.72984pt x 316.19493pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[36 <./Math155Notes_files/figure-latex/unnamed-chunk-25-1.pdf>] [37 <./Math155N
-otes_files/figure-latex/unnamed-chunk-26-1.pdf>]
-<Photos/Brownies.png, id=434, 539.01375pt x 297.11pt>
+[51 <./Stat155Notes_files/figure-latex/unnamed-chunk-57-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1772.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1772.
+
+
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 1776--1776
+[]\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
+tat_boxplot).[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-59-1.pdf, id=639, 459.7175pt x 3
+18.18875pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-59-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-59-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-59-1.pdf
+  used on input line 1778.
+(pdftex.def)             Requested size: 345.01875pt x 238.80118pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[52 <./Stat155Notes_files/figure-latex/unnamed-chunk-58-1.pdf>] [53 <./Stat155N
+otes_files/figure-latex/unnamed-chunk-59-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1809.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1819.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1819.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1823.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1833.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1833.
+
+
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1837--1837
+[]\T1/lmtt/m/n/10 ## \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 stat_bin()\TS1/lmtt/m/n/
+10 ` \T1/lmtt/m/n/10 using \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 bins = 30\TS1/lmtt
+/m/n/10 `\T1/lmtt/m/n/10 . Pick better value with \TS1/lmtt/m/n/10 `\T1/lmtt/m/
+n/10 binwidth\TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 .[] 
+ []
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-62-1.pdf, id=674, 459.7175pt x 3
+15.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-62-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-62-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-62-1.pdf
+  used on input line 1839.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
+[54 <./Stat155Notes_files/figure-latex/unnamed-chunk-62-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1864.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1875.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1875.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-64-1.pdf, id=693, 459.7175pt x 3
+15.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-64-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-64-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-64-1.pdf
+  used on input line 1877.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[55]
+
+Package xcolor Warning: Incompatible color definition on input line 1906.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1915.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1915.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1915.
+
+[56 <./Stat155Notes_files/figure-latex/unnamed-chunk-64-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1915.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1915.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-66-1.pdf, id=723, 459.7175pt x 3
+15.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-66-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-66-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-66-1.pdf
+  used on input line 1917.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
+
+LaTeX Warning: Reference `intro-zscore' on page 57 undefined on input line 1924
+.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-67-1.pdf, id=724, 453.695pt x 31
+3.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-67-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-67-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-67-1.pdf
+  used on input line 1928.
+(pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[57 <./Stat155Notes_files/figure-latex/unnamed-chunk-66-1.pdf>] [58 <./Stat155N
+otes_files/figure-latex/unnamed-chunk-67-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 1982.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1987.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1987.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1994.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2000.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2000.
+
+[59]
+<Stat155Notes_files/figure-latex/unnamed-chunk-71-1.pdf, id=763, 710.655pt x 30
+7.1475pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-71-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-71-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-71-1.pdf
+  used on input line 2029.
+(pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
+<Stat155Notes_files/figure-latex/unnamed-chunk-71-2.pdf, id=764, 710.655pt x 30
+7.1475pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-71-2.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-71-2.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-71-2.pdf
+  used on input line 2029.
+(pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
+<Stat155Notes_files/figure-latex/unnamed-chunk-71-3.pdf, id=765, 710.655pt x 30
+7.1475pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-71-3.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-71-3.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-71-3.pdf
+  used on input line 2029.
+(pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
+<Stat155Notes_files/figure-latex/unnamed-chunk-71-4.pdf, id=766, 710.655pt x 30
+7.1475pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-71-4.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-71-4.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-71-4.pdf
+  used on input line 2029.
+(pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
+<Stat155Notes_files/figure-latex/unnamed-chunk-71-5.pdf, id=767, 710.655pt x 30
+7.1475pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-71-5.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-71-5.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-71-5.pdf
+  used on input line 2029.
+(pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
+<Stat155Notes_files/figure-latex/unnamed-chunk-71-6.pdf, id=768, 710.655pt x 30
+7.1475pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-71-6.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-71-6.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-71-6.pdf
+  used on input line 2029.
+(pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
+<Stat155Notes_files/figure-latex/unnamed-chunk-71-7.pdf, id=769, 710.655pt x 30
+7.1475pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-71-7.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-71-7.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-71-7.pdf
+  used on input line 2029.
+(pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
+<Stat155Notes_files/figure-latex/unnamed-chunk-71-8.pdf, id=770, 710.655pt x 30
+7.1475pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-71-8.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-71-8.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-71-8.pdf
+  used on input line 2029.
+(pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[60 <./Stat155Notes_files/figure-latex/unnamed-chunk-71-1.pdf> <./Stat155Notes_
+files/figure-latex/unnamed-chunk-71-2.pdf
+
+pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
+71-2.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
+>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[61 <./Stat155Notes_files/figure-latex/unnamed-chunk-71-3.pdf> <./Stat155Notes_
+files/figure-latex/unnamed-chunk-71-4.pdf
+
+pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
+71-4.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
+> <./Stat155Notes_files/figure-latex/unnamed-chunk-71-5.pdf
+
+pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
+71-5.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
+>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[62 <./Stat155Notes_files/figure-latex/unnamed-chunk-71-6.pdf> <./Stat155Notes_
+files/figure-latex/unnamed-chunk-71-7.pdf
+
+pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
+71-7.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
+> <./Stat155Notes_files/figure-latex/unnamed-chunk-71-8.pdf
+
+pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
+71-8.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
+>]
+Underfull \hbox (badness 2495) in paragraph at lines 2044--2044
+[]\T1/lmr/bx/n/12 Is cor-re-la-tion al-ways the right way to judge
+ []
+
+<Photos/Brownies.png, id=917, 539.01375pt x 297.11pt>
 File: Photos/Brownies.png Graphic file (type png)
 <use Photos/Brownies.png>
-Package pdftex.def Info: Photos/Brownies.png  used on input line 1553.
-(pdftex.def)             Requested size: 469.76064pt x 258.93695pt.
-[38 <./Photos/Brownies.png>]
-Chapter 4.
-<Math155Notes_files/figure-latex/unnamed-chunk-28-1.pdf, id=441, 463.7325pt x 3
-16.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-28-1.pdf Graphic file (type
- pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-28-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-28-1.pdf
-  used on input line 1578.
-(pdftex.def)             Requested size: 463.73842pt x 316.18529pt.
+Package pdftex.def Info: Photos/Brownies.png  used on input line 2050.
+(pdftex.def)             Requested size: 345.00052pt x 190.16788pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[39
+[63]
+
+Package xcolor Warning: Incompatible color definition on input line 2080.
+
+[64 <./Photos/Brownies.png>]
+
+Package xcolor Warning: Incompatible color definition on input line 2091.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2091.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-73-1.pdf, id=933, 459.7175pt x 3
+13.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-73-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-73-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-73-1.pdf
+  used on input line 2093.
+(pdftex.def)             Requested size: 345.01875pt x 235.0346pt.
+
+Package xcolor Warning: Incompatible color definition on input line 2102.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2111.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2111.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-74-1.pdf, id=934, 453.695pt x 31
+3.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-74-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-74-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-74-1.pdf
+  used on input line 2113.
+(pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
+[65 <./Stat155Notes_files/figure-latex/unnamed-chunk-73-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2117.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2128.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2128.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-75-1.pdf, id=952, 453.695pt x 31
+3.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-75-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-75-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-75-1.pdf
+  used on input line 2130.
+(pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[66 <./Stat155Notes_files/figure-latex/unnamed-chunk-74-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2139.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2149.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2149.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-76-1.pdf, id=970, 453.695pt x 31
+3.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-76-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-76-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-76-1.pdf
+  used on input line 2151.
+(pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[67 <./Stat155Notes_files/figure-latex/unnamed-chunk-75-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2160.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2170.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2170.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-77-1.pdf, id=989, 453.695pt x 31
+3.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-77-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-77-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-77-1.pdf
+  used on input line 2172.
+(pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[68 <./Stat155Notes_files/figure-latex/unnamed-chunk-76-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2181.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2191.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2191.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-78-1.pdf, id=1008, 459.7175pt x 
+308.15125pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-78-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-78-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-78-1.pdf
+  used on input line 2193.
+(pdftex.def)             Requested size: 345.01875pt x 231.26802pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[69 <./Stat155Notes_files/figure-latex/unnamed-chunk-77-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2197.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2207.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2207.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-79-1.pdf, id=1026, 454.69875pt x
+ 313.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-79-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-79-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-79-1.pdf
+  used on input line 2209.
+(pdftex.def)             Requested size: 345.0057pt x 237.61981pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[70 <./Stat155Notes_files/figure-latex/unnamed-chunk-78-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2213.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2223.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2223.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-80-1.pdf, id=1042, 454.69875pt x
+ 308.15125pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-80-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-80-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-80-1.pdf
+  used on input line 2225.
+(pdftex.def)             Requested size: 345.0057pt x 233.8118pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[71 <./Stat155Notes_files/figure-latex/unnamed-chunk-79-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2232.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2243.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2243.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-81-1.pdf, id=1058, 454.69875pt x
+ 313.17pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-81-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-81-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-81-1.pdf
+  used on input line 2245.
+(pdftex.def)             Requested size: 345.0057pt x 237.61981pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[72 <./Stat155Notes_files/figure-latex/unnamed-chunk-80-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2252.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2264.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2264.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-82-1.pdf, id=1076, 453.695pt x 3
+08.15125pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-82-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-82-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-82-1.pdf
+  used on input line 2266.
+(pdftex.def)             Requested size: 344.9987pt x 234.32433pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[73 <./Stat155Notes_files/figure-latex/unnamed-chunk-81-1.pdf>] [74 <./Stat155N
+otes_files/figure-latex/unnamed-chunk-82-1.pdf>] [75] [76
 
 ]
-<Math155Notes_files/figure-latex/unnamed-chunk-29-1.pdf, id=448, 463.7325pt x 3
-16.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type
+Chapter 3.
+[77]
+
+Package xcolor Warning: Incompatible color definition on input line 2340.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2351.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2351.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2351.
+
+[78]
+
+Package xcolor Warning: Incompatible color definition on input line 2351.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2351.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-86-1.pdf, id=1142, 459.7175pt x 
+315.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-86-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-29-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-29-1.pdf
-  used on input line 1600.
-(pdftex.def)             Requested size: 463.73842pt x 316.18529pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-86-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-86-1.pdf
+  used on input line 2353.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
+
+Package xcolor Warning: Incompatible color definition on input line 2362.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2373.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2373.
+
+<Stat155Notes_files/figure-latex/unnamed-chunk-88-1.pdf, id=1143, 459.7175pt x 
+315.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-88-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-88-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-88-1.pdf
+  used on input line 2375.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[40 <./Math155Notes_files/figure-latex/unnamed-chunk-28-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-30-1.pdf, id=461, 463.7325pt x 3
-16.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-30-1.pdf Graphic file (type
+[79 <./Stat155Notes_files/figure-latex/unnamed-chunk-86-1.pdf>]
+<Stat155Notes_files/figure-latex/unnamed-chunk-89-1.pdf, id=1160, 459.7175pt x 
+315.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-89-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-30-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-30-1.pdf
-  used on input line 1612.
-(pdftex.def)             Requested size: 463.73842pt x 316.18529pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-89-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-89-1.pdf
+  used on input line 2381.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[41 <./Math155Notes_files/figure-latex/unnamed-chunk-29-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-31-1.pdf, id=473, 463.7325pt x 3
-16.18124pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-31-1.pdf Graphic file (type
+[80 <./Stat155Notes_files/figure-latex/unnamed-chunk-88-1.pdf>]
+<Stat155Notes_files/figure-latex/unnamed-chunk-91-1.pdf, id=1176, 459.7175pt x 
+315.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-91-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-31-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-31-1.pdf
-  used on input line 1619.
-(pdftex.def)             Requested size: 463.73842pt x 316.18529pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-91-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-91-1.pdf
+  used on input line 2389.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[42 <./Math155Notes_files/figure-latex/unnamed-chunk-30-1.pdf>] [43 <./Math155N
-otes_files/figure-latex/unnamed-chunk-31-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-32-1.pdf, id=500, 194.7275pt x 1
-87.70125pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-32-1.pdf Graphic file (type
+[81 <./Stat155Notes_files/figure-latex/unnamed-chunk-89-1.pdf>]
+<Stat155Notes_files/figure-latex/unnamed-chunk-94-1.pdf, id=1192, 459.7175pt x 
+315.1775pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-94-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-32-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-32-1.pdf
-  used on input line 1696.
-(pdftex.def)             Requested size: 194.73294pt x 187.70651pt.
-<Math155Notes_files/figure-latex/unnamed-chunk-33-1.pdf, id=501, 439.6425pt x 2
-50.9375pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-33-1.pdf Graphic file (type
- pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-33-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-33-1.pdf
-  used on input line 1700.
-(pdftex.def)             Requested size: 439.65483pt x 250.94452pt.
+<use Stat155Notes_files/figure-latex/unnamed-chunk-94-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-94-1.pdf
+  used on input line 2403.
+(pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[44 <./Math155Notes_files/figure-latex/unnamed-chunk-32-1.pdf>]
-<Math155Notes_files/figure-latex/unnamed-chunk-34-1.pdf, id=515, 440.64626pt x 
-248.93pt>
-File: Math155Notes_files/figure-latex/unnamed-chunk-34-1.pdf Graphic file (type
+[82 <./Stat155Notes_files/figure-latex/unnamed-chunk-91-1.pdf>] [83 <./Stat155N
+otes_files/figure-latex/unnamed-chunk-94-1.pdf>] [84]
+<Stat155Notes_files/figure-latex/unnamed-chunk-97-1.pdf, id=1238, 192.72pt x 18
+7.70125pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-97-1.pdf Graphic file (type
  pdf)
-<use Math155Notes_files/figure-latex/unnamed-chunk-34-1.pdf>
-Package pdftex.def Info: Math155Notes_files/figure-latex/unnamed-chunk-34-1.pdf
-  used on input line 1706.
-(pdftex.def)             Requested size: 440.65189pt x 248.93317pt.
-[45 <./Math155Notes_files/figure-latex/unnamed-chunk-33-1.pdf> <./Math155Notes_
-files/figure-latex/unnamed-chunk-34-1.pdf>] [46]
-!pdfTeX error: pdflatex (file ./Photos/stylish-dress-shirt-size-size-chart-.jpg
-): reading JPEG image failed (no JPEG header found)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-97-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-97-1.pdf
+  used on input line 2476.
+(pdftex.def)             Requested size: 192.71951pt x 187.70079pt.
+<Stat155Notes_files/figure-latex/unnamed-chunk-98-1.pdf, id=1239, 439.6425pt x 
+250.9375pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-98-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-98-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-98-1.pdf
+  used on input line 2480.
+(pdftex.def)             Requested size: 345.01279pt x 196.9251pt.
+<Stat155Notes_files/figure-latex/unnamed-chunk-99-1.pdf, id=1240, 440.64626pt x
+ 248.93pt>
+File: Stat155Notes_files/figure-latex/unnamed-chunk-99-1.pdf Graphic file (type
+ pdf)
+<use Stat155Notes_files/figure-latex/unnamed-chunk-99-1.pdf>
+Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-99-1.pdf
+  used on input line 2484.
+(pdftex.def)             Requested size: 345.01381pt x 194.90529pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[85 <./Stat155Notes_files/figure-latex/unnamed-chunk-97-1.pdf> <./Stat155Notes_
+files/figure-latex/unnamed-chunk-98-1.pdf
+
+pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
+98-1.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
+ge
+>]
+
+Package xcolor Warning: Incompatible color definition on input line 2488.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2497.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2497.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[86 <./Stat155Notes_files/figure-latex/unnamed-chunk-99-1.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 2542.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2549.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2549.
+
+[87]
+
+Package xcolor Warning: Incompatible color definition on input line 2558.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2562.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2562.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2592.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2598.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2598.
+
+[88]
+
+Package xcolor Warning: Incompatible color definition on input line 2627.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2631.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2631.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2637.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2643.
+
+
+Package xcolor Warning: Incompatible color definition on input line 2643.
+
+
+LaTeX Warning: Reference `intro-zscore' on page 89 undefined on input line 2650
+.
+
+
+!pdfTeX error: pdflatex (file ./Photos/shirtchart.jpg): reading JPEG image fail
+ed (no JPEG header found)
  ==> Fatal error occurred, no output PDF file produced!

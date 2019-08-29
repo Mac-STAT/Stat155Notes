@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.5 Properties of Least Squares Line | Stat 155 Notes</title>
-  <meta name="description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.5 Properties of Least Squares Line | Stat 155 Notes" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="3.5 Properties of Least Squares Line | Stat 155 Notes" />
   
-  <meta name="twitter:description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
 <meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint)" />
@@ -124,10 +124,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"Stat 155 Notes</a></li>
+<li><a href="./"Stat155Notes</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i><b>0.1</b> Acknowledgments</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="data-collection-and-quality.html"><a href="data-collection-and-quality.html"><i class="fa fa-check"></i><b>1</b> Data Collection and Quality</a><ul>
 <li class="chapter" data-level="1.1" data-path="what-is-data.html"><a href="what-is-data.html"><i class="fa fa-check"></i><b>1.1</b> What is Data?</a></li>
 <li class="chapter" data-level="1.2" data-path="data-context.html"><a href="data-context.html"><i class="fa fa-check"></i><b>1.2</b> Data Context</a></li>
@@ -233,18 +235,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.11" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.11</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>4</b> Random Variability</a><ul>
-<li class="chapter" data-level="4.1" data-path="random-sampling-from-a-population.html"><a href="random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>4.1</b> Random Sampling from a Population</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="random-sampling-from-a-population.html"><a href="random-sampling-from-a-population.html#irl-bootstrapping"><i class="fa fa-check"></i><b>4.1.1</b> IRL: Bootstrapping</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="randomization-into-groups.html"><a href="randomization-into-groups.html"><i class="fa fa-check"></i><b>4.2</b> Randomization into Groups</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="randomization-into-groups.html"><a href="randomization-into-groups.html#irl-randomization-tests"><i class="fa fa-check"></i><b>4.2.1</b> IRL: Randomization Tests</a></li>
-</ul></li>
+<li class="chapter" data-level="4.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>4.1</b> Sampling Variability</a></li>
+<li class="chapter" data-level="4.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>4.2</b> Randomization Variability</a></li>
+<li class="chapter" data-level="4.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>4.3</b> Simulating Random Sampling from a Population</a></li>
+<li class="chapter" data-level="4.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>4.4</b> IRL: Bootstrapping</a></li>
+<li class="chapter" data-level="4.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>4.5</b> Simulating Randomization into Groups</a></li>
+<li class="chapter" data-level="4.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>4.6</b> IRL: Randomization Tests</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
-<li class="chapter" data-level="5.2" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>5.2</b> Probability Rules</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="probability-rules.html"><a href="probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>5.2.1</b> Diagnotic Testing and Probability</a></li>
-<li class="chapter" data-level="5.2.2" data-path="probability-rules.html"><a href="probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>5.2.2</b> Court Arguments and Probability</a></li>
+<li class="chapter" data-level="5.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html"><i class="fa fa-check"></i><b>5.2</b> Theoretical Probability Rules</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>5.2.1</b> Diagnotic Testing and Probability</a></li>
+<li class="chapter" data-level="5.2.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>5.2.2</b> Court Arguments and Probability</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="random-variable.html"><a href="random-variable.html"><i class="fa fa-check"></i><b>5.3</b> Random Variable</a></li>
 <li class="chapter" data-level="5.4" data-path="probability-models.html"><a href="probability-models.html"><i class="fa fa-check"></i><b>5.4</b> Probability Models</a><ul>
@@ -261,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html"><i class="fa fa-check"></i><b>5.8</b> Z-scores and the Student’s “t” distribution</a><ul>
 <li class="chapter" data-level="5.8.1" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#gossets-work"><i class="fa fa-check"></i><b>5.8.1</b> Gosset’s Work</a></li>
 <li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
-<li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#student-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student T Model</a></li>
+<li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student’s T Model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
@@ -293,9 +295,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a><ul>
-<li class="chapter" data-level="7.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
-<li class="chapter" data-level="7.1.2" data-path="probability-rules-1.html"><a href="probability-rules-1.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
+<li class="chapter" data-level="7.1" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="probability-rules.html"><a href="probability-rules.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
+<li class="chapter" data-level="7.1.2" data-path="probability-rules.html"><a href="probability-rules.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>7.2</b> Random Variable</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>7.2.1</b> Probability Models</a></li>
@@ -344,9 +346,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><span class="math display">\[s_e = \sqrt{\frac{\sum^n_{i=1} (y_i-\hat{y}_i)^2}{n-2}}  = \sqrt{\frac{\sum^n_{i=1} (e_i-0)^2}{n-2}} \]</span></p>
 <p>In R: the standard deviation of the residuals, <span class="math inline">\(s_e\)</span>, is referred to as the “residual standard error”. Don’t confuse this with “Std. Error,” that is something else that we’ll get to.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#If you don&#39;t want the pipe to pass to the first argument, you can specify the argument with .</span></a>
-<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#If you don&#39;t want the pipe to pass to the first argument, you can specify the argument with .</span></a>
+<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Chest ~ Neck, data = .)
@@ -368,11 +370,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This simple linear regression line is</p>
 <p><span class="math display">\[\widehat{Chest} = -3.18 + 2.73*Neck\]</span></p>
 <p>If you have a neck size of 38 cm, then we predict the chest size of an ideal shirt is about 100.5 cm (~ -3.18 + 2.73*38)</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="fl">-3.18</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.73</span><span class="op">*</span><span class="dv">38</span> <span class="co">#the intercept and slope are rounded here first (not great)</span></a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="fl">-3.18</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.73</span><span class="op">*</span><span class="dv">38</span> <span class="co">#the intercept and slope are rounded here first (not great)</span></a></code></pre></div>
 <pre><code>## [1] 100.56</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Neck =</span> <span class="dv">38</span>)) <span class="co">#the intercept and slope are not rounded before prediction (better!)</span></a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Neck =</span> <span class="dv">38</span>)) <span class="co">#the intercept and slope are not rounded before prediction (better!)</span></a></code></pre></div>
 <pre><code>##        1 
 ## 100.8131</code></pre>
 <p>Given your neck size, we can probably predict your chest size within 5 to 10 cm since <span class="math inline">\(s_e = 5.22\)</span> (1 to 2 SD’s – recall Section <a href="one-quantitative-variable.html#intro-zscore">2.6.5</a>).</p>
@@ -384,12 +386,12 @@ If you were a shirt manufacturer, is this a good enough prediction? What is the 
 <div id="real-companies" class="section level3">
 <h3><span class="header-section-number">3.5.1</span> Real companies</h3>
 <p>Let’s see how some real companies create shirts. In the plots below, the red boxes represent the advertised range (in cm) for Neck and Chest sizes for each brand.</p>
-<p><img src="Photos/stylish-dress-shirt-size-size-chart-.jpg" /></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
-<p>For Calvin Klein, we see that the red boxes are below the least squares line (black line). So for a given neck size, Calvin Klein makes shirts that are a little bit too small at the chest.</p>
+<p><img src="Photos/shirtchart.jpg" width=".25\textwidth" /></p>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
-<p>For Express, we see that the red boxes are generally on the least squares line, except for the smallest size. This means that Express shirts are generally a good fit at the chest and neck for the 4 largest sizes, but the smallest shirt size is a bit too small at the chest for the neck size.</p>
+<p>For Calvin Klein, we see that the red boxes are below the least squares line (black line). So for a given neck size, Calvin Klein makes shirts that are a little bit too small at the chest.</p>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-108-1.png" width="672" /></p>
+<p>For Express, we see that the red boxes are generally on the least squares line, except for the smallest size. This means that Express shirts are generally a good fit at the chest and neck for the 4 largest sizes, but the smallest shirt size is a bit too small at the chest for the neck size.</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
 <p>For Brooks Brothers, the red boxes are a bit below the least squares line for the 3 smallest sizes and a little above the line for the largest size. This means that the 3 smallest sizes are a bit too small in the chest for our customers (in our data set) with those neck sizes and that the largest shirt is a bit big at the chest for that neck size.</p>
 <div class="reflect">
 <p>

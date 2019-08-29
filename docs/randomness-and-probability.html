@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Randomness and Probability | Stat 155 Notes</title>
-  <meta name="description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Randomness and Probability | Stat 155 Notes" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 5 Randomness and Probability | Stat 155 Notes" />
   
-  <meta name="twitter:description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
 <meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint)" />
@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="randomization-into-groups.html">
+<link rel="prev" href="irl-randomization-tests.html">
 <link rel="next" href="three-types-of-probability.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -124,10 +124,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"Stat 155 Notes</a></li>
+<li><a href="./"Stat155Notes</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i><b>0.1</b> Acknowledgments</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="data-collection-and-quality.html"><a href="data-collection-and-quality.html"><i class="fa fa-check"></i><b>1</b> Data Collection and Quality</a><ul>
 <li class="chapter" data-level="1.1" data-path="what-is-data.html"><a href="what-is-data.html"><i class="fa fa-check"></i><b>1.1</b> What is Data?</a></li>
 <li class="chapter" data-level="1.2" data-path="data-context.html"><a href="data-context.html"><i class="fa fa-check"></i><b>1.2</b> Data Context</a></li>
@@ -233,18 +235,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.11" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.11</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>4</b> Random Variability</a><ul>
-<li class="chapter" data-level="4.1" data-path="random-sampling-from-a-population.html"><a href="random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>4.1</b> Random Sampling from a Population</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="random-sampling-from-a-population.html"><a href="random-sampling-from-a-population.html#irl-bootstrapping"><i class="fa fa-check"></i><b>4.1.1</b> IRL: Bootstrapping</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="randomization-into-groups.html"><a href="randomization-into-groups.html"><i class="fa fa-check"></i><b>4.2</b> Randomization into Groups</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="randomization-into-groups.html"><a href="randomization-into-groups.html#irl-randomization-tests"><i class="fa fa-check"></i><b>4.2.1</b> IRL: Randomization Tests</a></li>
-</ul></li>
+<li class="chapter" data-level="4.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>4.1</b> Sampling Variability</a></li>
+<li class="chapter" data-level="4.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>4.2</b> Randomization Variability</a></li>
+<li class="chapter" data-level="4.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>4.3</b> Simulating Random Sampling from a Population</a></li>
+<li class="chapter" data-level="4.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>4.4</b> IRL: Bootstrapping</a></li>
+<li class="chapter" data-level="4.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>4.5</b> Simulating Randomization into Groups</a></li>
+<li class="chapter" data-level="4.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>4.6</b> IRL: Randomization Tests</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
-<li class="chapter" data-level="5.2" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>5.2</b> Probability Rules</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="probability-rules.html"><a href="probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>5.2.1</b> Diagnotic Testing and Probability</a></li>
-<li class="chapter" data-level="5.2.2" data-path="probability-rules.html"><a href="probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>5.2.2</b> Court Arguments and Probability</a></li>
+<li class="chapter" data-level="5.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html"><i class="fa fa-check"></i><b>5.2</b> Theoretical Probability Rules</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>5.2.1</b> Diagnotic Testing and Probability</a></li>
+<li class="chapter" data-level="5.2.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>5.2.2</b> Court Arguments and Probability</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="random-variable.html"><a href="random-variable.html"><i class="fa fa-check"></i><b>5.3</b> Random Variable</a></li>
 <li class="chapter" data-level="5.4" data-path="probability-models.html"><a href="probability-models.html"><i class="fa fa-check"></i><b>5.4</b> Probability Models</a><ul>
@@ -261,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html"><i class="fa fa-check"></i><b>5.8</b> Z-scores and the Student’s “t” distribution</a><ul>
 <li class="chapter" data-level="5.8.1" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#gossets-work"><i class="fa fa-check"></i><b>5.8.1</b> Gosset’s Work</a></li>
 <li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
-<li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#student-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student T Model</a></li>
+<li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student’s T Model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
@@ -293,9 +295,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a><ul>
-<li class="chapter" data-level="7.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
-<li class="chapter" data-level="7.1.2" data-path="probability-rules-1.html"><a href="probability-rules-1.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
+<li class="chapter" data-level="7.1" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="probability-rules.html"><a href="probability-rules.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
+<li class="chapter" data-level="7.1.2" data-path="probability-rules.html"><a href="probability-rules.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>7.2</b> Random Variable</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>7.2.1</b> Probability Models</a></li>
@@ -336,19 +338,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="randomness-and-probability" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Randomness and Probability</h1>
-<p>Recall the model we built to predict home price as a function of square footage and fireplaces.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb222-2" data-line-number="2">homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb222-3" data-line-number="3"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb222-4" data-line-number="4">homes <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb222-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb222-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb222-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb222-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-190-1.png" width="672" /></p>
-<p>To allow for different slopes among homes with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our sample, we observed a difference in the slopes of $26.85 per square foot. But is this true for the larger population of homes? Is each square foot worth exactly $26.85 more, on average, in homes with a fireplace than in homes without a fireplace?</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb223-1" data-line-number="1">lm.home3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace<span class="op">*</span>Living.Area, <span class="dt">data =</span> homes)</a>
-<a class="sourceLine" id="cb223-2" data-line-number="2"><span class="kw">tidy</span>(lm.home3)</a></code></pre></div>
+<p>Now that we have some intuition about random variability, we will formalize some of the concepts of probability and chance.</p>
+<p>Recall the regression model we built to predict home price as a function of square footage and fireplaces in <a href="multiple-linear-regression.html#multiple-linear-regression">Multiple Linear Regression</a>.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb221-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb221-2" data-line-number="2">homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb221-3" data-line-number="3"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb221-4" data-line-number="4">homes <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb221-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb221-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb221-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb221-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-191-1.png" width="672" /></p>
+<p>To allow for different slopes among homes with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our one sample, we observed a difference in the slopes of $26.85 per square foot.</p>
+<p>But is this true for the larger population of homes in the area? Is each square foot worth exactly $26.85 more, on average, in homes with a fireplace than in homes without a fireplace?</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">lm.home3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace<span class="op">*</span>Living.Area, <span class="dt">data =</span> homes)</a>
+<a class="sourceLine" id="cb222-2" data-line-number="2"><span class="kw">tidy</span>(lm.home3)</a></code></pre></div>
 <pre><code>## # A tibble: 4 x 5
 ##   term                         estimate std.error statistic  p.value
 ##   &lt;chr&gt;                           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -356,19 +360,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 AnyFireplaceTRUE             -37610.   11025.       -3.41 6.61e- 4
 ## 3 Living.Area                      92.4      5.41     17.1  1.84e-60
 ## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5</code></pre>
-<p>Probably not. In fact, our sample is just one random sample from the larger population of homes in upstate New York. If we had gotten a slightly different sample of homes, then we would have different estimates for each of the regression coefficients. We explored this sampling variation in Chapter 4 using bootstrapping.</p>
-<p>Let’s connect our goals to the terms <strong>statistic</strong>, <strong>estimate</strong>, and <strong>parameter</strong>. The interaction coefficient is a <strong>statistic</strong>. It (as well as the other coefficient estimates) is a numerical summary of our data that was estimated from a <strong>sample</strong>. The actual numerical value of the interaction coefficient in the R output is called the <strong>estimate</strong>. If we had a census, a full set of data on all homes in upstate New York, we could fit the same linear regression model. The coefficient estimates given to us by R would represent population <strong>parameters</strong> because they are computed from the whole population, rather than a sample. By understanding <strong>how much</strong> statistics vary from sample to sample, we can start to <strong>quantify the amount of uncertainty</strong> in our estimates. Because the process of obtaining a sample is a type of random process, we will spend some time discussing formal probability.</p>
+<p>Probably not. In fact, our sample is just one random sample from the larger population of homes in upstate New York. If we had gotten a slightly different sample of homes, then we would have different estimates for each of the regression coefficients. We explored this sampling variation in <a href="random-variability.html#random-variability">Chapter 4</a> using bootstrapping.</p>
+<p>Let’s connect our goals to the terms <strong>statistic</strong>, <strong>estimate</strong>, and <strong>parameter</strong>.</p>
+<p>The interaction coefficient is a <strong>statistic</strong>. It (as well as the other coefficient estimates) is a numerical summary of our data that was estimated from a <strong>sample</strong>. The actual numerical value of the interaction coefficient in the R output is called the <strong>estimate</strong>. If we had a census, a full set of data on all homes in upstate New York, we could fit the same linear regression model. The coefficient estimates given to us by R would represent population <strong>parameters</strong> because they are computed from the whole population, rather than a sample. By understanding <strong>how much</strong> statistics vary from sample to sample, we can start to <strong>quantify the amount of uncertainty</strong> in our estimates. Because the process of obtaining a sample is a type of random process, we will spend some time discussing formal probability.</p>
 <p>This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand and discuss random events. This framework provides a way of thinking about <strong>uncertainty</strong>, <strong>random variability</strong>, and <strong>average behavior in the long run.</strong></p>
 <p>A <strong>random process</strong> or <strong>random event</strong> is any process/event whose outcome is governed by chance. It is any process/event that cannot be known with certainty. Examples range from the outcome of flipping a coin to the estimated model coefficients from randomly selected samples.</p>
 <p>We’ve used the term “chances” up until now. We are now going to use “probability” as an equivalent word for “chance”.</p>
-<p>For a much more in-depth discussion of probability (calculus-based), take MATH 354 (Probability).</p> 
+<p>For a much more in-depth discussion of probability (calculus-based), take STAT/MATH 354 (Probability).</p> 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="randomization-into-groups.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="irl-randomization-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="three-types-of-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

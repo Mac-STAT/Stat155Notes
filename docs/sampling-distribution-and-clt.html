@@ -5,20 +5,20 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.7 Sampling Distribution and CLT | Stat 155 Notes</title>
-  <meta name="description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.7 Sampling Distribution and CLT | Stat 155 Notes" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="5.7 Sampling Distribution and CLT | Stat 155 Notes" />
   
-  <meta name="twitter:description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
 <meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint)" />
@@ -124,10 +124,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"Stat 155 Notes</a></li>
+<li><a href="./"Stat155Notes</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i><b>0.1</b> Acknowledgments</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="data-collection-and-quality.html"><a href="data-collection-and-quality.html"><i class="fa fa-check"></i><b>1</b> Data Collection and Quality</a><ul>
 <li class="chapter" data-level="1.1" data-path="what-is-data.html"><a href="what-is-data.html"><i class="fa fa-check"></i><b>1.1</b> What is Data?</a></li>
 <li class="chapter" data-level="1.2" data-path="data-context.html"><a href="data-context.html"><i class="fa fa-check"></i><b>1.2</b> Data Context</a></li>
@@ -233,18 +235,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.11" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.11</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>4</b> Random Variability</a><ul>
-<li class="chapter" data-level="4.1" data-path="random-sampling-from-a-population.html"><a href="random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>4.1</b> Random Sampling from a Population</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="random-sampling-from-a-population.html"><a href="random-sampling-from-a-population.html#irl-bootstrapping"><i class="fa fa-check"></i><b>4.1.1</b> IRL: Bootstrapping</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="randomization-into-groups.html"><a href="randomization-into-groups.html"><i class="fa fa-check"></i><b>4.2</b> Randomization into Groups</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="randomization-into-groups.html"><a href="randomization-into-groups.html#irl-randomization-tests"><i class="fa fa-check"></i><b>4.2.1</b> IRL: Randomization Tests</a></li>
-</ul></li>
+<li class="chapter" data-level="4.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>4.1</b> Sampling Variability</a></li>
+<li class="chapter" data-level="4.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>4.2</b> Randomization Variability</a></li>
+<li class="chapter" data-level="4.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>4.3</b> Simulating Random Sampling from a Population</a></li>
+<li class="chapter" data-level="4.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>4.4</b> IRL: Bootstrapping</a></li>
+<li class="chapter" data-level="4.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>4.5</b> Simulating Randomization into Groups</a></li>
+<li class="chapter" data-level="4.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>4.6</b> IRL: Randomization Tests</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
-<li class="chapter" data-level="5.2" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>5.2</b> Probability Rules</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="probability-rules.html"><a href="probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>5.2.1</b> Diagnotic Testing and Probability</a></li>
-<li class="chapter" data-level="5.2.2" data-path="probability-rules.html"><a href="probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>5.2.2</b> Court Arguments and Probability</a></li>
+<li class="chapter" data-level="5.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html"><i class="fa fa-check"></i><b>5.2</b> Theoretical Probability Rules</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>5.2.1</b> Diagnotic Testing and Probability</a></li>
+<li class="chapter" data-level="5.2.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>5.2.2</b> Court Arguments and Probability</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="random-variable.html"><a href="random-variable.html"><i class="fa fa-check"></i><b>5.3</b> Random Variable</a></li>
 <li class="chapter" data-level="5.4" data-path="probability-models.html"><a href="probability-models.html"><i class="fa fa-check"></i><b>5.4</b> Probability Models</a><ul>
@@ -261,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html"><i class="fa fa-check"></i><b>5.8</b> Z-scores and the Student’s “t” distribution</a><ul>
 <li class="chapter" data-level="5.8.1" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#gossets-work"><i class="fa fa-check"></i><b>5.8.1</b> Gosset’s Work</a></li>
 <li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
-<li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#student-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student T Model</a></li>
+<li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student’s T Model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
@@ -293,9 +295,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a><ul>
-<li class="chapter" data-level="7.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
-<li class="chapter" data-level="7.1.2" data-path="probability-rules-1.html"><a href="probability-rules-1.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
+<li class="chapter" data-level="7.1" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="probability-rules.html"><a href="probability-rules.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
+<li class="chapter" data-level="7.1.2" data-path="probability-rules.html"><a href="probability-rules.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>7.2</b> Random Variable</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>7.2.1</b> Probability Models</a></li>
@@ -338,27 +340,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.7</span> Sampling Distribution and CLT</h2>
 <div id="sampling-distributions" class="section level3">
 <h3><span class="header-section-number">5.7.1</span> Sampling distributions</h3>
-<p>Let’s remind ourselves why we need to understand randomness and the tools of formal probability.</p>
-<p>We appreciate that our estimates will vary from sample to sample because we have different cases in each sample. We care about <em>how much</em> they can vary because we want to <em>quantify</em> the amount of uncertainty in our estimates. Sure, we may use linear regression modeling to find that the estimate for an interaction coefficient is $26.85, but how different could that estimate have been if we had obtained a different sample (of the same size)?</p>
-<p>The <strong>sampling ditribution</strong> of a statistic (e.g. sampling distribution of the sample mean, of the sample median, of a regression coefficient) tells us exactly how that statistic would vary across all possible samples of a given size. For example, in our New York housing data (1728 homes), the sampling distribution for the interaction coefficient tells us exactly the distribution of interaction coefficient estimates that result from all possible samples of size 1728 <em>from the population of New York homes</em>. This distribution is centered at the value of the population interaction coefficient (the value we would get from linear modeling if we did indeed use the full population). The spread of the distribution gives us a measure of the precision of our estimate. If the sampling distribution is very wide, then our estimate is imprecise. Our estimate could vary widely from sample to sample. If the sampling distribution is very narrow, then our estimate is precise. Our estimate would not vary much from sample to sample.</p>
+<p>As we wade through the formal theory, let’s remind ourselves why we need to understand randomness and the tools of formal probability.</p>
+<p>We appreciate that our estimates will vary from sample to sample because we have different units in each sample. We care about <em>how much</em> they can vary because we want to <em>quantify</em> the amount of uncertainty in our estimates. Sure, we may use linear regression modeling to find that the estimate for an interaction coefficient is $26.85, but how different could that estimate have been if we had obtained a different sample (of the same size)?</p>
+<p>The <strong>sampling ditribution</strong> of a statistic (e.g. sampling distribution of the sample mean, of the sample median, of a regression coefficient) tells us exactly how that statistic would vary across all possible samples of a given size. For example, in our New York housing data (1728 homes), the sampling distribution for the interaction coefficient tells us exactly the distribution of interaction coefficient estimates that result from all possible samples of size 1728 <em>from the population of New York homes</em>. This distribution is centered at the true value of the population interaction coefficient (the value we would get from linear modeling if we did indeed use the full population). The spread of the distribution gives us a measure of the precision of our estimate. If the sampling distribution is very wide, then our estimate is imprecise; our estimate would vary widely from sample to sample. If the sampling distribution is very narrow, then our estimate is precise; our estimate would not vary much from sample to sample.</p>
 <p>The emphasis on “from the population of New York homes” when defining the sampling distribution earlier is deliberate. We don’t have the population, and we never will (usually)! The sampling distribution is a theoretical idea, but we wish to know what it looks like because we care about the precision of our estimate. We have done our best to estimate the center of the sampling distribution: our best guess is the sample estimate itself. For our housing data, we estimate an interaction coefficient of $26.85. This is our best guess for the center of the sampling distribution. What about the spread?</p>
 <p>We have looked at one way to estimate the spread of the sampling distribution: bootstrapping! In bootstrapping, we pretend that our sample is the population and look at lots of different samples from this “fake population”. In bootstrapping, we have essentially tried to replicate the idea of getting “all possible samples of a given size from the population”.</p>
 </div>
 <div id="the-central-limit-theorem" class="section level3">
 <h3><span class="header-section-number">5.7.2</span> The Central Limit Theorem</h3>
-<p>Another powerful way to understand what the sampling distribution looks like is called the <strong>Central Limit Theorem</strong>. This is a famous theorem in statistics that can be stated as follows.</p>
-<p><strong>Central Limit Theorem (CLT)</strong>: Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be random variables that denote some value measured on each of <span class="math inline">\(n\)</span> cases in a random sample. Let <span class="math inline">\(\bar{X}_n\)</span> denote the sample mean of those values. Let all of the random variables <span class="math inline">\(X_1, \ldots, X_n\)</span> have the same expected value <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Then as the sample size <span class="math inline">\(n\)</span> grows to infinity, the sample mean <span class="math inline">\(\bar{X}_n\)</span> becomes normally-distributed with mean <span class="math inline">\(\mu\)</span> (the true expected value) and variance <span class="math inline">\(\sigma^2/n\)</span>.</p>
+<p>Another powerful way to understand what the sampling distribution looks like is called the <strong>Central Limit Theorem</strong>. This is a famous theorem in Statistics that can be stated as follows.</p>
+<p><strong>Central Limit Theorem (CLT)</strong>: Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be random variables that denote some value measured on each of <span class="math inline">\(n\)</span> units in a random sample. Let <span class="math inline">\(\bar{X}_n = n^{-1}\sum_{i=1}^n X_i\)</span> denote the sample mean of those values. Let all of the random variables <span class="math inline">\(X_1, \ldots, X_n\)</span> have the same expected value <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Then as the sample size <span class="math inline">\(n\)</span> get bigger and bigger (grows to infinity), the sample mean <span class="math inline">\(\bar{X}_n\)</span> becomes normally-distributed with mean <span class="math inline">\(\mu\)</span> (the true expected value) and variance <span class="math inline">\(\sigma^2/n\)</span>.</p>
 <p>What does the CLT tell us? It tells us that with a “sufficiently large” sample size, the sample mean is normally-distributed with a particular mean and variance. This tells us exactly what the sampling distribution is! The center and shape of the sampling distribution are given by a named probability model, the Normal distribution! Let’s focus on the implications of these two parameters:</p>
 <ul>
-<li>The mean: The CLT says that for large samples the sample mean is normally distributed with mean <span class="math inline">\(\mu\)</span>. <span class="math inline">\(\mu\)</span> is the actual expected value of the random variables! This tells us that the sample mean estimates the population mean correctly, on average. For example, let’s say that the <span class="math inline">\(X\)</span>’s are house prices, and we want to know the true population mean of house prices. The CLT tells us that, <strong>on average</strong>, the sample mean will be correct! Another way to say this is that the sample estimates are “unbiased”: underestimates are balanced by overestimates.</li>
-<li>The variance: The CLT says that for large samples the sample mean is normally distributed with variance <span class="math inline">\(\sigma^2/n\)</span>. Equivalently, the standard deviation is <span class="math inline">\(\sigma/\sqrt{n}\)</span>. This standard deviation is also called the <strong>standard error</strong>. This tells us the spread of the sampling distribution! Sample estimates are more likely to be “close to” than “far from” the population parameter <span class="math inline">\(\mu\)</span>. We see that the sample size <span class="math inline">\(n\)</span> plays a key role. The larger the sample size, the smaller the spread. This matches our intuition that larger samples should generate more <strong>precise</strong> estimates.</li>
+<li>The mean: The CLT says that for large samples the sample mean is normally distributed with mean <span class="math inline">\(\mu\)</span>. <span class="math inline">\(\mu\)</span> is the actual expected value of the random variables! This tells us that the sample mean estimates the population mean correctly, on average. For example, let’s say that the <span class="math inline">\(X\)</span>’s are house prices, and we want to know the true population mean of house prices. The CLT tells us that, <strong>on average</strong>, the sample mean will be correct! Another way to say this is that the sample estimates are “unbiased”: underestimates are balanced out by overestimates.</li>
+<li>The variance: The CLT says that for large samples the sample mean is normally distributed with variance <span class="math inline">\(\sigma^2/n\)</span>. Equivalently, the standard deviation is <span class="math inline">\(\sigma/\sqrt{n}\)</span>. This tells us the spread of the sampling distribution! Sample estimates are more likely to be “close to” than “far from” the population parameter <span class="math inline">\(\mu\)</span>. We see that the sample size <span class="math inline">\(n\)</span> plays a key role. The larger the sample size, the smaller the spread. This matches our intuition that larger samples should generate more <strong>precise</strong> estimates. In practice, we estimate <span class="math inline">\(\sigma\)</span> and refer to this estimated standard deviation as the <strong>standard error</strong>.</li>
 </ul>
-<p><strong>Where does the CLT come up in practice?</strong> When we fit linear regression and logistic regression models, there were columns in the summarized output labeled “Std. Error”. We have neglected to look at these columns…until now. Now, with our understanding of the CLT, we can understand where this column comes from. It turns out that we can apply the CLT to see that our estimated regression coefficients (our betas) are normally-distributed. That is, the theory of the CLT allows us to approximate the sampling distributions of regression coefficients. Behind the scenes, R uses that theory to give us the Standard Error column. This column gives us an estimate of the standard deviation of the sampling distribution for that regression coefficient.</p>
+<p><strong>Where does the CLT come up in practice?</strong> When we fit linear regression and logistic regression models, there were columns in the summarized output labeled “Std. Error”. We have neglected to look at these columns…until NOW. With our understanding of the CLT, we can understand where this column comes from. It turns out that we can apply the CLT to see that our estimated regression coefficients (our betas) are normally-distributed. That is, the theory of the CLT allows us to approximate the sampling distributions of regression coefficients. Behind the scenes, R uses that theory to give us the Standard Error column. This column gives us an estimate of the standard deviation of the sampling distribution for that regression coefficient.</p>
 <p>Let’s visualize what is happening with the Central Limit Theorem. Below we have simulated (generated ourselves) data for a full population of cases. The distribution of values in the full population is shown below. The true population mean (expected value) is 4. Beneath, we show the sampling distributions of the sample mean for different sample sizes. We see the CLT in action. The center of the sampling distributions is the expected value 4. The sampling distributions look normally distributed, and the spread decreases with sample size. Note that the original population values do not look normally-distributed, and yet, by the CLT, the sample means are normally-distributed.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-208-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-208-2.png" width="960" /></p>
-<p>Let’s look at one more example. Again, the population distribution is clearly not normally-distributed, and yet, the sample means are normally-distributed. These normal distributions are centered at the true population mean (expected value) and have smaller and smaller spread with increased sample size.</p>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-209-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-209-2.png" width="960" /></p>
-<p>The different ways in which we think about sampling variability in statistics are shown in the figure below.</p>
+<p>Let’s look at one more example. Again, the population distribution is clearly not normally-distributed, and yet, the sample means are normally-distributed. These normal distributions are centered at the true population mean (expected value) and have smaller and smaller spread with increased sample size.</p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-210-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-210-2.png" width="960" /></p>
+<p>The different ways in which we think about sampling variability in Statistics are shown in the figure below.</p>
 <p><img src="Photos/sampling_variation_flowchart.png" /></p>
 </div>
 </div>

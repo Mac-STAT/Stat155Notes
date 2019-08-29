@@ -39,7 +39,7 @@ $$\hat{y} = f(x) = b_0 + b_1x$$
 
 This is a **simple linear regression model**. It is the foundation of many statistical models used in modern statistics and is more flexible than you may think. 
 
-```{block, type='math'}
+```{block, type='mathbox'}
 In the past, you may have seen the equation of a line as 
 
 $$y = mx + b$$
@@ -247,7 +247,7 @@ b[ss == min(ss),]
 
 We have the minimum point. Over the grid of pairs of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
 
-```{block, type="math"}
+```{block, type="mathbox"}
 (Optional) Alternative ways (faster than exhaustive search) to find the minimum sum of squared residuals
 
 - We could try a numerical optimization algorithm such as steepest descent.
@@ -332,7 +332,9 @@ If you were a shirt manufacturer, is this a good enough prediction? What is the 
 
 Let's see how some real companies create shirts. In the plots below, the red boxes represent the advertised range (in cm) for Neck and Chest sizes for each brand.
 
-![](Photos/stylish-dress-shirt-size-size-chart-.jpg)
+```{r, out.width = '.25\\textwidth', echo=FALSE}
+knitr::include_graphics("Photos/shirtchart.jpg")
+```
 
 
 ```{r echo=FALSE}
@@ -628,7 +630,7 @@ Two extreme cases:
 
 
 
-```{block type='math'}
+```{block type='mathbox'}
 $$ R^2 = 1 - \frac{SSE}{SSTO} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}$$
 ```
 
@@ -1267,7 +1269,7 @@ For any real value $x$, this function, $f(x)$, will be a value between 0 and 1. 
 In fact, we'll let the chance of the other outcome (failure), $1-p$, be modeled by this S function.
 
 $$1-p = \frac{1}{1 + e^{b_0 +b_1x}}$$
-```{block, type='math'}
+```{block, type='mathbox'}
 With a bit of algebra and rearranging terms, we can write this equation in terms of $p$, the chance of success. 
 
 $$1-p = \frac{1}{1 + e^{b_0 +b_1x}}$$
@@ -1282,7 +1284,7 @@ $$p = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}$$
 
 Let's define one more term. The **odds** of an success outcome is the ratio of the chance of success to the chance of failure, odds $=p/(1-p)$.
 
-```{block, type='math'}
+```{block, type='mathbox'}
 With a bit more algebra and rearranging terms, we can write the above model as a linear regression model.
 
 $$p/(1-p) = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}/\frac{1}{1 + e^{b_0 +b_1x}}$$
@@ -1352,7 +1354,7 @@ summary(model.glm)
 
 The slope coefficient (-0.232) tells you how much the predicted log odds increase with an increase of 1 degree increase in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra. 
 
-```{block, type='math'}
+```{block, type='mathbox'}
 Our estimated model is
 
 $$\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_0 +b_1x$$

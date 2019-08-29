@@ -447,7 +447,7 @@ There are some choices for numerically summarizing the center of a distribution:
 - **Trimmed means**:  Drop the lowest and highest k% and take the mean of the rest.
     + A good compromise, but not widely used.
     
-```{block, type="math"}    
+```{block, type="mathbox"}    
 The Greek capital letter sigma, $\sum$, is used in mathematics to denote a sum. We let $y_i$ represent the value of the $i$th person for a variable called $y$. So $\sum^n_{i=1}y_i$ is the sum of all the $n$ values of a variable $y$, all the way from the 1st person to the $n$th person.
 ```
 
@@ -489,7 +489,7 @@ An alternative graphical summary is a boxplot, which is a simplification of the 
 - Tails/Whiskers: The lines extend out from the box to most extreme observed values within $1.5 \times (Q3-Q1)$ from $Q1$ (bottom) or $Q3$ (top)
 - Points: If any points are beyond $1.5 \times (Q3-Q1)$ from the box edges, they are considered outliers and are plotted separately
 
-```{block, type="math"}    
+```{block, type="mathbox"}    
 A percentile is a measure indicating the value below which a given percentage of observations in a group of observations fall. So the 25th percentile is the value at which 25% of the values are below. The 95th percentile is the point at which 95% of the observations are below.
 ```
 
@@ -666,7 +666,7 @@ This is not true for every histogram, but it will be true for a particularly spe
 
 However, we do know that z-scores of 5 or larger in magnitude (ignoring negative sign) are very unusual, no matter the shape of the histogram/distribution. For those inclined, see the mathematical theorem below that tells us this. 
 
-```{block, type='math'}
+```{block, type='mathbox'}
 (Optional) Chebyshev's inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number $k$ > 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than $k$ is less than or equal to $1/k^2$,
 
 $$P\left(|Z| \geq k\right) \leq \frac{1}{k^2}$$
@@ -1048,7 +1048,7 @@ names(d8) <- c("x","y")
 corr_explanation_plot(d8, title = "r = -0.2")
 ```
 
-```{block, type='math'}
+```{block, type='mathbox'}
 (Optional) Here are other equivalent expressions for $r$ for the mathematically intrigued:
 
 $$ r = \frac{\sum z_x z_y}{n-1}  $$

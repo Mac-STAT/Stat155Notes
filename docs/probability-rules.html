@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.2 Probability Rules | Stat 155 Notes</title>
-  <meta name="description" content="This includes notes for STAT 155 at Macalester College." />
+  <title>7.1 Probability Rules | Stat 155 Notes</title>
+  <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.2 Probability Rules | Stat 155 Notes" />
+  <meta property="og:title" content="7.1 Probability Rules | Stat 155 Notes" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.2 Probability Rules | Stat 155 Notes" />
+  <meta name="twitter:title" content="7.1 Probability Rules | Stat 155 Notes" />
   
-  <meta name="twitter:description" content="This includes notes for STAT 155 at Macalester College." />
+  <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
 <meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint)" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="three-types-of-probability.html">
-<link rel="next" href="random-variable.html">
+<link rel="prev" href="appendix-a-theoretical-probability.html">
+<link rel="next" href="random-variable-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -124,10 +124,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"Stat 155 Notes</a></li>
+<li><a href="./"Stat155Notes</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i><b>0.1</b> Acknowledgments</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="data-collection-and-quality.html"><a href="data-collection-and-quality.html"><i class="fa fa-check"></i><b>1</b> Data Collection and Quality</a><ul>
 <li class="chapter" data-level="1.1" data-path="what-is-data.html"><a href="what-is-data.html"><i class="fa fa-check"></i><b>1.1</b> What is Data?</a></li>
 <li class="chapter" data-level="1.2" data-path="data-context.html"><a href="data-context.html"><i class="fa fa-check"></i><b>1.2</b> Data Context</a></li>
@@ -233,18 +235,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.11" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.11</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>4</b> Random Variability</a><ul>
-<li class="chapter" data-level="4.1" data-path="random-sampling-from-a-population.html"><a href="random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>4.1</b> Random Sampling from a Population</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="random-sampling-from-a-population.html"><a href="random-sampling-from-a-population.html#irl-bootstrapping"><i class="fa fa-check"></i><b>4.1.1</b> IRL: Bootstrapping</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="randomization-into-groups.html"><a href="randomization-into-groups.html"><i class="fa fa-check"></i><b>4.2</b> Randomization into Groups</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="randomization-into-groups.html"><a href="randomization-into-groups.html#irl-randomization-tests"><i class="fa fa-check"></i><b>4.2.1</b> IRL: Randomization Tests</a></li>
-</ul></li>
+<li class="chapter" data-level="4.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>4.1</b> Sampling Variability</a></li>
+<li class="chapter" data-level="4.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>4.2</b> Randomization Variability</a></li>
+<li class="chapter" data-level="4.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>4.3</b> Simulating Random Sampling from a Population</a></li>
+<li class="chapter" data-level="4.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>4.4</b> IRL: Bootstrapping</a></li>
+<li class="chapter" data-level="4.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>4.5</b> Simulating Randomization into Groups</a></li>
+<li class="chapter" data-level="4.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>4.6</b> IRL: Randomization Tests</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
-<li class="chapter" data-level="5.2" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>5.2</b> Probability Rules</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="probability-rules.html"><a href="probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>5.2.1</b> Diagnotic Testing and Probability</a></li>
-<li class="chapter" data-level="5.2.2" data-path="probability-rules.html"><a href="probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>5.2.2</b> Court Arguments and Probability</a></li>
+<li class="chapter" data-level="5.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html"><i class="fa fa-check"></i><b>5.2</b> Theoretical Probability Rules</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>5.2.1</b> Diagnotic Testing and Probability</a></li>
+<li class="chapter" data-level="5.2.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>5.2.2</b> Court Arguments and Probability</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="random-variable.html"><a href="random-variable.html"><i class="fa fa-check"></i><b>5.3</b> Random Variable</a></li>
 <li class="chapter" data-level="5.4" data-path="probability-models.html"><a href="probability-models.html"><i class="fa fa-check"></i><b>5.4</b> Probability Models</a><ul>
@@ -261,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html"><i class="fa fa-check"></i><b>5.8</b> Z-scores and the Student’s “t” distribution</a><ul>
 <li class="chapter" data-level="5.8.1" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#gossets-work"><i class="fa fa-check"></i><b>5.8.1</b> Gosset’s Work</a></li>
 <li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
-<li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#student-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student T Model</a></li>
+<li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student’s T Model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
@@ -293,9 +295,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a><ul>
-<li class="chapter" data-level="7.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="probability-rules-1.html"><a href="probability-rules-1.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
-<li class="chapter" data-level="7.1.2" data-path="probability-rules-1.html"><a href="probability-rules-1.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
+<li class="chapter" data-level="7.1" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="probability-rules.html"><a href="probability-rules.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
+<li class="chapter" data-level="7.1.2" data-path="probability-rules.html"><a href="probability-rules.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>7.2</b> Random Variable</a><ul>
 <li class="chapter" data-level="7.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>7.2.1</b> Probability Models</a></li>
@@ -335,75 +337,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="probability-rules" class="section level2">
-<h2><span class="header-section-number">5.2</span> Probability Rules</h2>
-<p>In theoretical probability, we need to define a few terms and set some rules for working with probabilities (known as axioms).</p>
-<p>The <strong>sample space</strong>, <span class="math inline">\(S\)</span>, is the set of all possible outcomes of a random process.</p>
+<h2><span class="header-section-number">7.1</span> Probability Rules</h2>
+<p>In theoretical probability, we need to define a few terms and set some rules (known as axioms).</p>
+<p>The <strong>sample space,</strong> <span class="math inline">\(S\)</span>, is the set of all possible outcomes of a random process.</p>
 <ul>
-<li>Example: If you flip two coins (one side Heads and one side Tails), then the sample space contains four possible outcomes: Heads and Heads (HH), Heads and Tails (HT), Tails and Heads (TH), and Tails and Tails (TT). That is, <span class="math inline">\(S = \{HH,HT,TH,TT\}\)</span>.</li>
+<li>Example: If you flip two coins (one side Heads and one side Tails), then the sample space contains four possible outcomes: Heads and Heads (HH), Heads and Tails (HT), Tails and Heads (TH), and Tails and Tails (TT), <span class="math inline">\(S = \{HH,HT,TH,TT\}\)</span>.</li>
 </ul>
 <p>A subset of outcomes is called an <strong>event</strong>, <span class="math inline">\(A\)</span>.</p>
 <ul>
-<li>Example: If you flip two coins, an event <span class="math inline">\(A\)</span> could be that exactly one of the coins lands Heads, <span class="math inline">\(A = \{HT,TH\}\)</span>.</li>
+<li>Example: If you flip two coins, an event <span class="math inline">\(A\)</span> could be that exactly one of the coins land Heads, <span class="math inline">\(A = \{HT,TH\}\)</span>.</li>
+</ul>
+<p>For the rules of probability, we can define them with set notation as well as words. If you aren’t familiar with set notation,</p>
+<ul>
+<li><span class="math inline">\(\cup\)</span> means union (inclusive OR)</li>
+<li><span class="math inline">\(\cap\)</span> means intersection (AND)</li>
+<li><span class="math inline">\(A^C\)</span> means complement (NOT)</li>
 </ul>
 <p>For events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> and sample space <span class="math inline">\(S\)</span>, the probability of an event <span class="math inline">\(A\)</span>, notated as <span class="math inline">\(P(A)\)</span>, follows the rules below:</p>
 <ul>
 <li>Rule 1: <span class="math inline">\(0\leq P(A)\leq 1\)</span> (probability has to be between 0 and 1)</li>
-<li>Rule 2: <span class="math inline">\(P(S) = 1\)</span> (one of the possible outcomes has to happen)</li>
-<li>Rule 3: <span class="math inline">\(P(\text{not }A) = 1 - P(A)\)</span> (if we know the chance of something happening, we also know the chance that it doesn’t happen)</li>
-<li>Rule 4: <span class="math inline">\(P(A\text{ or }B) = P(A) + P(B)\)</span> if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are disjoint events.
+<li>Rule 2: <span class="math inline">\(P(S) = 1\)</span> (one of the outcomes has to happen)</li>
+<li>Rule 3: <span class="math inline">\(P(A^c) = P(\text{not }A) = 1 - P(A)\)</span> (if we know the chance of something happening, we also know that chance it doesn’t happen)</li>
+<li>Rule 4: <span class="math inline">\(P(A\cup B) = P(A\text{ or }B) = P(A) + P(B)\)</span> if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are disjoint events.
 <ul>
-<li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>disjoint</strong> if <span class="math inline">\(A\)</span> occuring prevents <span class="math inline">\(B\)</span> from occurring (they both can’t happen at the same time).</li>
+<li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>disjoint/mutually exclusive</strong> if <span class="math inline">\(A\)</span> occuring prevents <span class="math inline">\(B\)</span> from occurring (they both can’t happen at the same time).</li>
 </ul></li>
-<li>Rule 4*: <span class="math inline">\(P(A\text{ or }B) = P(A) + P(B) - P(A\text{ and } B)\)</span> in general</li>
-<li>Rule 5: <span class="math inline">\(P(A\text{ and }B) = P(A)\times P(B)\)</span> if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent.
+<li>Rule 4*: <span class="math inline">\(P(A\text{ or }B) = P(A\cup B) = P(A) + P(B) - P(A\cap B)\)</span></li>
+<li>Rule 5: <span class="math inline">\(P(A\cap B) = P(A\text{ and }B) = P(A)\times P(B)\)</span> if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent.
 <ul>
 <li><span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are <strong>independent</strong> if <span class="math inline">\(B\)</span> occurring doesn’t change the probability of <span class="math inline">\(A\)</span> occurring.</li>
 </ul></li>
-<li>Rule 5*: <span class="math inline">\(P(A\text{ and }B) = P(A \mid B)P(B) = P(B \mid A)P(A)\)</span>.
+<li>Rule 5*: <span class="math inline">\(P(A\text{ and }B) = P(A\cap B) = P(A~|~B)P(B) = P(B~|~A)P(A)\)</span>.
 <ul>
-<li>The <strong>conditional probability</strong> of A <strong>given</strong> that event B occurs, <span class="math inline">\(P(A \mid B)\)</span>, is equal to the probability of the joint event (A and B) divided by the probability of B.
-<span class="math display">\[ P(A \mid B) = \frac{P(A \text{ and } B)}{P(B)} \]</span></li>
+<li>The <strong>conditional probability</strong> of A <strong>given</strong> that event B occurs, <span class="math inline">\(P(A~|~B)\)</span>, is equal to the probability of the joint event (A and B) divided by the probability of B.
+<span class="math display">\[P(A ~| ~B) = \frac{P(A \text{ and } B)}{P(B)} = \frac{P(A \cap B)}{P(B)}\]</span></li>
 <li>Intuition: Given that <span class="math inline">\(B\)</span> happened, we focus on the subset of outcomes in <span class="math inline">\(S\)</span> in which <span class="math inline">\(B\)</span> occurs and then figure out what the chance of <span class="math inline">\(A\)</span> happening within that subset.</li>
 </ul></li>
 </ul>
-<p>For more details on theoretical probability, please see Appendix A. This material is optional but available for those of you who want to understand the mathematical reasoning behind the rest of the chapter.</p>
-<div id="diagnotic-testing-and-probability" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Diagnotic Testing and Probability</h3>
-<p>Let’s start by taking a moment to consider a recent <a href="https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c">Washington Post article</a> that discusses the role of probability in medical diagnostics. Before you read the whole article, consider a question.</p>
-<div class="reflect">
-<p>
-Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of every 1,000 people will have it). The test to detect Disease X has a false-positive rate of 5 percent (meaning that out of every 100 subjects who do not have Disease X, 5 will falsely test positive for it). If a patient’s test result comes back positive, what is the probability that this patient actually has the disease?
-</p>
+<div id="example-blood-types" class="section level4">
+<h4><span class="header-section-number">7.1.0.1</span> Example: Blood Types</h4>
+<p>The American Red Cross estimates that 45% of U.S. population has Type O blood, 40% are Type A, 11% Type B, and 4% AB blood.</p>
+<p>Imagine that we have a blood drive in St. Paul. The next donor’s blood type can be thought of as a random process. The sample space for this random process includes the 4 blood types: <span class="math inline">\(S= \{O,A,B,AB\}\)</span> (it includes all possible outcomes). Assume the people who donate blood have the same distribution of blood types as the U.S. and that St. Paul has the same distribution as the entire U.S.</p>
+<p>Think about how you’d justify your answer to the following questions:</p>
+<ol style="list-style-type: decimal">
+<li><p>What is the probability that the next donor is Type O blood?</p></li>
+<li><p>What is the probability that the next donor is Type A or Type B or Type AB blood?</p></li>
+<li><p>What is the probability the next three donors are all Type O blood?</p></li>
+<li><p>What is the probability the next donor is Type O or Type A or Type B or Type AB?</p></li>
+</ol>
+<p>If the possible outcomes were equally likely, we could calculate probabilities
+<span class="math display">\[P(A) = \frac{\text{Number of outcomes in }A}{\text{Number of possible outcomes}}\]</span></p>
+<p>But the chances of Type O, A, B, and AB blood are all different because they occur with different frequency in the population.</p>
+<p>Let’s change the sample space to make it easier. Let our sample space, <span class="math inline">\(S\)</span>, be the set of 100 equally likely outcomes (45 are O, 40 are A, 11 are B, and 4 are AB). Now, you can calculate probabilities based on this framework of equally likely outcomes (after we changed the sample space).</p>
+<ol style="list-style-type: decimal">
+<li><p>P(Type O) = 45/100 assuming equally likely outcomes</p></li>
+<li><p>P(Type A or B or AB) = 1 - P(Type O) = 1 - 45/100 by Rule 3</p></li>
+<li><p>P(Type O and then Type O and then Type O) = <span class="math inline">\((45/100)^3\)</span> by Rule 5 assuming donors are independent, in that the probability of Type O blood stays the same</p></li>
+<li><p>P(Type A or B or AB or O) = P(S) = 1 by Rule 2</p></li>
+</ol>
 </div>
-<p>If you said the probability is 95%, then you are wrong, but almost half of the doctors surveyed in 2014 thought exactly the same thing.</p>
-<p>We can use the rules of probability to get a sense of what the desired probability actually is. We want to know the probability that they have the disease GIVEN that they got a positive test result, <span class="math inline">\(P(D \mid +)\)</span>, where <span class="math inline">\(D\)</span> stands for disease and <span class="math inline">\(+\)</span> stands for positive test result.</p>
-<p>Based on the definition of conditional probability, we must consider only those that got a positive test result back and look at the proportion of them that have the disease. In mathematical notation, that is equal to</p>
-<p><span class="math display">\[P(D \mid +) = \frac{P(D \text{ and } +)}{P(+)}\]</span></p>
-<p>What information were we given again?</p>
+<div id="example-52-cards" class="section level4">
+<h4><span class="header-section-number">7.1.0.2</span> Example: 52 Cards</h4>
+<p>Let’s consider a perfectly shuffled deck of playing cards. Each card has an icon and a number (or A, J, Q, K) on it. The icon is either a red heart, red diamond, black spade (leaf), or black club (3 leaf clover). The numbers range for 2 to 10 and A is for Ace, J is for Jack, Q is for Queen, K is for King.</p>
+<p>The sample space is below.</p>
+<p><img src="Photos/cards.png" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the probability of drawing a card with a heart icon on it?</p></li>
+<li><p>What is the probability of drawing a card with a heart or Ace (A) on it?</p></li>
+<li><p>What is the probability of dealing a card with a heart on the table and then another heart card?</p></li>
+</ol>
+<p><strong>Focus on how we’d justify the answer, not just the number.</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>P(heart) = 13/52 by equally likely outcomes</p></li>
+<li><p>P(heart or ace) = 13/52 + 4/52 - 1/52 = 16/52 by Rule 4*</p></li>
+<li><p>P(heart and then heart) = 13/52*12/51 by Rule 5* (draws are not independent here since the probability of hearts changes after you remove a card)</p></li>
+</ol>
+</div>
+<div id="disjointmutually-exclusive" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Disjoint/Mutually Exclusive</h3>
+<p>Think back to the Blood Type example.</p>
+<p>Let’s say we were interested in the next two donors.</p>
 <ul>
-<li><p>The prevalence of the disease is 1 in 1,000, so <span class="math inline">\(P(D) = 1/1000\)</span>. Using Rule 3, the probability of no disease is <span class="math inline">\(P(\text{no }D) = 999/1000\)</span>. In 1000 people, 1 will actually have the disease and 999 won’t have the disease.</p></li>
-<li><p>The false-positive rate is 5 percent, so given that you don’t have the disease, the probability of getting a false positive is <span class="math inline">\(P(+ \mid\text{ no } D) = 0.05\)</span>. So of the 999 that don’t have the disease, about <span class="math inline">\(0.05\times 999 = 49.95\)</span> (about 50) of them will get a false positive test result.</p></li>
-<li><p>While it is not stated directly in the Washington Post article, most medical tests have a fairly high accuracy in catching the disease. For example: <span class="math inline">\(P(+ \mid D) = 0.99\)</span>. Therefore, the 1 person who actually has the disease will most likely get a positive test result back (<span class="math inline">\(0.99*1 = 0.99\)</span>).</p></li>
+<li>P(First Type A or Second Type A) = ?</li>
 </ul>
-<p>Remember that our interest is in <span class="math inline">\(P(D \mid +)\)</span>. By the definition of conditional probability, we consider only those with positive test results (about 50 who are disease free and 1 who has the disease). So the probability of actually having the disease GIVEN a positive test result is about 1/51 = 0.019.</p>
-<p>In mathematical notation, that looks like this</p>
-<p><span class="math display">\[
-\begin{align*}
-P(D \mid +) &amp;= \frac{P(D \text{ and } +)}{P(+)} \qquad\qquad \text{Rule 5*}\\
-&amp;= \frac{P(D \text{ and } +)}{P(+ \text{ and } D) + P(+ \text{ and no } D)} \\
-&amp;= \frac{P(+ \mid D) P(D)}{P( + \mid D) P(D) + P( + \mid \text{ no }D) P(\text{no }D)} \\
-&amp;= \frac{0.99*1/1000}{0.99*1/1000 + 0.05*999/1000} \\
-&amp;= \frac{0.99*1}{0.99*1 + 0.05*999}
-\end{align*}
-\]</span></p>
-<p>The first expression above (<span class="math inline">\(P(D \mid +) = \frac{P(+ \mid D) P(D)}{P( + \mid D) P(D) + P( + \mid \text{ no }D) P(\text{no }D)}\)</span>) is often called <strong>Bayes’ Rule</strong> (Rule 5 above). The important idea to take from this is that what we condition on can make a big difference in the resulting probability.</p>
-<p>Now, take some time to read the full <a href="https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c">Washington Post article</a>.</p>
+<p>Think about all the ways this could happen.</p>
+<p>We will always use an inclusive OR, which means that we care about one or the other or both happening. We just need to make sure we don’t double count, which is why we subtract the chance of both.</p>
+<ul>
+<li>P(First Type A or Second Type A) = P(First Type A) + P(Second Type A) - P(both Type A)</li>
+</ul>
+<p>So,</p>
+<ul>
+<li>P(First Type A or Second Type A) = 0.40 + 0.40 - 0.40*0.40 = 0.64</li>
+</ul>
+<p>Which is the same as if we were to consider the three disjoint options (A: Type A, N: Not Type A),</p>
+<ul>
+<li>P(AN or NA or AA) = 0.4*0.6 + 0.6*0.4 + 0.4*0.4 = 0.64</li>
+</ul>
 </div>
-<div id="court-arguments-and-probability" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Court Arguments and Probability</h3>
-<p>The concept of conditional probability also plays an important role in the judicial system in the U.S. The foundation of the judicial system is the idea of “innocent until proven guilty”. Assuming that the defendant is innocent, what are the chances of seeing this evidence? That is, evidence is presented to jurors as the conditional probability: <span class="math inline">\(P(\text{ evidence } \mid \text{ innocent })\)</span>.</p>
-<p>Unfortunately, many prosecutors try to make the wrong argument by flipping the conditional probability, whether maliciously or due to a lack of statistical knowledge. They sometimes mistakenly try to argue that it is unlikely that a person is innocent given the evidence that is available, <span class="math inline">\(P(\text{ innocent } \mid \text{ evidence })\)</span>. This can be dangerous if a prosecutor argues that since <span class="math inline">\(P(\text{ evidence } \mid \text{ innocent }) = 1/\text{1 million}\)</span>, then <span class="math inline">\(P(\text{ innocent } \mid \text{ evidence }) = 1/\text{1 million}\)</span>. We know this isn’t true based on the disease testing example above. Generally <span class="math inline">\(P(A \mid B)\)</span> is not equal to (and can be very different from) <span class="math inline">\(P(B \mid A)\)</span>.</p>
-<p>This is known as the prosecutor’s fallacy. You can read more about it <a href="https://en.wikipedia.org/wiki/Prosecutor%27s_fallacy">here</a>.</p>
+<div id="independence" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Independence</h3>
+<p>Let’s stay with the Blood Type example for one moment more.</p>
+<p>What if there were only 50 donors in St. Paul? Say 30 of them Type 0 and the other 20 were A or B.</p>
+<ul>
+<li>Would the second donor be independent of the first donor? In other words, would the probability of getting a Type O donors change between donors?</li>
+</ul>
+<p>No, they wouldn’t be independent. In that case, let’s calculate the probability that the first two donors are Type O.</p>
+<ul>
+<li>P(Type O and then Type O) = P(Type O)P(2nd Type O | 1st Type O) = (30/50) * (29/49) = 0.355</li>
+</ul>
 </div>
 </div>
             </section>
@@ -411,8 +452,8 @@ P(D \mid +) &amp;= \frac{P(D \text{ and } +)}{P(+)} \qquad\qquad \text{Rule 5*}\
           </div>
         </div>
       </div>
-<a href="three-types-of-probability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="random-variable.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="appendix-a-theoretical-probability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="random-variable-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -442,7 +483,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-probability.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-appendix.Rmd",
 "text": "Edit"
 },
 "history": {

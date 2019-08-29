@@ -70,7 +70,7 @@ $$\text{Estimate }\pm z^* *SE(\text{Estimate})$$
 The fact that confidence intervals can be created as above is rooted in the Central Limit Theorem (CLT). If you would like to see how the form above is derived, see the Math Box below.
 
 
-```{block, type="math"}
+```{block, type="mathbox"}
 (Optional) Deriving confidence intervals from the CLT
 
 The CLT originally expresses that 

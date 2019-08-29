@@ -21,15 +21,21 @@ Up until this point, we have thought about
 
 1. Data collection process (sampling and study design) and Data Quality (issues of bias)
 2. Data visualization (the first step of any data analysis)
-3. Modeling (to explain observed variation)
+3. Modeling (to explain observed variation and provide predictions)
 
-Throughout the past three chapters, we have also sprinkled in the idea that **the sample we observe is just one random representation of the true population or phenomenon.** Therefore, any numerical summary of the sample (any **statistic**) would be an estimate the true numerical summary of the population (the corresponding unknown **parameter**).
+Throughout the past three chapters, we have also sprinkled in the idea that **the sample we observe is just one random representation of the true population or phenomenon.** Therefore, any **statistic**, any numerical summary of the sample, would be an estimate the true numerical summary of the population (which we refer to as the corresponding unknown **parameter**).
 
-If we could repeat the random sampling process, each sample we would get would be slightly different. The composition of cases in the sample would differ every time. Sometimes we would randomly over-represent one group of people and another time we would randomly over-represent another group of people, just by chance. The statistic (e.g. a mean, a median, a regression coefficient) that we calculate would change for every sample. 
+## Sampling Variability
 
-Another source of random variation that can arise is that of random treatment/control group assignments in an experiment. If we could repeat the randomization process in an experiment, each treatment group would be slightly different. The individual composition of the cases in the treatment and control groups would differ every time. Sometimes we would randomly over-represent one group of people in the treatment group, and another time we would randomly over-represent another group of people in the treatment group, just by chance. The statistic that we calculate and compare between groups (e.g. a difference in means, a difference in medians, a regression coefficient) would change for every reshuffling of individuals.
+If we could repeat the random sampling process, each sample we would get would be slightly different. The composition of units in the sample would differ every time. Sometimes we would randomly over-represent one group of people and another time we would randomly over-represent another group of people, just by chance. The statistic of interest (e.g. a mean, a median, a regression coefficient) that we calculate would vary between across the different samples. 
 
-This is the idea of **random variability**. This random variability is typically due to random sampling or randomization. The sample composition varies, and therefore, the statistics that we calculate vary.
+## Randomization Variability
+
+Another source of random variation in a statistic that can arise is that of random treatment/control group assignments in an experiment. If we could repeat the randomization process in an experiment, each treatment group would be slightly different. The individual composition of the units in the treatment and control groups would differ every time. Sometimes we would randomly over-represent one group of people in the treatment group, and another time we would randomly over-represent another group of people in the treatment group, just by chance. The statistic that we calculate and compare between groups (e.g. a difference in means, a difference in medians, a regression coefficient) would change for every reshuffling of the individuals.
+
+These descriptions cover the idea of **random variability**. This random variability is typically due to random sampling or randomized group assignments. The sample composition can vary, and therefore, the statistics that we calculate vary between different sample.
+
+*The important thing to keep in mind is that we only get to see one sample, one particular composition of individuals. But we need to put this one observed sample and statistic in the context of the random variability.* 
 
 Let's explore this concept a bit more before we formally talk about probability and chance. 
 
@@ -54,7 +60,7 @@ flights <- flights %>%
     select(arr_delay, dep_delay, season, day_hour, origin, carrier)
 ```
 
-Since we have the full population, we could just describe the flights that happened. Note however that having data on the full population is very rare in practice. Instead, we are going to use this population to help us think about sampling variability.
+Since we have the full population of flights in 2013, we could just describe the flights that happened in that year. Having data on the full population is very rare in practice. Instead, we are going to use this population to illustrate sampling variability.
 
 Let's take one random sample of 100 flights from the data set, using a simple random sampling strategy. Let's look at the arrival delay (in minutes) `arr_delay` with a histogram and calculate the median and mean arrival delay.
 
@@ -72,7 +78,9 @@ flights_samp1 %>%
 ```
 
 ```{block type="reflect"}
-At this point, we haven't looked at the entire population of flights. Based on a sample of 100 flights, what do you think the distribution of arrival delays looks like for the entire population? Shape? Center? Spread?
+At this point, we haven't looked at the entire population of flights from 2013. Based on a sample of 100 flights, what do you think the distribution of arrival delays looks like for the entire population? Shape? Center? Spread? 
+
+Why do you think that?
 ```
 
 Now, let's take another random sample of 100 flights from the full population of flights.
@@ -96,7 +104,7 @@ How does the second sample differ from the first sample? What do they have in co
 
 We could keep the process going. Take a sample of 100 flights, look at the histogram, and calculate the median and mean. Repeat many, many times. 
 
-We can add a little bit of code to help us simulate this sampling 1000 times and calculate the median and mean arrival delay for each sample of 100 flights. 
+We can add a little bit of code to help us simulate this sampling process 1000 times and calculate the median and mean arrival delay for each random sample of 100 flights. 
 
 ```{r}
 sim_data <- mosaic::do(1000)*( 
@@ -106,7 +114,7 @@ sim_data <- mosaic::do(1000)*(
 )
 ```
 
-Now we have 1000 medians and 1000 means, each corresponding to a sample median and sample mean from 100 random flights from the population. Let's summarize and visualize this simulation.
+Now we have 1000 medians and 1000 means, each corresponding to one random sample of 100 flights from the population. Let's summarize and visualize this simulation.
 
 ```{r}
 # Summarize
@@ -115,10 +123,9 @@ summary_sim <- sim_data %>%
         mean_medians = mean(medians),
         mean_means = mean(means),
         sd_medians = sd(medians),
-        sd_means = sd(means)
-    )
+        sd_means = sd(means))
 
-# Visualize
+# Visualize M
 sim_data %>% 
     ggplot(aes(x = medians)) +
     geom_histogram(bins = 15) +

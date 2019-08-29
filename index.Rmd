@@ -10,6 +10,7 @@ output:
       toc: 
         collapse: section
         scroll_highlight: yes
+    
 documentclass: book
 link-citations: yes
 github-repo: bcheggeseth/Stat155Notes

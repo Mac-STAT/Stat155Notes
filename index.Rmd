@@ -20,7 +20,7 @@ This is a living document, which will get updated throughout the semester.
 
 ![Creative Commons License](Photos/by-nc-sa.png){width=100px}  
 
-The online version of this book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+This online book of notes is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 ## Acknowledgments
 

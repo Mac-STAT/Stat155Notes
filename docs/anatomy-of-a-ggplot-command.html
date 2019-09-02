@@ -340,11 +340,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.3</span> Anatomy of a ggplot command</h2>
 <p>To learn more about visualizing data with the ggplot2 R package, see <a href="https://r4ds.had.co.nz/data-visualisation.html">Hadley Wickham’s textbook</a>.</p>
 <p>In this course, we’ll largely construct visualizations using the <code>ggplot()</code> function from the <code>ggplot2</code> R package. NOTE: <code>gg</code> is short for “grammar of graphics”. Plots constructed from the <code>ggplot()</code> function are constructed in layers, and the syntax used to create plots is meant to reflect this layered construction. As you read through the rest of this chapter, pay attention to how the syntax generally follows this structure:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X_AXIS_VARIABLE, <span class="dt">y =</span> Y_AXIS_VARIABLE)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">    </span>VISUAL_LAYER1 <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">    </span>VISUAL_LAYER2 <span class="op">+</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">    </span>VISUAL_LAYER3 <span class="op">+</span><span class="st"> </span>...</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> X_AXIS_VARIABLE, <span class="dt">y =</span> Y_AXIS_VARIABLE)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">    </span>VISUAL_LAYER1 <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">    </span>VISUAL_LAYER2 <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">    </span>VISUAL_LAYER3 <span class="op">+</span><span class="st"> </span>...</a></code></pre></div>
 <p>We pass the aesthetic mapping from the data set to the plot with <code>aes()</code>. The visual layers are features such as points, lines, and panels. We’ll introduce these soon. The <code>+</code>’s allow us to add layers to build up a plot (note this is not the pipe!).</p>
 <div class="reflect">
 <p>

@@ -366,41 +366,41 @@ and
 <p><strong>Normal Model</strong></p>
 <p>For <span class="math inline">\(X\)</span> such that <span class="math inline">\(E(X) = \mu\)</span> and <span class="math inline">\(SD(X) = \sigma\)</span>, a Normal random variable has a pdf of
 <span class="math display">\[f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]</span></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-246-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
 <ul>
 <li><p>Let the expected value be 0 and standard deviation be 1, <span class="math inline">\(\mu = 0\)</span> and <span class="math inline">\(\sigma = 1\)</span></p></li>
 <li><p>We know that <span class="math inline">\(P(-1\leq X \leq 1) = F(1) - F(-1) = 0.68\)</span></p></li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
 <div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) <span class="co">#pnorm is the cdf</span></a></code></pre></div>
-<pre><code>## [1] 0.6826895</code></pre>
+<pre><code>## [1] 0.683</code></pre>
 <ul>
 <li><span class="math inline">\(P(-2\leq X \leq 2) = F(2) - F(-2) = 0.95\)</span></li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-249-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
-<pre><code>## [1] 0.9544997</code></pre>
+<pre><code>## [1] 0.954</code></pre>
 <ul>
 <li><span class="math inline">\(P(-3\leq X \leq 3) = F(3) - F(-3) = 0.997\)</span></li>
 </ul>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</a></code></pre></div>
-<pre><code>## [1] 0.9973002</code></pre>
+<pre><code>## [1] 0.997</code></pre>
 <p>Let <span class="math inline">\(X\)</span> be a Binomial Random Variable and <span class="math inline">\(Y\)</span> be a Normal Random Variable.</p>
 <p>As <span class="math inline">\(n\rightarrow \infty\)</span> (<span class="math inline">\(p\)</span> is fixed), the <span class="math inline">\(P(X = x) \approx P(x-0.5 \leq Y \leq x+0.5)\)</span>.</p>
 <p><em>Note: adding and subtracting 0.5 is the continuity correction</em></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-252-1.png" width="672" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-252-2.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-276-1.png" width="672" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-276-2.png" width="672" /></p>
 <p>If <span class="math inline">\(n=1000\)</span> and <span class="math inline">\(p=0.2\)</span>, let’s compare <span class="math inline">\(P(X=200)\)</span> and <span class="math inline">\(P(199.5\leq Y\leq 200.5)\)</span>.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-253-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="kw">dbinom</span>(<span class="dv">200</span>,<span class="dt">size =</span> n, <span class="dt">p =</span> p)</a></code></pre></div>
-<pre><code>## [1] 0.03152536</code></pre>
+<pre><code>## [1] 0.0315</code></pre>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">200.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p))) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">199.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p)))</a></code></pre></div>
-<pre><code>## [1] 0.03153095</code></pre>
+<pre><code>## [1] 0.0315</code></pre>
 <p>If <span class="math inline">\(n=1000\)</span> and <span class="math inline">\(p=0.2\)</span>, let’s compare <span class="math inline">\(P(200\leq X\leq 210)\)</span> and <span class="math inline">\(P(199.5\leq Y\leq 210.5)\)</span>.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1"><span class="kw">sum</span>(<span class="kw">dbinom</span>(<span class="dv">200</span><span class="op">:</span><span class="dv">210</span>,<span class="dt">size =</span> n, <span class="dt">p =</span> p))</a></code></pre></div>
-<pre><code>## [1] 0.3100719</code></pre>
+<pre><code>## [1] 0.31</code></pre>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="fl">210.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p))) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">199.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p)))</a></code></pre></div>
-<pre><code>## [1] 0.3125238</code></pre>
+<pre><code>## [1] 0.313</code></pre>
 <p>How big does <span class="math inline">\(n\)</span> have to be for the Normal approximation to be appropriate?</p>
 <ul>
 <li><strong>Rule of Thumb</strong>: <span class="math inline">\(np \geq 10\)</span> and <span class="math inline">\(n(1-p)\geq 10\)</span> because that makes sure that <span class="math inline">\(E(X)-0&gt;3SD(X)\)</span> (mean is at least 3 SD’s from 0).</li>
@@ -409,7 +409,7 @@ and
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">n =<span class="st"> </span><span class="dv">50</span></a>
 <a class="sourceLine" id="cb292-2" data-line-number="2">p =<span class="st"> </span><span class="fl">0.2</span></a>
 <a class="sourceLine" id="cb292-3" data-line-number="3"><span class="kw">barplot</span>(<span class="kw">dbinom</span>(<span class="dv">0</span><span class="op">:</span>n,<span class="dt">size =</span> n, <span class="dt">p =</span> p),<span class="dt">names.arg=</span><span class="dv">0</span><span class="op">:</span>n,<span class="dt">ylab=</span><span class="st">&#39;Probability&#39;</span>,<span class="dt">main=</span><span class="st">&#39;n = 50, p = 0.2&#39;</span>)</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-257-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-281-1.png" width="672" /></p>
 </div>
 </div>
             </section>

@@ -79,14 +79,13 @@ Function2(Function1(data))
 
 As we go through real examples below, notice the names of the functions that we use. The name comes right before `(` and the inputs we pass in right after `(`. 
 
-Additionally, we are going to use a shortcut that makes our code more readable. It is called a **pipe** and looks like `%>%`. What this does is pass the output on its left as the first argument to the function on the right. The following two sections of code do exactly the same thing but the second is easier to read. For this code, we take data and select the variable height and then take the mean of the heights. 
+Additionally, we are going to use a shortcut that makes our code more readable. It is called a **pipe** and looks like `%>%`. What this does is pass the output on its left as the first argument to the function on the right. The following two sections of code do exactly the same thing but the second is easier to read. For this code, we take data and summarize the variable height and then take the mean of the heights. 
 
 ```
-mean(select(data, height))
+summarize(data, mean(height))
 
 data %>%
-  select(height) %>%
-  mean()
+  summarize(mean(height))
 ```
 
 There is so much more we could say about functions in R, but we will stop here for now. 

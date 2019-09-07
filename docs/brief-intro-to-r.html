@@ -352,12 +352,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can also <strong>nest</strong> functions by first performing one operation and then passing that as an input into another function. In the code below, <code>Function1()</code> would first run with the input <code>data</code> and create some output that is then passed as the first input in <code>Function2()</code>. So R evaluates functions from the inside-out.</p>
 <pre><code>Function2(Function1(data))</code></pre>
 <p>As we go through real examples below, notice the names of the functions that we use. The name comes right before <code>(</code> and the inputs we pass in right after <code>(</code>.</p>
-<p>Additionally, we are going to use a shortcut that makes our code more readable. It is called a <strong>pipe</strong> and looks like <code>%&gt;%</code>. What this does is pass the output on its left as the first argument to the function on the right. The following two sections of code do exactly the same thing but the second is easier to read. For this code, we take data and select the variable height and then take the mean of the heights.</p>
-<pre><code>mean(select(data, height))
+<p>Additionally, we are going to use a shortcut that makes our code more readable. It is called a <strong>pipe</strong> and looks like <code>%&gt;%</code>. What this does is pass the output on its left as the first argument to the function on the right. The following two sections of code do exactly the same thing but the second is easier to read. For this code, we take data and summarize the variable height and then take the mean of the heights.</p>
+<pre><code>summarize(data, mean(height))
 
 data %&gt;%
-  select(height) %&gt;%
-  mean()</code></pre>
+  summarize(mean(height))</code></pre>
 <p>There is so much more we could say about functions in R, but we will stop here for now.</p>
 <p>With this in mind, we’ll point to external references if you’d like to go deeper in your understanding of R as a programming language throughout this class.</p>
 <p>To get a broad sense of R, you can work through R primers (<a href="https://rstudio.cloud/learn/primers" class="uri">https://rstudio.cloud/learn/primers</a>) in RStudio Cloud in addition to any coursework and use the R cheatsheets available (<a href="https://rstudio.cloud/learn/cheat-sheets" class="uri">https://rstudio.cloud/learn/cheat-sheets</a>).</p>

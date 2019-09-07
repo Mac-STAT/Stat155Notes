@@ -351,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb74-6" data-line-number="6"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb74-7" data-line-number="7"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb74-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-87-1.png" width="672" /></p>
 <p>What do you notice about:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Direction</strong> of relationship (positive, negative, or neutral)</li>
@@ -373,14 +373,14 @@ How might you use this information to determine shirt sizes for your new busines
 <a class="sourceLine" id="cb75-4" data-line-number="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (in)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb75-5" data-line-number="5"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (in)&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb75-6" data-line-number="6"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
 <p>You should see that the x-axes changed but the overall shape of the plot stayed the same. Thus, the strength of the relationship was not affected by tranforming neck size from centimeters to inches (by dividing by 2.54).</p>
 </div>
 <div id="correlation-coefficient" class="section level3">
 <h3><span class="header-section-number">2.8.2</span> Correlation Coefficient</h3>
 <p>Since <strong>shifting</strong> (adding or subtracting) and <strong>scaling</strong> (multiplying or dividing) make no difference in the strength of the relationship, let’s standardize both variables into z-scores (recall z-scores from Section <a href="one-quantitative-variable.html#intro-zscore">2.6.5</a>).</p>
 <p>Below we plot Neck and Chest sizes after changing them to z-scores with the function <code>scale()</code> and we add some color:</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 <p>The blue points in the upper right (Quadrant 1) and lower left (Quadrant 3) quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the z-scores of the Neck and Chest values for the blue points, we will get a positive value.</p>
 <p>The red points in the upper left (Quadrant 2) and lower right (Quadrant 4) quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size (lower right) or they are below average in Neck Size and above average in Chest Size (upper left). If we multiply the z-scores of the Neck and Chest values for the red points, we will get a negative value.</p>
 <div class="reflect">
@@ -416,12 +416,12 @@ If we were to have a negative relationship, how would this plot change?
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb76-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># All data points used in calculation</span></a></code></pre></div>
 <pre><code>##   cor(Neck, Chest)
-## 1        0.7688109</code></pre>
+## 1            0.769</code></pre>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb78-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(Neck <span class="op">&gt;</span><span class="st"> </span><span class="dv">35</span> <span class="op">&amp;</span><span class="st"> </span>Neck <span class="op">&lt;</span><span class="st"> </span><span class="dv">40</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Keep individuals with Neck size between 35cm and 40cm</span></a>
 <a class="sourceLine" id="cb78-3" data-line-number="3"><span class="st">      </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Neck, Chest)) <span class="co"># Only middle subset of data points used in calculation</span></a></code></pre></div>
 <pre><code>##   cor(Neck, Chest)
-## 1        0.5658835</code></pre>
+## 1            0.566</code></pre>
 <p>The value is much larger and more positive when all data points are used. The points that are far from the means of x and y have a larger product of z-scores and thus increase the correlation coefficient value.</p>
 </div>
 <div id="properties" class="section level3">
@@ -435,7 +435,7 @@ If we were to have a negative relationship, how would this plot change?
 <li><p>One outlier can completely change <span class="math inline">\(r\)</span>.</p></li>
 </ul>
 <p>Let’s look at a few scatterplot examples and the corresponding correlation.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-2.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-3.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-4.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-5.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-6.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-7.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-70-8.png" width="960" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-94-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-94-2.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-94-3.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-94-4.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-94-5.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-94-6.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-94-7.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-94-8.png" width="960" /></p>
 <div class="mathbox">
 <p>
 (Optional) Here are other equivalent expressions for <span class="math inline"><span class="math inline">\(r\)</span></span> for the mathematically intrigued:

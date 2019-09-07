@@ -357,9 +357,9 @@ and the mean would vary, but that variation would decrease with increased sample
 <p><span class="math display">\[Var(\frac{1}{n}\sum_{i=1}^n X_i) = \frac{\sigma^2}{n}\]</span></p>
 <p>But, what is the shape of the distribution (probability model) of the mean?</p>
 <p>Let’s randomly generate data from a probability model with a skewed pdf.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-282-1.png" width="672" /></p>
 <p>Let <span class="math inline">\(\bar{y}\)</span> be the mean of those <span class="math inline">\(n\)</span> random values. If we repeat the process multiple times, we get a sense of the <strong>sampling distribution for <span class="math inline">\(\bar{y}\)</span></strong>, the mean of a sample of <span class="math inline">\(n\)</span> random values from the population distribution above.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-283-1.png" width="672" /></p>
 <p>The <strong>Central Limit Theorem</strong> (CLT) tells us that as the sample size get larger and larger, the shape of the sampling distribution for the sample mean get closer and closer to Normal. That is why it makes sense we’ve seen unimodal, symmetric distributions pop up when we simulate bootstrapping and random assignments. However, the CLT only applies when we are talking about sample means or proportions.</p>
 <p>Let our sample mean be <span class="math inline">\(Y_n = \frac{1}{n}\sum_{i=1}^n X_i\)</span> based on a sample size of <span class="math inline">\(n\)</span>.</p>
 <ul>

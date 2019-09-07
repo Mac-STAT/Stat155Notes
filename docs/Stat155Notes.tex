@@ -163,7 +163,7 @@
 
 \title{Stat 155 Notes}
 \author{Macalester Statistics Faculty (Heggeseth, Myint)}
-\date{Updated: 2019-09-02}
+\date{Updated: 2019-09-07}
 
 \begin{document}
 \maketitle
@@ -612,14 +612,13 @@ Function2(Function1(data))
 
 As we go through real examples below, notice the names of the functions that we use. The name comes right before \texttt{(} and the inputs we pass in right after \texttt{(}.
 
-Additionally, we are going to use a shortcut that makes our code more readable. It is called a \textbf{pipe} and looks like \texttt{\%\textgreater{}\%}. What this does is pass the output on its left as the first argument to the function on the right. The following two sections of code do exactly the same thing but the second is easier to read. For this code, we take data and select the variable height and then take the mean of the heights.
+Additionally, we are going to use a shortcut that makes our code more readable. It is called a \textbf{pipe} and looks like \texttt{\%\textgreater{}\%}. What this does is pass the output on its left as the first argument to the function on the right. The following two sections of code do exactly the same thing but the second is easier to read. For this code, we take data and summarize the variable height and then take the mean of the heights.
 
 \begin{verbatim}
-mean(select(data, height))
+summarize(data, mean(height))
 
 data %>%
-  select(height) %>%
-  mean()
+  summarize(mean(height))
 \end{verbatim}
 
 There is so much more we could say about functions in R, but we will stop here for now.
@@ -1214,13 +1213,13 @@ We can calculate all of these in R.
 \end{Shaded}
 
 \begin{verbatim}
-##  SleepHrsNight   
-##  Min.   : 2.000  
-##  1st Qu.: 6.000  
-##  Median : 7.000  
-##  Mean   : 6.928  
-##  3rd Qu.: 8.000  
-##  Max.   :12.000  
+##  SleepHrsNight 
+##  Min.   : 2    
+##  1st Qu.: 6    
+##  Median : 7    
+##  Mean   : 7    
+##  3rd Qu.: 8    
+##  Max.   :12    
 ##  NA's   :2245
 \end{verbatim}
 
@@ -1253,13 +1252,13 @@ We can calculate all of these in R.
 \end{Shaded}
 
 \begin{verbatim}
-##      salary      
-##  Min.   : 20.00  
-##  1st Qu.: 36.75  
-##  Median : 58.00  
-##  Mean   : 68.36  
-##  3rd Qu.: 96.00  
-##  Max.   :176.00
+##      salary     
+##  Min.   : 20.0  
+##  1st Qu.: 36.8  
+##  Median : 58.0  
+##  Mean   : 68.4  
+##  3rd Qu.: 96.0  
+##  Max.   :176.0
 \end{verbatim}
 
 \begin{Shaded}
@@ -1271,7 +1270,7 @@ We can calculate all of these in R.
 
 \begin{verbatim}
 ##   mean(salary) median(salary) mean(salary, trim = 0.05)
-## 1        68.36             58                  66.17778
+## 1         68.4             58                      66.2
 \end{verbatim}
 
 Note that the mean, median, and trimmed mean are all fairly close for the sleep hours distribution, which looks fairly symmetric.
@@ -1453,7 +1452,7 @@ We can calculate all of these in R.
 
 \begin{verbatim}
 ##   diff(range(salary)) IQR(salary) sd(salary) var(salary)
-## 1                 156       59.25   39.05955    1525.649
+## 1                 156        59.2       39.1        1526
 \end{verbatim}
 
 \hypertarget{intro-zscore}{%
@@ -1988,7 +1987,7 @@ Let's look at the correlation for the entire sample first. Then let's calculate 
 
 \begin{verbatim}
 ##   cor(Neck, Chest)
-## 1        0.7688109
+## 1            0.769
 \end{verbatim}
 
 \begin{Shaded}
@@ -2001,7 +2000,7 @@ Let's look at the correlation for the entire sample first. Then let's calculate 
 
 \begin{verbatim}
 ##   cor(Neck, Chest)
-## 1        0.5658835
+## 1            0.566
 \end{verbatim}
 
 The value is much larger and more positive when all data points are used. The points that are far from the means of x and y have a larger product of z-scores and thus increase the correlation coefficient value.
@@ -2549,8 +2548,8 @@ Let's do that calculation ``by hand'' first in R.
 \end{Shaded}
 
 \begin{verbatim}
-##          b0       b1
-## 1 -3.188483 2.736883
+##      b0   b1
+## 1 -3.19 2.74
 \end{verbatim}
 
 Wow. That was quite a bit of coding. From now on, we'll take the shortcut and use the \texttt{lm()} function which stands for \textbf{l}inear \textbf{m}odel. This function gives us the Least Squares solution to the ``best'' fitting line, as defined by minimizing the sum of squared residuals.
@@ -2568,7 +2567,7 @@ Wow. That was quite a bit of coding. From now on, we'll take the shortcut and us
 ## 
 ## Coefficients:
 ## (Intercept)         Neck  
-##      -3.188        2.737
+##       -3.19         2.74
 \end{verbatim}
 
 \hypertarget{properties-of-least-squares-line}{%
@@ -2603,19 +2602,19 @@ In R: the standard deviation of the residuals, \(s_e\), is referred to as the ``
 ## lm(formula = Chest ~ Neck, data = .)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.1447  -3.3328  -0.5342   3.0738  16.5974 
+##     Min      1Q  Median      3Q     Max 
+## -15.145  -3.333  -0.534   3.074  16.597 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -3.1885     5.4951   -0.58    0.562    
-## Neck          2.7369     0.1446   18.93   <2e-16 ***
+## (Intercept)   -3.188      5.495   -0.58     0.56    
+## Neck           2.737      0.145   18.93   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 5.225 on 248 degrees of freedom
-## Multiple R-squared:  0.5911, Adjusted R-squared:  0.5894 
-## F-statistic: 358.5 on 1 and 248 DF,  p-value: < 2.2e-16
+## Residual standard error: 5.22 on 248 degrees of freedom
+## Multiple R-squared:  0.591,  Adjusted R-squared:  0.589 
+## F-statistic:  358 on 1 and 248 DF,  p-value: <2e-16
 \end{verbatim}
 
 This simple linear regression line is
@@ -2631,7 +2630,7 @@ If you have a neck size of 38 cm, then we predict the chest size of an ideal shi
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 100.56
+## [1] 101
 \end{verbatim}
 
 \begin{Shaded}
@@ -2643,8 +2642,8 @@ If you have a neck size of 38 cm, then we predict the chest size of an ideal shi
 \end{Shaded}
 
 \begin{verbatim}
-##        1 
-## 100.8131
+##   1 
+## 101
 \end{verbatim}
 
 Given your neck size, we can probably predict your chest size within 5 to 10 cm since \(s_e = 5.22\) (1 to 2 SD's -- recall Section \ref{intro-zscore}).
@@ -2702,19 +2701,19 @@ Let's look at the summary print out of the \texttt{lm()} function in R again. We
 ## lm(formula = Chest ~ Neck, data = .)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.1447  -3.3328  -0.5342   3.0738  16.5974 
+##     Min      1Q  Median      3Q     Max 
+## -15.145  -3.333  -0.534   3.074  16.597 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -3.1885     5.4951   -0.58    0.562    
-## Neck          2.7369     0.1446   18.93   <2e-16 ***
+## (Intercept)   -3.188      5.495   -0.58     0.56    
+## Neck           2.737      0.145   18.93   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 5.225 on 248 degrees of freedom
-## Multiple R-squared:  0.5911, Adjusted R-squared:  0.5894 
-## F-statistic: 358.5 on 1 and 248 DF,  p-value: < 2.2e-16
+## Residual standard error: 5.22 on 248 degrees of freedom
+## Multiple R-squared:  0.591,  Adjusted R-squared:  0.589 
+## F-statistic:  358 on 1 and 248 DF,  p-value: <2e-16
 \end{verbatim}
 
 \hypertarget{intercept-b_0}{%
@@ -2747,19 +2746,19 @@ Let's look at the summary print out of the \texttt{lm()} function in R again. We
 ## lm(formula = Chest ~ CNeck, data = .)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.1447  -3.3328  -0.5342   3.0738  16.5974 
+##     Min      1Q  Median      3Q     Max 
+## -15.145  -3.333  -0.534   3.074  16.597 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 100.6620     0.3304  304.63   <2e-16 ***
-## CNeck         2.7369     0.1446   18.93   <2e-16 ***
+## (Intercept)  100.662      0.330   304.6   <2e-16 ***
+## CNeck          2.737      0.145    18.9   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 5.225 on 248 degrees of freedom
-## Multiple R-squared:  0.5911, Adjusted R-squared:  0.5894 
-## F-statistic: 358.5 on 1 and 248 DF,  p-value: < 2.2e-16
+## Residual standard error: 5.22 on 248 degrees of freedom
+## Multiple R-squared:  0.591,  Adjusted R-squared:  0.589 
+## F-statistic:  358 on 1 and 248 DF,  p-value: <2e-16
 \end{verbatim}
 
 \hypertarget{slope-b_1}{%
@@ -2904,19 +2903,19 @@ Let's build a model to predict college GPA based on high school GPA based on thi
 ## lm(formula = univ_GPA ~ high_GPA, data = .)
 ## 
 ## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.69040 -0.11922  0.03274  0.17397  0.91278 
+##     Min      1Q  Median      3Q     Max 
+## -0.6904 -0.1192  0.0327  0.1740  0.9128 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  1.09682    0.16663   6.583 1.98e-09 ***
-## high_GPA     0.67483    0.05342  12.632  < 2e-16 ***
+## (Intercept)   1.0968     0.1666    6.58    2e-09 ***
+## high_GPA      0.6748     0.0534   12.63   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.2814 on 103 degrees of freedom
-## Multiple R-squared:  0.6077, Adjusted R-squared:  0.6039 
-## F-statistic: 159.6 on 1 and 103 DF,  p-value: < 2.2e-16
+## Residual standard error: 0.281 on 103 degrees of freedom
+## Multiple R-squared:  0.608,  Adjusted R-squared:  0.604 
+## F-statistic:  160 on 1 and 103 DF,  p-value: <2e-16
 \end{verbatim}
 
 The best fitting line is
@@ -2953,8 +2952,8 @@ Let's plug in a few values.
 \end{Shaded}
 
 \begin{verbatim}
-##        1 
-## 2.446483
+##    1 
+## 2.45
 \end{verbatim}
 
 \begin{itemize}
@@ -2971,7 +2970,7 @@ Let's plug in a few values.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.4525
+## [1] 3.45
 \end{verbatim}
 
 \begin{Shaded}
@@ -2983,8 +2982,8 @@ Let's plug in a few values.
 \end{Shaded}
 
 \begin{verbatim}
-##        1 
-## 3.458728
+##    1 
+## 3.46
 \end{verbatim}
 
 \begin{itemize}
@@ -3001,7 +3000,7 @@ Let's plug in a few values.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.1275
+## [1] 4.13
 \end{verbatim}
 
 \begin{Shaded}
@@ -3013,8 +3012,8 @@ Let's plug in a few values.
 \end{Shaded}
 
 \begin{verbatim}
-##        1 
-## 4.133558
+##    1 
+## 4.13
 \end{verbatim}
 
 \begin{reflect}
@@ -3077,7 +3076,7 @@ Below we calculate \(SSE\) (the sum of squared errors/residuals), and the standa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2814443
+## [1] 0.281
 \end{verbatim}
 
 \begin{Shaded}
@@ -3087,7 +3086,7 @@ Below we calculate \(SSE\) (the sum of squared errors/residuals), and the standa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.5628886
+## [1] 0.563
 \end{verbatim}
 
 Using this model (that is, using your high school GPA), we can predict your college GPA within about \(0.56\) GPA points. Is this useful? Is predicting within a margin of \(0.56\) GPA points good enough? Let's compare this margin of error with the margin of error about the mean (the standard deviation):
@@ -3099,7 +3098,7 @@ Using this model (that is, using your high school GPA), we can predict your coll
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.4471936
+## [1] 0.447
 \end{verbatim}
 
 \begin{Shaded}
@@ -3109,7 +3108,7 @@ Using this model (that is, using your high school GPA), we can predict your coll
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.8943873
+## [1] 0.894
 \end{verbatim}
 
 \emph{Without} knowing your high school GPA, we could have just guessed your college GPA as the overall mean college GPA in the sample, and this guess would probably be within \(\pm 0.89\) of your actual college GPA. This is a higher margin of error than the approximate \(0.56\) if we did use your high school GPA (in the simple linear regression model). We are able to predict your college GPA with a smaller margin of error than if we just guessed your college GPA with the mean. Our model has \emph{explained} some (but not all) of the variation in college GPA.
@@ -3127,7 +3126,7 @@ The standard deviation of college GPA is based on the sum of squared total varia
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 20.79814
+## [1] 20.8
 \end{verbatim}
 
 We define \(SSTO\) here because it will help to compare \(SSTO\) to \(SSE\) (sum of squared residuals from the model) to obtain a measure of how well our models are \textbf{fitting} the data - how well they are predicting the outcome.
@@ -3182,7 +3181,7 @@ In R, \texttt{lm()} will calculate R-Squared (\(R^2\)) for us, but we can also s
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6077187
+## [1] 0.608
 \end{verbatim}
 
 \begin{Shaded}
@@ -3405,14 +3404,14 @@ In fact, R creates this indicator for you when you include a categorical variabl
 ## 
 ## Coefficients:
 ##                  Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)        174653       3419   51.08   <2e-16 ***
-## AnyFireplaceTRUE    65261       4522   14.43   <2e-16 ***
+## (Intercept)        174653       3419    51.1   <2e-16 ***
+## AnyFireplaceTRUE    65261       4522    14.4   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 93020 on 1726 degrees of freedom
-## Multiple R-squared:  0.1077, Adjusted R-squared:  0.1072 
-## F-statistic: 208.3 on 1 and 1726 DF,  p-value: < 2.2e-16
+## Residual standard error: 93000 on 1726 degrees of freedom
+## Multiple R-squared:  0.108,  Adjusted R-squared:  0.107 
+## F-statistic:  208 on 1 and 1726 DF,  p-value: <2e-16
 \end{verbatim}
 
 Our ``best fitting line'' is
@@ -3506,16 +3505,16 @@ Let's put Living Area in the model along with AnyFireplace to account for it (to
 ## -271421  -39935   -7887   28215  554651 
 ## 
 ## Coefficients:
-##                   Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)      13599.164   4991.695   2.724  0.00651 ** 
-## AnyFireplaceTRUE  5567.377   3716.947   1.498  0.13436    
-## Living.Area        111.218      2.968  37.476  < 2e-16 ***
+##                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)      13599.16    4991.70    2.72   0.0065 ** 
+## AnyFireplaceTRUE  5567.38    3716.95    1.50   0.1344    
+## Living.Area        111.22       2.97   37.48   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 69080 on 1725 degrees of freedom
-## Multiple R-squared:  0.5081, Adjusted R-squared:  0.5076 
-## F-statistic:   891 on 2 and 1725 DF,  p-value: < 2.2e-16
+## Residual standard error: 69100 on 1725 degrees of freedom
+## Multiple R-squared:  0.508,  Adjusted R-squared:  0.508 
+## F-statistic:  891 on 2 and 1725 DF,  p-value: <2e-16
 \end{verbatim}
 
 Our ``best fitting line'' is
@@ -3661,17 +3660,17 @@ Let's build a model with effect modification for our housing data. Let's include
 ## -241710  -39588   -7821   28480  542055 
 ## 
 ## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                   40901.294   8234.665   4.967 7.47e-07 ***
-## AnyFireplaceTRUE             -37610.413  11024.853  -3.411 0.000661 ***
-## Living.Area                      92.364      5.412  17.066  < 2e-16 ***
-## AnyFireplaceTRUE:Living.Area     26.852      6.459   4.157 3.38e-05 ***
+##                               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                   40901.29    8234.66    4.97  7.5e-07 ***
+## AnyFireplaceTRUE             -37610.41   11024.85   -3.41  0.00066 ***
+## Living.Area                      92.36       5.41   17.07  < 2e-16 ***
+## AnyFireplaceTRUE:Living.Area     26.85       6.46    4.16  3.4e-05 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 68760 on 1724 degrees of freedom
-## Multiple R-squared:  0.513,  Adjusted R-squared:  0.5122 
-## F-statistic: 605.4 on 3 and 1724 DF,  p-value: < 2.2e-16
+## Residual standard error: 68800 on 1724 degrees of freedom
+## Multiple R-squared:  0.513,  Adjusted R-squared:  0.512 
+## F-statistic:  605 on 3 and 1724 DF,  p-value: <2e-16
 \end{verbatim}
 
 \textbf{What does this mean?}
@@ -3696,7 +3695,7 @@ Let's think about two types of homes: a home with one or more fireplaces and a h
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3290.88
+## [1] 3291
 \end{verbatim}
 
 \begin{Shaded}
@@ -3706,7 +3705,7 @@ Let's think about two types of homes: a home with one or more fireplaces and a h
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 119.2139
+## [1] 119
 \end{verbatim}
 
 \begin{itemize}
@@ -3775,17 +3774,17 @@ We could ask: is there \emph{really} a difference in the slopes for Living Area 
 ## -241710  -39588   -7821   28480  542055 
 ## 
 ## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                   40901.294   8234.665   4.967 7.47e-07 ***
-## Living.Area                      92.364      5.412  17.066  < 2e-16 ***
-## AnyFireplaceTRUE             -37610.413  11024.853  -3.411 0.000661 ***
-## Living.Area:AnyFireplaceTRUE     26.852      6.459   4.157 3.38e-05 ***
+##                               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                   40901.29    8234.66    4.97  7.5e-07 ***
+## Living.Area                      92.36       5.41   17.07  < 2e-16 ***
+## AnyFireplaceTRUE             -37610.41   11024.85   -3.41  0.00066 ***
+## Living.Area:AnyFireplaceTRUE     26.85       6.46    4.16  3.4e-05 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 68760 on 1724 degrees of freedom
-## Multiple R-squared:  0.513,  Adjusted R-squared:  0.5122 
-## F-statistic: 605.4 on 3 and 1724 DF,  p-value: < 2.2e-16
+## Residual standard error: 68800 on 1724 degrees of freedom
+## Multiple R-squared:  0.513,  Adjusted R-squared:  0.512 
+## F-statistic:  605 on 3 and 1724 DF,  p-value: <2e-16
 \end{verbatim}
 
 If we ask ourselves this question, we are assuming a few things:
@@ -3859,7 +3858,7 @@ Let's first look at the variability of the difference in slopes across the boots
 
 \begin{verbatim}
 ##   sd(Living.Area.AnyFireplaceTRUE)
-## 1                         9.332937
+## 1                             9.33
 \end{verbatim}
 
 \begin{Shaded}
@@ -3878,17 +3877,17 @@ Let's first look at the variability of the difference in slopes across the boots
 ## -241710  -39588   -7821   28480  542055 
 ## 
 ## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                   40901.294   8234.665   4.967 7.47e-07 ***
-## Living.Area                      92.364      5.412  17.066  < 2e-16 ***
-## AnyFireplaceTRUE             -37610.413  11024.853  -3.411 0.000661 ***
-## Living.Area:AnyFireplaceTRUE     26.852      6.459   4.157 3.38e-05 ***
+##                               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                   40901.29    8234.66    4.97  7.5e-07 ***
+## Living.Area                      92.36       5.41   17.07  < 2e-16 ***
+## AnyFireplaceTRUE             -37610.41   11024.85   -3.41  0.00066 ***
+## Living.Area:AnyFireplaceTRUE     26.85       6.46    4.16  3.4e-05 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 68760 on 1724 degrees of freedom
-## Multiple R-squared:  0.513,  Adjusted R-squared:  0.5122 
-## F-statistic: 605.4 on 3 and 1724 DF,  p-value: < 2.2e-16
+## Residual standard error: 68800 on 1724 degrees of freedom
+## Multiple R-squared:  0.513,  Adjusted R-squared:  0.512 
+## F-statistic:  605 on 3 and 1724 DF,  p-value: <2e-16
 \end{verbatim}
 
 This standard deviation is somewhat close to the \(6.459\) in the Std. Error column of the \texttt{summary(lm.home4)} output above.
@@ -3903,8 +3902,8 @@ To get an interval of plausible values for the difference in the slopes, we look
 \end{Shaded}
 
 \begin{verbatim}
-##      lower    upper
-## 1 7.686552 45.43513
+##   lower upper
+## 1  7.69  45.4
 \end{verbatim}
 
 \begin{reflect}
@@ -4069,19 +4068,19 @@ Let's try and fit a model with these two variables.
 ## lm(formula = lifeExp ~ TgdpPercap, data = .)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -25.947  -2.661   1.215   4.469  13.115 
+##    Min     1Q Median     3Q    Max 
+## -25.95  -2.66   1.22   4.47  13.12 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   4.9496     3.8577   1.283    0.202    
-## TgdpPercap    7.2028     0.4423  16.283   <2e-16 ***
+## (Intercept)    4.950      3.858    1.28      0.2    
+## TgdpPercap     7.203      0.442   16.28   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 7.122 on 140 degrees of freedom
-## Multiple R-squared:  0.6544, Adjusted R-squared:  0.652 
-## F-statistic: 265.2 on 1 and 140 DF,  p-value: < 2.2e-16
+## Residual standard error: 7.12 on 140 degrees of freedom
+## Multiple R-squared:  0.654,  Adjusted R-squared:  0.652 
+## F-statistic:  265 on 1 and 140 DF,  p-value: <2e-16
 \end{verbatim}
 
 \textbf{Interpretations}
@@ -4147,9 +4146,9 @@ We could also model non-linear relationships by including higher degree terms in
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          192.806                            23.305  
+##                           192.81                             23.30  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -5.379
+##                            -5.38
 \end{verbatim}
 
 A more advanced solution (which is not going to be covered in class) is a \textbf{generalized additive model} (GAM), which allows you to specify which variables have non-linear relationships with \(y\) and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there!
@@ -4281,13 +4280,13 @@ Let's fit a simple logistic regression model to predict the chance of o-ring fai
 ## glm(formula = Fail ~ Temperature, family = binomial, data = SpaceShuttle)
 ## 
 ## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.0611  -0.7613  -0.3783   0.4524   2.2175  
+##    Min      1Q  Median      3Q     Max  
+## -1.061  -0.761  -0.378   0.452   2.217  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(>|z|)  
-## (Intercept)  15.0429     7.3786   2.039   0.0415 *
-## Temperature  -0.2322     0.1082  -2.145   0.0320 *
+## (Intercept)   15.043      7.379    2.04    0.041 *
+## Temperature   -0.232      0.108   -2.14    0.032 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -4296,7 +4295,7 @@ Let's fit a simple logistic regression model to predict the chance of o-ring fai
 ##     Null deviance: 28.267  on 22  degrees of freedom
 ## Residual deviance: 20.315  on 21  degrees of freedom
 ##   (1 observation deleted due to missingness)
-## AIC: 24.315
+## AIC: 24.32
 ## 
 ## Number of Fisher Scoring iterations: 5
 \end{verbatim}
@@ -4322,13 +4321,13 @@ Let's take a look at the estimates from the model. What do they mean?
 ## glm(formula = Fail ~ Temperature, family = binomial, data = SpaceShuttle)
 ## 
 ## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.0611  -0.7613  -0.3783   0.4524   2.2175  
+##    Min      1Q  Median      3Q     Max  
+## -1.061  -0.761  -0.378   0.452   2.217  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(>|z|)  
-## (Intercept)  15.0429     7.3786   2.039   0.0415 *
-## Temperature  -0.2322     0.1082  -2.145   0.0320 *
+## (Intercept)   15.043      7.379    2.04    0.041 *
+## Temperature   -0.232      0.108   -2.14    0.032 *
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
@@ -4337,7 +4336,7 @@ Let's take a look at the estimates from the model. What do they mean?
 ##     Null deviance: 28.267  on 22  degrees of freedom
 ## Residual deviance: 20.315  on 21  degrees of freedom
 ##   (1 observation deleted due to missingness)
-## AIC: 24.315
+## AIC: 24.32
 ## 
 ## Number of Fisher Scoring iterations: 5
 \end{verbatim}
@@ -4389,8 +4388,8 @@ On January 28, 1986, the temperature was 26 F degrees. Let's predict the chance 
 \end{Shaded}
 
 \begin{verbatim}
-##         1 
-## 0.9998774
+## 1 
+## 1
 \end{verbatim}
 
 They didn't have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, we predict the chance of failure to be nearly 1 (near certainty).
@@ -5433,7 +5432,7 @@ If a random variable \(X\) is modeled with a Normal model, we also say that ``\(
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6826895
+## [1] 0.683
 \end{verbatim}
 
 \begin{Shaded}
@@ -5458,7 +5457,7 @@ If a random variable \(X\) is modeled with a Normal model, we also say that ``\(
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9544997
+## [1] 0.954
 \end{verbatim}
 
 \begin{itemize}
@@ -5476,7 +5475,7 @@ If a random variable \(X\) is modeled with a Normal model, we also say that ``\(
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9973002
+## [1] 0.997
 \end{verbatim}
 
 The standard normal distribution is very convenient to work with. No matter what the long-run average \(\mu\) and standard deviation \(\sigma\) are for a normally-distributed random variable \(X\), we can standardize the values to obtain \textbf{z-scores} by subtracting \(\mu\) and dividing by \(\sigma\):
@@ -5844,18 +5843,18 @@ Are the same relative numbers of morning flights in the winter and the summer? L
 ## 
 ## Deviance Residuals: 
 ##    Min      1Q  Median      3Q     Max  
-## -1.332  -1.126   1.030   1.030   1.230  
+##  -1.33   -1.13    1.03    1.03    1.23  
 ## 
 ## Coefficients:
 ##              Estimate Std. Error z value Pr(>|z|)
-## (Intercept)   -0.1226     0.2863  -0.428    0.668
-## seasonwinter   0.4793     0.4036   1.188    0.235
+## (Intercept)    -0.123      0.286   -0.43     0.67
+## seasonwinter    0.479      0.404    1.19     0.24
 ## 
 ## (Dispersion parameter for binomial family taken to be 1)
 ## 
 ##     Null deviance: 138.27  on 99  degrees of freedom
 ## Residual deviance: 136.85  on 98  degrees of freedom
-## AIC: 140.85
+## AIC: 140.8
 ## 
 ## Number of Fisher Scoring iterations: 4
 \end{verbatim}
@@ -5869,9 +5868,9 @@ The output for the model gives standard errors for the slopes, so we can create 
 \end{Shaded}
 
 \begin{verbatim}
-##                   2.5 %    97.5 %
-## (Intercept)  -0.6905940 0.4389059
-## seasonwinter -0.3081988 1.2791414
+##               2.5 % 97.5 %
+## (Intercept)  -0.691  0.439
+## seasonwinter -0.308  1.279
 \end{verbatim}
 
 Or with bootstrapping,
@@ -5891,8 +5890,8 @@ Or with bootstrapping,
 \end{Shaded}
 
 \begin{verbatim}
-##        lower    upper
-## 1 -0.3503645 1.367213
+##   lower upper
+## 1 -0.35  1.37
 \end{verbatim}
 
 Knowing that the sample is random, the interval estimate for the logistic regression slope is given by the confidence interval. But for logistic regression, we exponentiate the slopes to get an more interpretable value, the odds ratio. Here, we are comparing the odds of having a flight in the afternoon between winter months (numerator) and summer months (denominator). Is 1 in the interval? If so, what does that tell you?
@@ -5904,9 +5903,9 @@ Knowing that the sample is random, the interval estimate for the logistic regres
 \end{Shaded}
 
 \begin{verbatim}
-##                  2.5 %   97.5 %
-## (Intercept)  0.5012782 1.551009
-## seasonwinter 0.7347692 3.593553
+##              2.5 % 97.5 %
+## (Intercept)  0.501   1.55
+## seasonwinter 0.735   3.59
 \end{verbatim}
 
 \begin{Shaded}
@@ -5918,8 +5917,8 @@ Knowing that the sample is random, the interval estimate for the logistic regres
 \end{Shaded}
 
 \begin{verbatim}
-##       lower    upper
-## 1 0.7044313 3.924396
+##   lower upper
+## 1 0.704  3.92
 \end{verbatim}
 
 \hypertarget{linear-regression-model-slope-categorical-variable}{%
@@ -5940,17 +5939,17 @@ Everything says that there are longer delays in winter. Is that actually true? L
 ## lm(formula = arr_delay ~ season, data = flights_samp)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -41.694 -21.694  -8.694  11.547 166.306 
+##    Min     1Q Median     3Q    Max 
+## -41.69 -21.69  -8.69  11.55 166.31 
 ## 
 ## Coefficients:
 ##              Estimate Std. Error t value Pr(>|t|)
-## (Intercept)    6.6939     4.8687   1.375    0.172
-## seasonwinter  -0.6547     6.8176  -0.096    0.924
+## (Intercept)     6.694      4.869    1.37     0.17
+## seasonwinter   -0.655      6.818   -0.10     0.92
 ## 
-## Residual standard error: 34.08 on 98 degrees of freedom
-## Multiple R-squared:  9.408e-05,  Adjusted R-squared:  -0.01011 
-## F-statistic: 0.009221 on 1 and 98 DF,  p-value: 0.9237
+## Residual standard error: 34.1 on 98 degrees of freedom
+## Multiple R-squared:  9.41e-05,   Adjusted R-squared:  -0.0101 
+## F-statistic: 0.00922 on 1 and 98 DF,  p-value: 0.924
 \end{verbatim}
 
 The classical CI for the slope is given with by
@@ -5962,9 +5961,9 @@ The classical CI for the slope is given with by
 \end{Shaded}
 
 \begin{verbatim}
-##                   2.5 %   97.5 %
-## (Intercept)   -2.967923 16.35568
-## seasonwinter -14.183889 12.87457
+##               2.5 % 97.5 %
+## (Intercept)   -2.97   16.4
+## seasonwinter -14.18   12.9
 \end{verbatim}
 
 or with bootstrapping,
@@ -5984,8 +5983,8 @@ or with bootstrapping,
 \end{Shaded}
 
 \begin{verbatim}
-##      lower  upper
-## 1 -15.0511 11.794
+##   lower upper
+## 1 -15.1  11.8
 \end{verbatim}
 
 The 95\% confidence interval gives a sense of the difference of mean arrival delays of flights between winter and summer is given by the confidence interval. Is zero in the interval? If so, what does that tell you?
@@ -6008,19 +6007,19 @@ How well can the departure delay predict the arrival delay? What is the effect o
 ## lm(formula = arr_delay ~ dep_delay, data = flights_samp)
 ## 
 ## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -27.396 -12.397  -2.904   9.588  60.529 
+##    Min     1Q Median     3Q    Max 
+## -27.40 -12.40  -2.90   9.59  60.53 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -2.58743    1.85522  -1.395    0.166    
-## dep_delay    1.00420    0.06173  16.267   <2e-16 ***
+## (Intercept)  -2.5874     1.8552   -1.39     0.17    
+## dep_delay     1.0042     0.0617   16.27   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 17.72 on 98 degrees of freedom
-## Multiple R-squared:  0.7297, Adjusted R-squared:  0.727 
-## F-statistic: 264.6 on 1 and 98 DF,  p-value: < 2.2e-16
+## Residual standard error: 17.7 on 98 degrees of freedom
+## Multiple R-squared:  0.73,   Adjusted R-squared:  0.727 
+## F-statistic:  265 on 1 and 98 DF,  p-value: <2e-16
 \end{verbatim}
 
 The classical CI for the slope is given with by
@@ -6032,9 +6031,9 @@ The classical CI for the slope is given with by
 \end{Shaded}
 
 \begin{verbatim}
-##                  2.5 %   97.5 %
-## (Intercept) -6.2690537 1.094198
-## dep_delay    0.8816967 1.126705
+##              2.5 % 97.5 %
+## (Intercept) -6.269   1.09
+## dep_delay    0.882   1.13
 \end{verbatim}
 
 or with bootstrapping,
@@ -6054,8 +6053,8 @@ or with bootstrapping,
 \end{Shaded}
 
 \begin{verbatim}
-##       lower    upper
-## 1 0.9173677 1.181704
+##   lower upper
+## 1 0.917  1.18
 \end{verbatim}
 
 If the flight leaves an additional minute later, then we'd expect the arrival delay to be increased by a value in the interval above, on average.
@@ -6074,8 +6073,8 @@ A classical CI can give us an interval estimate of what the prediction should be
 \end{Shaded}
 
 \begin{verbatim}
-##        fit      lwr      upr
-## 1 12.47558 8.881202 16.06996
+##    fit  lwr  upr
+## 1 12.5 8.88 16.1
 \end{verbatim}
 
 This is taking into account how uncertain we are about our model prediction because our model is based on sample data rather than population data.
@@ -6094,8 +6093,8 @@ So to get a better prediction for our arrival delay, we can account for the size
 \end{Shaded}
 
 \begin{verbatim}
-##        fit       lwr      upr
-## 1 12.47558 -22.86868 47.81985
+##    fit   lwr  upr
+## 1 12.5 -22.9 47.8
 \end{verbatim}
 
 \hypertarget{probability-theory-vs.bootstrapping}{%
@@ -6295,9 +6294,9 @@ Below we fit a linear regression model of house price on living area:
 \end{Shaded}
 
 \begin{verbatim}
-##                 2.5 %     97.5 %
-## (Intercept) 3647.6958 23231.0922
-## Living.Area  107.8616   118.3835
+##             2.5 % 97.5 %
+## (Intercept)  3648  23231
+## Living.Area   108    118
 \end{verbatim}
 
 \begin{Shaded}
@@ -6307,9 +6306,9 @@ Below we fit a linear regression model of house price on living area:
 \end{Shaded}
 
 \begin{verbatim}
-##               Estimate  Std. Error   t value      Pr(>|t|)
-## (Intercept) 13439.3940 4992.352849  2.691996  7.171207e-03
-## Living.Area   113.1225    2.682341 42.173065 9.486240e-268
+##             Estimate Std. Error t value  Pr(>|t|)
+## (Intercept)    13439    4992.35    2.69  7.17e-03
+## Living.Area      113       2.68   42.17 9.49e-268
 \end{verbatim}
 
 The \texttt{t\ value} column is the test statistic, and the \texttt{Pr(\textgreater{}\textbar{}t\textbar{})} column is the p-value. Note that the ``t'' comes from the Student t distribution.
@@ -6343,9 +6342,9 @@ Below we fit a logistic regression model of whether a movie made a profit (respo
 \end{Shaded}
 
 \begin{verbatim}
-##                   2.5 %    97.5 %
-## (Intercept)  0.09438169 0.2102419
-## HistoryTRUE -0.26484980 0.3085225
+##               2.5 % 97.5 %
+## (Intercept)  0.0944  0.210
+## HistoryTRUE -0.2648  0.309
 \end{verbatim}
 
 \begin{Shaded}
@@ -6355,9 +6354,9 @@ Below we fit a logistic regression model of whether a movie made a profit (respo
 \end{Shaded}
 
 \begin{verbatim}
-##               Estimate Std. Error   z value     Pr(>|z|)
-## (Intercept) 0.15226921 0.02955458 5.1521364 2.575356e-07
-## HistoryTRUE 0.02074995 0.14604883 0.1420754 8.870204e-01
+##             Estimate Std. Error z value Pr(>|z|)
+## (Intercept)   0.1523     0.0296   5.152 2.58e-07
+## HistoryTRUE   0.0207     0.1460   0.142 8.87e-01
 \end{verbatim}
 
 The \texttt{z\ value} column is the test statistic, and the \texttt{Pr(\textgreater{}\textbar{}z\textbar{})} column is the p-value. Note that the ``z'' refers to z-score and the Normal distribution.
@@ -7020,7 +7019,7 @@ For \(X\) such that \(E(X) = \mu\) and \(SD(X) = \sigma\), a Normal random varia
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6826895
+## [1] 0.683
 \end{verbatim}
 
 \begin{itemize}
@@ -7038,7 +7037,7 @@ For \(X\) such that \(E(X) = \mu\) and \(SD(X) = \sigma\), a Normal random varia
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9544997
+## [1] 0.954
 \end{verbatim}
 
 \begin{itemize}
@@ -7054,7 +7053,7 @@ For \(X\) such that \(E(X) = \mu\) and \(SD(X) = \sigma\), a Normal random varia
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.9973002
+## [1] 0.997
 \end{verbatim}
 
 Let \(X\) be a Binomial Random Variable and \(Y\) be a Normal Random Variable.
@@ -7076,7 +7075,7 @@ If \(n=1000\) and \(p=0.2\), let's compare \(P(X=200)\) and \(P(199.5\leq Y\leq 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.03152536
+## [1] 0.0315
 \end{verbatim}
 
 \begin{Shaded}
@@ -7086,7 +7085,7 @@ If \(n=1000\) and \(p=0.2\), let's compare \(P(X=200)\) and \(P(199.5\leq Y\leq 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.03153095
+## [1] 0.0315
 \end{verbatim}
 
 If \(n=1000\) and \(p=0.2\), let's compare \(P(200\leq X\leq 210)\) and \(P(199.5\leq Y\leq 210.5)\).
@@ -7100,7 +7099,7 @@ If \(n=1000\) and \(p=0.2\), let's compare \(P(200\leq X\leq 210)\) and \(P(199.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.3100719
+## [1] 0.31
 \end{verbatim}
 
 \begin{Shaded}
@@ -7110,7 +7109,7 @@ If \(n=1000\) and \(p=0.2\), let's compare \(P(200\leq X\leq 210)\) and \(P(199.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.3125238
+## [1] 0.313
 \end{verbatim}
 
 How big does \(n\) have to be for the Normal approximation to be appropriate?

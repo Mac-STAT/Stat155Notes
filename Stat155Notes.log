@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  2 SEP 2019 14:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 SEP 2019 08:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -789,47 +789,47 @@ Overfull \hbox (64.49881pt too wide) in paragraph at lines 599--599
 
 [22]
 
-Package xcolor Warning: Incompatible color definition on input line 638.
+Package xcolor Warning: Incompatible color definition on input line 637.
 
 [23]
 
-Package xcolor Warning: Incompatible color definition on input line 646.
+Package xcolor Warning: Incompatible color definition on input line 645.
 
 
-Package xcolor Warning: Incompatible color definition on input line 646.
+Package xcolor Warning: Incompatible color definition on input line 645.
 
 
-Package xcolor Warning: Incompatible color definition on input line 664.
+Package xcolor Warning: Incompatible color definition on input line 663.
 
 
-Package xcolor Warning: Incompatible color definition on input line 677.
+Package xcolor Warning: Incompatible color definition on input line 676.
 
 
-Package xcolor Warning: Incompatible color definition on input line 677.
+Package xcolor Warning: Incompatible color definition on input line 676.
 
 [24]
 
-Package xcolor Warning: Incompatible color definition on input line 707.
+Package xcolor Warning: Incompatible color definition on input line 706.
 
 
-Package xcolor Warning: Incompatible color definition on input line 714.
+Package xcolor Warning: Incompatible color definition on input line 713.
 
 
-Package xcolor Warning: Incompatible color definition on input line 714.
+Package xcolor Warning: Incompatible color definition on input line 713.
 
 
-Package xcolor Warning: Incompatible color definition on input line 726.
+Package xcolor Warning: Incompatible color definition on input line 725.
 
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 732
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 731
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 
-Package xcolor Warning: Incompatible color definition on input line 736.
+Package xcolor Warning: Incompatible color definition on input line 735.
 
 
-Package xcolor Warning: Incompatible color definition on input line 736.
+Package xcolor Warning: Incompatible color definition on input line 735.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-10-1.pdf, id=992, 459.7175pt x 3
 15.1775pt>
@@ -837,7 +837,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-10-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-10-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-10-1.pdf
-  used on input line 738.
+  used on input line 737.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -846,7 +846,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <Photos/pie.jpg, id=1000, 3276.24pt x 2457.18pt>
 File: Photos/pie.jpg Graphic file (type jpg)
 <use Photos/pie.jpg>
-Package pdftex.def Info: Photos/pie.jpg  used on input line 751.
+Package pdftex.def Info: Photos/pie.jpg  used on input line 750.
 (pdftex.def)             Requested size: 86.23505pt x 64.67628pt.
 
 Underfull \vbox (badness 1881) has occurred while \output is active []
@@ -854,22 +854,22 @@ Underfull \vbox (badness 1881) has occurred while \output is active []
 [26 <./Stat155Notes_files/figure-latex/unnamed-chunk-10-1.pdf> <./Photos/pie.jp
 g>]
 
-Package xcolor Warning: Incompatible color definition on input line 773.
+Package xcolor Warning: Incompatible color definition on input line 772.
 
 
-Package xcolor Warning: Incompatible color definition on input line 780.
+Package xcolor Warning: Incompatible color definition on input line 779.
 
 
-Package xcolor Warning: Incompatible color definition on input line 780.
+Package xcolor Warning: Incompatible color definition on input line 779.
 
 
-Package xcolor Warning: Incompatible color definition on input line 792.
+Package xcolor Warning: Incompatible color definition on input line 791.
 
 
-Package xcolor Warning: Incompatible color definition on input line 803.
+Package xcolor Warning: Incompatible color definition on input line 802.
 
 
-Package xcolor Warning: Incompatible color definition on input line 803.
+Package xcolor Warning: Incompatible color definition on input line 802.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-13-1.pdf, id=1020, 453.695pt x 3
 13.17pt>
@@ -877,39 +877,39 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-13-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-13-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-13-1.pdf
-  used on input line 805.
+  used on input line 804.
 (pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [27]
 
-Package xcolor Warning: Incompatible color definition on input line 826.
+Package xcolor Warning: Incompatible color definition on input line 825.
 
 
-Package xcolor Warning: Incompatible color definition on input line 834.
+Package xcolor Warning: Incompatible color definition on input line 833.
 
 
-Package xcolor Warning: Incompatible color definition on input line 834.
+Package xcolor Warning: Incompatible color definition on input line 833.
 
 [28 <./Stat155Notes_files/figure-latex/unnamed-chunk-13-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 847.
+Package xcolor Warning: Incompatible color definition on input line 846.
 
 
-Package xcolor Warning: Incompatible color definition on input line 855.
+Package xcolor Warning: Incompatible color definition on input line 854.
 
 
-Package xcolor Warning: Incompatible color definition on input line 855.
+Package xcolor Warning: Incompatible color definition on input line 854.
 
 
-Package xcolor Warning: Incompatible color definition on input line 868.
+Package xcolor Warning: Incompatible color definition on input line 867.
 
 
-Package xcolor Warning: Incompatible color definition on input line 879.
+Package xcolor Warning: Incompatible color definition on input line 878.
 
 
-Package xcolor Warning: Incompatible color definition on input line 879.
+Package xcolor Warning: Incompatible color definition on input line 878.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-15-1.pdf, id=1042, 453.695pt x 3
 13.17pt>
@@ -917,30 +917,30 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-15-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-15-1.pdf
-  used on input line 881.
+  used on input line 880.
 (pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [29]
 
-Package xcolor Warning: Incompatible color definition on input line 903.
+Package xcolor Warning: Incompatible color definition on input line 902.
 
 
-Package xcolor Warning: Incompatible color definition on input line 916.
+Package xcolor Warning: Incompatible color definition on input line 915.
 
 
-Package xcolor Warning: Incompatible color definition on input line 916.
+Package xcolor Warning: Incompatible color definition on input line 915.
 
 
-Package xcolor Warning: Incompatible color definition on input line 916.
+Package xcolor Warning: Incompatible color definition on input line 915.
 
 [30 <./Stat155Notes_files/figure-latex/unnamed-chunk-15-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 916.
+Package xcolor Warning: Incompatible color definition on input line 915.
 
 
-Package xcolor Warning: Incompatible color definition on input line 916.
+Package xcolor Warning: Incompatible color definition on input line 915.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-17-1.pdf, id=1063, 453.695pt x 3
 13.17pt>
@@ -948,16 +948,16 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-17-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-17-1.pdf
-  used on input line 918.
+  used on input line 917.
 (pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
-Package xcolor Warning: Incompatible color definition on input line 922.
+Package xcolor Warning: Incompatible color definition on input line 921.
 
 
-Package xcolor Warning: Incompatible color definition on input line 932.
+Package xcolor Warning: Incompatible color definition on input line 931.
 
 
-Package xcolor Warning: Incompatible color definition on input line 932.
+Package xcolor Warning: Incompatible color definition on input line 931.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-18-1.pdf, id=1064, 453.695pt x 3
 13.17pt>
@@ -965,20 +965,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-18-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-18-1.pdf
-  used on input line 934.
+  used on input line 933.
 (pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [31 <./Stat155Notes_files/figure-latex/unnamed-chunk-17-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 951.
+Package xcolor Warning: Incompatible color definition on input line 950.
 
 
-Package xcolor Warning: Incompatible color definition on input line 962.
+Package xcolor Warning: Incompatible color definition on input line 961.
 
 
-Package xcolor Warning: Incompatible color definition on input line 962.
+Package xcolor Warning: Incompatible color definition on input line 961.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-19-1.pdf, id=1082, 453.695pt x 3
 13.17pt>
@@ -986,20 +986,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-19-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-19-1.pdf
-  used on input line 964.
+  used on input line 963.
 (pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [32 <./Stat155Notes_files/figure-latex/unnamed-chunk-18-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 982.
+Package xcolor Warning: Incompatible color definition on input line 981.
 
 
-Package xcolor Warning: Incompatible color definition on input line 993.
+Package xcolor Warning: Incompatible color definition on input line 992.
 
 
-Package xcolor Warning: Incompatible color definition on input line 993.
+Package xcolor Warning: Incompatible color definition on input line 992.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-22-1.pdf, id=1099, 453.695pt x 3
 08.15125pt>
@@ -1007,23 +1007,23 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-22-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-22-1.pdf
-  used on input line 995.
+  used on input line 994.
 (pdftex.def)             Requested size: 344.9987pt x 234.32433pt.
 [33 <./Stat155Notes_files/figure-latex/unnamed-chunk-19-1.pdf>]
 Underfull \vbox (badness 1072) has occurred while \output is active []
 
 [34 <./Stat155Notes_files/figure-latex/unnamed-chunk-22-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1035.
+Package xcolor Warning: Incompatible color definition on input line 1034.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1045.
+Package xcolor Warning: Incompatible color definition on input line 1044.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1045.
+Package xcolor Warning: Incompatible color definition on input line 1044.
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1049--1049
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1048--1048
 []\T1/lmtt/m/n/10 ## \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 stat_bin()\TS1/lmtt/m/n/
 10 ` \T1/lmtt/m/n/10 using \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 bins = 30\TS1/lmtt
 /m/n/10 `\T1/lmtt/m/n/10 . Pick better value with \TS1/lmtt/m/n/10 `\T1/lmtt/m/
@@ -1031,7 +1031,7 @@ n/10 binwidth\TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 .[]
  []
 
 
-Overfull \hbox (22.49893pt too wide) in paragraph at lines 1053--1053
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1052--1052
 []\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
 tat_bin).[] 
  []
@@ -1042,23 +1042,23 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-25-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-25-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-25-1.pdf
-  used on input line 1055.
+  used on input line 1054.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [35]
 
-Package xcolor Warning: Incompatible color definition on input line 1061.
+Package xcolor Warning: Incompatible color definition on input line 1060.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1070.
+Package xcolor Warning: Incompatible color definition on input line 1069.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1070.
+Package xcolor Warning: Incompatible color definition on input line 1069.
 
 
-Overfull \hbox (22.49893pt too wide) in paragraph at lines 1074--1074
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1073--1073
 []\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
 tat_bin).[] 
  []
@@ -1069,29 +1069,29 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-26-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-26-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-26-1.pdf
-  used on input line 1076.
+  used on input line 1075.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [36 <./Stat155Notes_files/figure-latex/unnamed-chunk-25-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1080.
+Package xcolor Warning: Incompatible color definition on input line 1079.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1090.
+Package xcolor Warning: Incompatible color definition on input line 1089.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1090.
+Package xcolor Warning: Incompatible color definition on input line 1089.
 
 
-Overfull \hbox (22.49893pt too wide) in paragraph at lines 1094--1094
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1093--1093
 []\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
 tat_bin).[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 1098--1098
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 1097--1097
 []\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
 tat_density).[] 
  []
@@ -1102,39 +1102,39 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-27-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-27-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-27-1.pdf
-  used on input line 1100.
+  used on input line 1099.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [37 <./Stat155Notes_files/figure-latex/unnamed-chunk-26-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1120.
+Package xcolor Warning: Incompatible color definition on input line 1119.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1134.
+Package xcolor Warning: Incompatible color definition on input line 1133.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1134.
+Package xcolor Warning: Incompatible color definition on input line 1133.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1134.
+Package xcolor Warning: Incompatible color definition on input line 1133.
 
 [38 <./Stat155Notes_files/figure-latex/unnamed-chunk-27-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1134.
+Package xcolor Warning: Incompatible color definition on input line 1133.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1134.
+Package xcolor Warning: Incompatible color definition on input line 1133.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1138.
+Package xcolor Warning: Incompatible color definition on input line 1137.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1148.
+Package xcolor Warning: Incompatible color definition on input line 1147.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1148.
+Package xcolor Warning: Incompatible color definition on input line 1147.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-29-1.pdf, id=1187, 459.7175pt x 
 315.1775pt>
@@ -1142,83 +1142,83 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-29-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-29-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-29-1.pdf
-  used on input line 1150.
+  used on input line 1149.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 1348) has occurred while \output is active []
 
 [39 <./Stat155Notes_files/figure-latex/unnamed-chunk-29-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1208.
+Package xcolor Warning: Incompatible color definition on input line 1207.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1214.
+Package xcolor Warning: Incompatible color definition on input line 1213.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1214.
+Package xcolor Warning: Incompatible color definition on input line 1213.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1227.
+Package xcolor Warning: Incompatible color definition on input line 1226.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1232.
+Package xcolor Warning: Incompatible color definition on input line 1231.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1232.
+Package xcolor Warning: Incompatible color definition on input line 1231.
 
 
-Overfull \hbox (64.49881pt too wide) in paragraph at lines 1239--1239
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1238--1238
 []\T1/lmtt/m/n/10 ##   \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 mean(SleepHrsNight, n~
  \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 median(SleepHrsNight~ \TS1/lmtt/m/n/10 `\T1/
 lmtt/m/n/10 mean(SleepHrsNight, trim~[] 
  []
 
 
-Overfull \hbox (64.49881pt too wide) in paragraph at lines 1239--1239
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1238--1238
 []\T1/lmtt/m/n/10 ##                     <dbl>                  <int>          
             <dbl>[] 
  []
 
 
-Overfull \hbox (64.49881pt too wide) in paragraph at lines 1239--1239
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1238--1238
 []\T1/lmtt/m/n/10 ## 1                    6.93                      7          
              6.95[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 1247.
+Package xcolor Warning: Incompatible color definition on input line 1246.
 
 [40]
 
-Package xcolor Warning: Incompatible color definition on input line 1253.
+Package xcolor Warning: Incompatible color definition on input line 1252.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1253.
+Package xcolor Warning: Incompatible color definition on input line 1252.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1265.
+Package xcolor Warning: Incompatible color definition on input line 1264.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1270.
+Package xcolor Warning: Incompatible color definition on input line 1269.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1270.
+Package xcolor Warning: Incompatible color definition on input line 1269.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [41]
 
-Package xcolor Warning: Incompatible color definition on input line 1307.
+Package xcolor Warning: Incompatible color definition on input line 1306.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1315.
+Package xcolor Warning: Incompatible color definition on input line 1314.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1315.
+Package xcolor Warning: Incompatible color definition on input line 1314.
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 1319--1319
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 1318--1318
 []\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
 tat_boxplot).[] 
  []
@@ -1229,16 +1229,16 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-35-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-35-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-35-1.pdf
-  used on input line 1321.
+  used on input line 1320.
 (pdftex.def)             Requested size: 345.01875pt x 237.29456pt.
 
-Package xcolor Warning: Incompatible color definition on input line 1325.
+Package xcolor Warning: Incompatible color definition on input line 1324.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1333.
+Package xcolor Warning: Incompatible color definition on input line 1332.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1333.
+Package xcolor Warning: Incompatible color definition on input line 1332.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-36-1.pdf, id=1220, 460.72125pt x
  313.17pt>
@@ -1246,7 +1246,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-36-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-36-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-36-1.pdf
-  used on input line 1335.
+  used on input line 1334.
 (pdftex.def)             Requested size: 344.99878pt x 234.50896pt.
 
 Underfull \vbox (badness 6348) has occurred while \output is active []
@@ -1258,7 +1258,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-37-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-37-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-37-1.pdf
-  used on input line 1341.
+  used on input line 1340.
 (pdftex.def)             Requested size: 345.01698pt x 210.33565pt.
 [43 <./Stat155Notes_files/figure-latex/unnamed-chunk-36-1.pdf> <./Stat155Notes_
 files/figure-latex/unnamed-chunk-37-1.pdf
@@ -1273,63 +1273,63 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-38-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-38-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-38-1.pdf
-  used on input line 1345.
+  used on input line 1344.
 (pdftex.def)             Requested size: 345.00542pt x 208.32068pt.
 [44 <./Stat155Notes_files/figure-latex/unnamed-chunk-38-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1421.
+Package xcolor Warning: Incompatible color definition on input line 1420.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1426.
+Package xcolor Warning: Incompatible color definition on input line 1425.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1426.
+Package xcolor Warning: Incompatible color definition on input line 1425.
 
 
-Overfull \hbox (64.49881pt too wide) in paragraph at lines 1433--1433
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1432--1432
 []\T1/lmtt/m/n/10 ##   \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 diff(range(Sleep~ \TS1
 /lmtt/m/n/10 `\T1/lmtt/m/n/10 IQR(SleepHrsNigh~ \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/
 10 sd(SleepHrsNigh~ \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 var(SleepHrsNig~[] 
  []
 
 
-Overfull \hbox (64.49881pt too wide) in paragraph at lines 1433--1433
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1432--1432
 []\T1/lmtt/m/n/10 ##                <int>              <dbl>             <dbl> 
             <dbl>[] 
  []
 
 
-Overfull \hbox (64.49881pt too wide) in paragraph at lines 1433--1433
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 1432--1432
 []\T1/lmtt/m/n/10 ## 1                 10                  2              1.35 
              1.81[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 1435.
+Package xcolor Warning: Incompatible color definition on input line 1434.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1440.
+Package xcolor Warning: Incompatible color definition on input line 1439.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1440.
+Package xcolor Warning: Incompatible color definition on input line 1439.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1448.
+Package xcolor Warning: Incompatible color definition on input line 1447.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1452.
+Package xcolor Warning: Incompatible color definition on input line 1451.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1452.
+Package xcolor Warning: Incompatible color definition on input line 1451.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1464.
+Package xcolor Warning: Incompatible color definition on input line 1463.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1472.
+Package xcolor Warning: Incompatible color definition on input line 1471.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1472.
+Package xcolor Warning: Incompatible color definition on input line 1471.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-42-1.pdf, id=1281, 382.42876pt x
  248.93pt>
@@ -1337,36 +1337,36 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-42-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-42-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-42-1.pdf
-  used on input line 1474.
+  used on input line 1473.
 (pdftex.def)             Requested size: 345.01715pt x 224.57808pt.
 
 Underfull \vbox (badness 5592) has occurred while \output is active []
 
 [45]
 
-Package xcolor Warning: Incompatible color definition on input line 1489.
+Package xcolor Warning: Incompatible color definition on input line 1488.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1493.
+Package xcolor Warning: Incompatible color definition on input line 1492.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1493.
+Package xcolor Warning: Incompatible color definition on input line 1492.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [46 <./Stat155Notes_files/figure-latex/unnamed-chunk-42-1.pdf>] [47] [48]
 
-Package xcolor Warning: Incompatible color definition on input line 1638.
+Package xcolor Warning: Incompatible color definition on input line 1637.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1647.
+Package xcolor Warning: Incompatible color definition on input line 1646.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1647.
+Package xcolor Warning: Incompatible color definition on input line 1646.
 
 
-Overfull \hbox (22.49893pt too wide) in paragraph at lines 1651--1651
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1650--1650
 []\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
 tat_bin).[] 
  []
@@ -1377,23 +1377,23 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-49-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-49-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-49-1.pdf
-  used on input line 1653.
+  used on input line 1652.
 (pdftex.def)             Requested size: 345.01439pt x 233.28105pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [49]
 
-Package xcolor Warning: Incompatible color definition on input line 1669.
+Package xcolor Warning: Incompatible color definition on input line 1668.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1680.
+Package xcolor Warning: Incompatible color definition on input line 1679.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1680.
+Package xcolor Warning: Incompatible color definition on input line 1679.
 
 
-Overfull \hbox (6.74898pt too wide) in paragraph at lines 1684--1684
+Overfull \hbox (6.74898pt too wide) in paragraph at lines 1683--1683
 []\T1/lmtt/m/n/10 ## Warning: Removed 8 rows containing non-finite values (stat
 _bin).[] 
  []
@@ -1404,23 +1404,23 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-52-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-52-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-52-1.pdf
-  used on input line 1686.
+  used on input line 1685.
 (pdftex.def)             Requested size: 344.99931pt x 150.14758pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [50 <./Stat155Notes_files/figure-latex/unnamed-chunk-49-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1701.
+Package xcolor Warning: Incompatible color definition on input line 1700.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1710.
+Package xcolor Warning: Incompatible color definition on input line 1709.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1710.
+Package xcolor Warning: Incompatible color definition on input line 1709.
 
 
-Overfull \hbox (22.49893pt too wide) in paragraph at lines 1714--1714
+Overfull \hbox (22.49893pt too wide) in paragraph at lines 1713--1713
 []\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
 tat_bin).[] 
  []
@@ -1431,23 +1431,23 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-54-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-54-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-54-1.pdf
-  used on input line 1716.
+  used on input line 1715.
 (pdftex.def)             Requested size: 345.00517pt x 231.25075pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [51 <./Stat155Notes_files/figure-latex/unnamed-chunk-52-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1729.
+Package xcolor Warning: Incompatible color definition on input line 1728.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1738.
+Package xcolor Warning: Incompatible color definition on input line 1737.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1738.
+Package xcolor Warning: Incompatible color definition on input line 1737.
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 1742--1742
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 1741--1741
 []\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
 tat_boxplot).[] 
  []
@@ -1458,23 +1458,23 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-56-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-56-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-56-1.pdf
-  used on input line 1744.
+  used on input line 1743.
 (pdftex.def)             Requested size: 345.01875pt x 238.80118pt.
 
-Package xcolor Warning: Incompatible color definition on input line 1746.
+Package xcolor Warning: Incompatible color definition on input line 1745.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [52 <./Stat155Notes_files/figure-latex/unnamed-chunk-54-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1755.
+Package xcolor Warning: Incompatible color definition on input line 1754.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1755.
+Package xcolor Warning: Incompatible color definition on input line 1754.
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 1759--1759
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 1758--1758
 []\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
 tat_boxplot).[] 
  []
@@ -1485,23 +1485,23 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-57-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-57-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-57-1.pdf
-  used on input line 1761.
+  used on input line 1760.
 (pdftex.def)             Requested size: 345.01875pt x 237.29456pt.
 
-Package xcolor Warning: Incompatible color definition on input line 1763.
+Package xcolor Warning: Incompatible color definition on input line 1762.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [53 <./Stat155Notes_files/figure-latex/unnamed-chunk-56-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1772.
+Package xcolor Warning: Incompatible color definition on input line 1771.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1772.
+Package xcolor Warning: Incompatible color definition on input line 1771.
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 1776--1776
+Overfull \hbox (43.49887pt too wide) in paragraph at lines 1775--1775
 []\T1/lmtt/m/n/10 ## Warning: Removed 2245 rows containing non-finite values (s
 tat_boxplot).[] 
  []
@@ -1512,7 +1512,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-58-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-58-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-58-1.pdf
-  used on input line 1778.
+  used on input line 1777.
 (pdftex.def)             Requested size: 345.01875pt x 238.80118pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1520,25 +1520,25 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [54 <./Stat155Notes_files/figure-latex/unnamed-chunk-57-1.pdf>] [55 <./Stat155N
 otes_files/figure-latex/unnamed-chunk-58-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1809.
+Package xcolor Warning: Incompatible color definition on input line 1808.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1819.
+Package xcolor Warning: Incompatible color definition on input line 1818.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1819.
+Package xcolor Warning: Incompatible color definition on input line 1818.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1823.
+Package xcolor Warning: Incompatible color definition on input line 1822.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1833.
+Package xcolor Warning: Incompatible color definition on input line 1832.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1833.
+Package xcolor Warning: Incompatible color definition on input line 1832.
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 1837--1837
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 1836--1836
 []\T1/lmtt/m/n/10 ## \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 stat_bin()\TS1/lmtt/m/n/
 10 ` \T1/lmtt/m/n/10 using \TS1/lmtt/m/n/10 `\T1/lmtt/m/n/10 bins = 30\TS1/lmtt
 /m/n/10 `\T1/lmtt/m/n/10 . Pick better value with \TS1/lmtt/m/n/10 `\T1/lmtt/m/
@@ -1551,17 +1551,17 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-61-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-61-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-61-1.pdf
-  used on input line 1839.
+  used on input line 1838.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 [56 <./Stat155Notes_files/figure-latex/unnamed-chunk-61-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1864.
+Package xcolor Warning: Incompatible color definition on input line 1863.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1875.
+Package xcolor Warning: Incompatible color definition on input line 1874.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1875.
+Package xcolor Warning: Incompatible color definition on input line 1874.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-63-1.pdf, id=1440, 459.7175pt x 
 315.1775pt>
@@ -1569,30 +1569,30 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-63-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-63-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-63-1.pdf
-  used on input line 1877.
+  used on input line 1876.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [57]
 
-Package xcolor Warning: Incompatible color definition on input line 1906.
+Package xcolor Warning: Incompatible color definition on input line 1905.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1915.
+Package xcolor Warning: Incompatible color definition on input line 1914.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1915.
+Package xcolor Warning: Incompatible color definition on input line 1914.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1915.
+Package xcolor Warning: Incompatible color definition on input line 1914.
 
 [58 <./Stat155Notes_files/figure-latex/unnamed-chunk-63-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1915.
+Package xcolor Warning: Incompatible color definition on input line 1914.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1915.
+Package xcolor Warning: Incompatible color definition on input line 1914.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-65-1.pdf, id=1466, 459.7175pt x 
 315.1775pt>
@@ -1600,7 +1600,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-65-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-65-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-65-1.pdf
-  used on input line 1917.
+  used on input line 1916.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-66-1.pdf, id=1468, 453.695pt x 3
 13.17pt>
@@ -1608,7 +1608,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-66-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-66-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-66-1.pdf
-  used on input line 1928.
+  used on input line 1927.
 (pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1616,22 +1616,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [59 <./Stat155Notes_files/figure-latex/unnamed-chunk-65-1.pdf>] [60 <./Stat155N
 otes_files/figure-latex/unnamed-chunk-66-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 1982.
+Package xcolor Warning: Incompatible color definition on input line 1981.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1987.
+Package xcolor Warning: Incompatible color definition on input line 1986.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1987.
+Package xcolor Warning: Incompatible color definition on input line 1986.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1994.
+Package xcolor Warning: Incompatible color definition on input line 1993.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2000.
+Package xcolor Warning: Incompatible color definition on input line 1999.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2000.
+Package xcolor Warning: Incompatible color definition on input line 1999.
 
 [61]
 <Stat155Notes_files/figure-latex/unnamed-chunk-70-1.pdf, id=1508, 710.655pt x 3
@@ -1640,7 +1640,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-70-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-70-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-70-1.pdf
-  used on input line 2029.
+  used on input line 2028.
 (pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-70-2.pdf, id=1509, 710.655pt x 3
 07.1475pt>
@@ -1648,7 +1648,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-70-2.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-70-2.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-70-2.pdf
-  used on input line 2029.
+  used on input line 2028.
 (pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-70-3.pdf, id=1510, 710.655pt x 3
 07.1475pt>
@@ -1656,7 +1656,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-70-3.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-70-3.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-70-3.pdf
-  used on input line 2029.
+  used on input line 2028.
 (pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-70-4.pdf, id=1511, 710.655pt x 3
 07.1475pt>
@@ -1664,7 +1664,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-70-4.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-70-4.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-70-4.pdf
-  used on input line 2029.
+  used on input line 2028.
 (pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-70-5.pdf, id=1512, 710.655pt x 3
 07.1475pt>
@@ -1672,7 +1672,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-70-5.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-70-5.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-70-5.pdf
-  used on input line 2029.
+  used on input line 2028.
 (pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-70-6.pdf, id=1513, 710.655pt x 3
 07.1475pt>
@@ -1680,7 +1680,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-70-6.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-70-6.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-70-6.pdf
-  used on input line 2029.
+  used on input line 2028.
 (pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-70-7.pdf, id=1514, 710.655pt x 3
 07.1475pt>
@@ -1688,7 +1688,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-70-7.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-70-7.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-70-7.pdf
-  used on input line 2029.
+  used on input line 2028.
 (pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-70-8.pdf, id=1515, 710.655pt x 3
 07.1475pt>
@@ -1696,7 +1696,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-70-8.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-70-8.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-70-8.pdf
-  used on input line 2029.
+  used on input line 2028.
 (pdftex.def)             Requested size: 345.00342pt x 149.11163pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1736,37 +1736,37 @@ pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
 70-8.pdf): PDF inclusion: multiple pdfs with page group included in a single pa
 ge
 >]
-Underfull \hbox (badness 2495) in paragraph at lines 2044--2044
+Underfull \hbox (badness 2495) in paragraph at lines 2043--2043
 []\T1/lmr/bx/n/12 Is cor-re-la-tion al-ways the right way to judge
  []
 
 <Photos/Brownies.png, id=1660, 539.01375pt x 297.11pt>
 File: Photos/Brownies.png Graphic file (type png)
 <use Photos/Brownies.png>
-Package pdftex.def Info: Photos/Brownies.png  used on input line 2050.
+Package pdftex.def Info: Photos/Brownies.png  used on input line 2049.
 (pdftex.def)             Requested size: 345.00052pt x 190.16788pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [65]
 
-Package xcolor Warning: Incompatible color definition on input line 2080.
+Package xcolor Warning: Incompatible color definition on input line 2079.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2091.
+Package xcolor Warning: Incompatible color definition on input line 2090.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2091.
+Package xcolor Warning: Incompatible color definition on input line 2090.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2091.
+Package xcolor Warning: Incompatible color definition on input line 2090.
 
 [66 <./Photos/Brownies.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2091.
+Package xcolor Warning: Incompatible color definition on input line 2090.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2091.
+Package xcolor Warning: Incompatible color definition on input line 2090.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-72-1.pdf, id=1673, 459.7175pt x 
 313.17pt>
@@ -1774,16 +1774,16 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-72-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-72-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-72-1.pdf
-  used on input line 2093.
+  used on input line 2092.
 (pdftex.def)             Requested size: 345.01875pt x 235.0346pt.
 
-Package xcolor Warning: Incompatible color definition on input line 2102.
+Package xcolor Warning: Incompatible color definition on input line 2101.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2111.
+Package xcolor Warning: Incompatible color definition on input line 2110.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2111.
+Package xcolor Warning: Incompatible color definition on input line 2110.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-73-1.pdf, id=1674, 453.695pt x 3
 13.17pt>
@@ -1791,20 +1791,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-73-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-73-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-73-1.pdf
-  used on input line 2113.
+  used on input line 2112.
 (pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [67 <./Stat155Notes_files/figure-latex/unnamed-chunk-72-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2117.
+Package xcolor Warning: Incompatible color definition on input line 2116.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2128.
+Package xcolor Warning: Incompatible color definition on input line 2127.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2128.
+Package xcolor Warning: Incompatible color definition on input line 2127.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-74-1.pdf, id=1692, 453.695pt x 3
 13.17pt>
@@ -1812,20 +1812,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-74-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-74-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-74-1.pdf
-  used on input line 2130.
+  used on input line 2129.
 (pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [68 <./Stat155Notes_files/figure-latex/unnamed-chunk-73-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2139.
+Package xcolor Warning: Incompatible color definition on input line 2138.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2149.
+Package xcolor Warning: Incompatible color definition on input line 2148.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2149.
+Package xcolor Warning: Incompatible color definition on input line 2148.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-75-1.pdf, id=1710, 453.695pt x 3
 13.17pt>
@@ -1833,20 +1833,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-75-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-75-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-75-1.pdf
-  used on input line 2151.
+  used on input line 2150.
 (pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [69 <./Stat155Notes_files/figure-latex/unnamed-chunk-74-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2160.
+Package xcolor Warning: Incompatible color definition on input line 2159.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2170.
+Package xcolor Warning: Incompatible color definition on input line 2169.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2170.
+Package xcolor Warning: Incompatible color definition on input line 2169.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-76-1.pdf, id=1727, 453.695pt x 3
 13.17pt>
@@ -1854,20 +1854,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-76-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-76-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-76-1.pdf
-  used on input line 2172.
+  used on input line 2171.
 (pdftex.def)             Requested size: 344.9987pt x 238.14069pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [70 <./Stat155Notes_files/figure-latex/unnamed-chunk-75-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2181.
+Package xcolor Warning: Incompatible color definition on input line 2180.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2191.
+Package xcolor Warning: Incompatible color definition on input line 2190.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2191.
+Package xcolor Warning: Incompatible color definition on input line 2190.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-77-1.pdf, id=1744, 459.7175pt x 
 308.15125pt>
@@ -1875,20 +1875,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-77-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-77-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-77-1.pdf
-  used on input line 2193.
+  used on input line 2192.
 (pdftex.def)             Requested size: 345.01875pt x 231.26802pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [71 <./Stat155Notes_files/figure-latex/unnamed-chunk-76-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2197.
+Package xcolor Warning: Incompatible color definition on input line 2196.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2207.
+Package xcolor Warning: Incompatible color definition on input line 2206.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2207.
+Package xcolor Warning: Incompatible color definition on input line 2206.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-78-1.pdf, id=1761, 454.69875pt x
  313.17pt>
@@ -1896,20 +1896,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-78-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-78-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-78-1.pdf
-  used on input line 2209.
+  used on input line 2208.
 (pdftex.def)             Requested size: 345.0057pt x 237.61981pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [72 <./Stat155Notes_files/figure-latex/unnamed-chunk-77-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2213.
+Package xcolor Warning: Incompatible color definition on input line 2212.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2223.
+Package xcolor Warning: Incompatible color definition on input line 2222.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2223.
+Package xcolor Warning: Incompatible color definition on input line 2222.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-79-1.pdf, id=1778, 454.69875pt x
  308.15125pt>
@@ -1917,20 +1917,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-79-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-79-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-79-1.pdf
-  used on input line 2225.
+  used on input line 2224.
 (pdftex.def)             Requested size: 345.0057pt x 233.8118pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [73 <./Stat155Notes_files/figure-latex/unnamed-chunk-78-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2232.
+Package xcolor Warning: Incompatible color definition on input line 2231.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2243.
+Package xcolor Warning: Incompatible color definition on input line 2242.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2243.
+Package xcolor Warning: Incompatible color definition on input line 2242.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-80-1.pdf, id=1795, 454.69875pt x
  313.17pt>
@@ -1938,20 +1938,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-80-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-80-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-80-1.pdf
-  used on input line 2245.
+  used on input line 2244.
 (pdftex.def)             Requested size: 345.0057pt x 237.61981pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [74 <./Stat155Notes_files/figure-latex/unnamed-chunk-79-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2252.
+Package xcolor Warning: Incompatible color definition on input line 2251.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2264.
+Package xcolor Warning: Incompatible color definition on input line 2263.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2264.
+Package xcolor Warning: Incompatible color definition on input line 2263.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-81-1.pdf, id=1812, 453.695pt x 3
 08.15125pt>
@@ -1959,7 +1959,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-81-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-81-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-81-1.pdf
-  used on input line 2266.
+  used on input line 2265.
 (pdftex.def)             Requested size: 344.9987pt x 234.32433pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1971,13 +1971,13 @@ Chapter 3.
 
 ]
 
-Package xcolor Warning: Incompatible color definition on input line 2340.
+Package xcolor Warning: Incompatible color definition on input line 2339.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2351.
+Package xcolor Warning: Incompatible color definition on input line 2350.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2351.
+Package xcolor Warning: Incompatible color definition on input line 2350.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-85-1.pdf, id=1858, 459.7175pt x 
 315.1775pt>
@@ -1985,17 +1985,17 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-85-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-85-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-85-1.pdf
-  used on input line 2353.
+  used on input line 2352.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 [78]
 
-Package xcolor Warning: Incompatible color definition on input line 2362.
+Package xcolor Warning: Incompatible color definition on input line 2361.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2373.
+Package xcolor Warning: Incompatible color definition on input line 2372.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2373.
+Package xcolor Warning: Incompatible color definition on input line 2372.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-87-1.pdf, id=1864, 459.7175pt x 
 315.1775pt>
@@ -2003,7 +2003,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-87-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-87-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-87-1.pdf
-  used on input line 2375.
+  used on input line 2374.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2015,7 +2015,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-88-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-88-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-88-1.pdf
-  used on input line 2381.
+  used on input line 2380.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2027,7 +2027,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-90-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-90-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-90-1.pdf
-  used on input line 2389.
+  used on input line 2388.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2039,7 +2039,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-93-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-93-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-93-1.pdf
-  used on input line 2403.
+  used on input line 2402.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2054,7 +2054,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-96-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-96-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-96-1.pdf
-  used on input line 2476.
+  used on input line 2475.
 (pdftex.def)             Requested size: 192.71951pt x 187.70079pt.
 [84]
 <Stat155Notes_files/figure-latex/unnamed-chunk-97-1.pdf, id=1956, 439.6425pt x 
@@ -2063,7 +2063,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-97-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-97-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-97-1.pdf
-  used on input line 2480.
+  used on input line 2479.
 (pdftex.def)             Requested size: 345.01279pt x 197.7128pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-98-1.pdf, id=1957, 440.64626pt x
  248.93pt>
@@ -2071,7 +2071,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-98-1.pdf Graphic file (type
  pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-98-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-98-1.pdf
-  used on input line 2484.
+  used on input line 2483.
 (pdftex.def)             Requested size: 345.01381pt x 194.90529pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2084,69 +2084,69 @@ pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
 ge
 >]
 
-Package xcolor Warning: Incompatible color definition on input line 2488.
+Package xcolor Warning: Incompatible color definition on input line 2487.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2497.
+Package xcolor Warning: Incompatible color definition on input line 2496.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2497.
+Package xcolor Warning: Incompatible color definition on input line 2496.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [86 <./Stat155Notes_files/figure-latex/unnamed-chunk-98-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2542.
+Package xcolor Warning: Incompatible color definition on input line 2541.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2549.
+Package xcolor Warning: Incompatible color definition on input line 2548.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2549.
+Package xcolor Warning: Incompatible color definition on input line 2548.
 
 [87]
 
-Package xcolor Warning: Incompatible color definition on input line 2558.
+Package xcolor Warning: Incompatible color definition on input line 2557.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2562.
+Package xcolor Warning: Incompatible color definition on input line 2561.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2562.
+Package xcolor Warning: Incompatible color definition on input line 2561.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2592.
+Package xcolor Warning: Incompatible color definition on input line 2591.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2598.
+Package xcolor Warning: Incompatible color definition on input line 2597.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2598.
+Package xcolor Warning: Incompatible color definition on input line 2597.
 
 [88]
 
-Package xcolor Warning: Incompatible color definition on input line 2627.
+Package xcolor Warning: Incompatible color definition on input line 2626.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2631.
+Package xcolor Warning: Incompatible color definition on input line 2630.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2631.
+Package xcolor Warning: Incompatible color definition on input line 2630.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2637.
+Package xcolor Warning: Incompatible color definition on input line 2636.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2643.
+Package xcolor Warning: Incompatible color definition on input line 2642.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2643.
+Package xcolor Warning: Incompatible color definition on input line 2642.
 
 <Photos/shirtchart.png, id=2009, 2007.5pt x 1207.51125pt>
 File: Photos/shirtchart.png Graphic file (type png)
 <use Photos/shirtchart.png>
-Package pdftex.def Info: Photos/shirtchart.png  used on input line 2663.
+Package pdftex.def Info: Photos/shirtchart.png  used on input line 2662.
 (pdftex.def)             Requested size: 86.22891pt x 51.86668pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-107-1.pdf, id=2010, 436.63126pt 
 x 283.0575pt>
@@ -2154,7 +2154,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-107-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-107-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-107-1.pd
-f  used on input line 2665.
+f  used on input line 2664.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 [89 <./Photos/shirtchart.png>]
 <Stat155Notes_files/figure-latex/unnamed-chunk-108-1.pdf, id=2018, 436.63126pt 
@@ -2163,7 +2163,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-108-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-108-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-108-1.pd
-f  used on input line 2669.
+f  used on input line 2668.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 [90 <./Stat155Notes_files/figure-latex/unnamed-chunk-107-1.pdf> <./Stat155Notes
 _files/figure-latex/unnamed-chunk-108-1.pdf
@@ -2178,32 +2178,32 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-109-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-109-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-109-1.pd
-f  used on input line 2673.
+f  used on input line 2672.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 
-Package xcolor Warning: Incompatible color definition on input line 2691.
+Package xcolor Warning: Incompatible color definition on input line 2690.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2697.
+Package xcolor Warning: Incompatible color definition on input line 2696.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2697.
+Package xcolor Warning: Incompatible color definition on input line 2696.
 
 [91 <./Stat155Notes_files/figure-latex/unnamed-chunk-109-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2735.
+Package xcolor Warning: Incompatible color definition on input line 2734.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2742.
+Package xcolor Warning: Incompatible color definition on input line 2741.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2742.
+Package xcolor Warning: Incompatible color definition on input line 2741.
 
 [92]
 <Photos/correlation.png, id=2088, 414.64912pt x 167.12437pt>
 File: Photos/correlation.png Graphic file (type png)
 <use Photos/correlation.png>
-Package pdftex.def Info: Photos/correlation.png  used on input line 2799.
+Package pdftex.def Info: Photos/correlation.png  used on input line 2798.
 (pdftex.def)             Requested size: 345.01915pt x 139.05998pt.
 
 Underfull \vbox (badness 2103) has occurred while \output is active []
@@ -2212,26 +2212,26 @@ Underfull \vbox (badness 2103) has occurred while \output is active []
 <Photos/corn.jpeg, id=2098, 225.84375pt x 225.84375pt>
 File: Photos/corn.jpeg Graphic file (type jpg)
 <use Photos/corn.jpeg>
-Package pdftex.def Info: Photos/corn.jpeg  used on input line 2824.
+Package pdftex.def Info: Photos/corn.jpeg  used on input line 2823.
 (pdftex.def)             Requested size: 225.85696pt x 225.85696pt.
 [94 <./Photos/correlation.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2838.
+Package xcolor Warning: Incompatible color definition on input line 2837.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2842.
+Package xcolor Warning: Incompatible color definition on input line 2841.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2842.
+Package xcolor Warning: Incompatible color definition on input line 2841.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2844.
+Package xcolor Warning: Incompatible color definition on input line 2843.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2854.
+Package xcolor Warning: Incompatible color definition on input line 2853.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2854.
+Package xcolor Warning: Incompatible color definition on input line 2853.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-114-1.pdf, id=2108, 459.7175pt x
  315.1775pt>
@@ -2239,118 +2239,118 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-114-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-114-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-114-1.pd
-f  used on input line 2856.
+f  used on input line 2855.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [95 <./Photos/corn.jpeg>]
 
-Package xcolor Warning: Incompatible color definition on input line 2874.
+Package xcolor Warning: Incompatible color definition on input line 2873.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2881.
+Package xcolor Warning: Incompatible color definition on input line 2880.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2881.
+Package xcolor Warning: Incompatible color definition on input line 2880.
 
 [96 <./Stat155Notes_files/figure-latex/unnamed-chunk-114-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 2893.
+Package xcolor Warning: Incompatible color definition on input line 2892.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2899.
+Package xcolor Warning: Incompatible color definition on input line 2898.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2899.
+Package xcolor Warning: Incompatible color definition on input line 2898.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2931--2932
+Underfull \hbox (badness 10000) in paragraph at lines 2930--2931
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 2935.
+Package xcolor Warning: Incompatible color definition on input line 2934.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2940.
+Package xcolor Warning: Incompatible color definition on input line 2939.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2940.
+Package xcolor Warning: Incompatible color definition on input line 2939.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2946.
+Package xcolor Warning: Incompatible color definition on input line 2945.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2953.
+Package xcolor Warning: Incompatible color definition on input line 2952.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2953.
+Package xcolor Warning: Incompatible color definition on input line 2952.
 
 [97]
-Underfull \hbox (badness 10000) in paragraph at lines 2963--2964
+Underfull \hbox (badness 10000) in paragraph at lines 2962--2963
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 2967.
+Package xcolor Warning: Incompatible color definition on input line 2966.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2971.
+Package xcolor Warning: Incompatible color definition on input line 2970.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2971.
+Package xcolor Warning: Incompatible color definition on input line 2970.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2977.
+Package xcolor Warning: Incompatible color definition on input line 2976.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2983.
+Package xcolor Warning: Incompatible color definition on input line 2982.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2983.
+Package xcolor Warning: Incompatible color definition on input line 2982.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2993--2994
+Underfull \hbox (badness 10000) in paragraph at lines 2992--2993
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 2997.
+Package xcolor Warning: Incompatible color definition on input line 2996.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3001.
+Package xcolor Warning: Incompatible color definition on input line 3000.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3001.
+Package xcolor Warning: Incompatible color definition on input line 3000.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3007.
+Package xcolor Warning: Incompatible color definition on input line 3006.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3013.
+Package xcolor Warning: Incompatible color definition on input line 3012.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3013.
+Package xcolor Warning: Incompatible color definition on input line 3012.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3034.
+Package xcolor Warning: Incompatible color definition on input line 3033.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3039.
+Package xcolor Warning: Incompatible color definition on input line 3038.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3039.
+Package xcolor Warning: Incompatible color definition on input line 3038.
 
 [98]
 
-Package xcolor Warning: Incompatible color definition on input line 3055.
+Package xcolor Warning: Incompatible color definition on input line 3054.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3062.
+Package xcolor Warning: Incompatible color definition on input line 3061.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3062.
+Package xcolor Warning: Incompatible color definition on input line 3061.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-122-1.pdf, id=2141, 429.605pt x 
 283.0575pt>
@@ -2358,53 +2358,53 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-122-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-122-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-122-1.pd
-f  used on input line 3064.
+f  used on input line 3063.
 (pdftex.def)             Requested size: 345.00206pt x 227.31444pt.
 
-Package xcolor Warning: Incompatible color definition on input line 3068.
+Package xcolor Warning: Incompatible color definition on input line 3067.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3077.
+Package xcolor Warning: Incompatible color definition on input line 3076.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3077.
+Package xcolor Warning: Incompatible color definition on input line 3076.
 
 [99 <./Stat155Notes_files/figure-latex/unnamed-chunk-122-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 3083.
+Package xcolor Warning: Incompatible color definition on input line 3082.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3087.
+Package xcolor Warning: Incompatible color definition on input line 3086.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3087.
+Package xcolor Warning: Incompatible color definition on input line 3086.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3095.
+Package xcolor Warning: Incompatible color definition on input line 3094.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3099.
+Package xcolor Warning: Incompatible color definition on input line 3098.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3099.
+Package xcolor Warning: Incompatible color definition on input line 3098.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3105.
+Package xcolor Warning: Incompatible color definition on input line 3104.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3109.
+Package xcolor Warning: Incompatible color definition on input line 3108.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3109.
+Package xcolor Warning: Incompatible color definition on input line 3108.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3123.
+Package xcolor Warning: Incompatible color definition on input line 3122.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3127.
+Package xcolor Warning: Incompatible color definition on input line 3126.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3127.
+Package xcolor Warning: Incompatible color definition on input line 3126.
 
 [100]
 <Stat155Notes_files/figure-latex/unnamed-chunk-126-1.pdf, id=2169, 459.7175pt x
@@ -2413,66 +2413,66 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-126-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-126-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-126-1.pd
-f  used on input line 3150.
+f  used on input line 3149.
 (pdftex.def)             Requested size: 345.01875pt x 237.29456pt.
 
 Underfull \vbox (badness 7869) has occurred while \output is active []
 
 [101 <./Stat155Notes_files/figure-latex/unnamed-chunk-126-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 3178.
+Package xcolor Warning: Incompatible color definition on input line 3177.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3182.
+Package xcolor Warning: Incompatible color definition on input line 3181.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3182.
+Package xcolor Warning: Incompatible color definition on input line 3181.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3188.
+Package xcolor Warning: Incompatible color definition on input line 3187.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3192.
+Package xcolor Warning: Incompatible color definition on input line 3191.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3192.
+Package xcolor Warning: Incompatible color definition on input line 3191.
 
 
-Overfull \hbox (64.49881pt too wide) in paragraph at lines 3200--3200
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 3199--3199
 []\T1/lmtt/m/n/10 ##   r.squared adj.r.squared sigma statistic  p.value    df l
 ogLik   AIC   BIC[] 
  []
 
 
-Overfull \hbox (64.49881pt too wide) in paragraph at lines 3200--3200
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 3199--3199
 []\T1/lmtt/m/n/10 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <int>  
 <dbl> <dbl> <dbl>[] 
  []
 
 
-Overfull \hbox (64.49881pt too wide) in paragraph at lines 3200--3200
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 3199--3199
 []\T1/lmtt/m/n/10 ## 1     0.608         0.604 0.281      160. 1.18e-22     2  
 -14.9  35.7  43.7[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 3231.
+Package xcolor Warning: Incompatible color definition on input line 3230.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3241.
+Package xcolor Warning: Incompatible color definition on input line 3240.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3241.
+Package xcolor Warning: Incompatible color definition on input line 3240.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3241.
+Package xcolor Warning: Incompatible color definition on input line 3240.
 
 [102]
 
-Package xcolor Warning: Incompatible color definition on input line 3241.
+Package xcolor Warning: Incompatible color definition on input line 3240.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3241.
+Package xcolor Warning: Incompatible color definition on input line 3240.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-129-1.pdf, id=2191, 459.7175pt x
  315.1775pt>
@@ -2480,7 +2480,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-129-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-129-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-129-1.pd
-f  used on input line 3243.
+f  used on input line 3242.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-130-1.pdf, id=2192, 457.71pt x 3
 13.17pt>
@@ -2488,7 +2488,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-130-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-130-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-130-1.pd
-f  used on input line 3261.
+f  used on input line 3260.
 (pdftex.def)             Requested size: 345.01372pt x 236.062pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-130-2.pdf, id=2193, 457.71pt x 3
 13.17pt>
@@ -2496,7 +2496,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-130-2.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-130-2.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-130-2.pd
-f  used on input line 3261.
+f  used on input line 3260.
 (pdftex.def)             Requested size: 345.01372pt x 236.062pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2512,144 +2512,144 @@ pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
 age
 >] [105]
 
-Package xcolor Warning: Incompatible color definition on input line 3339.
+Package xcolor Warning: Incompatible color definition on input line 3338.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3344.
+Package xcolor Warning: Incompatible color definition on input line 3343.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3344.
+Package xcolor Warning: Incompatible color definition on input line 3343.
 
 
-Overfull \hbox (32.9989pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ##    Price Lot.Size Waterfront Age Land.Value New.Construct 
 Central.Air[] 
  []
 
 
-Overfull \hbox (32.9989pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 1 132500     0.09          0  42      50000             0 
           0[] 
  []
 
 
-Overfull \hbox (32.9989pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 2 181115     0.92          0   0      22300             0 
           0[] 
  []
 
 
-Overfull \hbox (32.9989pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 3 109000     0.19          0 133       7300             0 
           0[] 
  []
 
 
-Overfull \hbox (32.9989pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 4 155000     0.41          0  13      18700             0 
           0[] 
  []
 
 
-Overfull \hbox (32.9989pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 5  86060     0.11          0   0      15000             1 
           1[] 
  []
 
 
-Overfull \hbox (32.9989pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (32.9989pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 6 120000     0.68          0  31      14000             0 
           0[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ##   Fuel.Type Heat.Type Sewer.Type Living.Area Pct.College B
 edrooms[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 1         3         4          2         906          35  
       2[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 2         2         3          2        1953          51  
       3[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 3         2         3          3        1944          51  
       4[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 4         2         2          2        1944          51  
       3[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 5         2         2          3         840          51  
       2[] 
  []
 
 
-Overfull \hbox (11.99896pt too wide) in paragraph at lines 3368--3368
+Overfull \hbox (11.99896pt too wide) in paragraph at lines 3367--3367
 []\T1/lmtt/m/n/10 ## 6         2         2          2        1152          22  
       4[] 
  []
 
 [106]
 
-Package xcolor Warning: Incompatible color definition on input line 3377.
+Package xcolor Warning: Incompatible color definition on input line 3376.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3382.
+Package xcolor Warning: Incompatible color definition on input line 3381.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3382.
+Package xcolor Warning: Incompatible color definition on input line 3381.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3390.
+Package xcolor Warning: Incompatible color definition on input line 3389.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3395.
+Package xcolor Warning: Incompatible color definition on input line 3394.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3395.
+Package xcolor Warning: Incompatible color definition on input line 3394.
 
 [107]
-Underfull \hbox (badness 10000) in paragraph at lines 3429--3430
+Underfull \hbox (badness 10000) in paragraph at lines 3428--3429
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 3433.
+Package xcolor Warning: Incompatible color definition on input line 3432.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3437.
+Package xcolor Warning: Incompatible color definition on input line 3436.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3437.
+Package xcolor Warning: Incompatible color definition on input line 3436.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3446--3447
+Underfull \hbox (badness 10000) in paragraph at lines 3445--3446
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 3464.
+Package xcolor Warning: Incompatible color definition on input line 3463.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3471.
+Package xcolor Warning: Incompatible color definition on input line 3470.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3471.
+Package xcolor Warning: Incompatible color definition on input line 3470.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-136-1.pdf, id=2259, 459.7175pt x
  315.1775pt>
@@ -2657,20 +2657,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-136-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-136-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-136-1.pd
-f  used on input line 3473.
+f  used on input line 3472.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [108]
 
-Package xcolor Warning: Incompatible color definition on input line 3477.
+Package xcolor Warning: Incompatible color definition on input line 3476.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3484.
+Package xcolor Warning: Incompatible color definition on input line 3483.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3484.
+Package xcolor Warning: Incompatible color definition on input line 3483.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-137-1.pdf, id=2264, 459.7175pt x
  315.1775pt>
@@ -2678,35 +2678,35 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-137-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-137-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-137-1.pd
-f  used on input line 3486.
+f  used on input line 3485.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [109 <./Stat155Notes_files/figure-latex/unnamed-chunk-136-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 3492.
+Package xcolor Warning: Incompatible color definition on input line 3491.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3497.
+Package xcolor Warning: Incompatible color definition on input line 3496.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3497.
+Package xcolor Warning: Incompatible color definition on input line 3496.
 
 [110 <./Stat155Notes_files/figure-latex/unnamed-chunk-137-1.pdf>]
-Overfull \hbox (184.77856pt too wide) detected at line 3574
+Overfull \hbox (184.77856pt too wide) detected at line 3573
 []
  []
 
 [111]
 
-Package xcolor Warning: Incompatible color definition on input line 3587.
+Package xcolor Warning: Incompatible color definition on input line 3586.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3594.
+Package xcolor Warning: Incompatible color definition on input line 3593.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3594.
+Package xcolor Warning: Incompatible color definition on input line 3593.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-139-1.pdf, id=2300, 453.695pt x 
 315.1775pt>
@@ -2714,26 +2714,26 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-139-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-139-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-139-1.pd
-f  used on input line 3596.
+f  used on input line 3595.
 (pdftex.def)             Requested size: 344.9987pt x 239.66724pt.
 
-Package xcolor Warning: Incompatible color definition on input line 3600.
+Package xcolor Warning: Incompatible color definition on input line 3599.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3608.
+Package xcolor Warning: Incompatible color definition on input line 3607.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3608.
+Package xcolor Warning: Incompatible color definition on input line 3607.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3608.
+Package xcolor Warning: Incompatible color definition on input line 3607.
 
 [112 <./Stat155Notes_files/figure-latex/unnamed-chunk-139-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 3608.
+Package xcolor Warning: Incompatible color definition on input line 3607.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3608.
+Package xcolor Warning: Incompatible color definition on input line 3607.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-140-1.pdf, id=2317, 453.695pt x 
 315.1775pt>
@@ -2741,126 +2741,126 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-140-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-140-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-140-1.pd
-f  used on input line 3610.
+f  used on input line 3609.
 (pdftex.def)             Requested size: 344.9987pt x 239.66724pt.
 [113 <./Stat155Notes_files/figure-latex/unnamed-chunk-140-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 3647.
+Package xcolor Warning: Incompatible color definition on input line 3646.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3652.
+Package xcolor Warning: Incompatible color definition on input line 3651.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3652.
+Package xcolor Warning: Incompatible color definition on input line 3651.
 
 
-Overfull \hbox (22.49893pt too wide) in paragraph at lines 3675--3675
-[]\T1/lmtt/m/n/10 ##                                Estimate Std. Error t value
- Pr(>|t|)[] 
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 3674--3674
+[]\T1/lmtt/m/n/10 ##                               Estimate Std. Error t value 
+Pr(>|t|)[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3675--3675
-[]\T1/lmtt/m/n/10 ## (Intercept)                   40901.294   8234.665   4.967
- 7.47e-07 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3674--3674
+[]\T1/lmtt/m/n/10 ## (Intercept)                   40901.29    8234.66    4.97 
+ 7.5e-07 ***[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3675--3675
-[]\T1/lmtt/m/n/10 ## AnyFireplaceTRUE             -37610.413  11024.853  -3.411
- 0.000661 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3674--3674
+[]\T1/lmtt/m/n/10 ## AnyFireplaceTRUE             -37610.41   11024.85   -3.41 
+ 0.00066 ***[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3675--3675
-[]\T1/lmtt/m/n/10 ## Living.Area                      92.364      5.412  17.066
-  < 2e-16 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3674--3674
+[]\T1/lmtt/m/n/10 ## Living.Area                      92.36       5.41   17.07 
+ < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3675--3675
-[]\T1/lmtt/m/n/10 ## AnyFireplaceTRUE:Living.Area     26.852      6.459   4.157
- 3.38e-05 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3674--3674
+[]\T1/lmtt/m/n/10 ## AnyFireplaceTRUE:Living.Area     26.85       6.46    4.16 
+ 3.4e-05 ***[] 
  []
 
 
-Overfull \hbox (77.8894pt too wide) detected at line 3690
+Overfull \hbox (77.8894pt too wide) detected at line 3689
 []
  []
 
 [114]
 
-Package xcolor Warning: Incompatible color definition on input line 3692.
+Package xcolor Warning: Incompatible color definition on input line 3691.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3696.
+Package xcolor Warning: Incompatible color definition on input line 3695.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3696.
+Package xcolor Warning: Incompatible color definition on input line 3695.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3702.
+Package xcolor Warning: Incompatible color definition on input line 3701.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3706.
+Package xcolor Warning: Incompatible color definition on input line 3705.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3706.
+Package xcolor Warning: Incompatible color definition on input line 3705.
 
 
-Overfull \hbox (77.8894pt too wide) detected at line 3721
+Overfull \hbox (77.8894pt too wide) detected at line 3720
 []
  []
 
 [115]
 
-Package xcolor Warning: Incompatible color definition on input line 3761.
+Package xcolor Warning: Incompatible color definition on input line 3760.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3766.
+Package xcolor Warning: Incompatible color definition on input line 3765.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3766.
+Package xcolor Warning: Incompatible color definition on input line 3765.
 
 
-Overfull \hbox (22.49893pt too wide) in paragraph at lines 3789--3789
-[]\T1/lmtt/m/n/10 ##                                Estimate Std. Error t value
- Pr(>|t|)[] 
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 3788--3788
+[]\T1/lmtt/m/n/10 ##                               Estimate Std. Error t value 
+Pr(>|t|)[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3789--3789
-[]\T1/lmtt/m/n/10 ## (Intercept)                   40901.294   8234.665   4.967
- 7.47e-07 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3788--3788
+[]\T1/lmtt/m/n/10 ## (Intercept)                   40901.29    8234.66    4.97 
+ 7.5e-07 ***[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3789--3789
-[]\T1/lmtt/m/n/10 ## Living.Area                      92.364      5.412  17.066
-  < 2e-16 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3788--3788
+[]\T1/lmtt/m/n/10 ## Living.Area                      92.36       5.41   17.07 
+ < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3789--3789
-[]\T1/lmtt/m/n/10 ## AnyFireplaceTRUE             -37610.413  11024.853  -3.411
- 0.000661 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3788--3788
+[]\T1/lmtt/m/n/10 ## AnyFireplaceTRUE             -37610.41   11024.85   -3.41 
+ 0.00066 ***[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3789--3789
-[]\T1/lmtt/m/n/10 ## Living.Area:AnyFireplaceTRUE     26.852      6.459   4.157
- 3.38e-05 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3788--3788
+[]\T1/lmtt/m/n/10 ## Living.Area:AnyFireplaceTRUE     26.85       6.46    4.16 
+ 3.4e-05 ***[] 
  []
 
 [116]
 
-Package xcolor Warning: Incompatible color definition on input line 3821.
+Package xcolor Warning: Incompatible color definition on input line 3820.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3834.
+Package xcolor Warning: Incompatible color definition on input line 3833.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3834.
+Package xcolor Warning: Incompatible color definition on input line 3833.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-145-1.pdf, id=2354, 458.71375pt 
 x 316.18124pt>
@@ -2868,88 +2868,88 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-145-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-145-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-145-1.pd
-f  used on input line 3836.
+f  used on input line 3835.
 (pdftex.def)             Requested size: 345.01439pt x 237.81078pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [117]
 
-Package xcolor Warning: Incompatible color definition on input line 3853.
+Package xcolor Warning: Incompatible color definition on input line 3852.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3858.
+Package xcolor Warning: Incompatible color definition on input line 3857.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3858.
+Package xcolor Warning: Incompatible color definition on input line 3857.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3865.
+Package xcolor Warning: Incompatible color definition on input line 3864.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3869.
+Package xcolor Warning: Incompatible color definition on input line 3868.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3869.
+Package xcolor Warning: Incompatible color definition on input line 3868.
 
 [118 <./Stat155Notes_files/figure-latex/unnamed-chunk-145-1.pdf>]
-Overfull \hbox (22.49893pt too wide) in paragraph at lines 3892--3892
-[]\T1/lmtt/m/n/10 ##                                Estimate Std. Error t value
- Pr(>|t|)[] 
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 3891--3891
+[]\T1/lmtt/m/n/10 ##                               Estimate Std. Error t value 
+Pr(>|t|)[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3892--3892
-[]\T1/lmtt/m/n/10 ## (Intercept)                   40901.294   8234.665   4.967
- 7.47e-07 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3891--3891
+[]\T1/lmtt/m/n/10 ## (Intercept)                   40901.29    8234.66    4.97 
+ 7.5e-07 ***[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3892--3892
-[]\T1/lmtt/m/n/10 ## Living.Area                      92.364      5.412  17.066
-  < 2e-16 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3891--3891
+[]\T1/lmtt/m/n/10 ## Living.Area                      92.36       5.41   17.07 
+ < 2e-16 ***[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3892--3892
-[]\T1/lmtt/m/n/10 ## AnyFireplaceTRUE             -37610.413  11024.853  -3.411
- 0.000661 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3891--3891
+[]\T1/lmtt/m/n/10 ## AnyFireplaceTRUE             -37610.41   11024.85   -3.41 
+ 0.00066 ***[] 
  []
 
 
-Overfull \hbox (43.49887pt too wide) in paragraph at lines 3892--3892
-[]\T1/lmtt/m/n/10 ## Living.Area:AnyFireplaceTRUE     26.852      6.459   4.157
- 3.38e-05 ***[] 
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 3891--3891
+[]\T1/lmtt/m/n/10 ## Living.Area:AnyFireplaceTRUE     26.85       6.46    4.16 
+ 3.4e-05 ***[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 3898.
+Package xcolor Warning: Incompatible color definition on input line 3897.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3903.
+Package xcolor Warning: Incompatible color definition on input line 3902.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3903.
+Package xcolor Warning: Incompatible color definition on input line 3902.
 
 [119]
 
-Package xcolor Warning: Incompatible color definition on input line 3959.
+Package xcolor Warning: Incompatible color definition on input line 3958.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3968.
+Package xcolor Warning: Incompatible color definition on input line 3967.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3968.
+Package xcolor Warning: Incompatible color definition on input line 3967.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3968.
+Package xcolor Warning: Incompatible color definition on input line 3967.
 
 [120]
 
-Package xcolor Warning: Incompatible color definition on input line 3968.
+Package xcolor Warning: Incompatible color definition on input line 3967.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3968.
+Package xcolor Warning: Incompatible color definition on input line 3967.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-149-1.pdf, id=2406, 459.7175pt x
  315.1775pt>
@@ -2957,16 +2957,16 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-149-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-149-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-149-1.pd
-f  used on input line 3970.
+f  used on input line 3969.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
-Package xcolor Warning: Incompatible color definition on input line 3978.
+Package xcolor Warning: Incompatible color definition on input line 3977.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3986.
+Package xcolor Warning: Incompatible color definition on input line 3985.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3986.
+Package xcolor Warning: Incompatible color definition on input line 3985.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-150-1.pdf, id=2407, 459.7175pt x
  315.1775pt>
@@ -2974,20 +2974,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-150-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-150-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-150-1.pd
-f  used on input line 3988.
+f  used on input line 3987.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [121 <./Stat155Notes_files/figure-latex/unnamed-chunk-149-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 3992.
+Package xcolor Warning: Incompatible color definition on input line 3991.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4000.
+Package xcolor Warning: Incompatible color definition on input line 3999.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4000.
+Package xcolor Warning: Incompatible color definition on input line 3999.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-151-1.pdf, id=2424, 459.7175pt x
  315.1775pt>
@@ -2995,20 +2995,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-151-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-151-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-151-1.pd
-f  used on input line 4002.
+f  used on input line 4001.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [122 <./Stat155Notes_files/figure-latex/unnamed-chunk-150-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4006.
+Package xcolor Warning: Incompatible color definition on input line 4005.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4014.
+Package xcolor Warning: Incompatible color definition on input line 4013.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4014.
+Package xcolor Warning: Incompatible color definition on input line 4013.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-152-1.pdf, id=2441, 459.7175pt x
  315.1775pt>
@@ -3016,20 +3016,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-152-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-152-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-152-1.pd
-f  used on input line 4016.
+f  used on input line 4015.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [123 <./Stat155Notes_files/figure-latex/unnamed-chunk-151-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4020.
+Package xcolor Warning: Incompatible color definition on input line 4019.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4028.
+Package xcolor Warning: Incompatible color definition on input line 4027.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4028.
+Package xcolor Warning: Incompatible color definition on input line 4027.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-153-1.pdf, id=2457, 459.7175pt x
  315.1775pt>
@@ -3037,20 +3037,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-153-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-153-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-153-1.pd
-f  used on input line 4030.
+f  used on input line 4029.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [124 <./Stat155Notes_files/figure-latex/unnamed-chunk-152-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4036.
+Package xcolor Warning: Incompatible color definition on input line 4035.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4045.
+Package xcolor Warning: Incompatible color definition on input line 4044.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4045.
+Package xcolor Warning: Incompatible color definition on input line 4044.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-154-1.pdf, id=2473, 459.7175pt x
  315.1775pt>
@@ -3058,31 +3058,31 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-154-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-154-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-154-1.pd
-f  used on input line 4047.
+f  used on input line 4046.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [125 <./Stat155Notes_files/figure-latex/unnamed-chunk-153-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4055.
+Package xcolor Warning: Incompatible color definition on input line 4054.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4064.
+Package xcolor Warning: Incompatible color definition on input line 4063.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4064.
+Package xcolor Warning: Incompatible color definition on input line 4063.
 
 [126 <./Stat155Notes_files/figure-latex/unnamed-chunk-154-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4123.
+Package xcolor Warning: Incompatible color definition on input line 4122.
 
 [127]
 
-Package xcolor Warning: Incompatible color definition on input line 4133.
+Package xcolor Warning: Incompatible color definition on input line 4132.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4133.
+Package xcolor Warning: Incompatible color definition on input line 4132.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-156-1.pdf, id=2511, 457.71pt x 3
 13.17pt>
@@ -3090,44 +3090,44 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-156-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-156-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-156-1.pd
-f  used on input line 4135.
+f  used on input line 4134.
 (pdftex.def)             Requested size: 345.01372pt x 236.062pt.
 
-Package xcolor Warning: Incompatible color definition on input line 4137.
+Package xcolor Warning: Incompatible color definition on input line 4136.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4141.
+Package xcolor Warning: Incompatible color definition on input line 4140.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4141.
+Package xcolor Warning: Incompatible color definition on input line 4140.
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 4153--4153
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 4152--4152
 []\T1/lmtt/m/n/10 ##                      (Intercept)  poly(x, degree = 2, raw 
 = TRUE)1[] 
  []
 
 
-Overfull \hbox (17.24895pt too wide) in paragraph at lines 4153--4153
-[]\T1/lmtt/m/n/10 ##                          192.806                          
-  23.305[] 
+Overfull \hbox (17.24895pt too wide) in paragraph at lines 4152--4152
+[]\T1/lmtt/m/n/10 ##                           192.81                          
+   23.30[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 4157.
+Package xcolor Warning: Incompatible color definition on input line 4156.
 
 
 Underfull \vbox (badness 1454) has occurred while \output is active []
 
 [128 <./Stat155Notes_files/figure-latex/unnamed-chunk-156-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4162.
+Package xcolor Warning: Incompatible color definition on input line 4161.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4162.
+Package xcolor Warning: Incompatible color definition on input line 4161.
 
 
-Overfull \hbox (38.24889pt too wide) in paragraph at lines 4167--4167
+Overfull \hbox (38.24889pt too wide) in paragraph at lines 4166--4166
 []\T1/lmtt/m/n/10 ## Warning in model.matrix.default(mt, mf, contrasts): non-li
 st contrasts[] 
  []
@@ -3138,7 +3138,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-157-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-157-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-157-1.pd
-f  used on input line 4169.
+f  used on input line 4168.
 (pdftex.def)             Requested size: 345.00154pt x 196.69052pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-158-1.pdf, id=2528, 436.63126pt 
 x 248.93pt>
@@ -3146,30 +3146,30 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-158-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-158-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-158-1.pd
-f  used on input line 4187.
+f  used on input line 4186.
 (pdftex.def)             Requested size: 345.00154pt x 196.69052pt.
 [129 <./Stat155Notes_files/figure-latex/unnamed-chunk-157-1.pdf>]
 Underfull \vbox (badness 1132) has occurred while \output is active []
 
 [130 <./Stat155Notes_files/figure-latex/unnamed-chunk-158-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4235.
+Package xcolor Warning: Incompatible color definition on input line 4234.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4246.
+Package xcolor Warning: Incompatible color definition on input line 4245.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4246.
+Package xcolor Warning: Incompatible color definition on input line 4245.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4246.
+Package xcolor Warning: Incompatible color definition on input line 4245.
 
 [131]
 
-Package xcolor Warning: Incompatible color definition on input line 4246.
+Package xcolor Warning: Incompatible color definition on input line 4245.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4246.
+Package xcolor Warning: Incompatible color definition on input line 4245.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-161-1.pdf, id=2565, 459.7175pt x
  315.1775pt>
@@ -3177,16 +3177,16 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-161-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-161-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-161-1.pd
-f  used on input line 4248.
+f  used on input line 4247.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
-Package xcolor Warning: Incompatible color definition on input line 4250.
+Package xcolor Warning: Incompatible color definition on input line 4249.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4260.
+Package xcolor Warning: Incompatible color definition on input line 4259.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4260.
+Package xcolor Warning: Incompatible color definition on input line 4259.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-161-2.pdf, id=2566, 459.7175pt x
  315.1775pt>
@@ -3194,74 +3194,74 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-161-2.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-161-2.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-161-2.pd
-f  used on input line 4262.
+f  used on input line 4261.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [132 <./Stat155Notes_files/figure-latex/unnamed-chunk-161-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4271.
+Package xcolor Warning: Incompatible color definition on input line 4270.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4276.
+Package xcolor Warning: Incompatible color definition on input line 4275.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4276.
+Package xcolor Warning: Incompatible color definition on input line 4275.
 
 
-Overfull \hbox (53.99884pt too wide) in paragraph at lines 4302--4302
+Overfull \hbox (53.99884pt too wide) in paragraph at lines 4301--4301
 []\T1/lmtt/m/n/10 ## glm(formula = Fail ~ Temperature, family = binomial, data 
 = SpaceShuttle)[] 
  []
 
 [133 <./Stat155Notes_files/figure-latex/unnamed-chunk-161-2.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4313.
+Package xcolor Warning: Incompatible color definition on input line 4312.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4317.
+Package xcolor Warning: Incompatible color definition on input line 4316.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4317.
+Package xcolor Warning: Incompatible color definition on input line 4316.
 
 
-Overfull \hbox (53.99884pt too wide) in paragraph at lines 4343--4343
+Overfull \hbox (53.99884pt too wide) in paragraph at lines 4342--4342
 []\T1/lmtt/m/n/10 ## glm(formula = Fail ~ Temperature, family = binomial, data 
 = SpaceShuttle)[] 
  []
 
 [134] [135]
 
-Package xcolor Warning: Incompatible color definition on input line 4385.
+Package xcolor Warning: Incompatible color definition on input line 4384.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4389.
+Package xcolor Warning: Incompatible color definition on input line 4388.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4389.
+Package xcolor Warning: Incompatible color definition on input line 4388.
 
 [136]
 
-Package xcolor Warning: Incompatible color definition on input line 4419.
+Package xcolor Warning: Incompatible color definition on input line 4418.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4425.
+Package xcolor Warning: Incompatible color definition on input line 4424.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4425.
+Package xcolor Warning: Incompatible color definition on input line 4424.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4438.
+Package xcolor Warning: Incompatible color definition on input line 4437.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4444.
+Package xcolor Warning: Incompatible color definition on input line 4443.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4444.
+Package xcolor Warning: Incompatible color definition on input line 4443.
 
 [137]
-Underfull \hbox (badness 10000) in paragraph at lines 4483--4484
+Underfull \hbox (badness 10000) in paragraph at lines 4482--4483
 \T1/lmr/m/n/10 (+20) see [][]$\T1/lmtt/m/n/10 https : / / www . huffingtonpost 
 . com / 2014 / 02 / 10 / klemens -[] torggler -[]
  []
@@ -3272,23 +3272,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 4483--4484
 Chapter 4.
 [141]
 
-Package xcolor Warning: Incompatible color definition on input line 4543.
+Package xcolor Warning: Incompatible color definition on input line 4542.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4558.
+Package xcolor Warning: Incompatible color definition on input line 4557.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4558.
+Package xcolor Warning: Incompatible color definition on input line 4557.
 
 [142]
 
-Package xcolor Warning: Incompatible color definition on input line 4564.
+Package xcolor Warning: Incompatible color definition on input line 4563.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4574.
+Package xcolor Warning: Incompatible color definition on input line 4573.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4574.
+Package xcolor Warning: Incompatible color definition on input line 4573.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-170-1.pdf, id=2657, 458.71375pt 
 x 315.1775pt>
@@ -3296,29 +3296,29 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-170-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-170-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-170-1.pd
-f  used on input line 4576.
+f  used on input line 4575.
 (pdftex.def)             Requested size: 345.01439pt x 237.05583pt.
 
-Package xcolor Warning: Incompatible color definition on input line 4578.
+Package xcolor Warning: Incompatible color definition on input line 4577.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4583.
+Package xcolor Warning: Incompatible color definition on input line 4582.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4583.
+Package xcolor Warning: Incompatible color definition on input line 4582.
 
 
 Underfull \vbox (badness 2538) has occurred while \output is active []
 
 [143 <./Stat155Notes_files/figure-latex/unnamed-chunk-170-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4603.
+Package xcolor Warning: Incompatible color definition on input line 4602.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4613.
+Package xcolor Warning: Incompatible color definition on input line 4612.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4613.
+Package xcolor Warning: Incompatible color definition on input line 4612.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-172-1.pdf, id=2673, 458.71375pt 
 x 315.1775pt>
@@ -3326,35 +3326,35 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-172-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-172-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-172-1.pd
-f  used on input line 4615.
+f  used on input line 4614.
 (pdftex.def)             Requested size: 345.01439pt x 237.05583pt.
 
-Package xcolor Warning: Incompatible color definition on input line 4617.
+Package xcolor Warning: Incompatible color definition on input line 4616.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4622.
+Package xcolor Warning: Incompatible color definition on input line 4621.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4622.
+Package xcolor Warning: Incompatible color definition on input line 4621.
 
 [144 <./Stat155Notes_files/figure-latex/unnamed-chunk-172-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4640.
+Package xcolor Warning: Incompatible color definition on input line 4639.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4648.
+Package xcolor Warning: Incompatible color definition on input line 4647.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4648.
+Package xcolor Warning: Incompatible color definition on input line 4647.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4652.
+Package xcolor Warning: Incompatible color definition on input line 4651.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4670.
+Package xcolor Warning: Incompatible color definition on input line 4669.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4670.
+Package xcolor Warning: Incompatible color definition on input line 4669.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-175-1.pdf, id=2689, 458.71375pt 
 x 313.17pt>
@@ -3362,20 +3362,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-175-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-175-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-175-1.pd
-f  used on input line 4672.
+f  used on input line 4671.
 (pdftex.def)             Requested size: 345.01439pt x 235.54591pt.
 
-Package xcolor Warning: Incompatible color definition on input line 4674.
+Package xcolor Warning: Incompatible color definition on input line 4673.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [145]
 
-Package xcolor Warning: Incompatible color definition on input line 4684.
+Package xcolor Warning: Incompatible color definition on input line 4683.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4684.
+Package xcolor Warning: Incompatible color definition on input line 4683.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-175-2.pdf, id=2695, 458.71375pt 
 x 313.17pt>
@@ -3383,7 +3383,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-175-2.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-175-2.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-175-2.pd
-f  used on input line 4686.
+f  used on input line 4685.
 (pdftex.def)             Requested size: 345.01439pt x 235.54591pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3391,41 +3391,41 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [146 <./Stat155Notes_files/figure-latex/unnamed-chunk-175-1.pdf>] [147 <./Stat1
 55Notes_files/figure-latex/unnamed-chunk-175-2.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4718.
+Package xcolor Warning: Incompatible color definition on input line 4717.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4726.
+Package xcolor Warning: Incompatible color definition on input line 4725.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4726.
+Package xcolor Warning: Incompatible color definition on input line 4725.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4732.
+Package xcolor Warning: Incompatible color definition on input line 4731.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4744.
+Package xcolor Warning: Incompatible color definition on input line 4743.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4744.
+Package xcolor Warning: Incompatible color definition on input line 4743.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4755.
+Package xcolor Warning: Incompatible color definition on input line 4754.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4759.
+Package xcolor Warning: Incompatible color definition on input line 4758.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4759.
+Package xcolor Warning: Incompatible color definition on input line 4758.
 
 [148]
 
-Package xcolor Warning: Incompatible color definition on input line 4774.
+Package xcolor Warning: Incompatible color definition on input line 4773.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4784.
+Package xcolor Warning: Incompatible color definition on input line 4783.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4784.
+Package xcolor Warning: Incompatible color definition on input line 4783.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-181-1.pdf, id=2732, 458.71375pt 
 x 313.17pt>
@@ -3433,16 +3433,16 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-181-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-181-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-181-1.pd
-f  used on input line 4786.
+f  used on input line 4785.
 (pdftex.def)             Requested size: 345.01439pt x 235.54591pt.
 
-Package xcolor Warning: Incompatible color definition on input line 4788.
+Package xcolor Warning: Incompatible color definition on input line 4787.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4798.
+Package xcolor Warning: Incompatible color definition on input line 4797.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4798.
+Package xcolor Warning: Incompatible color definition on input line 4797.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-181-2.pdf, id=2733, 458.71375pt 
 x 313.17pt>
@@ -3450,20 +3450,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-181-2.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-181-2.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-181-2.pd
-f  used on input line 4800.
+f  used on input line 4799.
 (pdftex.def)             Requested size: 345.01439pt x 235.54591pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [149 <./Stat155Notes_files/figure-latex/unnamed-chunk-181-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4804.
+Package xcolor Warning: Incompatible color definition on input line 4803.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4814.
+Package xcolor Warning: Incompatible color definition on input line 4813.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4814.
+Package xcolor Warning: Incompatible color definition on input line 4813.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-182-1.pdf, id=2749, 458.71375pt 
 x 313.17pt>
@@ -3471,20 +3471,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-182-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-182-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-182-1.pd
-f  used on input line 4816.
+f  used on input line 4815.
 (pdftex.def)             Requested size: 345.01439pt x 235.54591pt.
 
-Package xcolor Warning: Incompatible color definition on input line 4818.
+Package xcolor Warning: Incompatible color definition on input line 4817.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [150 <./Stat155Notes_files/figure-latex/unnamed-chunk-181-2.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4828.
+Package xcolor Warning: Incompatible color definition on input line 4827.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4828.
+Package xcolor Warning: Incompatible color definition on input line 4827.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-182-2.pdf, id=2765, 458.71375pt 
 x 313.17pt>
@@ -3492,7 +3492,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-182-2.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-182-2.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-182-2.pd
-f  used on input line 4830.
+f  used on input line 4829.
 (pdftex.def)             Requested size: 345.01439pt x 235.54591pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3500,31 +3500,31 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [151 <./Stat155Notes_files/figure-latex/unnamed-chunk-182-1.pdf>] [152 <./Stat1
 55Notes_files/figure-latex/unnamed-chunk-182-2.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4855.
+Package xcolor Warning: Incompatible color definition on input line 4854.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4860.
+Package xcolor Warning: Incompatible color definition on input line 4859.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4860.
+Package xcolor Warning: Incompatible color definition on input line 4859.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4864.
+Package xcolor Warning: Incompatible color definition on input line 4863.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4870.
+Package xcolor Warning: Incompatible color definition on input line 4869.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4870.
+Package xcolor Warning: Incompatible color definition on input line 4869.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4880.
+Package xcolor Warning: Incompatible color definition on input line 4879.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4887.
+Package xcolor Warning: Incompatible color definition on input line 4886.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4887.
+Package xcolor Warning: Incompatible color definition on input line 4886.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-186-1.pdf, id=2798, 459.7175pt x
  315.1775pt>
@@ -3532,27 +3532,27 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-186-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-186-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-186-1.pd
-f  used on input line 4889.
+f  used on input line 4888.
 (pdftex.def)             Requested size: 345.01875pt x 236.54124pt.
 [153 <./Stat155Notes_files/figure-latex/unnamed-chunk-186-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 4919.
+Package xcolor Warning: Incompatible color definition on input line 4918.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4928.
+Package xcolor Warning: Incompatible color definition on input line 4927.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4928.
+Package xcolor Warning: Incompatible color definition on input line 4927.
 
 [154]
 
-Package xcolor Warning: Incompatible color definition on input line 4934.
+Package xcolor Warning: Incompatible color definition on input line 4933.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4946.
+Package xcolor Warning: Incompatible color definition on input line 4945.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4946.
+Package xcolor Warning: Incompatible color definition on input line 4945.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-189-1.pdf, id=2819, 458.71375pt 
 x 313.17pt>
@@ -3560,20 +3560,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-189-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-189-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-189-1.pd
-f  used on input line 4948.
+f  used on input line 4947.
 (pdftex.def)             Requested size: 345.01439pt x 235.54591pt.
 [155 <./Stat155Notes_files/figure-latex/unnamed-chunk-189-1.pdf>] [156
 
 ]
 Chapter 5.
 
-Package xcolor Warning: Incompatible color definition on input line 4965.
+Package xcolor Warning: Incompatible color definition on input line 4964.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4976.
+Package xcolor Warning: Incompatible color definition on input line 4975.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4976.
+Package xcolor Warning: Incompatible color definition on input line 4975.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-191-1.pdf, id=2842, 453.695pt x 
 315.1775pt>
@@ -3581,53 +3581,53 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-191-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-191-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-191-1.pd
-f  used on input line 4978.
+f  used on input line 4977.
 (pdftex.def)             Requested size: 344.9987pt x 239.66724pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [157]
 
-Package xcolor Warning: Incompatible color definition on input line 4984.
+Package xcolor Warning: Incompatible color definition on input line 4983.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4989.
+Package xcolor Warning: Incompatible color definition on input line 4988.
 
 
-Package xcolor Warning: Incompatible color definition on input line 4989.
+Package xcolor Warning: Incompatible color definition on input line 4988.
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 4999--4999
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 4998--4998
 []\T1/lmtt/m/n/10 ##   term                         estimate std.error statisti
 c  p.value[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 4999--4999
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 4998--4998
 []\T1/lmtt/m/n/10 ##   <chr>                           <dbl>     <dbl>     <dbl
 >    <dbl>[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 4999--4999
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 4998--4998
 []\T1/lmtt/m/n/10 ## 1 (Intercept)                   40901.    8235.        4.9
 7 7.47e- 7[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 4999--4999
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 4998--4998
 []\T1/lmtt/m/n/10 ## 2 AnyFireplaceTRUE             -37610.   11025.       -3.4
 1 6.61e- 4[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 4999--4999
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 4998--4998
 []\T1/lmtt/m/n/10 ## 3 Living.Area                      92.4      5.41     17.1
   1.84e-60[] 
  []
 
 
-Overfull \hbox (27.74892pt too wide) in paragraph at lines 4999--4999
+Overfull \hbox (27.74892pt too wide) in paragraph at lines 4998--4998
 []\T1/lmtt/m/n/10 ## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.1
 6 3.38e- 5[] 
  []
@@ -3640,7 +3640,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-196-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-196-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-196-1.pd
-f  used on input line 5321.
+f  used on input line 5320.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-197-1.pdf, id=2910, 436.63126pt 
 x 283.0575pt>
@@ -3648,7 +3648,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-197-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-197-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-197-1.pd
-f  used on input line 5336.
+f  used on input line 5335.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-197-2.pdf, id=2911, 436.63126pt 
 x 283.0575pt>
@@ -3656,7 +3656,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-197-2.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-197-2.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-197-2.pd
-f  used on input line 5336.
+f  used on input line 5335.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-197-3.pdf, id=2912, 436.63126pt 
 x 283.0575pt>
@@ -3664,7 +3664,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-197-3.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-197-3.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-197-3.pd
-f  used on input line 5336.
+f  used on input line 5335.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-197-4.pdf, id=2913, 436.63126pt 
 x 283.0575pt>
@@ -3672,7 +3672,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-197-4.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-197-4.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-197-4.pd
-f  used on input line 5336.
+f  used on input line 5335.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3699,7 +3699,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-198-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-198-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-198-1.pd
-f  used on input line 5389.
+f  used on input line 5388.
 (pdftex.def)             Requested size: 345.00798pt x 207.33258pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-199-1.pdf, id=3027, 422.57875pt 
 x 253.94875pt>
@@ -3707,7 +3707,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-199-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-199-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-199-1.pd
-f  used on input line 5393.
+f  used on input line 5392.
 (pdftex.def)             Requested size: 345.00798pt x 207.33258pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3719,7 +3719,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-200-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-200-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-200-1.pd
-f  used on input line 5397.
+f  used on input line 5396.
 (pdftex.def)             Requested size: 345.00798pt x 207.33258pt.
 [172 <./Stat155Notes_files/figure-latex/unnamed-chunk-199-1.pdf> <./Stat155Note
 s_files/figure-latex/unnamed-chunk-200-1.pdf
@@ -3734,7 +3734,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-201-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-201-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-201-1.pd
-f  used on input line 5409.
+f  used on input line 5408.
 (pdftex.def)             Requested size: 345.00148pt x 191.93742pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-202-1.pdf, id=3089, 422.57875pt 
 x 249.93375pt>
@@ -3742,7 +3742,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-202-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-202-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-202-1.pd
-f  used on input line 5419.
+f  used on input line 5418.
 (pdftex.def)             Requested size: 345.00798pt x 204.0546pt.
 [173 <./Stat155Notes_files/figure-latex/unnamed-chunk-201-1.pdf> <./Stat155Note
 s_files/figure-latex/unnamed-chunk-202-1.pdf
@@ -3757,25 +3757,25 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-203-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-203-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-203-1.pd
-f  used on input line 5427.
+f  used on input line 5426.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 
-Package xcolor Warning: Incompatible color definition on input line 5429.
+Package xcolor Warning: Incompatible color definition on input line 5428.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5433.
+Package xcolor Warning: Incompatible color definition on input line 5432.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5433.
+Package xcolor Warning: Incompatible color definition on input line 5432.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5439.
+Package xcolor Warning: Incompatible color definition on input line 5438.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5444.
+Package xcolor Warning: Incompatible color definition on input line 5443.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5444.
+Package xcolor Warning: Incompatible color definition on input line 5443.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-205-1.pdf, id=3131, 436.63126pt 
 x 283.0575pt>
@@ -3783,20 +3783,20 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-205-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-205-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-205-1.pd
-f  used on input line 5452.
+f  used on input line 5451.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 
-Package xcolor Warning: Incompatible color definition on input line 5454.
+Package xcolor Warning: Incompatible color definition on input line 5453.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [174 <./Stat155Notes_files/figure-latex/unnamed-chunk-203-1.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 5458.
+Package xcolor Warning: Incompatible color definition on input line 5457.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5458.
+Package xcolor Warning: Incompatible color definition on input line 5457.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-207-1.pdf, id=3153, 436.63126pt 
 x 283.0575pt>
@@ -3804,10 +3804,10 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-207-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-207-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-207-1.pd
-f  used on input line 5470.
+f  used on input line 5469.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 
-Package xcolor Warning: Incompatible color definition on input line 5472.
+Package xcolor Warning: Incompatible color definition on input line 5471.
 
 [175 <./Stat155Notes_files/figure-latex/unnamed-chunk-205-1.pdf> <./Stat155Note
 s_files/figure-latex/unnamed-chunk-207-1.pdf
@@ -3817,10 +3817,10 @@ pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
 age
 >]
 
-Package xcolor Warning: Incompatible color definition on input line 5476.
+Package xcolor Warning: Incompatible color definition on input line 5475.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5476.
+Package xcolor Warning: Incompatible color definition on input line 5475.
 
 [176] [177]
 <Stat155Notes_files/figure-latex/unnamed-chunk-209-1.pdf, id=3203, 712.6625pt x
@@ -3829,7 +3829,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-209-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-209-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-209-1.pd
-f  used on input line 5539.
+f  used on input line 5538.
 (pdftex.def)             Requested size: 344.99931pt x 151.60532pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-209-2.pdf, id=3204, 712.6625pt x
  313.17pt>
@@ -3837,10 +3837,10 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-209-2.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-209-2.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-209-2.pd
-f  used on input line 5539.
+f  used on input line 5538.
 (pdftex.def)             Requested size: 344.99931pt x 151.60532pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 5539--5540
+Underfull \hbox (badness 10000) in paragraph at lines 5538--5539
 [][]
  []
 
@@ -3854,7 +3854,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-210-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-210-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-210-1.pd
-f  used on input line 5543.
+f  used on input line 5542.
 (pdftex.def)             Requested size: 344.99931pt x 151.60532pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-210-2.pdf, id=3210, 712.6625pt x
  313.17pt>
@@ -3862,10 +3862,10 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-210-2.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-210-2.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-210-2.pd
-f  used on input line 5543.
+f  used on input line 5542.
 (pdftex.def)             Requested size: 344.99931pt x 151.60532pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 5543--5544
+Underfull \hbox (badness 10000) in paragraph at lines 5542--5543
 [][]
  []
 
@@ -3888,7 +3888,7 @@ age
 File: Photos/sampling_variation_flowchart.png Graphic file (type png)
 <use Photos/sampling_variation_flowchart.png>
 Package pdftex.def Info: Photos/sampling_variation_flowchart.png  used on input
- line 5547.
+ line 5546.
 (pdftex.def)             Requested size: 345.00269pt x 446.47406pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3901,7 +3901,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-212-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-212-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-212-1.pd
-f  used on input line 5577.
+f  used on input line 5576.
 (pdftex.def)             Requested size: 345.00798pt x 197.49863pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-213-1.pdf, id=3271, 436.63126pt 
 x 283.0575pt>
@@ -3909,7 +3909,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-213-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-213-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-213-1.pd
-f  used on input line 5585.
+f  used on input line 5584.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 [182 <./Stat155Notes_files/figure-latex/unnamed-chunk-212-1.pdf>] [183 <./Stat1
 55Notes_files/figure-latex/unnamed-chunk-213-1.pdf>]
@@ -3919,204 +3919,204 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-214-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-214-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-214-1.pd
-f  used on input line 5613.
+f  used on input line 5612.
 (pdftex.def)             Requested size: 345.00208pt x 159.92618pt.
 [184 <./Stat155Notes_files/figure-latex/unnamed-chunk-214-1.pdf>]
 Chapter 6.
 
-Package xcolor Warning: Incompatible color definition on input line 5637.
+Package xcolor Warning: Incompatible color definition on input line 5636.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5645.
+Package xcolor Warning: Incompatible color definition on input line 5644.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5645.
+Package xcolor Warning: Incompatible color definition on input line 5644.
 
 [185
 
 ] [186] [187]
 
-Package xcolor Warning: Incompatible color definition on input line 5720.
+Package xcolor Warning: Incompatible color definition on input line 5719.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5727.
+Package xcolor Warning: Incompatible color definition on input line 5726.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5727.
+Package xcolor Warning: Incompatible color definition on input line 5726.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5738.
+Package xcolor Warning: Incompatible color definition on input line 5737.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5752.
+Package xcolor Warning: Incompatible color definition on input line 5751.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5752.
+Package xcolor Warning: Incompatible color definition on input line 5751.
 
 [188]
 
-Package xcolor Warning: Incompatible color definition on input line 5768.
+Package xcolor Warning: Incompatible color definition on input line 5767.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5775.
+Package xcolor Warning: Incompatible color definition on input line 5774.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5775.
+Package xcolor Warning: Incompatible color definition on input line 5774.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5784.
+Package xcolor Warning: Incompatible color definition on input line 5783.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5798.
+Package xcolor Warning: Incompatible color definition on input line 5797.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5798.
+Package xcolor Warning: Incompatible color definition on input line 5797.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5811.
+Package xcolor Warning: Incompatible color definition on input line 5810.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5817.
+Package xcolor Warning: Incompatible color definition on input line 5816.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5817.
+Package xcolor Warning: Incompatible color definition on input line 5816.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5831.
+Package xcolor Warning: Incompatible color definition on input line 5830.
 
 [189]
 
-Package xcolor Warning: Incompatible color definition on input line 5838.
+Package xcolor Warning: Incompatible color definition on input line 5837.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5838.
+Package xcolor Warning: Incompatible color definition on input line 5837.
 
 
-Overfull \hbox (64.49881pt too wide) in paragraph at lines 5861--5861
+Overfull \hbox (64.49881pt too wide) in paragraph at lines 5860--5860
 []\T1/lmtt/m/n/10 ## glm(formula = afternoon ~ season, family = "binomial", dat
 a = flights_samp)[] 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 5865.
+Package xcolor Warning: Incompatible color definition on input line 5864.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5869.
+Package xcolor Warning: Incompatible color definition on input line 5868.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5869.
+Package xcolor Warning: Incompatible color definition on input line 5868.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5879.
+Package xcolor Warning: Incompatible color definition on input line 5878.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5891.
+Package xcolor Warning: Incompatible color definition on input line 5890.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5891.
+Package xcolor Warning: Incompatible color definition on input line 5890.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5891.
+Package xcolor Warning: Incompatible color definition on input line 5890.
 
 [190]
 
-Package xcolor Warning: Incompatible color definition on input line 5891.
+Package xcolor Warning: Incompatible color definition on input line 5890.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5891.
+Package xcolor Warning: Incompatible color definition on input line 5890.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5900.
+Package xcolor Warning: Incompatible color definition on input line 5899.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5904.
+Package xcolor Warning: Incompatible color definition on input line 5903.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5904.
+Package xcolor Warning: Incompatible color definition on input line 5903.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5912.
+Package xcolor Warning: Incompatible color definition on input line 5911.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5918.
+Package xcolor Warning: Incompatible color definition on input line 5917.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5918.
+Package xcolor Warning: Incompatible color definition on input line 5917.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5930.
+Package xcolor Warning: Incompatible color definition on input line 5929.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5935.
+Package xcolor Warning: Incompatible color definition on input line 5934.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5935.
+Package xcolor Warning: Incompatible color definition on input line 5934.
 
 [191]
 
-Package xcolor Warning: Incompatible color definition on input line 5958.
+Package xcolor Warning: Incompatible color definition on input line 5957.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5962.
+Package xcolor Warning: Incompatible color definition on input line 5961.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5962.
+Package xcolor Warning: Incompatible color definition on input line 5961.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5972.
+Package xcolor Warning: Incompatible color definition on input line 5971.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5984.
+Package xcolor Warning: Incompatible color definition on input line 5983.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5984.
+Package xcolor Warning: Incompatible color definition on input line 5983.
 
 
-Package xcolor Warning: Incompatible color definition on input line 5998.
+Package xcolor Warning: Incompatible color definition on input line 5997.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6003.
+Package xcolor Warning: Incompatible color definition on input line 6002.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6003.
+Package xcolor Warning: Incompatible color definition on input line 6002.
 
 [192]
 
-Package xcolor Warning: Incompatible color definition on input line 6028.
+Package xcolor Warning: Incompatible color definition on input line 6027.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6032.
+Package xcolor Warning: Incompatible color definition on input line 6031.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6032.
+Package xcolor Warning: Incompatible color definition on input line 6031.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6042.
+Package xcolor Warning: Incompatible color definition on input line 6041.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6054.
+Package xcolor Warning: Incompatible color definition on input line 6053.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6054.
+Package xcolor Warning: Incompatible color definition on input line 6053.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6070.
+Package xcolor Warning: Incompatible color definition on input line 6069.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6074.
+Package xcolor Warning: Incompatible color definition on input line 6073.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6074.
+Package xcolor Warning: Incompatible color definition on input line 6073.
 
 [193]
 
-Package xcolor Warning: Incompatible color definition on input line 6090.
+Package xcolor Warning: Incompatible color definition on input line 6089.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6094.
+Package xcolor Warning: Incompatible color definition on input line 6093.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6094.
+Package xcolor Warning: Incompatible color definition on input line 6093.
 
 [194] [195] [196]
 <Stat155Notes_files/figure-latex/unnamed-chunk-236-1.pdf, id=3409, 545.03625pt 
@@ -4125,7 +4125,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-236-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-236-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-236-1.pd
-f  used on input line 6263.
+f  used on input line 6262.
 (pdftex.def)             Requested size: 344.99638pt x 216.65517pt.
 
 Underfull \vbox (badness 3000) has occurred while \output is active []
@@ -4137,10 +4137,10 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-237-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-237-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-237-1.pd
-f  used on input line 6282.
+f  used on input line 6281.
 (pdftex.def)             Requested size: 344.99771pt x 142.61914pt.
 
-Package xcolor Warning: Incompatible color definition on input line 6289.
+Package xcolor Warning: Incompatible color definition on input line 6288.
 
 [198 <./Stat155Notes_files/figure-latex/unnamed-chunk-236-1.pdf> <./Stat155Note
 s_files/figure-latex/unnamed-chunk-237-1.pdf
@@ -4150,52 +4150,52 @@ pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
 age
 >]
 
-Package xcolor Warning: Incompatible color definition on input line 6295.
+Package xcolor Warning: Incompatible color definition on input line 6294.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6295.
+Package xcolor Warning: Incompatible color definition on input line 6294.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6303.
+Package xcolor Warning: Incompatible color definition on input line 6302.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6307.
+Package xcolor Warning: Incompatible color definition on input line 6306.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6307.
+Package xcolor Warning: Incompatible color definition on input line 6306.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6320--6325
+Underfull \hbox (badness 10000) in paragraph at lines 6319--6324
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 6337.
+Package xcolor Warning: Incompatible color definition on input line 6336.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6343.
+Package xcolor Warning: Incompatible color definition on input line 6342.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6343.
+Package xcolor Warning: Incompatible color definition on input line 6342.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6351.
+Package xcolor Warning: Incompatible color definition on input line 6350.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6355.
+Package xcolor Warning: Incompatible color definition on input line 6354.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6355.
+Package xcolor Warning: Incompatible color definition on input line 6354.
 
 [199] [200] [201] [202]
 
-Package xcolor Warning: Incompatible color definition on input line 6526.
+Package xcolor Warning: Incompatible color definition on input line 6525.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6532.
+Package xcolor Warning: Incompatible color definition on input line 6531.
 
 
-Package xcolor Warning: Incompatible color definition on input line 6532.
+Package xcolor Warning: Incompatible color definition on input line 6531.
 
 [203] [204
 
@@ -4205,7 +4205,7 @@ Chapter 7.
 <Photos/cards.png, id=3493, 953.5625pt x 393.47pt>
 File: Photos/cards.png Graphic file (type png)
 <use Photos/cards.png>
-Package pdftex.def Info: Photos/cards.png  used on input line 6660.
+Package pdftex.def Info: Photos/cards.png  used on input line 6659.
 (pdftex.def)             Requested size: 344.99916pt x 142.35754pt.
 [207 <./Photos/cards.png>] [208] [209] [210] [211]
 <Stat155Notes_files/figure-latex/unnamed-chunk-243-1.pdf, id=3541, 422.57875pt 
@@ -4214,7 +4214,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-243-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-243-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-243-1.pd
-f  used on input line 6941.
+f  used on input line 6940.
 (pdftex.def)             Requested size: 345.00798pt x 207.33258pt.
 [212]
 <Stat155Notes_files/figure-latex/unnamed-chunk-244-1.pdf, id=3546, 422.57875pt 
@@ -4223,7 +4223,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-244-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-244-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-244-1.pd
-f  used on input line 6945.
+f  used on input line 6944.
 (pdftex.def)             Requested size: 345.00798pt x 207.33258pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-245-1.pdf, id=3547, 422.57875pt 
 x 253.94875pt>
@@ -4231,7 +4231,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-245-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-245-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-245-1.pd
-f  used on input line 6949.
+f  used on input line 6948.
 (pdftex.def)             Requested size: 345.00798pt x 207.33258pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -4249,7 +4249,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-246-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-246-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-246-1.pd
-f  used on input line 7005.
+f  used on input line 7004.
 (pdftex.def)             Requested size: 345.00798pt x 204.0546pt.
 [215 <./Stat155Notes_files/figure-latex/unnamed-chunk-246-1.pdf>]
 <Stat155Notes_files/figure-latex/unnamed-chunk-247-1.pdf, id=3639, 422.57875pt 
@@ -4258,16 +4258,16 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-247-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-247-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-247-1.pd
-f  used on input line 7014.
+f  used on input line 7013.
 (pdftex.def)             Requested size: 345.00798pt x 204.0546pt.
 
-Package xcolor Warning: Incompatible color definition on input line 7016.
+Package xcolor Warning: Incompatible color definition on input line 7015.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7020.
+Package xcolor Warning: Incompatible color definition on input line 7019.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7020.
+Package xcolor Warning: Incompatible color definition on input line 7019.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-249-1.pdf, id=3640, 422.57875pt 
 x 249.93375pt>
@@ -4275,16 +4275,16 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-249-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-249-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-249-1.pd
-f  used on input line 7032.
+f  used on input line 7031.
 (pdftex.def)             Requested size: 345.00798pt x 204.0546pt.
 
-Package xcolor Warning: Incompatible color definition on input line 7034.
+Package xcolor Warning: Incompatible color definition on input line 7033.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7038.
+Package xcolor Warning: Incompatible color definition on input line 7037.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7038.
+Package xcolor Warning: Incompatible color definition on input line 7037.
 
 [216 <./Stat155Notes_files/figure-latex/unnamed-chunk-247-1.pdf> <./Stat155Note
 s_files/figure-latex/unnamed-chunk-249-1.pdf
@@ -4294,13 +4294,13 @@ pdfTeX warning: pdflatex (file ./Stat155Notes_files/figure-latex/unnamed-chunk-
 age
 >]
 
-Package xcolor Warning: Incompatible color definition on input line 7050.
+Package xcolor Warning: Incompatible color definition on input line 7049.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7054.
+Package xcolor Warning: Incompatible color definition on input line 7053.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7054.
+Package xcolor Warning: Incompatible color definition on input line 7053.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-252-1.pdf, id=3692, 422.57875pt 
 x 240.9pt>
@@ -4308,7 +4308,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-252-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-252-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-252-1.pd
-f  used on input line 7066.
+f  used on input line 7065.
 (pdftex.def)             Requested size: 345.00798pt x 196.67912pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-252-2.pdf, id=3693, 436.63126pt 
 x 283.0575pt>
@@ -4316,7 +4316,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-252-2.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-252-2.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-252-2.pd
-f  used on input line 7066.
+f  used on input line 7065.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -4328,25 +4328,25 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-253-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-253-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-253-1.pd
-f  used on input line 7070.
+f  used on input line 7069.
 (pdftex.def)             Requested size: 345.00154pt x 223.65614pt.
 
-Package xcolor Warning: Incompatible color definition on input line 7072.
+Package xcolor Warning: Incompatible color definition on input line 7071.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7076.
+Package xcolor Warning: Incompatible color definition on input line 7075.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7076.
+Package xcolor Warning: Incompatible color definition on input line 7075.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7082.
+Package xcolor Warning: Incompatible color definition on input line 7081.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7086.
+Package xcolor Warning: Incompatible color definition on input line 7085.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7086.
+Package xcolor Warning: Incompatible color definition on input line 7085.
 
 
 Underfull \vbox (badness 1515) has occurred while \output is active []
@@ -4364,34 +4364,34 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-255-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-255-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-255-1.pd
-f  used on input line 7094.
+f  used on input line 7093.
 (pdftex.def)             Requested size: 345.00154pt x 196.69052pt.
 
-Package xcolor Warning: Incompatible color definition on input line 7096.
+Package xcolor Warning: Incompatible color definition on input line 7095.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7100.
+Package xcolor Warning: Incompatible color definition on input line 7099.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7100.
+Package xcolor Warning: Incompatible color definition on input line 7099.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7106.
+Package xcolor Warning: Incompatible color definition on input line 7105.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7110.
+Package xcolor Warning: Incompatible color definition on input line 7109.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7110.
+Package xcolor Warning: Incompatible color definition on input line 7109.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7126.
+Package xcolor Warning: Incompatible color definition on input line 7125.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7132.
+Package xcolor Warning: Incompatible color definition on input line 7131.
 
 
-Package xcolor Warning: Incompatible color definition on input line 7132.
+Package xcolor Warning: Incompatible color definition on input line 7131.
 
 <Stat155Notes_files/figure-latex/unnamed-chunk-257-1.pdf, id=3756, 422.57875pt 
 x 253.94875pt>
@@ -4399,7 +4399,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-257-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-257-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-257-1.pd
-f  used on input line 7134.
+f  used on input line 7133.
 (pdftex.def)             Requested size: 345.00798pt x 207.33258pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -4412,7 +4412,7 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-258-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-258-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-258-1.pd
-f  used on input line 7176.
+f  used on input line 7175.
 (pdftex.def)             Requested size: 345.00154pt x 196.69052pt.
 <Stat155Notes_files/figure-latex/unnamed-chunk-259-1.pdf, id=3795, 422.57875pt 
 x 283.0575pt>
@@ -4420,18 +4420,18 @@ File: Stat155Notes_files/figure-latex/unnamed-chunk-259-1.pdf Graphic file (typ
 e pdf)
 <use Stat155Notes_files/figure-latex/unnamed-chunk-259-1.pdf>
 Package pdftex.def Info: Stat155Notes_files/figure-latex/unnamed-chunk-259-1.pd
-f  used on input line 7180.
+f  used on input line 7179.
 (pdftex.def)             Requested size: 345.00798pt x 231.09796pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [221 <./Stat155Notes_files/figure-latex/unnamed-chunk-258-1.pdf>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 7196.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 7195.
 [222 <./Stat155Notes_files/figure-latex/unnamed-chunk-259-1.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 7196.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 7195.
 (./Stat155Notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 7196.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 7196.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 7195.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 7195.
 
 Package rerunfilecheck Info: File `Stat155Notes.out' has not changed.
 (rerunfilecheck)             Checksum: 1B2AE35EFE43F033ADEE2CBA2EC1D518;26453.
@@ -4471,7 +4471,7 @@ e1/public/lm/lmtk10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
 lm/lmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtti10
 .pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/ms
 bm10.pfb>
-Output written on Stat155Notes.pdf (222 pages, 4154329 bytes).
+Output written on Stat155Notes.pdf (222 pages, 4154006 bytes).
 PDF statistics:
  4065 PDF objects out of 4296 (max. 8388607)
  3188 compressed objects within 32 object streams

@@ -93,7 +93,7 @@ There is so much more we could say about functions in R, but we will stop here f
 
 With this in mind, we'll point to external references if you'd like to go deeper in your understanding of R as a programming language throughout this class. 
 
-To get a broad sense of R, you can work through R primers (https://rstudio.cloud/learn/primers) in RStudio Cloud in addition to any coursework and use the R cheatsheets available (https://rstudio.cloud/learn/cheat-sheets).
+To get a broad sense of R, you can work through R primers (https://rstudio.cloud/learn/primers) in RStudio Cloud in addition to any coursework and use the R cheatsheets available online (https://rstudio.cloud/learn/cheat-sheets).
 
 
 ## Anatomy of a ggplot command
@@ -148,7 +148,7 @@ What do you lose when you convert a quantitative variable to a categorical varia
 One of the best ways to show the distribution of one categorical variable is with a bar plot. For a bar plot, 
 
 - The **height of the bars** is the only part that encodes the data (width is meaningless). 
-- The height can either represent the **frequency** (count of cases) or the **relative frequency** (proportion of cases).
+- The height can either represent the **frequency** (count of units) or the **relative frequency** (proportion of units).
 
 
 ```{r}
@@ -353,7 +353,7 @@ Since sleep is vitally important to daily functioning, let's look at the number 
 One main graphical summary we use for quantitative variables is a histogram. It resembles a bar plot, but there are a few key differences:
 
 - The x-axis is a number line that is divided into intervals called **bins**. Bins technically do not all have to be of equal width but almost always are. When making histograms in R, R chooses a default bin width, but you have options to change the number and/or width of the bins/intervals.
-- The **height** of the bars shows either the **frequency within intervals** (counts of cases that fall into that bin/interval) or the **density** (fraction of cases that fall into that bin/interval).
+- The **height** of the bars shows either the **frequency within intervals** (counts of units that fall into that bin/interval) or the **density** (fraction of units that fall into that bin/interval).
 - Gaps between bars are meaningful. They indicate absence of values within an interval.
 
 ```{r}
@@ -366,7 +366,7 @@ NHANES %>%
     theme_minimal() 
 ```
 
-Note the warning message above: "Removed __ rows containing non-finite values (stat_bin)." Sometimes there is missing information for a variable for some cases in the dataset. We cannot plot these because we don't know their values! This warning message is just a friendly reminder from R to let you know what it is doing.
+Note the warning message above: "Removed __ rows containing non-finite values (stat_bin)." Sometimes there is missing information for a variable for some units in the dataset. We cannot plot these because we don't know their values! This warning message is just a friendly reminder from R to let you know what it is doing.
 
 Also note the message that R gives about bin width to remind us that we can choose this if we wish. If we want to specify the width of the intervals or bins, we can specify `binwidth = DESIRED_BIN_WIDTH` within `geom_histogram`.
 

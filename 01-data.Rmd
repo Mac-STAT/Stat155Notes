@@ -43,8 +43,8 @@ data_frame(text = fileText) %>%
 
 **Tidy data** is a table in which
 
-- Each row of a rectangular table corresponds to an **observation** or **case** (e.g. person, classroom, country, image, word) 
-- Each column correspond to a characteristic or feature or **variable** for those cases (e.g. age, average classroom grade, average county income, intensity of red pixels, number of times the word "together" is used)
+- Each row of a rectangular table corresponds to an **observation** or **unit** (e.g. person, classroom, country, image, word) 
+- Each column correspond to a characteristic or feature or **variable** for those units (e.g. age, average classroom grade, average county income, intensity of red pixels, number of times the word "together" is used)
 
 Variables can be either **categorical** or **quantitative** variables.
 
@@ -60,15 +60,15 @@ The following graphic from the book [R for Data Science](http://r4ds.had.co.nz/)
 
 The transformation process from raw data to a tidy data format is often called **feature extraction** and is not a short or easy task. In this introductory course, we will typically work with data that are already in a tidy format.
 
-Cases are often referred to as the **units of analysis**. As data analysts, it is important for us to consider what to use as the unit of analysis when we have information, say, on both individual presidents and their speeches Do we want to understand matters at the individual or the speech level? Answers to these questions will depend on the context and the research questions.
+What the row represents is often referred to as the **unit of analysis**. As data analysts, it is important for us to consider what to use as the unit of analysis when we have information, say, on both individual presidents and their speeches Do we want to understand matters at the individual or the speech level? Answers to these questions will depend on the context and the research questions.
 
 
 ## Data Context
 
 For any data set, you should always ask yourself a few questions to provide vital **context** about that data set. 
 
-- **Who is in the data set?** What is the observational unit or *case*? How did they end up in the data set? Were they selected randomly or were they in a particular location a particular time?
-- **What is being measured or recorded on each case?** What are the characteristics, features, or *variables* that were collected?
+- **Who is in the data set?** What is the observational unit? How did they end up in the data set? Were they selected randomly or were they in a particular location a particular time?
+- **What is being measured or recorded on each unit?** What are the characteristics, features, or *variables* that were collected?
 - **Where were they collected?** In one location? Multiple locations?
 - **When was the data collected?** One point in time? Over time? If data quality degrades over time (e.g. lab specimens), we should be concerned.
 - **How were they collected?** What instruments and methods used for measurement? What questions were asked and how? Online survey? By phone? In person?

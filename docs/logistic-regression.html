@@ -345,7 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.10.1</span> Logistic and Logit</h3>
 <p>The <strong>logistic function</strong> is an S shaped curve (sigmoid curve). For our purposes, the function will take the form</p>
 <p><span class="math display">\[f(x) = \frac{1}{1 + e^{b_0 +b_1x}}\]</span></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
 <p>For any real value <span class="math inline">\(x\)</span>, this function, <span class="math inline">\(f(x)\)</span>, will be a value between 0 and 1. This is perfect for us since probabilities or chances should also be between 0 and 1.</p>
 <p>In fact, we’ll let the chance of the other outcome (failure), <span class="math inline">\(1-p\)</span>, be modeled by this S function.</p>
 <span class="math display">\[1-p = \frac{1}{1 + e^{b_0 +b_1x}}\]</span>
@@ -391,7 +391,7 @@ With a bit more algebra and rearranging terms, we can write the above model as a
 <a class="sourceLine" id="cb185-6" data-line-number="6"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Fail), <span class="dt">y =</span> Temperature) )<span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb185-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb185-8" data-line-number="8"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">SpaceShuttle <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb186-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Fail)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb186-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(Temperature) <span class="op">%&gt;%</span></a>
@@ -399,7 +399,7 @@ With a bit more algebra and rearranging terms, we can write the above model as a
 <a class="sourceLine" id="cb186-5" data-line-number="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Temperature, <span class="dt">y =</span> PercentFail)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb186-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb186-7" data-line-number="7"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-185-2.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-161-2.png" width="672" /></p>
 <div class="reflect">
 <p>
 What are the plots above telling us about the relationship between chance of o-ring failure and temperature?
@@ -413,13 +413,13 @@ What are the plots above telling us about the relationship between chance of o-r
 ## glm(formula = Fail ~ Temperature, family = binomial, data = SpaceShuttle)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.061  -0.761  -0.378   0.452   2.217  
+##     Min       1Q   Median       3Q      Max  
+## -1.0611  -0.7613  -0.3783   0.4524   2.2175  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)   15.043      7.379    2.04    0.041 *
-## Temperature   -0.232      0.108   -2.14    0.032 *
+## (Intercept)  15.0429     7.3786   2.039   0.0415 *
+## Temperature  -0.2322     0.1082  -2.145   0.0320 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -428,7 +428,7 @@ What are the plots above telling us about the relationship between chance of o-r
 ##     Null deviance: 28.267  on 22  degrees of freedom
 ## Residual deviance: 20.315  on 21  degrees of freedom
 ##   (1 observation deleted due to missingness)
-## AIC: 24.32
+## AIC: 24.315
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>Based on a logistic regression model, the predicted log odds of an o-ring failure is given by</p>
@@ -443,13 +443,13 @@ What are the plots above telling us about the relationship between chance of o-r
 ## glm(formula = Fail ~ Temperature, family = binomial, data = SpaceShuttle)
 ## 
 ## Deviance Residuals: 
-##    Min      1Q  Median      3Q     Max  
-## -1.061  -0.761  -0.378   0.452   2.217  
+##     Min       1Q   Median       3Q      Max  
+## -1.0611  -0.7613  -0.3783   0.4524   2.2175  
 ## 
 ## Coefficients:
 ##             Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)   15.043      7.379    2.04    0.041 *
-## Temperature   -0.232      0.108   -2.14    0.032 *
+## (Intercept)  15.0429     7.3786   2.039   0.0415 *
+## Temperature  -0.2322     0.1082  -2.145   0.0320 *
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -458,7 +458,7 @@ What are the plots above telling us about the relationship between chance of o-r
 ##     Null deviance: 28.267  on 22  degrees of freedom
 ## Residual deviance: 20.315  on 21  degrees of freedom
 ##   (1 observation deleted due to missingness)
-## AIC: 24.32
+## AIC: 24.315
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
 <p>The slope coefficient (-0.232) tells you how much the predicted log odds increase with an increase of 1 degree increase in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra.</p>
@@ -502,8 +502,8 @@ Let’s exponentiate both sides,
 <h3><span class="header-section-number">3.10.4</span> Prediction</h3>
 <p>On January 28, 1986, the temperature was 26 F degrees. Let’s predict the chance of “success,” which is a failure of o-rings in our data context, at that temperature.</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="kw">predict</span>(model.glm, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Temperature =</span> <span class="dv">26</span>), <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>) <span class="co">#type = &#39;response&#39; gives chance, rather than odds</span></a></code></pre></div>
-<pre><code>## 1 
-## 1</code></pre>
+<pre><code>##         1 
+## 0.9998774</code></pre>
 <p>They didn’t have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, we predict the chance of failure to be nearly 1 (near certainty).</p>
 <div id="hard-predictionsclassifications" class="section level4">
 <h4><span class="header-section-number">3.10.4.1</span> Hard Predictions/Classifications</h4>

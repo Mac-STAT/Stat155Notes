@@ -147,7 +147,7 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 ## Chapter 3
 
-**AIC/BIC**:
+**AIC/BIC**: The AIC and BIC are information criteria that can be used to compare models, where we want a model with a lower AIC or BIC. 
 
 **Bootstrapping**: The process of resampling from our sample to estimate the variability in the estimated slope coefficients and to provide an interval estimate of plausible values for the slope coefficient. 
 
@@ -155,9 +155,9 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Extrapolation**: Making predictions by plugging in values of the explanatory variables that are beyond the observed range; requires assuming the relationship captured in the model will continue outside the observed range.
 
-**False Positive Rate**:
+**False Positive Rate**: The relative frequency of predicting the event would happen, given that the event didn't happen (count of false positives/count of times event did not actually happen).
 
-**False Negative Rate**:
+**False Negative Rate**: The relative frequency of predicting the event wouldn't happen, given that the event did happen (count of false negatives/count of times event did actually happen).
 
 
 **Indicator Variable**: A variable that has two values (0 or 1) that indicate whether a subject or individual has that characteristic or is in the group. It is used primarily to allow cateogrical variables to be included in regression (linear or logistic) models. If there are K categories in a categorical variable, we only need K-1 indicator variables to be included in the model. 
@@ -174,9 +174,9 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Multiple Linear Regression**: A linear regression model with more than one explanatory variable included in the model. 
 
-**Odds**:
+**Odds**: The chance of an event divided by the chance the event does not happen. 
 
-**Odds Ratio**:
+**Odds Ratio**: A ratio of odds an event will happen, comparing between two subgroups. 
 
 **Outcome or Response Variable**: The dependent variable that we hope to predict based on explanatory variables.
 
@@ -187,9 +187,9 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **R Squared**: Without any data context: The percent of variation in Y that can be explained by the fit model.
 
-**Sensitivity**:
+**Sensitivity**: The relative frequency of predicting the event would happen, given that the event did happen (count of true positives/count of times event did actually happen).
 
-**Specificity**:
+**Specificity**: The relative frequency of predicting the event would not happen, given that the event did not happen (count of true negatives/count of times event did not actually happen).
 
 **Sensitivity Analysis**:
 

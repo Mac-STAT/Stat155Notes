@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="sampling-distribution-and-clt.html">
-<link rel="next" href="statistical-inference.html">
+<link rel="next" href="major-takeaways-4.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -241,6 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>4.4</b> IRL: Bootstrapping</a></li>
 <li class="chapter" data-level="4.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>4.5</b> Simulating Randomization into Groups</a></li>
 <li class="chapter" data-level="4.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>4.6</b> IRL: Randomization Tests</a></li>
+<li class="chapter" data-level="4.7" data-path="major-takeaways-3.html"><a href="major-takeaways-3.html"><i class="fa fa-check"></i><b>4.7</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
@@ -265,6 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
 <li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student’s T Model</a></li>
 </ul></li>
+<li class="chapter" data-level="5.9" data-path="major-takeaways-4.html"><a href="major-takeaways-4.html"><i class="fa fa-check"></i><b>5.9</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
 <li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6.1</b> Confidence Intervals</a><ul>
@@ -316,6 +318,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="definitions.html"><a href="definitions.html"><i class="fa fa-check"></i><b>8</b> Definitions</a><ul>
+<li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -339,7 +345,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="z-scores-and-the-students-t-distribution" class="section level2">
 <h2><span class="header-section-number">5.8</span> Z-scores and the Student’s “t” distribution</h2>
 <p>Let’s stop for a short story time. Back in the early 1900’s, William S. Gosset was working as a quality control chemist and mathematician for Guinness Brewery in Ireland.</p>
-<p>![Source: <a href="http://upload.wikimedia.org/wikipedia/commons/thumb/4/42/William_Sealy_Gosset.jpg/240px-William_Sealy_Gosset.jpg">Wikipedia</a>(gosset.jpg)</p>
+<p><img src="Photos/gosset.jpg" />
+Source: <a href="http://upload.wikimedia.org/wikipedia/commons/thumb/4/42/William_Sealy_Gosset.jpg/240px-William_Sealy_Gosset.jpg">Wikipedia</a></p>
 <p>His research goal was to determine how to get the best yielding barley and hops through agricultural experimentation, but the main issue that he had was that he had very small sample sizes (only a handful of farms)!</p>
 <p>He was used the Normal distribution because the work underlying the Central Limit Theorem had already been worked out, but he noticing that there were discrepancies in his work.</p>
 <div id="gossets-work" class="section level3">
@@ -374,17 +381,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-214-1.png" width="768" /></p>
 <p>Since the Student T distribution is approximately Normal when sample sizes are large, we will typically use the Normal model. However, if sample sizes are small (<span class="math inline">\(n&lt;30\)</span> or so), the Normal model is not appropriate. So, in those rare cases, we’ll need to refer to Student’s T.</p>
-
 </div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="sampling-distribution-and-clt.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="statistical-inference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="major-takeaways-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

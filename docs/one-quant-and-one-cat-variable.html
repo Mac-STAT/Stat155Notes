@@ -241,6 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>4.4</b> IRL: Bootstrapping</a></li>
 <li class="chapter" data-level="4.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>4.5</b> Simulating Randomization into Groups</a></li>
 <li class="chapter" data-level="4.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>4.6</b> IRL: Randomization Tests</a></li>
+<li class="chapter" data-level="4.7" data-path="major-takeaways-3.html"><a href="major-takeaways-3.html"><i class="fa fa-check"></i><b>4.7</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
@@ -265,6 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
 <li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student’s T Model</a></li>
 </ul></li>
+<li class="chapter" data-level="5.9" data-path="major-takeaways-4.html"><a href="major-takeaways-4.html"><i class="fa fa-check"></i><b>5.9</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
 <li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6.1</b> Confidence Intervals</a><ul>
@@ -316,6 +318,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="definitions.html"><a href="definitions.html"><i class="fa fa-check"></i><b>8</b> Definitions</a><ul>
+<li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -352,12 +358,12 @@ What might be the <em>causal mechanism</em> between gender identity and sleep? M
 </p>
 </div>
 <p>Let’s make a histogram for each gender category by adding <code>facet_grid(. ~ Gender)</code> which separates the data into groups defined by the variable, <code>Gender</code>, and creates two plots along the x-axis.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb59-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb59-5" data-line-number="5"><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>Gender) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb59-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb58-5" data-line-number="5"><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>Gender) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb58-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <div class="reflect">
@@ -374,14 +380,14 @@ What is easy to compare and what is hard to compare between the two histograms?
 Who have we excluded from our analysis by asking this question?
 </p>
 </div>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(nBabies)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb61-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb61-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb61-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_wrap</span>(. <span class="op">~</span><span class="st"> </span><span class="kw">factor</span>(nBabies), <span class="dt">ncol =</span> <span class="dv">4</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb61-7" data-line-number="7"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb61-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">    </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(nBabies)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-6" data-line-number="6"><span class="st">    </span><span class="kw">facet_wrap</span>(. <span class="op">~</span><span class="st"> </span><span class="kw">factor</span>(nBabies), <span class="dt">ncol =</span> <span class="dv">4</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-7" data-line-number="7"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb60-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <pre><code>## Warning: Removed 8 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-52-1.png" width="960" /></p>
 <p>The 0 to 12 labels at the top of each of these panels correspond to the number of babies a woman had.</p>
@@ -394,12 +400,12 @@ Note the x and y axes are the same for all of the groups to facilitate compariso
 </p>
 </div>
 <p><strong>Does the number of days someone has felt depressed explain the variability in the hours of sleep?</strong></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb63-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb63-5" data-line-number="5"><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>Depressed) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb63-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb62-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb62-5" data-line-number="5"><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>Depressed) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb62-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 <p>What’s the rightmost “NA” category? Some individuals in this study did not answer questions about days that they might have felt depressed, but they did report their hours of sleep per night.</p>
@@ -412,28 +418,28 @@ What type of biases might be at play here?
 <div id="multiple-boxplots" class="section level3">
 <h3><span class="header-section-number">2.7.2</span> Multiple Boxplots</h3>
 <p>Let’s visualize the same information but with boxplots instead of histograms and see if we can glean any other information.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> SleepHrsNight)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb65-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb65-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Binary Gender&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb65-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Gender, <span class="dt">y =</span> SleepHrsNight)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Binary Gender&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(nBabies), <span class="dt">y =</span> SleepHrsNight)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb67-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Number of Babies&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb67-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(nBabies), <span class="dt">y =</span> SleepHrsNight)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Number of Babies&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Depressed), <span class="dt">y =</span> SleepHrsNight)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Days Depressed&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb69-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Depressed), <span class="dt">y =</span> SleepHrsNight)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb68-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb68-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Days Depressed&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb68-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
 <div class="reflect">
@@ -456,21 +462,21 @@ Why might you use multiple boxplots instead of multiple histograms?
 <li>Repeat steps 1 and 2 many times (say 1000 times).</li>
 <li>Look at the differences based on random shuffles &amp; compare to the observed difference.</li>
 </ol>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">library</span>(mosaic) </a>
-<a class="sourceLine" id="cb71-2" data-line-number="2">NHANES &lt;-<span class="st"> </span>NHANES <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">DepressedMost =</span> (Depressed <span class="op">==</span><span class="st"> &#39;Most&#39;</span>)) <span class="co">#TRUE or FALSE (converted Depressed to a 2 category variable)</span></a>
-<a class="sourceLine" id="cb71-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb71-5" data-line-number="5">obsdiff &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">d =</span> <span class="kw">diff</span>(<span class="kw">mean</span>(SleepHrsNight <span class="op">~</span><span class="st"> </span>DepressedMost, <span class="dt">data =</span> NHANES, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)))</a>
-<a class="sourceLine" id="cb71-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb71-7" data-line-number="7">sim &lt;-<span class="st"> </span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span><span class="kw">diff</span>(<span class="kw">mean</span>(SleepHrsNight <span class="op">~</span><span class="st"> </span><span class="kw">shuffle</span>(DepressedMost), <span class="dt">data =</span> NHANES, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="co">#Randomly shuffle the DepressedMost labels (assuming no real difference in sleep, depressed feelings shouldn&#39;t impact sleep)</span></a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">library</span>(mosaic) </a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">NHANES &lt;-<span class="st"> </span>NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">DepressedMost =</span> (Depressed <span class="op">==</span><span class="st"> &#39;Most&#39;</span>)) <span class="co">#TRUE or FALSE (converted Depressed to a 2 category variable)</span></a>
+<a class="sourceLine" id="cb70-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">obsdiff &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">d =</span> <span class="kw">diff</span>(<span class="kw">mean</span>(SleepHrsNight <span class="op">~</span><span class="st"> </span>DepressedMost, <span class="dt">data =</span> NHANES, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)))</a>
+<a class="sourceLine" id="cb70-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb70-7" data-line-number="7">sim &lt;-<span class="st"> </span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span><span class="kw">diff</span>(<span class="kw">mean</span>(SleepHrsNight <span class="op">~</span><span class="st"> </span><span class="kw">shuffle</span>(DepressedMost), <span class="dt">data =</span> NHANES, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="co">#Randomly shuffle the DepressedMost labels (assuming no real difference in sleep, depressed feelings shouldn&#39;t impact sleep)</span></a></code></pre></div>
 <p>Below, we have a histogram of 1000 values calculated by randomly shuffling individuals in the sample into two groups (assuming no relationship between depression and sleep) and then finding the difference in the mean amount of sleep. The red vertical line showed the observed difference in mean amount of sleep in the data.</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">sim <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> TRUE.)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> d), obsdiff, <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb72-5" data-line-number="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Difference in Mean Hours of Sleep&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb72-6" data-line-number="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb72-7" data-line-number="7"><span class="st">  </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">sim <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> TRUE.)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb71-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb71-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept =</span> d), obsdiff, <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb71-5" data-line-number="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&#39;Difference in Mean Hours of Sleep&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb71-6" data-line-number="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb71-7" data-line-number="7"><span class="st">  </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
 <div class="reflect">

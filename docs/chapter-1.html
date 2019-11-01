@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Random Variability | Stat 155 Notes</title>
+  <title>8.1 Chapter 1 | Stat 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Random Variability | Stat 155 Notes" />
+  <meta property="og:title" content="8.1 Chapter 1 | Stat 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Random Variability | Stat 155 Notes" />
+  <meta name="twitter:title" content="8.1 Chapter 1 | Stat 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="major-takeaways-2.html">
-<link rel="next" href="sampling-variability.html">
+<link rel="prev" href="definitions.html">
+<link rel="next" href="chapter-2.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -342,23 +342,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="random-variability" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Random Variability</h1>
-<p>Up until this point, we have thought about</p>
-<ol style="list-style-type: decimal">
-<li>Data collection process (sampling and study design) and Data Quality (issues of bias)</li>
-<li>Data visualization (the first step of any data analysis)</li>
-<li>Modeling (to explain observed variation and provide predictions)</li>
-</ol>
-<p>Throughout the past three chapters, we have also sprinkled in the idea that <strong>the sample we observe is just one random representation of the true population or phenomenon.</strong> Therefore, any <strong>statistic</strong>, any numerical summary of the sample, would be an estimate the true numerical summary of the population (which we refer to as the corresponding unknown <strong>parameter</strong>).</p> 
+<div id="chapter-1" class="section level2">
+<h2><span class="header-section-number">8.1</span> Chapter 1</h2>
+<p><strong>Categorical Variable</strong>: A characteristic with values that are names of categories.</p>
+<p><strong>Census</strong>: The process of collecting data on every individual or subject in a population of interest.</p>
+<p><strong>Cluster Sampling</strong>: Sometimes a sampling frame is more readily available for clusters of units rather than the units themselves.</p>
+<p><strong>Confounding Variables</strong>: A third variable that is a common cause for the “treatment” and the “response”.</p>
+<p><strong>Context of Data</strong>: Who is in the data set, what is being measured, where were they collected, when were they collected, why were they collected, and who collected the data and for what purpose.</p>
+<p><strong>Convenience Sampling</strong>: Individuals that make up a convenience sample are easy to contact or to reach and are often systematically different from the population of interest.</p>
+<p><strong>Correlation Coefficient</strong>: A measure of strength of a linear relationship calculated as the (almost) average of products of the z-scores.</p>
+<p><strong>Data</strong>: Anything that contains information (e.g. images, text, spreadsheets).</p>
+<p><strong>Ethics</strong>: The norms or standards for conduct that distinguish between right and wrong.</p>
+<p><strong>Experiment</strong>: Data is collected in such a way such that the researcher does manipulate or intervene in characteristics of the individuals by randomly assigning individuals to treatment or control groups.</p>
+<p><strong>Item Nonresponse Bias</strong>: When individuals who answer some but don’t answer other questions are systematically different than those that do in their responses.</p>
+<p><strong>Measurement error</strong>: Technologies that measure variables of interest may not always be accurate and human calibration of those instruments may be off as well.</p>
+<p><strong>Observational Study</strong>: Data is collected in such a way such that the researcher does not manipulate or intervene in the characteristics of the individuals.</p>
+<p><strong>Population of Interest</strong>: A group of individuals or subjects that we would like to know information about.</p>
+<p><strong>Quantitative Variable</strong>: A characteristic with measured numerical values with units.</p>
+<p><strong>Random Sampling</strong>: Each unit in the sampling frame has a known, nonzero probability of being selected, and the sampling is performed with some chance device (e.g. coin flipping, random number generation).</p>
+<p><strong>Recall bias</strong>: People often unintentionally make mistakes in remembering details about the past. If the study design is retrospective in that it requires units to rely on their memory, we may get bias in the information collected.</p>
+<p><strong>Representative sample</strong>: The subset of the population we have collected data on has similar characteristics that we are interested in collecting to the population of interest.</p>
+<p><strong>Response bias/Self-report bias/Social desirability bias</strong>: Bias occurs when the recorded response does not accurately represent the true value for the individual due to wording of the question, ordering of the questions, format of response, or to increase social desirability.</p>
+<p><strong>Sample</strong>: A subset of the population of interest selected for data collection.</p>
+<p><strong>Sampling Bias</strong>: This occurs when our sample is unrepresentative of the population of interest due to systematic bias in the sampling procedure.</p>
+<p><strong>Sampling Frame</strong>: This is the complete list of individuals/units in the population of interest.</p>
+<p><strong>Self-Selection and Volunteer Sampling</strong>: Individuals that make up this type of sample self-select or volunteer to be in a sample and are ofte systematically different from the population of interest.</p>
+<p><strong>Simple Random Sampling</strong>: Each unit in the sampling frame has the same chance of being chosen and individuals are selected without replacement (once they have been chosen, they cannot be chosen again). With this strategy, every sample of a given size is equally likely to arise.</p>
+<p><strong>Stratified Sampling</strong>: The units in the sampling frame are first divided into categories/strata (e.g. age categories). Simple random sampling is then performed within each category/stratum.</p>
+<p><strong>Tidy Data</strong>: Data in a rectangular table where rows correspond to observations and columns correspond to variables.</p>
+<p><strong>Undercoverage</strong>: This is a form of sampling bias that happens when some groups of the population are inadequately represented in the sample due to the sampling procedure.</p>
+<p><strong>Unit Nonresponse Bias</strong>: When those individuals who are selected but choose to not participate are systematically different than those that do.</p>
+<p><strong>Variable</strong>: A characteristic or measurement recorded in a tidy data set.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="major-takeaways-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling-variability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="definitions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -388,7 +410,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-variability.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-definitions.Rmd",
 "text": "Edit"
 },
 "history": {

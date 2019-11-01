@@ -241,6 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>4.4</b> IRL: Bootstrapping</a></li>
 <li class="chapter" data-level="4.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>4.5</b> Simulating Randomization into Groups</a></li>
 <li class="chapter" data-level="4.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>4.6</b> IRL: Randomization Tests</a></li>
+<li class="chapter" data-level="4.7" data-path="major-takeaways-3.html"><a href="major-takeaways-3.html"><i class="fa fa-check"></i><b>4.7</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
@@ -265,6 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
 <li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student’s T Model</a></li>
 </ul></li>
+<li class="chapter" data-level="5.9" data-path="major-takeaways-4.html"><a href="major-takeaways-4.html"><i class="fa fa-check"></i><b>5.9</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
 <li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6.1</b> Confidence Intervals</a><ul>
@@ -316,6 +318,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="definitions.html"><a href="definitions.html"><i class="fa fa-check"></i><b>8</b> Definitions</a><ul>
+<li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -340,21 +346,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.5</span> Simulating Randomization into Groups</h2>
 <p>We have been thinking about arrival delays in general. Let’s move now to comparing arrival delays between groups. If you were planning a trip, you may be able to choose between two flights that leave at different times of day. Do morning flights have shorter arrival delays on average than afternoon flights? If so, book the flight earlier in the day!</p>
 <p>Let’s look at the data! We use a random sample of 500 flights from the population to investigate this question.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">flights_samp500 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb216-2" data-line-number="2"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">500</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">flights_samp500 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb215-2" data-line-number="2"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">500</span>) </a></code></pre></div>
 <p>Let’s summarize and visualize the relationship between hour of the day (morning or afternoon) and the arrival delay.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb217-1" data-line-number="1">flights_samp500 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb217-2" data-line-number="2"><span class="st">    </span><span class="kw">group_by</span>(day_hour) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb217-3" data-line-number="3"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">median =</span> <span class="kw">median</span>(arr_delay), <span class="dt">mean =</span> <span class="kw">mean</span>(arr_delay))</a></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1">flights_samp500 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb216-2" data-line-number="2"><span class="st">    </span><span class="kw">group_by</span>(day_hour) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb216-3" data-line-number="3"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">median =</span> <span class="kw">median</span>(arr_delay), <span class="dt">mean =</span> <span class="kw">mean</span>(arr_delay))</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   day_hour  median  mean
 ##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
 ## 1 afternoon     -1 12.6 
 ## 2 morning       -7 -2.39</code></pre>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1">flights_samp500 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb219-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hour, <span class="dt">y =</span> arr_delay)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb219-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb219-4" data-line-number="4"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">flights_samp500 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb218-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hour, <span class="dt">y =</span> arr_delay)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb218-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb218-4" data-line-number="4"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 <div class="reflect">
 <p>

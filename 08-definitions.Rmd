@@ -1,0 +1,146 @@
+
+```{r setup8, echo=FALSE}
+library(stringr)
+library(infer)
+library(nycflights13)
+library(broom)
+library(dplyr)
+library(ggplot2)
+library(stringr)
+library(rvest)
+library(mosaicData) 
+library(ggmosaic)
+library(NHANES)
+library(mosaic)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Definitions
+
+This section attempts to have a list of terms and definitions for each chapter. It may not be complete, quite yet. 
+
+## Chapter 1
+
+**Categorical Variable**: A characteristic with values that are names of categories.
+
+**Census**: The process of collecting data on every individual or subject in a population of interest.
+
+**Cluster Sampling**: Sometimes a sampling frame is more readily available for clusters of units rather than the units themselves.
+
+**Confounding Variables**: A third variable that is a common cause for the “treatment” and the “response”.
+
+**Context of Data**: Who is in the data set, what is being measured, where were they collected, when were they collected, why were they collected, and who collected the data and for what purpose.
+
+**Convenience Sampling**: Individuals that make up a convenience sample are easy to contact or to reach and are often systematically different from the population of interest.
+
+**Correlation Coefficient**: A measure of strength of a linear relationship calculated as the (almost) average of products of the z-scores.
+
+**Data**: Anything that contains information (e.g. images, text, spreadsheets).
+
+**Ethics**: The norms or standards for conduct that distinguish between right and wrong. 
+
+**Experiment**: Data is collected in such a way such that the researcher does manipulate or intervene in characteristics of the individuals by randomly assigning individuals to treatment or control groups.
+
+**Item Nonresponse Bias**: When individuals who answer some but don’t answer other questions are systematically different than those that do in their responses.
+
+**Measurement error**: Technologies that measure variables of interest may not always be accurate and human calibration of those instruments may be off as well.
+
+**Observational Study**: Data is collected in such a way such that the researcher does not manipulate or intervene in the characteristics of the individuals.
+
+**Population of Interest**: A group of individuals or subjects that we would like to know information about. 
+
+**Quantitative Variable**: A characteristic with measured numerical values with units.
+
+**Random Sampling**: Each unit in the sampling frame has a known, nonzero probability of being selected, and the sampling is performed with some chance device (e.g. coin flipping, random number generation).
+
+**Recall bias**: People often unintentionally make mistakes in remembering details about the past. If the study design is retrospective in that it requires units to rely on their memory, we may get bias in the information collected.
+
+**Representative sample**: The subset of the population we have collected data on has similar characteristics that we are interested in collecting to the population of interest. 
+
+**Response bias/Self-report bias/Social desirability bias**: Bias occurs when the recorded response does not accurately represent the true value for the individual due to wording of the question, ordering of the questions, format of response, or to increase social desirability. 
+
+**Sample**: A subset of the population of interest selected for data collection.
+
+**Sampling Bias**: This occurs when our sample is unrepresentative of the population of interest due to systematic bias in the sampling procedure.
+
+**Sampling Frame**: This is the complete list of individuals/units in the population of interest.
+
+**Self-Selection and Volunteer Sampling**: Individuals that make up this type of sample self-select or volunteer to be in a sample and are ofte systematically different from the population of interest.
+
+**Simple Random Sampling**: Each unit in the sampling frame has the same chance of being chosen and individuals are selected without replacement (once they have been chosen, they cannot be chosen again). With this strategy, every sample of a given size is equally likely to arise.
+
+**Stratified Sampling**: The units in the sampling frame are first divided into categories/strata (e.g. age categories). Simple random sampling is then performed within each category/stratum. 
+
+**Tidy Data**: Data in a rectangular table where rows correspond to observations and columns correspond to variables.
+
+**Undercoverage**: This is a form of sampling bias that happens when some groups of the population are inadequately represented in the sample due to the sampling procedure.
+
+**Unit Nonresponse Bias**: When those individuals who are selected but choose to not participate are systematically different than those that do.
+
+**Variable**: A characteristic or measurement recorded in a tidy data set.
+
+## Chapter 2
+
+**Bar plot**: A graph of multiple rectangles where the height shows the counts or proportion of observations within each category of one categorical variable; the width of the rectangles is arbitrary and does not encoded data.
+
+**Boxplot**: An alternative graphical summary for a quantitative variable that consists of the box (25th to 75th percentile), the line in the box (median), the tails or whiskers (to the most extreme observed values within 1.5\*IQR), and points (outliers that are further than 1.5\*IQR from the box)  
+
+**Center of a Distribution**: The typical value which could be measured with the mode, mean, or median. 
+
+**Conditional distribution**: The relative frequencies within subsets, typically calculated based on a two-way table for two categorical variables.
+
+**Direction**: Indicating whether a relationship is positive, negative, or neutral
+
+**Distribution**: The way something is spread out (the way in which values vary).
+
+**Form**: The type of relationship we observe (linear, curved, none)
+
+**Frequency**: The count of observations
+
+**Histogram**: A graph to show the distribution of a quantitative variable. The x-axis is a number line that is divided into intervals called bins. The height of the bars shows either the frequency within intervals (counts of units that fall into that bin/interval) or the density (fraction of units that fall into that bin/interval). Gaps between bars are meaningful. They indicate absence of values within an interval.
+
+**Interquartile Range**: 75th percentile - 25th percentile
+
+**Marginal Distribution**: If you are looking at the numerical summary of two categorical variables, the marginal distribution is the relative frequency of one of the variables, ignoring the other. 
+
+**Mean**: The average value calculated as the sum of values divided by the total number of values.
+
+**Median**: The middle value if you ordered all of the values. 
+
+**Mode**: A “peak”/“bump” in the distribution.
+
+**Mosaic plot**: A graph of rectangles where the relative height of the bars shows the conditional distribution (relative frequency within subsets), and the width of the bars shows the marginal distribution (relative frequency of the X variable, ignoring the other variable).
+
+**Outlier**: A point far from the rest of the observations
+
+**Relative Frequency**: The count of observations divide by the total number of observations
+
+**Scatterplot**: With two quantitative variables, the graphical display with points reflecting the pair of values on a coordinate plane. 
+
+**Shape**: When describing a distribution of a quantitative variable, you should comment on whether it is symmetric or skewed and how many modes it has. 
+
+**Side-by-side bar plot**: A graph of many rectangles where the height shows the count of the categories within groups in the data (for two categorical variables). The rectangles are typically colored according to the grouping categorical variable. 
+
+**Simpson’s Paradox**: A situation in which you come to two different conclusions if you look at results overall versus within subsets.
+
+**Skewed Left**: A distribution is left-skewed if there is a long left tail.
+
+**Skewed Right**: A distribution is right-skewed if it has a long right tail.
+
+**Spread (or variation)**: The measure of how much the values vary. Are the values concentrated around one or more values or spread out?
+
+**Stacked bar plot**: A graph of rectangles where the height of the entire bar shows the marginal distribution (frequency of the X variable, ignoring the other variable), and the relative heights within one rectangle show conditional distributions (frequencies within subsets).
+
+**Stacked bar plot based on proportions**: A graph of rectangles where the relative heights within one rectangle show conditional distributions (frequencies within subsets).
+
+**Standard deviation**: Root mean squared deviations from mean
+
+**Strength**: The compactness of points around the average relationship.
+
+**Symmetric Distribution**: A distribution is symmetric if you fold it in half and the sides match up.
+
+**Trimmed means**: Drop the lowest and highest k% and take the mean of the rest.
+
+**Variance**: Square of the standard deviation
+
+**Z-score**:  A standardized value that gives the number of standard deviation a value is from the mean.

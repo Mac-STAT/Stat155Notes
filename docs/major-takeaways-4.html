@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Random Variability | Stat 155 Notes</title>
+  <title>5.9 Major Takeaways | Stat 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Random Variability | Stat 155 Notes" />
+  <meta property="og:title" content="5.9 Major Takeaways | Stat 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Random Variability | Stat 155 Notes" />
+  <meta name="twitter:title" content="5.9 Major Takeaways | Stat 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="major-takeaways-2.html">
-<link rel="next" href="sampling-variability.html">
+<link rel="prev" href="z-scores-and-the-students-t-distribution.html">
+<link rel="next" href="statistical-inference.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -342,23 +342,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="random-variability" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Random Variability</h1>
-<p>Up until this point, we have thought about</p>
-<ol style="list-style-type: decimal">
-<li>Data collection process (sampling and study design) and Data Quality (issues of bias)</li>
-<li>Data visualization (the first step of any data analysis)</li>
-<li>Modeling (to explain observed variation and provide predictions)</li>
-</ol>
-<p>Throughout the past three chapters, we have also sprinkled in the idea that <strong>the sample we observe is just one random representation of the true population or phenomenon.</strong> Therefore, any <strong>statistic</strong>, any numerical summary of the sample, would be an estimate the true numerical summary of the population (which we refer to as the corresponding unknown <strong>parameter</strong>).</p> 
+<div id="major-takeaways-4" class="section level2">
+<h2><span class="header-section-number">5.9</span> Major Takeaways</h2>
+<ul>
+<li><p>The two common ways we’ll think about probability is empirical probability (imagining repeated a random process over and over again; the probability of an event is the relative frequency of that event happening) and theoretical probability (based on axioms and mathematical theory).</p></li>
+<li><p>Theoretical probability is based on a few axioms (rules) that should always be true.</p>
+<ul>
+<li>Rule 1: <span class="math inline">\(0\leq P(A)\leq 1\)</span> (probability has to be between 0 and 1)</li>
+<li>Rule 2: <span class="math inline">\(P(S) = 1\)</span> (one of the possible outcomes has to happen)</li>
+<li>Rule 3: <span class="math inline">\(P(\text{not }A) = 1 - P(A)\)</span> (if we know the chance of something happening, we also know the chance that it doesn’t happen)</li>
+<li>Rule 4: <span class="math inline">\(P(A\text{ or }B) = P(A) + P(B) - P(A\text{ and } B)\)</span> in general</li>
+<li>Rule 5: <span class="math inline">\(P(A\text{ and }B) = P(A \mid B)P(B) = P(B \mid A)P(A)\)</span> in general</li>
+</ul></li>
+<li><p>A random variable (<span class="math inline">\(X\)</span>) is a variable whose value is random.</p>
+<ul>
+<li>We can write out the probability model for a random variable by listing the possible values and the associated probabilities.</li>
+<li>The expected value of a random variable <span class="math inline">\(X\)</span> is the long-run average, calculated as the sum of the values, weighted by their chances.</li>
+<li>The variance of a random variable <span class="math inline">\(X\)</span> is the variability in the long-run, calculated as the long-run average of the squared deviation from the expected value.</li>
+</ul></li>
+<li><p>A set of Bernoulli Trials include a sequence of random variables <span class="math inline">\(X_1,....,X_n\)</span> where the random variables <span class="math inline">\(X_j\)</span></p>
+<ul>
+<li>have only two outcomes (success = 1, failure = 0)</li>
+<li>are independent of each other (value of one doesn’t impact the chances for the next)</li>
+<li>have constant chance of success, <span class="math inline">\(p\)</span></li>
+</ul></li>
+<li><p>The sum of those random variables, <span class="math inline">\(X = \sum_{j=1}^n X_j\)</span>, is a Binomial Random Variable, which reflects the count of successes</p>
+<ul>
+<li>The probability of <span class="math inline">\(X = x\)</span> counts is <span class="math inline">\(P(X = x) = \frac{n!}{x!(n-x)!} p^x(1-p)^{n-x}\)</span></li>
+<li>Expected Value of Count of Successes: <span class="math inline">\(E(X) = np\)</span></li>
+<li>Variance of Count of Successes: <span class="math inline">\(Var(X) = np(1-p)\)</span></li>
+<li>Expected Value of Proportion of Successes: <span class="math inline">\(E(X/n) = p\)</span></li>
+<li>Variance of Proportion of Successes: <span class="math inline">\(Var(X) = p(1-p)/n\)</span></li>
+<li>As <span class="math inline">\(n\)</span> increases, the variance of the proportion decreases!</li>
+<li>As <span class="math inline">\(n\)</span> increases, the Binomial probabilities resemble a Normal curve!</li>
+</ul></li>
+<li><p>If a random variable <span class="math inline">\(X\)</span> can take any value on a number line (e.g. 1.01, 2.33333,…) and that variable has a symmetric, unimodal distribution, then we might say that it is a Normal Random Variable.</p>
+<ul>
+<li>With <span class="math inline">\(X\)</span> following a standard normal distribution (mean = <span class="math inline">\(\mu\)</span> = 0, standard deviation = <span class="math inline">\(\sigma\)</span> = 1), we know that <span class="math inline">\(P(-1\leq X \leq 1) = 0.68\)</span>, <span class="math inline">\(P(-2\leq X \leq 2) = 0.95\)</span>, and <span class="math inline">\(P(-3\leq X \leq 3) = 0.997\)</span>.</li>
+<li>If <span class="math inline">\(X\)</span> follows a normal model with <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, then <span class="math inline">\(\frac{X-\mu}{\sigma}\)</span> follows a standard normal distribution.</li>
+</ul></li>
+<li><p>A sampling distribution of a statistic tells us exactly how that statistic would vary across all possible samples of a given size.</p>
+<ul>
+<li>The central limit theorem tells us that the sampling distribution of a sample mean, <span class="math inline">\(\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i\)</span>, is approximately Normal with mean = population mean, <span class="math inline">\(\mu\)</span>, and standard deviation = population standard deviation divided by the square root of the sample size, <span class="math inline">\(\sigma/\sqrt{n}\)</span></li>
+</ul></li>
+<li><p>When the sample size is small <span class="math inline">\(n&lt;30\)</span>, we need to consider William Gosset’s work because <span class="math inline">\(\frac{\bar{X} - \mu}{s/\sqrt{n}}\)</span> is not quite Normally distributed!</p></li>
+</ul>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="major-takeaways-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling-variability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="z-scores-and-the-students-t-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="statistical-inference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -388,7 +426,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-variability.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-probability.Rmd",
 "text": "Edit"
 },
 "history": {

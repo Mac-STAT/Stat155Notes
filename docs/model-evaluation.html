@@ -241,6 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>4.4</b> IRL: Bootstrapping</a></li>
 <li class="chapter" data-level="4.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>4.5</b> Simulating Randomization into Groups</a></li>
 <li class="chapter" data-level="4.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>4.6</b> IRL: Randomization Tests</a></li>
+<li class="chapter" data-level="4.7" data-path="major-takeaways-3.html"><a href="major-takeaways-3.html"><i class="fa fa-check"></i><b>4.7</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
@@ -265,6 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
 <li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student’s T Model</a></li>
 </ul></li>
+<li class="chapter" data-level="5.9" data-path="major-takeaways-4.html"><a href="major-takeaways-4.html"><i class="fa fa-check"></i><b>5.9</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
 <li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6.1</b> Confidence Intervals</a><ul>
@@ -316,6 +318,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="definitions.html"><a href="definitions.html"><i class="fa fa-check"></i><b>8</b> Definitions</a><ul>
+<li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -342,14 +348,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prediction" class="section level3">
 <h3><span class="header-section-number">3.7.1</span> Prediction</h3>
 <p>Let’s consider another data example. Can we predict your college GPA based on your high school GPA? (Disclaimer: this is not Macalester data)</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">sat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/sat.csv&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> high_GPA, <span class="dt">y =</span> univ_GPA)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb109-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;High School GPA&#39;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb109-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;College GPA&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb109-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">sat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;Data/sat.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> high_GPA, <span class="dt">y =</span> univ_GPA)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb108-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb108-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb108-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;High School GPA&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb108-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;College GPA&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb108-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
 <p>First things first. Describe the scatterplot.</p>
 <ul>
@@ -359,19 +365,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Unusual</strong>: As seen with the strength, there is greater variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as <strong>“thickening”</strong> or <strong>heteroscedasticity</strong> (this terms is used quite a bit in econometrics).</li>
 </ul>
 <p>The code below computes the correlation coefficients separately for students with high school GPAs above 3 and for students with high school GPAs less than or equal to 3. We see that the correlation is higher for the high GPA group.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">HighHSGPA =</span> high_GPA <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb110-3" data-line-number="3"><span class="st">    </span><span class="kw">group_by</span>(HighHSGPA) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">Cor =</span> <span class="kw">cor</span>(high_GPA,univ_GPA))</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">HighHSGPA =</span> high_GPA <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="st">    </span><span class="kw">group_by</span>(HighHSGPA) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">Cor =</span> <span class="kw">cor</span>(high_GPA,univ_GPA))</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   HighHSGPA   Cor
 ##   &lt;lgl&gt;     &lt;dbl&gt;
 ## 1 FALSE     0.316
 ## 2 TRUE      0.687</code></pre>
 <p>Let’s build a model to predict college GPA based on high school GPA based on this sample data. Since we noted that there was a linear relationship, let’s find the least squares regression line.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb112-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb111-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = univ_GPA ~ high_GPA, data = .)
@@ -397,35 +403,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>If High School GPA = 2:<br />
 <span class="math display">\[ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 2 = 2.44 \]</span></li>
 </ul>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="co">## Calculation by hand; rounded before prediction</span></a>
-<a class="sourceLine" id="cb114-2" data-line-number="2"><span class="fl">1.09</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.675</span><span class="op">*</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="co">## Calculation by hand; rounded before prediction</span></a>
+<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="fl">1.09</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.675</span><span class="op">*</span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] 2.44</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="co">## Calcuation using R&#39;s predict() function</span></a>
-<a class="sourceLine" id="cb116-2" data-line-number="2">sat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">high_GPA =</span> <span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1"><span class="co">## Calcuation using R&#39;s predict() function</span></a>
+<a class="sourceLine" id="cb115-2" data-line-number="2">sat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb115-4" data-line-number="4"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">high_GPA =</span> <span class="dv">2</span>))</a></code></pre></div>
 <pre><code>##        1 
 ## 2.446483</code></pre>
 <ul>
 <li>If High School GPA = 3.5:<br />
 <span class="math display">\[ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 3.5 = 3.45 \]</span></li>
 </ul>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="fl">1.09</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.675</span><span class="op">*</span><span class="fl">3.5</span> <span class="co">#rounded before prediction</span></a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="fl">1.09</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.675</span><span class="op">*</span><span class="fl">3.5</span> <span class="co">#rounded before prediction</span></a></code></pre></div>
 <pre><code>## [1] 3.4525</code></pre>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb120-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb120-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">high_GPA =</span> <span class="fl">3.5</span>)) <span class="co">#rounded after prediction</span></a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb119-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb119-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">high_GPA =</span> <span class="fl">3.5</span>)) <span class="co">#rounded after prediction</span></a></code></pre></div>
 <pre><code>##        1 
 ## 3.458728</code></pre>
 <ul>
 <li>If High School GPA = 4.5:<br />
 <span class="math display">\[ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 4.5 = 4.13 \]</span></li>
 </ul>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="fl">1.09</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.675</span><span class="op">*</span><span class="fl">4.5</span> <span class="co">#rounded before prediction</span></a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="fl">1.09</span> <span class="op">+</span><span class="st"> </span><span class="fl">0.675</span><span class="op">*</span><span class="fl">4.5</span> <span class="co">#rounded before prediction</span></a></code></pre></div>
 <pre><code>## [1] 4.1275</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb124-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb124-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">high_GPA =</span> <span class="fl">4.5</span>)) <span class="co">#rounded after prediction </span></a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb123-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb123-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">high_GPA =</span> <span class="fl">4.5</span>)) <span class="co">#rounded after prediction </span></a></code></pre></div>
 <pre><code>##        1 
 ## 4.133558</code></pre>
 <div class="reflect">
@@ -437,8 +443,8 @@ Does it make sense to use this model for high school GPA’s &gt; 4? Some high s
 <li>What is the maximum high school GPA in this data set?</li>
 <li>What if your college doesn’t allow for GPA’s above 4.0?</li>
 </ul>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="st">    </span><span class="kw">summarize</span>(<span class="kw">max</span>(high_GPA)) <span class="co"># Max high school GPA in this data set</span></a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb125-2" data-line-number="2"><span class="st">    </span><span class="kw">summarize</span>(<span class="kw">max</span>(high_GPA)) <span class="co"># Max high school GPA in this data set</span></a></code></pre></div>
 <pre><code>##   max(high_GPA)
 ## 1             4</code></pre>
 <p>Making predictions beyond the observed range of values is called <strong>extrapolation</strong> and is generally a risky thing to do. If you make prediction for values of <span class="math inline">\(x\)</span> beyond the minimum or maximum of the observed values, then you are assuming that the relationship you observe can be extended into the new prediction range. This is the main issue of <strong>forecasting</strong>, making predictions in the future. You have to assume that the trend that you observe now will continue in the future and that the current state of affairs will stay the same. For an infamous case of extrapolation, check out <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173856/">this article</a> that appeared in the journal Nature.</p>
@@ -447,31 +453,31 @@ Does it make sense to use this model for high school GPA’s &gt; 4? Some high s
 <h3><span class="header-section-number">3.7.2</span> Prediction Errors</h3>
 <p>Recall that a residual, <span class="math inline">\(e_i\)</span>, for the <span class="math inline">\(i\)</span>th data point is the difference between the actual and predicted values: <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span>.</p>
 <p>If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section <a href="one-quantitative-variable.html#intro-zscore">2.6.5</a>.)</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb128-3" data-line-number="3"><span class="st">  </span><span class="kw">residuals</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb128-4" data-line-number="4"><span class="st">  </span><span class="kw">hist</span>(<span class="dt">main =</span> <span class="st">&quot;Distribution of residuals in the GPA model&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">sat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb127-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb127-3" data-line-number="3"><span class="st">  </span><span class="kw">residuals</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb127-4" data-line-number="4"><span class="st">  </span><span class="kw">hist</span>(<span class="dt">main =</span> <span class="st">&quot;Distribution of residuals in the GPA model&quot;</span>)</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
 <p>Below we calculate <span class="math inline">\(SSE\)</span> (the sum of squared errors/residuals), and the standard deviation of the residuals (<span class="math inline">\(s_e\)</span>).</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">lm.gpa &lt;-<span class="st"> </span>sat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb129-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .)</a>
-<a class="sourceLine" id="cb129-3" data-line-number="3">SSE &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(lm.gpa)<span class="op">^</span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb129-4" data-line-number="4">n &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">residuals</span>(lm.gpa)) <span class="co"># Sample size</span></a>
-<a class="sourceLine" id="cb129-5" data-line-number="5">s &lt;-<span class="st"> </span><span class="kw">sqrt</span>(SSE<span class="op">/</span>(n<span class="dv">-2</span>)) <span class="co">#sd of residuals</span></a>
-<a class="sourceLine" id="cb129-6" data-line-number="6">s</a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">lm.gpa &lt;-<span class="st"> </span>sat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb128-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .)</a>
+<a class="sourceLine" id="cb128-3" data-line-number="3">SSE &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(lm.gpa)<span class="op">^</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb128-4" data-line-number="4">n &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">residuals</span>(lm.gpa)) <span class="co"># Sample size</span></a>
+<a class="sourceLine" id="cb128-5" data-line-number="5">s &lt;-<span class="st"> </span><span class="kw">sqrt</span>(SSE<span class="op">/</span>(n<span class="dv">-2</span>)) <span class="co">#sd of residuals</span></a>
+<a class="sourceLine" id="cb128-6" data-line-number="6">s</a></code></pre></div>
 <pre><code>## [1] 0.2814443</code></pre>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span>s</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span>s</a></code></pre></div>
 <pre><code>## [1] 0.5628886</code></pre>
 <p>Using this model (that is, using your high school GPA), we can predict your college GPA within about <span class="math inline">\(0.56\)</span> GPA points. Is this useful? Is predicting within a margin of <span class="math inline">\(0.56\)</span> GPA points good enough? Let’s compare this margin of error with the margin of error about the mean (the standard deviation):</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="kw">sd</span>(sat<span class="op">$</span>univ_GPA)</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">sd</span>(sat<span class="op">$</span>univ_GPA)</a></code></pre></div>
 <pre><code>## [1] 0.4471936</code></pre>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span><span class="kw">sd</span>(sat<span class="op">$</span>univ_GPA)</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="dv">2</span><span class="op">*</span><span class="kw">sd</span>(sat<span class="op">$</span>univ_GPA)</a></code></pre></div>
 <pre><code>## [1] 0.8943873</code></pre>
 <p><em>Without</em> knowing your high school GPA, we could have just guessed your college GPA as the overall mean college GPA in the sample, and this guess would probably be within <span class="math inline">\(\pm 0.89\)</span> of your actual college GPA. This is a higher margin of error than the approximate <span class="math inline">\(0.56\)</span> if we did use your high school GPA (in the simple linear regression model). We are able to predict your college GPA with a smaller margin of error than if we just guessed your college GPA with the mean. Our model has <em>explained</em> some (but not all) of the variation in college GPA.</p>
 <p>The standard deviation of college GPA is based on the sum of squared total variation, SSTO (variation around the mean),</p>
 <p><span class="math display">\[ SSTO = \sum{(y_i -\bar{y})^2} \]</span></p>
 <p><span class="math inline">\(SSTO\)</span> is the numerator of the standard deviation of <span class="math inline">\(y\)</span> (without knowing anything about <span class="math inline">\(x\)</span>).</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">(<span class="dt">SSTO =</span> <span class="kw">sum</span>((sat<span class="op">$</span>univ_GPA <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(sat<span class="op">$</span>univ_GPA))<span class="op">^</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">(<span class="dt">SSTO =</span> <span class="kw">sum</span>((sat<span class="op">$</span>univ_GPA <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(sat<span class="op">$</span>univ_GPA))<span class="op">^</span><span class="dv">2</span>))</a></code></pre></div>
 <pre><code>## [1] 20.79814</code></pre>
 <p>We define <span class="math inline">\(SSTO\)</span> here because it will help to compare <span class="math inline">\(SSTO\)</span> to <span class="math inline">\(SSE\)</span> (sum of squared residuals from the model) to obtain a measure of how well our models are <strong>fitting</strong> the data - how well they are predicting the outcome.</p>
 </div>
@@ -501,9 +507,9 @@ Does it make sense to use this model for high school GPA’s &gt; 4? Some high s
 </p>
 </div>
 <p>In R, <code>lm()</code> will calculate R-Squared (<span class="math inline">\(R^2\)</span>) for us, but we can also see that it equals the value from the formula above.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>SSE<span class="op">/</span>SSTO</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>SSE<span class="op">/</span>SSTO</a></code></pre></div>
 <pre><code>## [1] 0.6077187</code></pre>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">glance</span>(lm.gpa) <span class="co">#r.squared = R^2, sigma = s_e (ignore the rest)</span></a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="kw">glance</span>(lm.gpa) <span class="co">#r.squared = R^2, sigma = s_e (ignore the rest)</span></a></code></pre></div>
 <pre><code>## # A tibble: 1 x 11
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;

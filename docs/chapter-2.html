@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Random Variability | Stat 155 Notes</title>
+  <title>8.2 Chapter 2 | Stat 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Random Variability | Stat 155 Notes" />
+  <meta property="og:title" content="8.2 Chapter 2 | Stat 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Random Variability | Stat 155 Notes" />
+  <meta name="twitter:title" content="8.2 Chapter 2 | Stat 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="major-takeaways-2.html">
-<link rel="next" href="sampling-variability.html">
+<link rel="prev" href="chapter-1.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -342,23 +342,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="random-variability" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Random Variability</h1>
-<p>Up until this point, we have thought about</p>
-<ol style="list-style-type: decimal">
-<li>Data collection process (sampling and study design) and Data Quality (issues of bias)</li>
-<li>Data visualization (the first step of any data analysis)</li>
-<li>Modeling (to explain observed variation and provide predictions)</li>
-</ol>
-<p>Throughout the past three chapters, we have also sprinkled in the idea that <strong>the sample we observe is just one random representation of the true population or phenomenon.</strong> Therefore, any <strong>statistic</strong>, any numerical summary of the sample, would be an estimate the true numerical summary of the population (which we refer to as the corresponding unknown <strong>parameter</strong>).</p> 
+<div id="chapter-2" class="section level2">
+<h2><span class="header-section-number">8.2</span> Chapter 2</h2>
+<p><strong>Bar plot</strong>: A graph of multiple rectangles where the height shows the counts or proportion of observations within each category of one categorical variable; the width of the rectangles is arbitrary and does not encoded data.</p>
+<p><strong>Boxplot</strong>: An alternative graphical summary for a quantitative variable that consists of the box (25th to 75th percentile), the line in the box (median), the tails or whiskers (to the most extreme observed values within 1.5*IQR), and points (outliers that are further than 1.5*IQR from the box)</p>
+<p><strong>Center of a Distribution</strong>: The typical value which could be measured with the mode, mean, or median.</p>
+<p><strong>Conditional distribution</strong>: The relative frequencies within subsets, typically calculated based on a two-way table for two categorical variables.</p>
+<p><strong>Direction</strong>: Indicating whether a relationship is positive, negative, or neutral</p>
+<p><strong>Distribution</strong>: The way something is spread out (the way in which values vary).</p>
+<p><strong>Form</strong>: The type of relationship we observe (linear, curved, none)</p>
+<p><strong>Frequency</strong>: The count of observations</p>
+<p><strong>Histogram</strong>: A graph to show the distribution of a quantitative variable. The x-axis is a number line that is divided into intervals called bins. The height of the bars shows either the frequency within intervals (counts of units that fall into that bin/interval) or the density (fraction of units that fall into that bin/interval). Gaps between bars are meaningful. They indicate absence of values within an interval.</p>
+<p><strong>Interquartile Range</strong>: 75th percentile - 25th percentile</p>
+<p><strong>Marginal Distribution</strong>: If you are looking at the numerical summary of two categorical variables, the marginal distribution is the relative frequency of one of the variables, ignoring the other.</p>
+<p><strong>Mean</strong>: The average value calculated as the sum of values divided by the total number of values.</p>
+<p><strong>Median</strong>: The middle value if you ordered all of the values.</p>
+<p><strong>Mode</strong>: A “peak”/“bump” in the distribution.</p>
+<p><strong>Mosaic plot</strong>: A graph of rectangles where the relative height of the bars shows the conditional distribution (relative frequency within subsets), and the width of the bars shows the marginal distribution (relative frequency of the X variable, ignoring the other variable).</p>
+<p><strong>Outlier</strong>: A point far from the rest of the observations</p>
+<p><strong>Relative Frequency</strong>: The count of observations divide by the total number of observations</p>
+<p><strong>Scatterplot</strong>: With two quantitative variables, the graphical display with points reflecting the pair of values on a coordinate plane.</p>
+<p><strong>Shape</strong>: When describing a distribution of a quantitative variable, you should comment on whether it is symmetric or skewed and how many modes it has.</p>
+<p><strong>Side-by-side bar plot</strong>: A graph of many rectangles where the height shows the count of the categories within groups in the data (for two categorical variables). The rectangles are typically colored according to the grouping categorical variable.</p>
+<p><strong>Simpson’s Paradox</strong>: A situation in which you come to two different conclusions if you look at results overall versus within subsets.</p>
+<p><strong>Skewed Left</strong>: A distribution is left-skewed if there is a long left tail.</p>
+<p><strong>Skewed Right</strong>: A distribution is right-skewed if it has a long right tail.</p>
+<p><strong>Spread (or variation)</strong>: The measure of how much the values vary. Are the values concentrated around one or more values or spread out?</p>
+<p><strong>Stacked bar plot</strong>: A graph of rectangles where the height of the entire bar shows the marginal distribution (frequency of the X variable, ignoring the other variable), and the relative heights within one rectangle show conditional distributions (frequencies within subsets).</p>
+<p><strong>Stacked bar plot based on proportions</strong>: A graph of rectangles where the relative heights within one rectangle show conditional distributions (frequencies within subsets).</p>
+<p><strong>Standard deviation</strong>: Root mean squared deviations from mean</p>
+<p><strong>Strength</strong>: The compactness of points around the average relationship.</p>
+<p><strong>Symmetric Distribution</strong>: A distribution is symmetric if you fold it in half and the sides match up.</p>
+<p><strong>Trimmed means</strong>: Drop the lowest and highest k% and take the mean of the rest.</p>
+<p><strong>Variance</strong>: Square of the standard deviation</p>
+<p><strong>Z-score</strong>: A standardized value that gives the number of standard deviation a value is from the mean.</p>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="major-takeaways-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling-variability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-1.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -388,7 +415,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-variability.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-definitions.Rmd",
 "text": "Edit"
 },
 "history": {

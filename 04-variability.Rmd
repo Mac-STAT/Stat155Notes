@@ -338,3 +338,22 @@ Do you think that the mean arrival delay is different for morning and afternoon?
 ```
 
 We will return to the ideas of testing hypotheses later in the course.
+
+## Major Takeaways
+
+- There are two major ways that randomness typically plays a role in the data we observe:
+
+    1. If we randomly choose a sample from the population
+    2. If we randomly assign individuals to a treatment group in an experiment
+
+- If we do random sampling, then we need to consider how our numeric summaries (means, medians, estimated slopes, estimated odds ratios) might vary if we had gotten a different sample from the population.
+
+    - We can get an estimate of this sample variation through bootstrapping from our sample (resampling from our sample).
+
+
+- If we randomly assign individuals to a treatment group, then we need to consider how much the differences in the groups might vary if we had a different random assignment to groups.
+
+    - We can assume there is no real difference in the groups and then reshuffle our treatment group labels to get an estimate of this random variation and then compare our observed value to those values generated from assuming no real difference in the groups.
+    
+    
+    

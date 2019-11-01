@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Random Variability | Stat 155 Notes</title>
+  <title>4.7 Major Takeaways | Stat 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Random Variability | Stat 155 Notes" />
+  <meta property="og:title" content="4.7 Major Takeaways | Stat 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Random Variability | Stat 155 Notes" />
+  <meta name="twitter:title" content="4.7 Major Takeaways | Stat 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="major-takeaways-2.html">
-<link rel="next" href="sampling-variability.html">
+<link rel="prev" href="irl-randomization-tests.html">
+<link rel="next" href="randomness-and-probability.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -342,23 +342,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="random-variability" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Random Variability</h1>
-<p>Up until this point, we have thought about</p>
+<div id="major-takeaways-3" class="section level2">
+<h2><span class="header-section-number">4.7</span> Major Takeaways</h2>
+<ul>
+<li><p>There are two major ways that randomness typically plays a role in the data we observe:</p>
 <ol style="list-style-type: decimal">
-<li>Data collection process (sampling and study design) and Data Quality (issues of bias)</li>
-<li>Data visualization (the first step of any data analysis)</li>
-<li>Modeling (to explain observed variation and provide predictions)</li>
-</ol>
-<p>Throughout the past three chapters, we have also sprinkled in the idea that <strong>the sample we observe is just one random representation of the true population or phenomenon.</strong> Therefore, any <strong>statistic</strong>, any numerical summary of the sample, would be an estimate the true numerical summary of the population (which we refer to as the corresponding unknown <strong>parameter</strong>).</p> 
+<li>If we randomly choose a sample from the population</li>
+<li>If we randomly assign individuals to a treatment group in an experiment</li>
+</ol></li>
+<li><p>If we do random sampling, then we need to consider how our numeric summaries (means, medians, estimated slopes, estimated odds ratios) might vary if we had gotten a different sample from the population.</p>
+<ul>
+<li>We can get an estimate of this sample variation through bootstrapping from our sample (resampling from our sample).</li>
+</ul></li>
+<li><p>If we randomly assign individuals to a treatment group, then we need to consider how much the differences in the groups might vary if we had a different random assignment to groups.</p>
+<ul>
+<li>We can assume there is no real difference in the groups and then reshuffle our treatment group labels to get an estimate of this random variation and then compare our observed value to those values generated from assuming no real difference in the groups.</li>
+</ul></li>
+</ul>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="major-takeaways-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling-variability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="irl-randomization-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="randomness-and-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

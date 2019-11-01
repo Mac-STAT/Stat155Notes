@@ -241,6 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>4.4</b> IRL: Bootstrapping</a></li>
 <li class="chapter" data-level="4.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>4.5</b> Simulating Randomization into Groups</a></li>
 <li class="chapter" data-level="4.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>4.6</b> IRL: Randomization Tests</a></li>
+<li class="chapter" data-level="4.7" data-path="major-takeaways-3.html"><a href="major-takeaways-3.html"><i class="fa fa-check"></i><b>4.7</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
@@ -265,6 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
 <li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student’s T Model</a></li>
 </ul></li>
+<li class="chapter" data-level="5.9" data-path="major-takeaways-4.html"><a href="major-takeaways-4.html"><i class="fa fa-check"></i><b>5.9</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
 <li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6.1</b> Confidence Intervals</a><ul>
@@ -316,6 +318,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="definitions.html"><a href="definitions.html"><i class="fa fa-check"></i><b>8</b> Definitions</a><ul>
+<li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
+<li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -346,9 +352,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><span class="math display">\[s_e = \sqrt{\frac{\sum^n_{i=1} (y_i-\hat{y}_i)^2}{n-2}}  = \sqrt{\frac{\sum^n_{i=1} (e_i-0)^2}{n-2}} \]</span></p>
 <p>In R: the standard deviation of the residuals, <span class="math inline">\(s_e\)</span>, is referred to as the “residual standard error”. Don’t confuse this with “Std. Error,” that is something else that we’ll get to.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#If you don&#39;t want the pipe to pass to the first argument, you can specify the argument with .</span></a>
-<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#If you don&#39;t want the pipe to pass to the first argument, you can specify the argument with .</span></a>
+<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Chest ~ Neck, data = .)
@@ -370,11 +376,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This simple linear regression line is</p>
 <p><span class="math display">\[\widehat{Chest} = -3.18 + 2.73*Neck\]</span></p>
 <p>If you have a neck size of 38 cm, then we predict the chest size of an ideal shirt is about 100.5 cm (~ -3.18 + 2.73*38)</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="fl">-3.18</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.73</span><span class="op">*</span><span class="dv">38</span> <span class="co">#the intercept and slope are rounded here first (not great)</span></a></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="fl">-3.18</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.73</span><span class="op">*</span><span class="dv">38</span> <span class="co">#the intercept and slope are rounded here first (not great)</span></a></code></pre></div>
 <pre><code>## [1] 100.56</code></pre>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Neck =</span> <span class="dv">38</span>)) <span class="co">#the intercept and slope are not rounded before prediction (better!)</span></a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Neck =</span> <span class="dv">38</span>)) <span class="co">#the intercept and slope are not rounded before prediction (better!)</span></a></code></pre></div>
 <pre><code>##        1 
 ## 100.8131</code></pre>
 <p>Given your neck size, we can probably predict your chest size within 5 to 10 cm since <span class="math inline">\(s_e = 5.22\)</span> (1 to 2 SD’s – recall Section <a href="one-quantitative-variable.html#intro-zscore">2.6.5</a>).</p>

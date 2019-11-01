@@ -144,3 +144,66 @@ This section attempts to have a list of terms and definitions for each chapter. 
 **Variance**: Square of the standard deviation
 
 **Z-score**:  A standardized value that gives the number of standard deviation a value is from the mean.
+
+## Chapter 3
+
+**AIC/BIC**:
+
+**Bootstrapping**: The process of resampling from our sample to estimate the variability in the estimated slope coefficients and to provide an interval estimate of plausible values for the slope coefficient. 
+
+**Explanatory or Predictor Variable**: The independent variable that we may use to predict the outcome or response variable.
+
+**Extrapolation**: Making predictions by plugging in values of the explanatory variables that are beyond the observed range; requires assuming the relationship captured in the model will continue outside the observed range.
+
+**False Positive Rate**:
+
+**False Negative Rate**:
+
+
+**Indicator Variable**: A variable that has two values (0 or 1) that indicate whether a subject or individual has that characteristic or is in the group. It is used primarily to allow cateogrical variables to be included in regression (linear or logistic) models. If there are K categories in a categorical variable, we only need K-1 indicator variables to be included in the model. 
+
+**Interaction Term**: An interaction term is the product of two variables and it allows for effect modification, which is when one variable can modify the effect or slope of another variable on the response variable. 
+
+**Ladder of Powers**: A tool to organize power transformations ($x^{power}$) from higher powers down to lower powers but when power = 0, we use the natural log function (In R: `log()`).
+
+**Least Squares**: The estimation technique that involves minimizing the sum of squared residuals to find the best fitting "line". 
+
+**Leverage**: An observation that has leverage is far from the rest in terms of an explanatory variable may have the power to change the placement of the line because it also has a large residual value. 
+
+**Logistic Regression**: A model that is used to predict a binary categorical variable (only has two outcomes). 
+
+**Multiple Linear Regression**: A linear regression model with more than one explanatory variable included in the model. 
+
+**Odds**:
+
+**Odds Ratio**:
+
+**Outcome or Response Variable**: The dependent variable that we hope to predict based on explanatory variables.
+
+**Predicted or Fitted Values**: The predicted responses for the observed data based on a model.
+
+
+**Residual**: The observed outcome value minus the predicted value from a model. 
+
+**R Squared**: Without any data context: The percent of variation in Y that can be explained by the fit model.
+
+**Sensitivity**:
+
+**Specificity**:
+
+**Sensitivity Analysis**:
+
+**Simple Linear Model**: A regression model that assumes a straight relationship between one explanatory variable and a response variable.
+
+**Slope Interpretation in Simple Linear Model**: Without any data context: For a 1 unit increase in X, we'd expect a $b_1$ increase in the predicted Y. To put in data context: make sure you know the units of your variable and what is a meaningful "1 unit" to describe. 
+
+**Slope Interpretation in Multiple Linear Model**: If there are no interaction terms: For a 1 unit increase in $X_j$, we'd expect a $b_j$ increase in the predicted Y, keeping all other variables fixed. If there are interaction terms: write out the model for subgroups to determine interpretation.
+
+**Slope Interpretation in Logistic Regression Model**: If there are no interaction terms: For a 1 unit increase in X, we'd expect the estimated odds of an event to change by a multiplicative factor of $e^{b_j}$, keeping all other variables fixed. If there are interaction terms: write out the model for subgroups to determine interpretation.
+
+**Standard deviation of the Residuals**: The variability or spread of the residuals around its mean of 0, indicating the average magnitude of a residual or prediction error (in R: it is called the residual standard error).
+
+**Transformations**: If there is a non-linear relationship between a quantitative explanatory variable and a response variable, we can try to transform one or both of the variables to make the relationship more like a straight line. If there is unequal spread in the response around the curved relationship, try transforming the response variable first. Then use the ladder of powers and Tukey's circle to guide your trial and error of finding the transformations that result in a relationship closest to a straight line with equal spread around it. 
+
+
+

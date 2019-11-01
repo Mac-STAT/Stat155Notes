@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.3 Sampling | Stat 155 Notes</title>
+  <title>8.3 Chapter 3 | Stat 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.3 Sampling | Stat 155 Notes" />
+  <meta property="og:title" content="8.3 Chapter 3 | Stat 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.3 Sampling | Stat 155 Notes" />
+  <meta name="twitter:title" content="8.3 Chapter 3 | Stat 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-context.html">
-<link rel="next" href="information-bias.html">
+<link rel="prev" href="chapter-2.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -343,48 +343,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="sampling" class="section level2">
-<h2><span class="header-section-number">1.3</span> Sampling</h2>
-<p>When we study a phenomenon, we generally care about making a conclusion that applies to some <strong>target population of interest</strong> (e.g. all likely voters in the U.S., all eligible voters in the U.S., college students in Minnesota, etc.). However, we cannot feasibly collect data on that entire population (this is called a <strong>census</strong> and is very expensive to complete) due to financial and time constraints, so we collect a <strong>sample</strong> of individuals. We want our sample to be <strong>representative</strong> of the target population in that we want our sample to resemble the target population in the characteristics we are studying.</p>
-<div class="reflect">
-<p>
-How is representativeness affected by our research question? Can a sample be representative for one goal but not another?
-</p>
+<div id="chapter-3" class="section level2">
+<h2><span class="header-section-number">8.3</span> Chapter 3</h2>
+<p><strong>AIC/BIC</strong>:</p>
+<p><strong>Bootstrapping</strong>: The process of resampling from our sample to estimate the variability in the estimated slope coefficients and to provide an interval estimate of plausible values for the slope coefficient.</p>
+<p><strong>Explanatory or Predictor Variable</strong>: The independent variable that we may use to predict the outcome or response variable.</p>
+<p><strong>Extrapolation</strong>: Making predictions by plugging in values of the explanatory variables that are beyond the observed range; requires assuming the relationship captured in the model will continue outside the observed range.</p>
+<p><strong>False Positive Rate</strong>:</p>
+<p><strong>False Negative Rate</strong>:</p>
+<p><strong>Indicator Variable</strong>: A variable that has two values (0 or 1) that indicate whether a subject or individual has that characteristic or is in the group. It is used primarily to allow cateogrical variables to be included in regression (linear or logistic) models. If there are K categories in a categorical variable, we only need K-1 indicator variables to be included in the model.</p>
+<p><strong>Interaction Term</strong>: An interaction term is the product of two variables and it allows for effect modification, which is when one variable can modify the effect or slope of another variable on the response variable.</p>
+<p><strong>Ladder of Powers</strong>: A tool to organize power transformations (<span class="math inline">\(x^{power}\)</span>) from higher powers down to lower powers but when power = 0, we use the natural log function (In R: <code>log()</code>).</p>
+<p><strong>Least Squares</strong>: The estimation technique that involves minimizing the sum of squared residuals to find the best fitting “line”.</p>
+<p><strong>Leverage</strong>: An observation that has leverage is far from the rest in terms of an explanatory variable may have the power to change the placement of the line because it also has a large residual value.</p>
+<p><strong>Logistic Regression</strong>: A model that is used to predict a binary categorical variable (only has two outcomes).</p>
+<p><strong>Multiple Linear Regression</strong>: A linear regression model with more than one explanatory variable included in the model.</p>
+<p><strong>Odds</strong>:</p>
+<p><strong>Odds Ratio</strong>:</p>
+<p><strong>Outcome or Response Variable</strong>: The dependent variable that we hope to predict based on explanatory variables.</p>
+<p><strong>Predicted or Fitted Values</strong>: The predicted responses for the observed data based on a model.</p>
+<p><strong>Residual</strong>: The observed outcome value minus the predicted value from a model.</p>
+<p><strong>R Squared</strong>: Without any data context: The percent of variation in Y that can be explained by the fit model.</p>
+<p><strong>Sensitivity</strong>:</p>
+<p><strong>Specificity</strong>:</p>
+<p><strong>Sensitivity Analysis</strong>:</p>
+<p><strong>Simple Linear Model</strong>: A regression model that assumes a straight relationship between one explanatory variable and a response variable.</p>
+<p><strong>Slope Interpretation in Simple Linear Model</strong>: Without any data context: For a 1 unit increase in X, we’d expect a <span class="math inline">\(b_1\)</span> increase in the predicted Y. To put in data context: make sure you know the units of your variable and what is a meaningful “1 unit” to describe.</p>
+<p><strong>Slope Interpretation in Multiple Linear Model</strong>: If there are no interaction terms: For a 1 unit increase in <span class="math inline">\(X_j\)</span>, we’d expect a <span class="math inline">\(b_j\)</span> increase in the predicted Y, keeping all other variables fixed. If there are interaction terms: write out the model for subgroups to determine interpretation.</p>
+<p><strong>Slope Interpretation in Logistic Regression Model</strong>: If there are no interaction terms: For a 1 unit increase in X, we’d expect the estimated odds of an event to change by a multiplicative factor of <span class="math inline">\(e^{b_j}\)</span>, keeping all other variables fixed. If there are interaction terms: write out the model for subgroups to determine interpretation.</p>
+<p><strong>Standard deviation of the Residuals</strong>: The variability or spread of the residuals around its mean of 0, indicating the average magnitude of a residual or prediction error (in R: it is called the residual standard error).</p>
+<p><strong>Transformations</strong>: If there is a non-linear relationship between a quantitative explanatory variable and a response variable, we can try to transform one or both of the variables to make the relationship more like a straight line. If there is unequal spread in the response around the curved relationship, try transforming the response variable first. Then use the ladder of powers and Tukey’s circle to guide your trial and error of finding the transformations that result in a relationship closest to a straight line with equal spread around it.</p>
+
 </div>
-<p>When our method of selecting a sample is flawed, <strong>sampling bias</strong> can result, and our sample is unrepresentative of the target population. We need to be aware of how this tends to happen, and how can we avoid it.</p>
-<p>It is first helpful to define the term <strong>sampling frame</strong>. A sampling frame is the complete list of individuals/units in the target population. For example, it could be a spreadsheet listing every college student that studies in Minnesota.</p>
-<div id="sampling-bias" class="section level3">
-<h3><span class="header-section-number">1.3.1</span> Sampling Bias</h3>
-<p>The following are common ways that sampling bias can arise, and they all share the feature that a sampling frame is <em>NOT</em> used:</p>
-<ul>
-<li><p><strong>Convenience Sampling:</strong> <em>Individuals that make up a convenience sample are easy to contact or to reach (e.g. you stand on a street corner and ask passerbys to answer a few questions). The people sampled will likely be systematically different than the target population.</em></p></li>
-<li><p><strong>Self-Selection and Volunteer Sampling:</strong> <em>Individuals that make up a sample self-select or volunteer to be in a sample (e.g. product reviews on Amazon, individuals that call in to radio shows, blood donors, etc.). They are likely to be systematically different than the target population.</em></p></li>
-</ul>
-<p>One result of using these sampling techniques is that we can get <strong>undercoverage</strong> in the sample. This happens when some groups of the population are inadequately represented in the sample due to the sampling procedure. A famous example in United States history is the 1936 Literary Digest poll that completely mispredicted the presidential election. The magazine predicted a strong victory for Alfred Landon, but Franklin Delano Roosevelt ended up winning the election by a substantial margin. The survey relied on a convenience sample, drawn from telephone directories and car registration lists. In 1936, people who owned cars and telephones tended to be more affluent and leaned to the right politically (they favored Landon).</p>
-<p>If we do not have a complete sampling frame, then we have no control over what units enter the sample because we do not even have a complete list of the units that <em>could</em> be sampled. Imagine that our target population is like a pot of soup, these forms of sampling are similar to scooping only the bits of soup that float to the top of the pot without stirring.</p>
-</div>
-<div id="random-sampling" class="section level3">
-<h3><span class="header-section-number">1.3.2</span> Random Sampling</h3>
-<p>With a sampling frame, we can do better and hopefully avoid sampling bias by using randomization. In our soup metaphor, this amounts to mixing the soup thoroughly and dipping our spoon in random locations.</p>
-<p>These strategies are called <strong>probability sampling</strong> strategies or, more colloquially, <strong>random sampling</strong> strategies. In probability sampling, each unit in the sampling frame has a known, nonzero probability of being selected, and the sampling is performed with some chance device (e.g. coin flipping, random number generation).</p>
-<p>Some probability sampling techniques include:</p>
-<p><strong>Simple Random Sampling:</strong> <em>Each unit in the sampling frame has the same chance of being chosen and individuals are selected without replacement (once they have been chosen, they cannot be chosen again). With this strategy, every sample of a given size is equally likely to arise.</em></p>
-<p><strong>Stratified Sampling:</strong> <em>The units in the sampling frame are first divided into categories/strata (e.g. age categories). Simple random sampling is then performed within each category/stratum. Why do this? Just by chance, simple random sampling might oversample young individuals. Stratifying by age first, then performing simple random sampling in these strata ensures a desired age distribution in the sample. With this strategy, you may be able to increase the precision of the estimates.</em></p>
-<p><strong>Cluster Sampling:</strong> <em>Sometimes a sampling frame is more readily available for clusters of units rather than the units themselves. For example, a sampling frame of all hospitals in Minnesota might be more readily available than a sampling frame of all Minnesota hospital patients in a given time frame. In cluster sampling, the initial clusters are sampled with a probability sampling method (like simple random sampling or stratified sampling). All units in the sampled clusters may be chosen, or if sampling frames can be obtained for the sampled clusters, probability sampling is performed within the cluster. This strategy should only be used when a full sampling frame is unavailable or it is economically justified as this procedure generally provides less precision than the other two strategies.</em></p>
-</div>
-<div id="nonresponse-bias" class="section level3">
-<h3><span class="header-section-number">1.3.3</span> Nonresponse bias</h3>
-<p>Even with a random sampling method, our sample can still be unrepresentative if units in our sample do not choose to participate after they are selected. For example, if the communication method is via e-mail, individuals who do not read our e-mail may be nonresponders. If those individuals who don’t participate are systematically different than those that do, this type of nonresponse bias is called <strong>unit nonresponse bias</strong>.</p>
-<p>Let’s say that an individual opens up our e-mail survey. They may answer the first few questions but grow weary and skip the last questions. If those individuals who answer some but don’t answer other questions are systematically different than those that do in their responses, this type of nonresponse bias is called <strong>item nonresponse bias</strong>.</p>
-</div>
-</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-context.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="information-bias.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-2.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -414,7 +412,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-data.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-definitions.Rmd",
 "text": "Edit"
 },
 "history": {

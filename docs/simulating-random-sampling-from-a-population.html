@@ -371,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb197-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> arr_delay)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb197-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb197-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-220-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb198-1" data-line-number="1">flights_samp1 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb198-2" data-line-number="2"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay))</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
@@ -394,7 +394,7 @@ Why do you think that?
 <a class="sourceLine" id="cb200-5" data-line-number="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> arr_delay)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb200-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb200-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1">flights_samp2 <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb201-2" data-line-number="2"><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay))</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
@@ -429,7 +429,7 @@ How does the second sample differ from the first sample? What do they have in co
 <a class="sourceLine" id="cb204-13" data-line-number="13"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb204-14" data-line-number="14"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample median</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb204-15" data-line-number="15"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-225-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="co"># Visualize</span></a>
 <a class="sourceLine" id="cb205-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb205-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
@@ -437,7 +437,7 @@ How does the second sample differ from the first sample? What do they have in co
 <a class="sourceLine" id="cb205-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb205-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample mean</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb205-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-225-2.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-175-2.png" width="672" /></p>
 <p>These histograms approximate the <strong>sampling distribution</strong> of sample median arrival delay and the <strong>sampling distribution</strong> of sample mean arrival delay, both of which describe the variability in the sample statistic <em>across all possible random samples from the population</em>.</p>
 <div class="reflect">
 <p>

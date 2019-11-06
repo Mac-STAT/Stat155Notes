@@ -374,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb19-6" data-line-number="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb19-7" data-line-number="7"><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb19-8" data-line-number="8"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What additional information do you gain by considering smoking status?
@@ -423,7 +423,7 @@ What additional information do you gain by considering smoking status?
 <a class="sourceLine" id="cb24-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb24-7" data-line-number="7"><span class="st">    </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>,<span class="dt">values=</span><span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb24-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What information is highlighted when you stack the bars as compared to having them side-by-side?
@@ -448,7 +448,7 @@ What information is highlighted when you stack the bars as compared to having th
 <a class="sourceLine" id="cb25-8" data-line-number="8"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Proportion&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb25-9" data-line-number="9"><span class="st">    </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb25-10" data-line-number="10"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Another way to make a proportional bar plot is to use the <code>position = &quot;fill&quot;</code></p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">Whickham <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smoker, <span class="dt">fill =</span> outcome)) <span class="op">+</span></a>
@@ -457,7 +457,7 @@ What information is highlighted when you stack the bars as compared to having th
 <a class="sourceLine" id="cb26-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Proportion&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb26-6" data-line-number="6"><span class="st">    </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb26-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 </div>
 <div id="mosaic-plot" class="section level3">
 <h3><span class="header-section-number">2.5.4</span> Mosaic Plot</h3>
@@ -475,7 +475,7 @@ What information is highlighted when you stack the bars as compared to having th
 <a class="sourceLine" id="cb27-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb27-7" data-line-number="7"><span class="st">    </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb27-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What information is highlighted when you focus on relative frequency in the mosaic plots as compared to other bar plots?
@@ -496,7 +496,7 @@ Does our data suggest that smoking <em>is associated</em> with a lower mortality
 <a class="sourceLine" id="cb28-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb28-7" data-line-number="7"><span class="st">    </span><span class="kw">scale_fill_manual</span>(<span class="st">&#39;20 Year Mortality&#39;</span>, <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb28-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <div class="reflect">
 <p>
 What do you gain by creating plots within subgroups?

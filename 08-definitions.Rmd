@@ -211,21 +211,21 @@ This section attempts to have a list of terms and definitions for each chapter. 
 **Bootstrapping**: The process of resampling our sample mimics the process of sampling from the full target population using our best stand-in for the population: our sample. We bootstrap our sample in order to 1) estimate the variability of the statistic and 2) get a range of plausible values for the true population parameter.
 
 
-**Null Hypothesis**:
+**Null Hypothesis**: A hypothesis that is conservative/not interesting/does not elicit action, typically of the form "there is no real relationship" or "there is no real difference."
 
 **Parameter**: A numerical summary of population that is typically unknown but of interest 
 
 **Randomization Variability**: If we could repeat the randomization process (to a treatment group) in an experiment, each treatment group would be slightly different and thus the numerical summaries of those groups would vary as well. 
 
-**Randomization Tests**:
+**Randomization Test**: Assume no real difference between treatment groups (null hypothesis). Then randomly shuffle the treatment groups to repeat the randomization process under the assumption of no real relationship. Repeat and see how big of a difference we'd expect under the null hypothesis and compare with what difference was actually observed. 
 
 **Sampling Distribution**: The distribution of values of a sample statistic across all possible random samples from the population (has a center, spread, and shape).
 
 **Sampling Variability**: If we could repeat the random sampling process, each sample we would get would be slightly different and thus the numerical summaries or statistics of that sample would vary as well.
 
-**Simulating Randomization into Groups**:
+**Simulating Randomization into Groups**: Since we cannot repeat the entire experiment, we can simulate the randomization into groups and utilize the observed data by assuming the treatment has no real impact on the outcome. We can estimate the variability in the group differences under this assumption. 
 
-**Simulating Sampling from a Population**:
+**Simulating Sampling from a Population**: If we had the population, we would simulate many possible random samples and estimate the variability in the sample statistics across random samples. 
 
 **Statistic**: Any numerical summary of sample data
 
@@ -233,11 +233,11 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Bayes Rule**: This rule provides us a way to find the conditional probability of A given B when we know the chance of B given A and the chance of A. Used in disease testing...
 
-**Bernoulli Trials**:
+**Bernoulli Trials**: If a random process satisfies the following three conditions, then we can use the Bernoulli Model to understand its long-run behavior: 1. Two possible outcomes (success or failure) 2. Independent “trials” (the outcome for one unit does not depend on the outcome for any other unit). 3/ P(success) =  p is constant (the relative frequency of success in the population that we are drawing from is constant).
 
-**Binomial Model**:
+**Binomial Model**: Imagine we had a sample of $n$ individuals from the population. Then we are considering  $n$ independent Bernoulli “trials”. If we let the random variable $X$ be the count of the number of successes in a sample of size $n$, then $X$ follows a Binomial Model. 
 
-**Central Limit Theorem**:
+**Central Limit Theorem**: The Central Limit Theorem (CLT) tells us that with a “sufficiently large” sample size, the sampling distribution of the sample mean based on a simple random sample is normally-distributed with mean equal to the population mean and variance equal to the population variance divided by $n$. 
 
 **Conditional Probability**: The chance that A occurs given that event B occurs is equal to the probability of the joint event (A and B) divided by the probability of B. Given that  B happened, we focus on the subset of outcomes in the sample space in which B occurs and then figure out what the chance of A happening within that subset.
 
@@ -249,17 +249,17 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Event**: A subset of outcomes of a random process.
 
-**Expected Value**:
+**Expected Value**: The expected value of a random variable is the long run average value of a random variable, calculated as the weighted sum of the values, weighted by the chances of them happening. 
 
 **Independent**: A and  B are independent events if  B occurring doesn’t change the probability of A occurring.
 
-**Normal Model**:
+**Normal Model**: A model for a continuous random variable that has a symmetric and unimodal probability density function defined by mean $\mu$ and standard deviation $\sigma$. 
 
-**Probability Model**:
+**Probability Model**: A list of values and associated probabilities of a random variable. 
 
-**Probability Mass Function**:
+**Probability Mass Function**: A function that gives the probability of a discrete random variable such that you can plug in the value and get the probability of that value. 
 
-**Probability Density Function**:
+**Probability Density Function**: A function that gives the probability of a continuous random variable such that the total area under the curve is 1 and the area under the curve for a particular interval gives the probability of the random variable being in that interval of values. 
 
 **Random Process**: Any process/event whose outcome is governed by chance. It is any process/event that cannot be known with certainty. 
 
@@ -269,11 +269,11 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Subjective Probability**: When you use a number between 0 and 1 (100%) to reflect your uncertainty in an outcome (rather than based on empirical evidence or mathematical theory). We are generally not talking about this type of probability in this class. 
 
-**Student's T Model**:
+**Student's T Model**: For small sample sizes, this model is appropriate for a z-score when you need to estimate the population standard deviation using the sample standard deviation. 
 
 **Theoretical Probability**: If you don’t have time to repeat a random process over and over again, you could calculate probabilities based on mathematical theory and assumptions. When we talk about "according to theory," we are referring to theoretical probability.
 
-**Variance**:
+**Variance**: The variance of a random variable is a measure of the variability or spread of a random variable. Intuitively it gives you the expected squared deviation from the long-run average. 
 
 ## Chapter 6
 

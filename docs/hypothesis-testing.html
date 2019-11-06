@@ -292,6 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#graphical-description-of-p-values"><i class="fa fa-check"></i><b>6.3.6</b> Graphical description of p-values</a></li>
 <li class="chapter" data-level="6.3.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#example-linear-regression"><i class="fa fa-check"></i><b>6.3.7</b> Example: Linear Regression</a></li>
 <li class="chapter" data-level="6.3.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#example-logistic-regression"><i class="fa fa-check"></i><b>6.3.8</b> Example: Logistic Regression</a></li>
+<li class="chapter" data-level="6.3.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>6.3.9</b> Errors</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="statistical-significance-v-practical-significance.html"><a href="statistical-significance-v-practical-significance.html"><i class="fa fa-check"></i><b>6.4</b> Statistical Significance v. Practical Significance</a></li>
 <li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
@@ -496,7 +497,9 @@ This result is consistent with the 95% confidence interval in that the interval 
 <li>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?</li>
 <li>Is this consistent with the confidence interval?</li>
 </ul>
-<p>###Errors</p>
+</div>
+<div id="errors" class="section level3">
+<h3><span class="header-section-number">6.3.9</span> Errors</h3>
 <p>Just as with model predictions, we may make errors when doing hypothesis tests.</p>
 <p>We may decide to reject <span class="math inline">\(H_0\)</span> when it is actually true. We may decide to not reject <span class="math inline">\(H_0\)</span> when it is actually false.</p>
 <p>We give these two types of errors names. <strong>Type 1 Error</strong> is when you reject <span class="math inline">\(H_0\)</span> when it is actually true. This is a false positive because you are concluding there is a real relationship when there is none. This would happen if one study published that coffee causes cancer in one group of people, but no one else could actually replicate that result since coffee doesn’t actually cause cancer. <strong>Type 2 Error</strong> is when you don’t reject <span class="math inline">\(H_0\)</span> when it is actually false. This is a false negative because you would conclude there is no real relationship when there is a real relationship. This happens when our sample size is not large enough to detect the real relationship due to the large amount of noise due to sampling variability.</p>

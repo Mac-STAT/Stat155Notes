@@ -83,9 +83,9 @@ $$\frac{\hat{\beta} - \beta}{\text{ESTIMATED std. dev. of }\hat{\beta}} \sim \te
 
 From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:
 
-$$P(-2 < \frac{\hat{\beta} - \beta}{\text{ESTIMATED std. dev. of }\hat{\beta}} < 2 ) = 0.95$$
+$$P(-2<\frac{\hat{\beta} - \beta}{\text{ESTIMATED std. dev. of }\hat{\beta}}<2 ) = 0.95$$
 
-$$P(-2 SE < \hat{\beta} - \beta < 2 SE ) = 0.95$$
+$$P(-2 SE<\hat{\beta} - \beta <2 SE ) = 0.95$$
 
 $$P(-2 SE-\hat{\beta} <  -\beta < 2 SE-\hat{\beta} ) = 0.95$$
 
@@ -494,7 +494,7 @@ Try for yourselves!
 - For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?
 - Is this consistent with the confidence interval?
 
-###Errors 
+### Errors 
 
 Just as with model predictions, we may make errors when doing hypothesis tests. 
 

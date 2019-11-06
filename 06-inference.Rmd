@@ -75,21 +75,21 @@ The fact that confidence intervals can be created as above is rooted in the Cent
 
 The CLT originally expresses that 
 
-$$ \frac{\text{sample mean} - \text{true mean}}{\text{true std. error of sample mean}} \sim \text{Normal}(0,1) $$
+$$\frac{\text{sample mean} - \text{true mean}}{\text{true std. dev. of sample mean}} \sim \text{Normal}(0,1)$$
 
 It turns out that the CLT also applies to regression coefficients:
 
-$$ \frac{\hat{\beta} - \beta}{\text{ESTIMATED std. error of }\hat{\beta}} \sim \text{Normal}(0,1)$$
+$$\frac{\hat{\beta} - \beta}{\text{ESTIMATED std. dev. of }\hat{\beta}} \sim \text{Normal}(0,1)$$
 
 From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:
 
-$$ P(-2 < \frac{\hat{\beta} - \beta}{\text{ESTIMATED std. error of }\hat{\beta}} < 2 ) = 0.95 $$
+$$P(-2 < \frac{\hat{\beta} - \beta}{\text{ESTIMATED std. dev. of }\hat{\beta}} < 2 ) = 0.95$$
 
-$$ P(-2 SE < \hat{\beta} - \beta < 2 SE ) = 0.95 $$
+$$P(-2 SE < \hat{\beta} - \beta < 2 SE ) = 0.95$$
 
-$$ P(-2 SE-\hat{\beta} <  -\beta < 2 SE-\hat{\beta} ) = 0.95 $$
+$$P(-2 SE-\hat{\beta} <  -\beta < 2 SE-\hat{\beta} ) = 0.95$$
 
-$$ P(2 SE+\hat{\beta} > \beta > -2 SE+\hat{\beta} ) = 0.95 $$
+$$P(2 SE+\hat{\beta} > \beta > -2 SE+\hat{\beta} ) = 0.95$$
 
 You've seen the Student t distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the Student t distribution is more accurate for linear regression coefficients (especially if sample size is small). The normal distribution is appropriate for logistic regression coefficients.
 ```

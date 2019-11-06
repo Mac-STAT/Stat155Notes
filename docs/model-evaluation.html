@@ -322,6 +322,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
 <li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
 <li class="chapter" data-level="8.3" data-path="chapter-3.html"><a href="chapter-3.html"><i class="fa fa-check"></i><b>8.3</b> Chapter 3</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>8.4</b> Chapter 4</a></li>
+<li class="chapter" data-level="8.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>8.5</b> Chapter 5</a></li>
+<li class="chapter" data-level="8.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>8.6</b> Chapter 6</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -357,7 +360,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb108-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;High School GPA&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb108-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;College GPA&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb108-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
 <p>First things first. Describe the scatterplot.</p>
 <ul>
 <li><strong>Direction</strong>: Positive relationship (higher high school GPA is associated with higher college GPA)</li>
@@ -458,7 +461,7 @@ Does it make sense to use this model for high school GPA’s &gt; 4? Some high s
 <a class="sourceLine" id="cb127-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb127-3" data-line-number="3"><span class="st">  </span><span class="kw">residuals</span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb127-4" data-line-number="4"><span class="st">  </span><span class="kw">hist</span>(<span class="dt">main =</span> <span class="st">&quot;Distribution of residuals in the GPA model&quot;</span>)</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-122-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-172-1.png" width="672" /></p>
 <p>Below we calculate <span class="math inline">\(SSE\)</span> (the sum of squared errors/residuals), and the standard deviation of the residuals (<span class="math inline">\(s_e\)</span>).</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">lm.gpa &lt;-<span class="st"> </span>sat <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb128-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .)</a>
@@ -490,7 +493,7 @@ Does it make sense to use this model for high school GPA’s &gt; 4? Some high s
 <li>Unexplained variation in the outcome that remains after modeling is given by <span class="math inline">\(SSE\)</span>, the sum of squared residuals.</li>
 </ul>
 <p>So to study how models reduce unexplained variation, we compare the magnitude of the residuals from a linear regression model (which uses the predictor <span class="math inline">\(x\)</span>) with the original deviations from the mean (which do not use the predictor <span class="math inline">\(x\)</span>).</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <p>We started with the sum of the deviations from the mean <span class="math inline">\(SSTO = \sum{(y_i - \bar{y})^2}\)</span> before we had info about high school GPA (<span class="math inline">\(x\)</span>).</p>
 <ul>
 <li><p>Now, with our knowledge of <span class="math inline">\(x\)</span>, we have <span class="math inline">\(SSE = \sum{(y_i - \hat{y_i})^2}\)</span></p></li>

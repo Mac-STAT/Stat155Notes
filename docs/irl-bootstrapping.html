@@ -322,6 +322,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
 <li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
 <li class="chapter" data-level="8.3" data-path="chapter-3.html"><a href="chapter-3.html"><i class="fa fa-check"></i><b>8.3</b> Chapter 3</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>8.4</b> Chapter 4</a></li>
+<li class="chapter" data-level="8.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>8.5</b> Chapter 5</a></li>
+<li class="chapter" data-level="8.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>8.6</b> Chapter 6</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -394,7 +397,7 @@ What would happen if we drew WITHOUT REPLACEMENT?
 <a class="sourceLine" id="cb211-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb211-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample median&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb211-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1"><span class="co"># Visualize</span></a>
 <a class="sourceLine" id="cb212-2" data-line-number="2">boot_data <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb212-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
@@ -402,7 +405,7 @@ What would happen if we drew WITHOUT REPLACEMENT?
 <a class="sourceLine" id="cb212-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb212-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample mean&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb212-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-181-2.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-231-2.png" width="672" /></p>
 <p>Let’s compare these to the visuals from the simulation from the population.</p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1"><span class="co"># Visualize</span></a>
 <a class="sourceLine" id="cb213-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -411,7 +414,7 @@ What would happen if we drew WITHOUT REPLACEMENT?
 <a class="sourceLine" id="cb213-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb213-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample median</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb213-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1"><span class="co"># Visualize</span></a>
 <a class="sourceLine" id="cb214-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb214-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
@@ -419,7 +422,7 @@ What would happen if we drew WITHOUT REPLACEMENT?
 <a class="sourceLine" id="cb214-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb214-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample mean</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb214-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-182-2.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-232-2.png" width="672" /></p>
 <p>The process of resampling from our sample, called <strong>bootstrapping</strong>, is becoming the one of main computational tools for estimating sampling variability in the field of Statistics.</p>
 <div class="reflect">
 <p>

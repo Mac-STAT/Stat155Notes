@@ -322,6 +322,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
 <li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
 <li class="chapter" data-level="8.3" data-path="chapter-3.html"><a href="chapter-3.html"><i class="fa fa-check"></i><b>8.3</b> Chapter 3</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>8.4</b> Chapter 4</a></li>
+<li class="chapter" data-level="8.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>8.5</b> Chapter 5</a></li>
+<li class="chapter" data-level="8.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>8.6</b> Chapter 6</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -364,9 +367,9 @@ and the mean would vary, but that variation would decrease with increased sample
 <p><span class="math display">\[Var(\frac{1}{n}\sum_{i=1}^n X_i) = \frac{\sigma^2}{n}\]</span></p>
 <p>But, what is the shape of the distribution (probability model) of the mean?</p>
 <p>Let’s randomly generate data from a probability model with a skewed pdf.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-308-1.png" width="672" /></p>
 <p>Let <span class="math inline">\(\bar{y}\)</span> be the mean of those <span class="math inline">\(n\)</span> random values. If we repeat the process multiple times, we get a sense of the <strong>sampling distribution for <span class="math inline">\(\bar{y}\)</span></strong>, the mean of a sample of <span class="math inline">\(n\)</span> random values from the population distribution above.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-259-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-309-1.png" width="672" /></p>
 <p>The <strong>Central Limit Theorem</strong> (CLT) tells us that as the sample size get larger and larger, the shape of the sampling distribution for the sample mean get closer and closer to Normal. That is why it makes sense we’ve seen unimodal, symmetric distributions pop up when we simulate bootstrapping and random assignments. However, the CLT only applies when we are talking about sample means or proportions.</p>
 <p>Let our sample mean be <span class="math inline">\(Y_n = \frac{1}{n}\sum_{i=1}^n X_i\)</span> based on a sample size of <span class="math inline">\(n\)</span>.</p>
 <ul>

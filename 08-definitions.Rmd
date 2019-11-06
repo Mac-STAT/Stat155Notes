@@ -206,4 +206,105 @@ This section attempts to have a list of terms and definitions for each chapter. 
 **Transformations**: If there is a non-linear relationship between a quantitative explanatory variable and a response variable, we can try to transform one or both of the variables to make the relationship more like a straight line. If there is unequal spread in the response around the curved relationship, try transforming the response variable first. Then use the ladder of powers and Tukey's circle to guide your trial and error of finding the transformations that result in a relationship closest to a straight line with equal spread around it. 
 
 
+## Chapter 4
+
+**Bootstrapping**: The process of resampling our sample mimics the process of sampling from the full target population using our best stand-in for the population: our sample. We bootstrap our sample in order to 1) estimate the variability of the statistic and 2) get a range of plausible values for the true population parameter.
+
+
+**Null Hypothesis**:
+
+**Parameter**: A numerical summary of population that is typically unknown but of interest 
+
+**Randomization Variability**: If we could repeat the randomization process (to a treatment group) in an experiment, each treatment group would be slightly different and thus the numerical summaries of those groups would vary as well. 
+
+**Randomization Tests**:
+
+**Sampling Distribution**: The distribution of values of a sample statistic across all possible random samples from the population (has a center, spread, and shape).
+
+**Sampling Variability**: If we could repeat the random sampling process, each sample we would get would be slightly different and thus the numerical summaries or statistics of that sample would vary as well.
+
+**Simulating Randomization into Groups**:
+
+**Simulating Sampling from a Population**:
+
+**Statistic**: Any numerical summary of sample data
+
+## Chapter 5
+
+**Bayes Rule**: This rule provides us a way to find the conditional probability of A given B when we know the chance of B given A and the chance of A. Used in disease testing...
+
+**Bernoulli Trials**:
+
+**Binomial Model**:
+
+**Central Limit Theorem**:
+
+**Conditional Probability**: The chance that A occurs given that event B occurs is equal to the probability of the joint event (A and B) divided by the probability of B. Given that  B happened, we focus on the subset of outcomes in the sample space in which B occurs and then figure out what the chance of A happening within that subset.
+
+**Disjoint**: Two events are disjoint if A occuring prevents B from occurring (they both can’t happen at the same time).
+
+**Empirical Probability**:  If you could repeat a random process over and over again (physically or simulating with a computer), you’d get a sense of the possible outcomes and their associated probabilities by calculating their relative frequency in the long run. When we talk about "according to your simulation," we are referring to empirical probabilities. 
+
+**Estimate**: An informed guess based on available data. 
+
+**Event**: A subset of outcomes of a random process.
+
+**Expected Value**:
+
+**Independent**: A and  B are independent events if  B occurring doesn’t change the probability of A occurring.
+
+**Normal Model**:
+
+**Probability Model**:
+
+**Probability Mass Function**:
+
+**Probability Density Function**:
+
+**Random Process**: Any process/event whose outcome is governed by chance. It is any process/event that cannot be known with certainty. 
+
+**Random Variable**: A variable whose outcome (the value it takes) is governed by chance.
+
+**Sample Space**: The set of all possible outcomes of a random process.
+
+**Subjective Probability**: When you use a number between 0 and 1 (100%) to reflect your uncertainty in an outcome (rather than based on empirical evidence or mathematical theory). We are generally not talking about this type of probability in this class. 
+
+**Student's T Model**:
+
+**Theoretical Probability**: If you don’t have time to repeat a random process over and over again, you could calculate probabilities based on mathematical theory and assumptions. When we talk about "according to theory," we are referring to theoretical probability.
+
+**Variance**:
+
+## Chapter 6
+
+**Bootstrap Confidence Interval**:
+
+**Classical Confidence Interval**:
+
+**Confidence Interval**:
+
+**Confidence Level**:
+
+**Hypothesis Testing**:
+
+**Model Selection**:
+
+**Practically Significant**:
+
+**Prediction Intervals**:
+
+**P-value**:
+
+**Standard Error**:
+
+**Statistical Inference**: 
+
+**Statistically significant**:
+
+**Test Statistic**:
+
+**Type 1 Error**:
+
+**Type 2 Error**:
+
 

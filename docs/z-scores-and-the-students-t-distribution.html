@@ -322,6 +322,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
 <li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
 <li class="chapter" data-level="8.3" data-path="chapter-3.html"><a href="chapter-3.html"><i class="fa fa-check"></i><b>8.3</b> Chapter 3</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>8.4</b> Chapter 4</a></li>
+<li class="chapter" data-level="8.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>8.5</b> Chapter 5</a></li>
+<li class="chapter" data-level="8.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>8.6</b> Chapter 6</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -359,11 +362,11 @@ Source: <a href="http://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Willia
 <li>Look at the distribution of the <em>z</em> score heights, using the mean of the 3000 as the true population mean, <span class="math inline">\(\mu\)</span>, but using <span class="math inline">\(s\)</span> in the denominator from each sample instead of the population variation, <span class="math inline">\(\sigma\)</span>, of the 3000:</li>
 </ul>
 <p><span class="math display">\[ z = \frac{\bar{x} - \mu}{s/\sqrt{4}}\]</span></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-212-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
 <ul>
 <li>Does this distribution of z-scores look Normal? We can try to see more clearly by making a <strong>Q-Q plot</strong>, shown below.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
 <p>If the z-scores follow a normal distribution, the points in the Q-Q plot should fall on a straight line. However, we see some deviation at the left and right of the plots. This indicates that the tails of our z-score distribution are thicker (more populous) than expected if they were actually normally-distributed.</p>
 <p>Why? With small samples, the sample standard deviation, <span class="math inline">\(s\)</span>, is smaller so we tend to get larger z-scores than we’d expect if they were normally-distributed.</p>
 </div>
@@ -380,7 +383,7 @@ Source: <a href="http://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Willia
 <li>The spread is determined by a parameter called <strong>degrees of freedom</strong> (for standardized means, <span class="math inline">\(df = n - 1\)</span>).</li>
 <li>As <span class="math inline">\(n\rightarrow\infty\)</span>, this model looks more like the Normal model.</li>
 </ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-214-1.png" width="768" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-264-1.png" width="768" /></p>
 <p>Since the Student T distribution is approximately Normal when sample sizes are large, we will typically use the Normal model. However, if sample sizes are small (<span class="math inline">\(n&lt;30\)</span> or so), the Normal model is not appropriate. So, in those rare cases, we’ll need to refer to Student’s T.</p>
 </div>
 </div>

@@ -322,6 +322,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
 <li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
 <li class="chapter" data-level="8.3" data-path="chapter-3.html"><a href="chapter-3.html"><i class="fa fa-check"></i><b>8.3</b> Chapter 3</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>8.4</b> Chapter 4</a></li>
+<li class="chapter" data-level="8.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>8.5</b> Chapter 5</a></li>
+<li class="chapter" data-level="8.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>8.6</b> Chapter 6</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -352,7 +355,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.10.1</span> Logistic and Logit</h3>
 <p>The <strong>logistic function</strong> is an S shaped curve (sigmoid curve). For our purposes, the function will take the form</p>
 <p><span class="math display">\[f(x) = \frac{1}{1 + e^{b_0 +b_1x}}\]</span></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
 <p>For any real value <span class="math inline">\(x\)</span>, this function, <span class="math inline">\(f(x)\)</span>, will be a value between 0 and 1. This is perfect for us since probabilities or chances should also be between 0 and 1.</p>
 <p>In fact, we’ll let the chance of the other outcome (failure), <span class="math inline">\(1-p\)</span>, be modeled by this S function.</p>
 <span class="math display">\[1-p = \frac{1}{1 + e^{b_0 +b_1x}}\]</span>
@@ -398,7 +401,7 @@ With a bit more algebra and rearranging terms, we can write the above model as a
 <a class="sourceLine" id="cb184-6" data-line-number="6"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Fail), <span class="dt">y =</span> Temperature) )<span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb184-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb184-8" data-line-number="8"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1">SpaceShuttle <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb185-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Fail)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb185-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(Temperature) <span class="op">%&gt;%</span></a>
@@ -406,7 +409,7 @@ With a bit more algebra and rearranging terms, we can write the above model as a
 <a class="sourceLine" id="cb185-5" data-line-number="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Temperature, <span class="dt">y =</span> PercentFail)) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb185-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb185-7" data-line-number="7"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-161-2.png" width="672" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-211-2.png" width="672" /></p>
 <div class="reflect">
 <p>
 What are the plots above telling us about the relationship between chance of o-ring failure and temperature?

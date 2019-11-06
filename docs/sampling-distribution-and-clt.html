@@ -322,6 +322,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
 <li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
 <li class="chapter" data-level="8.3" data-path="chapter-3.html"><a href="chapter-3.html"><i class="fa fa-check"></i><b>8.3</b> Chapter 3</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>8.4</b> Chapter 4</a></li>
+<li class="chapter" data-level="8.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>8.5</b> Chapter 5</a></li>
+<li class="chapter" data-level="8.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>8.6</b> Chapter 6</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -364,9 +367,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><strong>Where does the CLT come up in practice?</strong> When we fit linear regression and logistic regression models, there were columns in the summarized output labeled “Std. Error”. We have neglected to look at these columns…until NOW. With our understanding of the CLT, we can understand where this column comes from. It turns out that we can apply the CLT to see that our estimated regression coefficients (our betas) are normally-distributed. That is, the theory of the CLT allows us to approximate the sampling distributions of regression coefficients. Behind the scenes, R uses that theory to give us the Standard Error column. This column gives us an estimate of the standard deviation of the sampling distribution for that regression coefficient.</p>
 <p>Let’s visualize what is happening with the Central Limit Theorem. Below we have simulated (generated ourselves) data for a full population of cases. The distribution of values in the full population is shown below. The true population mean (expected value) is 4. Beneath, we show the sampling distributions of the sample mean for different sample sizes. We see the CLT in action. The center of the sampling distributions is the expected value 4. The sampling distributions look normally distributed, and the spread decreases with sample size. Note that the original population values do not look normally-distributed, and yet, by the CLT, the sample means are normally-distributed.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-209-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-209-2.png" width="960" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-259-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-259-2.png" width="960" /></p>
 <p>Let’s look at one more example. Again, the population distribution is clearly not normally-distributed, and yet, the sample means are normally-distributed. These normal distributions are centered at the true population mean (expected value) and have smaller and smaller spread with increased sample size.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-210-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-210-2.png" width="960" /></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-260-1.png" width="960" /><img src="Stat155Notes_files/figure-html/unnamed-chunk-260-2.png" width="960" /></p>
 <p>The different ways in which we think about sampling variability in Statistics are shown in the figure below.</p>
 <p><img src="Photos/sampling_variation_flowchart.png" /></p>
 </div>

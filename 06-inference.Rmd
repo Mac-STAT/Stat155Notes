@@ -335,7 +335,7 @@ Whether by the Central Limit Theorem (mathematical theory) or bootstrapping, con
     Decide between: true support for a law = 50% vs. true support $\neq$ 50%
 
 - **Example 2**    
-    In the model $\text{Price} = \beta_0 + \beta_1\text{Area}$, decide between $\beta_1 = 0$ and $\beta_1 \neq 0$.
+    In the model $\text{Price} = \beta_0 + \beta_1\text{Living Area} + \text{Error}$, decide between $\beta_1 = 0$ and $\beta_1 \neq 0$.
 
 In a hypothesis test, we use data to decide between two "hypotheses" labeled as follows:
 
@@ -351,7 +351,7 @@ Claim being made about the population.
 
 Let's consider the question: Is there a relationship between house price and living area? We can try to answer that with the linear regression model below:
 
-$$\text{Price} = \beta_0 + \beta_1\text{Area}$$
+$$\text{Price} = \beta_0 + \beta_1\text{Living Area} + \text{Error}$$
 
 We would phrase our null and alternative hypotheses as follows:
 
@@ -467,7 +467,7 @@ summary(mod_homes)$coefficients
 The `t value` column is the test statistic, and the `Pr(>|t|)` column is the p-value. Note that the "t" comes from the Student t distribution.
 
 - What are $H_0$ and $H_A$?    
-    We write the model $\text{Price} = \beta_0 + \beta_1\text{Area}$.    
+    We write the model $\text{Price} = \beta_0 + \beta_1\text{Living Area} + \text{Error}$.    
     $H_0: \beta_1 = 0$ (There is no relationship between price and living area.)    
     $H_A: \beta_1 \neq 0$ (There is a relationship between price and living area.)    
 - For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?    

@@ -352,14 +352,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Hypothesis testing is another tool that can be used for statistical inference. Let’s warm up to the ideas of hypothesis testing by considering two broad types of scientific questions: (1) <em>Is there</em> a relationship? (2) <em>What</em> is the relationship?</p>
 <p>Suppose that we are thinking about the relationship between housing prices and square footage. Accounting for sampling variation…</p>
 <ul>
-<li>…<strong>is there</strong> a relationship between price and living area?</li>
-<li>…<strong>what</strong> is the relationship between price and living area?</li>
+<li>…<strong>is there</strong> a real relationship between price and living area?</li>
+<li>…<strong>what</strong> is the real relationship between price and living area?</li>
 </ul>
 <p>Whether by the Central Limit Theorem (mathematical theory) or bootstrapping, confidence intervals provide a <em>range of plausible values</em> for the true population parameter and allow us to answer both types of questions:</p>
 <ul>
-<li><strong>Is there</strong> a relationship between price and living area?
+<li><strong>Is there</strong> a real relationship between price and living area?
 <ul>
-<li>Is the no difference/relationship value in the interval?</li>
+<li>Is the null value in the interval?</li>
 </ul></li>
 <li><strong>What</strong> is the relationship between price and living area?
 <ul>
@@ -388,16 +388,16 @@ Claim being made about the population.</p></li>
 <p><span class="math display">\[\text{Price} = \beta_0 + \beta_1\text{Living Area} + \text{Error}\]</span></p>
 <p>We would phrase our null and alternative hypotheses as follows:</p>
 <p><span class="math display">\[H_0: \beta_1 = 0 \qquad \text{vs.} \qquad H_A: \beta_1 \neq 0\]</span></p>
-<p>The null hypothesis <span class="math inline">\(H_0\)</span> describes the situation of “no relationship” because it hypothesizes that the true slope <span class="math inline">\(\beta_1\)</span> is 0. The alternative hypothesis posits a relationship: the true slope <span class="math inline">\(\beta_1\)</span> is not 0. That is, there is not no relationship. (Double negatives!)</p>
-<p>To gather evidence, we collect data and fit a model. From the model, we can compute a <strong>test statistic</strong>, which tells us how far the observed slope is from the null hypothesis value of 0 (called the <strong>null value</strong>). The test statistic is a <em>discrepancy measure</em> where large values indicate higher discrepancy with <span class="math inline">\(H_0\)</span>.</p>
-<p>The test statistic below is a reasonable proposal:</p>
+<p>The null hypothesis <span class="math inline">\(H_0\)</span> describes the situation of “no relationship” because it hypothesizes that the true slope <span class="math inline">\(\beta_1\)</span> is 0. The alternative hypothesis posits a real relationship: the true population slope <span class="math inline">\(\beta_1\)</span> is not 0. That is, there is not no relationship. (<em>Double negatives!</em>)</p>
+<p>To gather evidence, we collect data and fit a model. From the model, we can compute a <strong>test statistic</strong>, which tells us how far the observed slope is from the null hypothesis value of 0 (called the <strong>null value</strong>). The test statistic is a <em>discrepancy measure</em> where large values indicate higher discrepancy with the null hypothesis, <span class="math inline">\(H_0\)</span>.</p>
+<p>The test statistic below is a reasonable proposal for our modeling context:</p>
 <p><span class="math display">\[\text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}}\]</span></p>
-<p>It looks like a z-score. It expresses: how far away is our estimate from the null value in units of standard error? With large values (in magnitude) of the test statistic, our data (our estimate) is discrepant with what the null hypothesis proposes because our estimate is quite far away from the null value in standard error units.</p>
+<p>It looks like a z-score. It expresses: how far away is our estimate from the null value in units of standard error? With large values (in magnitude) of the test statistic, our data (and our estimate) is discrepant with what the null hypothesis proposes because our estimate is quite far away from the null value in standard error units.</p>
 </div>
 <div id="logic-of-hypothesis-testing" class="section level3">
 <h3><span class="header-section-number">6.3.2</span> Logic of hypothesis testing</h3>
 <p>How large in magnitude must the test statistic be in order to make a decision between <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>? We will use another metric called a <strong>p-value</strong>.</p>
-<p><strong>Assuming <span class="math inline">\(H_0\)</span> is true</strong>, we ask: What is the chance of observing a test statistic which is “as or even more extreme” than the one we just saw? This probability is called a <strong>p-value</strong>.</p>
+<p><strong>Assuming <span class="math inline">\(H_0\)</span> is true</strong>, we ask: What is the chance of observing a test statistic which is “as or even more extreme” than the one we just saw? This conditional probability is called a <strong>p-value</strong>, <span class="math inline">\(P(|T| \geq t_{obs} | H_0\text{ is true})\)</span>.</p>
 <p>If our test statistic is large, then our estimate is quite far away from the null value (in standard error units), and then the chance of observing someone this large or larger (assuming <span class="math inline">\(H_0\)</span> is true) would be very small. <strong>A large test statistic leads to a small p-value.</strong></p>
 <p>If our test statistic is small, then our estimate is quite close to the null value (in standard error units), and then the chance of observing someone this large or larger (assuming <span class="math inline">\(H_0\)</span> is true) would be very large. <strong>A small test statistic leads to a large p-value.</strong></p>
 <div id="making-decisions" class="section level4">
@@ -411,11 +411,11 @@ Claim being made about the population.</p></li>
 <ol style="list-style-type: decimal">
 <li>State hypotheses <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>.</li>
 <li>Select <span class="math inline">\(\alpha\)</span>, a threshold for what is considered to be a small enough p-value.</li>
-<li>Calculate a test statistic</li>
-<li>Calculate the corresponding p-value</li>
+<li>Calculate a test statistic.</li>
+<li>Calculate the corresponding p-value.</li>
 <li>Make a decision:
 <ul>
-<li>If p-value &lt; <span class="math inline">\(\alpha\)</span>, reject <span class="math inline">\(H_0\)</span> and accept <span class="math inline">\(H_A\)</span>.</li>
+<li>If p-value <span class="math inline">\(\leq\alpha\)</span>, reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span>.</li>
 <li>Otherwise, we fail to reject <span class="math inline">\(H_0\)</span> for lack of evidence.<br />
 (Jurors’ decisions are “guilty” and “not guilty”. Not “guilty” and “innocent”.)</li>
 </ul></li>
@@ -423,11 +423,11 @@ Claim being made about the population.</p></li>
 </div>
 <div id="testing-single-model-coefficients" class="section level3">
 <h3><span class="header-section-number">6.3.4</span> Testing single model coefficients</h3>
-<p>A big emphasis of our course is regression models. It turns out that many scientific questions of interest can be framed with regression models.</p>
-<p>In the <code>summary()</code> output, R performs the following hypothesis test by default (for any regression coefficient <span class="math inline">\(\beta\)</span>):</p>
+<p>A major emphasis of our course is regression models. It turns out that many scientific questions of interest can be framed using regression models.</p>
+<p>In the <code>summary()</code> output, R performs the following hypothesis test by default (for any slope coefficient <span class="math inline">\(\beta\)</span>):</p>
 <p><span class="math display">\[H_0: \beta = 0 \qquad \text{vs} \qquad H_A: \beta \neq 0\]</span></p>
-<p><span class="math display">\[\text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}} = \frac{\text{estimate} - 0}{\text{std. error of estimate}} \]</span></p>
-<p>Note that test statistics are random variables! Why? Because they are based on our random sample of data. Thus it will be helpful to understand the distributions of test statistics in terms of probability density functions.</p>
+<p><span class="math display">\[t_{obs} = \text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}} = \frac{\text{estimate} - 0}{\text{std. error of estimate}} \]</span></p>
+<p>Note that test statistics are random variables! Why? Because they are based on our random sample of data. Thus, it will be helpful to understand the distributions of test statistics in terms of probability density functions.</p>
 <div class="reflect">
 <p>
 If <span class="math inline"><span class="math inline">\(H_0\)</span></span> were true, where would the probability density function of the test statistic be centered?
@@ -446,7 +446,7 @@ If <span class="math inline"><span class="math inline">\(H_0\)</span></span> wer
 <p>What test statistics are “as or more extreme”?</p>
 <ul>
 <li>Absolute value of test statistic is at least 2: <span class="math inline">\(|\text{Test statistic}| \geq 2\)</span></li>
-<li>In other words: <span class="math inline">\(\text{Test statistic} \geq 2\)</span> and <span class="math inline">\(\text{Test statistic} \leq -2\)</span></li>
+<li>In other words: <span class="math inline">\(\text{Test statistic} \geq 2\)</span> or <span class="math inline">\(\text{Test statistic} \leq -2\)</span></li>
 </ul>
 <p>The p-value corresponding to our test statistic is the area under the probability density function in those “as or more extreme” regions.</p>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-237-1.png" width="960" style="display: block; margin: auto;" /></p>
@@ -454,13 +454,13 @@ If <span class="math inline"><span class="math inline">\(H_0\)</span></span> wer
 <div id="example-linear-regression" class="section level3">
 <h3><span class="header-section-number">6.3.7</span> Example: Linear Regression</h3>
 <p>Below we fit a linear regression model of house price on living area:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
-<a class="sourceLine" id="cb269-2" data-line-number="2">mod_homes &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area, <span class="dt">data =</span> homes)</a>
-<a class="sourceLine" id="cb269-3" data-line-number="3"><span class="kw">confint</span>(mod_homes) <span class="co">## 95% confidence interval by default</span></a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1">homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</a>
+<a class="sourceLine" id="cb268-2" data-line-number="2">mod_homes &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area, <span class="dt">data =</span> homes)</a>
+<a class="sourceLine" id="cb268-3" data-line-number="3"><span class="kw">confint</span>(mod_homes) <span class="co">## 95% confidence interval by default</span></a></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 3647.6958 23231.0922
 ## Living.Area  107.8616   118.3835</code></pre>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="kw">summary</span>(mod_homes)<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="kw">summary</span>(mod_homes)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##               Estimate  Std. Error   t value      Pr(&gt;|t|)
 ## (Intercept) 13439.3940 4992.352849  2.691996  7.171207e-03
 ## Living.Area   113.1225    2.682341 42.173065 9.486240e-268</code></pre>
@@ -472,7 +472,7 @@ We write the model <span class="math inline">\(\text{Price} = \beta_0 + \beta_1\
 <span class="math inline">\(H_A: \beta_1 \neq 0\)</span> (There is a relationship between price and living area.)<br />
 </li>
 <li>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?<br />
-Note that when you see <code>e</code> in R output, this means “10 to the power”. So <code>9.486240e-268</code> means <span class="math inline">\(9.49 \times 10^{-268}\)</span>. This p-value is less than our threshold, so we reject <span class="math inline">\(H_0\)</span> and say that we have significant evidence for a relationship between price and living area.</li>
+Note that when you see <code>e</code> in R output, this means “10 to the power”. So <code>9.486240e-268</code> means <span class="math inline">\(9.49 \times 10^{-268}\)</span>. This p-value is less than our threshold <span class="math inline">\(\alpha = 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span> and say that we have significant evidence for a relationship between price and living area.</li>
 <li>Is this consistent with the confidence interval?<br />
 This result is consistent with the 95% confidence interval in that the interval does not contain 0.</li>
 </ul>
@@ -480,13 +480,13 @@ This result is consistent with the 95% confidence interval in that the interval 
 <div id="example-logistic-regression" class="section level3">
 <h3><span class="header-section-number">6.3.8</span> Example: Logistic Regression</h3>
 <p>Below we fit a logistic regression model of whether a movie made a profit (response) on whether it is a history film:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1">movies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</a>
-<a class="sourceLine" id="cb273-2" data-line-number="2">mod_movies &lt;-<span class="st"> </span><span class="kw">glm</span>(profit<span class="op">==</span><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>History, <span class="dt">data =</span> movies, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</a>
-<a class="sourceLine" id="cb273-3" data-line-number="3"><span class="kw">confint</span>(mod_movies) <span class="co">## 95% confidence interval by default</span></a></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">movies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</a>
+<a class="sourceLine" id="cb272-2" data-line-number="2">mod_movies &lt;-<span class="st"> </span><span class="kw">glm</span>(profit<span class="op">==</span><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>History, <span class="dt">data =</span> movies, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</a>
+<a class="sourceLine" id="cb272-3" data-line-number="3"><span class="kw">confint</span>(mod_movies) <span class="co">## 95% confidence interval by default</span></a></code></pre></div>
 <pre><code>##                   2.5 %    97.5 %
 ## (Intercept)  0.09438169 0.2102419
 ## HistoryTRUE -0.26484980 0.3085225</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="kw">summary</span>(mod_movies)<span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1"><span class="kw">summary</span>(mod_movies)<span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##               Estimate Std. Error   z value     Pr(&gt;|z|)
 ## (Intercept) 0.15226921 0.02955458 5.1521364 2.575356e-07
 ## HistoryTRUE 0.02074995 0.14604883 0.1420754 8.870204e-01</code></pre>

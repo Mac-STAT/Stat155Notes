@@ -352,21 +352,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Causal inference is the process of making a conclusion about direct cause and effect between a “treatment” and a “response”. It is difficult to make causal inferences/statements based on data from an observational study due to the possible presence of confounding variables.</p>
 <p>There is a whole area of statistics dedicated to methods that attempt to overcome the potential confounding. A full overview of causal inference is beyond the scope of this course, but a first good step in this direction is to consider a <strong>causal model</strong>, which is a representation of the causal mechanism by which data were generated. We typically visualize these models with a graphical structure called a <strong>directed acyclic graph or DAG</strong> for short. In a DAG, we have circles or <strong>nodes</strong> that represented variables and arrow or <strong>directed edges</strong> that indicate the causal pathway.</p>
 <p>If we were interested in the causal effect of smoking on cardiac arrest, we might draw the following causal model (using previous research to inform our graph).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">smoking_ca_dag &lt;-<span class="st"> </span><span class="kw">dagify</span>(cardiacarrest <span class="op">~</span><span class="st"> </span>cholesterol,</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">       cholesterol <span class="op">~</span><span class="st"> </span>smoking <span class="op">+</span><span class="st"> </span>weight,</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">       smoking <span class="op">~</span><span class="st"> </span>unhealthy,</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">       weight <span class="op">~</span><span class="st"> </span>unhealthy,</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">       <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;cardiacarrest&quot;</span> =<span class="st"> &quot;Cardiac</span><span class="ch">\n</span><span class="st"> Arrest&quot;</span>, </a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">                  <span class="st">&quot;smoking&quot;</span> =<span class="st"> &quot;Smoking&quot;</span>,</a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">                  <span class="st">&quot;cholesterol&quot;</span> =<span class="st"> &quot;Cholesterol&quot;</span>,</a>
-<a class="sourceLine" id="cb6-8" data-line-number="8">                  <span class="st">&quot;unhealthy&quot;</span> =<span class="st"> &quot;Unhealthy</span><span class="ch">\n</span><span class="st"> Lifestyle&quot;</span>,</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">                  <span class="st">&quot;weight&quot;</span> =<span class="st"> &quot;Weight&quot;</span>),</a>
-<a class="sourceLine" id="cb6-10" data-line-number="10">       <span class="dt">latent =</span> <span class="st">&quot;unhealthy&quot;</span>,</a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">       <span class="dt">exposure =</span> <span class="st">&quot;smoking&quot;</span>,</a>
-<a class="sourceLine" id="cb6-12" data-line-number="12">       <span class="dt">outcome =</span> <span class="st">&quot;cardiacarrest&quot;</span>)</a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="kw">ggdag</span>(smoking_ca_dag, <span class="dt">text =</span> <span class="ot">FALSE</span>, <span class="dt">use_labels =</span> <span class="st">&quot;label&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="st">  </span><span class="kw">theme_dag_blank</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">smoking_ca_dag &lt;-<span class="st"> </span><span class="kw">dagify</span>(cardiacarrest <span class="op">~</span><span class="st"> </span>cholesterol,</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">       cholesterol <span class="op">~</span><span class="st"> </span>smoking <span class="op">+</span><span class="st"> </span>weight,</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3">       smoking <span class="op">~</span><span class="st"> </span>unhealthy,</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4">       weight <span class="op">~</span><span class="st"> </span>unhealthy,</a>
+<a class="sourceLine" id="cb5-5" data-line-number="5">       <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;cardiacarrest&quot;</span> =<span class="st"> &quot;Cardiac</span><span class="ch">\n</span><span class="st"> Arrest&quot;</span>, </a>
+<a class="sourceLine" id="cb5-6" data-line-number="6">                  <span class="st">&quot;smoking&quot;</span> =<span class="st"> &quot;Smoking&quot;</span>,</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7">                  <span class="st">&quot;cholesterol&quot;</span> =<span class="st"> &quot;Cholesterol&quot;</span>,</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8">                  <span class="st">&quot;unhealthy&quot;</span> =<span class="st"> &quot;Unhealthy</span><span class="ch">\n</span><span class="st"> Lifestyle&quot;</span>,</a>
+<a class="sourceLine" id="cb5-9" data-line-number="9">                  <span class="st">&quot;weight&quot;</span> =<span class="st"> &quot;Weight&quot;</span>),</a>
+<a class="sourceLine" id="cb5-10" data-line-number="10">       <span class="dt">latent =</span> <span class="st">&quot;unhealthy&quot;</span>,</a>
+<a class="sourceLine" id="cb5-11" data-line-number="11">       <span class="dt">exposure =</span> <span class="st">&quot;smoking&quot;</span>,</a>
+<a class="sourceLine" id="cb5-12" data-line-number="12">       <span class="dt">outcome =</span> <span class="st">&quot;cardiacarrest&quot;</span>)</a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="kw">ggdag</span>(smoking_ca_dag, <span class="dt">text =</span> <span class="ot">FALSE</span>, <span class="dt">use_labels =</span> <span class="st">&quot;label&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="st">  </span><span class="kw">theme_dag_blank</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Below we discuss the three basic DAG structures.</p>
 <ul>

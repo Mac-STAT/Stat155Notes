@@ -350,9 +350,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="interpretation" class="section level2">
 <h2><span class="header-section-number">3.6</span> Interpretation</h2>
 <p>Let’s look at the summary print out of the <code>lm()</code> function in R again. We’ll highlight some of the most important pieces of the print out and discuss how you interpret them.</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb104-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb104-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Chest ~ Neck, data = .)
@@ -379,10 +379,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Interpretation:</strong> If Neck size = 0, then the person doesn’t exist. In this context, the intercept doesn’t make much sense to interpret.</li>
 <li><strong>Discussion:</strong> If the intercept doesn’t make sense in the context, we might refit the model with the <span class="math inline">\(x\)</span> variable once it is <strong>centered</strong>. That is, the mean of <span class="math inline">\(x\)</span> for all individuals in the sample is computed, and this mean is subtracted from each person’s <span class="math inline">\(x\)</span> value. In this case, the intercept is interpreted as the average value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is at its (sample) mean value. See the example below – we get an intercept of 100.66, which is the average Chest size for customers with average Neck size.</li>
 </ul>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">CNeck =</span> Neck <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(Neck)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb106-3" data-line-number="3"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>CNeck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb106-4" data-line-number="4"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">CNeck =</span> Neck <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(Neck)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb105-3" data-line-number="3"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>CNeck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-4" data-line-number="4"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Chest ~ CNeck, data = .)

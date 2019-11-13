@@ -380,19 +380,22 @@ It turns out that the CLT also applies to regression coefficients:
 From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:
 </p>
 <p>
-<span class="math display"><span class="math display">\[P(-2&amp;lt;\frac{\hat{\beta} - \beta}{\text{ESTIMATED std. dev. of }\hat{\beta}}&amp;lt;2 ) = 0.95\]</span></span>
+<span class="math display"><span class="math display">\[P(-2\leq\frac{\hat{\beta} - \beta}{SE}\leq2) = 0.95\]</span></span> sdf
 </p>
 <p>
-<span class="math display"><span class="math display">\[P(-2 SE&amp;lt;\hat{\beta} - \beta &amp;lt;2 SE ) = 0.95\]</span></span>
+<span class="math display"><span class="math display">\[P(-2 SE\leq\hat{\beta} - \beta \leq2 SE ) = 0.95\]</span></span>
 </p>
 <p>
-<span class="math display"><span class="math display">\[P(-2 SE-\hat{\beta} &amp;lt;  -\beta &amp;lt; 2 SE-\hat{\beta} ) = 0.95\]</span></span>
+<span class="math display"><span class="math display">\[P(-2 SE-\hat{\beta} \leq  -\beta \leq2 SE-\hat{\beta} ) = 0.95\]</span></span>
 </p>
 <p>
-<span class="math display"><span class="math display">\[P(2 SE+\hat{\beta} &amp;gt; \beta &amp;gt; -2 SE+\hat{\beta} ) = 0.95\]</span></span>
+<span class="math display"><span class="math display">\[P(2 SE+\hat{\beta} \geq \beta \geq -2 SE+\hat{\beta} ) = 0.95\]</span></span>
 </p>
 <p>
-You’ve seen the Student t distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the Student t distribution is more accurate for linear regression coefficients (especially if sample size is small). The normal distribution is appropriate for logistic regression coefficients.
+<span class="math display"><span class="math display">\[P(\hat{\beta}-2 SE \leq \beta \leq\hat{\beta}+2 SE ) = 0.95\]</span></span>
+</p>
+<p>
+You’ve seen the Student T distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the Student t distribution is more accurate for linear regression coefficients (especially if sample size is small). The normal distribution is appropriate for logistic regression coefficients.
 </p>
 </div>
 </div>

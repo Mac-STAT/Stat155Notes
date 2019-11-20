@@ -504,21 +504,30 @@ Just as with model predictions, we may make errors when doing hypothesis tests.
 
 We may decide to reject $H_0$ when it is actually true. We may decide to not reject $H_0$ when it is actually false. 
 
-We give these two types of errors names. **Type 1 Error** is when you reject $H_0$ when it is actually true. This is a false positive because you are concluding there is a real relationship when there is none. This would happen if one study published that coffee causes cancer in one group of people, but no one else could actually replicate that result since coffee doesn't actually cause cancer.  **Type 2 Error** is when you don't reject $H_0$ when it is actually false. This is a false negative because you would conclude there is no real relationship when there is a real relationship. This happens when our sample size is not large enough to detect the real relationship due to the large amount of noise due to sampling variability.
+We give these two types of errors names. 
+
+**Type 1 Error** is when you reject $H_0$ when it is actually true. This is a false positive because you are concluding there is a real relationship when there is none. This would happen if one study published that coffee causes cancer in one group of people, but no one else could actually replicate that result since coffee doesn't actually cause cancer.  
+
+**Type 2 Error** is when you don't reject $H_0$ when it is actually false. This is a false negative because you would conclude there is no real relationship when there is a real relationship. This happens when our sample size is not large enough to detect the real relationship due to the large amount of noise due to sampling variability.
 
 We care about both of these types of errors. Sometimes we prioritize one over the other. Based on the framework presented, we control the chance of a Type 1 error through the confidence level/p-value threshold we used. In fact, the chance of a Type 1 Error is $\alpha$,
 
 $$P(\text{ Type 1 Error }) = P(\text{ Reject }H_0 ~|~H_0\text{ is true} ) =  \alpha$$
 
-Let $\alpha = 0.05$ for a moment. If the Null Hypothesis ($H_0$) is actually true, then about 5% of the time, we'd get unusual test statistics just by chance. With those samples, we would incorrectly conclude that there was a real relationship.
+Let $\alpha = 0.05$ for a moment. If the Null Hypothesis ($H_0$) is actually true, then about 5% of the time, we'd get unusual test statistics through random chance. With those samples, we would incorrectly conclude that there was a real relationship.
 
 The chance of a Type 2 Error is often notated as $\beta$ (but this is not the same value as the slope),
 
 $$P(\text{ Type 2 Error }) = P(\text{ Fail to Reject }H_0 ~|~H_0\text{ is false} ) =  \beta$$
 
-In order to calculate this probability, we'd need to know the value (or at least a good idea) of the true effect. 
+We control the chance of a Type 2 error when choosing the sample size. With a larger sample size $n$, we will be able to more accurately detect real relationships. The **power** of a test, the ability to detect real relationships, is $P(\text{Reject }H_0 ~|~H_0\text{ is false}) = 1 - \beta$.  In order to calculate these two probabilities, we'd need to know the value (or at least a good idea) of the true effect. 
 
 
+To recap, 
+
+- If we lower $\alpha$, the threshold we use to determine the p-value is small enough to reject $H_0$, we can reduce the chance of a Type 1 Error. 
+- Lowering $\alpha$ makes it harder to reject $H_0$, thus we might have a higher chance of a Type 2 Error. 
+- Another way we can increase the power and thus decrease the chance of a Type 2 Error is to increase the sample size. 
 
 ## Statistical Significance v. Practical Significance
 

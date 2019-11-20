@@ -357,9 +357,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><span class="math display">\[s_e = \sqrt{\frac{\sum^n_{i=1} (y_i-\hat{y}_i)^2}{n-2}}  = \sqrt{\frac{\sum^n_{i=1} (e_i-0)^2}{n-2}} \]</span></p>
 <p>In R: the standard deviation of the residuals, <span class="math inline">\(s_e\)</span>, is referred to as the “residual standard error”. Don’t confuse this with “Std. Error,” that is something else that we’ll get to.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb97-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#If you don&#39;t want the pipe to pass to the first argument, you can specify the argument with .</span></a>
-<a class="sourceLine" id="cb97-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#If you don&#39;t want the pipe to pass to the first argument, you can specify the argument with .</span></a>
+<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Chest ~ Neck, data = .)
@@ -381,11 +381,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This simple linear regression line is</p>
 <p><span class="math display">\[\widehat{Chest} = -3.18 + 2.73*Neck\]</span></p>
 <p>If you have a neck size of 38 cm, then we predict the chest size of an ideal shirt is about 100.5 cm (~ -3.18 + 2.73*38)</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="fl">-3.18</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.73</span><span class="op">*</span><span class="dv">38</span> <span class="co">#the intercept and slope are rounded here first (not great)</span></a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="fl">-3.18</span> <span class="op">+</span><span class="st"> </span><span class="fl">2.73</span><span class="op">*</span><span class="dv">38</span> <span class="co">#the intercept and slope are rounded here first (not great)</span></a></code></pre></div>
 <pre><code>## [1] 100.56</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Neck =</span> <span class="dv">38</span>)) <span class="co">#the intercept and slope are not rounded before prediction (better!)</span></a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">body <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="st">  </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> .) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="st">  </span><span class="kw">predict</span>(<span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Neck =</span> <span class="dv">38</span>)) <span class="co">#the intercept and slope are not rounded before prediction (better!)</span></a></code></pre></div>
 <pre><code>##        1 
 ## 100.8131</code></pre>
 <p>Given your neck size, we can probably predict your chest size within 5 to 10 cm since <span class="math inline">\(s_e = 5.22\)</span> (1 to 2 SD’s – recall Section <a href="one-quantitative-variable.html#intro-zscore">2.6.5</a>).</p>

@@ -277,7 +277,13 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 ## Chapter 6
 
+**AIC**: Akaike Information Criterion can be used to select a model by choosing a model with the lowest AIC; it is a measure of the sum of squared residuals plus a penalty of 2 times the number of coefficients in the model. 
+
+**Adjusted R Squared**: A modified R squared measure that takes into accoun the number of estimated coefficients in the model; note that it does not give you the percent of variation explained, but would be a better choice for using to choose a model as it doesn't necessarily stay constant or increase with the additional of another variable. It can decrease when adding variables that don't contribute to the explaining the variation in the outcome. 
+
 **Alternative Hypothesis**: A claim being made about the population. A non-status quo hypothesis: hypothesis of an effect/relationship/difference.
+
+**BIC**: Bayesian Information Criterion can be used to select a model by choosing a model with the lowest BIC; it is a measure of the sum of squared residuals plus a penalty of $log(n)$ times the number of coefficients in the model. This has a greater penalty than AIC, thus it favors a smaller model than AIC. 
 
 **Bootstrap Confidence Interval**: To create a $(1-\alpha)*100\%$ confidence intervals, you find the $\alpha/2$th and $1-\alpha/2$th percentiles of the bootstrap distribution. This process has known mathematical properties such that in about 95% of the random samples, the constructed interval will contain the true population parameter. 
 
@@ -286,6 +292,8 @@ This section attempts to have a list of terms and definitions for each chapter. 
 **Confidence Interval**: An interval of plausible values strategically created using a process with known mathematical properties. 
 
 **Confidence Level**: $(1-\alpha)*100\%$ is the confidence level; so if $\alpha = 0.05$, then we have a 95% confidence about the process. It indicates the proportion of random samples in which we'd expect the interval to contain the true population parameter. 
+
+**Cross Validation**: To avoid overfitting our model to the observed data such that we can't get good predictions for new data points, we consider fitting the model on a subset of the data, called a training set, and then predict on a testing set. With cross-validation, we allow each data point to be in the testing set once and continue to fit the model on the training set and predicting on the test set and average the sum of squared predicting errors across different test sets. 
 
 **Hypothesis Testing**: The process of comparing observed data from a sample to a null hypothesis about a population. The goal is to put the observed statistic in the context of the distribution of statistics that could happen due to chance (random sampling or randomization to treatment group), if the null hypothesis (no difference or no relationship) were actually true. If it were very unlikely to observe our statistic when the null hypothesis is true, we have strong evidence to reject that hypothesis. Otherwise, we do not have enough evidence to reject the null hypothesis. 
 

@@ -279,13 +279,13 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Alternative Hypothesis**: A claim being made about the population. A non-status quo hypothesis: hypothesis of an effect/relationship/difference.
 
-**Bootstrap Confidence Interval**: To create a $(1-\alpha)$100% confidence intervals, you find the $\alpha/2$th and $1-\alpha/2$th percentiles of the bootstrap distribution. This process has known mathematical properties such that in about 95% of the random samples, the constructed interval will contain the true population parameter. 
+**Bootstrap Confidence Interval**: To create a $(1-\alpha)*100\%$ confidence intervals, you find the $\alpha/2$th and $1-\alpha/2$th percentiles of the bootstrap distribution. This process has known mathematical properties such that in about 95% of the random samples, the constructed interval will contain the true population parameter. 
 
-**Classical Confidence Interval**: To create a $(1-\alpha)$100% confidence intervals, you add and subtract the margin of error, typically calculated as a scaled standard error of the estimate. The amount that we scale the standard error depends on the shape of the sampling distribution; if it is Normal, then we typically add and subtract 2 standard errors. This process has known mathematical properties such that in about $(1-\alpha)$% of the random samples, the constructed interval will contain the true population parameter. 
+**Classical Confidence Interval**: To create a $(1-\alpha)*100\%$ confidence intervals, you add and subtract the margin of error, typically calculated as a scaled standard error of the estimate. The amount that we scale the standard error depends on the shape of the sampling distribution; if it is Normal, then we typically add and subtract 2 standard errors. This process has known mathematical properties such that in about $(1-\alpha)*100\%$ of the random samples, the constructed interval will contain the true population parameter. 
 
 **Confidence Interval**: An interval of plausible values strategically created using a process with known mathematical properties. 
 
-**Confidence Level**: $(1-\alpha)$ is the confidence level; so if $\alpha = 0.05$, then we have a 95% confidence about the process. It indicates the proportion of random samples in which we'd expect the interval to contain the true population parameter. 
+**Confidence Level**: $(1-\alpha)*100\%$ is the confidence level; so if $\alpha = 0.05$, then we have a 95% confidence about the process. It indicates the proportion of random samples in which we'd expect the interval to contain the true population parameter. 
 
 **Hypothesis Testing**: The process of comparing observed data from a sample to a null hypothesis about a population. The goal is to put the observed statistic in the context of the distribution of statistics that could happen due to chance (random sampling or randomization to treatment group), if the null hypothesis (no difference or no relationship) were actually true. If it were very unlikely to observe our statistic when the null hypothesis is true, we have strong evidence to reject that hypothesis. Otherwise, we do not have enough evidence to reject the null hypothesis. 
 
@@ -304,11 +304,11 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Statistical Inference**: The process of making general statements about population parameters using sample data; typically in the form of confidence intervals and hypothesis testing.
 
-**Statistically Significant**:  We can conclude there is a statistically significant relationship because the relationship we observed is unlikely to occur when consider sampling variabliliy under the null hypothesis. This may or may not be practically significant. For example, if we have a large sample size, we may have statistical significance but not practical significance.
+**Statistically Significant**:  We can conclude there is a statistically significant relationship because the relationship we observed is unlikely to occur when consider sampling variabliliy under the null hypothesis. How unlikely? We typically determine a relationship is statistically significant if the p-value is less than a threshold $\alpha$, chosen ahead of time. This may or may not be practically significant. For example, if we have a large sample size, we may have statistical significance but not practical significance.
 
 **Test Statistic**: The test statistic is a numerical summary of the sample data that measures the discrepancy between the observed data and the null hypothesis where large values indicate higher discrepancy. 
 
-**Type 1 Error**: A Type 1 error happens when you reject the null hypothesis when it is actually true. The probability of this happening is $\alpha$, if you use $\alpha$ to determine how small the p-value needs to be to reject the null hypothesis.
+**Type 1 Error**: A Type 1 error happens when you reject the null hypothesis when it is actually true. The probability of this happening is $\alpha$, if you use $\alpha$ as a threshold to determine how small the p-value needs to be to reject the null hypothesis.
 
 **Type 2 Error**: A Type 2 error happens when you fail to reject the null hypothesis when it is actually false. The probability of this happening requires know the value of the true effect. 
 

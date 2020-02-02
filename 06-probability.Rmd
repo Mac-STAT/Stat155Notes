@@ -1,4 +1,4 @@
-```{r setup5, echo=FALSE}
+```{r setup6, echo=FALSE}
 library(stringr)
 library(infer)
 library(nycflights13)

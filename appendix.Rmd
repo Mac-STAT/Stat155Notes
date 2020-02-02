@@ -1,5 +1,4 @@
-
-```{r setup7, echo=FALSE}
+```{r setup_appendix, echo=FALSE}
 library(stringr)
 library(infer)
 library(nycflights13)

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5.6 IRL: Randomization Tests | STAT 155 Notes</title>
+  <title>Chapter 3 Linear Regression Models | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5.6 IRL: Randomization Tests | STAT 155 Notes" />
+  <meta property="og:title" content="Chapter 3 Linear Regression Models | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5.6 IRL: Randomization Tests | STAT 155 Notes" />
+  <meta name="twitter:title" content="Chapter 3 Linear Regression Models | STAT 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="simulating-randomization-into-groups.html"/>
-<link rel="next" href="major-takeaways-3.html"/>
+<link rel="prev" href="major-takeaways-1.html"/>
+<link rel="next" href="modeling-goals.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -325,45 +325,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="irl-randomization-tests" class="section level2">
-<h2><span class="header-section-number">5.6</span> IRL: Randomization Tests</h2>
-<p>In real life, we don’t often consider every possible permutation (reshuffling of group members) due to the immensely large number of permutations. However, we can randomly reshuffle flights about 1000 times to try to approximate many of those permutations. Such a procedure is called a <strong>randomization or permutation procedure</strong>. There are three main steps:</p>
-<p><strong>1. Hypothesis</strong></p>
-<p>Our <strong>null hypothesis</strong> (a hypothesis that is conservative/not interesting/does not elicit action) is that there is no relationship between time of day and the arrival delay.</p>
-<p><strong>2. Generate and Calculate</strong></p>
-<p>We can generate 1000 new data sets based on randomly reshuffling the labels of <code>day_hour</code>. For each of these data sets, we calculate the difference in mean arrival delay between morning and afternoon groups.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(infer) <span class="co">#install.packages(&#39;infer&#39;)</span>
-null_dist &lt;-<span class="st">  </span>flights_samp500 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">specify</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">hypothesize</span>(<span class="dt">null =</span> <span class="st">&quot;independence&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Hypothesize</span>
-<span class="st">    </span><span class="kw">generate</span>(<span class="dt">reps =</span> <span class="dv">1000</span>, <span class="dt">type =</span> <span class="st">&quot;permute&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate permutations</span>
-<span class="st">    </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;diff in means&quot;</span>, <span class="dt">order =</span> <span class="kw">c</span>(<span class="st">&quot;morning&quot;</span>, <span class="st">&quot;afternoon&quot;</span>)) <span class="co">#calculate difference in means</span></code></pre></div>
-<p><strong>3. Visualize</strong></p>
-<p>The histogram below shows the histogram of differences in means if the null hypothesis were true. The vertical line shows the observed difference in means.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">obs &lt;-<span class="st"> </span>flights_samp500 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">specify</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">calculate</span>(<span class="dt">stat =</span> <span class="st">&quot;diff in means&quot;</span>, <span class="dt">order =</span> <span class="kw">c</span>(<span class="st">&quot;morning&quot;</span>, <span class="st">&quot;afternoon&quot;</span>))
-
-null_dist <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> stat)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> obs, <span class="kw">aes</span>(<span class="dt">xintercept =</span> stat), <span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-189-1.png" width="672" /></p>
-<div class="reflect">
-<p>
-Do you think that the mean arrival delay is different for morning and afternoon? Is the observed difference in means likely to have occurred if there were no relationship?
-</p>
-</div>
-<p>We will return to the ideas of testing hypotheses later in the course.</p>
+<div id="linear-regression-models" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Linear Regression Models</h1>
+<p>In our visualization of data, we’ve seen trends, patterns, and variation. Let’s now endeavor to describe those trends, patterns, and variation more <em>precisely</em> and <em>quantitatively</em> by building statistical <em>models</em>. In this chapter, we will focus on a class of models for describing quantitative outcome variables: linear regression models.</p> 
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="simulating-randomization-into-groups.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="major-takeaways-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="major-takeaways-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="modeling-goals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -395,7 +367,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-variability.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-linear-regression.Rmd",
 "text": "Edit"
 },
 "history": {

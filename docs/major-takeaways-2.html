@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.11 Major Takeaways | STAT 155 Notes</title>
+  <title>3.10 Major Takeaways | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.11 Major Takeaways | STAT 155 Notes" />
+  <meta property="og:title" content="3.10 Major Takeaways | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.11 Major Takeaways | STAT 155 Notes" />
+  <meta name="twitter:title" content="3.10 Major Takeaways | STAT 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="logistic-regression.html"/>
-<link rel="next" href="random-variability.html"/>
+<link rel="prev" href="multiple-linear-regression.html"/>
+<link rel="next" href="logistic-regression-models.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -102,7 +102,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./"Stat155Notes</a></li>
+<li><a href = "./">STAT 155 Notes</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
@@ -168,7 +168,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="2.10" data-path="major-takeaways-1.html"><a href="major-takeaways-1.html"><i class="fa fa-check"></i><b>2.10</b> Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="regression-models.html"><a href="regression-models.html"><i class="fa fa-check"></i><b>3</b> Regression Models</a><ul>
+<li class="chapter" data-level="3" data-path="linear-regression-models.html"><a href="linear-regression-models.html"><i class="fa fa-check"></i><b>3</b> Linear Regression Models</a><ul>
 <li class="chapter" data-level="3.1" data-path="modeling-goals.html"><a href="modeling-goals.html"><i class="fa fa-check"></i><b>3.1</b> Modeling Goals</a></li>
 <li class="chapter" data-level="3.2" data-path="lines.html"><a href="lines.html"><i class="fa fa-check"></i><b>3.2</b> Lines</a></li>
 <li class="chapter" data-level="3.3" data-path="best-fitting-line.html"><a href="best-fitting-line.html"><i class="fa fa-check"></i><b>3.3</b> “Best” fitting line</a><ul>
@@ -181,9 +181,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5.1" data-path="properties-of-least-squares-line.html"><a href="properties-of-least-squares-line.html#real-companies"><i class="fa fa-check"></i><b>3.5.1</b> Real companies</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="interpretation.html"><a href="interpretation.html"><i class="fa fa-check"></i><b>3.6</b> Interpretation</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="interpretation.html"><a href="interpretation.html#intercept-b_0"><i class="fa fa-check"></i><b>3.6.1</b> Intercept (<span class="math inline">\(b_0\)</span>)</a></li>
+<li class="chapter" data-level="3.6.1" data-path="interpretation.html"><a href="interpretation.html#intercept-beta_0"><i class="fa fa-check"></i><b>3.6.1</b> Intercept (<span class="math inline">\(\beta_0\)</span>)</a></li>
 <li class="chapter" data-level="3.6.2" data-path="interpretation.html"><a href="interpretation.html#slope-b_1"><i class="fa fa-check"></i><b>3.6.2</b> Slope (<span class="math inline">\(b_1\)</span>)</a></li>
-<li class="chapter" data-level="3.6.3" data-path="interpretation.html"><a href="interpretation.html#least-squaresregression-line-haty-b_0-b_1x"><i class="fa fa-check"></i><b>3.6.3</b> Least Squares/Regression Line (<span class="math inline">\(\hat{y} = b_0 + b_1x\)</span>)</a></li>
+<li class="chapter" data-level="3.6.3" data-path="interpretation.html"><a href="interpretation.html#least-squaresregression-line-haty-beta_0-beta_1x"><i class="fa fa-check"></i><b>3.6.3</b> Least Squares/Regression Line (<span class="math inline">\(\hat{y} = \beta_0 + \beta_1x\)</span>)</a></li>
 <li class="chapter" data-level="3.6.4" data-path="interpretation.html"><a href="interpretation.html#correlation-or-association-vs.causation"><i class="fa fa-check"></i><b>3.6.4</b> Correlation or Association vs. Causation</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="model-evaluation.html"><a href="model-evaluation.html"><i class="fa fa-check"></i><b>3.7</b> Model Evaluation</a><ul>
@@ -202,108 +202,108 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.9.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.5</b> Is the Difference Real?</a></li>
 <li class="chapter" data-level="3.9.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#dealing-with-non-linear-relationships"><i class="fa fa-check"></i><b>3.9.6</b> Dealing with Non-Linear Relationships</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>3.10</b> Logistic Regression</a><ul>
-<li class="chapter" data-level="3.10.1" data-path="logistic-regression.html"><a href="logistic-regression.html#logistic-and-logit"><i class="fa fa-check"></i><b>3.10.1</b> Logistic and Logit</a></li>
-<li class="chapter" data-level="3.10.2" data-path="logistic-regression.html"><a href="logistic-regression.html#fitting-the-model"><i class="fa fa-check"></i><b>3.10.2</b> Fitting the Model</a></li>
-<li class="chapter" data-level="3.10.3" data-path="logistic-regression.html"><a href="logistic-regression.html#interpretation-1"><i class="fa fa-check"></i><b>3.10.3</b> Interpretation</a></li>
-<li class="chapter" data-level="3.10.4" data-path="logistic-regression.html"><a href="logistic-regression.html#prediction-1"><i class="fa fa-check"></i><b>3.10.4</b> Prediction</a></li>
-<li class="chapter" data-level="3.10.5" data-path="logistic-regression.html"><a href="logistic-regression.html#model-evaluation-1"><i class="fa fa-check"></i><b>3.10.5</b> Model Evaluation</a></li>
-<li class="chapter" data-level="3.10.6" data-path="logistic-regression.html"><a href="logistic-regression.html#alternative-classification-models"><i class="fa fa-check"></i><b>3.10.6</b> Alternative Classification Models</a></li>
+<li class="chapter" data-level="3.10" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.10</b> Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="3.11" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.11</b> Major Takeaways</a></li>
+<li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-and-logit"><i class="fa fa-check"></i><b>4.0.1</b> Logistic and Logit</a></li>
+<li class="chapter" data-level="4.0.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#fitting-the-model"><i class="fa fa-check"></i><b>4.0.2</b> Fitting the Model</a></li>
+<li class="chapter" data-level="4.0.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#interpretation-1"><i class="fa fa-check"></i><b>4.0.3</b> Interpretation</a></li>
+<li class="chapter" data-level="4.0.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#prediction-1"><i class="fa fa-check"></i><b>4.0.4</b> Prediction</a></li>
+<li class="chapter" data-level="4.0.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#model-evaluation-1"><i class="fa fa-check"></i><b>4.0.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="4.0.6" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#alternative-classification-models"><i class="fa fa-check"></i><b>4.0.6</b> Alternative Classification Models</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>4</b> Random Variability</a><ul>
-<li class="chapter" data-level="4.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>4.1</b> Sampling Variability</a></li>
-<li class="chapter" data-level="4.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>4.2</b> Randomization Variability</a></li>
-<li class="chapter" data-level="4.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>4.3</b> Simulating Random Sampling from a Population</a></li>
-<li class="chapter" data-level="4.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>4.4</b> IRL: Bootstrapping</a></li>
-<li class="chapter" data-level="4.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>4.5</b> Simulating Randomization into Groups</a></li>
-<li class="chapter" data-level="4.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>4.6</b> IRL: Randomization Tests</a></li>
-<li class="chapter" data-level="4.7" data-path="major-takeaways-3.html"><a href="major-takeaways-3.html"><i class="fa fa-check"></i><b>4.7</b> Major Takeaways</a></li>
+<li class="chapter" data-level="5" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
+<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
+<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a></li>
+<li class="chapter" data-level="5.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>5.3</b> Simulating Random Sampling from a Population</a></li>
+<li class="chapter" data-level="5.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>5.4</b> IRL: Bootstrapping</a></li>
+<li class="chapter" data-level="5.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>5.5</b> Simulating Randomization into Groups</a></li>
+<li class="chapter" data-level="5.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>5.6</b> IRL: Randomization Tests</a></li>
+<li class="chapter" data-level="5.7" data-path="major-takeaways-3.html"><a href="major-takeaways-3.html"><i class="fa fa-check"></i><b>5.7</b> Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>5</b> Randomness and Probability</a><ul>
-<li class="chapter" data-level="5.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>5.1</b> Three Types of Probability</a></li>
-<li class="chapter" data-level="5.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html"><i class="fa fa-check"></i><b>5.2</b> Theoretical Probability Rules</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>5.2.1</b> Diagnotic Testing and Probability</a></li>
-<li class="chapter" data-level="5.2.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>5.2.2</b> Court Arguments and Probability</a></li>
+<li class="chapter" data-level="6" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>6</b> Randomness and Probability</a><ul>
+<li class="chapter" data-level="6.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>6.1</b> Three Types of Probability</a></li>
+<li class="chapter" data-level="6.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html"><i class="fa fa-check"></i><b>6.2</b> Theoretical Probability Rules</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>6.2.1</b> Diagnotic Testing and Probability</a></li>
+<li class="chapter" data-level="6.2.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>6.2.2</b> Court Arguments and Probability</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="random-variable.html"><a href="random-variable.html"><i class="fa fa-check"></i><b>5.3</b> Random Variable</a></li>
-<li class="chapter" data-level="5.4" data-path="probability-models.html"><a href="probability-models.html"><i class="fa fa-check"></i><b>5.4</b> Probability Models</a><ul>
-<li class="chapter" data-level="5.4.1" data-path="probability-models.html"><a href="probability-models.html#using-probability-mass-functions"><i class="fa fa-check"></i><b>5.4.1</b> Using probability mass functions</a></li>
-<li class="chapter" data-level="5.4.2" data-path="probability-models.html"><a href="probability-models.html#using-probability-density-functions"><i class="fa fa-check"></i><b>5.4.2</b> Using probability density functions</a></li>
-<li class="chapter" data-level="5.4.3" data-path="probability-models.html"><a href="probability-models.html#expected-value-and-variance"><i class="fa fa-check"></i><b>5.4.3</b> Expected value and variance</a></li>
+<li class="chapter" data-level="6.3" data-path="random-variable.html"><a href="random-variable.html"><i class="fa fa-check"></i><b>6.3</b> Random Variable</a></li>
+<li class="chapter" data-level="6.4" data-path="probability-models.html"><a href="probability-models.html"><i class="fa fa-check"></i><b>6.4</b> Probability Models</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="probability-models.html"><a href="probability-models.html#using-probability-mass-functions"><i class="fa fa-check"></i><b>6.4.1</b> Using probability mass functions</a></li>
+<li class="chapter" data-level="6.4.2" data-path="probability-models.html"><a href="probability-models.html#using-probability-density-functions"><i class="fa fa-check"></i><b>6.4.2</b> Using probability density functions</a></li>
+<li class="chapter" data-level="6.4.3" data-path="probability-models.html"><a href="probability-models.html#expected-value-and-variance"><i class="fa fa-check"></i><b>6.4.3</b> Expected value and variance</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="bernoullibinomial-model.html"><a href="bernoullibinomial-model.html"><i class="fa fa-check"></i><b>5.5</b> Bernoulli/Binomial Model</a></li>
-<li class="chapter" data-level="5.6" data-path="normal-model.html"><a href="normal-model.html"><i class="fa fa-check"></i><b>5.6</b> Normal Model</a></li>
-<li class="chapter" data-level="5.7" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html"><i class="fa fa-check"></i><b>5.7</b> Sampling Distribution and CLT</a><ul>
-<li class="chapter" data-level="5.7.1" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html#sampling-distributions"><i class="fa fa-check"></i><b>5.7.1</b> Sampling distributions</a></li>
-<li class="chapter" data-level="5.7.2" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>5.7.2</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="6.5" data-path="bernoullibinomial-model.html"><a href="bernoullibinomial-model.html"><i class="fa fa-check"></i><b>6.5</b> Bernoulli/Binomial Model</a></li>
+<li class="chapter" data-level="6.6" data-path="normal-model.html"><a href="normal-model.html"><i class="fa fa-check"></i><b>6.6</b> Normal Model</a></li>
+<li class="chapter" data-level="6.7" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html"><i class="fa fa-check"></i><b>6.7</b> Sampling Distribution and CLT</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html#sampling-distributions"><i class="fa fa-check"></i><b>6.7.1</b> Sampling distributions</a></li>
+<li class="chapter" data-level="6.7.2" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>6.7.2</b> The Central Limit Theorem</a></li>
 </ul></li>
-<li class="chapter" data-level="5.8" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html"><i class="fa fa-check"></i><b>5.8</b> Z-scores and the Student’s “t” distribution</a><ul>
-<li class="chapter" data-level="5.8.1" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#gossets-work"><i class="fa fa-check"></i><b>5.8.1</b> Gosset’s Work</a></li>
-<li class="chapter" data-level="5.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>5.8.2</b> Beer Helps the Field of Statistics</a></li>
-<li class="chapter" data-level="5.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>5.8.3</b> Student’s T Model</a></li>
+<li class="chapter" data-level="6.8" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html"><i class="fa fa-check"></i><b>6.8</b> Z-scores and the Student’s “t” distribution</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#gossets-work"><i class="fa fa-check"></i><b>6.8.1</b> Gosset’s Work</a></li>
+<li class="chapter" data-level="6.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>6.8.2</b> Beer Helps the Field of Statistics</a></li>
+<li class="chapter" data-level="6.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>6.8.3</b> Student’s T Model</a></li>
 </ul></li>
-<li class="chapter" data-level="5.9" data-path="major-takeaways-4.html"><a href="major-takeaways-4.html"><i class="fa fa-check"></i><b>5.9</b> Major Takeaways</a></li>
+<li class="chapter" data-level="6.9" data-path="major-takeaways-4.html"><a href="major-takeaways-4.html"><i class="fa fa-check"></i><b>6.9</b> Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>6</b> Statistical Inference</a><ul>
-<li class="chapter" data-level="6.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>6.1</b> Confidence Intervals</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#via-classical-theory"><i class="fa fa-check"></i><b>6.1.1</b> Via Classical Theory</a></li>
-<li class="chapter" data-level="6.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#via-bootstrapping"><i class="fa fa-check"></i><b>6.1.2</b> Via Bootstrapping</a></li>
+<li class="chapter" data-level="7" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>7</b> Statistical Inference</a><ul>
+<li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7.1</b> Confidence Intervals</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#via-classical-theory"><i class="fa fa-check"></i><b>7.1.1</b> Via Classical Theory</a></li>
+<li class="chapter" data-level="7.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#via-bootstrapping"><i class="fa fa-check"></i><b>7.1.2</b> Via Bootstrapping</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html"><i class="fa fa-check"></i><b>6.2</b> Confidence Interval Examples</a><ul>
-<li class="chapter" data-level="6.2.1" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#proportion-outcome"><i class="fa fa-check"></i><b>6.2.1</b> Proportion Outcome</a></li>
-<li class="chapter" data-level="6.2.2" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#mean-and-then-median"><i class="fa fa-check"></i><b>6.2.2</b> Mean and then Median</a></li>
-<li class="chapter" data-level="6.2.3" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#logistic-regression-model"><i class="fa fa-check"></i><b>6.2.3</b> Logistic Regression Model</a></li>
-<li class="chapter" data-level="6.2.4" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#linear-regression-model-slope-categorical-variable"><i class="fa fa-check"></i><b>6.2.4</b> Linear Regression Model Slope (Categorical Variable)</a></li>
-<li class="chapter" data-level="6.2.5" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#linear-regression-model-slope-quantitative-var"><i class="fa fa-check"></i><b>6.2.5</b> Linear Regression Model Slope (Quantitative Var)</a></li>
-<li class="chapter" data-level="6.2.6" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#confidence-intervals-for-prediction"><i class="fa fa-check"></i><b>6.2.6</b> Confidence Intervals for Prediction</a></li>
-<li class="chapter" data-level="6.2.7" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#prediction-intervals"><i class="fa fa-check"></i><b>6.2.7</b> Prediction Intervals</a></li>
-<li class="chapter" data-level="6.2.8" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#probability-theory-vs.bootstrapping"><i class="fa fa-check"></i><b>6.2.8</b> Probability Theory vs. Bootstrapping</a></li>
+<li class="chapter" data-level="7.2" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html"><i class="fa fa-check"></i><b>7.2</b> Confidence Interval Examples</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#proportion-outcome"><i class="fa fa-check"></i><b>7.2.1</b> Proportion Outcome</a></li>
+<li class="chapter" data-level="7.2.2" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#mean-and-then-median"><i class="fa fa-check"></i><b>7.2.2</b> Mean and then Median</a></li>
+<li class="chapter" data-level="7.2.3" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#logistic-regression-model"><i class="fa fa-check"></i><b>7.2.3</b> Logistic Regression Model</a></li>
+<li class="chapter" data-level="7.2.4" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#linear-regression-model-slope-categorical-variable"><i class="fa fa-check"></i><b>7.2.4</b> Linear Regression Model Slope (Categorical Variable)</a></li>
+<li class="chapter" data-level="7.2.5" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#linear-regression-model-slope-quantitative-var"><i class="fa fa-check"></i><b>7.2.5</b> Linear Regression Model Slope (Quantitative Var)</a></li>
+<li class="chapter" data-level="7.2.6" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#confidence-intervals-for-prediction"><i class="fa fa-check"></i><b>7.2.6</b> Confidence Intervals for Prediction</a></li>
+<li class="chapter" data-level="7.2.7" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#prediction-intervals"><i class="fa fa-check"></i><b>7.2.7</b> Prediction Intervals</a></li>
+<li class="chapter" data-level="7.2.8" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#probability-theory-vs.bootstrapping"><i class="fa fa-check"></i><b>7.2.8</b> Probability Theory vs. Bootstrapping</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>6.3</b> Hypothesis Testing</a><ul>
-<li class="chapter" data-level="6.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#test-statistics"><i class="fa fa-check"></i><b>6.3.1</b> Test statistics</a></li>
-<li class="chapter" data-level="6.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#logic-of-hypothesis-testing"><i class="fa fa-check"></i><b>6.3.2</b> Logic of hypothesis testing</a></li>
-<li class="chapter" data-level="6.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#summary-of-procedure"><i class="fa fa-check"></i><b>6.3.3</b> Summary of procedure</a></li>
-<li class="chapter" data-level="6.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#testing-single-model-coefficients"><i class="fa fa-check"></i><b>6.3.4</b> Testing single model coefficients</a></li>
-<li class="chapter" data-level="6.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#distributions-of-test-statistics"><i class="fa fa-check"></i><b>6.3.5</b> Distributions of test statistics</a></li>
-<li class="chapter" data-level="6.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#graphical-description-of-p-values"><i class="fa fa-check"></i><b>6.3.6</b> Graphical description of p-values</a></li>
-<li class="chapter" data-level="6.3.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#example-linear-regression"><i class="fa fa-check"></i><b>6.3.7</b> Example: Linear Regression</a></li>
-<li class="chapter" data-level="6.3.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#example-logistic-regression"><i class="fa fa-check"></i><b>6.3.8</b> Example: Logistic Regression</a></li>
-<li class="chapter" data-level="6.3.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>6.3.9</b> Errors</a></li>
+<li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7.3</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#test-statistics"><i class="fa fa-check"></i><b>7.3.1</b> Test statistics</a></li>
+<li class="chapter" data-level="7.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#logic-of-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.2</b> Logic of hypothesis testing</a></li>
+<li class="chapter" data-level="7.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#summary-of-procedure"><i class="fa fa-check"></i><b>7.3.3</b> Summary of procedure</a></li>
+<li class="chapter" data-level="7.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#testing-single-model-coefficients"><i class="fa fa-check"></i><b>7.3.4</b> Testing single model coefficients</a></li>
+<li class="chapter" data-level="7.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#distributions-of-test-statistics"><i class="fa fa-check"></i><b>7.3.5</b> Distributions of test statistics</a></li>
+<li class="chapter" data-level="7.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#graphical-description-of-p-values"><i class="fa fa-check"></i><b>7.3.6</b> Graphical description of p-values</a></li>
+<li class="chapter" data-level="7.3.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#example-linear-regression"><i class="fa fa-check"></i><b>7.3.7</b> Example: Linear Regression</a></li>
+<li class="chapter" data-level="7.3.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#example-logistic-regression"><i class="fa fa-check"></i><b>7.3.8</b> Example: Logistic Regression</a></li>
+<li class="chapter" data-level="7.3.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>7.3.9</b> Errors</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="statistical-significance-v-practical-significance.html"><a href="statistical-significance-v-practical-significance.html"><i class="fa fa-check"></i><b>6.4</b> Statistical Significance v. Practical Significance</a></li>
-<li class="chapter" data-level="6.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>6.5</b> Model Selection</a></li>
+<li class="chapter" data-level="7.4" data-path="statistical-significance-v-practical-significance.html"><a href="statistical-significance-v-practical-significance.html"><i class="fa fa-check"></i><b>7.4</b> Statistical Significance v. Practical Significance</a></li>
+<li class="chapter" data-level="7.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>7.5</b> Model Selection</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>7</b> Appendix A - Theoretical Probability</a><ul>
-<li class="chapter" data-level="7.1" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>7.1</b> Probability Rules</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="probability-rules.html"><a href="probability-rules.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>7.1.1</b> Disjoint/Mutually Exclusive</a></li>
-<li class="chapter" data-level="7.1.2" data-path="probability-rules.html"><a href="probability-rules.html#independence"><i class="fa fa-check"></i><b>7.1.2</b> Independence</a></li>
+<li class="chapter" data-level="8" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>8</b> Appendix A - Theoretical Probability</a><ul>
+<li class="chapter" data-level="8.1" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>8.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="probability-rules.html"><a href="probability-rules.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>8.1.1</b> Disjoint/Mutually Exclusive</a></li>
+<li class="chapter" data-level="8.1.2" data-path="probability-rules.html"><a href="probability-rules.html#independence"><i class="fa fa-check"></i><b>8.1.2</b> Independence</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>7.2</b> Random Variable</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>7.2.1</b> Probability Models</a></li>
+<li class="chapter" data-level="8.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>8.2</b> Random Variable</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>8.2.1</b> Probability Models</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>7.3</b> Discrete Random Variables</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>7.3.1</b> Expected Value</a></li>
-<li class="chapter" data-level="7.3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>7.3.2</b> Variance</a></li>
-<li class="chapter" data-level="7.3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#joint-distributions"><i class="fa fa-check"></i><b>7.3.3</b> Joint Distributions</a></li>
-<li class="chapter" data-level="7.3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#covariance"><i class="fa fa-check"></i><b>7.3.4</b> Covariance</a></li>
-<li class="chapter" data-level="7.3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#correlation"><i class="fa fa-check"></i><b>7.3.5</b> Correlation</a></li>
-<li class="chapter" data-level="7.3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#a-few-named-probability-models"><i class="fa fa-check"></i><b>7.3.6</b> A Few Named Probability Models</a></li>
+<li class="chapter" data-level="8.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>8.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>8.3.1</b> Expected Value</a></li>
+<li class="chapter" data-level="8.3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>8.3.2</b> Variance</a></li>
+<li class="chapter" data-level="8.3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#joint-distributions"><i class="fa fa-check"></i><b>8.3.3</b> Joint Distributions</a></li>
+<li class="chapter" data-level="8.3.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#covariance"><i class="fa fa-check"></i><b>8.3.4</b> Covariance</a></li>
+<li class="chapter" data-level="8.3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#correlation"><i class="fa fa-check"></i><b>8.3.5</b> Correlation</a></li>
+<li class="chapter" data-level="8.3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#a-few-named-probability-models"><i class="fa fa-check"></i><b>8.3.6</b> A Few Named Probability Models</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>7.4</b> Continuous Random Variables</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-value-1"><i class="fa fa-check"></i><b>7.4.1</b> Expected Value</a></li>
-<li class="chapter" data-level="7.4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#a-few-named-probability-models-1"><i class="fa fa-check"></i><b>7.4.2</b> A Few Named Probability Models</a></li>
+<li class="chapter" data-level="8.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>8.4</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-value-1"><i class="fa fa-check"></i><b>8.4.1</b> Expected Value</a></li>
+<li class="chapter" data-level="8.4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#a-few-named-probability-models-1"><i class="fa fa-check"></i><b>8.4.2</b> A Few Named Probability Models</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>7.5</b> Random Variation</a></li>
+<li class="chapter" data-level="8.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>8.5</b> Random Variation</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="definitions.html"><a href="definitions.html"><i class="fa fa-check"></i><b>8</b> Definitions</a><ul>
-<li class="chapter" data-level="8.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>8.1</b> Chapter 1</a></li>
-<li class="chapter" data-level="8.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>8.2</b> Chapter 2</a></li>
-<li class="chapter" data-level="8.3" data-path="chapter-3.html"><a href="chapter-3.html"><i class="fa fa-check"></i><b>8.3</b> Chapter 3</a></li>
-<li class="chapter" data-level="8.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>8.4</b> Chapter 4</a></li>
-<li class="chapter" data-level="8.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>8.5</b> Chapter 5</a></li>
-<li class="chapter" data-level="8.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>8.6</b> Chapter 6</a></li>
+<li class="chapter" data-level="9" data-path="definitions.html"><a href="definitions.html"><i class="fa fa-check"></i><b>9</b> Definitions</a><ul>
+<li class="chapter" data-level="9.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>9.1</b> Chapter 1</a></li>
+<li class="chapter" data-level="9.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>9.2</b> Chapter 2</a></li>
+<li class="chapter" data-level="9.3" data-path="chapter-3.html"><a href="chapter-3.html"><i class="fa fa-check"></i><b>9.3</b> Chapter 3</a></li>
+<li class="chapter" data-level="9.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>9.4</b> Chapter 4</a></li>
+<li class="chapter" data-level="9.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>9.5</b> Chapter 5</a></li>
+<li class="chapter" data-level="9.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>9.6</b> Chapter 6</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -326,7 +326,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="major-takeaways-2" class="section level2">
-<h2><span class="header-section-number">3.11</span> Major Takeaways</h2>
+<h2><span class="header-section-number">3.10</span> Major Takeaways</h2>
 <ol style="list-style-type: decimal">
 <li><p>All models are wrong, but some are useful and fair for our goals (prediction or description).</p></li>
 <li><p>We want a model with small residuals or a low number of prediction errors.</p></li>
@@ -342,8 +342,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="random-variability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="multiple-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logistic-regression-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -375,7 +375,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-regression.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-linear-regression.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -11,21 +11,21 @@ library(mosaic)
 knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE)
 ```
 
-# Regression Models
+# Linear Regression Models
 
-In our visualization of data, we've seen trends, patterns, and variation. Let's now endeavor to describe those trends, patterns, and variation more *precisely* and *quantitatively* by building statistical *models*.
+In our visualization of data, we've seen trends, patterns, and variation. Let's now endeavor to describe those trends, patterns, and variation more *precisely* and *quantitatively* by building statistical *models*. In this chapter, we will focus on a class of models for describing quantitative outcome variables: linear regression models.
 
 ## Modeling Goals
 
 Broadly, a model is a simplified representation of the world. When we build models, we may have different goals.
 
-One goal when building models is **prediction**. Given data on a **response or outcome variable**, $y$, and one or more **predictor or explanatory variables**, $x$, the goal is to find a mathematical function, $f$, of $x$ that gives good predictions of $y$.  For example, we might want to be able to predict a customer's chest size knowing their neck size. This $x$ may be a single variable, but it is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. 
+One goal when building models is **prediction**. Given data on a **response** or **outcome variable**, $y$, and one or more **predictor or explanatory variables**, $x$, the goal is to find a mathematical function, $f$, of $x$ that gives good predictions of $y$.  For example, we might want to be able to predict a customer's chest size knowing their neck size. This $x$ may be a single variable, but it is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. 
 
 ```{block, type="reflect"}
 Can you think of some other concrete examples in which we'd want a model to do prediction? Consider what predictions might be made about you every day...
 ```
 
-What are the qualities of a good model and function, $f$? We want to find an $f(x)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ to be close to the observed response. We want $y-\hat{y}$ to be small. This difference between the observed value and the prediction, $y-\hat{y}$, is called a **residual**. We'll discuss residuals more later.
+What are the qualities of a good model and function, $f$? We want to find an $f(x)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ (read, "y hat") to be close to the observed response. We want $y-\hat{y}$ to be small. This difference between the observed value and the prediction, $y-\hat{y}$, is called a **residual**. We'll discuss residuals more later.
 
 Another goal when building models is **description**. We want a model, $f(x)$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. [George Box](https://en.wikipedia.org/wiki/George_E._P._Box) is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
 
@@ -33,11 +33,11 @@ Another goal when building models is **description**. We want a model, $f(x)$, t
 Can you think of some concrete examples in which we'd want a model to do explain a phenomenon? Consider how policy decisions get made...
 ```
 
-To begin, we will consider a simple, but powerful model in which we limit this function, $f(x)$, to be a straight line with a y-intercept, $b_0$, and slope, $b_1$.
+To begin, we will consider a simple, but powerful model in which we limit this function, $f(x)$, to be a straight line with a y-intercept, $\beta_0$, and slope, $\beta_1$. ($\beta$ is the Greek letter beta.)
 
-$$\hat{y} = f(x) = b_0 + b_1x$$
+$$\hat{y} = f(x) = \beta_0 + \beta_1x$$
 
-This is a **simple linear regression model**. It is the foundation of many statistical models used in modern statistics and is more flexible than you may think. 
+This is a **simple linear regression model**. It is the foundation of many statistical models used in modern statistics and is more flexible than you may think.
 
 ```{block, type='mathbox'}
 In the past, you may have seen the equation of a line as 
@@ -84,27 +84,30 @@ body %>%
 
 We can see that a shirt made to these specifications would fit the "average person." However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger than average. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller than average. 
 
-Let's try something else. Let's allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the Neck sizes variable into 5 groups of equal length and estimate the mean Chest sizes within each of these groups. 
+Let's try something else. Let's allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the neck size variable into 5 groups of equal length and estimate the mean chest sizes within each of these groups. 
 
 ```{r echo=FALSE}
 bfmeans <- body %>%
-  mutate(NeckGroups = cut(Neck, 5)) %>%
-  group_by(NeckGroups) %>%
-  summarize(Means = mean(Chest))
+    mutate(NeckGroups = cut(Neck, 5)) %>%
+    group_by(NeckGroups) %>%
+    summarize(Means = mean(Chest))
 
 labs <- levels(bfmeans$NeckGroups)
-bfmeans <- cbind(bfmeans, lower = as.numeric( sub("\\((.+),.*", "\\1", labs) ),
-      upper = as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", labs) ))
+bfmeans <- cbind(
+    bfmeans,
+    lower = as.numeric( sub("\\((.+),.*", "\\1", labs) ),
+    upper = as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", labs) )
+)
 
 body %>%
-  ggplot(aes(x = Neck, y = Chest)) +
-  geom_point(color = 'steelblue') + 
-  geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
-  geom_vline(aes(xintercept = upper), data = bfmeans) +
-  geom_vline(aes(xintercept = lower), data = bfmeans) +
-  xlab('Neck size (cm)') + 
-  ylab('Chest size (cm)') +
-  theme_minimal()
+    ggplot(aes(x = Neck, y = Chest)) +
+    geom_point(color = 'steelblue') + 
+    geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
+    geom_vline(aes(xintercept = upper), data = bfmeans) +
+    geom_vline(aes(xintercept = lower), data = bfmeans) +
+    xlab('Neck size (cm)') + 
+    ylab('Chest size (cm)') +
+    theme_minimal()
 ```
 
 ```{block, type="reflect"}
@@ -115,23 +118,26 @@ What if we wanted to be able to make more sizes? Could we get a pretty good sens
 
 ```{r echo=FALSE}
 bfmeans <- body %>%
-  mutate(NeckGroups = cut(Neck, 8)) %>%
-  group_by(NeckGroups) %>%
-  summarize(Means = mean(Chest))
+    mutate(NeckGroups = cut(Neck, 8)) %>%
+    group_by(NeckGroups) %>%
+    summarize(Means = mean(Chest))
 
 labs <- levels(bfmeans$NeckGroups)
-bfmeans <- cbind(bfmeans, lower = as.numeric( sub("\\((.+),.*", "\\1", labs) ),
-      upper = as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", labs) ))
+bfmeans <- cbind(
+    bfmeans,
+    lower = as.numeric( sub("\\((.+),.*", "\\1", labs) ),
+    upper = as.numeric( sub("[^,]*,([^]]*)\\]", "\\1", labs) )
+)
 
 body %>%
-  ggplot(aes(x = Neck, y = Chest)) +
-  geom_point(color = 'steelblue') + 
-  geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
-  geom_vline(aes(xintercept = upper), data = bfmeans) +
-  geom_vline(aes(xintercept = lower), data = bfmeans) +
-  xlab('Neck size (cm)') + 
-  ylab('Chest size (cm)') +
-  theme_minimal()
+    ggplot(aes(x = Neck, y = Chest)) +
+    geom_point(color = 'steelblue') + 
+    geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
+    geom_vline(aes(xintercept = upper), data = bfmeans) +
+    geom_vline(aes(xintercept = lower), data = bfmeans) +
+    xlab('Neck size (cm)') + 
+    ylab('Chest size (cm)') +
+    theme_minimal()
 ```
 
 ```{block, type="reflect"}
@@ -142,20 +148,19 @@ What are the pros and cons of having a larger number of sizes?
 Stop and think about the data collection process. If you were measuring your own neck size, how precise do you think you could get? What factors might impact that precision?
 ```
 
-
-We notice that there is a generally linear relationship between neck and chest size. Perhaps we find one line to describe the relationship between Neck size and Chest size and use that to decide on sizes later?
+We can see from this scatterplot that there is a generally linear relationship between neck and chest size. Perhaps we can find one line to describe the relationship between neck size and chest size and use that line to decide on sizes later.
 
 ```{r echo=FALSE}
 body %>%
-  ggplot(aes(x = Neck, y = Chest)) +
-  geom_point(color = 'steelblue') + 
-  geom_smooth(method = 'lm', se = FALSE) +
-  geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
-  geom_vline(aes(xintercept = upper), data = bfmeans) +
-  geom_vline(aes(xintercept = lower), data = bfmeans) +
-  xlab('Neck size (cm)') + 
-  ylab('Chest size (cm)') +
-  theme_minimal()
+    ggplot(aes(x = Neck, y = Chest)) +
+    geom_point(color = 'steelblue') + 
+    geom_smooth(method = 'lm', se = FALSE) +
+    geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
+    geom_vline(aes(xintercept = upper), data = bfmeans) +
+    geom_vline(aes(xintercept = lower), data = bfmeans) +
+    xlab('Neck size (cm)') + 
+    ylab('Chest size (cm)') +
+    theme_minimal()
 ```
 
 ```{block, type='reflect'}
@@ -171,7 +176,7 @@ If the scatterplot between two quantitative variables **resembles a straight lin
 
 ## "Best" fitting line
 
-To choose the "best" fitting line, we need to choose the intercept ($b_0$) and slope ($b_1$),
+To choose the "best" fitting line, we need to choose the intercept ($\beta_0$) and slope ($\beta_1$),
 
 $$ \hat{y} = f(x) = b_0 + b_1x $$
 
@@ -183,7 +188,7 @@ What do we mean by "best"? In general, we'd like good predictions and a model th
 
 ### First idea
 
-One idea of "best" is that we want the line that minimizes the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( b_0 + b_1x_i)$. The residual is the error in our prediction, the difference between what you observe and what you predict based on the line.
+One idea of "best" is that we want the line that minimizes the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( \beta_0 + \beta_1x_i)$. The residual is the error in our prediction, the difference between what you observe and what you predict based on the line.
 
 - **Problem**: We will have positive and negative residuals; they will cancel each other out if we add them together. While a good idea, this definition of "best" won't give us what we want. We'll want an idea that deals with the negative signs. 
 
@@ -210,36 +215,37 @@ Below is a visual of the sum of squared residuals for a variety of values of the
 f <- function(b){
   sum((body$Chest - (b[1] + b[2] * body$Neck))^2)
 } 
-b0 = seq(-20,20,by=.5)
-b1 = seq(-10,20,by=1)
-b <- expand.grid(b0,b1)
+beta0 <- seq(-20, 20, by = 0.5)
+beta1 <- seq(-10, 20, by = 1)
+b <- expand.grid(beta0, beta1)
 ss <- apply(b,1,f)
 
-persp(b0,b1,matrix(ss,length(b0),length(b1)),theta=65,zlab='Sum of Squares')
+persp(beta0, beta1, matrix(ss,length(beta0),length(beta1)), theta = 65, zlab = "Sum of Squares")
 ```
 
 We can see there is valley where the minimum must be. Let's visualize this in a slightly different way. We'll encode the surface height as color (white is lowest).
 
 ```{r echo=FALSE}
-image(b0,b1,matrix(ss,length(b0),length(b1)),col=c('white',topo.colors(100)[100:1]))
+image(beta0, beta1, matrix(ss,length(beta0),length(beta1)), col = c("white",topo.colors(100)[100:1]))
 ```
 
 The large values of the sum of squared residuals are dominating this image, so let's change the color scheme to see more variation in smaller values (white is lowest).
 
 ```{r echo=FALSE}
-b0 = seq(-10,10,by=.1)
-b1 = seq(0,5,by=.1)
-b <- expand.grid(b0,b1)
+beta0 <- seq(-10, 10, by = 0.1)
+beta1 <- seq(0, 5, by = 0.1)
+b <- expand.grid(beta0, beta1)
 ss <- apply(b,1,f)
-image(b0,b1,matrix(log(ss),length(b0),length(b1)),col=c('white',topo.colors(100)[100:1])) #Log Sum of Squares to see variation in lower end
+
+image(beta0, beta1, matrix(log(ss),length(beta0),length(beta1)), col = c("white",topo.colors(100)[100:1])) # Use the log of Sum of Squares to see variation in lower end
 ```
 
 We can limit our search to $b_0 \in (-10,10)$ and $b_1 \in (2,3)$.
 
 ```{r echo=TRUE}
-b0 = seq(-10,10,by=.05)
-b1 = seq(2,3,by=.05)
-b <- expand.grid(b0,b1)
+beta0 <- seq(-10, 10, by = 0.05)
+beta1 <- seq(2, 3, by = 0.05)
+b <- expand.grid(beta0,beta1)
 ss <- apply(b,1,f)
 
 b[ss == min(ss),]
@@ -248,7 +254,7 @@ b[ss == min(ss),]
 We have the minimum point. Over the grid of pairs of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
 
 ```{block, type="mathbox"}
-(Optional) Alternative ways (faster than exhaustive search) to find the minimum sum of squared residuals
+(Optional) Alternative ways (faster than exhaustive search) to find the minimum sum of squared residuals:
 
 - We could try a numerical optimization algorithm such as steepest descent.
 - We could use multivariable calculus (find partial derivatives, set equal to 0, and solve).
@@ -275,15 +281,15 @@ Let's do that calculation "by hand" first in R.
 
 ```{r echo=TRUE}
 body %>%
-  summarize(sy = sd(Chest), sx = sd(Neck), r = cor(Chest,Neck), ybar = mean(Chest), xbar = mean(Neck)) %>%
-  mutate(b1 = r*sy/sx, b0 = ybar - b1*xbar) %>%
-  select(b0, b1)
+    summarize(sy = sd(Chest), sx = sd(Neck), r = cor(Chest,Neck), ybar = mean(Chest), xbar = mean(Neck)) %>%
+    mutate(b1 = r*sy/sx, b0 = ybar - b1*xbar) %>%
+    select(b0, b1)
 ```
 
 Wow. That was quite a bit of coding. From now on, we'll take the shortcut and use the `lm()` function which stands for **l**inear **m**odel. This function gives us the Least Squares solution to the "best" fitting line, as defined by minimizing the sum of squared residuals.
 
 ```{r echo=TRUE}
-lm(Chest ~ Neck, data = body) # When you see ~, think 'as a function of'
+lm(Chest ~ Neck, data = body) # When you see ~, think "as a function of"
 ```
 
 
@@ -299,12 +305,12 @@ lm(Chest ~ Neck, data = body) # When you see ~, think 'as a function of'
 
 $$s_e = \sqrt{\frac{\sum^n_{i=1} (y_i-\hat{y}_i)^2}{n-2}}  = \sqrt{\frac{\sum^n_{i=1} (e_i-0)^2}{n-2}} $$
 
-In R: the standard deviation of the residuals, $s_e$, is referred to as the "residual standard error". Don't confuse this with "Std. Error," that is something else that we'll get to. 
+In R: the standard deviation of the residuals, $s_e$, is referred to as the "residual standard error". Don't confuse this with "Std. Error," whic is something else that we'll get to later in the semester.
 
 ```{r echo=TRUE}
 body %>%
-  lm(Chest ~ Neck, data = .) %>% #If you don't want the pipe to pass to the first argument, you can specify the argument with .
-  summary()
+    lm(Chest ~ Neck, data = .) %>% #If you don't want the pipe to pass to the first argument, you can specify the argument with .
+    summary()
 ```
 
 This simple linear regression line is
@@ -314,11 +320,11 @@ $$\widehat{Chest} = -3.18 + 2.73*Neck$$
 If you have a neck size of 38 cm, then we predict the chest size of an ideal shirt is about 100.5 cm (~ -3.18 + 2.73*38) 
 
 ```{r}
--3.18 + 2.73*38 #the intercept and slope are rounded here first (not great)
+-3.18 + 2.73*38 # the intercept and slope are rounded here first (not great)
 
 body %>%
-  lm(Chest ~ Neck, data = .) %>% 
-  predict(newdata = data.frame(Neck = 38)) #the intercept and slope are not rounded before prediction (better!)
+    lm(Chest ~ Neck, data = .) %>% 
+    predict(newdata = data.frame(Neck = 38)) # the intercept and slope are not rounded before prediction (better!)
 ```
 
 
@@ -383,15 +389,14 @@ What questions do you have about the sampling procedure?
 
 ## Interpretation
 
-Let's look at the summary print out of the `lm()` function in R again. We'll highlight some of the most important pieces of the print out and discuss how you interpret them.
+Let's look at the summary output of the `lm()` function in R again. We'll highlight some of the most important pieces of this output and discuss how you interpret them.
 
 ```{r echo=TRUE}
-body %>%
-  lm(Chest ~ Neck, data = .) %>% 
-  summary()
+tshirt_mod <- lm(Chest ~ Neck, data = body)
+summary(tshirt_mod)
 ```
 
-### Intercept ($b_0$)
+### Intercept ($\beta_0$)
 
 - **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for "(Intercept)". It is -3.1885 for this model. 
 - **Definition:** The intercept gives the average value of $y$ when $x$ is zero (**think about context**)
@@ -399,26 +404,23 @@ body %>%
 - **Discussion:** If the intercept doesn't make sense in the context, we might refit the model with the $x$ variable once it is **centered**. That is, the mean of $x$ for all individuals in the sample is computed, and this mean is subtracted from each person's $x$ value. In this case, the intercept is interpreted as the average value of $y$ when $x$ is at its (sample) mean value. See the example below -- we get an intercept of 100.66, which is the average Chest size for customers with average Neck size.
 
 ```{r echo=TRUE}
-body %>%
-  mutate(CNeck = Neck - mean(Neck)) %>%
-  lm(Chest ~ CNeck, data = .) %>% 
-  summary()
+body <- body %>% mutate(CNeck = Neck - mean(Neck))
+tshirt_mod2 <- lm(Chest ~ CNeck, data = body)
+summary(tshirt_mod2)
 ```
-
 
 
 ### Slope ($b_1$)
 
-- **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for the namve of the variable, "Neck" or "CNeck". It is 2.7369 for this model. 
-- **Definition:** The slope gives the change in average $y$ per 1 unit increase in $x$ (**not for individuals and not causal statement**)
-- **Interpretation:** If we compare two groups of individuals with a 1 cm difference in the neck size (e.g. 38 cm and 39 cm OR 40 cm and 41 cm), then we'd expect the average chest sizes to be different by about 2.7cm.
+- **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for the name of the variable, "Neck" or "CNeck". It is 2.7369 for this model. (Note: the slopes for both `tshirt_mod` and `tshirt_mod2` are the same. Why?) 
+- **Definition:** The slope gives the change in average $y$ per 1 unit increase in $x$ (**not for individuals and not a causal statement**)
+- **Interpretation:** If we compare two groups of individuals with a 1 cm difference in the neck size (e.g., 38 cm and 39 cm OR 40 cm and 41 cm), then we'd expect the average chest sizes to be different by about 2.7 cm.
 - **Another Interpretation:** We'd expect the average chest size to increase by about 2.7 cm for each centimeter increase in neck size.
-- **Discussion:** Note that both interpretations are not written about an individual because we can't easily change our neck size by 1 cm. The slope describes the change in the average in our sample data set, not the change for one person. 
+- **Discussion:** Note that both interpretations are not written about an individual because the least squares line (our model) is a description of the **general trend** in the population. The slope describes the change in the average, not the change for one person.
 
-### Least Squares/Regression Line ($\hat{y} = b_0 + b_1x$)
+### Least Squares/Regression Line ($\hat{y} = \beta_0 + \beta_1x$)
 
-- **Where to find:** In the table called "Coefficients", all of the values you need to write down the line are under "Estimate".
-
+- **Where to find:** In the table called "Coefficients", all of the values that you need to write down the formula of the line are in the "Estimate" column.
 - **Definition:** The line gives the estimated average of $y$ for each value of $x$ (**within the observed range of x**)
 - **Interpretation:** The regression line of (Predicted Chest = -3.18 + 2.73*Neck) gives the estimated average Chest size for a given Neck size, based on our sample of data.
 - **Discussion:** The "within the observed range of $x$" phrase is very important. We can't predict values of $y$ for values of $x$ that are very different from what we have in our data. Trying to do so is a big no-no called **extrapolation**. We'll discuss this more in a bit.
@@ -427,13 +429,14 @@ body %>%
 
 <center>
 ![[xkcd: Correlation](https://imgs.xkcd.com/comics/correlation.png)](Photos/correlation.png)
+Source: [xkcd](https://xkcd.com/552/)
 </center>
 
 What is causation? What is a causal effect? Are there criteria for defining a cause?
 
 These are deep questions that have been debated by scientists of all domains for a long time.We are at a point now where there is some consensus on the definition of a causal effect. The causal effect of a variable $x$ on another variable $y$ is the amount that we expect $y$ to change if we **intervene on/manipulate** $x$ by changing it by one unit.
 
-When can we interpret an estimated slope $b_1$ from a simple linear regression as a causal effect of $x$ on $y$? Well, in the simple linear regression case, almost never. To interpret the slope causally, there would have to be **no confounding variables** (no variables that impact both $x$ and $y$). If we performed an experiment, this might be possible, but in most cases, it will not be the possible.
+When can we interpret an estimated slope $\beta_1$ from a simple linear regression as a causal effect of $x$ on $y$? Well, in the simple linear regression case, almost never. To interpret the slope causally, there would have to be **no confounding variables** (no variables that cause **both** $x$ **and** $y$). If we performed an experiment, this might be possible, but in most situations, this is not feasible.
 
 Then what are we to do? 
 
@@ -443,8 +446,9 @@ Then what are we to do?
 
 **Multiple linear regression** offers us a way to estimate causal effects of variables *if we use it carefully*. It will be tempting to say: control for everything we can! But we will see that this is not the correct thing to do, as there are very real dangers of over-controlling for variables (known as throwing everything in the model). For now, let it suffice to say that multiple linear regression is as useful as the corn kerneler below. Immensely useful in the right circumstances - but only those circumstances.
 
+<center>
 ![Source: [Walmart](https://www.walmart.com/ip/Corn-Kerneler-w-Stainless-Steel-Blades/139735616)](Photos/corn.jpeg)
-
+</center>
 
 ## Model Evaluation
 
@@ -1238,218 +1242,6 @@ require(gam)
 plot(gam(y ~ s(x), data = dat))
 ```
 
-
-## Logistic Regression
-
-If you want to predict a binary categorical variable (only 2 possible outcomes), the standard linear regression models don't apply. If you let the two possible outcomes be 0 and 1, you'll never get a straight line relationship with any $x$ variable. 
-
-Throughout this section, we will refer to one outcome as 'success' (denoted 1) and 'failure' (denoted 0). Depending on the context of the data, the success could be a negative thing such as 'heart attack' or '20 year mortality' or it could be a positive thing such as 'passing a course.'  
-
-We will denote $p$ to be the chance of success and $1- p$ be the chance of failure. We want to build a model to explain why the chance of one outcome (success) may be higher for one group of people in comparison to another. 
-
-### Logistic and Logit
-
-The **logistic function** is an S shaped curve (sigmoid curve). For our purposes, the function will take the form
-
-$$f(x) = \frac{1}{1 + e^{b_0 +b_1x}}$$
-
-```{r echo=FALSE}
-x <- seq(-10,10,by=.1)
-b0 <- 0
-b1 <- -0.5
-plot(x, 1/(1 + exp(b0 + b1*x)), type = 'l', ylim = c(0,1), ylab = 'f(x)')
-```
-
-For any real value $x$, this function, $f(x)$, will be a value between 0 and 1. This is perfect for us since probabilities or chances should also be between 0 and 1. 
-
-In fact, we'll let the chance of the other outcome (failure), $1-p$, be modeled by this S function.
-
-$$1-p = \frac{1}{1 + e^{b_0 +b_1x}}$$
-```{block, type='mathbox'}
-With a bit of algebra and rearranging terms, we can write this equation in terms of $p$, the chance of success. 
-
-$$1-p = \frac{1}{1 + e^{b_0 +b_1x}}$$
-$$p = 1-\frac{1}{1 + e^{b_0 +b_1x}}$$
-
-$$p = 
-\frac{1 + e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}-\frac{1}{1 + e^{b_0 +b_1x}}$$
-
-$$p = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}$$
-
-```
-
-Let's define one more term. The **odds** of an success outcome is the ratio of the chance of success to the chance of failure, odds $=p/(1-p)$.
-
-```{block, type='mathbox'}
-With a bit more algebra and rearranging terms, we can write the above model as a linear regression model.
-
-$$p/(1-p) = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}/\frac{1}{1 + e^{b_0 +b_1x}}$$
-$$p/(1-p) = e^{b_0 +b_1x}$$
-$$\log(p/(1-p)) = b_0 +b_1x$$
-```
-
-This is a **simple logistic regression model**. On the left hand side, we have the natural log of the odds, called the **logit** function. Think of this as a transformed version of our outcome. On the right hand side, we have a familiar linear equation. 
-
-$$\log\left(\frac{p}{1-p}\right) = b_0 +b_1x$$
-
-Like a linear regression model, we can extend this model to a **multiple logistic regression model** by adding additional $x$ variables,
-
-$$\log\left(\frac{p}{1-p}\right) = b_0 +b_1x_1+b_2x_2+b_3x_3+\cdots +b_kx_k$$
-
-### Fitting the Model
-
-Based on observed data that includes an indicator variable for the responses (1 for success, 0 for failure) and predictor variables, we need to find the slope coefficients, $b_0$,...,$b_k$ that best fits the data. The way we do this is through a technique called **maximum likelihood estimation**. We will not discuss the details in this class; we'll save this for an upper level stats class such as Mathematical Statistics.
-
-In R, we do this with the **g**eneral **l**inear **m**odel function, `glm()`.
-
-For a data set, let's go back in history to January 28, 1986. On this day, the U.S. space shuttle called Challenger took off and tragically exploded about minute after the launch. After the fact, scientists ruled that the disaster was due to an o-ring seal failure. Let's look at experimental data on the o-rings prior to the fateful day.
-
-```{r echo=TRUE}
-require(vcd)
-data(SpaceShuttle)
-
-SpaceShuttle %>%
-  filter(!is.na(Fail)) %>%
-  ggplot(aes(x = factor(Fail), y = Temperature) )+ 
-  geom_boxplot() +
-  theme_minimal()
-
-SpaceShuttle %>%
-  filter(!is.na(Fail)) %>%
-  group_by(Temperature) %>%
-  summarise(PercentFail = mean(Fail == 'yes')) %>%
-  ggplot(aes(x = Temperature, y = PercentFail)) + 
-  geom_point() +
-  theme_minimal()
-```
-
-```{block, type="reflect"}
-What are the plots above telling us about the relationship between chance of o-ring failure and temperature?
-```
-
-
-Let's fit a simple logistic regression model to predict the chance of o-ring failure (which is our "success" here -- we know it sounds morbid) based on the temperature using the experimental data. 
-
-```{r echo=TRUE}
-model.glm <- glm(Fail ~ Temperature, data = SpaceShuttle, family = binomial)
-summary(model.glm)
-```
-
-Based on a logistic regression model, the predicted log odds of an o-ring failure is given by
-
-$$\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = 15.0429 -0.2322\cdot Temperature$$
-
-
-### Interpretation
-
-Let's take a look at the estimates from the model. What do they mean?
-
-```{r echo=TRUE}
-summary(model.glm)
-```
-
-The slope coefficient (-0.232) tells you how much the predicted log odds increase with an increase of 1 degree increase in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra. 
-
-```{block, type='mathbox'}
-Our estimated model is
-
-$$\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_0 +b_1x$$
-where $b_0 = 15.04$ and $b_1 = -0.232$.
-
-If we imagine increasing $x$ by 1, then we get a different set of predicted chances of success, $\hat{p}^*$,
-
-$$\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) = b_0 +b_1(x+1)$$
-
-Let's find the difference between these two equations,
-
-$$\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = (b_0 +b_1(x+1)) - (b_0 +b_1x)$$
-and simplify the right hand side (don't you love it when things cancel!),
-
-$$\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_1$$
-and then simplify the left hand side (using our rules of logarithms),
-
-$$\log\left( \frac{\hat{p}^*/(1-\hat{p}^*)}{\hat{p}/(1-\hat{p})}\right) = b_1$$
-
-Let's exponentiate both sides,
-
-$$\left( \frac{\hat{p}^*/(1-\hat{p}^*)}{\hat{p}/(1-\hat{p})}\right) = e^{b_1}$$
-```
-
-We find that $e^{b_1} = e^{-0.232} = 0.793$ is the **odds ratio** based on increasing $x$ by 1 unit (it is a ratio of odds). The odds ratio is the ratio of the odds of success between two groups of units (those with temperature = T and those with temperature = T + 1 such as 28 v 29 degrees)
-
-If a ratio is greater than 1, that means that the denominator is less than the numerator or equivalently the numerator is greater than denominator (odds of success are greater with T+1 as compared to T --> positive relationship between $x$ variable and odds of success). If a ratio is less than 1, that means that the denominator is greater than the numerator or equivalently the numerator is less than denominator (odds of success are less with T+1 as compared to T --> negative relationship between $x$ variable and odds of success). If the ratio is equal to one, the numerator equals the denominator (odds of success are equal for the two groups --> no relationship).
-
-
-In this case, we have an odds ratio < 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree). This makes sense since we saw that the chance of o-ring failure decrease with warmer temperatures. 
-
-### Prediction
-
-On January 28, 1986, the temperature was 26 F degrees. Let's predict the chance of "success," which is a failure of o-rings in our data context, at that temperature.  
-
-```{r echo=TRUE}
-predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response') #type = 'response' gives chance, rather than odds
-```
-
-They didn't have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, we predict the chance of failure to be nearly 1 (near certainty). 
-
-#### Hard Predictions/Classifications
-
-These predicted chances of "success" are useful to give us a sense of uncertainty in our prediction. If the chance of o-ring failure were 0.8, we would be fairly certain that a failure were likely but not absolutely. If the chance of o-ring failure were 0.01, we would be very certain that a failure were not likely to occur. 
-
-
-But if we had to decide whether or not we should let the shuttle launch go, how high should the predicted chance be to delay the launch (even if it would cost a lot of money to delay)?
-
-It depends. 
-
-If we used a threshold of 0.8, then we'd say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we'll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our **accuracy** (# of correctly predicted/# of data points)? 
-
-In the table below, we see that there were three data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn't fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) =  0.82 or 82%. 
-
-The only errors we made were **false negatives**; we didn't predict o-ring failure but the o-rings did actual happen in the experiment. In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure. 
-
-The **false negative rate** is the number of false negatives divided by the false negatives + true positives (denominator should be total number of experiments with actual o-ring failures). With a threshold of 0.80, our false negative rate is 4/(3+4) = 0.57 = 57%. We failed to predict 57% of the o-ring failures. This is fairly high when there are lives on the line.
-
-A **false positive** (predicting failure when it doesn't happen) would delay launch but have minimal impact on human lives. 
-
-The **false positive rate** is the number of false positives divided by the false positives + true negatives (denominator should be total number of experiments with no o-ring failures). With a threshold of 0.80, our false positive rate is 0/16 = 0. We always accurately predicted the o-rings would not fail.
-
-```{r}
-augment(model.glm, type.predict ='response') %>%
-  mutate(predictOFail = .fitted >= 0.8) %>%
-  count(Fail, predictOFail)
-```
-
-What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let's lower it to 0.25 so that we predict o-ring failure more easily. Let's find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let's check false negative rate: 3/(3+4) = 0.43. That's lower. But now we have a non-zero false positive rate: 6/(6+10) = 0.375. So of the experiments with no o-ring failure, we predicted wrong 37.5% of the time. 
-
-```{r}
-augment(model.glm, type.predict ='response') %>%
-  mutate(predictOFail = .fitted >= 0.25) %>%
-  count(Fail, predictOFail)
-```
-
-Where the threshold goes depends on the real consequences of making those two types of errors. 
-
-### Model Evaluation
-
-In deciding whether a logistic regression model is a good and useful model, we need to consider the accuracy, the false positive rate, and the false negative rate. Depending on the context, we may focus on maximizing the overall accuracy or we may focus on minimizing the false negative rate or minimizing the false positive rate. 
-
-There are other measures of model fit for a logistic regression such as AIC and BIC (lower is better), but those are beyond the scope of this course. You'll learn about them in future statistics courses. 
-
-### Alternative Classification Models
-
-Logistic regression is a very useful model to predict a binary outcome. However, it has its limitations. We are assuming a linear relationship between explanatory variables and the log odds of success. This is hard to check because we don't have a variable for odds that we could quickly plot. 
-
-Other methods out there are more flexible but also more complex. Here is a list of some of the most popular classification methods. 
-
-- Classification Trees can predict a binary outcome and choose the variables that are most important by recursively partitioning the data into groups that are more similar in terms of the outcome as well as in chosen predictor variables.
-
-- Random Forests are an ensemble of classification tress that together are more stable than any one classification tree.
-
-- Boosted Trees are classification trees that are sequentially created to target the errors from the last tree.
-
-- Neural Networks are a type of classification algorithm that creates new features based on the original data that are the best predictors of the outcome. 
-
-Take Statistical Machine Learning to learn more about these methods. But keep in mind that sometimes for a task, complex is not necessary: see https://www.huffingtonpost.com/2014/02/10/klemens-torggler-evolution-door_n_4762261.html. 
 
 ## Major Takeaways
 

@@ -6,7 +6,7 @@ output:
   html_document: default
 ---
 
-```{r setup6, echo=FALSE}
+```{r setup7, echo=FALSE}
 library(stringr)
 library(infer)
 library(nycflights13)

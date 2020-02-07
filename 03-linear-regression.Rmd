@@ -33,11 +33,11 @@ Another goal when building models is **description**. We want a model, $f(x)$, t
 Can you think of some concrete examples in which we'd want a model to do explain a phenomenon? Consider how policy decisions get made...
 ```
 
-To begin, we will consider a simple, but powerful model in which we limit this function, $f(x)$, to be a straight line with a y-intercept, $\beta_0$, and slope, $\beta_1$. ($\beta$ is the Greek letter beta.)
+To begin, we will consider a simple, but powerful model in which we limit this function, $f(x)$, to be a straight line with a y-intercept, $\beta_0$, and slope, $\beta_1$. ($\beta$ is the Greek letter beta.) The $E[y]$ below stands for the **expected value** of the response variable $y$.
 
-$$\hat{y} = f(x) = \beta_0 + \beta_1x$$
+$$E[y] = \hat{y} = f(x) = \beta_0 + \beta_1\,x$$
 
-This is a **simple linear regression model**. It is the foundation of many statistical models used in modern statistics and is more flexible than you may think.
+This is a **simple linear regression model**. We model the expected value (the average value) of the response variable as a line. It is the foundation of many statistical models used in modern statistics and is more flexible than you may think.
 
 ```{block, type='mathbox'}
 In the past, you may have seen the equation of a line as 
@@ -178,7 +178,7 @@ If the scatterplot between two quantitative variables **resembles a straight lin
 
 To choose the "best" fitting line, we need to choose the intercept ($\beta_0$) and slope ($\beta_1$),
 
-$$ \hat{y} = f(x) = b_0 + b_1x $$
+$$ \hat{y} = f(x) = \beta_0 + \beta_1\,x $$
 
 that gives us the "best" fit to the $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$. 
 
@@ -261,19 +261,19 @@ We have the minimum point. Over the grid of pairs of values, the minimum sum of 
 
 To get started on the calculus, solve the following two equations for the two unknowns ($b_0$ and $b_1$):
 
-$$\frac{\partial }{\partial b_0}\sum_{i=1}^n (y_i - (b_0 + b_1x_i))^2 = 0$$
-$$\frac{\partial }{\partial b_1}\sum_{i=1}^n (y_i - (b_0 + b_1x_i))^2 = 0$$
+$$\frac{\partial }{\partial \beta_0}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0$$
+$$\frac{\partial }{\partial \beta_1}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0$$
 
 If you are a math/stat/physics/cs major, you should try this by hand and see if you can get the solutions below. 
 ```
 
 If you find the minimum using calculus (super useful class!), you'll find that we can write the Least Squares solution in an equation format as functions of summary statistics (!), the estimated slope is
 
-$$ b_1  = r\frac{s_y}{s_x}$$
+$$ \beta_1  = r\frac{s_y}{s_x}$$
 
 and the estimated intercept is
 
-$$ b_0 = \bar{y} - b_1\bar{x} $$
+$$ \beta_0 = \bar{y} - \beta_1\bar{x} $$
 
 where $\bar{x}$ is the mean of the variable on the x-axis, $\bar{y}$ is the mean of the variable on the y-axis, $s_x$ is the standard deviation of the variable on the x-axis, $s_y$ is the standard deviation of the variable on the y-axis, and $r$ is the correlation coefficient between the two variables.
 
@@ -282,11 +282,11 @@ Let's do that calculation "by hand" first in R.
 ```{r echo=TRUE}
 body %>%
     summarize(sy = sd(Chest), sx = sd(Neck), r = cor(Chest,Neck), ybar = mean(Chest), xbar = mean(Neck)) %>%
-    mutate(b1 = r*sy/sx, b0 = ybar - b1*xbar) %>%
-    select(b0, b1)
+    mutate(beta1 = r*sy/sx, beta0 = ybar - beta1*xbar) %>%
+    select(beta0, beta1)
 ```
 
-Wow. That was quite a bit of coding. From now on, we'll take the shortcut and use the `lm()` function which stands for **l**inear **m**odel. This function gives us the Least Squares solution to the "best" fitting line, as defined by minimizing the sum of squared residuals.
+Wow. That was quite a bit of coding. From now on, we'll take the shortcut and use the `lm()` function which stands for **l**inear **m**odel. This function gives us the least squares solution to the "best" fitting line, as defined by minimizing the sum of squared residuals.
 
 ```{r echo=TRUE}
 lm(Chest ~ Neck, data = body) # When you see ~, think "as a function of"
@@ -315,16 +315,18 @@ body %>%
 
 This simple linear regression line is
 
-$$\widehat{Chest} = -3.18 + 2.73*Neck$$
+$$ E[\hbox{Chest}] = \widehat{\hbox{Chest}} = -3.18 + 2.73\,\hbox{Neck}$$
 
-If you have a neck size of 38 cm, then we predict the chest size of an ideal shirt is about 100.5 cm (~ -3.18 + 2.73*38) 
+If you have a neck size of 38 cm, then we predict the chest size of an ideal shirt is about 100.5 cm:
 
 ```{r}
--3.18 + 2.73*38 # the intercept and slope are rounded here first (not great)
+# The intercept and slope are rounded here first (not great):
+-3.18 + 2.73*38
 
+# The intercept and slope are not rounded before prediction (better!)
 body %>%
     lm(Chest ~ Neck, data = .) %>% 
-    predict(newdata = data.frame(Neck = 38)) # the intercept and slope are not rounded before prediction (better!)
+    predict(newdata = data.frame(Neck = 38))
 ```
 
 
@@ -401,7 +403,7 @@ summary(tshirt_mod)
 - **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for "(Intercept)". It is -3.1885 for this model. 
 - **Definition:** The intercept gives the average value of $y$ when $x$ is zero (**think about context**)
 - **Interpretation:** If Neck size = 0, then the person doesn't exist. In this context, the intercept doesn't make much sense to interpret. 
-- **Discussion:** If the intercept doesn't make sense in the context, we might refit the model with the $x$ variable once it is **centered**. That is, the mean of $x$ for all individuals in the sample is computed, and this mean is subtracted from each person's $x$ value. In this case, the intercept is interpreted as the average value of $y$ when $x$ is at its (sample) mean value. See the example below -- we get an intercept of 100.66, which is the average Chest size for customers with average Neck size.
+- **Discussion:** If the intercept doesn't make sense in the context, we might refit the model with the $x$ variable once it is **centered**. That is, the mean of $x$ for all individuals in the sample is computed, and this mean is subtracted from each person's $x$ value. In this case, the intercept is interpreted as the average value of $y$ when $x$ is at its (sample) mean value. See the example below -- we get an intercept of 100.66, which is the average Chest size for customers with average Neck size. We could also choose to center Neck size at value other than the mean. For example, we could center it at 30 cm by subtracting 30 from the Neck size of all cases.
 
 ```{r echo=TRUE}
 body <- body %>% mutate(CNeck = Neck - mean(Neck))
@@ -410,7 +412,7 @@ summary(tshirt_mod2)
 ```
 
 
-### Slope ($b_1$)
+### Slope ($\beta_1$)
 
 - **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for the name of the variable, "Neck" or "CNeck". It is 2.7369 for this model. (Note: the slopes for both `tshirt_mod` and `tshirt_mod2` are the same. Why?) 
 - **Definition:** The slope gives the change in average $y$ per 1 unit increase in $x$ (**not for individuals and not a causal statement**)
@@ -653,128 +655,42 @@ glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 - Note: $R^2 = r^2$ for simple linear models with one x variable (where $r$ is the correlation coefficient).
 
 
-## Diagnostics
-
-Residuals are what's left over from a model. We can actually learn a lot by studying what is left over, what is left unexplained by the model. INSERT SCATOLOGY JOKE. 
-
-What do we need for a simple linear model to make sense?
-
-  * Variables are both **Quantitative**
-  
-  * Relationship is **Straight Enough**
-  
-  * There are no extreme **Outliers** 
-  
-  * Spread is roughly same throughout -- **No Thickening**
-  
-To check these, we look at the original scatterplot as well as a plot of the *residuals* against *fitted or predicted values*,
-
-```{r echo=TRUE}
-augment(lm.gpa, data = sat) %>%
-    ggplot(aes(x = .fitted, y = .resid)) +
-    geom_point() +
-    geom_smooth(se = FALSE) +
-    geom_hline(yintercept = 0) +
-    labs(x = "Fitted values (predicted values)", y = "Residuals") +
-    theme_minimal()
-```
-
-What do you think?
-
-  * Is there any pattern in the residuals? (Is the original scatterplot straight enough?)
-  * Is there equal spread in residuals across prediction values?
-  
-Studying the residuals can highlight subtle non-linear patterns and thickening in the original scatterplot. Think of it as a magnifying glass that helps you see these patterns.
-
-Additionally, we want to avoid extreme outliers because points that are both far from the mean of $x$ and do not fit the overall relationship have **leverage** or the ability to change the line.
-
-See the example below. See how the relationship changes with the addition of one point, one extreme outlier.  
-
-```{r echo=FALSE}
-x = runif(50,0,10)
-y = rnorm(50)
-dat = data.frame(x,y)
-dat %>%
-  ggplot(aes(x,y)) + 
-  geom_point() + 
-  geom_smooth(method='lm', se = FALSE) + 
-  xlim(0,20) + 
-  ylim(-5,10) + 
-  theme_minimal() 
-
-x = c(x,20)
-y = c(y,10)
-dat = data.frame(x,y)
-
-dat %>%
-  ggplot(aes(x,y)) + 
-  geom_point() + 
-  geom_smooth(method='lm', se = FALSE) + 
-  xlim(0,20) + 
-  ylim(-5,10) + 
-  theme_minimal() 
-```
-
-Check out this interactive visualization to get a feel for outlier points and their potential leverage: http://omaymas.github.io/InfluenceAnalysis/
-
-
-### Solutions to Regression Issues
-
-If the observed data do not satisfy the conditions above, what can we do? Should we give up using a statistical model? No!
-
-* Problem: Both variables are NOT **Quantitative**
-    - If your x-variable is categorical, we'll turn it into a quantitative variable using [**indicator variables**][Indicator Variables] (coming up) 
-    - If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we'll use [**logistic regression**][Logistic Regression] (coming up)
-
-* Problem: Relationship is NOT **Straight Enough**
-
-    - If the plot does not thicken, we can add higher degree (e.g. $x^2, x^3, x^4$, etc.) terms to the model ([**multiple linear regression**][Multiple Linear Regression] - coming up).
-    - If the plot does thicken, see solutions below.
-
-* Problem: **Spread** is NOT the same throughout
-    - You may be able to transform the y-variable using mathematical functions ($log(y)$, $y^2$, etc.) to make the spread more consistent (one approach is to use [**Box-Cox Transformation**](https://en.wikipedia.org/wiki/Power_transform#Box%E2%80%93Cox_transformation) -- take more statistics classes to learn more)
-    - Be careful in interpreting the standard deviation of the residuals; be aware of the units. (For example, if you take a log transformation of the outcome, the units of the standard deviation of the residuals will be on the log scale.)
-
-* Problem: You have **extreme outliers**
-    - Look into the outliers. Determine if they could be due to human error or explain their unusual nature using the context. Think carefully about them, dig deep.
-    - Do a **sensitivity analysis**: Fit a model with and without the outlier and see if your conclusions drastically change (see if those points had leverage to change the model).
-
 
 ## Multiple Linear Regression
 
-We can generalize the idea of a simple linear model by including many explanatory variables ($x$'s). A **multiple linear regression model** can be written as:
+We can generalize the idea of a simple linear regression model by including many predictor variables ($x$'s). A **multiple linear regression model** can be written as:
 
-$$\hat{y} = b_0 + b_1x_{1} + \cdots + b_kx_{k}$$
+$$ E[Y] = \beta_0 + \beta_1\,x_{1} + \cdots + \beta_k\,x_{k} = \hat{y} $$
 
-- Each coefficient $b_j$ can be interpreted as the increase in the predicted/average $y$ associated with a 1 unit increase in $x_j$, **keeping all other variables constant**. (\*There are some exceptions - we'll get there.)
+- Each coefficient $\beta_j$ can be interpreted as the increase in the predicted/average $y$ associated with a 1 unit increase in $x_j$, **keeping all other variables constant**. (\*There are some exceptions - we'll get there.)
 
 - These explanatory variables can be:
     - Quantitative variables (or transformations of them)
-    - [Indicator variables][Indicator Variables] for categorical variables (only need $l-1$ indicators for a variable with $l$ categories)
+    - [Indicator variables][Indicator Variables] for categorical variables (only need $L-1$ indicators for a variable with $L$ categories)
     - [Interaction terms][Interaction Variables] (product of two variables, which allows for *effect modification*)
     
-Let's talk about a new data example: home prices. We want to build a model to predict the price of a home based on its many characteristics. Here we have a data set of homes recently sold in New England with many variables such as the age of the home, the land value, whether or not it has central air conditioning, the number of fireplaces, the sale price, and more...
+Let's talk about a new data example: home prices. We want to build a model to predict the price of a home based on its many characteristics. Here we have a dataset of homes recently sold in New England with many variables such as the age of the home, the land value, whether or not it has central air conditioning, the number of fireplaces, the sale price, and more...
 
 ```{r echo=TRUE}
 homes <- read.delim('Data/Saratoga.txt')
 head(homes)
 ```
 
-\*The exception to the interpretation comment above is if some of our $x$ variables are strongly correlated. In this case, we cannot keep all other variables constant because if you increase the value of one, then a variable with high correlation will also likely change in value. 
+\*The exception to the interpretation comment above is if some of our $x$ variables are strongly correlated (called **multicollinearity**). In this case, we cannot hold all other variables constant (at least not well) because if we increase the value of one variable, then variables highly correlated with it will also likely change in value.
 
 
 ### Indicator Variables
 
-In New England, fireplaces are often used as a way to provide supplementary heat to the house. Let's study the impact of a fireplace has on the sale price of a home. In particular, we only care if the home has 1 or more fireplaces or no fireplaces. So we make a new variable that is TRUE if there are more than 0 fireplaces in a home and FALSE otherwise. 
+In New England, fireplaces are often used as a way to provide supplementary heat to the house. Let's study the impact of a fireplace has on the sale price of a home. In particular, we only care if the home has 1 or more fireplaces or no fireplaces. So we make a new variable that is `TRUE` if there is at least one fireplace in a home and `FALSE` otherwise.
 
 ```{r echo=TRUE}
 homes <- homes %>%
-  mutate(AnyFireplace = Fireplaces > 0)
+    mutate(AnyFireplace = Fireplaces > 0)
 ```
 
-In order to include this information in our linear regression model, we need to turn that categorical variable (`AnyFireplace` with values of TRUE or FALSE) into an **indicator variable**, which has a numeric value of 0 or 1:
+In order to include this information in our linear regression model, we need to turn that categorical variable (`AnyFireplace` with values of `TRUE` or `FALSE`) into an **indicator variable**, which has a numeric value of 0 or 1:
 
-$$ 1_{AnyFireplaceTRUE} = \begin{cases}1 \quad \text{ if a home has at least one fireplace}\\ 0\quad \text{ if a home does not have a fireplace} \end{cases}$$
+$$ \hbox{AnyFireplaceTRUE} = \begin{cases}1 \quad \text{ if a home has at least one fireplace}\\ 0\quad \text{ if a home does not have a fireplace} \end{cases}$$
 
 In fact, R creates this indicator for you when you include a categorical variable as an $x$ variable the `lm()` function.
 
@@ -785,24 +701,23 @@ summary(lm.home)
 
 Our "best fitting line" is
 
-$$ \hbox{Predicted Price} = 174653.35 + 65260.61 \times 1_{AnyFireplaceTRUE} $$
+$$ E[\hbox{Price}] = 174653 + 65261\,\hbox{AnyFireplaceTRUE} $$
 
 **What does this mean?**
 
 Let's think about two types of homes: a home with one or more fireplaces and a home without a fireplace. Let's write out the equations for those two types of homes. 
 
-- Home with fireplace (indicator = 1):    
-$$ \hbox{Predicted Price} = 174653.35 + 65260.61 \times 1 = \$ 239,914 $$
+- Home with fireplace (indicator variable = 1):    
+$$ E[\hbox{Price}] = 174653 + 65261 \times 1 = \$ 239,914 $$
 
 ```{r echo=TRUE}
-174653.35 + 65260.61*1
+174653 + 65261*1
 ```
 
-- Home without fireplace (indicator = 0):    
-$$ \hbox{Predicted Price} = 174653.35 + 65260.61 \times 0 = \$ 174,653.35 $$
+- Home without fireplace (indicator variable = 0):    
+$$ E[\hbox{Price}] = 174653 + 65261 \times 0 = \$ 174,653 $$
 
-
-The difference between these predicted prices is \$65,260.61, the values of the "slope" for the indicator variable. 
+The difference between these predicted prices is \$65,261, the value of the "slope" for the indicator variable (also referred to as the `AnyFireplaceTRUE` coefficient).
 
 ```{block, type='reflect'}
 So is this how much a fireplace is worth? If I installed a fireplace in my house, should the value of my house go up \$65,260?
@@ -828,9 +743,9 @@ homes %>%
     theme_minimal()
 ```
 
-We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, Living Area could confound the relationship between AnyFireplace and Price because it is related to both variables.
+We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, `Living.Area` could confound the relationship between `AnyFireplace` and `Price` because it is related to both variables. That is, it is possible that Living Area is a cause of having a fireplace and Living Area also clearly is a cause of Price.
 
-Let's put Living Area in the model along with AnyFireplace to account for it (to control/adjust for it).
+Let's put `Living.Area` in the model along with `AnyFireplace` to account for it (to control/adjust for it).
 
 ```{r echo=TRUE}
 lm.home2 <- lm(Price ~ AnyFireplace + Living.Area, data = homes)
@@ -839,9 +754,9 @@ summary(lm.home2)
 
 Our "best fitting line" is
 
-$$ \hbox{Predicted Price} = 13599.16 + 5567.37 \times 1_{AnyFireplaceTRUE} + 111.21 \times \hbox{Living.Area} $$
+$$ E[\hbox{Price}] = 13599.16 + 5567.37\,\hbox{AnyFireplaceTRUE} + 111.21\,\hbox{Living.Area} $$
 
-Note that the slope for the indicator variable is very different. This suggests that Living Area was confounding the relationship between Price and AnyFireplace.
+Note that the slope for the indicator variable is very different. This suggests that `Living.Area` was confounding the relationship between `Price` and `AnyFireplace`.
 
 **What does this mean?** 
 
@@ -850,25 +765,25 @@ Let's think about two types of homes: a home with one or more fireplaces and a h
 - Home with fireplace (indicator = 1):    
 
 \begin{align*}
-\hbox{Predicted Price} &= 13599.16 + 5567.37 \times 1 + 111.21 \times \hbox{Living.Area} \\
-&= \$19,166.53 + \$111.21 \times \hbox{Living.Area}
+E[\hbox{Price}] &= 13599.16 + 5567.37 \times 1 + 111.21 \times \hbox{Living.Area} \\
+&= 19166.53 + 111.21\,\hbox{Living.Area}
 \end{align*}
 
 
-*Among homes with a fireplace, we have one linear relationship between living area and price.* 
+*Among homes with a fireplace, we have one linear relationship between living area and price.*
 
 - Home without fireplace (indicator = 0):    
 
 \begin{align*}
-\hbox{Predicted Price} &= 13599.16 + 5567.37 \times 0 + 111.21 \times \hbox{Living.Area} \\
-&= \$13,599.16 + \$111.21 \times \hbox{Living.Area}
+E[\hbox{Price}] &= 13599.16 + 5567.37 \times 0 + 111.21 \times \hbox{Living.Area} \\
+&= 13599.16 + 111.21 \times \hbox{Living.Area}
 \end{align*}
 
 
 *Among homes without a fireplace, we have a different linear relationship between living area and price.*
 
 
-- For either type of home, \$111.21 is the increase in the predicted or average Price associated with a 1 square footage increase in Living.Area, **keeping the number of fireplaces constant**.
+- For either type of home, \$111.21 is the increase in the predicted or average Price associated with a 1 square footage increase in Living.Area, **holding the number of fireplaces constant**.
 
 
 
@@ -880,17 +795,18 @@ We see this by taking the difference between the two equations:
 
 $$ \hbox{Predicted Price (with Fireplace)} - \hbox{Predicted Price (without Fireplace)} $$
 
+$$
 \begin{align*}
 \,&= (\$19,166.53 + \$111.21 \times \hbox{Living.Area}) - ( \$13599.16 + \$111.21 \times \hbox{Living.Area})
 \,&= \$19,166.53 - \$13,599.16 = \$5567.37
 \end{align*}
-
+$$
 
 The difference between the intercepts is 5567.37.
 
 - This was the estimated coefficient or slope for AnyFireplaceTRUE. 
 
-- So the \$5567.37 is the increase in the predicted or average Price associated with a 1 unit increase in AnyFireplace (going from FALSE to TRUE), **keeping all other variables (Living.Area) constant**.
+- So the \$5567.37 is the increase in the predicted or average Price associated with a 1 unit increase in AnyFireplace (going from FALSE to TRUE), **holding all other variables (Living.Area) constant**.
 
 
 Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines).
@@ -932,11 +848,11 @@ There is no one right answer. Researchers struggle with this decision [to strati
 - If we add a variable in the model (without an interaction), it only changes the intercept.
 
 - We can achieve different slopes by allowing a variable $x_1$ to affect the slope for another variable $x_2$. That is, $x_1$ impacts the effect of $x_2$ on the outcome $y$. (Fireplace presence impacts the effect of living area on house price.)
-$$b_2 = a + bx_1$$
+$$\beta_2 = a + bx_1$$
 This is called **effect modification** (when one variable can modify the effect of another variable on the outcome).
 
 - A model with effect modification looks like this:
-$$\hat{y} = b_0 + b_1x_{1} + b_2x_{2}= b_0 + b_1x_{1} + (a+bx_1)x_{2}= b_0 + b_1x_{1} +ax_2+bx_1x_{2}$$
+$$\hat{y} = \beta_0 + \beta_1x_{1} + \beta_2x_{2}= \beta_0 + \beta_1x_{1} + (a+bx_1)x_{2}= b_0 + b_1x_{1} +ax_2+bx_1x_{2}$$
 The model above has an **interaction term,** which is the product of two variables. Here we have $x_1*x_2$.
 
 Let's build a model with effect modification for our housing data. Let's include an interaction term between AnyFireplace and Living.Area to allow for different slopes.
@@ -952,11 +868,12 @@ Let's think about two types of homes: a home with one or more fireplaces and a h
 
 - Home with fireplace (indicator = 1):    
 
+$$
 \begin{align*}
 \hbox{Predicted Price} &= 40901.29 + -37610.41 \times 1 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 1 \\
 & = \$3,290.88 + \$119.21 \times \hbox{Living.Area}
 \end{align*}
-
+$$
 
 ```{r echo=TRUE}
 40901.29 + -37610.41*1
@@ -965,13 +882,16 @@ Let's think about two types of homes: a home with one or more fireplaces and a h
 
 - Home without fireplace (indicator = 0):    
 
+$$
 \begin{align*}
 \hbox{Predicted Price} &= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 0 \\
 &= \$40,901.29 + \$92.36 \times \hbox{Living.Area}
 \end{align*}
+$$
 
+Note that there are different intercepts **and** different slopes for these two groups. Thus, including an interaction term between a categorical and a quantitative predictor variable allows us to describe **effect modification**. How does the effect of one variable on the response variable differ according to another variable? How is the effect modified by another variable?
 
-We note different slopes and different intercepts for these two groups.
+What this means in the context of this model of price as a function of living area and fireplaces: different slopes means that the average rate of price increase for every additional square foot is **different between homes with and without fireplaces**.
 
 ### Causation
 
@@ -1069,7 +989,7 @@ What can we do?
 
 #### Transform Variables
 
-One solution to deal with non-linear relationships is to transform the explanatory ($x$) variables or transform the outcome variable ($y$).
+One solution to deal with non-linear relationships is to **transform** the predictor ($x$) variables or transform the outcome variable ($y$).
 
 **Guideline #1:** If there is unequal spread around the curved relationship, focus first on transforming $y$. If the spread is roughly the same around the curved relationship, focus on transforming $x$. 
 
@@ -1222,25 +1142,116 @@ The additive increase of $b_1$ units in $\widehat{log(LifeExp)}$ is a multiplica
 
 #### Alternative Solutions
 
-We could also model non-linear relationships by including higher degree terms in a linear model like the example below. By using poly(), we now include $x$ and $x^2$ as variables in the model.
+We could also model non-linear relationships by including higher degree terms in a linear model like the example below. By using `poly()`, we now include $x$ and $x^2$ as variables in the model.
 
 ```{r}
 x <- rnorm(100, 5, 1)
 y <- 200 + 20*x - 5*x^2 + rnorm(100,sd = 10)
 dat <- data.frame(x,y)
 dat %>%
-  ggplot(aes(x = x, y = y)) +
-  geom_point() + 
-  geom_smooth(se = FALSE)
+    ggplot(aes(x = x, y = y)) +
+    geom_point() + 
+    geom_smooth(se = FALSE)
 lm(y ~ poly(x, degree = 2, raw = TRUE), data = dat)
 ```
 
-A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there!
+A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there! If you are interested
 
 ```{r}
 require(gam)
 plot(gam(y ~ s(x), data = dat))
 ```
+
+
+## Diagnostics
+
+<span style="color:red">
+This section is under construction and will be changing soon.
+</span>
+
+Residuals are what's left over from a model. We can actually learn a lot by studying what is left over, what is left unexplained by the model. (INSERT SCATOLOGY JOKE.)
+
+What do we need for a simple linear model to make sense?
+
+  * Variables are both **Quantitative**
+  
+  * Relationship is **Straight Enough**
+  
+  * There are no extreme **Outliers** 
+  
+  * Spread is roughly same throughout -- **No Thickening**
+  
+To check these, we look at the original scatterplot as well as a plot of the *residuals* against *fitted or predicted values*,
+
+```{r echo=TRUE}
+augment(lm.gpa, data = sat) %>%
+    ggplot(aes(x = .fitted, y = .resid)) +
+    geom_point() +
+    geom_smooth(se = FALSE) +
+    geom_hline(yintercept = 0) +
+    labs(x = "Fitted values (predicted values)", y = "Residuals") +
+    theme_minimal()
+```
+
+What do you think?
+
+  * Is there any pattern in the residuals? (Is the original scatterplot straight enough?)
+  * Is there equal spread in residuals across prediction values?
+  
+Studying the residuals can highlight subtle non-linear patterns and thickening in the original scatterplot. Think of it as a magnifying glass that helps you see these patterns.
+
+Additionally, we want to avoid extreme outliers because points that are both far from the mean of $x$ and do not fit the overall relationship have **leverage** or the ability to change the line.
+
+See the example below. See how the relationship changes with the addition of one point, one extreme outlier.  
+
+```{r echo=FALSE}
+x = runif(50,0,10)
+y = rnorm(50)
+dat = data.frame(x,y)
+dat %>%
+  ggplot(aes(x,y)) + 
+  geom_point() + 
+  geom_smooth(method='lm', se = FALSE) + 
+  xlim(0,20) + 
+  ylim(-5,10) + 
+  theme_minimal() 
+
+x = c(x,20)
+y = c(y,10)
+dat = data.frame(x,y)
+
+dat %>%
+  ggplot(aes(x,y)) + 
+  geom_point() + 
+  geom_smooth(method='lm', se = FALSE) + 
+  xlim(0,20) + 
+  ylim(-5,10) + 
+  theme_minimal() 
+```
+
+Check out this interactive visualization to get a feel for outlier points and their potential leverage: http://omaymas.github.io/InfluenceAnalysis/
+
+
+### Solutions to Regression Issues
+
+If the observed data do not satisfy the conditions above, what can we do? Should we give up using a statistical model? No!
+
+- Problem: Both variables are NOT **Quantitative**
+    - If your x-variable is categorical, we'll turn it into a quantitative variable using [**indicator variables**][Indicator Variables] (coming up) 
+    - If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we'll use [**logistic regression**][Logistic Regression] (coming up)
+
+- Problem: Relationship is NOT **Straight Enough**
+
+    - If the plot does not thicken, we can add higher degree (e.g. $x^2, x^3, x^4$, etc.) terms to the model ([**multiple linear regression**][Multiple Linear Regression] - coming up).
+    - If the plot does thicken, see solutions below.
+
+- Problem: **Spread** is NOT the same throughout
+    - You may be able to transform the y-variable using mathematical functions ($log(y)$, $y^2$, etc.) to make the spread more consistent (one approach is to use [**Box-Cox Transformation**](https://en.wikipedia.org/wiki/Power_transform#Box%E2%80%93Cox_transformation) -- take more statistics classes to learn more)
+    - Be careful in interpreting the standard deviation of the residuals; be aware of the units. (For example, if you take a log transformation of the outcome, the units of the standard deviation of the residuals will be on the log scale.)
+
+- Problem: You have **extreme outliers**
+    - Look into the outliers. Determine if they could be due to human error or explain their unusual nature using the context. Think carefully about them, dig deep.
+    - Do a **sensitivity analysis**: Fit a model with and without the outlier and see if your conclusions drastically change (see if those points had leverage to change the model).
 
 
 ## Major Takeaways
@@ -1253,6 +1264,6 @@ plot(gam(y ~ s(x), data = dat))
 
 4. We use models to describe phenomena by interpreting slope coefficients. But make sure you are talking about the average or predicted outcome! If you have multiple variables, you are keeping all others fixed (if possible).
 
-5. We also use models to prediction values, but be careful about predicting outside the observed range of our explanatory ($x$) variables. That is called extrapolation.
+5. We also use models to make predictions, but be careful about **extrapolating**: predicting outside the observed range of our predictor ($x$) variables.
 
 

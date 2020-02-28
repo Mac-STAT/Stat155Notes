@@ -586,12 +586,14 @@ If our goal is prediction, then we will want to choose a model that has the lowe
 **Training and Testing**
 
 In order to be able to predict for new data, we can randomly split our observed data into two groups, a **training** set and a **testing** set (also known as a validation or hold-out set). 
+
 - Fit the model to the training set and do prediction on the observations in the testing set.
 - The prediction Mean Squared Error, $\frac{1}{n}\sum(y_i - \hat{y}_i)^2$ can be calulated based on the predictions from the testing set. 
     
 **Drawbacks of Validation Testing**
 
 - 1) The MSE can be highly variable as it depends on how you randomly split the data. 
+
 - 2) We aren't fully utilizing all of our data to fit the model; therefore, we will tend to overestimate the prediction error. 
 
 

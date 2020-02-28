@@ -6,11 +6,11 @@ bookdown::gitbook:
       collapse: section
       scroll_highlight: yes
       before: |
-        <li><a href="./"Stat155Notes</a></li>
+        <li><a href = "./">STAT 155 Notes</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
-    download: ["pdf"]
+    # download: ["pdf"]
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

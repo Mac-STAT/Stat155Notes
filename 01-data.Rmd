@@ -18,13 +18,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 We live in a world where data touch nearly every aspect of our lives: health care, online shopping, transportation, entertainment. From search engines to satellite images, from cell phones to credit cards, current technology can produce data faster than we can analyze them. 
  
-This course is the beginning of your journey into the field of Statistics, a discipline whose main goal is to extract information and meaning from data. We do this is by visually exploring the data and building models to try to explain observed variability. First, we will take some time to think about the collection of data and what factors might make data more or less reliable.
+This course is the beginning of your journey into the field of Statistics, a discipline whose main goal is to extract information and meaning from data. Two main stages in constructing this meaning are (1) visual exploration of the data and (2) building models to explain variation in the data. 
+
+Because data are at the center of all of these endeavors, we will first take time to think about the collection of data and what factors can make data more or less reliable.
 
 ## What is Data?
 
 Data is *anything* that contains information. We typically think of data being stored in spreadsheets, but it can come in many other formats such as images or collections of text (whether 280 character tweets or fictional novels). 
 
-For example, we can take the pixels of digital images or text from one of the State of the Union addresses and transform them into a tidy, rectangular format. Below, see the top 10 words (that are not 'the', 'and', etc.) from the most recent State of the Union address given in the United States. 
+For example, we can take the pixels of digital images or text from one of the State of the Union addresses and transform them into a tidy, rectangular format. Below we show the top 10 words from the most recent State of the Union address given in the United States (excluding words such as "the", "and", "or", etc.).
 
 ```{r echo=FALSE}
 files <- list.files("./Data/sotu")
@@ -35,18 +37,18 @@ fileText <- glue(read_file(fileName))
 fileText <- gsub("\\$", "", fileText) 
 
 data_frame(text = fileText) %>% 
-  unnest_tokens(word, text) %>%
-  anti_join(stop_words) %>% # remove stop words
-  count(word, sort = TRUE) %>% # sort by frequency
-  top_n(10) # get the top 10 words
+    unnest_tokens(word, text) %>%
+    anti_join(stop_words) %>% # remove stop words
+    count(word, sort = TRUE) %>% # sort by frequency
+    top_n(10) # get the top 10 words
 ```
 
-**Tidy data** is a table in which
+**Tidy data** is a table with the following characteristics:
 
-- Each row of a rectangular table corresponds to an **observation** or **unit** (e.g. person, classroom, country, image, word) 
-- Each column correspond to a characteristic or feature or **variable** for those units (e.g. age, average classroom grade, average county income, intensity of red pixels, number of times the word "together" is used)
+- Each row corresponds to an **observation** / **unit** / **case** (e.g., a person, classroom, country, image, word).
+- Each column corresponds to a characteristic or feature or **variable** for those units (e.g. age, average classroom grade, average county income, intensity of red pixels, number of times the word "together" is used).
 
-Variables can be either **categorical** or **quantitative** variables.
+Variables can be either **categorical** or **quantitative**.
 
 - **Categorical variable:** *A characteristic with values that are names of categories; the names of categories could be numbers such as with zipcodes. If the categories have a natural ordering, it may be called an ordinal variable, but we won't be distinguishing between different types of categorical variables in this class.* 
 
@@ -60,7 +62,7 @@ The following graphic from the book [R for Data Science](http://r4ds.had.co.nz/)
 
 The transformation process from raw data to a tidy data format is often called **feature extraction** and is not a short or easy task. In this introductory course, we will typically work with data that are already in a tidy format.
 
-What the row represents is often referred to as the **unit of analysis**. As data analysts, it is important for us to consider what to use as the unit of analysis when we have information, say, on both individual presidents and their speeches Do we want to understand matters at the individual or the speech level? Answers to these questions will depend on the context and the research questions.
+What the row represents is often referred to as the **unit of analysis**. As data analysts, it is important for us to consider what to use as the unit of analysis. For example, this may come up when we have information on both individual presidents and their speeches. Do we want to understand matters at the individual level or the speech level? Answers to these questions will depend on the context and the research questions.
 
 
 ## Data Context
@@ -209,7 +211,7 @@ These structures are important to understand because they can help guide our ana
 If we only want to estimate the direct relationship between smoking and cardiac arrest, we need to block the impact the indirect path. There are many ways to do this that we'll talk about later (stratification, including variable in model, etc.)
 
 
-If you want more information about causal inference, take the Causal Inference course or check out the "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell (Prof. Heggeseth has a copy in her office).
+If you want more information about causal inference, take the Causal Inference course or check out the "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell (Prof. Heggeseth has a copy in her office). A free PDF of the textbook is also available for download [here](http://bayes.cs.ucla.edu/PRIMER/).
 
 
 ## Ethical Considerations

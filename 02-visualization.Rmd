@@ -17,27 +17,27 @@ The first step in any data analysis is to visually explore your data.
 
 There is a saying that "a picture is worth a 1000 words." In making visualizations, our goal is to quickly and easily get a better understanding of the variability, structure, and relationships that exist in the data. 
 
-Here we will cover the standard appropriate graphics for univariate variation and bivariate relationships. We will also cover techniques for multivariate relationships (3 or more variables). The choice of the graphic depends on the type(s) of variable(s): quantitative or categorical. So the first step is to think about the variables you are interested in visualizing and determining whether they are quantitative or categorical.
+Here we will cover the standard appropriate graphics for univariate variation and bivariate relationships. We will also cover techniques for multivariate relationships (3 or more variables). The choice of the graphic depends on the type(s) of variable(s): quantitative or categorical. Thus, the first step in creating a graphic is to think about the variables that you are interested in visualizing and determining whether they are quantitative or categorical.
 
-For each type of variable, we use a real data set to illustrate the visualizations.
+For each type of variable, we use a real dataset to illustrate the visualizations.
 
 ## Good Visualization Principles
 
 Before we discuss the standard graphics, let's lay out the basic design principles for good data visualizations.
 
-1. **Show the Data** This may be self-explanatory, but make sure that the data is the focus and driver of the visualization. 
+1. **Show the data:** This may be self-explanatory, but make sure that the data is the focus and driver of the visualization. 
 
-2. **Avoid Distorting the Data** Avoid 3D charts as the added dimension distorts the comparison. The area in a graph should equal the magnitude of the data it is representing.
+2. **Avoid distorting the data:** Avoid 3D charts as the added dimension distorts the comparison. The area in a graph should equal the magnitude of the data it is representing.
 
-3. **Simplify** In 1983, Edward Tufte said that "A large share of ink on a graphic should present data-information, the ink changing as the data change. Data-ink is the non-erasable core of a graphic, the non-redundant ink arranged in response to variation in the numbers represented." Remove any unnecessary "ink" that does not assist in the presentation of the data. Remove distractions.
+3. **Simplify:** In 1983, Edward Tufte said that "A large share of ink on a graphic should present data-information, the ink changing as the data change. Data-ink is the non-erasable core of a graphic, the non-redundant ink arranged in response to variation in the numbers represented." Remove any unnecessary "ink" that does not assist in the presentation of the data. Remove distractions.
 
-4. **Facilitate Comparisons** In order to explain variation, we want the graphics to facilitate comparisons between groups. The design should make it easier to compare between groups rather than harder. 
+4. **Facilitate comparisons:** In order to explain variation, we want the graphics to facilitate comparisons between groups. The design should make it easier to compare between groups rather than harder. 
 
-5. **Use Contrast** Humans have developed to seek out visual contrast. When choosing colors and annotation, strive for more contrast in luminance (white to dark) to make it easier for everyone to visually perceive. 
+5. **Use contrast:** Humans have developed to seek out visual contrast. When choosing colors and annotation, strive for more contrast in luminance (white to dark) to make it easier for everyone to visually perceive. 
 
-6. **Use Color Appropriately** Think about your audience. A small proportion of the population is color-blind; try printing it in grayscale to see if the color palette is still effective. Also, every culture has different associations with colors; ask others for feedback on color choices. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting key points. 
+6. **Use color appropriately:** Think about your audience. A small proportion of the population is color-blind; try printing it in grayscale to see if the color palette is still effective. Also, every culture has different associations with colors; ask others for feedback on color choices. Neuroscience research has shown that humans are more sensitive to red and yellow, so those are good colors to use for highlighting key points. 
 
-7. **Annotate Appropriately** Informative text is crucial for providing data context. Make sure to use informative axis labels and titles. It may be worth adding text to explain extreme outliers.
+7. **Annotate appropriately:** Informative text is crucial for providing data context. Make sure to use informative axis labels and titles. It may be worth adding text to explain extreme outliers.
 
 For examples of good data visualizations in the news and discussion around them, check out the New York Times column ["What's Going on in This Graph?"](https://www.nytimes.com/column/whats-going-on-in-this-graph).
 
@@ -127,14 +127,14 @@ Let's first consider the age distribution of this sample. Age, depending on how 
 **Distribution:** *the way something is spread out (the way in which values vary).*
 
 ```{r}
-#Note: anything to the left of a hashtag is a comment and is not evaluated as R code
+# Note: anything to the right of a hashtag is a comment and is not evaluated as R code
 
-library(dplyr) #load the dplyr package
-library(ggplot2) #load the ggplot2 package
-data(Whickham) #load the data set from Whickham R package
+library(dplyr) # Load the dplyr package
+library(ggplot2) # Load the ggplot2 package
+data(Whickham) # Load the data set from Whickham R package
 
 Whickham <- Whickham %>%
-    mutate(ageCat = cut(age, 4)) #Create a new categorical variable with 4 categories based on age (equal length of age intervals)
+    mutate(ageCat = cut(age, 4)) # Create a new categorical variable with 4 categories based on age (equal length of age intervals)
 
 head(Whickham)
 ```

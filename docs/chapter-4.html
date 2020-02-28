@@ -328,6 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>9.4</b> Chapter 4</a></li>
 <li class="chapter" data-level="9.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>9.5</b> Chapter 5</a></li>
 <li class="chapter" data-level="9.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>9.6</b> Chapter 6</a></li>
+<li class="chapter" data-level="9.7" data-path="chapter-7.html"><a href="chapter-7.html"><i class="fa fa-check"></i><b>9.7</b> Chapter 7</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -351,16 +352,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="chapter-4" class="section level2">
 <h2><span class="header-section-number">9.4</span> Chapter 4</h2>
-<p><strong>Bootstrapping</strong>: The process of resampling our sample mimics the process of sampling from the full target population using our best stand-in for the population: our sample. We bootstrap our sample in order to 1) estimate the variability of the statistic and 2) get a range of plausible values for the true population parameter.</p>
-<p><strong>Null Hypothesis</strong>: A hypothesis that is conservative/not interesting/does not elicit action, typically of the form “there is no real relationship” or “there is no real difference.”</p>
-<p><strong>Parameter</strong>: A numerical summary of population that is typically unknown but of interest</p>
-<p><strong>Randomization Variability</strong>: If we could repeat the randomization process (to a treatment group) in an experiment, each treatment group would be slightly different and thus the numerical summaries of those groups would vary as well.</p>
-<p><strong>Randomization Test</strong>: Assume no real difference between treatment groups (null hypothesis). Then randomly shuffle the treatment groups to repeat the randomization process under the assumption of no real relationship. Repeat and see how big of a difference we’d expect under the null hypothesis and compare with what difference was actually observed.</p>
-<p><strong>Sampling Distribution</strong>: The distribution of values of a sample statistic across all possible random samples from the population (has a center, spread, and shape).</p>
-<p><strong>Sampling Variability</strong>: If we could repeat the random sampling process, each sample we would get would be slightly different and thus the numerical summaries or statistics of that sample would vary as well.</p>
-<p><strong>Simulating Randomization into Groups</strong>: Since we cannot repeat the entire experiment, we can simulate the randomization into groups and utilize the observed data by assuming the treatment has no real impact on the outcome. We can estimate the variability in the group differences under this assumption.</p>
-<p><strong>Simulating Sampling from a Population</strong>: If we had the population, we would simulate many possible random samples and estimate the variability in the sample statistics across random samples.</p>
-<p><strong>Statistic</strong>: Any numerical summary of sample data</p>
+<p><strong>AIC/BIC</strong>: The AIC and BIC are information criteria that can be used to compare models, where we want a model with a lower AIC or BIC.</p>
+<p><strong>False Positive Rate</strong>: The relative frequency of predicting the event would happen, given that the event didn’t happen (count of false positives/count of times event did not actually happen).</p>
+<p><strong>False Negative Rate</strong>: The relative frequency of predicting the event wouldn’t happen, given that the event did happen (count of false negatives/count of times event did actually happen).</p>
+<p><strong>Logistic Regression</strong>: A model that is used to predict a binary categorical variable (only has two outcomes).</p>
+<p><strong>Odds</strong>: The chance of an event divided by the chance the event does not happen.</p>
+<p><strong>Odds Ratio</strong>: A ratio of odds an event will happen, comparing between two subgroups.</p>
+<p><strong>Sensitivity</strong>: The relative frequency of predicting the event would happen, given that the event did happen (count of true positives/count of times event did actually happen).</p>
+<p><strong>Specificity</strong>: The relative frequency of predicting the event would not happen, given that the event did not happen (count of true negatives/count of times event did not actually happen).</p>
+<p><strong>Slope Interpretation in Logistic Regression Model</strong>: If there are no interaction terms: For a 1 unit increase in X, we’d expect the estimated odds of an event to change by a multiplicative factor of <span class="math inline">\(e^{b_j}\)</span>, keeping all other variables fixed. If there are interaction terms: write out the model for subgroups to determine interpretation.</p>
 </div>
             </section>
 

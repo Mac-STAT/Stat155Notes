@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="chapter-5.html">
-
+<link rel="next" href="chapter-7.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -328,6 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>9.4</b> Chapter 4</a></li>
 <li class="chapter" data-level="9.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>9.5</b> Chapter 5</a></li>
 <li class="chapter" data-level="9.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>9.6</b> Chapter 6</a></li>
+<li class="chapter" data-level="9.7" data-path="chapter-7.html"><a href="chapter-7.html"><i class="fa fa-check"></i><b>9.7</b> Chapter 7</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -351,37 +352,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="chapter-6" class="section level2">
 <h2><span class="header-section-number">9.6</span> Chapter 6</h2>
-<p><strong>AIC</strong>: Akaike Information Criterion can be used to select a model by choosing a model with the lowest AIC; it is a measure of the sum of squared residuals plus a penalty of 2 times the number of coefficients in the model.</p>
-<p><strong>Adjusted R Squared</strong>: A modified R squared measure that takes into accoun the number of estimated coefficients in the model; note that it does not give you the percent of variation explained, but would be a better choice for using to choose a model as it doesn’t necessarily stay constant or increase with the additional of another variable. It can decrease when adding variables that don’t contribute to the explaining the variation in the outcome.</p>
-<p><strong>Alternative Hypothesis</strong>: A claim being made about the population. A non-status quo hypothesis: hypothesis of an effect/relationship/difference.</p>
-<p><strong>BIC</strong>: Bayesian Information Criterion can be used to select a model by choosing a model with the lowest BIC; it is a measure of the sum of squared residuals plus a penalty of <span class="math inline">\(log(n)\)</span> times the number of coefficients in the model. This has a greater penalty than AIC, thus it favors a smaller model than AIC.</p>
-<p><strong>Bootstrap Confidence Interval</strong>: To create a <span class="math inline">\((1-\alpha)*100\%\)</span> confidence intervals, you find the <span class="math inline">\(\alpha/2\)</span>th and <span class="math inline">\(1-\alpha/2\)</span>th percentiles of the bootstrap distribution. This process has known mathematical properties such that in about 95% of the random samples, the constructed interval will contain the true population parameter.</p>
-<p><strong>Classical Confidence Interval</strong>: To create a <span class="math inline">\((1-\alpha)*100\%\)</span> confidence intervals, you add and subtract the margin of error, typically calculated as a scaled standard error of the estimate. The amount that we scale the standard error depends on the shape of the sampling distribution; if it is Normal, then we typically add and subtract 2 standard errors. This process has known mathematical properties such that in about <span class="math inline">\((1-\alpha)*100\%\)</span> of the random samples, the constructed interval will contain the true population parameter.</p>
-<p><strong>Confidence Interval</strong>: An interval of plausible values strategically created using a process with known mathematical properties.</p>
-<p><strong>Confidence Level</strong>: <span class="math inline">\((1-\alpha)*100\%\)</span> is the confidence level; so if <span class="math inline">\(\alpha = 0.05\)</span>, then we have a 95% confidence about the process. It indicates the proportion of random samples in which we’d expect the interval to contain the true population parameter.</p>
-<p><strong>Cross Validation</strong>: To avoid overfitting our model to the observed data such that we can’t get good predictions for new data points, we consider fitting the model on a subset of the data, called a training set, and then predict on a testing set. With cross-validation, we allow each data point to be in the testing set once and continue to fit the model on the training set and predicting on the test set and average the sum of squared predicting errors across different test sets.</p>
-<p><strong>Hypothesis Testing</strong>: The process of comparing observed data from a sample to a null hypothesis about a population. The goal is to put the observed statistic in the context of the distribution of statistics that could happen due to chance (random sampling or randomization to treatment group), if the null hypothesis (no difference or no relationship) were actually true. If it were very unlikely to observe our statistic when the null hypothesis is true, we have strong evidence to reject that hypothesis. Otherwise, we do not have enough evidence to reject the null hypothesis.</p>
-<p><strong>Model Selection</strong>: In practice, you need to decide which explanatory variables should be included in an model. We have a variety of tools to help us choose: visualizations, R squared, standard deviation of residuals, confidence intervals and hypothesis tests for slope coefficients, nested tests for a subset of slope coefficients, information criteria, cross-validation, etc.</p>
-<p><strong>Null Hypothesis</strong>: Hypothesis that is assumed to be true by default. A status quo hypothesis: hypothesis of no effect/relationship/difference.</p>
-<p><strong>Practically Significant</strong>: A relationship or difference is practically significant if the estimated effect is large enough to impact real life decisions. This effect may or may not be statistically significant depending on the sample size and variability in the sample.</p>
-<p><strong>Prediction Intervals</strong>: An interval used to indicate uncertainty in our predictions. This interval not only incorporates the uncertainty in our estimates of the population parameters but also the variability in the data.</p>
-<p><strong>P-value</strong>: Assuming the null hypothesis is true, the chance of observing a test statistic as or more extreme than then one we just saw.</p>
-<p><strong>Standard Error</strong>: The estimated standard deviation of a sample statistic.</p>
-<p><strong>Statistical Inference</strong>: The process of making general statements about population parameters using sample data; typically in the form of confidence intervals and hypothesis testing.</p>
-<p><strong>Statistically Significant</strong>: We can conclude there is a statistically significant relationship because the relationship we observed is unlikely to occur when consider sampling variabliliy under the null hypothesis. How unlikely? We typically determine a relationship is statistically significant if the p-value is less than a threshold <span class="math inline">\(\alpha\)</span>, chosen ahead of time. This may or may not be practically significant. For example, if we have a large sample size, we may have statistical significance but not practical significance.</p>
-<p><strong>Test Statistic</strong>: The test statistic is a numerical summary of the sample data that measures the discrepancy between the observed data and the null hypothesis where large values indicate higher discrepancy.</p>
-<p><strong>Type 1 Error</strong>: A Type 1 error happens when you reject the null hypothesis when it is actually true. The probability of this happening is <span class="math inline">\(\alpha\)</span>, if you use <span class="math inline">\(\alpha\)</span> as a threshold to determine how small the p-value needs to be to reject the null hypothesis.</p>
-<p><strong>Type 2 Error</strong>: A Type 2 error happens when you fail to reject the null hypothesis when it is actually false. The probability of this happening requires know the value of the true effect.</p>
-
+<p><strong>Bayes Rule</strong>: This rule provides us a way to find the conditional probability of A given B when we know the chance of B given A and the chance of A. Used in disease testing…</p>
+<p><strong>Bernoulli Trials</strong>: If a random process satisfies the following three conditions, then we can use the Bernoulli Model to understand its long-run behavior: 1. Two possible outcomes (success or failure) 2. Independent “trials” (the outcome for one unit does not depend on the outcome for any other unit). 3/ P(success) = p is constant (the relative frequency of success in the population that we are drawing from is constant).</p>
+<p><strong>Binomial Model</strong>: Imagine we had a sample of <span class="math inline">\(n\)</span> individuals from the population. Then we are considering <span class="math inline">\(n\)</span> independent Bernoulli “trials”. If we let the random variable <span class="math inline">\(X\)</span> be the count of the number of successes in a sample of size <span class="math inline">\(n\)</span>, then <span class="math inline">\(X\)</span> follows a Binomial Model.</p>
+<p><strong>Central Limit Theorem</strong>: The Central Limit Theorem (CLT) tells us that with a “sufficiently large” sample size, the sampling distribution of the sample mean based on a simple random sample is normally-distributed with mean equal to the population mean and variance equal to the population variance divided by <span class="math inline">\(n\)</span>.</p>
+<p><strong>Conditional Probability</strong>: The chance that A occurs given that event B occurs is equal to the probability of the joint event (A and B) divided by the probability of B. Given that B happened, we focus on the subset of outcomes in the sample space in which B occurs and then figure out what the chance of A happening within that subset.</p>
+<p><strong>Disjoint</strong>: Two events are disjoint if A occuring prevents B from occurring (they both can’t happen at the same time).</p>
+<p><strong>Empirical Probability</strong>: If you could repeat a random process over and over again (physically or simulating with a computer), you’d get a sense of the possible outcomes and their associated probabilities by calculating their relative frequency in the long run. When we talk about “according to your simulation,” we are referring to empirical probabilities.</p>
+<p><strong>Estimate</strong>: An informed guess based on available data.</p>
+<p><strong>Event</strong>: A subset of outcomes of a random process.</p>
+<p><strong>Expected Value</strong>: The expected value of a random variable is the long run average value of a random variable, calculated as the weighted sum of the values, weighted by the chances of them happening.</p>
+<p><strong>Independent</strong>: A and B are independent events if B occurring doesn’t change the probability of A occurring.</p>
+<p><strong>Normal Model</strong>: A model for a continuous random variable that has a symmetric and unimodal probability density function defined by mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+<p><strong>Probability Model</strong>: A list of values and associated probabilities of a random variable.</p>
+<p><strong>Probability Mass Function</strong>: A function that gives the probability of a discrete random variable such that you can plug in the value and get the probability of that value.</p>
+<p><strong>Probability Density Function</strong>: A function that gives the probability of a continuous random variable such that the total area under the curve is 1 and the area under the curve for a particular interval gives the probability of the random variable being in that interval of values.</p>
+<p><strong>Random Process</strong>: Any process/event whose outcome is governed by chance. It is any process/event that cannot be known with certainty.</p>
+<p><strong>Random Variable</strong>: A variable whose outcome (the value it takes) is governed by chance.</p>
+<p><strong>Sample Space</strong>: The set of all possible outcomes of a random process.</p>
+<p><strong>Subjective Probability</strong>: When you use a number between 0 and 1 (100%) to reflect your uncertainty in an outcome (rather than based on empirical evidence or mathematical theory). We are generally not talking about this type of probability in this class.</p>
+<p><strong>Student’s T Model</strong>: For small sample sizes, this model is appropriate for a z-score when you need to estimate the population standard deviation using the sample standard deviation.</p>
+<p><strong>Theoretical Probability</strong>: If you don’t have time to repeat a random process over and over again, you could calculate probabilities based on mathematical theory and assumptions. When we talk about “according to theory,” we are referring to theoretical probability.</p>
+<p><strong>Variance</strong>: The variance of a random variable is a measure of the variability or spread of a random variable. Intuitively it gives you the expected squared deviation from the long-run average.</p>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="chapter-5.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="chapter-5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

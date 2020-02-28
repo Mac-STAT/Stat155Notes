@@ -146,18 +146,11 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 ## Chapter 3
 
-**AIC/BIC**: The AIC and BIC are information criteria that can be used to compare models, where we want a model with a lower AIC or BIC. 
-
 **Bootstrapping**: The process of resampling from our sample to estimate the variability in the estimated slope coefficients and to provide an interval estimate of plausible values for the slope coefficient. 
 
 **Explanatory or Predictor Variable**: The independent variable that we may use to predict the outcome or response variable.
 
 **Extrapolation**: Making predictions by plugging in values of the explanatory variables that are beyond the observed range; requires assuming the relationship captured in the model will continue outside the observed range.
-
-**False Positive Rate**: The relative frequency of predicting the event would happen, given that the event didn't happen (count of false positives/count of times event did not actually happen).
-
-**False Negative Rate**: The relative frequency of predicting the event wouldn't happen, given that the event did happen (count of false negatives/count of times event did actually happen).
-
 
 **Indicator Variable**: A variable that has two values (0 or 1) that indicate whether a subject or individual has that characteristic or is in the group. It is used primarily to allow cateogrical variables to be included in regression (linear or logistic) models. If there are K categories in a categorical variable, we only need K-1 indicator variables to be included in the model. 
 
@@ -169,13 +162,7 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Leverage**: An observation that has leverage is far from the rest in terms of an explanatory variable may have the power to change the placement of the line because it also has a large residual value. 
 
-**Logistic Regression**: A model that is used to predict a binary categorical variable (only has two outcomes). 
-
 **Multiple Linear Regression**: A linear regression model with more than one explanatory variable included in the model. 
-
-**Odds**: The chance of an event divided by the chance the event does not happen. 
-
-**Odds Ratio**: A ratio of odds an event will happen, comparing between two subgroups. 
 
 **Outcome or Response Variable**: The dependent variable that we hope to predict based on explanatory variables.
 
@@ -186,10 +173,6 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **R Squared**: Without any data context: The percent of variation in Y that can be explained by the fit model.
 
-**Sensitivity**: The relative frequency of predicting the event would happen, given that the event did happen (count of true positives/count of times event did actually happen).
-
-**Specificity**: The relative frequency of predicting the event would not happen, given that the event did not happen (count of true negatives/count of times event did not actually happen).
-
 **Sensitivity Analysis**:
 
 **Simple Linear Model**: A regression model that assumes a straight relationship between one explanatory variable and a response variable.
@@ -198,14 +181,31 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Slope Interpretation in Multiple Linear Model**: If there are no interaction terms: For a 1 unit increase in $X_j$, we'd expect a $b_j$ increase in the predicted Y, keeping all other variables fixed. If there are interaction terms: write out the model for subgroups to determine interpretation.
 
-**Slope Interpretation in Logistic Regression Model**: If there are no interaction terms: For a 1 unit increase in X, we'd expect the estimated odds of an event to change by a multiplicative factor of $e^{b_j}$, keeping all other variables fixed. If there are interaction terms: write out the model for subgroups to determine interpretation.
-
 **Standard deviation of the Residuals**: The variability or spread of the residuals around its mean of 0, indicating the average magnitude of a residual or prediction error (in R: it is called the residual standard error).
 
 **Transformations**: If there is a non-linear relationship between a quantitative explanatory variable and a response variable, we can try to transform one or both of the variables to make the relationship more like a straight line. If there is unequal spread in the response around the curved relationship, try transforming the response variable first. Then use the ladder of powers and Tukey's circle to guide your trial and error of finding the transformations that result in a relationship closest to a straight line with equal spread around it. 
 
-
 ## Chapter 4
+
+**AIC/BIC**: The AIC and BIC are information criteria that can be used to compare models, where we want a model with a lower AIC or BIC. 
+
+**False Positive Rate**: The relative frequency of predicting the event would happen, given that the event didn't happen (count of false positives/count of times event did not actually happen).
+
+**False Negative Rate**: The relative frequency of predicting the event wouldn't happen, given that the event did happen (count of false negatives/count of times event did actually happen).
+
+**Logistic Regression**: A model that is used to predict a binary categorical variable (only has two outcomes).
+
+**Odds**: The chance of an event divided by the chance the event does not happen. 
+
+**Odds Ratio**: A ratio of odds an event will happen, comparing between two subgroups. 
+
+**Sensitivity**: The relative frequency of predicting the event would happen, given that the event did happen (count of true positives/count of times event did actually happen).
+
+**Specificity**: The relative frequency of predicting the event would not happen, given that the event did not happen (count of true negatives/count of times event did not actually happen).
+
+**Slope Interpretation in Logistic Regression Model**: If there are no interaction terms: For a 1 unit increase in X, we'd expect the estimated odds of an event to change by a multiplicative factor of $e^{b_j}$, keeping all other variables fixed. If there are interaction terms: write out the model for subgroups to determine interpretation.
+
+## Chapter 5
 
 **Bootstrapping**: The process of resampling our sample mimics the process of sampling from the full target population using our best stand-in for the population: our sample. We bootstrap our sample in order to 1) estimate the variability of the statistic and 2) get a range of plausible values for the true population parameter.
 
@@ -228,7 +228,7 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Statistic**: Any numerical summary of sample data
 
-## Chapter 5
+## Chapter 6
 
 **Bayes Rule**: This rule provides us a way to find the conditional probability of A given B when we know the chance of B given A and the chance of A. Used in disease testing...
 
@@ -274,7 +274,7 @@ This section attempts to have a list of terms and definitions for each chapter. 
 
 **Variance**: The variance of a random variable is a measure of the variability or spread of a random variable. Intuitively it gives you the expected squared deviation from the long-run average. 
 
-## Chapter 6
+## Chapter 7
 
 **AIC**: Akaike Information Criterion can be used to select a model by choosing a model with the lowest AIC; it is a measure of the sum of squared residuals plus a penalty of 2 times the number of coefficients in the model. 
 

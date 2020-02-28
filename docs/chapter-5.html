@@ -328,6 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="chapter-4.html"><a href="chapter-4.html"><i class="fa fa-check"></i><b>9.4</b> Chapter 4</a></li>
 <li class="chapter" data-level="9.5" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>9.5</b> Chapter 5</a></li>
 <li class="chapter" data-level="9.6" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>9.6</b> Chapter 6</a></li>
+<li class="chapter" data-level="9.7" data-path="chapter-7.html"><a href="chapter-7.html"><i class="fa fa-check"></i><b>9.7</b> Chapter 7</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -351,28 +352,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="chapter-5" class="section level2">
 <h2><span class="header-section-number">9.5</span> Chapter 5</h2>
-<p><strong>Bayes Rule</strong>: This rule provides us a way to find the conditional probability of A given B when we know the chance of B given A and the chance of A. Used in disease testing…</p>
-<p><strong>Bernoulli Trials</strong>: If a random process satisfies the following three conditions, then we can use the Bernoulli Model to understand its long-run behavior: 1. Two possible outcomes (success or failure) 2. Independent “trials” (the outcome for one unit does not depend on the outcome for any other unit). 3/ P(success) = p is constant (the relative frequency of success in the population that we are drawing from is constant).</p>
-<p><strong>Binomial Model</strong>: Imagine we had a sample of <span class="math inline">\(n\)</span> individuals from the population. Then we are considering <span class="math inline">\(n\)</span> independent Bernoulli “trials”. If we let the random variable <span class="math inline">\(X\)</span> be the count of the number of successes in a sample of size <span class="math inline">\(n\)</span>, then <span class="math inline">\(X\)</span> follows a Binomial Model.</p>
-<p><strong>Central Limit Theorem</strong>: The Central Limit Theorem (CLT) tells us that with a “sufficiently large” sample size, the sampling distribution of the sample mean based on a simple random sample is normally-distributed with mean equal to the population mean and variance equal to the population variance divided by <span class="math inline">\(n\)</span>.</p>
-<p><strong>Conditional Probability</strong>: The chance that A occurs given that event B occurs is equal to the probability of the joint event (A and B) divided by the probability of B. Given that B happened, we focus on the subset of outcomes in the sample space in which B occurs and then figure out what the chance of A happening within that subset.</p>
-<p><strong>Disjoint</strong>: Two events are disjoint if A occuring prevents B from occurring (they both can’t happen at the same time).</p>
-<p><strong>Empirical Probability</strong>: If you could repeat a random process over and over again (physically or simulating with a computer), you’d get a sense of the possible outcomes and their associated probabilities by calculating their relative frequency in the long run. When we talk about “according to your simulation,” we are referring to empirical probabilities.</p>
-<p><strong>Estimate</strong>: An informed guess based on available data.</p>
-<p><strong>Event</strong>: A subset of outcomes of a random process.</p>
-<p><strong>Expected Value</strong>: The expected value of a random variable is the long run average value of a random variable, calculated as the weighted sum of the values, weighted by the chances of them happening.</p>
-<p><strong>Independent</strong>: A and B are independent events if B occurring doesn’t change the probability of A occurring.</p>
-<p><strong>Normal Model</strong>: A model for a continuous random variable that has a symmetric and unimodal probability density function defined by mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>.</p>
-<p><strong>Probability Model</strong>: A list of values and associated probabilities of a random variable.</p>
-<p><strong>Probability Mass Function</strong>: A function that gives the probability of a discrete random variable such that you can plug in the value and get the probability of that value.</p>
-<p><strong>Probability Density Function</strong>: A function that gives the probability of a continuous random variable such that the total area under the curve is 1 and the area under the curve for a particular interval gives the probability of the random variable being in that interval of values.</p>
-<p><strong>Random Process</strong>: Any process/event whose outcome is governed by chance. It is any process/event that cannot be known with certainty.</p>
-<p><strong>Random Variable</strong>: A variable whose outcome (the value it takes) is governed by chance.</p>
-<p><strong>Sample Space</strong>: The set of all possible outcomes of a random process.</p>
-<p><strong>Subjective Probability</strong>: When you use a number between 0 and 1 (100%) to reflect your uncertainty in an outcome (rather than based on empirical evidence or mathematical theory). We are generally not talking about this type of probability in this class.</p>
-<p><strong>Student’s T Model</strong>: For small sample sizes, this model is appropriate for a z-score when you need to estimate the population standard deviation using the sample standard deviation.</p>
-<p><strong>Theoretical Probability</strong>: If you don’t have time to repeat a random process over and over again, you could calculate probabilities based on mathematical theory and assumptions. When we talk about “according to theory,” we are referring to theoretical probability.</p>
-<p><strong>Variance</strong>: The variance of a random variable is a measure of the variability or spread of a random variable. Intuitively it gives you the expected squared deviation from the long-run average.</p>
+<p><strong>Bootstrapping</strong>: The process of resampling our sample mimics the process of sampling from the full target population using our best stand-in for the population: our sample. We bootstrap our sample in order to 1) estimate the variability of the statistic and 2) get a range of plausible values for the true population parameter.</p>
+<p><strong>Null Hypothesis</strong>: A hypothesis that is conservative/not interesting/does not elicit action, typically of the form “there is no real relationship” or “there is no real difference.”</p>
+<p><strong>Parameter</strong>: A numerical summary of population that is typically unknown but of interest</p>
+<p><strong>Randomization Variability</strong>: If we could repeat the randomization process (to a treatment group) in an experiment, each treatment group would be slightly different and thus the numerical summaries of those groups would vary as well.</p>
+<p><strong>Randomization Test</strong>: Assume no real difference between treatment groups (null hypothesis). Then randomly shuffle the treatment groups to repeat the randomization process under the assumption of no real relationship. Repeat and see how big of a difference we’d expect under the null hypothesis and compare with what difference was actually observed.</p>
+<p><strong>Sampling Distribution</strong>: The distribution of values of a sample statistic across all possible random samples from the population (has a center, spread, and shape).</p>
+<p><strong>Sampling Variability</strong>: If we could repeat the random sampling process, each sample we would get would be slightly different and thus the numerical summaries or statistics of that sample would vary as well.</p>
+<p><strong>Simulating Randomization into Groups</strong>: Since we cannot repeat the entire experiment, we can simulate the randomization into groups and utilize the observed data by assuming the treatment has no real impact on the outcome. We can estimate the variability in the group differences under this assumption.</p>
+<p><strong>Simulating Sampling from a Population</strong>: If we had the population, we would simulate many possible random samples and estimate the variability in the sample statistics across random samples.</p>
+<p><strong>Statistic</strong>: Any numerical summary of sample data</p>
 </div>
             </section>
 

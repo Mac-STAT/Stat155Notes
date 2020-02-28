@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.5 Bernoulli/Binomial Model | STAT 155 Notes</title>
+  <title>9.7 Chapter 7 | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.5 Bernoulli/Binomial Model | STAT 155 Notes" />
+  <meta property="og:title" content="9.7 Chapter 7 | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.5 Bernoulli/Binomial Model | STAT 155 Notes" />
+  <meta name="twitter:title" content="9.7 Chapter 7 | STAT 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="probability-models.html">
-<link rel="next" href="normal-model.html">
+<link rel="prev" href="chapter-6.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -350,37 +350,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="bernoullibinomial-model" class="section level2">
-<h2><span class="header-section-number">6.5</span> Bernoulli/Binomial Model</h2>
-<p>There are situations in which your response of interest only has two possible outcomes: success or failure, heart disease or no heart disease, o-ring failure or no o-ring failure, etc. In the past, we used logistic regression to create a model to predict a binary response variable based on explanatory variables. For a moment, let’s just consider the response itself as a random process.</p>
-<p>If a random process satisfies the following three conditions, then we can use the <strong>Bernoulli Model</strong> to understand its long-run behavior:</p>
-<ol style="list-style-type: decimal">
-<li>Two possible outcomes (success or failure)</li>
-<li>Independent “trials” (the outcome for one unit does not depend on the outcome for any other unit)</li>
-<li>P(success) = <span class="math inline">\(p\)</span> is constant (the relative frequency of success in the population that we are drawing from is constant)</li>
-</ol>
-<p>If a random variable <span class="math inline">\(X\)</span> follows a Bernoulli model, <span class="math inline">\(X\)</span> denotes the number of successes (0 or 1) in the single trial that is conducted. The probability mass function is <span class="math inline">\(P(X = 1) = p\)</span> and <span class="math inline">\(P(X = 0) = 1-p\)</span>. In the long run, the expected number of successes will be <span class="math inline">\(p\)</span>, the variance will be <span class="math inline">\(p(1-p)\)</span>, and the standard deviation will be <span class="math inline">\(\sqrt{p(1-p)}\)</span>. If you have looked through the [Appendix A], you can show this mathematically using definitions.</p>
-<p>Let’s think back to the disease testing example. Say we have a very large population where 1 in every 1000 has a particular disease (<span class="math inline">\(p = 1/1000\)</span>). We could model the disease outcome from randomly drawing an individual from the population using a Bernoulli Model where <span class="math inline">\(P(X = 1) = 0.001\)</span>. If we just randomly drew 1 person, we’d expect 0.001 of a person to have the disease and the spread in outcomes is <span class="math inline">\(\sqrt{0.001*0.999} = 0.031\)</span>. These values don’t make a lot of sense because we often sample more than one person.</p>
-<p>Imagine we had a sample of <span class="math inline">\(n\)</span> individuals from the population. Then we are considering <span class="math inline">\(n\)</span> independent Bernoulli “trials”. If we let the random variable <span class="math inline">\(X\)</span> be the count of the number of successes in a sample of size <span class="math inline">\(n\)</span>, then we can use the <strong>Binomial Model.</strong> In this case we say that “<span class="math inline">\(X\)</span> follows a binomial distribution”.</p>
-<p>The probability mass function for the Binomial Model is</p>
-<p><span class="math display">\[p(x) = P(X = x) = \frac{n!}{x!(n-x)!}p^x(1-p)^{n-x}\]</span></p>
-<p>where <span class="math inline">\(x\)</span> is the number of successes in <span class="math inline">\(n\)</span> trials. In the long run, the expected number of successes will be <span class="math inline">\(np\)</span>, the variance will be <span class="math inline">\(np(1-p)\)</span>, and the standard deviation will be <span class="math inline">\(\sqrt{np(1-p)}\)</span>. In the long run, the expected relative frequency of successes in <span class="math inline">\(n\)</span> trials will be <span class="math inline">\(p\)</span>, the variance will be <span class="math inline">\(\frac{p(1-p)}{n}\)</span> and the standard deviation will be <span class="math inline">\(\sqrt{\frac{p(1-p)}{n}}\)</span>. If you are working through the [Appendix A], you can show these mathematically using known properties.</p>
-<p>If we randomly draw 5000 people, we’d expect <span class="math inline">\(0.001*5000 = 5\)</span> people to have the disease and the spread in the count is <span class="math inline">\(\sqrt{5000*0.001*0.999} = 2.23\)</span>. Let’s adjust this to relative frequencies. We’d expect 0.1% (5/5000 = 0.001) of the people to have the disease and a measure of the variability in relative frequency is <span class="math inline">\(\sqrt{0.001*0.999/5000} = 0.0004\)</span>.</p>
-<p>Let’s look at the probability mass function for the Binomial Model for <span class="math inline">\(n = 10, p = 0.01\)</span>.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
-<p>If we increase the sample size to <span class="math inline">\(n = 500\)</span>, then the probability mass function looks like this.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
-<p>Let’s zoom in on the left hand side of this plot.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-200-1.png" width="672" /></p>
-<p>What does this look like? A Normal Model!!!</p>
+<div id="chapter-7" class="section level2">
+<h2><span class="header-section-number">9.7</span> Chapter 7</h2>
+<p><strong>AIC</strong>: Akaike Information Criterion can be used to select a model by choosing a model with the lowest AIC; it is a measure of the sum of squared residuals plus a penalty of 2 times the number of coefficients in the model.</p>
+<p><strong>Adjusted R Squared</strong>: A modified R squared measure that takes into accoun the number of estimated coefficients in the model; note that it does not give you the percent of variation explained, but would be a better choice for using to choose a model as it doesn’t necessarily stay constant or increase with the additional of another variable. It can decrease when adding variables that don’t contribute to the explaining the variation in the outcome.</p>
+<p><strong>Alternative Hypothesis</strong>: A claim being made about the population. A non-status quo hypothesis: hypothesis of an effect/relationship/difference.</p>
+<p><strong>BIC</strong>: Bayesian Information Criterion can be used to select a model by choosing a model with the lowest BIC; it is a measure of the sum of squared residuals plus a penalty of <span class="math inline">\(log(n)\)</span> times the number of coefficients in the model. This has a greater penalty than AIC, thus it favors a smaller model than AIC.</p>
+<p><strong>Bootstrap Confidence Interval</strong>: To create a <span class="math inline">\((1-\alpha)*100\%\)</span> confidence intervals, you find the <span class="math inline">\(\alpha/2\)</span>th and <span class="math inline">\(1-\alpha/2\)</span>th percentiles of the bootstrap distribution. This process has known mathematical properties such that in about 95% of the random samples, the constructed interval will contain the true population parameter.</p>
+<p><strong>Classical Confidence Interval</strong>: To create a <span class="math inline">\((1-\alpha)*100\%\)</span> confidence intervals, you add and subtract the margin of error, typically calculated as a scaled standard error of the estimate. The amount that we scale the standard error depends on the shape of the sampling distribution; if it is Normal, then we typically add and subtract 2 standard errors. This process has known mathematical properties such that in about <span class="math inline">\((1-\alpha)*100\%\)</span> of the random samples, the constructed interval will contain the true population parameter.</p>
+<p><strong>Confidence Interval</strong>: An interval of plausible values strategically created using a process with known mathematical properties.</p>
+<p><strong>Confidence Level</strong>: <span class="math inline">\((1-\alpha)*100\%\)</span> is the confidence level; so if <span class="math inline">\(\alpha = 0.05\)</span>, then we have a 95% confidence about the process. It indicates the proportion of random samples in which we’d expect the interval to contain the true population parameter.</p>
+<p><strong>Cross Validation</strong>: To avoid overfitting our model to the observed data such that we can’t get good predictions for new data points, we consider fitting the model on a subset of the data, called a training set, and then predict on a testing set. With cross-validation, we allow each data point to be in the testing set once and continue to fit the model on the training set and predicting on the test set and average the sum of squared predicting errors across different test sets.</p>
+<p><strong>Hypothesis Testing</strong>: The process of comparing observed data from a sample to a null hypothesis about a population. The goal is to put the observed statistic in the context of the distribution of statistics that could happen due to chance (random sampling or randomization to treatment group), if the null hypothesis (no difference or no relationship) were actually true. If it were very unlikely to observe our statistic when the null hypothesis is true, we have strong evidence to reject that hypothesis. Otherwise, we do not have enough evidence to reject the null hypothesis.</p>
+<p><strong>Model Selection</strong>: In practice, you need to decide which explanatory variables should be included in an model. We have a variety of tools to help us choose: visualizations, R squared, standard deviation of residuals, confidence intervals and hypothesis tests for slope coefficients, nested tests for a subset of slope coefficients, information criteria, cross-validation, etc.</p>
+<p><strong>Null Hypothesis</strong>: Hypothesis that is assumed to be true by default. A status quo hypothesis: hypothesis of no effect/relationship/difference.</p>
+<p><strong>Practically Significant</strong>: A relationship or difference is practically significant if the estimated effect is large enough to impact real life decisions. This effect may or may not be statistically significant depending on the sample size and variability in the sample.</p>
+<p><strong>Prediction Intervals</strong>: An interval used to indicate uncertainty in our predictions. This interval not only incorporates the uncertainty in our estimates of the population parameters but also the variability in the data.</p>
+<p><strong>P-value</strong>: Assuming the null hypothesis is true, the chance of observing a test statistic as or more extreme than then one we just saw.</p>
+<p><strong>Standard Error</strong>: The estimated standard deviation of a sample statistic.</p>
+<p><strong>Statistical Inference</strong>: The process of making general statements about population parameters using sample data; typically in the form of confidence intervals and hypothesis testing.</p>
+<p><strong>Statistically Significant</strong>: We can conclude there is a statistically significant relationship because the relationship we observed is unlikely to occur when consider sampling variabliliy under the null hypothesis. How unlikely? We typically determine a relationship is statistically significant if the p-value is less than a threshold <span class="math inline">\(\alpha\)</span>, chosen ahead of time. This may or may not be practically significant. For example, if we have a large sample size, we may have statistical significance but not practical significance.</p>
+<p><strong>Test Statistic</strong>: The test statistic is a numerical summary of the sample data that measures the discrepancy between the observed data and the null hypothesis where large values indicate higher discrepancy.</p>
+<p><strong>Type 1 Error</strong>: A Type 1 error happens when you reject the null hypothesis when it is actually true. The probability of this happening is <span class="math inline">\(\alpha\)</span>, if you use <span class="math inline">\(\alpha\)</span> as a threshold to determine how small the p-value needs to be to reject the null hypothesis.</p>
+<p><strong>Type 2 Error</strong>: A Type 2 error happens when you fail to reject the null hypothesis when it is actually false. The probability of this happening requires know the value of the true effect.</p>
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="probability-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="normal-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-6.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -410,7 +412,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-probability.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/definitions.Rmd",
 "text": "Edit"
 },
 "history": {

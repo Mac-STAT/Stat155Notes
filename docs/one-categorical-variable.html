@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.4 One Categorical Variable | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.4 One Categorical Variable | STAT 155 Notes" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="anatomy-of-a-ggplot-command.html"/>
-<link rel="next" href="two-categorical-variables.html"/>
+<link rel="prev" href="anatomy-of-a-ggplot-command.html">
+<link rel="next" href="two-categorical-variables.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,9 +39,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -52,41 +49,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -205,12 +227,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.10" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.10</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
-<li class="chapter" data-level="4.0.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-and-logit"><i class="fa fa-check"></i><b>4.0.1</b> Logistic and Logit</a></li>
-<li class="chapter" data-level="4.0.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#fitting-the-model"><i class="fa fa-check"></i><b>4.0.2</b> Fitting the Model</a></li>
-<li class="chapter" data-level="4.0.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#interpretation-1"><i class="fa fa-check"></i><b>4.0.3</b> Interpretation</a></li>
-<li class="chapter" data-level="4.0.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#prediction-1"><i class="fa fa-check"></i><b>4.0.4</b> Prediction</a></li>
-<li class="chapter" data-level="4.0.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#model-evaluation-1"><i class="fa fa-check"></i><b>4.0.5</b> Model Evaluation</a></li>
-<li class="chapter" data-level="4.0.6" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#alternative-classification-models"><i class="fa fa-check"></i><b>4.0.6</b> Alternative Classification Models</a></li>
+<li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
+<li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
+<li class="chapter" data-level="4.3" data-path="interpretation-1.html"><a href="interpretation-1.html"><i class="fa fa-check"></i><b>4.3</b> Interpretation</a></li>
+<li class="chapter" data-level="4.4" data-path="prediction-1.html"><a href="prediction-1.html"><i class="fa fa-check"></i><b>4.4</b> Prediction</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="prediction-1.html"><a href="prediction-1.html#hard-predictionsclassifications"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="model-evaluation-1.html"><a href="model-evaluation-1.html"><i class="fa fa-check"></i><b>4.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
 <li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
@@ -330,16 +354,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>First, we consider survey data of the electoral registrar in Whickham in the UK (Source: Appleton et al 1996). A survey was conducted in 1972-1974 to study heart disease and thyroid disease and a few baseline characteristics were collected: age and smoking status. 20 years later, a follow-up was done to check on mortality status (alive/dead).</p>
 <p>Let’s first consider the age distribution of this sample. Age, depending on how it is measured, could act as a quantitative variable or categorical variable. In this case, age is recorded as a quantitative variable because it is recorded to the nearest year. But, for illustrative purposes, let’s create a categorical variable by separating age into intervals.</p>
 <p><strong>Distribution:</strong> <em>the way something is spread out (the way in which values vary).</em></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Note: anything to the right of a hashtag is a comment and is not evaluated as R code</span>
-
-<span class="kw">library</span>(dplyr) <span class="co"># Load the dplyr package</span>
-<span class="kw">library</span>(ggplot2) <span class="co"># Load the ggplot2 package</span>
-<span class="kw">data</span>(Whickham) <span class="co"># Load the data set from Whickham R package</span>
-
-Whickham &lt;-<span class="st"> </span>Whickham <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ageCat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="co"># Create a new categorical variable with 4 categories based on age (equal length of age intervals)</span>
-
-<span class="kw">head</span>(Whickham)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># Note: anything to the right of a hashtag is a comment and is not evaluated as R code</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">library</span>(dplyr) <span class="co"># Load the dplyr package</span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw">library</span>(ggplot2) <span class="co"># Load the ggplot2 package</span></a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">data</span>(Whickham) <span class="co"># Load the data set from Whickham R package</span></a>
+<a class="sourceLine" id="cb12-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb12-7" data-line-number="7">Whickham &lt;-<span class="st"> </span>Whickham <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ageCat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="co"># Create a new categorical variable with 4 categories based on age (equal length of age intervals)</span></a>
+<a class="sourceLine" id="cb12-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="kw">head</span>(Whickham)</a></code></pre></div>
 <pre><code>##   outcome smoker age      ageCat
 ## 1   Alive    Yes  23 (17.9,34.5]
 ## 2   Alive    Yes  18 (17.9,34.5]
@@ -359,10 +383,10 @@ What do you lose when you convert a quantitative variable to a categorical varia
 <li>The <strong>height of the bars</strong> is the only part that encodes the data (width is meaningless).</li>
 <li>The height can either represent the <strong>frequency</strong> (count of units) or the <strong>relative frequency</strong> (proportion of units).</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Numerical summary (frequency and relative frequency)
-Whickham <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">count</span>(ageCat) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">relfreq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) </code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co">## Numerical summary (frequency and relative frequency)</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">Whickham <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">    </span><span class="kw">count</span>(ageCat) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">relfreq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) </a></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   ageCat          n relfreq
 ##   &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;
@@ -370,13 +394,13 @@ Whickham <span class="op">%&gt;%</span>
 ## 2 (34.5,51]     367   0.279
 ## 3 (51,67.5]     347   0.264
 ## 4 (67.5,84.1]   192   0.146</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Graphical summary (bar plot)
-Whickham <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> ageCat)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">fill=</span><span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Age Categories in Years&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co">## Graphical summary (bar plot)</span></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">Whickham <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> ageCat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">fill=</span><span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Age Categories in Years&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <div class="reflect">
 <p>
@@ -404,13 +428,11 @@ What do you notice? What do you wonder?
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -452,11 +474,10 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

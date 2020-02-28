@@ -19,7 +19,7 @@ Throughout this section, we will refer to one outcome as "success" (denoted 1) a
 
 We will denote $p$ to be the chance of success and $1-p$ be the chance of failure. We want to build a model to explain why the chance of one outcome (success) may be higher for one group of people in comparison to another. 
 
-### Logistic and Logit
+## Logistic and Logit
 
 The **logistic function** is an S shaped curve (sigmoid curve). For our purposes, the function will take the form
 
@@ -68,7 +68,7 @@ Like a linear regression model, we can extend this model to a **multiple logisti
 
 $$\log\left(\frac{p}{1-p}\right) = b_0 +b_1x_1+b_2x_2+b_3x_3+\cdots +b_kx_k$$
 
-### Fitting the Model
+## Fitting the Model
 
 Based on observed data that includes an indicator variable for the responses (1 for success, 0 for failure) and predictor variables, we need to find the slope coefficients, $b_0$,...,$b_k$ that best fits the data. The way we do this is through a technique called **maximum likelihood estimation**. We will not discuss the details in this class; we'll save this for an upper level stats class such as Mathematical Statistics.
 
@@ -112,7 +112,7 @@ Based on a logistic regression model, the predicted log odds of an o-ring failur
 $$\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = 15.0429 -0.2322\cdot Temperature$$
 
 
-### Interpretation
+## Interpretation
 
 Let's take a look at the estimates from the model. What do they mean?
 
@@ -154,7 +154,7 @@ If a ratio is greater than 1, that means that the denominator is less than the n
 
 In this case, we have an odds ratio < 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree). This makes sense since we saw that the chance of o-ring failure decrease with warmer temperatures. 
 
-### Prediction
+## Prediction
 
 On January 28, 1986, the temperature was 26 F degrees. Let's predict the chance of "success," which is a failure of o-rings in our data context, at that temperature.  
 
@@ -164,7 +164,7 @@ predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response') #t
 
 They didn't have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, we predict the chance of failure to be nearly 1 (near certainty). 
 
-#### Hard Predictions/Classifications
+### Hard Predictions/Classifications
 
 These predicted chances of "success" are useful to give us a sense of uncertainty in our prediction. If the chance of o-ring failure were 0.8, we would be fairly certain that a failure were likely but not absolutely. If the chance of o-ring failure were 0.01, we would be very certain that a failure were not likely to occur. 
 
@@ -201,13 +201,13 @@ augment(model.glm, type.predict ='response') %>%
 
 Where the threshold goes depends on the real consequences of making those two types of errors. 
 
-### Model Evaluation
+## Model Evaluation
 
 In deciding whether a logistic regression model is a good and useful model, we need to consider the accuracy, the false positive rate, and the false negative rate. Depending on the context, we may focus on maximizing the overall accuracy or we may focus on minimizing the false negative rate or minimizing the false positive rate. 
 
 There are other measures of model fit for a logistic regression such as AIC and BIC (lower is better), but those are beyond the scope of this course. You'll learn about them in future statistics courses. 
 
-### Alternative Classification Models
+## Alternative Classification Models
 
 Logistic regression is a very useful model to predict a binary outcome. However, it has its limitations. We are assuming a linear relationship between explanatory variables and the log odds of success. This is hard to check because we don't have a variable for odds that we could quickly plot. 
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.3 Discrete Random Variables | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.3 Discrete Random Variables | STAT 155 Notes" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="random-variable-1.html"/>
-<link rel="next" href="continuous-random-variables.html"/>
+<link rel="prev" href="random-variable-1.html">
+<link rel="next" href="continuous-random-variables.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,9 +39,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -52,41 +49,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -205,12 +227,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.10" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.10</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
-<li class="chapter" data-level="4.0.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-and-logit"><i class="fa fa-check"></i><b>4.0.1</b> Logistic and Logit</a></li>
-<li class="chapter" data-level="4.0.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#fitting-the-model"><i class="fa fa-check"></i><b>4.0.2</b> Fitting the Model</a></li>
-<li class="chapter" data-level="4.0.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#interpretation-1"><i class="fa fa-check"></i><b>4.0.3</b> Interpretation</a></li>
-<li class="chapter" data-level="4.0.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#prediction-1"><i class="fa fa-check"></i><b>4.0.4</b> Prediction</a></li>
-<li class="chapter" data-level="4.0.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#model-evaluation-1"><i class="fa fa-check"></i><b>4.0.5</b> Model Evaluation</a></li>
-<li class="chapter" data-level="4.0.6" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#alternative-classification-models"><i class="fa fa-check"></i><b>4.0.6</b> Alternative Classification Models</a></li>
+<li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
+<li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
+<li class="chapter" data-level="4.3" data-path="interpretation-1.html"><a href="interpretation-1.html"><i class="fa fa-check"></i><b>4.3</b> Interpretation</a></li>
+<li class="chapter" data-level="4.4" data-path="prediction-1.html"><a href="prediction-1.html"><i class="fa fa-check"></i><b>4.4</b> Prediction</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="prediction-1.html"><a href="prediction-1.html#hard-predictionsclassifications"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="model-evaluation-1.html"><a href="model-evaluation-1.html"><i class="fa fa-check"></i><b>4.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
 <li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
@@ -329,8 +353,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">8.3</span> Discrete Random Variables</h2>
 <ul>
 <li><p>If there are a finite (more generally, countable) number of possible values, we say that <span class="math inline">\(X\)</span> is a <strong>discrete random variable</strong>.</p></li>
-<li><p>We often can write the probability as a function of values, <span class="math inline">\(x\)</span>, and we call this function the <strong>probability mass function (pmf),</strong> <span class="math display">\[p(x) = P(X = x)\]</span></p></li>
-<li><p>and we know that <span class="math display">\[\sum_{all~x}p(x) = 1\]</span></p></li>
+<li><p>We often can write the probability as a function of values, <span class="math inline">\(x\)</span>, and we call this function the <strong>probability mass function (pmf),</strong>
+<span class="math display">\[p(x) = P(X = x)\]</span></p></li>
+<li><p>and we know that
+<span class="math display">\[\sum_{all~x}p(x) = 1\]</span></p></li>
 </ul>
 <div id="expected-value" class="section level3">
 <h3><span class="header-section-number">8.3.1</span> Expected Value</h3>
@@ -341,18 +367,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="variance" class="section level3">
 <h3><span class="header-section-number">8.3.2</span> Variance</h3>
 <p>The <strong>variance</strong> (or long-run spread) of a discrete random variable is defined as the “average” squared distance of <span class="math inline">\(X\)</span> from its expected value,</p>
-<p><span class="math display">\[Var(X) = E[(X-\mu)^2]\]</span> where <span class="math inline">\(\mu = E(X)\)</span>.</p>
+<p><span class="math display">\[Var(X) = E[(X-\mu)^2]\]</span>
+where <span class="math inline">\(\mu = E(X)\)</span>.</p>
 <ul>
-<li>But it’s in squared units, so typically we talk about its square root, called the <strong>standard deviation</strong> of a random variable, <span class="math display">\[SD(X) = \sqrt{Var(X)}\]</span></li>
+<li>But it’s in squared units, so typically we talk about its square root, called the <strong>standard deviation</strong> of a random variable,
+<span class="math display">\[SD(X) = \sqrt{Var(X)}\]</span></li>
 </ul>
 <p>So the standard deviation of a random variable is like the standard deviation of a set of observed values. They are measures of spread and variability. In one circumstance, we have the data to calculate it and in the other, we are considering a random process and wondering how much a value might vary.</p>
 </div>
 <div id="joint-distributions" class="section level3">
 <h3><span class="header-section-number">8.3.3</span> Joint Distributions</h3>
-<p>The <strong>joint probability mass function</strong> for two random variables is <span class="math display">\[p(x,y) = P(X=x \text{ and }Y = y)\]</span></p>
+<p>The <strong>joint probability mass function</strong> for two random variables is
+<span class="math display">\[p(x,y) = P(X=x \text{ and }Y = y)\]</span></p>
 <p>We can often calculate this joint probability using our probability rules from above (using multiplication…)</p>
 <ul>
-<li><p>The expected value for a function of two random variables is <span class="math display">\[E(g(X,Y)) = \sum_{all\; y}\sum_{all\; x} g(x,y)p(x,y)\]</span></p></li>
+<li><p>The expected value for a function of two random variables is
+<span class="math display">\[E(g(X,Y)) = \sum_{all\; y}\sum_{all\; x} g(x,y)p(x,y)\]</span></p></li>
 <li><p>We could show that the expected value of a sum is the sum of the expected values:</p></li>
 </ul>
 <p><span class="math display">\[E(X+Y) = E(X) + E(Y)\]</span></p>
@@ -365,11 +395,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">8.3.4</span> Covariance</h3>
 <p>When consider two random variables, we may wonder whether they co-vary? In that do they vary together or vary independently? If</p>
 <ul>
-<li><p>The <strong>covariance</strong> of two random variables is defined as <span class="math display">\[Cov(X,Y) = E[(X - \mu_X)(Y - \mu_Y)] = E(XY) - E(X)E(Y)\]</span></p></li>
+<li><p>The <strong>covariance</strong> of two random variables is defined as
+<span class="math display">\[Cov(X,Y) = E[(X - \mu_X)(Y - \mu_Y)] = E(XY) - E(X)E(Y)\]</span></p></li>
 <li><p>Note: The covariance of X with itself is just the variance, <span class="math inline">\(Cov(X,X) = Var(X)\)</span></p></li>
 </ul>
 <p>We could use this to show that <span class="math inline">\(Var(X+Y) = Var(X)+ Var(Y) + 2Cov(X,Y)\)</span>.</p>
-<p>Two discrete random variables are <strong>independent</strong> if and only if <span class="math display">\[P(X = x\text{ and } Y = y)  = P(X=x)P(Y=y)\]</span> for every <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
+<p>Two discrete random variables are <strong>independent</strong> if and only if
+<span class="math display">\[P(X = x\text{ and } Y = y)  = P(X=x)P(Y=y)\]</span>
+for every <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p>
 <ul>
 <li>If two random variables, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent, then <span class="math inline">\(Cov(X,Y)= 0\)</span>.</li>
 </ul>
@@ -377,7 +410,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="correlation" class="section level3">
 <h3><span class="header-section-number">8.3.5</span> Correlation</h3>
 <ul>
-<li>The <strong>correlation</strong> of two random variables is <span class="math display">\[Cor(X,Y) =\frac{Cov(X,Y)}{SD(X)SD(Y)}\]</span></li>
+<li>The <strong>correlation</strong> of two random variables is
+<span class="math display">\[Cor(X,Y) =\frac{Cov(X,Y)}{SD(X)SD(Y)}\]</span></li>
 </ul>
 </div>
 <div id="a-few-named-probability-models" class="section level3">
@@ -390,17 +424,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>Independent Trials (result of one trial does not impact probabilities on next trial)</li>
 <li>P(success) = <span class="math inline">\(p\)</span> is constant</li>
 </ul>
-<p><span class="math display">\[P(X = x) = p^x (1-p)^{x-1} \text{ for } x\in\{0,1\}\]</span> <span class="math display">\[E(X) = p\]</span> <span class="math display">\[Var(X) = p(1-p) \]</span></p>
+<p><span class="math display">\[P(X = x) = p^x (1-p)^{x-1} \text{ for } x\in\{0,1\}\]</span>
+<span class="math display">\[E(X) = p\]</span>
+<span class="math display">\[Var(X) = p(1-p) \]</span></p>
 <p><strong>Binomial RV</strong>: <span class="math inline">\(X\)</span> is the total number of successes in <span class="math inline">\(n\)</span> trials</p>
 <p>For general <span class="math inline">\(n\)</span> and <span class="math inline">\(x\)</span>, the Binomial probability for a particular value of <span class="math inline">\(x\)</span> is given by</p>
-<p><span class="math display">\[P(X = x) =\frac{n!}{(n-x)! x!} p^x (1-p)^{n-x}\text{ for } x\in\{0,1,2,...,n\}\]</span> where <span class="math inline">\(x! = x*(x-1)*(x-2)*\cdots*2*1\)</span> and <span class="math inline">\(0! = 1\)</span>, so</p>
-<p><span class="math display">\[\frac{n!}{(n-x)! x!} = \frac{n*(n-1)*\cdots*(n-x+1)*(n-x)!}{(n-x)! x!}\]</span> <span class="math display">\[= \frac{n*(n-1)*\cdots*(n-x+1)}{x*(x-1)*\cdots*2*1}\]</span></p>
+<p><span class="math display">\[P(X = x) =\frac{n!}{(n-x)! x!} p^x (1-p)^{n-x}\text{ for } x\in\{0,1,2,...,n\}\]</span>
+where <span class="math inline">\(x! = x*(x-1)*(x-2)*\cdots*2*1\)</span> and <span class="math inline">\(0! = 1\)</span>, so</p>
+<p><span class="math display">\[\frac{n!}{(n-x)! x!} = \frac{n*(n-1)*\cdots*(n-x+1)*(n-x)!}{(n-x)! x!}\]</span>
+<span class="math display">\[= \frac{n*(n-1)*\cdots*(n-x+1)}{x*(x-1)*\cdots*2*1}\]</span></p>
 <p>If we break this apart, we can see where the pieces came from. Let’s consider a simplified example. Let <span class="math inline">\(X\)</span> be the number of Heads in 3 coin flips (but the coin is biased such that <span class="math inline">\(p=0.2\)</span>).</p>
 <p>The probability of <span class="math inline">\(2\)</span> successes and <span class="math inline">\(1\)</span> failure in one particular order (e.g. HHT) is calculated as <span class="math inline">\(p^x (1-p)^{n-x} = 0.2^2(0.8)\)</span> due to Rule 5. However, we could have gotten a different ordering of Heads and Tails (e.g. HTH, THH). To count the number of ways we could get 2 heads and 1 tail in 3 coin flips, we use tools from combinatorics (an area of mathematics). In fact, the first part of the equation does the counting for us,</p>
 <p><span class="math display">\[\frac{n!}{(n-x)! x!} = \frac{n*(n-1)*\cdots*(n-x+1)*(n-x)!}{(n-x)! x!}\]</span></p>
 <p>So for our example, there are <span class="math inline">\(\frac{3!}{2!1!} = \frac{3*2!}{2!1} = 3\)</span> orderings of 2 heads and 1 tail.</p>
 <p>The expected number of successes in the long run is</p>
-<p><span class="math display">\[E(X) = np\]</span> and the variability in the number of successes is given by</p>
+<p><span class="math display">\[E(X) = np\]</span>
+and the variability in the number of successes is given by</p>
 <p><span class="math display">\[Var(X) = np(1-p) \]</span></p>
 <p>Let’s plot the pmf of the Binomial in a bar plot,</p>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-243-1.png" width="672" /></p>
@@ -427,13 +466,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -475,11 +512,10 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

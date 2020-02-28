@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Logistic Regression Models | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Logistic Regression Models | STAT 155 Notes" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="major-takeaways-2.html"/>
-<link rel="next" href="random-variability.html"/>
+<link rel="prev" href="major-takeaways-2.html">
+<link rel="next" href="logistic-and-logit.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,9 +39,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -52,41 +49,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -205,12 +227,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.10" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.10</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
-<li class="chapter" data-level="4.0.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-and-logit"><i class="fa fa-check"></i><b>4.0.1</b> Logistic and Logit</a></li>
-<li class="chapter" data-level="4.0.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#fitting-the-model"><i class="fa fa-check"></i><b>4.0.2</b> Fitting the Model</a></li>
-<li class="chapter" data-level="4.0.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#interpretation-1"><i class="fa fa-check"></i><b>4.0.3</b> Interpretation</a></li>
-<li class="chapter" data-level="4.0.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#prediction-1"><i class="fa fa-check"></i><b>4.0.4</b> Prediction</a></li>
-<li class="chapter" data-level="4.0.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#model-evaluation-1"><i class="fa fa-check"></i><b>4.0.5</b> Model Evaluation</a></li>
-<li class="chapter" data-level="4.0.6" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#alternative-classification-models"><i class="fa fa-check"></i><b>4.0.6</b> Alternative Classification Models</a></li>
+<li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
+<li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
+<li class="chapter" data-level="4.3" data-path="interpretation-1.html"><a href="interpretation-1.html"><i class="fa fa-check"></i><b>4.3</b> Interpretation</a></li>
+<li class="chapter" data-level="4.4" data-path="prediction-1.html"><a href="prediction-1.html"><i class="fa fa-check"></i><b>4.4</b> Prediction</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="prediction-1.html"><a href="prediction-1.html#hard-predictionsclassifications"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="model-evaluation-1.html"><a href="model-evaluation-1.html"><i class="fa fa-check"></i><b>4.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
 <li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
@@ -329,223 +353,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 4</span> Logistic Regression Models</h1>
 <p>If you want to predict a binary categorical variable (only 2 possible outcomes), the standard linear regression models don’t apply. If you let the two possible outcomes be 0 and 1, you’ll never get a straight line relationship with any <span class="math inline">\(x\)</span> variable.</p>
 <p>Throughout this section, we will refer to one outcome as “success” (denoted 1) and “failure” (denoted 0). Depending on the context of the data, the success could be a negative thing such as “heart attack” or “20 year mortality” or it could be a positive thing such as “passing a course”.</p>
-<p>We will denote <span class="math inline">\(p\)</span> to be the chance of success and <span class="math inline">\(1-p\)</span> be the chance of failure. We want to build a model to explain why the chance of one outcome (success) may be higher for one group of people in comparison to another.</p>
-<div id="logistic-and-logit" class="section level3">
-<h3><span class="header-section-number">4.0.1</span> Logistic and Logit</h3>
-<p>The <strong>logistic function</strong> is an S shaped curve (sigmoid curve). For our purposes, the function will take the form</p>
-<p><span class="math display">\[f(x) = \frac{1}{1 + e^{b_0 +b_1x}}\]</span></p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
-<p>For any real value <span class="math inline">\(x\)</span>, this function, <span class="math inline">\(f(x)\)</span>, will be a value between 0 and 1. This is perfect for us since probabilities or chances should also be between 0 and 1.</p>
-<p>In fact, we’ll let the chance of the other outcome (failure), <span class="math inline">\(1-p\)</span>, be modeled by this S function.</p>
-<span class="math display">\[1-p = \frac{1}{1 + e^{b_0 +b_1x}}\]</span>
-<div class="mathbox">
-<p>
-With a bit of algebra and rearranging terms, we can write this equation in terms of <span class="math inline"><span class="math inline">\(p\)</span></span>, the chance of success.
-</p>
-<p>
-<span class="math display"><span class="math display">\[1-p = \frac{1}{1 + e^{b_0 +b_1x}}\]</span></span> <span class="math display"><span class="math display">\[p = 1-\frac{1}{1 + e^{b_0 +b_1x}}\]</span></span>
-</p>
-<p>
-<span class="math display"><span class="math display">\[p = 
-\frac{1 + e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}-\frac{1}{1 + e^{b_0 +b_1x}}\]</span></span>
-</p>
-<p>
-<span class="math display"><span class="math display">\[p = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}\]</span></span>
-</p>
-</div>
-<p>Let’s define one more term. The <strong>odds</strong> of an success outcome is the ratio of the chance of success to the chance of failure, odds <span class="math inline">\(=p/(1-p)\)</span>.</p>
-<div class="mathbox">
-<p>
-With a bit more algebra and rearranging terms, we can write the above model as a linear regression model.
-</p>
-<p>
-<span class="math display"><span class="math display">\[p/(1-p) = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}/\frac{1}{1 + e^{b_0 +b_1x}}\]</span></span> <span class="math display"><span class="math display">\[p/(1-p) = e^{b_0 +b_1x}\]</span></span> <span class="math display"><span class="math display">\[\log(p/(1-p)) = b_0 +b_1x\]</span></span>
-</p>
-</div>
-<p>This is a <strong>simple logistic regression model</strong>. On the left hand side, we have the natural log of the odds, called the <strong>logit</strong> function. Think of this as a transformed version of our outcome. On the right hand side, we have a familiar linear equation.</p>
-<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) = b_0 +b_1x\]</span></p>
-<p>Like a linear regression model, we can extend this model to a <strong>multiple logistic regression model</strong> by adding additional <span class="math inline">\(x\)</span> variables,</p>
-<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) = b_0 +b_1x_1+b_2x_2+b_3x_3+\cdots +b_kx_k\]</span></p>
-</div>
-<div id="fitting-the-model" class="section level3">
-<h3><span class="header-section-number">4.0.2</span> Fitting the Model</h3>
-<p>Based on observed data that includes an indicator variable for the responses (1 for success, 0 for failure) and predictor variables, we need to find the slope coefficients, <span class="math inline">\(b_0\)</span>,…,<span class="math inline">\(b_k\)</span> that best fits the data. The way we do this is through a technique called <strong>maximum likelihood estimation</strong>. We will not discuss the details in this class; we’ll save this for an upper level stats class such as Mathematical Statistics.</p>
-<p>In R, we do this with the <strong>g</strong>eneral <strong>l</strong>inear <strong>m</strong>odel function, <code>glm()</code>.</p>
-<p>For a data set, let’s go back in history to January 28, 1986. On this day, the U.S. space shuttle called Challenger took off and tragically exploded about minute after the launch. After the fact, scientists ruled that the disaster was due to an o-ring seal failure. Let’s look at experimental data on the o-rings prior to the fateful day.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(vcd)
-<span class="kw">data</span>(SpaceShuttle)
-
-SpaceShuttle <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Fail)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Fail), <span class="dt">y =</span> Temperature) )<span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">SpaceShuttle <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Fail)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">group_by</span>(Temperature) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">PercentFail =</span> <span class="kw">mean</span>(Fail <span class="op">==</span><span class="st"> &#39;yes&#39;</span>)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Temperature, <span class="dt">y =</span> PercentFail)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">theme_minimal</span>()</code></pre></div>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-161-2.png" width="672" /></p>
-<div class="reflect">
-<p>
-What are the plots above telling us about the relationship between chance of o-ring failure and temperature?
-</p>
-</div>
-<p>Let’s fit a simple logistic regression model to predict the chance of o-ring failure (which is our “success” here – we know it sounds morbid) based on the temperature using the experimental data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model.glm &lt;-<span class="st"> </span><span class="kw">glm</span>(Fail <span class="op">~</span><span class="st"> </span>Temperature, <span class="dt">data =</span> SpaceShuttle, <span class="dt">family =</span> binomial)
-<span class="kw">summary</span>(model.glm)</code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = Fail ~ Temperature, family = binomial, data = SpaceShuttle)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.0611  -0.7613  -0.3783   0.4524   2.2175  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)  15.0429     7.3786   2.039   0.0415 *
-## Temperature  -0.2322     0.1082  -2.145   0.0320 *
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 28.267  on 22  degrees of freedom
-## Residual deviance: 20.315  on 21  degrees of freedom
-##   (1 observation deleted due to missingness)
-## AIC: 24.315
-## 
-## Number of Fisher Scoring iterations: 5</code></pre>
-<p>Based on a logistic regression model, the predicted log odds of an o-ring failure is given by</p>
-<p><span class="math display">\[\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = 15.0429 -0.2322\cdot Temperature\]</span></p>
-</div>
-<div id="interpretation-1" class="section level3">
-<h3><span class="header-section-number">4.0.3</span> Interpretation</h3>
-<p>Let’s take a look at the estimates from the model. What do they mean?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(model.glm)</code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = Fail ~ Temperature, family = binomial, data = SpaceShuttle)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -1.0611  -0.7613  -0.3783   0.4524   2.2175  
-## 
-## Coefficients:
-##             Estimate Std. Error z value Pr(&gt;|z|)  
-## (Intercept)  15.0429     7.3786   2.039   0.0415 *
-## Temperature  -0.2322     0.1082  -2.145   0.0320 *
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 28.267  on 22  degrees of freedom
-## Residual deviance: 20.315  on 21  degrees of freedom
-##   (1 observation deleted due to missingness)
-## AIC: 24.315
-## 
-## Number of Fisher Scoring iterations: 5</code></pre>
-<p>The slope coefficient (-0.232) tells you how much the predicted log odds increase with an increase of 1 degree increase in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra.</p>
-<div class="mathbox">
-<p>
-Our estimated model is
-</p>
-<p>
-<span class="math display"><span class="math display">\[\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_0 +b_1x\]</span></span> where <span class="math inline"><span class="math inline">\(b_0 = 15.04\)</span></span> and <span class="math inline"><span class="math inline">\(b_1 = -0.232\)</span></span>.
-</p>
-<p>
-If we imagine increasing <span class="math inline"><span class="math inline">\(x\)</span></span> by 1, then we get a different set of predicted chances of success, <span class="math inline"><span class="math inline">\(\hat{p}^*\)</span></span>,
-</p>
-<p>
-<span class="math display"><span class="math display">\[\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) = b_0 +b_1(x+1)\]</span></span>
-</p>
-<p>
-Let’s find the difference between these two equations,
-</p>
-<p>
-<span class="math display"><span class="math display">\[\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = (b_0 +b_1(x+1)) - (b_0 +b_1x)\]</span></span> and simplify the right hand side (don’t you love it when things cancel!),
-</p>
-<p>
-<span class="math display"><span class="math display">\[\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_1\]</span></span> and then simplify the left hand side (using our rules of logarithms),
-</p>
-<p>
-<span class="math display"><span class="math display">\[\log\left( \frac{\hat{p}^*/(1-\hat{p}^*)}{\hat{p}/(1-\hat{p})}\right) = b_1\]</span></span>
-</p>
-<p>
-Let’s exponentiate both sides,
-</p>
-<p>
-<span class="math display"><span class="math display">\[\left( \frac{\hat{p}^*/(1-\hat{p}^*)}{\hat{p}/(1-\hat{p})}\right) = e^{b_1}\]</span></span>
-</p>
-</div>
-<p>We find that <span class="math inline">\(e^{b_1} = e^{-0.232} = 0.793\)</span> is the <strong>odds ratio</strong> based on increasing <span class="math inline">\(x\)</span> by 1 unit (it is a ratio of odds). The odds ratio is the ratio of the odds of success between two groups of units (those with temperature = T and those with temperature = T + 1 such as 28 v 29 degrees)</p>
-<p>If a ratio is greater than 1, that means that the denominator is less than the numerator or equivalently the numerator is greater than denominator (odds of success are greater with T+1 as compared to T –&gt; positive relationship between <span class="math inline">\(x\)</span> variable and odds of success). If a ratio is less than 1, that means that the denominator is greater than the numerator or equivalently the numerator is less than denominator (odds of success are less with T+1 as compared to T –&gt; negative relationship between <span class="math inline">\(x\)</span> variable and odds of success). If the ratio is equal to one, the numerator equals the denominator (odds of success are equal for the two groups –&gt; no relationship).</p>
-<p>In this case, we have an odds ratio &lt; 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree). This makes sense since we saw that the chance of o-ring failure decrease with warmer temperatures.</p>
-</div>
-<div id="prediction-1" class="section level3">
-<h3><span class="header-section-number">4.0.4</span> Prediction</h3>
-<p>On January 28, 1986, the temperature was 26 F degrees. Let’s predict the chance of “success,” which is a failure of o-rings in our data context, at that temperature.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">predict</span>(model.glm, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Temperature =</span> <span class="dv">26</span>), <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>) <span class="co">#type = &#39;response&#39; gives chance, rather than odds</span></code></pre></div>
-<pre><code>##         1 
-## 0.9998774</code></pre>
-<p>They didn’t have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, we predict the chance of failure to be nearly 1 (near certainty).</p>
-<div id="hard-predictionsclassifications" class="section level4">
-<h4><span class="header-section-number">4.0.4.1</span> Hard Predictions/Classifications</h4>
-<p>These predicted chances of “success” are useful to give us a sense of uncertainty in our prediction. If the chance of o-ring failure were 0.8, we would be fairly certain that a failure were likely but not absolutely. If the chance of o-ring failure were 0.01, we would be very certain that a failure were not likely to occur.</p>
-<p>But if we had to decide whether or not we should let the shuttle launch go, how high should the predicted chance be to delay the launch (even if it would cost a lot of money to delay)?</p>
-<p>It depends.</p>
-<p>If we used a threshold of 0.8, then we’d say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we’ll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our <strong>accuracy</strong> (# of correctly predicted/# of data points)?</p>
-<p>In the table below, we see that there were three data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn’t fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) = 0.82 or 82%.</p>
-<p>The only errors we made were <strong>false negatives</strong>; we didn’t predict o-ring failure but the o-rings did actual happen in the experiment. In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure.</p>
-<p>The <strong>false negative rate</strong> is the number of false negatives divided by the false negatives + true positives (denominator should be total number of experiments with actual o-ring failures). With a threshold of 0.80, our false negative rate is 4/(3+4) = 0.57 = 57%. We failed to predict 57% of the o-ring failures. This is fairly high when there are lives on the line.</p>
-<p>A <strong>false positive</strong> (predicting failure when it doesn’t happen) would delay launch but have minimal impact on human lives.</p>
-<p>The <strong>false positive rate</strong> is the number of false positives divided by the false positives + true negatives (denominator should be total number of experiments with no o-ring failures). With a threshold of 0.80, our false positive rate is 0/16 = 0. We always accurately predicted the o-rings would not fail.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">augment</span>(model.glm, <span class="dt">type.predict =</span><span class="st">&#39;response&#39;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictOFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.8</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>(Fail, predictOFail)</code></pre></div>
-<pre><code>## # A tibble: 3 x 3
-##   Fail  predictOFail     n
-##   &lt;fct&gt; &lt;lgl&gt;        &lt;int&gt;
-## 1 no    FALSE           16
-## 2 yes   FALSE            4
-## 3 yes   TRUE             3</code></pre>
-<p>What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let’s lower it to 0.25 so that we predict o-ring failure more easily. Let’s find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let’s check false negative rate: 3/(3+4) = 0.43. That’s lower. But now we have a non-zero false positive rate: 6/(6+10) = 0.375. So of the experiments with no o-ring failure, we predicted wrong 37.5% of the time.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">augment</span>(model.glm, <span class="dt">type.predict =</span><span class="st">&#39;response&#39;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictOFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.25</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">count</span>(Fail, predictOFail)</code></pre></div>
-<pre><code>## # A tibble: 4 x 3
-##   Fail  predictOFail     n
-##   &lt;fct&gt; &lt;lgl&gt;        &lt;int&gt;
-## 1 no    FALSE           10
-## 2 no    TRUE             6
-## 3 yes   FALSE            3
-## 4 yes   TRUE             4</code></pre>
-<p>Where the threshold goes depends on the real consequences of making those two types of errors.</p>
-</div>
-</div>
-<div id="model-evaluation-1" class="section level3">
-<h3><span class="header-section-number">4.0.5</span> Model Evaluation</h3>
-<p>In deciding whether a logistic regression model is a good and useful model, we need to consider the accuracy, the false positive rate, and the false negative rate. Depending on the context, we may focus on maximizing the overall accuracy or we may focus on minimizing the false negative rate or minimizing the false positive rate.</p>
-<p>There are other measures of model fit for a logistic regression such as AIC and BIC (lower is better), but those are beyond the scope of this course. You’ll learn about them in future statistics courses.</p>
-</div>
-<div id="alternative-classification-models" class="section level3">
-<h3><span class="header-section-number">4.0.6</span> Alternative Classification Models</h3>
-<p>Logistic regression is a very useful model to predict a binary outcome. However, it has its limitations. We are assuming a linear relationship between explanatory variables and the log odds of success. This is hard to check because we don’t have a variable for odds that we could quickly plot.</p>
-<p>Other methods out there are more flexible but also more complex. Here is a list of some of the most popular classification methods.</p>
-<ul>
-<li><p>Classification Trees can predict a binary outcome and choose the variables that are most important by recursively partitioning the data into groups that are more similar in terms of the outcome as well as in chosen predictor variables.</p></li>
-<li><p>Random Forests are an ensemble of classification tress that together are more stable than any one classification tree.</p></li>
-<li><p>Boosted Trees are classification trees that are sequentially created to target the errors from the last tree.</p></li>
-<li><p>Neural Networks are a type of classification algorithm that creates new features based on the original data that are the best predictors of the outcome.</p></li>
-</ul>
-<p>Take Statistical Machine Learning to learn more about these methods. But keep in mind that sometimes for a task, complex is not necessary: see <a href="https://www.huffingtonpost.com/2014/02/10/klemens-torggler-evolution-door_n_4762261.html" class="uri">https://www.huffingtonpost.com/2014/02/10/klemens-torggler-evolution-door_n_4762261.html</a>.</p>
-
-</div>
+<p>We will denote <span class="math inline">\(p\)</span> to be the chance of success and <span class="math inline">\(1-p\)</span> be the chance of failure. We want to build a model to explain why the chance of one outcome (success) may be higher for one group of people in comparison to another.</p> 
 </div>
             </section>
 
@@ -553,18 +361,16 @@ Let’s exponentiate both sides,
         </div>
       </div>
 <a href="major-takeaways-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="random-variability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="logistic-and-logit.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -606,11 +412,10 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

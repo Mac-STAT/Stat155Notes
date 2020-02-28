@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.6 Normal Model | STAT 155 Notes</title>
+  <title>4.4 Prediction | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.6 Normal Model | STAT 155 Notes" />
+  <meta property="og:title" content="4.4 Prediction | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.6 Normal Model | STAT 155 Notes" />
+  <meta name="twitter:title" content="4.4 Prediction | STAT 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bernoullibinomial-model.html">
-<link rel="next" href="sampling-distribution-and-clt.html">
+<link rel="prev" href="interpretation-1.html">
+<link rel="next" href="model-evaluation-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -349,55 +349,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="normal-model" class="section level2">
-<h2><span class="header-section-number">6.6</span> Normal Model</h2>
-<p>We’ve been introduced to the Normal model already as a smooth version of a unimodal, symmetric histogram. For a quantitative random variable <span class="math inline">\(X\)</span> (whose value can be any real number), if the expected value is <span class="math inline">\(\mu\)</span> and the variance is <span class="math inline">\(\sigma^2\)</span>, a Normal random variable has a probability density function of
-<span class="math display">\[f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]</span></p>
-<p>For every potential value of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, there is a different function/curve. Some examples are shown below.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
-<p>If a random variable <span class="math inline">\(X\)</span> is modeled with a Normal model, we also say that “<span class="math inline">\(X\)</span> follows a normal distribution” or that “<span class="math inline">\(X\)</span> is normally-distributed”.</p>
-<ul>
-<li>In general, the center of the distribution is <span class="math inline">\(\mu\)</span> and the standard devation <span class="math inline">\(\sigma\)</span>, the square root of the variance, determines the spread of the distribution.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
-<ul>
-<li>Let’s consider the particular Normal model with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma=1\)</span>. This is called the <strong>standard normal distribution</strong>. We know that <span class="math inline">\(P(-1\leq X \leq 1) = 0.68\)</span>, which is calculated as the area under the curve between -1 and 1.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) </a></code></pre></div>
-<pre><code>## [1] 0.6826895</code></pre>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="co">#pnorm(1) gives the area under the curve to the left of 1</span></a>
-<a class="sourceLine" id="cb226-2" data-line-number="2"><span class="co">#pnorm(-1) gives the area under the curve to the left of -1</span></a></code></pre></div>
-<ul>
-<li>We know that <span class="math inline">\(P(-2\leq X \leq 2) = 0.95\)</span>, calculated as the area under the curve between -2 and 2.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
-<pre><code>## [1] 0.9544997</code></pre>
-<ul>
-<li>We know that <span class="math inline">\(P(-3\leq X \leq 3) = 0.997\)</span>, calculated as the area under the curve between -3 and 3.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</a></code></pre></div>
-<pre><code>## [1] 0.9973002</code></pre>
-<p>The standard normal distribution is very convenient to work with. No matter what the long-run average <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> are for a normally-distributed random variable <span class="math inline">\(X\)</span>, we can standardize the values to obtain <strong>z-scores</strong> by subtracting <span class="math inline">\(\mu\)</span> and dividing by <span class="math inline">\(\sigma\)</span>:</p>
-<p><span class="math display">\[\text{z-score} = \frac{X - \mu}{\sigma}\]</span></p>
-<p>We typically denote z-scores with <span class="math inline">\(Z\)</span>. It turns out that <span class="math inline">\(Z\)</span> follows a standard normal distribution. That is <span class="math inline">\(\mu=0, \sigma=1\)</span> for <span class="math inline">\(Z\)</span>. This allows us to focus solely on the areas for the standard normal distribution rather than the particular normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>.</p>
-<p><strong>Important</strong>: If a random variable can be modeled with a Normal model, then we know that:</p>
-<ul>
-<li>About 68% of the time, the values will be within 1 standard deviation of the expected value.</li>
-<li>About 95% of the time, the values will be within 2 standard deviations of the expected value.</li>
-<li>About 99.7% of the time, the values will be within 3 standard deviations of the expected value.</li>
-</ul>
-<p>We will call this the <strong>68-95-99.7 rule</strong>.</p>
+<div id="prediction-1" class="section level2">
+<h2><span class="header-section-number">4.4</span> Prediction</h2>
+<p>On January 28, 1986, the temperature was 26 F degrees. Let’s predict the chance of “success,” which is a failure of o-rings in our data context, at that temperature.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1"><span class="kw">predict</span>(model.glm, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Temperature =</span> <span class="dv">26</span>), <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>) <span class="co">#type = &#39;response&#39; gives chance, rather than odds</span></a></code></pre></div>
+<pre><code>##         1 
+## 0.9998774</code></pre>
+<p>They didn’t have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, we predict the chance of failure to be nearly 1 (near certainty).</p>
+<div id="hard-predictionsclassifications" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Hard Predictions/Classifications</h3>
+<p>These predicted chances of “success” are useful to give us a sense of uncertainty in our prediction. If the chance of o-ring failure were 0.8, we would be fairly certain that a failure were likely but not absolutely. If the chance of o-ring failure were 0.01, we would be very certain that a failure were not likely to occur.</p>
+<p>But if we had to decide whether or not we should let the shuttle launch go, how high should the predicted chance be to delay the launch (even if it would cost a lot of money to delay)?</p>
+<p>It depends.</p>
+<p>If we used a threshold of 0.8, then we’d say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we’ll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our <strong>accuracy</strong> (# of correctly predicted/# of data points)?</p>
+<p>In the table below, we see that there were three data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn’t fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) = 0.82 or 82%.</p>
+<p>The only errors we made were <strong>false negatives</strong>; we didn’t predict o-ring failure but the o-rings did actual happen in the experiment. In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure.</p>
+<p>The <strong>false negative rate</strong> is the number of false negatives divided by the false negatives + true positives (denominator should be total number of experiments with actual o-ring failures). With a threshold of 0.80, our false negative rate is 4/(3+4) = 0.57 = 57%. We failed to predict 57% of the o-ring failures. This is fairly high when there are lives on the line.</p>
+<p>A <strong>false positive</strong> (predicting failure when it doesn’t happen) would delay launch but have minimal impact on human lives.</p>
+<p>The <strong>false positive rate</strong> is the number of false positives divided by the false positives + true negatives (denominator should be total number of experiments with no o-ring failures). With a threshold of 0.80, our false positive rate is 0/16 = 0. We always accurately predicted the o-rings would not fail.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1"><span class="kw">augment</span>(model.glm, <span class="dt">type.predict =</span><span class="st">&#39;response&#39;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb192-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictOFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.8</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb192-3" data-line-number="3"><span class="st">  </span><span class="kw">count</span>(Fail, predictOFail)</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 3
+##   Fail  predictOFail     n
+##   &lt;fct&gt; &lt;lgl&gt;        &lt;int&gt;
+## 1 no    FALSE           16
+## 2 yes   FALSE            4
+## 3 yes   TRUE             3</code></pre>
+<p>What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let’s lower it to 0.25 so that we predict o-ring failure more easily. Let’s find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let’s check false negative rate: 3/(3+4) = 0.43. That’s lower. But now we have a non-zero false positive rate: 6/(6+10) = 0.375. So of the experiments with no o-ring failure, we predicted wrong 37.5% of the time.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" data-line-number="1"><span class="kw">augment</span>(model.glm, <span class="dt">type.predict =</span><span class="st">&#39;response&#39;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb194-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictOFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.25</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb194-3" data-line-number="3"><span class="st">  </span><span class="kw">count</span>(Fail, predictOFail)</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 3
+##   Fail  predictOFail     n
+##   &lt;fct&gt; &lt;lgl&gt;        &lt;int&gt;
+## 1 no    FALSE           10
+## 2 no    TRUE             6
+## 3 yes   FALSE            3
+## 4 yes   TRUE             4</code></pre>
+<p>Where the threshold goes depends on the real consequences of making those two types of errors.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="bernoullibinomial-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling-distribution-and-clt.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="interpretation-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="model-evaluation-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -427,7 +426,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-probability.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-logistic-regression.Rmd",
 "text": "Edit"
 },
 "history": {

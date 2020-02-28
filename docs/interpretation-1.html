@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.6 Normal Model | STAT 155 Notes</title>
+  <title>4.3 Interpretation | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.6 Normal Model | STAT 155 Notes" />
+  <meta property="og:title" content="4.3 Interpretation | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.6 Normal Model | STAT 155 Notes" />
+  <meta name="twitter:title" content="4.3 Interpretation | STAT 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bernoullibinomial-model.html">
-<link rel="next" href="sampling-distribution-and-clt.html">
+<link rel="prev" href="fitting-the-model.html">
+<link rel="next" href="prediction-1.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -349,55 +349,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="normal-model" class="section level2">
-<h2><span class="header-section-number">6.6</span> Normal Model</h2>
-<p>We’ve been introduced to the Normal model already as a smooth version of a unimodal, symmetric histogram. For a quantitative random variable <span class="math inline">\(X\)</span> (whose value can be any real number), if the expected value is <span class="math inline">\(\mu\)</span> and the variance is <span class="math inline">\(\sigma^2\)</span>, a Normal random variable has a probability density function of
-<span class="math display">\[f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]</span></p>
-<p>For every potential value of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, there is a different function/curve. Some examples are shown below.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
-<p>If a random variable <span class="math inline">\(X\)</span> is modeled with a Normal model, we also say that “<span class="math inline">\(X\)</span> follows a normal distribution” or that “<span class="math inline">\(X\)</span> is normally-distributed”.</p>
-<ul>
-<li>In general, the center of the distribution is <span class="math inline">\(\mu\)</span> and the standard devation <span class="math inline">\(\sigma\)</span>, the square root of the variance, determines the spread of the distribution.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
-<ul>
-<li>Let’s consider the particular Normal model with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma=1\)</span>. This is called the <strong>standard normal distribution</strong>. We know that <span class="math inline">\(P(-1\leq X \leq 1) = 0.68\)</span>, which is calculated as the area under the curve between -1 and 1.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) </a></code></pre></div>
-<pre><code>## [1] 0.6826895</code></pre>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="co">#pnorm(1) gives the area under the curve to the left of 1</span></a>
-<a class="sourceLine" id="cb226-2" data-line-number="2"><span class="co">#pnorm(-1) gives the area under the curve to the left of -1</span></a></code></pre></div>
-<ul>
-<li>We know that <span class="math inline">\(P(-2\leq X \leq 2) = 0.95\)</span>, calculated as the area under the curve between -2 and 2.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
-<pre><code>## [1] 0.9544997</code></pre>
-<ul>
-<li>We know that <span class="math inline">\(P(-3\leq X \leq 3) = 0.997\)</span>, calculated as the area under the curve between -3 and 3.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</a></code></pre></div>
-<pre><code>## [1] 0.9973002</code></pre>
-<p>The standard normal distribution is very convenient to work with. No matter what the long-run average <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> are for a normally-distributed random variable <span class="math inline">\(X\)</span>, we can standardize the values to obtain <strong>z-scores</strong> by subtracting <span class="math inline">\(\mu\)</span> and dividing by <span class="math inline">\(\sigma\)</span>:</p>
-<p><span class="math display">\[\text{z-score} = \frac{X - \mu}{\sigma}\]</span></p>
-<p>We typically denote z-scores with <span class="math inline">\(Z\)</span>. It turns out that <span class="math inline">\(Z\)</span> follows a standard normal distribution. That is <span class="math inline">\(\mu=0, \sigma=1\)</span> for <span class="math inline">\(Z\)</span>. This allows us to focus solely on the areas for the standard normal distribution rather than the particular normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>.</p>
-<p><strong>Important</strong>: If a random variable can be modeled with a Normal model, then we know that:</p>
-<ul>
-<li>About 68% of the time, the values will be within 1 standard deviation of the expected value.</li>
-<li>About 95% of the time, the values will be within 2 standard deviations of the expected value.</li>
-<li>About 99.7% of the time, the values will be within 3 standard deviations of the expected value.</li>
-</ul>
-<p>We will call this the <strong>68-95-99.7 rule</strong>.</p>
+<div id="interpretation-1" class="section level2">
+<h2><span class="header-section-number">4.3</span> Interpretation</h2>
+<p>Let’s take a look at the estimates from the model. What do they mean?</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1"><span class="kw">summary</span>(model.glm)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = Fail ~ Temperature, family = binomial, data = SpaceShuttle)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.0611  -0.7613  -0.3783   0.4524   2.2175  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)  15.0429     7.3786   2.039   0.0415 *
+## Temperature  -0.2322     0.1082  -2.145   0.0320 *
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 28.267  on 22  degrees of freedom
+## Residual deviance: 20.315  on 21  degrees of freedom
+##   (1 observation deleted due to missingness)
+## AIC: 24.315
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>The slope coefficient (-0.232) tells you how much the predicted log odds increase with an increase of 1 degree increase in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra.</p>
+<div class="mathbox">
+<p>
+Our estimated model is
+</p>
+<p>
+<span class="math display"><span class="math display">\[\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_0 +b_1x\]</span></span> where <span class="math inline"><span class="math inline">\(b_0 = 15.04\)</span></span> and <span class="math inline"><span class="math inline">\(b_1 = -0.232\)</span></span>.
+</p>
+<p>
+If we imagine increasing <span class="math inline"><span class="math inline">\(x\)</span></span> by 1, then we get a different set of predicted chances of success, <span class="math inline"><span class="math inline">\(\hat{p}^*\)</span></span>,
+</p>
+<p>
+<span class="math display"><span class="math display">\[\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) = b_0 +b_1(x+1)\]</span></span>
+</p>
+<p>
+Let’s find the difference between these two equations,
+</p>
+<p>
+<span class="math display"><span class="math display">\[\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = (b_0 +b_1(x+1)) - (b_0 +b_1x)\]</span></span> and simplify the right hand side (don’t you love it when things cancel!),
+</p>
+<p>
+<span class="math display"><span class="math display">\[\log\left(\frac{\hat{p}^*}{1-\hat{p}^*}\right) - \log\left(\frac{\hat{p}}{1-\hat{p}}\right) = b_1\]</span></span> and then simplify the left hand side (using our rules of logarithms),
+</p>
+<p>
+<span class="math display"><span class="math display">\[\log\left( \frac{\hat{p}^*/(1-\hat{p}^*)}{\hat{p}/(1-\hat{p})}\right) = b_1\]</span></span>
+</p>
+<p>
+Let’s exponentiate both sides,
+</p>
+<p>
+<span class="math display"><span class="math display">\[\left( \frac{\hat{p}^*/(1-\hat{p}^*)}{\hat{p}/(1-\hat{p})}\right) = e^{b_1}\]</span></span>
+</p>
+</div>
+<p>We find that <span class="math inline">\(e^{b_1} = e^{-0.232} = 0.793\)</span> is the <strong>odds ratio</strong> based on increasing <span class="math inline">\(x\)</span> by 1 unit (it is a ratio of odds). The odds ratio is the ratio of the odds of success between two groups of units (those with temperature = T and those with temperature = T + 1 such as 28 v 29 degrees)</p>
+<p>If a ratio is greater than 1, that means that the denominator is less than the numerator or equivalently the numerator is greater than denominator (odds of success are greater with T+1 as compared to T –&gt; positive relationship between <span class="math inline">\(x\)</span> variable and odds of success). If a ratio is less than 1, that means that the denominator is greater than the numerator or equivalently the numerator is less than denominator (odds of success are less with T+1 as compared to T –&gt; negative relationship between <span class="math inline">\(x\)</span> variable and odds of success). If the ratio is equal to one, the numerator equals the denominator (odds of success are equal for the two groups –&gt; no relationship).</p>
+<p>In this case, we have an odds ratio &lt; 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree). This makes sense since we saw that the chance of o-ring failure decrease with warmer temperatures.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="bernoullibinomial-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling-distribution-and-clt.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="fitting-the-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="prediction-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -427,7 +449,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-probability.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-logistic-regression.Rmd",
 "text": "Edit"
 },
 "history": {

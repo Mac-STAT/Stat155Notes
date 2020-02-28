@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.6 One Quantitative Variable | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.6 One Quantitative Variable | STAT 155 Notes" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="two-categorical-variables.html"/>
-<link rel="next" href="one-quant-and-one-cat-variable.html"/>
+<link rel="prev" href="two-categorical-variables.html">
+<link rel="next" href="one-quant-and-one-cat-variable.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,9 +39,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -52,41 +49,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -205,12 +227,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.10" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.10</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
-<li class="chapter" data-level="4.0.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-and-logit"><i class="fa fa-check"></i><b>4.0.1</b> Logistic and Logit</a></li>
-<li class="chapter" data-level="4.0.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#fitting-the-model"><i class="fa fa-check"></i><b>4.0.2</b> Fitting the Model</a></li>
-<li class="chapter" data-level="4.0.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#interpretation-1"><i class="fa fa-check"></i><b>4.0.3</b> Interpretation</a></li>
-<li class="chapter" data-level="4.0.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#prediction-1"><i class="fa fa-check"></i><b>4.0.4</b> Prediction</a></li>
-<li class="chapter" data-level="4.0.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#model-evaluation-1"><i class="fa fa-check"></i><b>4.0.5</b> Model Evaluation</a></li>
-<li class="chapter" data-level="4.0.6" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#alternative-classification-models"><i class="fa fa-check"></i><b>4.0.6</b> Alternative Classification Models</a></li>
+<li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
+<li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
+<li class="chapter" data-level="4.3" data-path="interpretation-1.html"><a href="interpretation-1.html"><i class="fa fa-check"></i><b>4.3</b> Interpretation</a></li>
+<li class="chapter" data-level="4.4" data-path="prediction-1.html"><a href="prediction-1.html"><i class="fa fa-check"></i><b>4.4</b> Prediction</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="prediction-1.html"><a href="prediction-1.html#hard-predictionsclassifications"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="model-evaluation-1.html"><a href="model-evaluation-1.html"><i class="fa fa-check"></i><b>4.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
 <li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
@@ -337,34 +361,34 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li>The <strong>height</strong> of the bars shows either the <strong>frequency within intervals</strong> (counts of units that fall into that bin/interval) or the <strong>density</strong> (fraction of units that fall into that bin/interval).</li>
 <li>Gaps between bars are meaningful. They indicate absence of values within an interval.</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(NHANES)
-NHANES <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">theme_minimal</span>() </code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">data</span>(NHANES)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb29-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>Note the warning message above: “Removed __ rows containing non-finite values (stat_bin).” Sometimes there is missing information for a variable for some units in the dataset. We cannot plot these because we don’t know their values! This warning message is just a friendly reminder from R to let you know what it is doing.</p>
 <p>Also note the message that R gives about bin width to remind us that we can choose this if we wish. If we want to specify the width of the intervals or bins, we can specify <code>binwidth = DESIRED_BIN_WIDTH</code> within <code>geom_histogram</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NHANES <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">theme_minimal</span>() </code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p>Lastly, notice that the y-axis in the previous two histograms has been the counts (or frequency) within each sleep hour interval. We can adjust this to <strong>density</strong>, which is relative frequency adjusted for the width of interval so that the sum of the areas of the bars (height x width) equals 1.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NHANES <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">adjust =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Density&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">theme_minimal</span>() </code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> SleepHrsNight)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">adjust =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Density&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_bin).</code></pre>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
@@ -377,25 +401,25 @@ NHANES <span class="op">%&gt;%</span>
 <li><strong>Unusual features:</strong> Are there <strong>outliers</strong> (points far from the rest)? Are there gaps? Why?</li>
 </ul>
 <p>Here is another data set for comparison. Here are the annual salaries for the highest paid CEOs in 2016 (Source: NYTimes). To get the data, we are scraping the data from a NYTimes website. For fun, you can look at the code below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">nyturl &lt;-<span class="st"> &#39;https://www.nytimes.com/interactive/2017/05/26/business/highest-paid-ceos.html?mcubz=0&#39;</span>
-dat &lt;-<span class="st"> </span><span class="kw">read_html</span>(nyturl)
-ceo &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.nytg-compensation , .nytg-year&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">str_replace</span>(<span class="st">&#39;</span><span class="ch">\\</span><span class="st">$|-&#39;</span>,<span class="st">&#39;&#39;</span>) <span class="co">#webscraping data </span>
-ceo &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(ceo,<span class="dt">ncol =</span> <span class="dv">2</span>,<span class="dt">byrow =</span> <span class="ot">TRUE</span>))
-<span class="kw">names</span>(ceo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;year&#39;</span>,<span class="st">&#39;salary&#39;</span>)
-ceo<span class="op">$</span>salary &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(ceo<span class="op">$</span>salary) 
-ceo &lt;-<span class="st"> </span>ceo <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> &#39;2016&#39;</span>)</code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">nyturl &lt;-<span class="st"> &#39;https://www.nytimes.com/interactive/2017/05/26/business/highest-paid-ceos.html?mcubz=0&#39;</span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw">read_html</span>(nyturl)</a>
+<a class="sourceLine" id="cb37-3" data-line-number="3">ceo &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="st">    </span><span class="kw">html_nodes</span>(<span class="st">&quot;.nytg-compensation , .nytg-year&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="st">    </span><span class="kw">html_text</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"><span class="st">    </span><span class="kw">str_replace</span>(<span class="st">&#39;</span><span class="ch">\\</span><span class="st">$|-&#39;</span>,<span class="st">&#39;&#39;</span>) <span class="co">#webscraping data </span></a>
+<a class="sourceLine" id="cb37-7" data-line-number="7">ceo &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">matrix</span>(ceo,<span class="dt">ncol =</span> <span class="dv">2</span>,<span class="dt">byrow =</span> <span class="ot">TRUE</span>))</a>
+<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="kw">names</span>(ceo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;year&#39;</span>,<span class="st">&#39;salary&#39;</span>)</a>
+<a class="sourceLine" id="cb37-9" data-line-number="9">ceo<span class="op">$</span>salary &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(ceo<span class="op">$</span>salary) </a>
+<a class="sourceLine" id="cb37-10" data-line-number="10">ceo &lt;-<span class="st"> </span>ceo <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-11" data-line-number="11"><span class="st">    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> &#39;2016&#39;</span>)</a></code></pre></div>
 <p>Let’s create a density histogram of the annual salaries for the highest paid CEO’s in the U.S. in 2016.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ceo <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> salary)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> <span class="dv">15</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Salary ($ Millions)&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">theme_minimal</span>() </code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">ceo <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> salary)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">y =</span> ..density..), <span class="dt">binwidth =</span> <span class="dv">15</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Salary ($ Millions)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>We note that some of the highest salaries were close to 200 million U.S. dollars (in 2016), but the majority of the salaries in this sample are closer to 50 million U.D. dollars.</p>
 <div class="reflect">
@@ -430,9 +454,9 @@ The Greek capital letter sigma, <span class="math inline"><span class="math inli
 <ul>
 <li><strong>Hours of sleep per night from the NHANES dataset</strong></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NHANES <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(SleepHrsNight) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summary</span>()</code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(SleepHrsNight) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
 <pre><code>##  SleepHrsNight   
 ##  Min.   : 2.000  
 ##  1st Qu.: 6.000  
@@ -441,8 +465,8 @@ The Greek capital letter sigma, <span class="math inline"><span class="math inli
 ##  3rd Qu.: 8.000  
 ##  Max.   :12.000  
 ##  NA&#39;s   :2245</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NHANES <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="kw">median</span>(SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="kw">mean</span>(SleepHrsNight, <span class="dt">trim =</span> <span class="fl">0.05</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="co"># na.rm = TRUE removes missing values; Trimmed mean: trim 5% from both tails before taking mean</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="kw">median</span>(SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="kw">mean</span>(SleepHrsNight, <span class="dt">trim =</span> <span class="fl">0.05</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="co"># na.rm = TRUE removes missing values; Trimmed mean: trim 5% from both tails before taking mean</span></a></code></pre></div>
 <pre><code>## # A tibble: 1 x 3
 ##   `mean(SleepHrsNight, n… `median(SleepHrsNight… `mean(SleepHrsNight, trim…
 ##                     &lt;dbl&gt;                  &lt;int&gt;                      &lt;dbl&gt;
@@ -450,9 +474,9 @@ The Greek capital letter sigma, <span class="math inline"><span class="math inli
 <ul>
 <li><strong>CEO salary information from NYT</strong></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ceo <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(salary) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summary</span>()  <span class="co"># Note the differences between mean and median</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">ceo <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(salary) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()  <span class="co"># Note the differences between mean and median</span></a></code></pre></div>
 <pre><code>##      salary      
 ##  Min.   : 20.00  
 ##  1st Qu.: 36.75  
@@ -460,8 +484,8 @@ The Greek capital letter sigma, <span class="math inline"><span class="math inli
 ##  Mean   : 68.36  
 ##  3rd Qu.: 96.00  
 ##  Max.   :176.00</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ceo <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(salary), <span class="kw">median</span>(salary), <span class="kw">mean</span>(salary, <span class="dt">trim =</span> <span class="fl">0.05</span>))</code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">ceo <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">mean</span>(salary), <span class="kw">median</span>(salary), <span class="kw">mean</span>(salary, <span class="dt">trim =</span> <span class="fl">0.05</span>))</a></code></pre></div>
 <pre><code>##   mean(salary) median(salary) mean(salary, trim = 0.05)
 ## 1        68.36             58                  66.17778</code></pre>
 <p>Note that the mean, median, and trimmed mean are all fairly close for the sleep hours distribution, which looks fairly symmetric.</p>
@@ -482,19 +506,19 @@ A percentile is a measure indicating the value below which a given percentage of
 </p>
 </div>
 <p>Here is a boxplot of the sleep amount from NHANES.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NHANES <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> SleepHrsNight)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">theme_minimal</span>() </code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">NHANES <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> SleepHrsNight)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb47-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <pre><code>## Warning: Removed 2245 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
 <p>Compare that to the boxplot of the CEO salaries.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ceo <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> salary)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Salary ($M)&#39;</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">theme_minimal</span>() </code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">ceo <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> salary)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Salary ($M)&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_minimal</span>() </a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>Note: In these 2 plots above, the x-axis has number labels, but they don’t mean anything.</p>
 <p>Let’s put the boxplots next to the histograms so we can better compare the two types of visualizations. Also, let’s add the mean (red dashed), median (blue dotted), and 5% trimmed mean (purple dash-dot) as annotations.</p>
@@ -541,29 +565,29 @@ What would the boxplot look like if all of the values were exactly the same? Som
 <ul>
 <li><strong>Hours of sleep per night from the NHANES dataset</strong></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">NHANES <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="kw">diff</span>(<span class="kw">range</span>(SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)), <span class="kw">IQR</span>(SleepHrsNight, 
-    <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="kw">sd</span>(SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="kw">var</span>(SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">NHANES <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="kw">diff</span>(<span class="kw">range</span>(SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)), <span class="kw">IQR</span>(SleepHrsNight, </a>
+<a class="sourceLine" id="cb50-2" data-line-number="2">    <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="kw">sd</span>(SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="kw">var</span>(SleepHrsNight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 4
 ##   `diff(range(Sleep… `IQR(SleepHrsNigh… `sd(SleepHrsNigh… `var(SleepHrsNig…
 ##                &lt;int&gt;              &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
 ## 1                 10                  2              1.35              1.81</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># range gives max and min; take difference betwee max and min IQR = Q3-Q1 sd</span>
-<span class="co"># = standard deviation var = variance</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="co"># range gives max and min; take difference betwee max and min IQR = Q3-Q1 sd</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="co"># = standard deviation var = variance</span></a></code></pre></div>
 <ul>
 <li><strong>CEO salary information from NYT</strong></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ceo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="kw">diff</span>(<span class="kw">range</span>(salary)), <span class="kw">IQR</span>(salary), <span class="kw">sd</span>(salary), <span class="kw">var</span>(salary))</code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">ceo <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarize</span>(<span class="kw">diff</span>(<span class="kw">range</span>(salary)), <span class="kw">IQR</span>(salary), <span class="kw">sd</span>(salary), <span class="kw">var</span>(salary))</a></code></pre></div>
 <pre><code>##   diff(range(salary)) IQR(salary) sd(salary) var(salary)
 ## 1                 156       59.25   39.05955    1525.649</code></pre>
 </div>
 <div id="intro-zscore" class="section level3">
 <h3><span class="header-section-number">2.6.5</span> Some data accounting</h3>
 <p>We’ve looked at different measures of the spread of a distribution. Do some measures of spread encompass a lot of the data? Just a little? Can we be more precise about how much of the data is encompassed by intervals created from different spread measures?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1500</span>)
-<span class="kw">boxplot</span>(x, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="st">&quot;Generated Data&quot;</span>)
-<span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">range</span>(x), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lty =</span> <span class="dv">3</span>)
-<span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)), <span class="dt">col =</span> <span class="st">&quot;purple&quot;</span>, <span class="dt">lty =</span> <span class="dv">1</span>)
-<span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">c</span>(<span class="kw">mean</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(x), <span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(x)), <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1500</span>)</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2"><span class="kw">boxplot</span>(x, <span class="dt">horizontal =</span> <span class="ot">TRUE</span>, <span class="dt">xlab =</span> <span class="st">&quot;Generated Data&quot;</span>)</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">range</span>(x), <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">lty =</span> <span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb55-4" data-line-number="4"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">quantile</span>(x, <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.75</span>)), <span class="dt">col =</span> <span class="st">&quot;purple&quot;</span>, <span class="dt">lty =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb55-5" data-line-number="5"><span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">c</span>(<span class="kw">mean</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(x), <span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(x)), <span class="dt">col =</span> <span class="st">&quot;green&quot;</span>, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <div class="reflect">
 <p>
@@ -577,8 +601,8 @@ What percentage of the data is between the green dashed lines (length of interva
 </p>
 </div>
 <p>The code below computes the fraction of data points, <code>x</code>, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(x) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(x))<span class="op">/</span><span class="kw">length</span>(x)</code></pre></div>
-<pre><code>## [1] 0.6786667</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">sum</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(x) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(x))<span class="op">/</span><span class="kw">length</span>(x)</a></code></pre></div>
+<pre><code>## [1] 0.678</code></pre>
 <p>So with this data set, about 68% of the data values fall within 1 SD of the mean.</p>
 <div class="reflect">
 <p>
@@ -675,13 +699,11 @@ This is true for any shaped distribution (skewed, bimodal, etc.). See <a href="h
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -723,11 +745,10 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.6 Normal Model | STAT 155 Notes</title>
+  <title>4.1 Logistic and Logit | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.6 Normal Model | STAT 155 Notes" />
+  <meta property="og:title" content="4.1 Logistic and Logit | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.6 Normal Model | STAT 155 Notes" />
+  <meta name="twitter:title" content="4.1 Logistic and Logit | STAT 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bernoullibinomial-model.html">
-<link rel="next" href="sampling-distribution-and-clt.html">
+<link rel="prev" href="logistic-regression-models.html">
+<link rel="next" href="fitting-the-model.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -349,55 +349,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="normal-model" class="section level2">
-<h2><span class="header-section-number">6.6</span> Normal Model</h2>
-<p>We’ve been introduced to the Normal model already as a smooth version of a unimodal, symmetric histogram. For a quantitative random variable <span class="math inline">\(X\)</span> (whose value can be any real number), if the expected value is <span class="math inline">\(\mu\)</span> and the variance is <span class="math inline">\(\sigma^2\)</span>, a Normal random variable has a probability density function of
-<span class="math display">\[f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}\]</span></p>
-<p>For every potential value of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, there is a different function/curve. Some examples are shown below.</p>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-201-1.png" width="672" /></p>
-<p>If a random variable <span class="math inline">\(X\)</span> is modeled with a Normal model, we also say that “<span class="math inline">\(X\)</span> follows a normal distribution” or that “<span class="math inline">\(X\)</span> is normally-distributed”.</p>
-<ul>
-<li>In general, the center of the distribution is <span class="math inline">\(\mu\)</span> and the standard devation <span class="math inline">\(\sigma\)</span>, the square root of the variance, determines the spread of the distribution.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
-<ul>
-<li>Let’s consider the particular Normal model with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma=1\)</span>. This is called the <strong>standard normal distribution</strong>. We know that <span class="math inline">\(P(-1\leq X \leq 1) = 0.68\)</span>, which is calculated as the area under the curve between -1 and 1.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) </a></code></pre></div>
-<pre><code>## [1] 0.6826895</code></pre>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="co">#pnorm(1) gives the area under the curve to the left of 1</span></a>
-<a class="sourceLine" id="cb226-2" data-line-number="2"><span class="co">#pnorm(-1) gives the area under the curve to the left of -1</span></a></code></pre></div>
-<ul>
-<li>We know that <span class="math inline">\(P(-2\leq X \leq 2) = 0.95\)</span>, calculated as the area under the curve between -2 and 2.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</a></code></pre></div>
-<pre><code>## [1] 0.9544997</code></pre>
-<ul>
-<li>We know that <span class="math inline">\(P(-3\leq X \leq 3) = 0.997\)</span>, calculated as the area under the curve between -3 and 3.</li>
-</ul>
-<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-207-1.png" width="672" /></p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</a></code></pre></div>
-<pre><code>## [1] 0.9973002</code></pre>
-<p>The standard normal distribution is very convenient to work with. No matter what the long-run average <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> are for a normally-distributed random variable <span class="math inline">\(X\)</span>, we can standardize the values to obtain <strong>z-scores</strong> by subtracting <span class="math inline">\(\mu\)</span> and dividing by <span class="math inline">\(\sigma\)</span>:</p>
-<p><span class="math display">\[\text{z-score} = \frac{X - \mu}{\sigma}\]</span></p>
-<p>We typically denote z-scores with <span class="math inline">\(Z\)</span>. It turns out that <span class="math inline">\(Z\)</span> follows a standard normal distribution. That is <span class="math inline">\(\mu=0, \sigma=1\)</span> for <span class="math inline">\(Z\)</span>. This allows us to focus solely on the areas for the standard normal distribution rather than the particular normal distribution with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>.</p>
-<p><strong>Important</strong>: If a random variable can be modeled with a Normal model, then we know that:</p>
-<ul>
-<li>About 68% of the time, the values will be within 1 standard deviation of the expected value.</li>
-<li>About 95% of the time, the values will be within 2 standard deviations of the expected value.</li>
-<li>About 99.7% of the time, the values will be within 3 standard deviations of the expected value.</li>
-</ul>
-<p>We will call this the <strong>68-95-99.7 rule</strong>.</p>
+<div id="logistic-and-logit" class="section level2">
+<h2><span class="header-section-number">4.1</span> Logistic and Logit</h2>
+<p>The <strong>logistic function</strong> is an S shaped curve (sigmoid curve). For our purposes, the function will take the form</p>
+<p><span class="math display">\[f(x) = \frac{1}{1 + e^{b_0 +b_1x}}\]</span></p>
+<p><img src="Stat155Notes_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<p>For any real value <span class="math inline">\(x\)</span>, this function, <span class="math inline">\(f(x)\)</span>, will be a value between 0 and 1. This is perfect for us since probabilities or chances should also be between 0 and 1.</p>
+<p>In fact, we’ll let the chance of the other outcome (failure), <span class="math inline">\(1-p\)</span>, be modeled by this S function.</p>
+<span class="math display">\[1-p = \frac{1}{1 + e^{b_0 +b_1x}}\]</span>
+<div class="mathbox">
+<p>
+With a bit of algebra and rearranging terms, we can write this equation in terms of <span class="math inline"><span class="math inline">\(p\)</span></span>, the chance of success.
+</p>
+<p>
+<span class="math display"><span class="math display">\[1-p = \frac{1}{1 + e^{b_0 +b_1x}}\]</span></span> <span class="math display"><span class="math display">\[p = 1-\frac{1}{1 + e^{b_0 +b_1x}}\]</span></span>
+</p>
+<p>
+<span class="math display"><span class="math display">\[p = 
+\frac{1 + e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}-\frac{1}{1 + e^{b_0 +b_1x}}\]</span></span>
+</p>
+<p>
+<span class="math display"><span class="math display">\[p = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}\]</span></span>
+</p>
+</div>
+<p>Let’s define one more term. The <strong>odds</strong> of an success outcome is the ratio of the chance of success to the chance of failure, odds <span class="math inline">\(=p/(1-p)\)</span>.</p>
+<div class="mathbox">
+<p>
+With a bit more algebra and rearranging terms, we can write the above model as a linear regression model.
+</p>
+<p>
+<span class="math display"><span class="math display">\[p/(1-p) = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}/\frac{1}{1 + e^{b_0 +b_1x}}\]</span></span> <span class="math display"><span class="math display">\[p/(1-p) = e^{b_0 +b_1x}\]</span></span> <span class="math display"><span class="math display">\[\log(p/(1-p)) = b_0 +b_1x\]</span></span>
+</p>
+</div>
+<p>This is a <strong>simple logistic regression model</strong>. On the left hand side, we have the natural log of the odds, called the <strong>logit</strong> function. Think of this as a transformed version of our outcome. On the right hand side, we have a familiar linear equation.</p>
+<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) = b_0 +b_1x\]</span></p>
+<p>Like a linear regression model, we can extend this model to a <strong>multiple logistic regression model</strong> by adding additional <span class="math inline">\(x\)</span> variables,</p>
+<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) = b_0 +b_1x_1+b_2x_2+b_3x_3+\cdots +b_kx_k\]</span></p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="bernoullibinomial-model.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling-distribution-and-clt.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="logistic-regression-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fitting-the-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -427,7 +422,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-probability.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-logistic-regression.Rmd",
 "text": "Edit"
 },
 "history": {

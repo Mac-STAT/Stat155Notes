@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.4 IRL: Bootstrapping | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.4 IRL: Bootstrapping | STAT 155 Notes" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="simulating-random-sampling-from-a-population.html"/>
-<link rel="next" href="simulating-randomization-into-groups.html"/>
+<link rel="prev" href="simulating-random-sampling-from-a-population.html">
+<link rel="next" href="simulating-randomization-into-groups.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,9 +39,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -52,41 +49,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -205,12 +227,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.10" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.10</b> Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
-<li class="chapter" data-level="4.0.1" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#logistic-and-logit"><i class="fa fa-check"></i><b>4.0.1</b> Logistic and Logit</a></li>
-<li class="chapter" data-level="4.0.2" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#fitting-the-model"><i class="fa fa-check"></i><b>4.0.2</b> Fitting the Model</a></li>
-<li class="chapter" data-level="4.0.3" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#interpretation-1"><i class="fa fa-check"></i><b>4.0.3</b> Interpretation</a></li>
-<li class="chapter" data-level="4.0.4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#prediction-1"><i class="fa fa-check"></i><b>4.0.4</b> Prediction</a></li>
-<li class="chapter" data-level="4.0.5" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#model-evaluation-1"><i class="fa fa-check"></i><b>4.0.5</b> Model Evaluation</a></li>
-<li class="chapter" data-level="4.0.6" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html#alternative-classification-models"><i class="fa fa-check"></i><b>4.0.6</b> Alternative Classification Models</a></li>
+<li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
+<li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
+<li class="chapter" data-level="4.3" data-path="interpretation-1.html"><a href="interpretation-1.html"><i class="fa fa-check"></i><b>4.3</b> Interpretation</a></li>
+<li class="chapter" data-level="4.4" data-path="prediction-1.html"><a href="prediction-1.html"><i class="fa fa-check"></i><b>4.4</b> Prediction</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="prediction-1.html"><a href="prediction-1.html#hard-predictionsclassifications"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="model-evaluation-1.html"><a href="model-evaluation-1.html"><i class="fa fa-check"></i><b>4.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
 <li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
@@ -340,28 +364,28 @@ What would happen if we drew WITHOUT REPLACEMENT?
 </div>
 <p><strong>2. Calculate</strong></p>
 <p>In our simulation above, we calculated the median and mean arrival delay. In theory, we could calculate any numerical summary of data (e.g. the mean, median, SD, 25th percentile, etc.)</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( 
-    flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span>
-<span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span>
-<span class="st">      </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay)) <span class="co"># Calculate statistics</span>
-)</code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1">boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </a>
+<a class="sourceLine" id="cb206-2" data-line-number="2">    flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></a>
+<a class="sourceLine" id="cb206-3" data-line-number="3"><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></a>
+<a class="sourceLine" id="cb206-4" data-line-number="4"><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay)) <span class="co"># Calculate statistics</span></a>
+<a class="sourceLine" id="cb206-5" data-line-number="5">)</a></code></pre></div>
 <p><strong>3. Summarize</strong></p>
 <p>Let’s summarize these 1000 medians and 1000 means generated from resampling (with replacement) <em>from our sample</em> (our “fake population”).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Summarize</span>
-summary_boot &lt;-<span class="st"> </span>boot_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">summarize</span>(
-        <span class="dt">mean_medians =</span> <span class="kw">mean</span>(medians),
-        <span class="dt">mean_means =</span> <span class="kw">mean</span>(means),
-        <span class="dt">sd_medians =</span> <span class="kw">sd</span>(medians),
-        <span class="dt">sd_means =</span> <span class="kw">sd</span>(means)
-    )
-summary_boot</code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="co"># Summarize</span></a>
+<a class="sourceLine" id="cb207-2" data-line-number="2">summary_boot &lt;-<span class="st"> </span>boot_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb207-3" data-line-number="3"><span class="st">    </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb207-4" data-line-number="4">        <span class="dt">mean_medians =</span> <span class="kw">mean</span>(medians),</a>
+<a class="sourceLine" id="cb207-5" data-line-number="5">        <span class="dt">mean_means =</span> <span class="kw">mean</span>(means),</a>
+<a class="sourceLine" id="cb207-6" data-line-number="6">        <span class="dt">sd_medians =</span> <span class="kw">sd</span>(medians),</a>
+<a class="sourceLine" id="cb207-7" data-line-number="7">        <span class="dt">sd_means =</span> <span class="kw">sd</span>(means)</a>
+<a class="sourceLine" id="cb207-8" data-line-number="8">    )</a>
+<a class="sourceLine" id="cb207-9" data-line-number="9">summary_boot</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 4
 ##   mean_medians mean_means sd_medians sd_means
 ##          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
 ## 1        -9.13       7.25       2.17     5.09</code></pre>
 <p>Let’s compare this to the summaries from the simulation of randomly sampling <em>from the population</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">summary_sim</code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">summary_sim</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 4
 ##   mean_medians mean_means sd_medians sd_means
 ##          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -369,38 +393,38 @@ summary_boot</code></pre></div>
 <p>They won’t be exactly the same, but they should be of roughly similar magnitude.</p>
 <p><strong>4. Visualize</strong></p>
 <p>Let’s visualize these 1000 medians and 1000 means generated from resampling (with replacement) from our sample (our “fake population”).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Visualize</span>
-boot_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample median&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1"><span class="co"># Visualize</span></a>
+<a class="sourceLine" id="cb211-2" data-line-number="2">boot_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb211-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb211-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb211-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb211-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample median&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb211-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Visualize</span>
-boot_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample mean&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1"><span class="co"># Visualize</span></a>
+<a class="sourceLine" id="cb212-2" data-line-number="2">boot_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb212-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb212-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb212-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb212-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample mean&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb212-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-181-2.png" width="672" /></p>
 <p>Let’s compare these to the visuals from the simulation from the population.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Visualize</span>
-sim_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample median</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1"><span class="co"># Visualize</span></a>
+<a class="sourceLine" id="cb213-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb213-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb213-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb213-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb213-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample median</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb213-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Visualize</span>
-sim_data <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample mean</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw">theme_minimal</span>()</code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1"><span class="co"># Visualize</span></a>
+<a class="sourceLine" id="cb214-2" data-line-number="2">sim_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb214-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb214-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb214-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb214-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample mean</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb214-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-182-2.png" width="672" /></p>
 <p>The process of resampling from our sample, called <strong>bootstrapping</strong>, is becoming the one of main computational tools for estimating sampling variability in the field of Statistics.</p>
 <div class="reflect">
@@ -426,13 +450,11 @@ What do you think the mean arrival delay is in the population? If you had to giv
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -474,11 +496,10 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

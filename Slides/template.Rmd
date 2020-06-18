@@ -1,0 +1,19 @@
+---
+title: 'STAT 155: Introduction to Statistical Modeling'
+subtitle: 'Unit #: Unit Name'
+author: "Unit Authors"
+date: "Unit Dates"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, error = TRUE)
+```
+
+## Slide 1
+
+
+## Slide 2
+
+
+## Slide 3

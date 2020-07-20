@@ -363,11 +363,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 What is our population of interest? What population could we generalize to?
 </p>
 </div>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">2018</span>)</a>
-<a class="sourceLine" id="cb231-2" data-line-number="2"><span class="co">## This creates a dataset called flights_samp</span></a>
-<a class="sourceLine" id="cb231-3" data-line-number="3"><span class="co">## that contains the SRS of size 100</span></a>
-<a class="sourceLine" id="cb231-4" data-line-number="4">flights_samp &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb231-5" data-line-number="5"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">2018</span>)</a>
+<a class="sourceLine" id="cb232-2" data-line-number="2"><span class="co">## This creates a dataset called flights_samp</span></a>
+<a class="sourceLine" id="cb232-3" data-line-number="3"><span class="co">## that contains the SRS of size 100</span></a>
+<a class="sourceLine" id="cb232-4" data-line-number="4">flights_samp &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb232-5" data-line-number="5"><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>)</a></code></pre></div>
 <p>We’ve already been thinking about random variation and how that plays a role in the conclusions we can draw. In this chapter, we will formalize two techniques that we use to do perform statistican inference: confidence intervals and hypothesis tests.</p> 
 </div>
             </section>

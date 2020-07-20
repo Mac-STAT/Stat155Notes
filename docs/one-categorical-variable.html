@@ -355,16 +355,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First, we consider survey data of the electoral registrar in Whickham in the UK (Source: Appleton et al 1996). A survey was conducted in 1972-1974 to study heart disease and thyroid disease and a few baseline characteristics were collected: age and smoking status. 20 years later, a follow-up was done to check on mortality status (alive/dead).</p>
 <p>Let’s first consider the age distribution of this sample. Age, depending on how it is measured, could act as a quantitative variable or categorical variable. In this case, age is recorded as a quantitative variable because it is recorded to the nearest year. But, for illustrative purposes, let’s create a categorical variable by separating age into intervals.</p>
 <p><strong>Distribution:</strong> <em>the way something is spread out (the way in which values vary).</em></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co"># Note: anything to the right of a hashtag is a comment and is not evaluated as R code</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw">library</span>(dplyr) <span class="co"># Load the dplyr package</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="kw">library</span>(ggplot2) <span class="co"># Load the ggplot2 package</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="kw">data</span>(Whickham) <span class="co"># Load the data set from Whickham R package</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7">Whickham &lt;-<span class="st"> </span>Whickham <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ageCat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="co"># Create a new categorical variable with 4 categories based on age (equal length of age intervals)</span></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="kw">head</span>(Whickham)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Note: anything to the right of a hashtag is a comment and is not evaluated as R code</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">library</span>(dplyr) <span class="co"># Load the dplyr package</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="kw">library</span>(ggplot2) <span class="co"># Load the ggplot2 package</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="kw">data</span>(Whickham) <span class="co"># Load the data set from Whickham R package</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">Whickham &lt;-<span class="st"> </span>Whickham <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">ageCat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="co"># Create a new categorical variable with 4 categories based on age (equal length of age intervals)</span></a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="kw">head</span>(Whickham)</a></code></pre></div>
 <pre><code>##   outcome smoker age      ageCat
 ## 1   Alive    Yes  23 (17.9,34.5]
 ## 2   Alive    Yes  18 (17.9,34.5]
@@ -384,10 +384,10 @@ What do you lose when you convert a quantitative variable to a categorical varia
 <li>The <strong>height of the bars</strong> is the only part that encodes the data (width is meaningless).</li>
 <li>The height can either represent the <strong>frequency</strong> (count of units) or the <strong>relative frequency</strong> (proportion of units).</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co">## Numerical summary (frequency and relative frequency)</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">Whickham <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">    </span><span class="kw">count</span>(ageCat) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">relfreq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) </a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co">## Numerical summary (frequency and relative frequency)</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">Whickham <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">    </span><span class="kw">count</span>(ageCat) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">relfreq =</span> n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n)) </a></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   ageCat          n relfreq
 ##   &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;
@@ -395,13 +395,13 @@ What do you lose when you convert a quantitative variable to a categorical varia
 ## 2 (34.5,51]     367   0.279
 ## 3 (51,67.5]     347   0.264
 ## 4 (67.5,84.1]   192   0.146</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co">## Graphical summary (bar plot)</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">Whickham <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> ageCat)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">fill=</span><span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Age Categories in Years&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co">## Graphical summary (bar plot)</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">Whickham <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> ageCat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">fill=</span><span class="st">&quot;steelblue&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Age Categories in Years&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Counts&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="Stat155Notes_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <div class="reflect">
 <p>

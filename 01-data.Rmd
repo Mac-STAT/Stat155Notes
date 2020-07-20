@@ -218,11 +218,11 @@ If you want more information about causal inference, take the Causal Inference c
 
 Ethics play a very important role in study design and data collection procedures, especially when humans and animals are the observational units. In the United States, the [Belmont Report](https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html) is the main federal document that provides the "Ethical Principles and Guidelines for the Protection of Human Subjects of Research". The three fundamental ethical principles for using any human subjects for research are:
 
-1. **Respect for persons**: This principal is about protecting the autonomy of all people and treating them with courtesy and respect and allowing for informed consent. Researchers must be truthful and conduct no deception;
+1. **Respect for persons**: This principle is about protecting the autonomy of all people and treating them with courtesy and respect and allowing for informed consent. Researchers must be truthful and conduct no deception;
 
-2. **Beneficence**: This principal is the philosophy of "do no harm" while maximizing benefits for the research project and minimizing risks to the research subjects; and
+2. **Beneficence**: This principle is the philosophy of "do no harm" while maximizing benefits for the research project and minimizing risks to the research subjects; and
 
-3. **Justice**: This principal is about ensuring reasonable, non-exploitative, and well-considered procedures are administered fairly — the fair distribution of costs and benefits to potential research participants — and equally.
+3. **Justice**: This principle is about ensuring reasonable, non-exploitative, and well-considered procedures are administered fairly — the fair distribution of costs and benefits to potential research participants — and equally.
 
 
 For a brief, limited history of ethical regulation in human research, see https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3593469/. A few key moments in international history are

@@ -767,7 +767,7 @@ sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
 ```
-## [1] 0.6853333
+## [1] 0.6993333
 ```
 
 So with this data set, about 68% of the data values fall within 1 SD of the mean.
@@ -1183,7 +1183,7 @@ Let's look at a few scatterplot examples and the corresponding correlation.
 
 <div class="mathbox">
 <p>(Optional) Here are other equivalent expressions for <span class="math inline">\(r\)</span> for the mathematically intrigued:</p>
-<p><span class="math display">\[ r = \frac{\sum z_x z_y}{n-1}  \]</span> <span class="math display">\[ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\times\frac{(y_i-\bar{y})}{s_y}}}{n-1}\]</span> <span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}\]</span> <span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}\]</span> <span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2}}}{\sqrt{\sum{(y_i-\bar{y})^2}}}}\]</span> <span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}}\]</span></p>
+<p><span class="math display">\[ r = \frac{\sum z_x z_y}{n-1}  \]</span> <span class="math display">\[ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\times\frac{(y_i-\bar{y})}{s_y}}}{n-1}\]</span> <span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}\]</span> <span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}\]</span> <span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum{(x_i-\bar{x})^2}}\sqrt{\sum{(y_i-\bar{y})^2}}}\]</span> <span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}\]</span></p>
 </div>
 
 

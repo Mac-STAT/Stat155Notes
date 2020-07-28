@@ -1233,7 +1233,7 @@ CPS85 %>%
 Creating effective multivariate visualizations takes a lot of trial and error. Some visual elements will better highlight patterns than others, and often times, you'll have to try several iterations before you feel that you are learning something insightful from the graphic. Be tenacious, and keep in mind the good visualization principles outlined at the beginning of this chapter!
 
 
-## Major Takeaways
+## Chapter 2 Major Takeaways
 
 1. STOP: Think about whether a variable is categorical or quantitative. This informs the type of graphic and summaries that are appropriate. 
 

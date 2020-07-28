@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.2 Confidence Interval Examples | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.2 Confidence Interval Examples | STAT 155 Notes" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="confidence-intervals.html">
-<link rel="next" href="hypothesis-testing.html">
+<link rel="prev" href="confidence-intervals.html"/>
+<link rel="next" href="hypothesis-testing.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,12 +47,15 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -60,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -76,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -142,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
 <li class="chapter" data-level="1.6" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
 <li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
-<li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
+<li class="chapter" data-level="1.8" data-path="chapter-1-major-takeaways.html"><a href="chapter-1-major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Chapter 1 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
 <li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
@@ -188,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.9.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-smoothing"><i class="fa fa-check"></i><b>2.9.6</b> Enriching with smoothing</a></li>
 <li class="chapter" data-level="2.9.7" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.9.7</b> Putting everything together</a></li>
 </ul></li>
-<li class="chapter" data-level="2.10" data-path="major-takeaways-1.html"><a href="major-takeaways-1.html"><i class="fa fa-check"></i><b>2.10</b> Major Takeaways</a></li>
+<li class="chapter" data-level="2.10" data-path="chapter-2-major-takeaways.html"><a href="chapter-2-major-takeaways.html"><i class="fa fa-check"></i><b>2.10</b> Chapter 2 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="linear-regression-models.html"><a href="linear-regression-models.html"><i class="fa fa-check"></i><b>3</b> Linear Regression Models</a><ul>
 <li class="chapter" data-level="3.1" data-path="modeling-goals.html"><a href="modeling-goals.html"><i class="fa fa-check"></i><b>3.1</b> Modeling Goals</a></li>
@@ -202,11 +208,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="properties-of-least-squares-line.html"><a href="properties-of-least-squares-line.html"><i class="fa fa-check"></i><b>3.5</b> Properties of Least Squares Line</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="properties-of-least-squares-line.html"><a href="properties-of-least-squares-line.html#real-companies"><i class="fa fa-check"></i><b>3.5.1</b> Real companies</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="interpretation.html"><a href="interpretation.html"><i class="fa fa-check"></i><b>3.6</b> Interpretation</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="interpretation.html"><a href="interpretation.html#intercept-beta_0"><i class="fa fa-check"></i><b>3.6.1</b> Intercept (<span class="math inline">\(\beta_0\)</span>)</a></li>
-<li class="chapter" data-level="3.6.2" data-path="interpretation.html"><a href="interpretation.html#slope-beta_1"><i class="fa fa-check"></i><b>3.6.2</b> Slope (<span class="math inline">\(\beta_1\)</span>)</a></li>
-<li class="chapter" data-level="3.6.3" data-path="interpretation.html"><a href="interpretation.html#least-squaresregression-line-haty-beta_0-beta_1x"><i class="fa fa-check"></i><b>3.6.3</b> Least Squares/Regression Line (<span class="math inline">\(\hat{y} = \beta_0 + \beta_1x\)</span>)</a></li>
-<li class="chapter" data-level="3.6.4" data-path="interpretation.html"><a href="interpretation.html#correlation-or-association-vs.causation"><i class="fa fa-check"></i><b>3.6.4</b> Correlation or Association vs. Causation</a></li>
+<li class="chapter" data-level="3.6" data-path="model-interpretation.html"><a href="model-interpretation.html"><i class="fa fa-check"></i><b>3.6</b> Model Interpretation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="model-interpretation.html"><a href="model-interpretation.html#intercept-hatbeta_0"><i class="fa fa-check"></i><b>3.6.1</b> Intercept (<span class="math inline">\(\hat{\beta}_0\)</span>)</a></li>
+<li class="chapter" data-level="3.6.2" data-path="model-interpretation.html"><a href="model-interpretation.html#slope-hatbeta_1"><i class="fa fa-check"></i><b>3.6.2</b> Slope (<span class="math inline">\(\hat{\beta}_1\)</span>)</a></li>
+<li class="chapter" data-level="3.6.3" data-path="model-interpretation.html"><a href="model-interpretation.html#least-squares-regression-line-haty-hatbeta_0-hatbeta_1x"><i class="fa fa-check"></i><b>3.6.3</b> Least Squares Regression Line (<span class="math inline">\(\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x\)</span>)</a></li>
+<li class="chapter" data-level="3.6.4" data-path="model-interpretation.html"><a href="model-interpretation.html#correlation-or-association-vs.-causation"><i class="fa fa-check"></i><b>3.6.4</b> Correlation or Association vs. Causation</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="model-evaluation.html"><a href="model-evaluation.html"><i class="fa fa-check"></i><b>3.7</b> Model Evaluation</a><ul>
 <li class="chapter" data-level="3.7.1" data-path="model-evaluation.html"><a href="model-evaluation.html#prediction"><i class="fa fa-check"></i><b>3.7.1</b> Prediction</a></li>
@@ -224,16 +230,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i><b>3.9</b> Diagnostics</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-regression-issues"><i class="fa fa-check"></i><b>3.9.1</b> Solutions to Regression Issues</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.10</b> Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.10</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
 <li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
-<li class="chapter" data-level="4.3" data-path="interpretation-1.html"><a href="interpretation-1.html"><i class="fa fa-check"></i><b>4.3</b> Interpretation</a></li>
-<li class="chapter" data-level="4.4" data-path="prediction-1.html"><a href="prediction-1.html"><i class="fa fa-check"></i><b>4.4</b> Prediction</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="prediction-1.html"><a href="prediction-1.html#hard-predictionsclassifications"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
+<li class="chapter" data-level="4.3" data-path="coefficient-interpretation.html"><a href="coefficient-interpretation.html"><i class="fa fa-check"></i><b>4.3</b> Coefficient Interpretation</a></li>
+<li class="chapter" data-level="4.4" data-path="model-evaluation.html"><a href="model-evaluation.html#prediction"><i class="fa fa-check"></i><b>4.4</b> Prediction</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="prediction.html"><a href="prediction.html"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="model-evaluation-1.html"><a href="model-evaluation-1.html"><i class="fa fa-check"></i><b>4.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="4.5" data-path="logistic-model-evaluation.html"><a href="logistic-model-evaluation.html"><i class="fa fa-check"></i><b>4.5</b> Logistic Model Evaluation</a></li>
 <li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
@@ -243,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>5.4</b> IRL: Bootstrapping</a></li>
 <li class="chapter" data-level="5.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>5.5</b> Simulating Randomization into Groups</a></li>
 <li class="chapter" data-level="5.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>5.6</b> IRL: Randomization Tests</a></li>
-<li class="chapter" data-level="5.7" data-path="major-takeaways-3.html"><a href="major-takeaways-3.html"><i class="fa fa-check"></i><b>5.7</b> Major Takeaways</a></li>
+<li class="chapter" data-level="5.7" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.7</b> Chapter 5 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>6</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="6.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>6.1</b> Three Types of Probability</a></li>
@@ -268,7 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>6.8.2</b> Beer Helps the Field of Statistics</a></li>
 <li class="chapter" data-level="6.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>6.8.3</b> Student’s T Model</a></li>
 </ul></li>
-<li class="chapter" data-level="6.9" data-path="major-takeaways-4.html"><a href="major-takeaways-4.html"><i class="fa fa-check"></i><b>6.9</b> Major Takeaways</a></li>
+<li class="chapter" data-level="6.9" data-path="chapter-6-major-takeaways.html"><a href="chapter-6-major-takeaways.html"><i class="fa fa-check"></i><b>6.9</b> Chapter 6 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>7</b> Statistical Inference</a><ul>
 <li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7.1</b> Confidence Intervals</a><ul>
@@ -283,7 +289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.5" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#linear-regression-model-slope-quantitative-var"><i class="fa fa-check"></i><b>7.2.5</b> Linear Regression Model Slope (Quantitative Var)</a></li>
 <li class="chapter" data-level="7.2.6" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#confidence-intervals-for-prediction"><i class="fa fa-check"></i><b>7.2.6</b> Confidence Intervals for Prediction</a></li>
 <li class="chapter" data-level="7.2.7" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#prediction-intervals"><i class="fa fa-check"></i><b>7.2.7</b> Prediction Intervals</a></li>
-<li class="chapter" data-level="7.2.8" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#probability-theory-vs.bootstrapping"><i class="fa fa-check"></i><b>7.2.8</b> Probability Theory vs. Bootstrapping</a></li>
+<li class="chapter" data-level="7.2.8" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#probability-theory-vs.-bootstrapping"><i class="fa fa-check"></i><b>7.2.8</b> Probability Theory vs. Bootstrapping</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7.3</b> Hypothesis Testing</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#test-statistics"><i class="fa fa-check"></i><b>7.3.1</b> Test statistics</a></li>
@@ -304,8 +310,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1.1" data-path="probability-rules.html"><a href="probability-rules.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>8.1.1</b> Disjoint/Mutually Exclusive</a></li>
 <li class="chapter" data-level="8.1.2" data-path="probability-rules.html"><a href="probability-rules.html#independence"><i class="fa fa-check"></i><b>8.1.2</b> Independence</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>8.2</b> Random Variable</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>8.2.1</b> Probability Models</a></li>
+<li class="chapter" data-level="8.2" data-path="theory-of-random-variable.html"><a href="theory-of-random-variable.html"><i class="fa fa-check"></i><b>8.2</b> Theory of Random Variable</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="probability-models.html"><a href="probability-models.html#probability-models"><i class="fa fa-check"></i><b>8.2.1</b> Probability Models</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>8.3</b> Discrete Random Variables</a><ul>
 <li class="chapter" data-level="8.3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>8.3.1</b> Expected Value</a></li>
@@ -356,26 +362,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.2.1</span> Proportion Outcome</h3>
 <p>Let’s return to the flight data and estimate the proportion of afternoon flights based on a sample of 100 flights from NYC.</p>
 <p>First, the classical 95% confidence interval can be constructed using the theory of the Binomial Model (Do the 3 conditions hold? Is n large enough for it to look Normal?)</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">flights_samp <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb233-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">prop =</span> <span class="kw">count</span>(day_hour)<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb233-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SE =</span> <span class="kw">sqrt</span>(prop<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>prop)<span class="op">/</span><span class="dv">100</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb233-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lb =</span> prop <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>SE, <span class="dt">ub =</span> prop <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>SE)</a></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="confidence-interval-examples.html#cb301-1"></a>flights_samp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb301-2"><a href="confidence-interval-examples.html#cb301-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">prop =</span> <span class="kw">count</span>(day_hour)<span class="op">/</span><span class="dv">100</span>) <span class="op">%&gt;%</span></span>
+<span id="cb301-3"><a href="confidence-interval-examples.html#cb301-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SE =</span> <span class="kw">sqrt</span>(prop<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>prop)<span class="op">/</span><span class="dv">100</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb301-4"><a href="confidence-interval-examples.html#cb301-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lb =</span> prop <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>SE, <span class="dt">ub =</span> prop <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>SE)</span></code></pre></div>
+<pre><code>## Warning: `data_frame()` is deprecated as of tibble 1.1.0.
+## Please use `tibble()` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
 <pre><code>## # A tibble: 1 x 4
 ##    prop     SE    lb    ub
 ##   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1  0.53 0.0499 0.430 0.630</code></pre>
 <p>Or we could bootstrap and get our confidence interval that way.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span></a>
-<a class="sourceLine" id="cb235-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb235-3" data-line-number="3">boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </a>
-<a class="sourceLine" id="cb235-4" data-line-number="4">    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></a>
-<a class="sourceLine" id="cb235-5" data-line-number="5"><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></a>
-<a class="sourceLine" id="cb235-6" data-line-number="6"><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">prop =</span> <span class="kw">count</span>(day_hour)<span class="op">/</span><span class="dv">100</span>) <span class="co"># Calculate statistics</span></a>
-<a class="sourceLine" id="cb235-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb235-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb235-9" data-line-number="9">boot_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb235-10" data-line-number="10"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(prop, alpha<span class="op">/</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb235-11" data-line-number="11">    <span class="dt">upper =</span> <span class="kw">quantile</span>(prop, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="confidence-interval-examples.html#cb304-1"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.05</span></span>
+<span id="cb304-2"><a href="confidence-interval-examples.html#cb304-2"></a></span>
+<span id="cb304-3"><a href="confidence-interval-examples.html#cb304-3"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb304-4"><a href="confidence-interval-examples.html#cb304-4"></a>    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb304-5"><a href="confidence-interval-examples.html#cb304-5"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb304-6"><a href="confidence-interval-examples.html#cb304-6"></a><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">prop =</span> <span class="kw">count</span>(day_hour)<span class="op">/</span><span class="dv">100</span>) <span class="co"># Calculate statistics</span></span>
+<span id="cb304-7"><a href="confidence-interval-examples.html#cb304-7"></a>)</span>
+<span id="cb304-8"><a href="confidence-interval-examples.html#cb304-8"></a></span>
+<span id="cb304-9"><a href="confidence-interval-examples.html#cb304-9"></a>boot_data <span class="op">%&gt;%</span></span>
+<span id="cb304-10"><a href="confidence-interval-examples.html#cb304-10"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(prop, alpha<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb304-11"><a href="confidence-interval-examples.html#cb304-11"></a>    <span class="dt">upper =</span> <span class="kw">quantile</span>(prop, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>##   lower upper
 ## 1  0.44  0.63</code></pre>
 <p>Our confidence interval gives a sense of the true proportion of flights departed NYC in the afternoon, keeping in mind that this sample could be one of the unlucky samples (the 5%) that have intervals that don’t contain the true value.</p>
@@ -384,34 +394,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.2.2</span> Mean and then Median</h3>
 <p>Perhaps you really care about the arrival delay time because you have somewhere important you need to be when you take flights out of NYC. Let’s estimate the mean arrival delay based on a sample of 100 flights from NYC.</p>
 <p>First off, let’s create a classical confidence interval. Since our sample size is relatively large, we can use the Normal model (instead of William Gosset’s work). We use the sample standard deviation and plug into the SE formula.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1">flights_samp <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb237-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(arr_delay), <span class="dt">s =</span> <span class="kw">sd</span>(arr_delay)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb237-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SE =</span> s<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">100</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb237-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lb =</span> mean <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>SE, <span class="dt">ub =</span> mean <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>SE)</a></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="confidence-interval-examples.html#cb306-1"></a>flights_samp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb306-2"><a href="confidence-interval-examples.html#cb306-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(arr_delay), <span class="dt">s =</span> <span class="kw">sd</span>(arr_delay)) <span class="op">%&gt;%</span></span>
+<span id="cb306-3"><a href="confidence-interval-examples.html#cb306-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">SE =</span> s<span class="op">/</span><span class="kw">sqrt</span>(<span class="dv">100</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb306-4"><a href="confidence-interval-examples.html#cb306-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">lb =</span> mean <span class="op">-</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>SE, <span class="dt">ub =</span> mean <span class="op">+</span><span class="st"> </span><span class="dv">2</span><span class="op">*</span>SE)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 5
 ##    mean     s    SE     lb    ub
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
 ## 1  6.36  33.9  3.39 -0.422  13.1</code></pre>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">alpha &lt;-<span class="st"> </span><span class="fl">0.05</span></a>
-<a class="sourceLine" id="cb239-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb239-3" data-line-number="3">boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </a>
-<a class="sourceLine" id="cb239-4" data-line-number="4">    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></a>
-<a class="sourceLine" id="cb239-5" data-line-number="5"><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></a>
-<a class="sourceLine" id="cb239-6" data-line-number="6"><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">means =</span> <span class="kw">mean</span>(arr_delay),<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay)) <span class="co"># Calculate statistics</span></a>
-<a class="sourceLine" id="cb239-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb239-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb239-9" data-line-number="9">boot_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb239-10" data-line-number="10"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(means, alpha<span class="op">/</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb239-11" data-line-number="11">    <span class="dt">upper =</span> <span class="kw">quantile</span>(means, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="confidence-interval-examples.html#cb308-1"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.05</span></span>
+<span id="cb308-2"><a href="confidence-interval-examples.html#cb308-2"></a></span>
+<span id="cb308-3"><a href="confidence-interval-examples.html#cb308-3"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb308-4"><a href="confidence-interval-examples.html#cb308-4"></a>    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb308-5"><a href="confidence-interval-examples.html#cb308-5"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb308-6"><a href="confidence-interval-examples.html#cb308-6"></a><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">means =</span> <span class="kw">mean</span>(arr_delay),<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay)) <span class="co"># Calculate statistics</span></span>
+<span id="cb308-7"><a href="confidence-interval-examples.html#cb308-7"></a>)</span>
+<span id="cb308-8"><a href="confidence-interval-examples.html#cb308-8"></a></span>
+<span id="cb308-9"><a href="confidence-interval-examples.html#cb308-9"></a>boot_data <span class="op">%&gt;%</span></span>
+<span id="cb308-10"><a href="confidence-interval-examples.html#cb308-10"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(means, alpha<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb308-11"><a href="confidence-interval-examples.html#cb308-11"></a>    <span class="dt">upper =</span> <span class="kw">quantile</span>(means, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##   lower upper
 ##   &lt;dbl&gt; &lt;dbl&gt;
 ## 1 0.230  13.4</code></pre>
 <p>Our confidence interval gives potential values for of the true mean arrival delay for flights that departed NYC, keeping in mind that this sample could be one of the unlucky samples (the 5%) that have intervals that don’t contain the true value. Also remember that the mean is sensitive to outliers…Let’s consider the median.</p>
 <p>We get a slightly different story if we are interested in the middle number versus the average. But notice, we aren’t using a classical CI here because the sampling distribution of a median is not necessarily Normal.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">boot_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb241-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(medians, alpha<span class="op">/</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb241-3" data-line-number="3">    <span class="dt">upper =</span> <span class="kw">quantile</span>(medians, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="confidence-interval-examples.html#cb310-1"></a>boot_data <span class="op">%&gt;%</span></span>
+<span id="cb310-2"><a href="confidence-interval-examples.html#cb310-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(medians, alpha<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb310-3"><a href="confidence-interval-examples.html#cb310-3"></a>    <span class="dt">upper =</span> <span class="kw">quantile</span>(medians, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 2
 ##   lower upper
 ##   &lt;dbl&gt; &lt;dbl&gt;
@@ -420,10 +430,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="logistic-regression-model" class="section level3">
 <h3><span class="header-section-number">7.2.3</span> Logistic Regression Model</h3>
 <p>Are the same relative numbers of morning flights in the winter and the summer? Let’s fit a logistic regression model and see what our sample says.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1">flights_samp<span class="op">$</span>afternoon =<span class="st"> </span>flights_samp<span class="op">$</span>day_hour <span class="op">==</span><span class="st"> &#39;afternoon&#39;</span></a>
-<a class="sourceLine" id="cb243-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb243-3" data-line-number="3">glm.afternoon &lt;-<span class="st"> </span><span class="kw">glm</span>(afternoon <span class="op">~</span><span class="st"> </span>season, <span class="dt">data =</span> flights_samp, <span class="dt">family =</span> <span class="st">&#39;binomial&#39;</span>)</a>
-<a class="sourceLine" id="cb243-4" data-line-number="4"><span class="kw">summary</span>(glm.afternoon)</a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="confidence-interval-examples.html#cb312-1"></a>flights_samp<span class="op">$</span>afternoon =<span class="st"> </span>flights_samp<span class="op">$</span>day_hour <span class="op">==</span><span class="st"> &#39;afternoon&#39;</span></span>
+<span id="cb312-2"><a href="confidence-interval-examples.html#cb312-2"></a></span>
+<span id="cb312-3"><a href="confidence-interval-examples.html#cb312-3"></a>glm.afternoon &lt;-<span class="st"> </span><span class="kw">glm</span>(afternoon <span class="op">~</span><span class="st"> </span>season, <span class="dt">data =</span> flights_samp, <span class="dt">family =</span> <span class="st">&#39;binomial&#39;</span>)</span>
+<span id="cb312-4"><a href="confidence-interval-examples.html#cb312-4"></a><span class="kw">summary</span>(glm.afternoon)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = afternoon ~ season, family = &quot;binomial&quot;, data = flights_samp)
@@ -445,38 +455,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## Number of Fisher Scoring iterations: 4</code></pre>
 <p>The output for the model gives standard errors for the slopes, so we can create the classical confidence intervals directly from the output,</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">confint</span>(glm.afternoon)</a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="confidence-interval-examples.html#cb314-1"></a><span class="kw">confint</span>(glm.afternoon)</span></code></pre></div>
+<pre><code>## Waiting for profiling to be done...</code></pre>
 <pre><code>##                   2.5 %    97.5 %
 ## (Intercept)  -0.6905940 0.4389059
 ## seasonwinter -0.3081988 1.2791414</code></pre>
 <p>Or with bootstrapping,</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </a>
-<a class="sourceLine" id="cb247-2" data-line-number="2">    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></a>
-<a class="sourceLine" id="cb247-3" data-line-number="3"><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></a>
-<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="st">      </span><span class="kw">glm</span>(afternoon <span class="op">~</span><span class="st"> </span>season, <span class="dt">data =</span> ., <span class="dt">family =</span> <span class="st">&#39;binomial&#39;</span>) <span class="co"># Calculate statistics</span></a>
-<a class="sourceLine" id="cb247-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb247-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb247-7" data-line-number="7">boot_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb247-8" data-line-number="8"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(seasonwinter, alpha<span class="op">/</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb247-9" data-line-number="9">    <span class="dt">upper =</span> <span class="kw">quantile</span>(seasonwinter, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="confidence-interval-examples.html#cb317-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb317-2"><a href="confidence-interval-examples.html#cb317-2"></a>    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb317-3"><a href="confidence-interval-examples.html#cb317-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb317-4"><a href="confidence-interval-examples.html#cb317-4"></a><span class="st">      </span><span class="kw">glm</span>(afternoon <span class="op">~</span><span class="st"> </span>season, <span class="dt">data =</span> ., <span class="dt">family =</span> <span class="st">&#39;binomial&#39;</span>) <span class="co"># Calculate statistics</span></span>
+<span id="cb317-5"><a href="confidence-interval-examples.html#cb317-5"></a>)</span>
+<span id="cb317-6"><a href="confidence-interval-examples.html#cb317-6"></a></span>
+<span id="cb317-7"><a href="confidence-interval-examples.html#cb317-7"></a>boot_data <span class="op">%&gt;%</span></span>
+<span id="cb317-8"><a href="confidence-interval-examples.html#cb317-8"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(seasonwinter, alpha<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb317-9"><a href="confidence-interval-examples.html#cb317-9"></a>    <span class="dt">upper =</span> <span class="kw">quantile</span>(seasonwinter, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>##        lower    upper
 ## 1 -0.3503645 1.367213</code></pre>
 <p>Knowing that the sample is random, the interval estimate for the logistic regression slope is given by the confidence interval. But for logistic regression, we exponentiate the slopes to get an more interpretable value, the odds ratio. Here, we are comparing the odds of having a flight in the afternoon between winter months (numerator) and summer months (denominator). Is 1 in the interval? If so, what does that tell you?</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw">exp</span>(<span class="kw">confint</span>(glm.afternoon))</a></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="confidence-interval-examples.html#cb319-1"></a><span class="kw">exp</span>(<span class="kw">confint</span>(glm.afternoon))</span></code></pre></div>
+<pre><code>## Waiting for profiling to be done...</code></pre>
 <pre><code>##                  2.5 %   97.5 %
 ## (Intercept)  0.5012782 1.551009
 ## seasonwinter 0.7347692 3.593553</code></pre>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1">boot_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">exp</span>(<span class="kw">quantile</span>(seasonwinter, alpha<span class="op">/</span><span class="dv">2</span>)),</a>
-<a class="sourceLine" id="cb251-3" data-line-number="3">    <span class="dt">upper =</span> <span class="kw">exp</span>(<span class="kw">quantile</span>(seasonwinter, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="confidence-interval-examples.html#cb322-1"></a>boot_data <span class="op">%&gt;%</span></span>
+<span id="cb322-2"><a href="confidence-interval-examples.html#cb322-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">exp</span>(<span class="kw">quantile</span>(seasonwinter, alpha<span class="op">/</span><span class="dv">2</span>)),</span>
+<span id="cb322-3"><a href="confidence-interval-examples.html#cb322-3"></a>    <span class="dt">upper =</span> <span class="kw">exp</span>(<span class="kw">quantile</span>(seasonwinter, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>)))</span></code></pre></div>
 <pre><code>##       lower    upper
 ## 1 0.7044313 3.924396</code></pre>
 </div>
 <div id="linear-regression-model-slope-categorical-variable" class="section level3">
 <h3><span class="header-section-number">7.2.4</span> Linear Regression Model Slope (Categorical Variable)</h3>
 <p>Everything says that there are longer delays in winter. Is that actually true? Let’s fit a linear regression model to test it</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">lm.delay &lt;-<span class="st"> </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season, <span class="dt">data =</span> flights_samp)</a>
-<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="kw">summary</span>(lm.delay)</a></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="confidence-interval-examples.html#cb324-1"></a>lm.delay &lt;-<span class="st"> </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season, <span class="dt">data =</span> flights_samp)</span>
+<span id="cb324-2"><a href="confidence-interval-examples.html#cb324-2"></a><span class="kw">summary</span>(lm.delay)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = arr_delay ~ season, data = flights_samp)
@@ -491,23 +503,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## seasonwinter  -0.6547     6.8176  -0.096    0.924
 ## 
 ## Residual standard error: 34.08 on 98 degrees of freedom
-## Multiple R-squared:  9.408e-05,  Adjusted R-squared:  -0.01011 
+## Multiple R-squared:  9.408e-05,	Adjusted R-squared:  -0.01011 
 ## F-statistic: 0.009221 on 1 and 98 DF,  p-value: 0.9237</code></pre>
 <p>The classical CI for the slope is given with by</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="kw">confint</span>(lm.delay)</a></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="confidence-interval-examples.html#cb326-1"></a><span class="kw">confint</span>(lm.delay)</span></code></pre></div>
 <pre><code>##                   2.5 %   97.5 %
 ## (Intercept)   -2.967923 16.35568
 ## seasonwinter -14.183889 12.87457</code></pre>
 <p>or with bootstrapping,</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </a>
-<a class="sourceLine" id="cb257-2" data-line-number="2">    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></a>
-<a class="sourceLine" id="cb257-3" data-line-number="3"><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></a>
-<a class="sourceLine" id="cb257-4" data-line-number="4"><span class="st">      </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season, <span class="dt">data =</span> .) <span class="co"># Calculate statistics</span></a>
-<a class="sourceLine" id="cb257-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb257-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb257-7" data-line-number="7">boot_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb257-8" data-line-number="8"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(seasonwinter, alpha<span class="op">/</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb257-9" data-line-number="9">    <span class="dt">upper =</span> <span class="kw">quantile</span>(seasonwinter, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="confidence-interval-examples.html#cb328-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb328-2"><a href="confidence-interval-examples.html#cb328-2"></a>    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb328-3"><a href="confidence-interval-examples.html#cb328-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb328-4"><a href="confidence-interval-examples.html#cb328-4"></a><span class="st">      </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season, <span class="dt">data =</span> .) <span class="co"># Calculate statistics</span></span>
+<span id="cb328-5"><a href="confidence-interval-examples.html#cb328-5"></a>)</span>
+<span id="cb328-6"><a href="confidence-interval-examples.html#cb328-6"></a></span>
+<span id="cb328-7"><a href="confidence-interval-examples.html#cb328-7"></a>boot_data <span class="op">%&gt;%</span></span>
+<span id="cb328-8"><a href="confidence-interval-examples.html#cb328-8"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(seasonwinter, alpha<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb328-9"><a href="confidence-interval-examples.html#cb328-9"></a>    <span class="dt">upper =</span> <span class="kw">quantile</span>(seasonwinter, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>##      lower  upper
 ## 1 -15.0511 11.794</code></pre>
 <p>The 95% confidence interval gives a sense of the difference of mean arrival delays of flights between winter and summer is given by the confidence interval. Is zero in the interval? If so, what does that tell you?</p>
@@ -515,8 +527,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="linear-regression-model-slope-quantitative-var" class="section level3">
 <h3><span class="header-section-number">7.2.5</span> Linear Regression Model Slope (Quantitative Var)</h3>
 <p>How well can the departure delay predict the arrival delay? What is the effect of departing 1 more minute later? Does that correspond to 1 minute later in arrival on average? Let’s look at the estimated slope between departure and arrival delays for the sample of 100 flights from NYC.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1">lm.delay2 &lt;-<span class="st"> </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>dep_delay, <span class="dt">data =</span> flights_samp)</a>
-<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="kw">summary</span>(lm.delay2)</a></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="confidence-interval-examples.html#cb330-1"></a>lm.delay2 &lt;-<span class="st"> </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>dep_delay, <span class="dt">data =</span> flights_samp)</span>
+<span id="cb330-2"><a href="confidence-interval-examples.html#cb330-2"></a><span class="kw">summary</span>(lm.delay2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = arr_delay ~ dep_delay, data = flights_samp)
@@ -533,23 +545,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 17.72 on 98 degrees of freedom
-## Multiple R-squared:  0.7297, Adjusted R-squared:  0.727 
+## Multiple R-squared:  0.7297,	Adjusted R-squared:  0.727 
 ## F-statistic: 264.6 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>The classical CI for the slope is given with by</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">confint</span>(lm.delay2)</a></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="confidence-interval-examples.html#cb332-1"></a><span class="kw">confint</span>(lm.delay2)</span></code></pre></div>
 <pre><code>##                  2.5 %   97.5 %
 ## (Intercept) -6.2690537 1.094198
 ## dep_delay    0.8816967 1.126705</code></pre>
 <p>or with bootstrapping,</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </a>
-<a class="sourceLine" id="cb263-2" data-line-number="2">    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></a>
-<a class="sourceLine" id="cb263-3" data-line-number="3"><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></a>
-<a class="sourceLine" id="cb263-4" data-line-number="4"><span class="st">      </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>dep_delay, <span class="dt">data =</span> .) <span class="co"># Calculate statistics</span></a>
-<a class="sourceLine" id="cb263-5" data-line-number="5">)</a>
-<a class="sourceLine" id="cb263-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb263-7" data-line-number="7">boot_data <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb263-8" data-line-number="8"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(dep_delay, alpha<span class="op">/</span><span class="dv">2</span>),</a>
-<a class="sourceLine" id="cb263-9" data-line-number="9">    <span class="dt">upper =</span> <span class="kw">quantile</span>(dep_delay, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="confidence-interval-examples.html#cb334-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb334-2"><a href="confidence-interval-examples.html#cb334-2"></a>    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb334-3"><a href="confidence-interval-examples.html#cb334-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb334-4"><a href="confidence-interval-examples.html#cb334-4"></a><span class="st">      </span><span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>dep_delay, <span class="dt">data =</span> .) <span class="co"># Calculate statistics</span></span>
+<span id="cb334-5"><a href="confidence-interval-examples.html#cb334-5"></a>)</span>
+<span id="cb334-6"><a href="confidence-interval-examples.html#cb334-6"></a></span>
+<span id="cb334-7"><a href="confidence-interval-examples.html#cb334-7"></a>boot_data <span class="op">%&gt;%</span></span>
+<span id="cb334-8"><a href="confidence-interval-examples.html#cb334-8"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(dep_delay, alpha<span class="op">/</span><span class="dv">2</span>),</span>
+<span id="cb334-9"><a href="confidence-interval-examples.html#cb334-9"></a>    <span class="dt">upper =</span> <span class="kw">quantile</span>(dep_delay, <span class="dv">1</span><span class="op">-</span>alpha<span class="op">/</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>##       lower    upper
 ## 1 0.9173677 1.181704</code></pre>
 <p>If the flight leaves an additional minute later, then we’d expect the arrival delay to be increased by a value in the interval above, on average.</p>
@@ -558,7 +570,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.2.6</span> Confidence Intervals for Prediction</h3>
 <p>Imagine we are on a plane, we left 15 minutes late, how late will arrive? Since we only have a sample of 100 flights, we are a bit unsure of our prediction.</p>
 <p>A classical CI can give us an interval estimate of what the prediction should be (if we had data on all flights).</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1"><span class="kw">predict</span>(lm.delay2, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">dep_delay =</span> <span class="dv">15</span>), <span class="dt">interval =</span> <span class="st">&#39;confidence&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="confidence-interval-examples.html#cb336-1"></a><span class="kw">predict</span>(lm.delay2, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">dep_delay =</span> <span class="dv">15</span>), <span class="dt">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 12.47558 8.881202 16.06996</code></pre>
 <p>This is taking into account how uncertain we are about our model prediction because our model is based on sample data rather than population data.</p>
@@ -567,11 +579,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.2.7</span> Prediction Intervals</h3>
 <p>We also know that every flight is different (different length, different weather conditions, etc), so the true arrival delay won’t be exactly what we predict.</p>
 <p>So to get a better prediction for our arrival delay, we can account for the size of errors or residuals by creating a <strong>prediction interval</strong>. This interval will be much wider than the confidence interval because it takes into account how far the true values are from the prediction line.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1"><span class="kw">predict</span>(lm.delay2, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">dep_delay =</span> <span class="dv">15</span>), <span class="dt">interval =</span> <span class="st">&#39;prediction&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="confidence-interval-examples.html#cb338-1"></a><span class="kw">predict</span>(lm.delay2, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">dep_delay =</span> <span class="dv">15</span>), <span class="dt">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
 <pre><code>##        fit       lwr      upr
 ## 1 12.47558 -22.86868 47.81985</code></pre>
 </div>
-<div id="probability-theory-vs.bootstrapping" class="section level3">
+<div id="probability-theory-vs.-bootstrapping" class="section level3">
 <h3><span class="header-section-number">7.2.8</span> Probability Theory vs. Bootstrapping</h3>
 <p>In the modern age, computing power allows us to perform boostrapping easily to create confidence intervals. Before computing was as powerful as it is today, scientists needed mathematical theory to provide simple formulas for confidence intervals.</p>
 <p>If certain assumptions hold, the mathematical theory proves to be just as accurate and less computationally-intensive than bootstrapping. Many scientists using statistics right now learned the theory because when they learned statistics, computers were not powerful enough to handle techniques such as bootstrapping.</p>
@@ -589,11 +601,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -601,12 +615,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -618,6 +631,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -637,8 +654,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.1 Probability Rules | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.1 Probability Rules | STAT 155 Notes" />
   <meta property="og:type" content="book" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="appendix-a-theoretical-probability.html">
-<link rel="next" href="random-variable-1.html">
+<link rel="prev" href="appendix-a-theoretical-probability.html"/>
+<link rel="next" href="theory-of-random-variable.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,6 +39,7 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -46,12 +47,15 @@
 
 
 
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -60,14 +64,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -76,9 +82,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -142,7 +148,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
 <li class="chapter" data-level="1.6" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
 <li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
-<li class="chapter" data-level="1.8" data-path="major-takeaways.html"><a href="major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Major Takeaways</a></li>
+<li class="chapter" data-level="1.8" data-path="chapter-1-major-takeaways.html"><a href="chapter-1-major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Chapter 1 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
 <li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
@@ -188,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.9.6" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-smoothing"><i class="fa fa-check"></i><b>2.9.6</b> Enriching with smoothing</a></li>
 <li class="chapter" data-level="2.9.7" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#putting-everything-together"><i class="fa fa-check"></i><b>2.9.7</b> Putting everything together</a></li>
 </ul></li>
-<li class="chapter" data-level="2.10" data-path="major-takeaways-1.html"><a href="major-takeaways-1.html"><i class="fa fa-check"></i><b>2.10</b> Major Takeaways</a></li>
+<li class="chapter" data-level="2.10" data-path="chapter-2-major-takeaways.html"><a href="chapter-2-major-takeaways.html"><i class="fa fa-check"></i><b>2.10</b> Chapter 2 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="linear-regression-models.html"><a href="linear-regression-models.html"><i class="fa fa-check"></i><b>3</b> Linear Regression Models</a><ul>
 <li class="chapter" data-level="3.1" data-path="modeling-goals.html"><a href="modeling-goals.html"><i class="fa fa-check"></i><b>3.1</b> Modeling Goals</a></li>
@@ -202,11 +208,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="properties-of-least-squares-line.html"><a href="properties-of-least-squares-line.html"><i class="fa fa-check"></i><b>3.5</b> Properties of Least Squares Line</a><ul>
 <li class="chapter" data-level="3.5.1" data-path="properties-of-least-squares-line.html"><a href="properties-of-least-squares-line.html#real-companies"><i class="fa fa-check"></i><b>3.5.1</b> Real companies</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="interpretation.html"><a href="interpretation.html"><i class="fa fa-check"></i><b>3.6</b> Interpretation</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="interpretation.html"><a href="interpretation.html#intercept-beta_0"><i class="fa fa-check"></i><b>3.6.1</b> Intercept (<span class="math inline">\(\beta_0\)</span>)</a></li>
-<li class="chapter" data-level="3.6.2" data-path="interpretation.html"><a href="interpretation.html#slope-beta_1"><i class="fa fa-check"></i><b>3.6.2</b> Slope (<span class="math inline">\(\beta_1\)</span>)</a></li>
-<li class="chapter" data-level="3.6.3" data-path="interpretation.html"><a href="interpretation.html#least-squaresregression-line-haty-beta_0-beta_1x"><i class="fa fa-check"></i><b>3.6.3</b> Least Squares/Regression Line (<span class="math inline">\(\hat{y} = \beta_0 + \beta_1x\)</span>)</a></li>
-<li class="chapter" data-level="3.6.4" data-path="interpretation.html"><a href="interpretation.html#correlation-or-association-vs.causation"><i class="fa fa-check"></i><b>3.6.4</b> Correlation or Association vs. Causation</a></li>
+<li class="chapter" data-level="3.6" data-path="model-interpretation.html"><a href="model-interpretation.html"><i class="fa fa-check"></i><b>3.6</b> Model Interpretation</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="model-interpretation.html"><a href="model-interpretation.html#intercept-hatbeta_0"><i class="fa fa-check"></i><b>3.6.1</b> Intercept (<span class="math inline">\(\hat{\beta}_0\)</span>)</a></li>
+<li class="chapter" data-level="3.6.2" data-path="model-interpretation.html"><a href="model-interpretation.html#slope-hatbeta_1"><i class="fa fa-check"></i><b>3.6.2</b> Slope (<span class="math inline">\(\hat{\beta}_1\)</span>)</a></li>
+<li class="chapter" data-level="3.6.3" data-path="model-interpretation.html"><a href="model-interpretation.html#least-squares-regression-line-haty-hatbeta_0-hatbeta_1x"><i class="fa fa-check"></i><b>3.6.3</b> Least Squares Regression Line (<span class="math inline">\(\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x\)</span>)</a></li>
+<li class="chapter" data-level="3.6.4" data-path="model-interpretation.html"><a href="model-interpretation.html#correlation-or-association-vs.-causation"><i class="fa fa-check"></i><b>3.6.4</b> Correlation or Association vs. Causation</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="model-evaluation.html"><a href="model-evaluation.html"><i class="fa fa-check"></i><b>3.7</b> Model Evaluation</a><ul>
 <li class="chapter" data-level="3.7.1" data-path="model-evaluation.html"><a href="model-evaluation.html#prediction"><i class="fa fa-check"></i><b>3.7.1</b> Prediction</a></li>
@@ -224,16 +230,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i><b>3.9</b> Diagnostics</a><ul>
 <li class="chapter" data-level="3.9.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-regression-issues"><i class="fa fa-check"></i><b>3.9.1</b> Solutions to Regression Issues</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="major-takeaways-2.html"><a href="major-takeaways-2.html"><i class="fa fa-check"></i><b>3.10</b> Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.10</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
 <li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
-<li class="chapter" data-level="4.3" data-path="interpretation-1.html"><a href="interpretation-1.html"><i class="fa fa-check"></i><b>4.3</b> Interpretation</a></li>
-<li class="chapter" data-level="4.4" data-path="prediction-1.html"><a href="prediction-1.html"><i class="fa fa-check"></i><b>4.4</b> Prediction</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="prediction-1.html"><a href="prediction-1.html#hard-predictionsclassifications"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
+<li class="chapter" data-level="4.3" data-path="coefficient-interpretation.html"><a href="coefficient-interpretation.html"><i class="fa fa-check"></i><b>4.3</b> Coefficient Interpretation</a></li>
+<li class="chapter" data-level="4.4" data-path="model-evaluation.html"><a href="model-evaluation.html#prediction"><i class="fa fa-check"></i><b>4.4</b> Prediction</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="prediction.html"><a href="prediction.html"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="model-evaluation-1.html"><a href="model-evaluation-1.html"><i class="fa fa-check"></i><b>4.5</b> Model Evaluation</a></li>
+<li class="chapter" data-level="4.5" data-path="logistic-model-evaluation.html"><a href="logistic-model-evaluation.html"><i class="fa fa-check"></i><b>4.5</b> Logistic Model Evaluation</a></li>
 <li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
@@ -243,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>5.4</b> IRL: Bootstrapping</a></li>
 <li class="chapter" data-level="5.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>5.5</b> Simulating Randomization into Groups</a></li>
 <li class="chapter" data-level="5.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>5.6</b> IRL: Randomization Tests</a></li>
-<li class="chapter" data-level="5.7" data-path="major-takeaways-3.html"><a href="major-takeaways-3.html"><i class="fa fa-check"></i><b>5.7</b> Major Takeaways</a></li>
+<li class="chapter" data-level="5.7" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.7</b> Chapter 5 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>6</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="6.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>6.1</b> Three Types of Probability</a></li>
@@ -268,7 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>6.8.2</b> Beer Helps the Field of Statistics</a></li>
 <li class="chapter" data-level="6.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>6.8.3</b> Student’s T Model</a></li>
 </ul></li>
-<li class="chapter" data-level="6.9" data-path="major-takeaways-4.html"><a href="major-takeaways-4.html"><i class="fa fa-check"></i><b>6.9</b> Major Takeaways</a></li>
+<li class="chapter" data-level="6.9" data-path="chapter-6-major-takeaways.html"><a href="chapter-6-major-takeaways.html"><i class="fa fa-check"></i><b>6.9</b> Chapter 6 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>7</b> Statistical Inference</a><ul>
 <li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7.1</b> Confidence Intervals</a><ul>
@@ -283,7 +289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2.5" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#linear-regression-model-slope-quantitative-var"><i class="fa fa-check"></i><b>7.2.5</b> Linear Regression Model Slope (Quantitative Var)</a></li>
 <li class="chapter" data-level="7.2.6" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#confidence-intervals-for-prediction"><i class="fa fa-check"></i><b>7.2.6</b> Confidence Intervals for Prediction</a></li>
 <li class="chapter" data-level="7.2.7" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#prediction-intervals"><i class="fa fa-check"></i><b>7.2.7</b> Prediction Intervals</a></li>
-<li class="chapter" data-level="7.2.8" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#probability-theory-vs.bootstrapping"><i class="fa fa-check"></i><b>7.2.8</b> Probability Theory vs. Bootstrapping</a></li>
+<li class="chapter" data-level="7.2.8" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#probability-theory-vs.-bootstrapping"><i class="fa fa-check"></i><b>7.2.8</b> Probability Theory vs. Bootstrapping</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7.3</b> Hypothesis Testing</a><ul>
 <li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#test-statistics"><i class="fa fa-check"></i><b>7.3.1</b> Test statistics</a></li>
@@ -304,8 +310,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1.1" data-path="probability-rules.html"><a href="probability-rules.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>8.1.1</b> Disjoint/Mutually Exclusive</a></li>
 <li class="chapter" data-level="8.1.2" data-path="probability-rules.html"><a href="probability-rules.html#independence"><i class="fa fa-check"></i><b>8.1.2</b> Independence</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="random-variable-1.html"><a href="random-variable-1.html"><i class="fa fa-check"></i><b>8.2</b> Random Variable</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="random-variable-1.html"><a href="random-variable-1.html#probability-models-1"><i class="fa fa-check"></i><b>8.2.1</b> Probability Models</a></li>
+<li class="chapter" data-level="8.2" data-path="theory-of-random-variable.html"><a href="theory-of-random-variable.html"><i class="fa fa-check"></i><b>8.2</b> Theory of Random Variable</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="probability-models.html"><a href="probability-models.html#probability-models"><i class="fa fa-check"></i><b>8.2.1</b> Probability Models</a></li>
 </ul></li>
 <li class="chapter" data-level="8.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>8.3</b> Discrete Random Variables</a><ul>
 <li class="chapter" data-level="8.3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>8.3.1</b> Expected Value</a></li>
@@ -467,16 +473,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="appendix-a-theoretical-probability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="random-variable-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="theory-of-random-variable.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -484,12 +492,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -501,6 +508,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -520,8 +531,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

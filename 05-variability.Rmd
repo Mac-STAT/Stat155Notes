@@ -339,7 +339,7 @@ Do you think that the mean arrival delay is different for morning and afternoon?
 
 We will return to the ideas of testing hypotheses later in the course.
 
-## Major Takeaways
+## Chapter 5 Major Takeaways
 
 - There are two major ways that randomness typically plays a role in the data we observe:
 

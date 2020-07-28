@@ -19,25 +19,33 @@ In our visualization of data, we've seen trends, patterns, and variation. Let's 
 
 Broadly, a model is a simplified representation of the world. When we build models, we may have different goals.
 
-One goal when building models is **prediction**. Given data on a **response** or **outcome variable**, $y$, and one or more **predictor or explanatory variables**, $x$, the goal is to find a mathematical function, $f$, of $x$ that gives good predictions of $y$.  For example, we might want to be able to predict a customer's chest size knowing their neck size. This $x$ may be a single variable, but it is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. 
+One goal when building models is **prediction**. Given data on a **response** or **outcome variable**, $Y$, and one or more **predictor or explanatory variables**, $X$, the goal is to find a mathematical function, $f$, of $X$ that gives good predictions of $Y$.  For example, we might want to be able to predict a customer's chest size knowing their neck size. This $X$ may be a single variable, but it is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. 
 
 ```{block, type="reflect"}
 Can you think of some other concrete examples in which we'd want a model to do prediction? Consider what predictions might be made about you every day...
 ```
 
-What are the qualities of a good model and function, $f$? We want to find an $f(x)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ (read, "y hat") to be close to the observed response. We want $y-\hat{y}$ to be small. This difference between the observed value and the prediction, $y-\hat{y}$, is called a **residual**. We'll discuss residuals more later.
+What are the qualities of a good model and function, $f$? We want to find an $f(X)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ (read, "y hat") to be close to the observed response. We want $y-\hat{y}$ to be small. This difference between the observed value and the prediction, $y-\hat{y}$, is called a **residual**. We'll discuss residuals more later.
 
-Another goal when building models is **description**. We want a model, $f(x)$, to "explain" the relationship between the $x$ and $y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. [George Box](https://en.wikipedia.org/wiki/George_E._P._Box) is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
+Another goal when building models is **description**. We want a model, $f(x)$, to "explain" the relationship between the $X$ and $Y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. [George Box](https://en.wikipedia.org/wiki/George_E._P._Box) is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
 
 ```{block, type="reflect"}
 Can you think of some concrete examples in which we'd want a model to do explain a phenomenon? Consider how policy decisions get made...
 ```
 
-To begin, we will consider a simple, but powerful model in which we limit this function, $f(x)$, to be a straight line with a y-intercept, $\beta_0$, and slope, $\beta_1$. ($\beta$ is the Greek letter beta.) The $E[y]$ below stands for the **expected value** of the response variable $y$.
+To begin, we will consider a simple, but powerful model in which we limit this function, $f(X)$, to be a straight line with a y-intercept, $\beta_0$, and slope, $\beta_1$. ($\beta$ is the Greek letter beta.) The $E[Y | X]$ below stands for the **expected value** of the response variable $Y$ for a *given* value of $X$. 
 
-$$E[y] = \hat{y} = f(x) = \beta_0 + \beta_1\,x$$
+$$E[Y | X] = \beta_0 + \beta_1\,X$$
 
-This is a **simple linear regression model**. We model the expected value (the average value) of the response variable as a line. It is the foundation of many statistical models used in modern statistics and is more flexible than you may think.
+This is a **simple linear regression model**. We model the expected value (the average value) of the response variable given an explanatory variable $X$ as a line. It is the foundation of many statistical models used in modern statistics and is more flexible than you may think.
+
+We'll need to find the values of the slope and intercept that give us a line that gets close to the averages in order to explain the general relationship between X and Y. We'll get to this soon.
+
+Once we have values the intercept and slope, we are going to call those estimates and put a hat on them, so $\hat{\beta}_0$ is our **estimated intercept** and our **estimated slope** is $\hat{\beta}_1$. We can use those to make predictions by plugging in a value of x: 
+
+$$\hat{y} = \hat{\beta}_0 +\hat{\beta}_1 x$$
+
+The little hat on top of y means that we're talking about a predicted or estimated value of y, so our model says that the predicted or estimated value of y is equal to an estimated intercept ($hat{\beta}_0$), plus an estimated slope ($hat{\beta}_1$), times x. 
 
 ```{block, type='mathbox'}
 In the past, you may have seen the equation of a line as 
@@ -169,16 +177,16 @@ What does line tell us for our business venture?
 
 If the scatterplot between two quantitative variables **resembles a straight line**,
 
-- a straight line could roughly **describe** the mean of $y$ for each value of $x$.
+- a straight line could roughly **describe** the mean value of $y$ for each value of $x$.
 - a straight line could **describe** how much we'd *expect* $y$ to change based on a 1 unit change in $x$.
 - a straight line could help us **predict** the $y$ based on a new value of $x$.
 
 
 ## "Best" fitting line
 
-To choose the "best" fitting line, we need to choose the intercept ($\beta_0$) and slope ($\beta_1$),
+To choose the "best" fitting line, we need to find estimates of the intercept ($\beta_0$) and slope ($\beta_1$),
 
-$$ \hat{y} = f(x) = \beta_0 + \beta_1\,x $$
+$$ E[Y | X] =  \beta_0 + \beta_1\,X $$
 
 that gives us the "best" fit to the $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$. 
 
@@ -188,7 +196,7 @@ What do we mean by "best"? In general, we'd like good predictions and a model th
 
 ### First idea
 
-One idea of "best" is that we want the line that minimizes the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( \beta_0 + \beta_1x_i)$. The residual is the error in our prediction, the difference between what you observe and what you predict based on the line.
+One idea of "best" is that we want the line that minimizes the sum of the **residuals**, $e_i = y_i - \hat{y}_i = y_i - ( \hat{\beta}_0 + \hat{\beta}_1x_i)$. The residual is the error in our prediction, the difference between what you observe and what you predict based on the line.
 
 - **Problem**: We will have positive and negative residuals; they will cancel each other out if we add them together. While a good idea, this definition of "best" won't give us what we want. We'll want an idea that deals with the negative signs. 
 
@@ -240,7 +248,7 @@ ss <- apply(b,1,f)
 image(beta0, beta1, matrix(log(ss),length(beta0),length(beta1)), col = c("white",topo.colors(100)[100:1])) # Use the log of Sum of Squares to see variation in lower end
 ```
 
-We can limit our search to $b_0 \in (-10,10)$ and $b_1 \in (2,3)$.
+We can limit our search to $\beta_0 \in (-10,10)$ and $\beta_1 \in (2,3)$.
 
 ```{r echo=TRUE}
 beta0 <- seq(-10, 10, by = 0.05)
@@ -259,7 +267,7 @@ We have the minimum point. Over the grid of pairs of values, the minimum sum of 
 - We could try a numerical optimization algorithm such as steepest descent.
 - We could use multivariable calculus (find partial derivatives, set equal to 0, and solve).
 
-To get started on the calculus, solve the following two equations for the two unknowns ($b_0$ and $b_1$):
+To get started on the calculus, solve the following two equations for the two unknowns ($\beta_0$ and $\beta_1$):
 
 $$\frac{\partial }{\partial \beta_0}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0$$
 $$\frac{\partial }{\partial \beta_1}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0$$
@@ -269,11 +277,11 @@ If you are a math/stat/physics/cs major, you should try this by hand and see if 
 
 If you find the minimum using calculus (super useful class!), you'll find that we can write the Least Squares solution in an equation format as functions of summary statistics (!), the estimated slope is
 
-$$ \beta_1  = r\frac{s_y}{s_x}$$
+$$ \hat{\beta}_1  = r\frac{s_y}{s_x}$$
 
 and the estimated intercept is
 
-$$ \beta_0 = \bar{y} - \beta_1\bar{x} $$
+$$ \hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x} $$
 
 where $\bar{x}$ is the mean of the variable on the x-axis, $\bar{y}$ is the mean of the variable on the y-axis, $s_x$ is the standard deviation of the variable on the x-axis, $s_y$ is the standard deviation of the variable on the y-axis, and $r$ is the correlation coefficient between the two variables.
 
@@ -313,9 +321,9 @@ body %>%
     summary()
 ```
 
-This simple linear regression line is
+This fit simple linear regression line is
 
-$$ E[\hbox{Chest}] = \widehat{\hbox{Chest}} = -3.18 + 2.73\,\hbox{Neck}$$
+$$ \widehat{\hbox{Chest}} = -3.18 + 2.73\,\hbox{Neck}$$
 
 If you have a neck size of 38 cm, then we predict the chest size of an ideal shirt is about 100.5 cm:
 
@@ -389,7 +397,7 @@ We haven't told you how the customer data we've been using was collected. As you
 What questions do you have about the sampling procedure?
 ```
 
-## Interpretation
+## Model Interpretation
 
 Let's look at the summary output of the `lm()` function in R again. We'll highlight some of the most important pieces of this output and discuss how you interpret them.
 
@@ -398,7 +406,7 @@ tshirt_mod <- lm(Chest ~ Neck, data = body)
 summary(tshirt_mod)
 ```
 
-### Intercept ($\beta_0$)
+### Intercept ($\hat{\beta}_0$)
 
 - **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for "(Intercept)". It is -3.1885 for this model. 
 - **Definition:** The intercept gives the average value of $y$ when $x$ is zero (**think about context**)
@@ -412,19 +420,19 @@ summary(tshirt_mod2)
 ```
 
 
-### Slope ($\beta_1$)
+### Slope ($\hat{\beta}_1$)
 
 - **Where to find:** In the table called "Coefficients", look for the number under "Estimate" for the name of the variable, "Neck" or "CNeck". It is 2.7369 for this model. (Note: the slopes for both `tshirt_mod` and `tshirt_mod2` are the same. Why?) 
 - **Definition:** The slope gives the change in average $y$ per 1 unit increase in $x$ (**not for individuals and not a causal statement**)
 - **Interpretation:** If we compare two groups of individuals with a 1 cm difference in the neck size (e.g., 38 cm and 39 cm OR 40 cm and 41 cm), then we'd expect the average chest sizes to be different by about 2.7 cm.
 - **Another Interpretation:** We'd expect the average chest size to increase by about 2.7 cm for each centimeter increase in neck size.
-- **Discussion:** Note that both interpretations are not written about an individual because the least squares line (our model) is a description of the **general trend** in the population. The slope describes the change in the average, not the change for one person.
+- **Discussion:** Note that both interpretations are not written about an individual because the least squares line (our fit model) is a description of the **general trend** in the population. The slope describes the change in the average, not the change for one person.
 
-### Least Squares/Regression Line ($\hat{y} = \beta_0 + \beta_1x$)
+### Least Squares Regression Line ($\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x$)
 
 - **Where to find:** In the table called "Coefficients", all of the values that you need to write down the formula of the line are in the "Estimate" column.
 - **Definition:** The line gives the estimated average of $y$ for each value of $x$ (**within the observed range of x**)
-- **Interpretation:** The regression line of (Predicted Chest = -3.18 + 2.73*Neck) gives the estimated average Chest size for a given Neck size, based on our sample of data.
+- **Interpretation:** The fit regression line of (Predicted Chest = -3.18 + 2.73*Neck) gives the estimated average Chest size for a given Neck size, based on our sample of data.
 - **Discussion:** The "within the observed range of $x$" phrase is very important. We can't predict values of $y$ for values of $x$ that are very different from what we have in our data. Trying to do so is a big no-no called **extrapolation**. We'll discuss this more in a bit.
 
 ### Correlation or Association vs. Causation
@@ -481,7 +489,7 @@ First things first. Describe the scatterplot.
 - **Direction**: Positive relationship (higher high school GPA is associated with higher college GPA)
 - **Form**: generally linear
 - **Strength**: There is a weak relationship when high school GPA < 3.0 ($r = 0.32$) and a fairly strong relationship when high school GPA > 3.0 ($r = 0.68$).
-- **Unusual**: As seen with the strength, there is greater variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening"** or **heteroscedasticity** (this terms is used quite a bit in econometrics). 
+- **Unusual**: As seen with the strength, there is greater variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening"** or **heteroscedasticity** (this terms is used quite a bit in Econometrics). 
 
 The code below computes the correlation coefficients separately for students with high school GPAs above 3 and for students with high school GPAs less than or equal to 3. We see that the correlation is higher for the high GPA group.
 
@@ -852,7 +860,7 @@ $$\beta_2 = a + bx_1$$
 This is called **effect modification** (when one variable can modify the effect of another variable on the outcome).
 
 - A model with effect modification looks like this:
-$$\hat{y} = \beta_0 + \beta_1x_{1} + \beta_2x_{2}= \beta_0 + \beta_1x_{1} + (a+bx_1)x_{2}= b_0 + b_1x_{1} +ax_2+bx_1x_{2}$$
+$$\hat{y} = \beta_0 + \beta_1x_{1} + \beta_2x_{2}= \beta_0 + \beta_1x_{1} + (a+bx_1)x_{2}= \beta_0 + \beta_1x_{1} +ax_2+bx_1x_{2}$$
 The model above has an **interaction term,** which is the product of two variables. Here we have $x_1*x_2$.
 
 Let's build a model with effect modification for our housing data. Let's include an interaction term between AnyFireplace and Living.Area to allow for different slopes.
@@ -1112,9 +1120,9 @@ summary(lm.gap)
 
 **Interpretations**
 
-What does the slope of this model, $b_1 = 7.2028$, mean in this data context?
+What does the slope of this model, $\beta_1 = 7.2028$, mean in this data context?
 
-$$\widehat{LifeExp} = b_0 + b_1 log(Income)$$
+$$\widehat{LifeExp} = \beta_0 + \beta_1 log(Income)$$
 
 
 - The slope is the the additive increase in the predicted $\widehat{LifeExp}$ when $log(Income)$ increases to $log(Income) + 1$.
@@ -1128,17 +1136,17 @@ So adding 1 to $log(Income)$ is equivalent to multiplying Income by 2.71.
 In our model, we note that if a country's income measured by GDP increased by a multiplicative factor of 2.71, the predicted average life expectancy of a country increases by about 7.2 years. 
 
 
-For the sake of illustration, imagine we fit a model where we had transformed life expectancy with a log transformation. What would the slope, $b_1$, mean in this context?
+For the sake of illustration, imagine we fit a model where we had transformed life expectancy with a log transformation. What would the slope, $\beta_1$, mean in this context?
 
-$$\widehat{log(LifeExp)} = b_0 + b_1 Income$$
+$$\widehat{log(LifeExp)} = \beta_0 + \beta_1 Income$$
 
 
 - The slope is the the additive increase in $\widehat{log(LifeExp)}$ when $Income$ increases to $Income + 1$.
 
 
-- Let's think about $\widehat{log(LifeExp)} + b_1$. Using rules of logarithms: 
-$$\widehat{log(LifeExp)} + b_1 = \widehat{log(LifeExp)} + log(e^{b_1}) = log(\widehat{LifeExp} * e^{b_1}) $$
-The additive increase of $b_1$ units in $\widehat{log(LifeExp)}$ is a multiplicative increase of $\widehat{LifeExp}$ by a factor of $e^{b_1}$.
+- Let's think about $\widehat{log(LifeExp)} + \beta_1$. Using rules of logarithms: 
+$$\widehat{log(LifeExp)} + \beta_1 = \widehat{log(LifeExp)} + log(e^{\beta_1}) = log(\widehat{LifeExp} * e^{\beta_1}) $$
+The additive increase of $\beta_1$ units in $\widehat{log(LifeExp)}$ is a multiplicative increase of $\widehat{LifeExp}$ by a factor of $e^{\beta_1}$.
 
 #### Alternative Solutions
 
@@ -1254,7 +1262,7 @@ If the observed data do not satisfy the conditions above, what can we do? Should
     - Do a **sensitivity analysis**: Fit a model with and without the outlier and see if your conclusions drastically change (see if those points had leverage to change the model).
 
 
-## Major Takeaways
+## Chapter 3 Major Takeaways
 
 1. All models are wrong, but some are useful and fair for our goals (prediction or description). 
 

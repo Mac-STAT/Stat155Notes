@@ -630,7 +630,7 @@ legend('topright',legend=c('df = 5','df = 10','df = 25', 'df = 100','Std. Normal
 Since the Student T distribution is approximately Normal when sample sizes are large, we will typically use the Normal model. However, if sample sizes are small ($n<30$ or so), the Normal model is not appropriate. So, in those rare cases, we'll need to refer to Student's T.
 
 
-## Major Takeaways
+## Chapter 6 Major Takeaways
 
 - The two common ways we'll think about probability is empirical probability (imagining repeated a random process over and over again; the probability of an event is the relative frequency of that event happening) and theoretical probability (based on axioms and mathematical theory).
 

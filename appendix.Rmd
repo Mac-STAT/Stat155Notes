@@ -148,7 +148,7 @@ No, they wouldn't be independent. In that case, let's calculate the probability 
 
 
 
-## Random Variable
+## Theory of Random Variable
 
 A **Random Variable** ($X$) is a real-valued function whose outcome we don't know beforehand.
 

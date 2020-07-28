@@ -112,7 +112,7 @@ Based on a logistic regression model, the predicted log odds of an o-ring failur
 $$\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = 15.0429 -0.2322\cdot Temperature$$
 
 
-## Interpretation
+## Coefficient Interpretation
 
 Let's take a look at the estimates from the model. What do they mean?
 
@@ -201,7 +201,7 @@ augment(model.glm, type.predict ='response') %>%
 
 Where the threshold goes depends on the real consequences of making those two types of errors. 
 
-## Model Evaluation
+## Logistic Model Evaluation
 
 In deciding whether a logistic regression model is a good and useful model, we need to consider the accuracy, the false positive rate, and the false negative rate. Depending on the context, we may focus on maximizing the overall accuracy or we may focus on minimizing the false negative rate or minimizing the false positive rate. 
 

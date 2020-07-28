@@ -251,7 +251,7 @@ We are going to pay extra attention to negative consequences of the above that m
 Throughout the semester, you will be asked to think about answers to the question: "What are the ethical considerations for this data set/analysis?" Like in other disciplines, the choices we make will be biased by our life experiences. Throughout this class, let us be mindful in increasing our awareness of the real consequences caused by choices we make in Statistics.
 
 
-## Major Takeaways
+## Chapter 1 Major Takeaways
 
 1. Any observed data is a sample of a larger population or phenomenon. But you need to consider which population. Is it the population of interest to you? If not, then why?
 

@@ -25,9 +25,9 @@ One goal when building models is **prediction**. Given data on a **response** or
 Can you think of some other concrete examples in which we'd want a model to do prediction? Consider what predictions might be made about you every day...
 ```
 
-What are the qualities of a good model and function, $f$? We want to find an $f(X)$ such that $\hat{y} = f(x)$ is a good predictor of $y$. In other words, we want the model prediction $\hat{y}$ (read, "y hat") to be close to the observed response. We want $y-\hat{y}$ to be small. This difference between the observed value and the prediction, $y-\hat{y}$, is called a **residual**. We'll discuss residuals more later.
+What are the qualities of a good model and function, $f$? We want to find an $f(X)$ such that if we plug in a value of $X=x$, we'll get a good predictor of the observed outcome values $y$. In other words, we want the model prediction $\hat{y}=f(x)$ (read, "y hat") to be close to the observed outcome value. We want $y-\hat{y}$ to be small. This difference between the observed value and the prediction, $y-\hat{y}$, is called a **residual**. We'll discuss residuals more later.
 
-Another goal when building models is **description**. We want a model, $f(x)$, to "explain" the relationship between the $X$ and $Y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. [George Box](https://en.wikipedia.org/wiki/George_E._P._Box) is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
+Another goal when building models is **description**. We want a model to "explain" the relationship between the $X$ and $Y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. [George Box](https://en.wikipedia.org/wiki/George_E._P._Box) is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
 
 ```{block, type="reflect"}
 Can you think of some concrete examples in which we'd want a model to do explain a phenomenon? Consider how policy decisions get made...

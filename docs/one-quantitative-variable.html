@@ -229,6 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.3</b> Is the Difference Real?</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
+<li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -607,7 +608,7 @@ What percentage of the data is between the green dashed lines (length of interva
 </div>
 <p>The code below computes the fraction of data points, <code>x</code>, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean.</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="one-quantitative-variable.html#cb57-1"></a><span class="kw">sum</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(x) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(x))<span class="op">/</span><span class="kw">length</span>(x)</span></code></pre></div>
-<pre><code>## [1] 0.6833333</code></pre>
+<pre><code>## [1] 0.6793333</code></pre>
 <p>So with this data set, about 68% of the data values fall within 1 SD of the mean.</p>
 <div class="reflect">
 <p>

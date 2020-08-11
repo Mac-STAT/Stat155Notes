@@ -1064,9 +1064,9 @@ lm(y ~ poly(x, degree = 2, raw = TRUE), data = dat)
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          174.519                            29.017  
+##                          212.827                            14.540  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -5.746
+##                           -4.501
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there!
@@ -1647,9 +1647,9 @@ We collect data, analyze how well our model predicts that data, and collect more
 * If you want a "gentle" but mathematical introduction to Causal Inference, we suggest taking the class at Macalester and/or reading "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell). Fun Fact: Nicholas Jewell was Prof. Heggeseth's PhD advisor!*
   
   
-  ## Chapter 3 Major Takeaways
+## Chapter 3 Major Takeaways
   
-  1. All models are wrong, but some are useful and fair for our goals (prediction or description). 
+1. All models are wrong, but some are useful and fair for our goals (prediction or description). 
 
 2. We want a model with small residuals or a low number of prediction errors.
 

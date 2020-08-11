@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="multiple-linear-regression.html"/>
-<link rel="next" href="logistic-regression-models.html"/>
+<link rel="next" href="chapter-3-major-takeaways.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -229,6 +229,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.3</b> Is the Difference Real?</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
+<li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -375,28 +376,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Wait - we could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn’t mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible with writing down a DAG (causal model), we have a starting ground for moving forward.</p>
 <p>We collect data, analyze how well our model predicts that data, and collect more data based on that, perhaps measuring more potential confounders as our scientific knowledge grows. We can also conduct sensitivity analyses by asking: how strongly must a confounder affect the variable of causal interest and the outcome to completely negate or reverse the association we see? Such endeavors and more are the subject of the field of <em>causal inference</em>.</p>
 <ul>
-<li><p>If you want a “gentle” but mathematical introduction to Causal Inference, we suggest taking the class at Macalester and/or reading “Causal Inference in Statistics: A Primer” by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell). Fun Fact: Nicholas Jewell was Prof. Heggeseth’s PhD advisor!*</p>
-<h2 id="chapter-3-major-takeaways"><span class="header-section-number">3.10</span> Chapter 3 Major Takeaways</h2>
-<ol style="list-style-type: decimal">
-<li>All models are wrong, but some are useful and fair for our goals (prediction or description).</li>
-</ol></li>
+<li>If you want a “gentle” but mathematical introduction to Causal Inference, we suggest taking the class at Macalester and/or reading “Causal Inference in Statistics: A Primer” by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell). Fun Fact: Nicholas Jewell was Prof. Heggeseth’s PhD advisor!*</li>
 </ul>
-<ol start="2" style="list-style-type: decimal">
-<li><p>We want a model with small residuals or a low number of prediction errors.</p></li>
-<li><p>To determine if a model is useful and fair, we study what is left over (the residuals).</p></li>
-<li><p>We use models to describe phenomena by interpreting slope coefficients. But make sure you are talking about the average or predicted outcome! If you have multiple variables, you are keeping all others fixed (if possible).</p></li>
-<li><p>We also use models to make predictions, but be careful about <strong>extrapolating</strong>: predicting outside the observed range of our predictor (<span class="math inline">\(X\)</span>) variables.</p></li>
-</ol>
-
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="multiple-linear-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="logistic-regression-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-3-major-takeaways.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

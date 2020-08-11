@@ -168,51 +168,11 @@ For example, say we note that on days with higher ice cream sales, there are typ
 
 In an experiment, we "manipulate" the characteristics for an individual by randomly assigning them to a treatment group. This random assignment is intended to break the relationship between any common causes and the treatment so as to try to reduce the impact of confounding. It is impossible to entirely remove the possibility of confounding, but the random assignment to a treatment helps. (Note: things can get complicated if individuals don't comply with the treatment such as take the multivitamin every single day...)
 
-## Causal Inference {#dag}
+## Causal Inference 
 
 Causal inference is the process of making a conclusion about direct cause and effect between a "treatment" and a "response". It is difficult to make causal inferences/statements based on data from an observational study due to the possible presence of confounding variables. 
 
-
-There is a whole area of statistics dedicated to methods that attempt to overcome the potential confounding. A full overview of causal inference is beyond the scope of this course, but a first good step in this direction is to consider a **causal model**, which is a representation of the  causal mechanism by which data were generated. We typically visualize these models with a graphical structure called a **directed acyclic graph or DAG** for short. In a DAG, we have circles or **nodes** that represented variables and arrow or **directed edges** that indicate the causal pathway. 
-
-If we were interested in the causal effect of smoking on cardiac arrest, we might draw the following causal model (using previous research to inform our graph).
-
-```{r}
-smoking_ca_dag <- dagify(cardiacarrest ~ cholesterol,
-       cholesterol ~ smoking + weight,
-       smoking ~ unhealthy,
-       weight ~ unhealthy,
-       labels = c("cardiacarrest" = "Cardiac\n Arrest", 
-                  "smoking" = "Smoking",
-                  "cholesterol" = "Cholesterol",
-                  "unhealthy" = "Unhealthy\n Lifestyle",
-                  "weight" = "Weight"),
-       latent = "unhealthy",
-       exposure = "smoking",
-       outcome = "cardiacarrest")
-
-ggdag(smoking_ca_dag, text = FALSE, use_labels = "label") +
-  theme_dag_blank()
-```
-
-Below we discuss the three basic DAG structures.
-
-- **Chain**: *A chain includes three nodes and two edges, with one directed into and one edge directed out of the middle variable.* In the above example, we see a few chains. There is a chain that suggests an unhealthy lifestyle leads to smoking which directly impacts cholesterol levels. Another chain suggests an unhealthy lifestyle direclty impacts human weight which impacts cholesterol levels. By our DAG, there are two causal pathways that directly impact cholesterol levels. 
-
-- **Fork**: *A fork includes three nodes with two arrows emanating from the middle variable*. The only fork in the example above involves unhealthy lifestyle (middle variable), weight, and smoking. In this case, we are assuming that an unhealthy lifestyle is a **common cause** of both weight and smoking. Thus, the lifestyle might confound the relationship between smoking and weight, in that smoking and weight may appear to be associated with each other because they have a common cause. 
-
-- **Colliders**: *A collider occurs when one node receives edges from two other nodes.* In the example above, smoking and weight have a **common effect**, cholesterol.
-
-These structures are important to understand because they can help guide our analysis and modeling. Assuming the causal model is correct (which might not be...), we have a better sense of how smoking might be related to cardiac arrest. 
-
-- There is a **direct path** from smoking through cholesterol to cardiac arrest. Smokers may have a higher cholesterol level and thus a higher risk of cardiac arrest.
-- There is an **indirect (backdoor) path** from smoking to cardiac arrest through weight. Smokers also have an unhealty lifestyle which means they are likely to have a higher weight leading to a higher cholesterol level and thus a higher risk of cardiac arrest. 
-
-If we only want to estimate the direct relationship between smoking and cardiac arrest, we need to block the impact the indirect path. There are many ways to do this that we'll talk about later (stratification, including variable in model, etc.)
-
-
-If you want more information about causal inference, take the Causal Inference course or check out the "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell (Prof. Heggeseth has a copy in her office). A free PDF of the textbook is also available for download [here](http://bayes.cs.ucla.edu/PRIMER/).
-
+There is a whole area of statistics dedicated to methods that attempt to overcome the potential confounding. We'll talk more about causal inference in (Section \@ref(dag)).
 
 ## Ethical Considerations
 
@@ -261,6 +221,4 @@ Throughout the semester, you will be asked to think about answers to the questio
 
 4. Study design impacts what type of conclusions we can make. Confounding variables prevent us from easily making cause and effect conclusions. 
 
-5. To make a causal conclusion, you must think carefully about all potential causal pathways between a treatment and response and deal with them appropriately. 
-
-6. We need to be aware of the real and ethical consequences of our choices when working with data and building statistical models.
+5. We need to be aware of the real and ethical consequences of our choices when working with data and building statistical models.

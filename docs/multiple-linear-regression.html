@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.8 Multiple Linear Regression | STAT 155 Notes</title>
+  <title>3.9 Multiple Linear Regression | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.8 Multiple Linear Regression | STAT 155 Notes" />
+  <meta property="og:title" content="3.9 Multiple Linear Regression | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.8 Multiple Linear Regression | STAT 155 Notes" />
+  <meta name="twitter:title" content="3.9 Multiple Linear Regression | STAT 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="model-evaluation.html"/>
-<link rel="next" href="diagnostics.html"/>
+<link rel="prev" href="conditions-for-linear-regression-models.html"/>
+<link rel="next" href="dag.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -146,7 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
 <li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
-<li class="chapter" data-level="1.6" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
 <li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
 <li class="chapter" data-level="1.8" data-path="chapter-1-major-takeaways.html"><a href="chapter-1-major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Chapter 1 Major Takeaways</a></li>
 </ul></li>
@@ -219,18 +219,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.7.2" data-path="model-evaluation.html"><a href="model-evaluation.html#prediction-errors"><i class="fa fa-check"></i><b>3.7.2</b> Prediction Errors</a></li>
 <li class="chapter" data-level="3.7.3" data-path="model-evaluation.html"><a href="model-evaluation.html#r2"><i class="fa fa-check"></i><b>3.7.3</b> <span class="math inline">\(R^2\)</span></a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>3.8</b> Multiple Linear Regression</a><ul>
-<li class="chapter" data-level="3.8.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#indicator-variables"><i class="fa fa-check"></i><b>3.8.1</b> Indicator Variables</a></li>
-<li class="chapter" data-level="3.8.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interaction-variables"><i class="fa fa-check"></i><b>3.8.2</b> Interaction Variables</a></li>
-<li class="chapter" data-level="3.8.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#causation"><i class="fa fa-check"></i><b>3.8.3</b> Causation</a></li>
-<li class="chapter" data-level="3.8.4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#conditions-for-multiple-linear-regression"><i class="fa fa-check"></i><b>3.8.4</b> Conditions for Multiple Linear Regression</a></li>
-<li class="chapter" data-level="3.8.5" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.8.5</b> Is the Difference Real?</a></li>
-<li class="chapter" data-level="3.8.6" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#dealing-with-non-linear-relationships"><i class="fa fa-check"></i><b>3.8.6</b> Dealing with Non-Linear Relationships</a></li>
+<li class="chapter" data-level="3.8" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html"><i class="fa fa-check"></i><b>3.8</b> Conditions for Linear Regression Models</a><ul>
+<li class="chapter" data-level="3.8.1" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#residual-plot"><i class="fa fa-check"></i><b>3.8.1</b> Residual Plot</a></li>
+<li class="chapter" data-level="3.8.2" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#solutions-for-non-linear-relationships"><i class="fa fa-check"></i><b>3.8.2</b> Solutions for Non-Linear Relationships</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="diagnostics.html"><a href="diagnostics.html"><i class="fa fa-check"></i><b>3.9</b> Diagnostics</a><ul>
-<li class="chapter" data-level="3.9.1" data-path="diagnostics.html"><a href="diagnostics.html#solutions-to-regression-issues"><i class="fa fa-check"></i><b>3.9.1</b> Solutions to Regression Issues</a></li>
+<li class="chapter" data-level="3.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>3.9</b> Multiple Linear Regression</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#indicator-variables"><i class="fa fa-check"></i><b>3.9.1</b> Indicator Variables</a></li>
+<li class="chapter" data-level="3.9.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.2</b> Interaction Variables</a></li>
+<li class="chapter" data-level="3.9.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.3</b> Is the Difference Real?</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.10</b> Chapter 3 Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -357,11 +355,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="multiple-linear-regression" class="section level2">
-<h2><span class="header-section-number">3.8</span> Multiple Linear Regression</h2>
-<p>We can generalize the idea of a simple linear regression model by including many predictor variables (<span class="math inline">\(x\)</span>’s). A <strong>multiple linear regression model</strong> can be written as:</p>
-<p><span class="math display">\[ E[Y] = \beta_0 + \beta_1\,x_{1} + \cdots + \beta_k\,x_{k} = \hat{y} \]</span></p>
+<h2><span class="header-section-number">3.9</span> Multiple Linear Regression</h2>
+<p>We can generalize the idea of a simple linear regression model by including many predictor variables (<span class="math inline">\(X\)</span>’s). A <strong>multiple linear regression model</strong> can be written as:</p>
+<p><span class="math display">\[ E[Y |X_1,...,X_k ] = \beta_0 + \beta_1\,X_{1} + \cdots + \beta_k\,X_{k}  \]</span></p>
 <ul>
-<li><p>Each coefficient <span class="math inline">\(\beta_j\)</span> can be interpreted as the increase in the predicted/average <span class="math inline">\(y\)</span> associated with a 1 unit increase in <span class="math inline">\(x_j\)</span>, <strong>keeping all other variables constant</strong>. (*There are some exceptions - we’ll get there.)</p></li>
+<li><p>Each coefficient <span class="math inline">\(\beta_j\)</span> can be interpreted as the increase in the predicted/average <span class="math inline">\(y\)</span> associated with a 1 unit increase in <span class="math inline">\(X_j\)</span>, <strong>keeping all other variables constant</strong>. (*There are some exceptions - we’ll get there.)</p></li>
 <li><p>These explanatory variables can be:</p>
 <ul>
 <li>Quantitative variables (or transformations of them)</li>
@@ -370,8 +368,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>Let’s talk about a new data example: home prices. We want to build a model to predict the price of a home based on its many characteristics. Here we have a dataset of homes recently sold in New England with many variables such as the age of the home, the land value, whether or not it has central air conditioning, the number of fireplaces, the sale price, and more…</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="multiple-linear-regression.html#cb146-1"></a>homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&#39;Data/Saratoga.txt&#39;</span>)</span>
-<span id="cb146-2"><a href="multiple-linear-regression.html#cb146-2"></a><span class="kw">head</span>(homes)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="multiple-linear-regression.html#cb159-1"></a>homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&#39;Data/Saratoga.txt&#39;</span>)</span>
+<span id="cb159-2"><a href="multiple-linear-regression.html#cb159-2"></a><span class="kw">head</span>(homes)</span></code></pre></div>
 <pre><code>##    Price Lot.Size Waterfront Age Land.Value New.Construct Central.Air Fuel.Type
 ## 1 132500     0.09          0  42      50000             0           0         3
 ## 2 181115     0.92          0   0      22300             0           0         2
@@ -393,17 +391,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4     5
 ## 5     3
 ## 6     8</code></pre>
-<p>*The exception to the interpretation comment above is if some of our <span class="math inline">\(x\)</span> variables are strongly correlated (called <strong>multicollinearity</strong>). In this case, we cannot hold all other variables constant (at least not well) because if we increase the value of one variable, then variables highly correlated with it will also likely change in value.</p>
+<p>*The exception to the interpretation comment above is if some of our <span class="math inline">\(X\)</span> variables are strongly correlated (called <strong>multicollinearity</strong>). In this case, we cannot hold all other variables constant (at least not well) because if we increase the value of one variable, then variables highly correlated with it will also likely change in value.</p>
 <div id="indicator-variables" class="section level3">
-<h3><span class="header-section-number">3.8.1</span> Indicator Variables</h3>
+<h3><span class="header-section-number">3.9.1</span> Indicator Variables</h3>
 <p>In New England, fireplaces are often used as a way to provide supplementary heat to the house. Let’s study the impact of a fireplace has on the sale price of a home. In particular, we only care if the home has 1 or more fireplaces or no fireplaces. So we make a new variable that is <code>TRUE</code> if there is at least one fireplace in a home and <code>FALSE</code> otherwise.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="multiple-linear-regression.html#cb148-1"></a>homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
-<span id="cb148-2"><a href="multiple-linear-regression.html#cb148-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="multiple-linear-regression.html#cb161-1"></a>homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
+<span id="cb161-2"><a href="multiple-linear-regression.html#cb161-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</span></code></pre></div>
 <p>In order to include this information in our linear regression model, we need to turn that categorical variable (<code>AnyFireplace</code> with values of <code>TRUE</code> or <code>FALSE</code>) into an <strong>indicator variable</strong>, which has a numeric value of 0 or 1:</p>
-<p><span class="math display">\[ \hbox{AnyFireplaceTRUE} = \begin{cases}1 \quad \text{ if a home has at least one fireplace}\\ 0\quad \text{ if a home does not have a fireplace} \end{cases}\]</span></p>
-<p>In fact, R creates this indicator for you when you include a categorical variable as an <span class="math inline">\(x\)</span> variable the <code>lm()</code> function.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="multiple-linear-regression.html#cb149-1"></a>lm.home &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace, <span class="dt">data =</span> homes)</span>
-<span id="cb149-2"><a href="multiple-linear-regression.html#cb149-2"></a><span class="kw">summary</span>(lm.home)</span></code></pre></div>
+<p><span class="math display">\[ \hbox{AnyFireplaceTRUE} = \begin{cases}1 \quad \text{ if a home has at least one fireplace}\\ 0\quad \text{ if a home does not have a fireplace} \end{cases}\]</span>
+Our model is written as</p>
+<p><span class="math display">\[E[\hbox{Price} | \hbox{AnyFireplace}] = \beta_0 + \beta_1 \hbox{AnyFireplaceTRUE}\]</span></p>
+<p><strong>What does this mean?</strong></p>
+<p>Let’s think about two types of homes: a home with one or more fireplaces and a home without a fireplace. Let’s write out the model equations for those two types of homes.</p>
+<ul>
+<li><p>Home with fireplace (indicator variable = 1):<br />
+<span class="math display">\[E[\hbox{Price} | \hbox{AnyFireplace} = TRUE] = \beta_0 + \beta_1*1 = \beta_0+\beta_1\]</span></p></li>
+<li><p>Home without fireplace (indicator variable = 0):<br />
+<span class="math display">\[E[\hbox{Price} | \hbox{AnyFireplace} = FALSE] = \beta_0 + \beta_1*0 = \beta_0\]</span>
+The difference between the expected price is <span class="math inline">\(\beta_1\)</span>, the value of the “slope” for the indicator variable (also referred to as the <code>AnyFireplaceTRUE</code> coefficient).</p></li>
+</ul>
+<p>To get an estimate of <span class="math inline">\(\beta_1\)</span>, we need to fit our model to the data. In fact, R creates this indicator variable for you when you include a categorical variable as an <span class="math inline">\(x\)</span> variable the <code>lm()</code> function.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="multiple-linear-regression.html#cb162-1"></a>lm.home &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace, <span class="dt">data =</span> homes)</span>
+<span id="cb162-2"><a href="multiple-linear-regression.html#cb162-2"></a><span class="kw">summary</span>(lm.home)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Price ~ AnyFireplace, data = homes)
@@ -423,20 +432,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.1077,	Adjusted R-squared:  0.1072 
 ## F-statistic: 208.3 on 1 and 1726 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Our “best fitting line” is</p>
-<p><span class="math display">\[ E[\hbox{Price}] = 174653 + 65261\,\hbox{AnyFireplaceTRUE} \]</span></p>
-<p><strong>What does this mean?</strong></p>
-<p>Let’s think about two types of homes: a home with one or more fireplaces and a home without a fireplace. Let’s write out the equations for those two types of homes.</p>
-<ul>
-<li>Home with fireplace (indicator variable = 1):<br />
-<span class="math display">\[ E[\hbox{Price}] = 174653 + 65261 \times 1 = \$ 239,914 \]</span></li>
-</ul>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="multiple-linear-regression.html#cb151-1"></a><span class="dv">174653</span> <span class="op">+</span><span class="st"> </span><span class="dv">65261</span><span class="op">*</span><span class="dv">1</span></span></code></pre></div>
+<p><span class="math display">\[ \hbox{Predicted Price} = 174653 + 65261\,\hbox{AnyFireplaceTRUE} \]</span>
+and our predicted price for a house with a fireplace is</p>
+<p><span class="math display">\[ \hbox{Predicted Price} = 174653 + 65261 \times 1 = \$ 239,914 \]</span></p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="multiple-linear-regression.html#cb164-1"></a><span class="dv">174653</span> <span class="op">+</span><span class="st"> </span><span class="dv">65261</span><span class="op">*</span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 239914</code></pre>
-<ul>
-<li>Home without fireplace (indicator variable = 0):<br />
-<span class="math display">\[ E[\hbox{Price}] = 174653 + 65261 \times 0 = \$ 174,653 \]</span></li>
-</ul>
-<p>The difference between these predicted prices is $65,261, the value of the “slope” for the indicator variable (also referred to as the <code>AnyFireplaceTRUE</code> coefficient).</p>
+<p>and the predicted price for a house without a fireplace is</p>
+<p><span class="math display">\[\hbox{Predicted Price} = 174653 + 65261 \times 0 = \$ 174,653\]</span></p>
+<p>The difference between these predicted prices is <span class="math inline">\(\hat{\beta}_1\)</span> = $65,261, the estimated value of the “slope” for the indicator variable.</p>
 <div class="reflect">
 <p>
 So is this how much a fireplace is worth? If I installed a fireplace in my house, should the value of my house go up $65,260?
@@ -446,21 +449,55 @@ So is this how much a fireplace is worth? If I installed a fireplace in my house
 </p>
 </div>
 <p>Let’s consider the size of the house. Is price related to the area of living space (square footage)?</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="multiple-linear-regression.html#cb153-1"></a>homes <span class="op">%&gt;%</span></span>
-<span id="cb153-2"><a href="multiple-linear-regression.html#cb153-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb153-3"><a href="multiple-linear-regression.html#cb153-3"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span></span>
-<span id="cb153-4"><a href="multiple-linear-regression.html#cb153-4"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="multiple-linear-regression.html#cb166-1"></a>homes <span class="op">%&gt;%</span></span>
+<span id="cb166-2"><a href="multiple-linear-regression.html#cb166-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb166-3"><a href="multiple-linear-regression.html#cb166-3"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span></span>
+<span id="cb166-4"><a href="multiple-linear-regression.html#cb166-4"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
 <p>Is the presence of a fireplace related to area of living space?</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="multiple-linear-regression.html#cb154-1"></a>homes <span class="op">%&gt;%</span></span>
-<span id="cb154-2"><a href="multiple-linear-regression.html#cb154-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> AnyFireplace, <span class="dt">y =</span> Living.Area)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb154-3"><a href="multiple-linear-regression.html#cb154-3"></a><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb154-4"><a href="multiple-linear-regression.html#cb154-4"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="multiple-linear-regression.html#cb167-1"></a>homes <span class="op">%&gt;%</span></span>
+<span id="cb167-2"><a href="multiple-linear-regression.html#cb167-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> AnyFireplace, <span class="dt">y =</span> Living.Area)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb167-3"><a href="multiple-linear-regression.html#cb167-3"></a><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb167-4"><a href="multiple-linear-regression.html#cb167-4"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-65-1.png" width="672" /></p>
 <p>We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, <code>Living.Area</code> could confound the relationship between <code>AnyFireplace</code> and <code>Price</code> because it is related to both variables. That is, it is possible that Living Area is a cause of having a fireplace and Living Area also clearly is a cause of Price.</p>
-<p>Let’s put <code>Living.Area</code> in the model along with <code>AnyFireplace</code> to account for it (to control/adjust for it).</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="multiple-linear-regression.html#cb155-1"></a>lm.home2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace <span class="op">+</span><span class="st"> </span>Living.Area, <span class="dt">data =</span> homes)</span>
-<span id="cb155-2"><a href="multiple-linear-regression.html#cb155-2"></a><span class="kw">summary</span>(lm.home2)</span></code></pre></div>
+<p>Let’s put <code>Living.Area</code> in the model along with <code>AnyFireplace</code> to account for it (to control/adjust for it),</p>
+<p><span class="math display">\[E[\hbox{Price} | \hbox{AnyFireplace, Living.Area}] = \beta_0 + \beta_1\,\hbox{AnyFireplaceTRUE} + \beta_2\,\hbox{Living.Area}\]</span></p>
+<p><strong>What does this mean?</strong></p>
+<p>Let’s think about two types of homes: a home with one or more fireplaces and a home without a fireplace.</p>
+<ul>
+<li>Home with fireplace (indicator = 1):</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
+E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &amp;= \beta_0 + \beta_1 \times 1 + \beta_2 \times \hbox{Living.Area} \\
+&amp;= (\beta_0 + \beta_1 ) + \beta_2 \times \hbox{Living.Area}
+\end{align*}\]</span></p>
+<p><em>Among homes with a fireplace, we have one linear relationship between living area and price.</em></p>
+<ul>
+<li>Home without fireplace (indicator = 0):</li>
+</ul>
+<p><span class="math display">\[\begin{align*}
+E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &amp;= \beta_0 + \beta_1 \times 0 + \beta_2 \times \hbox{Living.Area} \\
+&amp;= \beta_0 + \beta_2 \times \hbox{Living.Area}
+\end{align*}\]</span></p>
+<p><em>Among homes without a fireplace, we have a different linear relationship between living area and price.</em></p>
+<ul>
+<li>For either type of home, <span class="math inline">\(\beta_2\)</span> is the increase in the expected or average Price associated with a 1 square footage increase in Living.Area, <strong>holding the number of fireplaces constant</strong>.</li>
+</ul>
+<p>Now let’s compare homes that are the same size.</p>
+<p><em>If we keep Living.Area constant by considering two equally sized homes, then we’d expect the home with the fireplace to be worth <span class="math inline">\(\beta_1\)</span> more than a home without a fireplace.</em></p>
+<p>We see this by taking the difference between the two equations:</p>
+<p><span class="math display">\[E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] - E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}]\]</span></p>
+<p><span class="math display">\[
+\begin{align*}
+\,&amp;= (\beta_0+\beta_1 + \beta_2 \times \hbox{Living.Area}) - ( \beta_0 + \beta_2 \times \hbox{Living.Area})\\
+\,&amp;= \beta_1
+\end{align*}
+\]</span></p>
+<p>The difference between the intercepts is <span class="math inline">\(\beta_1\)</span>.</p>
+<p>To get the estimates of <span class="math inline">\(\beta_0,\beta_1,\)</span> and <span class="math inline">\(\beta_2\)</span>, we fit the model in R,</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="multiple-linear-regression.html#cb168-1"></a>lm.home2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace <span class="op">+</span><span class="st"> </span>Living.Area, <span class="dt">data =</span> homes)</span>
+<span id="cb168-2"><a href="multiple-linear-regression.html#cb168-2"></a><span class="kw">summary</span>(lm.home2)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Price ~ AnyFireplace + Living.Area, data = homes)
@@ -481,61 +518,29 @@ So is this how much a fireplace is worth? If I installed a fireplace in my house
 ## Multiple R-squared:  0.5081,	Adjusted R-squared:  0.5076 
 ## F-statistic:   891 on 2 and 1725 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>Our “best fitting line” is</p>
-<p><span class="math display">\[ E[\hbox{Price}] = 13599.16 + 5567.37\,\hbox{AnyFireplaceTRUE} + 111.21\,\hbox{Living.Area} \]</span></p>
-<p>Note that the slope for the indicator variable is very different. This suggests that <code>Living.Area</code> was confounding the relationship between <code>Price</code> and <code>AnyFireplace</code>.</p>
-<p><strong>What does this mean?</strong></p>
-<p>Let’s think about two types of homes: a home with one or more fireplaces and a home without a fireplace.</p>
+<p><span class="math display">\[\hbox{Predicted Price} = 13599.16 + 5567.37\,\hbox{AnyFireplaceTRUE} + 111.21\,\hbox{Living.Area}\]</span></p>
 <ul>
-<li>Home with fireplace (indicator = 1):</li>
+<li><p>$111.21 is the estimated increase in the expected or average Price associated with a 1 square foot increase in Living.Area, <strong>holding all other variables (AnyFireplace) constant</strong>.</p></li>
+<li><p>$5567.37 is the estimated increase in the expected or average Price associated with a 1 unit increase in AnyFireplace (going from FALSE to TRUE), <strong>holding all other variables (Living.Area) constant</strong>.</p></li>
 </ul>
-<p><span class="math display">\[\begin{align*}
-E[\hbox{Price}] &amp;= 13599.16 + 5567.37 \times 1 + 111.21 \times \hbox{Living.Area} \\
-&amp;= 19166.53 + 111.21\,\hbox{Living.Area}
-\end{align*}\]</span></p>
-<p><em>Among homes with a fireplace, we have one linear relationship between living area and price.</em></p>
-<ul>
-<li>Home without fireplace (indicator = 0):</li>
-</ul>
-<p><span class="math display">\[\begin{align*}
-E[\hbox{Price}] &amp;= 13599.16 + 5567.37 \times 0 + 111.21 \times \hbox{Living.Area} \\
-&amp;= 13599.16 + 111.21 \times \hbox{Living.Area}
-\end{align*}\]</span></p>
-<p><em>Among homes without a fireplace, we have a different linear relationship between living area and price.</em></p>
-<ul>
-<li>For either type of home, $111.21 is the increase in the predicted or average Price associated with a 1 square footage increase in Living.Area, <strong>holding the number of fireplaces constant</strong>.</li>
-</ul>
-<p>Now let’s compare homes that are the same size.</p>
-<p><em>If we keep Living.Area constant by considering two equally sized homes, then we’d expect the home with the fireplace to be worth $5567.37 more than a home without a fireplace.</em></p>
-<p>We see this by taking the difference between the two equations:</p>
-<p><span class="math display">\[ \hbox{Predicted Price (with Fireplace)} - \hbox{Predicted Price (without Fireplace)} \]</span></p>
-<p><span class="math display">\[
-\begin{align*}
-\,&amp;= (\$19,166.53 + \$111.21 \times \hbox{Living.Area}) - ( \$13599.16 + \$111.21 \times \hbox{Living.Area})
-\,&amp;= \$19,166.53 - \$13,599.16 = \$5567.37
-\end{align*}
-\]</span></p>
-<p>The difference between the intercepts is 5567.37.</p>
-<ul>
-<li><p>This was the estimated coefficient or slope for AnyFireplaceTRUE.</p></li>
-<li><p>So the $5567.37 is the increase in the predicted or average Price associated with a 1 unit increase in AnyFireplace (going from FALSE to TRUE), <strong>holding all other variables (Living.Area) constant</strong>.</p></li>
-</ul>
+<p>Note that the slope for the indicator variable is very different with the addition of Living.Area. This suggests that <code>Living.Area</code> was confounding the relationship between <code>Price</code> and <code>AnyFireplace</code>.</p>
 <p>Let’s look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines).</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="multiple-linear-regression.html#cb157-1"></a>homes <span class="op">%&gt;%</span></span>
-<span id="cb157-2"><a href="multiple-linear-regression.html#cb157-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb157-3"><a href="multiple-linear-regression.html#cb157-3"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb157-4"><a href="multiple-linear-regression.html#cb157-4"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="multiple-linear-regression.html#cb170-1"></a>homes <span class="op">%&gt;%</span></span>
+<span id="cb170-2"><a href="multiple-linear-regression.html#cb170-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb170-3"><a href="multiple-linear-regression.html#cb170-3"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb170-4"><a href="multiple-linear-regression.html#cb170-4"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 <p>Let’s try and fit two separate lines to these two groups of homes, home with any fireplaces and home with no fireplaces. Do these lines have the same intercepts? Same slopes?</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="multiple-linear-regression.html#cb158-1"></a>homes <span class="op">%&gt;%</span></span>
-<span id="cb158-2"><a href="multiple-linear-regression.html#cb158-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb158-3"><a href="multiple-linear-regression.html#cb158-3"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb158-4"><a href="multiple-linear-regression.html#cb158-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb158-5"><a href="multiple-linear-regression.html#cb158-5"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
-<p>In this case, it look as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, having a fireplace in your house, the increase in your price for every 1 square foot is greater than that for homes without fireplaces (slopes are different).</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="multiple-linear-regression.html#cb171-1"></a>homes <span class="op">%&gt;%</span></span>
+<span id="cb171-2"><a href="multiple-linear-regression.html#cb171-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb171-3"><a href="multiple-linear-regression.html#cb171-3"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb171-4"><a href="multiple-linear-regression.html#cb171-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb171-5"><a href="multiple-linear-regression.html#cb171-5"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p>In this case, it look as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, the increase in your average price for every 1 square foot is greater for a home with a fireplace than that for homes without fireplaces (slopes are different).</p>
 </div>
 <div id="interaction-variables" class="section level3">
-<h3><span class="header-section-number">3.8.2</span> Interaction Variables</h3>
+<h3><span class="header-section-number">3.9.2</span> Interaction Variables</h3>
 <p>We can allow for different slopes within one regression model (!), rather than fitting two separate models.</p>
 <div class="reflect">
 <p>
@@ -553,16 +558,42 @@ There is no one right answer. Researchers struggle with this decision <a href="h
 </div>
 <ul>
 <li><p>If we add a variable in the model (without an interaction), it only changes the intercept.</p></li>
-<li><p>We can achieve different slopes by allowing a variable <span class="math inline">\(x_1\)</span> to affect the slope for another variable <span class="math inline">\(x_2\)</span>. That is, <span class="math inline">\(x_1\)</span> impacts the effect of <span class="math inline">\(x_2\)</span> on the outcome <span class="math inline">\(y\)</span>. (Fireplace presence impacts the effect of living area on house price.)
-<span class="math display">\[\beta_2 = a + bx_1\]</span>
-This is called <strong>effect modification</strong> (when one variable can modify the effect of another variable on the outcome).</p></li>
-<li><p>A model with effect modification looks like this:
-<span class="math display">\[\hat{y} = \beta_0 + \beta_1x_{1} + \beta_2x_{2}= \beta_0 + \beta_1x_{1} + (a+bx_1)x_{2}= \beta_0 + \beta_1x_{1} +ax_2+bx_1x_{2}\]</span>
-The model above has an <strong>interaction term,</strong> which is the product of two variables. Here we have <span class="math inline">\(x_1*x_2\)</span>.</p></li>
+<li><p>We can achieve different slopes by allowing a variable <span class="math inline">\(X_1\)</span> to affect the slope for another variable <span class="math inline">\(X_2\)</span>. That is, <span class="math inline">\(X_1\)</span> impacts the effect of <span class="math inline">\(X_2\)</span> on the outcome <span class="math inline">\(Y\)</span>. (Fireplace presence impacts the effect of living area on house price.)</p></li>
+</ul>
+<p><span class="math display">\[\beta_2 = a + bX_1\]</span>
+This is called <strong>effect modification</strong> (when one variable can modify the effect of another variable on the outcome).</p>
+<ul>
+<li>A model with effect modification looks like this:
+<span class="math display">\[E[Y | X_1, X_2] = \beta_0 + \beta_1X_{1} + \beta_2X_{2}= \beta_0 + \beta_1X_{1} + (a+bX_1)X_{2}= \beta_0 + \beta_1X_{1} +aX_2+bX_1X_{2}\]</span>
+The model above has an <strong>interaction term,</strong> which is the product of two variables. Here we have <span class="math inline">\(X_1*X_2\)</span>.</li>
 </ul>
 <p>Let’s build a model with effect modification for our housing data. Let’s include an interaction term between AnyFireplace and Living.Area to allow for different slopes.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="multiple-linear-regression.html#cb159-1"></a>lm.home3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace<span class="op">*</span>Living.Area, <span class="dt">data =</span> homes)</span>
-<span id="cb159-2"><a href="multiple-linear-regression.html#cb159-2"></a><span class="kw">summary</span>(lm.home3)</span></code></pre></div>
+<p><span class="math display">\[E[\hbox{Price}| \hbox{AnyFireplace, Living.Area}] = \beta_0+ \beta_1\,\hbox{AnyFireplaceTRUE} + \beta_2\,\hbox{Living.Area}+ \beta_3\,\hbox{AnyFireplaceTRUE}*\hbox{Living.Area}\]</span></p>
+<p><strong>What does this mean?</strong></p>
+<p>Let’s think about two types of homes: a home with one or more fireplaces and a home without a fireplace.</p>
+<ul>
+<li>Home with fireplace (indicator = 1):</li>
+</ul>
+<p><span class="math display">\[
+\begin{align*}
+E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &amp;= \beta_0 + \beta_1*\,1 + \beta_2\,\hbox{Living.Area}+ \beta_3*\,1*\hbox{Living.Area}\\
+&amp;= (\beta_0 + \beta_1) + (\beta_2+\beta_3)\,\hbox{Living.Area}\\
+\end{align*}
+\]</span></p>
+<ul>
+<li>Home without fireplace (indicator = 0):</li>
+</ul>
+<p><span class="math display">\[
+\begin{align*}
+E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &amp;= \beta_0 + \beta_1*\,0 + \beta_2\,\hbox{Living.Area}+ \beta_3*\,0*\hbox{Living.Area}\\
+&amp;= \beta_0  + \beta_2\,\hbox{Living.Area}\\
+\end{align*}
+\]</span></p>
+<p>Note that there are different intercepts <strong>and</strong> different slopes for these two groups. Thus, including an interaction term between a categorical and a quantitative predictor variable allows us to describe <strong>effect modification</strong>. How does the effect of one variable on the response variable differ according to another variable? How is the effect modified by another variable?</p>
+<p>What this means in the context of this model of price as a function of living area and fireplaces: different slopes means that the average rate of price increase for every additional square foot is <strong>different between homes with and without fireplaces</strong>.</p>
+<p>If we fit this model with interaction terms, we get the following estimates:</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="multiple-linear-regression.html#cb172-1"></a>lm.home3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace<span class="op">*</span>Living.Area, <span class="dt">data =</span> homes)</span>
+<span id="cb172-2"><a href="multiple-linear-regression.html#cb172-2"></a><span class="kw">summary</span>(lm.home3)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Price ~ AnyFireplace * Living.Area, data = homes)
@@ -583,8 +614,6 @@ The model above has an <strong>interaction term,</strong> which is the product o
 ## Residual standard error: 68760 on 1724 degrees of freedom
 ## Multiple R-squared:  0.513,	Adjusted R-squared:  0.5122 
 ## F-statistic: 605.4 on 3 and 1724 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p><strong>What does this mean?</strong></p>
-<p>Let’s think about two types of homes: a home with one or more fireplaces and a home without a fireplace.</p>
 <ul>
 <li>Home with fireplace (indicator = 1):</li>
 </ul>
@@ -594,9 +623,9 @@ The model above has an <strong>interaction term,</strong> which is the product o
 &amp; = \$3,290.88 + \$119.21 \times \hbox{Living.Area}
 \end{align*}
 \]</span></p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="multiple-linear-regression.html#cb161-1"></a><span class="fl">40901.29</span> <span class="op">+</span><span class="st"> </span><span class="fl">-37610.41</span><span class="op">*</span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="multiple-linear-regression.html#cb174-1"></a><span class="fl">40901.29</span> <span class="op">+</span><span class="st"> </span><span class="fl">-37610.41</span><span class="op">*</span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 3290.88</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="multiple-linear-regression.html#cb163-1"></a><span class="fl">92.36391</span> <span class="op">+</span><span class="st"> </span><span class="fl">26.85</span><span class="op">*</span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="multiple-linear-regression.html#cb176-1"></a><span class="fl">92.36391</span> <span class="op">+</span><span class="st"> </span><span class="fl">26.85</span><span class="op">*</span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 119.2139</code></pre>
 <ul>
 <li>Home without fireplace (indicator = 0):</li>
@@ -607,32 +636,12 @@ The model above has an <strong>interaction term,</strong> which is the product o
 &amp;= \$40,901.29 + \$92.36 \times \hbox{Living.Area}
 \end{align*}
 \]</span></p>
-<p>Note that there are different intercepts <strong>and</strong> different slopes for these two groups. Thus, including an interaction term between a categorical and a quantitative predictor variable allows us to describe <strong>effect modification</strong>. How does the effect of one variable on the response variable differ according to another variable? How is the effect modified by another variable?</p>
-<p>What this means in the context of this model of price as a function of living area and fireplaces: different slopes means that the average rate of price increase for every additional square foot is <strong>different between homes with and without fireplaces</strong>.</p>
-</div>
-<div id="causation" class="section level3">
-<h3><span class="header-section-number">3.8.3</span> Causation</h3>
-<p>We alluded earlier that multiple linear regression could provide estimates of causal effects in the right circumstances. What are those circumstances? When we include <strong>all</strong> confounding variables.</p>
-<p>Remember, a confounder is a <strong>common cause</strong> of both the causal variable of interest and the outcome (e.g. living area could be a confounder of fireplace presence and house price).</p>
-<p>We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for understanding how smoking affects lung cancer development. It is very important to consider whether a variable is a <strong>mediator</strong> of the relationship between the cause and the outcome. A mediator is a variable in a chain or along the path (Section <a href="dag.html#dag">1.6</a>) between the cause and the outcome. In the smoking and lung cancer example, one mediator could be tar in the lungs. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk because it is not varying!</p>
-<p>Wait - we could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn’t mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible with writing down a DAG (causal model), we have a starting ground for moving forward.</p>
-<p>We collect data, analyze how well our model predicts that data, and collect more data based on that, perhaps measuring more potential confounders as our scientific knowledge grows. We can also conduct sensitivity analyses by asking: how strongly must a confounder affect the variable of causal interest and the outcome to completely negate or reverse the association we see? Such endeavors and more are the subject of the field of <em>causal inference</em>.</p>
-<p><em>Reminder: If you want a “gentle” but mathematical introduction to Causal Inference, we suggest taking the class at Macalester and/or reading “Causal Inference in Statistics: A Primer” by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell). Fun Fact: Nicholas Jewell was Prof. Heggeseth’s PhD advisor!</em></p>
-</div>
-<div id="conditions-for-multiple-linear-regression" class="section level3">
-<h3><span class="header-section-number">3.8.4</span> Conditions for Multiple Linear Regression</h3>
-<p>In order for a multiple linear regression model to make sense,</p>
-<ol style="list-style-type: decimal">
-<li>Relationships between each pair of quantitative <span class="math inline">\(x\)</span>’s and <span class="math inline">\(y\)</span> are <strong>straight enough</strong> (check scatterplots and residual plot)</li>
-<li>There is about <strong>equal spread</strong> of residuals across fitted values (check residual plot)</li>
-<li>There are no extreme outliers (points far away in <span class="math inline">\(x\)</span>’s can have <strong>leverage</strong> to change the line)</li>
-</ol>
 </div>
 <div id="is-the-difference-real" class="section level3">
-<h3><span class="header-section-number">3.8.5</span> Is the Difference Real?</h3>
+<h3><span class="header-section-number">3.9.3</span> Is the Difference Real?</h3>
 <p>We could ask: is there <em>really</em> a difference in the slopes for Living Area and Price between homes with and without a fireplace?</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="multiple-linear-regression.html#cb165-1"></a>lm.home4 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area<span class="op">*</span>AnyFireplace, <span class="dt">data =</span> homes) </span>
-<span id="cb165-2"><a href="multiple-linear-regression.html#cb165-2"></a><span class="kw">summary</span>(lm.home4)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="multiple-linear-regression.html#cb178-1"></a>lm.home4 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area<span class="op">*</span>AnyFireplace, <span class="dt">data =</span> homes) </span>
+<span id="cb178-2"><a href="multiple-linear-regression.html#cb178-2"></a><span class="kw">summary</span>(lm.home4)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Price ~ Living.Area * AnyFireplace, data = homes)
@@ -668,17 +677,17 @@ The model above has an <strong>interaction term,</strong> which is the product o
 <li>Estimate the least squares regression line.</li>
 <li>Repeat.</li>
 </ul>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="multiple-linear-regression.html#cb167-1"></a><span class="kw">set.seed</span>(<span class="dv">333</span>) <span class="co">## Setting the seed ensures that our results are reproducible</span></span>
-<span id="cb167-2"><a href="multiple-linear-regression.html#cb167-2"></a><span class="co">## Repeat the sampling and regression modeling 1000 times</span></span>
-<span id="cb167-3"><a href="multiple-linear-regression.html#cb167-3"></a>boot &lt;-<span class="st"> </span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area<span class="op">*</span>AnyFireplace, <span class="dt">data =</span> <span class="kw">resample</span>(homes))</span>
-<span id="cb167-4"><a href="multiple-linear-regression.html#cb167-4"></a></span>
-<span id="cb167-5"><a href="multiple-linear-regression.html#cb167-5"></a><span class="co">## Plot the distribution of the 1000 slope differences</span></span>
-<span id="cb167-6"><a href="multiple-linear-regression.html#cb167-6"></a>boot <span class="op">%&gt;%</span></span>
-<span id="cb167-7"><a href="multiple-linear-regression.html#cb167-7"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area.AnyFireplaceTRUE)) <span class="op">+</span></span>
-<span id="cb167-8"><a href="multiple-linear-regression.html#cb167-8"></a><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
-<span id="cb167-9"><a href="multiple-linear-regression.html#cb167-9"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Bootstrap Difference in Slopes&#39;</span>) <span class="op">+</span></span>
-<span id="cb167-10"><a href="multiple-linear-regression.html#cb167-10"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="multiple-linear-regression.html#cb180-1"></a><span class="kw">set.seed</span>(<span class="dv">333</span>) <span class="co">## Setting the seed ensures that our results are reproducible</span></span>
+<span id="cb180-2"><a href="multiple-linear-regression.html#cb180-2"></a><span class="co">## Repeat the sampling and regression modeling 1000 times</span></span>
+<span id="cb180-3"><a href="multiple-linear-regression.html#cb180-3"></a>boot &lt;-<span class="st"> </span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area<span class="op">*</span>AnyFireplace, <span class="dt">data =</span> <span class="kw">resample</span>(homes))</span>
+<span id="cb180-4"><a href="multiple-linear-regression.html#cb180-4"></a></span>
+<span id="cb180-5"><a href="multiple-linear-regression.html#cb180-5"></a><span class="co">## Plot the distribution of the 1000 slope differences</span></span>
+<span id="cb180-6"><a href="multiple-linear-regression.html#cb180-6"></a>boot <span class="op">%&gt;%</span></span>
+<span id="cb180-7"><a href="multiple-linear-regression.html#cb180-7"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area.AnyFireplaceTRUE)) <span class="op">+</span></span>
+<span id="cb180-8"><a href="multiple-linear-regression.html#cb180-8"></a><span class="st">    </span><span class="kw">geom_histogram</span>() <span class="op">+</span></span>
+<span id="cb180-9"><a href="multiple-linear-regression.html#cb180-9"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Bootstrap Difference in Slopes&#39;</span>) <span class="op">+</span></span>
+<span id="cb180-10"><a href="multiple-linear-regression.html#cb180-10"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p>We see that if we were to have a slightly different sample (drawn from our “fake” population), then the difference in the slope could be as long as 0 and as large as 50.</p>
 <p>This process of resampling from the sample is called <strong>Bootstrapping</strong> and it is used to:</p>
 <ol style="list-style-type: decimal">
@@ -686,11 +695,11 @@ The model above has an <strong>interaction term,</strong> which is the product o
 <li>Provide an interval of plausible values for the estimate (the difference in slopes here).</li>
 </ol>
 <p>Let’s first look at the variability of the difference in slopes across the bootstrap samples. The standard deviation of the slopes will be similar to the <code>Std. Error</code> from the linear model output.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="multiple-linear-regression.html#cb168-1"></a>boot <span class="op">%&gt;%</span></span>
-<span id="cb168-2"><a href="multiple-linear-regression.html#cb168-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sd</span>(Living.Area.AnyFireplaceTRUE)) <span class="co">#this is going to be of similar magnitude (not exactly the same) to the Std. Error in output</span></span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="multiple-linear-regression.html#cb181-1"></a>boot <span class="op">%&gt;%</span></span>
+<span id="cb181-2"><a href="multiple-linear-regression.html#cb181-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">sd</span>(Living.Area.AnyFireplaceTRUE)) <span class="co">#this is going to be of similar magnitude (not exactly the same) to the Std. Error in output</span></span></code></pre></div>
 <pre><code>##   sd(Living.Area.AnyFireplaceTRUE)
 ## 1                         9.332937</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="multiple-linear-regression.html#cb170-1"></a><span class="kw">summary</span>(lm.home4)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="multiple-linear-regression.html#cb183-1"></a><span class="kw">summary</span>(lm.home4)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Price ~ Living.Area * AnyFireplace, data = homes)
@@ -713,8 +722,8 @@ The model above has an <strong>interaction term,</strong> which is the product o
 ## F-statistic: 605.4 on 3 and 1724 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>This standard deviation is somewhat close to the <span class="math inline">\(6.459\)</span> in the Std. Error column of the <code>summary(lm.home4)</code> output above.</p>
 <p>To get an interval of plausible values for the difference in the slopes, we look at the histogram and take the middle 95%. The lower end will be the 2.5th percentile and the upper end will be the 97.5th percentile.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="multiple-linear-regression.html#cb172-1"></a>boot <span class="op">%&gt;%</span></span>
-<span id="cb172-2"><a href="multiple-linear-regression.html#cb172-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(Living.Area.AnyFireplaceTRUE, <span class="fl">0.025</span>), <span class="dt">upper =</span> <span class="kw">quantile</span>(Living.Area.AnyFireplaceTRUE, <span class="fl">0.975</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="multiple-linear-regression.html#cb185-1"></a>boot <span class="op">%&gt;%</span></span>
+<span id="cb185-2"><a href="multiple-linear-regression.html#cb185-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(Living.Area.AnyFireplaceTRUE, <span class="fl">0.025</span>), <span class="dt">upper =</span> <span class="kw">quantile</span>(Living.Area.AnyFireplaceTRUE, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##      lower    upper
 ## 1 7.686552 45.43513</code></pre>
 <div class="reflect">
@@ -723,163 +732,14 @@ Based on this evidence, do you think it is possible that the slopes are the same
 </p>
 </div>
 </div>
-<div id="dealing-with-non-linear-relationships" class="section level3">
-<h3><span class="header-section-number">3.8.6</span> Dealing with Non-Linear Relationships</h3>
-<p>If we notice a curved relationship between two quantitative variables, it doesn’t make sense to use a straight line to approximate the relationship.</p>
-<p>What can we do?</p>
-<div id="transform-variables" class="section level4">
-<h4><span class="header-section-number">3.8.6.1</span> Transform Variables</h4>
-<p>One solution to deal with non-linear relationships is to <strong>transform</strong> the predictor (<span class="math inline">\(x\)</span>) variables or transform the outcome variable (<span class="math inline">\(y\)</span>).</p>
-<p><strong>Guideline #1:</strong> If there is unequal spread around the curved relationship, focus first on transforming <span class="math inline">\(y\)</span>. If the spread is roughly the same around the curved relationship, focus on transforming <span class="math inline">\(x\)</span>.</p>
-<p>When we say transform a variable, we are referring to taking the values of a variable and plugging them into a mathematical function such as <span class="math inline">\(\sqrt{x}\)</span>, <span class="math inline">\(\log(x)\)</span> (which represents natural log, not log base 10), <span class="math inline">\(x^2\)</span>, <span class="math inline">\(1/x\)</span>, etc.</p>
-<p><strong>Guideline #2:</strong> To choose the mathematical function, we focus on power functions and organize them in a <strong>Ladder of Powers</strong> of <span class="math inline">\(y\)</span> (or <span class="math inline">\(x\)</span>):</p>
-<p><span class="math display">\[\begin{align}
-\vdots\\
-y^3\\
-y^2\\
-\mathbf{y = y^1}\\
-\sqrt{y}\\
-y^{1/3}\\
-y^{0} ~~~  (we~use~\log(y)~here; natural log)\\
-y^{-1/3}\\
-1/\sqrt{y}\\
-1/y\\
-1/y^2\\
-\vdots
-\end{align}\]</span></p>
-<p>To choose a transformation, we start at <span class="math inline">\(y\)</span> (power = 1) and think about going up or down the ladder.</p>
-<p>But which way?</p>
-<p>Our friend <a href="https://en.wikipedia.org/wiki/John_Tukey">J.W. Tukey</a> (the same guy who invented the boxplot) came up with an approach to help us decide. You must ask yourself: Which part of the circle does the scatterplot most resemble (in terms of concavity and direction)? Which quadrant?</p>
-<p><strong>Guideline #3:</strong> The sign of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in the quadrant tells you the direction to move on the ladder (positive = up, negative = down).</p>
-<p><img src="Photos/tukey.png" width="400" height="500" /></p>
-<p>Practice: Which quadrant does this relationship below resemble?</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="multiple-linear-regression.html#cb174-1"></a><span class="kw">require</span>(gapminder)</span>
-<span id="cb174-2"><a href="multiple-linear-regression.html#cb174-2"></a></span>
-<span id="cb174-3"><a href="multiple-linear-regression.html#cb174-3"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb174-4"><a href="multiple-linear-regression.html#cb174-4"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb174-5"><a href="multiple-linear-regression.html#cb174-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  gdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb174-6"><a href="multiple-linear-regression.html#cb174-6"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-66-1.png" width="672" /></p>
-<p>Based on this plot, we see that the spread is roughly equal around the curved relationship (-&gt; focus on transforming <span class="math inline">\(x\)</span>) and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with <span class="math inline">\(x\)</span>.</p>
-<p>Try these transformations until you find a relationship that is roughly straight. If you go too far, the relationship will become more curved again.</p>
-<p>Let’s try going down the ladder.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="multiple-linear-regression.html#cb175-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb175-2"><a href="multiple-linear-regression.html#cb175-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb175-3"><a href="multiple-linear-regression.html#cb175-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">sqrt</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 1/2</span></span>
-<span id="cb175-4"><a href="multiple-linear-regression.html#cb175-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb175-5"><a href="multiple-linear-regression.html#cb175-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
-<p>Not quite straight. Let’s keep going.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="multiple-linear-regression.html#cb176-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb176-2"><a href="multiple-linear-regression.html#cb176-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb176-3"><a href="multiple-linear-regression.html#cb176-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> gdpPercap<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 1/3</span></span>
-<span id="cb176-4"><a href="multiple-linear-regression.html#cb176-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb176-5"><a href="multiple-linear-regression.html#cb176-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
-<p>Not quite straight. Let’s keep going.</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="multiple-linear-regression.html#cb177-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb177-2"><a href="multiple-linear-regression.html#cb177-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb177-3"><a href="multiple-linear-regression.html#cb177-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 0</span></span>
-<span id="cb177-4"><a href="multiple-linear-regression.html#cb177-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb177-5"><a href="multiple-linear-regression.html#cb177-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
-<p>Getting better. Let’s try to keep going.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="multiple-linear-regression.html#cb178-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb178-2"><a href="multiple-linear-regression.html#cb178-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb178-3"><a href="multiple-linear-regression.html#cb178-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="dv">-1</span><span class="op">/</span>gdpPercap) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#power = -1 (added a negative sign to maintain positive relationship)</span></span>
-<span id="cb178-4"><a href="multiple-linear-regression.html#cb178-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb178-5"><a href="multiple-linear-regression.html#cb178-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
-<p>TOO FAR! Back up. Let’s stick with log(gdpPercap).</p>
-<p>Now we see some unequal spread so let’s also try transforming <span class="math inline">\(y\)</span>.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="multiple-linear-regression.html#cb179-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb179-2"><a href="multiple-linear-regression.html#cb179-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb179-3"><a href="multiple-linear-regression.html#cb179-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb179-4"><a href="multiple-linear-regression.html#cb179-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TlifeExp =</span> lifeExp<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb179-5"><a href="multiple-linear-regression.html#cb179-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> TlifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb179-6"><a href="multiple-linear-regression.html#cb179-6"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
-<p>That doesn’t change it much. Maybe this is as good as we are going to get.</p>
-<p>Transformations can’t make relationships look exactly linear with equal spread, but sometimes we can make it closer to that ideal.</p>
-<p>Let’s try and fit a model with these two variables.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="multiple-linear-regression.html#cb180-1"></a>lm.gap &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb180-2"><a href="multiple-linear-regression.html#cb180-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb180-3"><a href="multiple-linear-regression.html#cb180-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb180-4"><a href="multiple-linear-regression.html#cb180-4"></a><span class="st">  </span><span class="kw">lm</span>(lifeExp <span class="op">~</span><span class="st"> </span>TgdpPercap, <span class="dt">data =</span> .)</span>
-<span id="cb180-5"><a href="multiple-linear-regression.html#cb180-5"></a></span>
-<span id="cb180-6"><a href="multiple-linear-regression.html#cb180-6"></a><span class="kw">summary</span>(lm.gap)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = lifeExp ~ TgdpPercap, data = .)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -25.947  -2.661   1.215   4.469  13.115 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   4.9496     3.8577   1.283    0.202    
-## TgdpPercap    7.2028     0.4423  16.283   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 7.122 on 140 degrees of freedom
-## Multiple R-squared:  0.6544,	Adjusted R-squared:  0.652 
-## F-statistic: 265.2 on 1 and 140 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p><strong>Interpretations</strong></p>
-<p>What does the slope of this model, <span class="math inline">\(\beta_1 = 7.2028\)</span>, mean in this data context?</p>
-<p><span class="math display">\[\widehat{LifeExp} = \beta_0 + \beta_1 log(Income)\]</span></p>
-<ul>
-<li><p>The slope is the the additive increase in the predicted <span class="math inline">\(\widehat{LifeExp}\)</span> when <span class="math inline">\(log(Income)\)</span> increases to <span class="math inline">\(log(Income) + 1\)</span>.</p></li>
-<li><p>Let’s think about <span class="math inline">\(log(Income) + 1\)</span>. Using some rules of logarithms:</p></li>
-</ul>
-<p><span class="math display">\[log(Income) + 1 = log(Income) + log(e^1) = log(e*Income) = log(2.71*Income)\]</span>
-So adding 1 to <span class="math inline">\(log(Income)\)</span> is equivalent to multiplying Income by 2.71.</p>
-<p>In our model, we note that if a country’s income measured by GDP increased by a multiplicative factor of 2.71, the predicted average life expectancy of a country increases by about 7.2 years.</p>
-<p>For the sake of illustration, imagine we fit a model where we had transformed life expectancy with a log transformation. What would the slope, <span class="math inline">\(\beta_1\)</span>, mean in this context?</p>
-<p><span class="math display">\[\widehat{log(LifeExp)} = \beta_0 + \beta_1 Income\]</span></p>
-<ul>
-<li><p>The slope is the the additive increase in <span class="math inline">\(\widehat{log(LifeExp)}\)</span> when <span class="math inline">\(Income\)</span> increases to <span class="math inline">\(Income + 1\)</span>.</p></li>
-<li><p>Let’s think about <span class="math inline">\(\widehat{log(LifeExp)} + \beta_1\)</span>. Using rules of logarithms:
-<span class="math display">\[\widehat{log(LifeExp)} + \beta_1 = \widehat{log(LifeExp)} + log(e^{\beta_1}) = log(\widehat{LifeExp} * e^{\beta_1}) \]</span>
-The additive increase of <span class="math inline">\(\beta_1\)</span> units in <span class="math inline">\(\widehat{log(LifeExp)}\)</span> is a multiplicative increase of <span class="math inline">\(\widehat{LifeExp}\)</span> by a factor of <span class="math inline">\(e^{\beta_1}\)</span>.</p></li>
-</ul>
-</div>
-<div id="alternative-solutions" class="section level4">
-<h4><span class="header-section-number">3.8.6.2</span> Alternative Solutions</h4>
-<p>We could also model non-linear relationships by including higher degree terms in a linear model like the example below. By using <code>poly()</code>, we now include <span class="math inline">\(x\)</span> and <span class="math inline">\(x^2\)</span> as variables in the model.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="multiple-linear-regression.html#cb182-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1</span>)</span>
-<span id="cb182-2"><a href="multiple-linear-regression.html#cb182-2"></a>y &lt;-<span class="st"> </span><span class="dv">200</span> <span class="op">+</span><span class="st"> </span><span class="dv">20</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span><span class="dv">5</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">sd =</span> <span class="dv">10</span>)</span>
-<span id="cb182-3"><a href="multiple-linear-regression.html#cb182-3"></a>dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)</span>
-<span id="cb182-4"><a href="multiple-linear-regression.html#cb182-4"></a>dat <span class="op">%&gt;%</span></span>
-<span id="cb182-5"><a href="multiple-linear-regression.html#cb182-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
-<span id="cb182-6"><a href="multiple-linear-regression.html#cb182-6"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb182-7"><a href="multiple-linear-regression.html#cb182-7"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="multiple-linear-regression.html#cb183-1"></a><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(x, <span class="dt">degree =</span> <span class="dv">2</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>), <span class="dt">data =</span> dat)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = y ~ poly(x, degree = 2, raw = TRUE), data = dat)
-## 
-## Coefficients:
-##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          192.806                            23.305  
-## poly(x, degree = 2, raw = TRUE)2  
-##                           -5.379</code></pre>
-<p>A more advanced solution (which is not going to be covered in class) is a <strong>generalized additive model</strong> (GAM), which allows you to specify which variables have non-linear relationships with <span class="math inline">\(y\)</span> and estimates that relationship for you using spline functions (super cool stuff!). We won’t talk about how this model is fit or how to interpret the output, but there are other cool solutions out there! If you are interested</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="multiple-linear-regression.html#cb185-1"></a><span class="kw">require</span>(gam)</span>
-<span id="cb185-2"><a href="multiple-linear-regression.html#cb185-2"></a><span class="kw">plot</span>(<span class="kw">gam</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x), <span class="dt">data =</span> dat))</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="model-evaluation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="diagnostics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conditions-for-linear-regression-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dag.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

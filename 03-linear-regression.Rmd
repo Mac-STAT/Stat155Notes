@@ -1001,7 +1001,7 @@ $$ \hbox{Predicted Price} = 174653 + 65261 \times 1 = \$ 239,914 $$
 
 and the predicted price for a house without a fireplace is
 
-$$ \hbox{Predicted Price} = 174653 + 65261 \times 0 = \$ 174,653 $$
+$$\hbox{Predicted Price} = 174653 + 65261 \times 0 = \$ 174,653$$
 
 
 The difference between these predicted prices is $\hat{\beta}_1$ = \$65,261, the estimated value of the "slope" for the indicator variable.
@@ -1034,7 +1034,7 @@ We see that the amount of living area differs between homes with fireplaces and 
 
 Let's put `Living.Area` in the model along with `AnyFireplace` to account for it (to control/adjust for it),
 
-$$ E[\hbox{Price} | \hbox{AnyFireplace, Living.Area}] = \beta_0 + \beta_1\,\hbox{AnyFireplaceTRUE} + \beta_2\,\hbox{Living.Area} $$
+$$E[\hbox{Price} | \hbox{AnyFireplace, Living.Area}] = \beta_0 + \beta_1\,\hbox{AnyFireplaceTRUE} + \beta_2\,\hbox{Living.Area}$$
 
 **What does this mean?** 
 
@@ -1069,7 +1069,7 @@ Now let's compare homes that are the same size.
 
 We see this by taking the difference between the two equations:
 
-$$ E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] - E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] $$
+$$E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] - E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}]$$
 
 $$
 \begin{align*}
@@ -1090,7 +1090,7 @@ summary(lm.home2)
 
 Our "best fitting line" is
 
-$$ \hbox{Predicted Price} = 13599.16 + 5567.37\,\hbox{AnyFireplaceTRUE} + 111.21\,\hbox{Living.Area} $$
+$$\hbox{Predicted Price} = 13599.16 + 5567.37\,\hbox{AnyFireplaceTRUE} + 111.21\,\hbox{Living.Area}$$
 
 - \$111.21 is the estimated increase in the expected or average Price associated with a 1 square foot increase in Living.Area, **holding all other variables (AnyFireplace) constant**.
 
@@ -1098,7 +1098,6 @@ $$ \hbox{Predicted Price} = 13599.16 + 5567.37\,\hbox{AnyFireplaceTRUE} + 111.21
 
 
 Note that the slope for the indicator variable is very different with the addition of Living.Area. This suggests that `Living.Area` was confounding the relationship between `Price` and `AnyFireplace`.
-
 
 Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines).
 
@@ -1139,6 +1138,7 @@ There is no one right answer. Researchers struggle with this decision [to strati
 - If we add a variable in the model (without an interaction), it only changes the intercept.
 
 - We can achieve different slopes by allowing a variable $X_1$ to affect the slope for another variable $X_2$. That is, $X_1$ impacts the effect of $X_2$ on the outcome $Y$. (Fireplace presence impacts the effect of living area on house price.)
+
 $$\beta_2 = a + bX_1$$
 This is called **effect modification** (when one variable can modify the effect of another variable on the outcome).
 
@@ -1148,7 +1148,7 @@ The model above has an **interaction term,** which is the product of two variabl
 
 Let's build a model with effect modification for our housing data. Let's include an interaction term between AnyFireplace and Living.Area to allow for different slopes.
 
-$$E[\hbox{Price}| \hbox{AnyFireplace, Living.Area}] = \beta_0+ \beta_1\,\hbox{AnyFireplaceTRUE} + \beta_2\,\hbox{Living.Area}+ \beta_3\,\hbox{AnyFireplaceTRUE}*\hbox{Living.Area} $$
+$$E[\hbox{Price}| \hbox{AnyFireplace, Living.Area}] = \beta_0+ \beta_1\,\hbox{AnyFireplaceTRUE} + \beta_2\,\hbox{Living.Area}+ \beta_3\,\hbox{AnyFireplaceTRUE}*\hbox{Living.Area}$$
 
 **What does this mean?** 
 
@@ -1279,29 +1279,10 @@ Based on this evidence, do you think it is possible that the slopes are the same
 
 ## Causal Inference {#dag}
 
-A full overview of causal inference is beyond the scope of this course, but a first good step in this direction is to consider a **causal model**, which is a representation of the  causal mechanism by which data were generated. We typically visualize these models with a graphical structure called a **directed acyclic graph or DAG** for short. 
+A full overview of causal inference is beyond the scope of this course, but a first good step in this direction is to consider a **causal model**, which is a representation of the causal mechanism by which data were generated. We typically visualize these models with a graphical structure called a **directed acyclic graph or DAG** for short. 
 
 In a DAG, we have circles or **nodes** that represented variables and arrow or **directed edges** that indicate the causal pathway. 
 
-If we were interested in the causal effect of smoking on cardiac arrest, we might draw the following causal model (using previous research to inform our graph).
-
-```{r}
-smoking_ca_dag <- dagify(cardiacarrest ~ cholesterol,
-       cholesterol ~ smoking + weight,
-       smoking ~ unhealthy,
-       weight ~ unhealthy,
-       labels = c("cardiacarrest" = "Cardiac\n Arrest", 
-                  "smoking" = "Smoking",
-                  "cholesterol" = "Cholesterol",
-                  "unhealthy" = "Unhealthy\n Lifestyle",
-                  "weight" = "Weight"),
-       latent = "unhealthy",
-       exposure = "smoking",
-       outcome = "cardiacarrest")
-
-ggdag(smoking_ca_dag, text = FALSE, use_labels = "label") +
-  theme_dag_blank()
-```
 
 Below we discuss the three basic DAG structures.
 
@@ -1321,16 +1302,16 @@ If we only want to estimate the direct relationship between smoking and cardiac 
 Remember, a confounder is a **common cause** of both the causal variable of interest and the outcome (e.g. living area could be a confounder of fireplace presence and house price).
 
 We also alluded earlier that we should not just throw every variable we have into a multiple regression model. Why? Imagine a scenario for understanding how smoking affects lung cancer development. It is very important to consider whether a variable is a **mediator** of the relationship between the cause and the outcome. A mediator  is a variable in a chain or along the path between the cause and the outcome. In the smoking and lung cancer example, one mediator could be tar in the lungs. Suppose that smoking only affects lung cancer risk by creating tar on the lungs. If we adjust for tar (by holding it constant), then we also effectively hold smoking constant too! If smoking is held constant, then we cannot estimate its effect on cancer risk because it is not varying!
-
-Wait - we could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn't mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible with writing down a DAG (causal model), we have a starting ground for moving forward. 
+  
+  Wait - we could never possibly know of or measure all confounding variables, could we!? This is true, but that doesn't mean that our endeavor to understand causation is fruitless. As long as we can describe the relationship between known confounders as precisely as possible with writing down a DAG (causal model), we have a starting ground for moving forward. 
 
 We collect data, analyze how well our model predicts that data, and collect more data based on that, perhaps measuring more potential confounders as our scientific knowledge grows. We can also conduct sensitivity analyses by asking: how strongly must a confounder affect the variable of causal interest and the outcome to completely negate or reverse the association we see? Such endeavors and more are the subject of the field of *causal inference*.
 
 * If you want a "gentle" but mathematical introduction to Causal Inference, we suggest taking the class at Macalester and/or reading "Causal Inference in Statistics: A Primer" by Judea Pearl, Madelyn Glymour, Nicholas P. Jewell). Fun Fact: Nicholas Jewell was Prof. Heggeseth's PhD advisor!*
-
-
+  
+  
 ## Chapter 3 Major Takeaways
-
+  
 1. All models are wrong, but some are useful and fair for our goals (prediction or description). 
 
 2. We want a model with small residuals or a low number of prediction errors.
@@ -1339,6 +1320,4 @@ We collect data, analyze how well our model predicts that data, and collect more
 
 4. We use models to describe phenomena by interpreting slope coefficients. But make sure you are talking about the average or predicted outcome! If you have multiple variables, you are keeping all others fixed (if possible).
 
-5. We also use models to make predictions, but be careful about **extrapolating**: predicting outside the observed range of our predictor ($x$) variables.
-
-
+5. We also use models to make predictions, but be careful about **extrapolating**: predicting outside the observed range of our predictor ($X$) variables.

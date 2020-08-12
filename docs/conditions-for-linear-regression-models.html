@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="model-evaluation.html"/>
-<link rel="next" href="multiple-linear-regression.html"/>
+<link rel="next" href="multiple.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -146,7 +146,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="information-bias.html"><a href="information-bias.html"><i class="fa fa-check"></i><b>1.4</b> Information bias</a></li>
 <li class="chapter" data-level="1.5" data-path="study-design.html"><a href="study-design.html"><i class="fa fa-check"></i><b>1.5</b> Study Design</a></li>
-<li class="chapter" data-level="1.6" data-path="causal-inference.html"><a href="causal-inference.html"><i class="fa fa-check"></i><b>1.6</b> Causal Inference</a></li>
+<li class="chapter" data-level="1.6" data-path="cause-and-effect.html"><a href="cause-and-effect.html"><i class="fa fa-check"></i><b>1.6</b> Cause and Effect</a></li>
 <li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
 <li class="chapter" data-level="1.8" data-path="chapter-1-major-takeaways.html"><a href="chapter-1-major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Chapter 1 Major Takeaways</a></li>
 </ul></li>
@@ -212,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.6.1" data-path="model-interpretation.html"><a href="model-interpretation.html#intercept-hatbeta_0"><i class="fa fa-check"></i><b>3.6.1</b> Intercept (<span class="math inline">\(\hat{\beta}_0\)</span>)</a></li>
 <li class="chapter" data-level="3.6.2" data-path="model-interpretation.html"><a href="model-interpretation.html#slope-hatbeta_1"><i class="fa fa-check"></i><b>3.6.2</b> Slope (<span class="math inline">\(\hat{\beta}_1\)</span>)</a></li>
 <li class="chapter" data-level="3.6.3" data-path="model-interpretation.html"><a href="model-interpretation.html#least-squares-regression-line-haty-hatbeta_0-hatbeta_1x"><i class="fa fa-check"></i><b>3.6.3</b> Least Squares Regression Line (<span class="math inline">\(\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x\)</span>)</a></li>
-<li class="chapter" data-level="3.6.4" data-path="model-interpretation.html"><a href="model-interpretation.html#correlation-or-association-vs.-causation"><i class="fa fa-check"></i><b>3.6.4</b> Correlation or Association vs. Causation</a></li>
+<li class="chapter" data-level="3.6.4" data-path="model-interpretation.html"><a href="model-interpretation.html#correlation-vs.-causation"><i class="fa fa-check"></i><b>3.6.4</b> Correlation vs. Causation</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="model-evaluation.html"><a href="model-evaluation.html"><i class="fa fa-check"></i><b>3.7</b> Model Evaluation</a><ul>
 <li class="chapter" data-level="3.7.1" data-path="model-evaluation.html"><a href="model-evaluation.html#prediction"><i class="fa fa-check"></i><b>3.7.1</b> Prediction</a></li>
@@ -221,12 +221,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.8" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html"><i class="fa fa-check"></i><b>3.8</b> Conditions for Linear Regression Models</a><ul>
 <li class="chapter" data-level="3.8.1" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#residual-plot"><i class="fa fa-check"></i><b>3.8.1</b> Residual Plot</a></li>
-<li class="chapter" data-level="3.8.2" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#solutions-for-non-linear-relationships"><i class="fa fa-check"></i><b>3.8.2</b> Solutions for Non-Linear Relationships</a></li>
+<li class="chapter" data-level="3.8.2" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#sensitivity-analysis"><i class="fa fa-check"></i><b>3.8.2</b> Sensitivity Analysis</a></li>
+<li class="chapter" data-level="3.8.3" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#issues-and-solutions"><i class="fa fa-check"></i><b>3.8.3</b> Issues and Solutions</a></li>
+<li class="chapter" data-level="3.8.4" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#solutions-for-curvature"><i class="fa fa-check"></i><b>3.8.4</b> Solutions for Curvature</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>3.9</b> Multiple Linear Regression</a><ul>
-<li class="chapter" data-level="3.9.1" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#indicator-variables"><i class="fa fa-check"></i><b>3.9.1</b> Indicator Variables</a></li>
-<li class="chapter" data-level="3.9.2" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.2</b> Interaction Variables</a></li>
-<li class="chapter" data-level="3.9.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.3</b> Is the Difference Real?</a></li>
+<li class="chapter" data-level="3.9" data-path="multiple.html"><a href="multiple.html"><i class="fa fa-check"></i><b>3.9</b> Multiple Linear Regression</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="multiple.html"><a href="multiple.html#indicator-variables"><i class="fa fa-check"></i><b>3.9.1</b> Indicator Variables</a></li>
+<li class="chapter" data-level="3.9.2" data-path="multiple.html"><a href="multiple.html#confounder-adjustment"><i class="fa fa-check"></i><b>3.9.2</b> Confounder Adjustment</a></li>
+<li class="chapter" data-level="3.9.3" data-path="multiple.html"><a href="multiple.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.3</b> Interaction Variables</a></li>
+<li class="chapter" data-level="3.9.4" data-path="multiple.html"><a href="multiple.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.4</b> Is the Difference Real?</a></li>
 </ul></li>
 <li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
 <li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
@@ -357,44 +360,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="conditions-for-linear-regression-models" class="section level2">
 <h2><span class="header-section-number">3.8</span> Conditions for Linear Regression Models</h2>
-<p>In order for a linear regression model to make sense,</p>
+<p>We have talked about ways to measure if the model is a good fit to the data. But we should also back up and talk about whether it even makes sense to fit a linear model. In order for a linear regression model to make sense,</p>
 <ol style="list-style-type: decimal">
-<li>Relationships between each pair of quantitative <span class="math inline">\(x\)</span>’s and <span class="math inline">\(y\)</span> are <strong>straight enough</strong> (check scatterplots and residual plot)</li>
+<li>Relationships between each pair of quantitative <span class="math inline">\(X\)</span>’s and <span class="math inline">\(Y\)</span> are <strong>straight enough</strong> (check scatterplots and residual plot)</li>
 <li>There is about <strong>equal spread</strong> of residuals across fitted values (check residual plot)</li>
-<li>There are no extreme outliers (points far away in <span class="math inline">\(x\)</span>’s can have <strong>leverage</strong> to change the line)</li>
+<li>There are no extreme outliers (points with extreme values in <span class="math inline">\(X\)</span>’s can have <strong>leverage</strong> to change the line)</li>
 </ol>
 <div id="residual-plot" class="section level3">
 <h3><span class="header-section-number">3.8.1</span> Residual Plot</h3>
 <p>To check the first two conditions, we look at the original scatterplot as well as a plot of the <em>residuals</em> against <em>fitted or predicted values</em>,</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="conditions-for-linear-regression-models.html#cb146-1"></a><span class="kw">augment</span>(lm.gpa, <span class="dt">data =</span> sat) <span class="op">%&gt;%</span></span>
-<span id="cb146-2"><a href="conditions-for-linear-regression-models.html#cb146-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></span>
-<span id="cb146-3"><a href="conditions-for-linear-regression-models.html#cb146-3"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb146-4"><a href="conditions-for-linear-regression-models.html#cb146-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb146-5"><a href="conditions-for-linear-regression-models.html#cb146-5"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb146-6"><a href="conditions-for-linear-regression-models.html#cb146-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Fitted values (predicted values)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="op">+</span></span>
-<span id="cb146-7"><a href="conditions-for-linear-regression-models.html#cb146-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="conditions-for-linear-regression-models.html#cb161-1"></a><span class="kw">augment</span>(lm.gpa, <span class="dt">data =</span> sat) <span class="op">%&gt;%</span></span>
+<span id="cb161-2"><a href="conditions-for-linear-regression-models.html#cb161-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></span>
+<span id="cb161-3"><a href="conditions-for-linear-regression-models.html#cb161-3"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb161-4"><a href="conditions-for-linear-regression-models.html#cb161-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb161-5"><a href="conditions-for-linear-regression-models.html#cb161-5"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb161-6"><a href="conditions-for-linear-regression-models.html#cb161-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Fitted values (predicted values)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="op">+</span></span>
+<span id="cb161-7"><a href="conditions-for-linear-regression-models.html#cb161-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>What do you think?</p>
 <ul>
 <li>Is there any pattern in the residuals? (Is the original scatterplot straight enough?)</li>
 <li>Is there equal spread in residuals across prediction values?</li>
 </ul>
-<p>Studying the residuals can highlight subtle non-linear patterns and thickening in the original scatterplot. Think of it as a magnifying glass that helps you see these patterns.</p>
-<p>Additionally, we want to avoid extreme outliers because points that are both far from the mean of <span class="math inline">\(x\)</span> and do not fit the overall relationship have <strong>leverage</strong> or the ability to change the line. We can fit the model with and without the outliers to see how sensitive the model is to those points (this is called <strong>sensitivity analysis</strong>).</p>
+<p>Studying the residuals can highlight subtle non-linear patterns and thickening in the original scatterplot. Think the residual plot as a magnifying glass that helps you see these patterns.</p>
+<div class="reflect">
+<p>
+If there is a pattern in the residuals, then we are systematically over or underpredicting our outcomes. What if we are systematically overpredicting the outcome for a group? What if we are systematically underpredicting the outcome for a different group? Consider a model for predicting home values for Zillow or consider an admissions model predicting college GPA. What are the real human consequences if there is a pattern in the residuals?
+</p>
+</div>
+</div>
+<div id="sensitivity-analysis" class="section level3">
+<h3><span class="header-section-number">3.8.2</span> Sensitivity Analysis</h3>
+<p>Additionally, we want to avoid extreme outliers because points that are both far from the mean of <span class="math inline">\(X\)</span> and do not fit the overall relationship have <strong>leverage</strong> or the ability to change the line. We can fit the model with and without the outliers to see how sensitive the model is to those points (this is called <strong>sensitivity analysis</strong>).</p>
 <p>See the example below. See how the relationship changes with the addition of one point, one extreme outlier.</p>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-49-1.png" width="672" /><img src="03-linear-regression_files/figure-html/unnamed-chunk-49-2.png" width="672" /></p>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-50-1.png" width="672" /><img src="03-linear-regression_files/figure-html/unnamed-chunk-50-2.png" width="672" /></p>
 <p>Check out this interactive visualization to get a feel for outlier points and their potential leverage: <a href="http://omaymas.github.io/InfluenceAnalysis/" class="uri">http://omaymas.github.io/InfluenceAnalysis/</a></p>
-<p>###Problems and Solutions</p>
-<p>If the observed data do not satisfy the conditions above, what can we do? Should we give up using a statistical model? No!</p>
+</div>
+<div id="issues-and-solutions" class="section level3">
+<h3><span class="header-section-number">3.8.3</span> Issues and Solutions</h3>
+<p>If the observed data do not satisfy the conditions above, what can we do? Should we give up using a statistical model? No, not necessarily!</p>
 <ul>
-<li>Problem: Both variables are NOT <strong>Quantitative</strong>
+<li>Issue: Both variables are NOT <strong>Quantitative</strong>
 <ul>
-<li>If your x-variable is categorical, we’ll turn it into a quantitative variable using <a href="multiple-linear-regression.html#indicator-variables"><strong>indicator variables</strong></a> (coming up)</li>
+<li>If your x-variable is categorical, we’ll turn it into a quantitative variable using <a href="multiple.html#indicator-variables"><strong>indicator variables</strong></a> (coming up)</li>
 <li>If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we’ll use [<strong>logistic regression models</strong>][Logistic Regression Models] (coming up)</li>
 </ul></li>
-<li>Problem: Relationship is NOT <strong>Straight Enough</strong>
+<li>Issue: Relationship is NOT <strong>Straight Enough</strong>
 <ul>
-<li>We can use the <a href="conditions-for-linear-regression-models.html#solutions-for-non-linear-relationships">Solutions for Non-Linear Relationships</a>.</li>
+<li>We can try to use the <a href="conditions-for-linear-regression-models.html#solutions-for-curvature">Solutions for Curvature</a>.</li>
 </ul></li>
 <li>Problem: <strong>Spread</strong> is NOT the same throughout
 <ul>
@@ -408,14 +421,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<div id="solutions-for-non-linear-relationships" class="section level3">
-<h3><span class="header-section-number">3.8.2</span> Solutions for Non-Linear Relationships</h3>
+<div id="solutions-for-curvature" class="section level3">
+<h3><span class="header-section-number">3.8.4</span> Solutions for Curvature</h3>
 <p>If we notice a curved relationship between two quantitative variables, it doesn’t make sense to use a straight line to approximate the relationship.</p>
 <p>What can we do?</p>
 <div id="transform-variables" class="section level5">
-<h5><span class="header-section-number">3.8.2.0.1</span> Transform Variables</h5>
-<p>One solution to deal with non-linear relationships is to <strong>transform</strong> the predictor (<span class="math inline">\(x\)</span>) variables or transform the outcome variable (<span class="math inline">\(y\)</span>).</p>
-<p><strong>Guideline #1:</strong> If there is unequal spread around the curved relationship, focus first on transforming <span class="math inline">\(y\)</span>. If the spread is roughly the same around the curved relationship, focus on transforming <span class="math inline">\(x\)</span>.</p>
+<h5><span class="header-section-number">3.8.4.0.1</span> Transform Variables</h5>
+<p>One solution to deal with curved relationships is to <strong>transform</strong> the predictor (<span class="math inline">\(X\)</span>) variables or transform the outcome variable (<span class="math inline">\(Y\)</span>).</p>
+<p><strong>Guideline #1:</strong> If there is unequal spread around the curved relationship, focus first on transforming <span class="math inline">\(Y\)</span>. If the spread is roughly the same around the curved relationship, focus on transforming <span class="math inline">\(X\)</span>.</p>
 <p>When we say transform a variable, we are referring to taking the values of a variable and plugging them into a mathematical function such as <span class="math inline">\(\sqrt{x}\)</span>, <span class="math inline">\(\log(x)\)</span> (which represents natural log, not log base 10), <span class="math inline">\(x^2\)</span>, <span class="math inline">\(1/x\)</span>, etc.</p>
 <p><strong>Guideline #2:</strong> To choose the mathematical function, we focus on power functions and organize them in a <strong>Ladder of Powers</strong> of <span class="math inline">\(y\)</span> (or <span class="math inline">\(x\)</span>):</p>
 <p><span class="math display">\[\begin{align}
@@ -425,7 +438,7 @@ y^2\\
 \mathbf{y = y^1}\\
 \sqrt{y}\\
 y^{1/3}\\
-y^{0} ~~~  (we~use~\log(y)~here; natural log)\\
+y^{0} ~~~  (\hbox{we~use}~\log(y)~\hbox{here; natural log with base e)}\\
 y^{-1/3}\\
 1/\sqrt{y}\\
 1/y\\
@@ -435,67 +448,68 @@ y^{-1/3}\\
 <p>To choose a transformation, we start at <span class="math inline">\(y\)</span> (power = 1) and think about going up or down the ladder.</p>
 <p>But which way?</p>
 <p>Our friend <a href="https://en.wikipedia.org/wiki/John_Tukey">J.W. Tukey</a> (the same guy who invented the boxplot) came up with an approach to help us decide. You must ask yourself: Which part of the circle does the scatterplot most resemble (in terms of concavity and direction)? Which quadrant?</p>
-<p><strong>Guideline #3:</strong> The sign of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in the quadrant tells you the direction to move on the ladder (positive = up, negative = down).</p>
+<p><em>Common misunderstanding: When using the circle above to help you decide to go up or down the ladder of power, you are comparing the direction and concavity of your scatterplot to the direction and concavity of the circle in the four quadrants. You are NOT looking at the sign of the observed values of x and y.</em></p>
+<p><strong>Guideline #3:</strong> The sign of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in the chosen quadrant tells you the direction to move on the ladder (positive = up, negative = down).</p>
 <p><img src="Photos/tukey.png" width="400" height="500" /></p>
-<p>Practice: Which quadrant does this relationship below resemble?</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="conditions-for-linear-regression-models.html#cb147-1"></a><span class="kw">require</span>(gapminder)</span>
-<span id="cb147-2"><a href="conditions-for-linear-regression-models.html#cb147-2"></a></span>
-<span id="cb147-3"><a href="conditions-for-linear-regression-models.html#cb147-3"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb147-4"><a href="conditions-for-linear-regression-models.html#cb147-4"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb147-5"><a href="conditions-for-linear-regression-models.html#cb147-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  gdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb147-6"><a href="conditions-for-linear-regression-models.html#cb147-6"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
-<p>Based on this plot, we see that the spread is roughly equal around the curved relationship (-&gt; focus on transforming <span class="math inline">\(x\)</span>) and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with <span class="math inline">\(x\)</span>.</p>
+<p>Practice: Which quadrant of the circle does this relationship below resemble?</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="conditions-for-linear-regression-models.html#cb162-1"></a><span class="kw">require</span>(gapminder)</span>
+<span id="cb162-2"><a href="conditions-for-linear-regression-models.html#cb162-2"></a></span>
+<span id="cb162-3"><a href="conditions-for-linear-regression-models.html#cb162-3"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb162-4"><a href="conditions-for-linear-regression-models.html#cb162-4"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
+<span id="cb162-5"><a href="conditions-for-linear-regression-models.html#cb162-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  gdpPercap)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb162-6"><a href="conditions-for-linear-regression-models.html#cb162-6"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p>Based on this plot, we see that the spread is roughly equal around the curved relationship (-&gt; focus on transforming <span class="math inline">\(X\)</span>) and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with <span class="math inline">\(X\)</span>.</p>
 <p>Try these transformations until you find a relationship that is roughly straight. If you go too far, the relationship will become more curved again.</p>
 <p>Let’s try going down the ladder.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="conditions-for-linear-regression-models.html#cb148-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb148-2"><a href="conditions-for-linear-regression-models.html#cb148-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb148-3"><a href="conditions-for-linear-regression-models.html#cb148-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">sqrt</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 1/2</span></span>
-<span id="cb148-4"><a href="conditions-for-linear-regression-models.html#cb148-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb148-5"><a href="conditions-for-linear-regression-models.html#cb148-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
-<p>Not quite straight. Let’s keep going.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="conditions-for-linear-regression-models.html#cb149-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb149-2"><a href="conditions-for-linear-regression-models.html#cb149-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb149-3"><a href="conditions-for-linear-regression-models.html#cb149-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> gdpPercap<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 1/3</span></span>
-<span id="cb149-4"><a href="conditions-for-linear-regression-models.html#cb149-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb149-5"><a href="conditions-for-linear-regression-models.html#cb149-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="conditions-for-linear-regression-models.html#cb163-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb163-2"><a href="conditions-for-linear-regression-models.html#cb163-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
+<span id="cb163-3"><a href="conditions-for-linear-regression-models.html#cb163-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">sqrt</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 1/2</span></span>
+<span id="cb163-4"><a href="conditions-for-linear-regression-models.html#cb163-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb163-5"><a href="conditions-for-linear-regression-models.html#cb163-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 <p>Not quite straight. Let’s keep going.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="conditions-for-linear-regression-models.html#cb150-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb150-2"><a href="conditions-for-linear-regression-models.html#cb150-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb150-3"><a href="conditions-for-linear-regression-models.html#cb150-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 0</span></span>
-<span id="cb150-4"><a href="conditions-for-linear-regression-models.html#cb150-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb150-5"><a href="conditions-for-linear-regression-models.html#cb150-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="conditions-for-linear-regression-models.html#cb164-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb164-2"><a href="conditions-for-linear-regression-models.html#cb164-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
+<span id="cb164-3"><a href="conditions-for-linear-regression-models.html#cb164-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> gdpPercap<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 1/3</span></span>
+<span id="cb164-4"><a href="conditions-for-linear-regression-models.html#cb164-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb164-5"><a href="conditions-for-linear-regression-models.html#cb164-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
-<p>Getting better. Let’s try to keep going.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="conditions-for-linear-regression-models.html#cb151-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb151-2"><a href="conditions-for-linear-regression-models.html#cb151-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb151-3"><a href="conditions-for-linear-regression-models.html#cb151-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="dv">-1</span><span class="op">/</span>gdpPercap) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#power = -1 (added a negative sign to maintain positive relationship)</span></span>
-<span id="cb151-4"><a href="conditions-for-linear-regression-models.html#cb151-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb151-5"><a href="conditions-for-linear-regression-models.html#cb151-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p>Not quite straight. Let’s keep going.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="conditions-for-linear-regression-models.html#cb165-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb165-2"><a href="conditions-for-linear-regression-models.html#cb165-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
+<span id="cb165-3"><a href="conditions-for-linear-regression-models.html#cb165-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 0</span></span>
+<span id="cb165-4"><a href="conditions-for-linear-regression-models.html#cb165-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb165-5"><a href="conditions-for-linear-regression-models.html#cb165-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
-<p>TOO FAR! Back up. Let’s stick with log(gdpPercap).</p>
-<p>Now we see some unequal spread so let’s also try transforming <span class="math inline">\(y\)</span>.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="conditions-for-linear-regression-models.html#cb152-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb152-2"><a href="conditions-for-linear-regression-models.html#cb152-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb152-3"><a href="conditions-for-linear-regression-models.html#cb152-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb152-4"><a href="conditions-for-linear-regression-models.html#cb152-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TlifeExp =</span> lifeExp<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb152-5"><a href="conditions-for-linear-regression-models.html#cb152-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> TlifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb152-6"><a href="conditions-for-linear-regression-models.html#cb152-6"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p>Getting better. Let’s try to keep going.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="conditions-for-linear-regression-models.html#cb166-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb166-2"><a href="conditions-for-linear-regression-models.html#cb166-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
+<span id="cb166-3"><a href="conditions-for-linear-regression-models.html#cb166-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="dv">-1</span><span class="op">/</span>gdpPercap) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#power = -1 (added a negative sign to maintain positive relationship)</span></span>
+<span id="cb166-4"><a href="conditions-for-linear-regression-models.html#cb166-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb166-5"><a href="conditions-for-linear-regression-models.html#cb166-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p>TOO FAR! Back up. Let’s stick with log(gdpPercap).</p>
+<p>Now we see some unequal spread so let’s also try transforming <span class="math inline">\(Y\)</span>.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="conditions-for-linear-regression-models.html#cb167-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb167-2"><a href="conditions-for-linear-regression-models.html#cb167-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
+<span id="cb167-3"><a href="conditions-for-linear-regression-models.html#cb167-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb167-4"><a href="conditions-for-linear-regression-models.html#cb167-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TlifeExp =</span> lifeExp<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb167-5"><a href="conditions-for-linear-regression-models.html#cb167-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> TlifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb167-6"><a href="conditions-for-linear-regression-models.html#cb167-6"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
 <p>That doesn’t change it much. Maybe this is as good as we are going to get.</p>
 <p>Transformations can’t make relationships look exactly linear with equal spread, but sometimes we can make it closer to that ideal.</p>
 <p>Let’s try and fit a model with these two variables.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="conditions-for-linear-regression-models.html#cb153-1"></a>lm.gap &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb153-2"><a href="conditions-for-linear-regression-models.html#cb153-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb153-3"><a href="conditions-for-linear-regression-models.html#cb153-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb153-4"><a href="conditions-for-linear-regression-models.html#cb153-4"></a><span class="st">  </span><span class="kw">lm</span>(lifeExp <span class="op">~</span><span class="st"> </span>TgdpPercap, <span class="dt">data =</span> .)</span>
-<span id="cb153-5"><a href="conditions-for-linear-regression-models.html#cb153-5"></a></span>
-<span id="cb153-6"><a href="conditions-for-linear-regression-models.html#cb153-6"></a><span class="kw">summary</span>(lm.gap)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="conditions-for-linear-regression-models.html#cb168-1"></a>lm.gap &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-2"><a href="conditions-for-linear-regression-models.html#cb168-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
+<span id="cb168-3"><a href="conditions-for-linear-regression-models.html#cb168-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb168-4"><a href="conditions-for-linear-regression-models.html#cb168-4"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(lifeExp <span class="op">~</span><span class="st"> </span>TgdpPercap))</span>
+<span id="cb168-5"><a href="conditions-for-linear-regression-models.html#cb168-5"></a></span>
+<span id="cb168-6"><a href="conditions-for-linear-regression-models.html#cb168-6"></a><span class="kw">summary</span>(lm.gap)</span></code></pre></div>
 <pre><code>## 
 ## Call:
-## lm(formula = lifeExp ~ TgdpPercap, data = .)
+## lm(formula = lifeExp ~ TgdpPercap)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -512,49 +526,49 @@ y^{-1/3}\\
 ## Multiple R-squared:  0.6544,	Adjusted R-squared:  0.652 
 ## F-statistic: 265.2 on 1 and 140 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p><strong>Interpretations</strong></p>
-<p>What does the slope of this model, <span class="math inline">\(\beta_1 = 7.2028\)</span>, mean in this data context?</p>
-<p><span class="math display">\[\widehat{LifeExp} = \beta_0 + \beta_1 log(Income)\]</span></p>
+<p>What does the estimated slope of this model, <span class="math inline">\(\hat{\beta}_1 = 7.2028\)</span>, mean in this data context? Let’s write out the model.</p>
+<p><span class="math display">\[E[\hbox{Life Expectancy} | \hbox{GDP} ] = \beta_0 + \beta_1 log(\hbox{GDP})\]</span></p>
 <ul>
-<li><p>The slope is the the additive increase in the predicted <span class="math inline">\(\widehat{LifeExp}\)</span> when <span class="math inline">\(log(Income)\)</span> increases to <span class="math inline">\(log(Income) + 1\)</span>.</p></li>
-<li><p>Let’s think about <span class="math inline">\(log(Income) + 1\)</span>. Using some rules of logarithms:</p></li>
+<li><p>The slope, <span class="math inline">\(\beta_1\)</span> is the the additive increase in the expected <span class="math inline">\(\hbox{Life Expectancy}\)</span> when <span class="math inline">\(log(\hbox{GDP})\)</span> increases by 1 unit to <span class="math inline">\(log(\hbox{GDP}) + 1\)</span>.</p></li>
+<li><p>Let’s think about <span class="math inline">\(log(\hbox{GDP}) + 1\)</span>. Using some rules of logarithms:</p></li>
 </ul>
-<p><span class="math display">\[log(Income) + 1 = log(Income) + log(e^1) = log(e*Income) = log(2.71*Income)\]</span>
-So adding 1 to <span class="math inline">\(log(Income)\)</span> is equivalent to multiplying Income by 2.71.</p>
-<p>In our model, we note that if a country’s income measured by GDP increased by a multiplicative factor of 2.71, the predicted average life expectancy of a country increases by about 7.2 years.</p>
+<p><span class="math display">\[log(\hbox{GDP}) + 1 = log(\hbox{GDP}) + log(e^1) = log(e*\hbox{GDP}) = log(2.71*\hbox{GDP})\]</span>
+So adding 1 to <span class="math inline">\(log(\hbox{GDP})\)</span> is equivalent to multiplying GDP by <span class="math inline">\(e=2.71\)</span>.</p>
+<p>In our model, we note that if a country’s income measured by GDP increased by a multiplicative factor of 2.71, the <em>estimated</em> expected life expectancy of a country increases by about 7.2 years.</p>
 <p>For the sake of illustration, imagine we fit a model where we had transformed life expectancy with a log transformation. What would the slope, <span class="math inline">\(\beta_1\)</span>, mean in this context?</p>
-<p><span class="math display">\[\widehat{log(LifeExp)} = \beta_0 + \beta_1 Income\]</span></p>
+<p><span class="math display">\[E[log(\hbox{Life Expectancy}) | \hbox{GDP} ] = \beta_0 + \beta_1 \hbox{GDP}\]</span></p>
 <ul>
-<li><p>The slope is the the additive increase in <span class="math inline">\(\widehat{log(LifeExp)}\)</span> when <span class="math inline">\(Income\)</span> increases to <span class="math inline">\(Income + 1\)</span>.</p></li>
-<li><p>Let’s think about <span class="math inline">\(\widehat{log(LifeExp)} + \beta_1\)</span>. Using rules of logarithms:
-<span class="math display">\[\widehat{log(LifeExp)} + \beta_1 = \widehat{log(LifeExp)} + log(e^{\beta_1}) = log(\widehat{LifeExp} * e^{\beta_1}) \]</span>
-The additive increase of <span class="math inline">\(\beta_1\)</span> units in <span class="math inline">\(\widehat{log(LifeExp)}\)</span> is a multiplicative increase of <span class="math inline">\(\widehat{LifeExp}\)</span> by a factor of <span class="math inline">\(e^{\beta_1}\)</span>.</p></li>
+<li><p>The slope is the the additive increase in <span class="math inline">\(E[log(\hbox{Life Expectancy}) | \hbox{GDP} ]\)</span> when <span class="math inline">\(\hbox{GDP}\)</span> increases to <span class="math inline">\(\hbox{GDP} + 1\)</span>.</p></li>
+<li><p>Let’s think about the expected <span class="math inline">\(log(\hbox{Life Expectancy})\)</span> changing by <span class="math inline">\(\beta_1\)</span>. Using rules of logarithms, the expected value changes:
+<span class="math display">\[log(\hbox{Life Expectancy}) + \beta_1 = log(\hbox{Life Expectancy}) + log(e^{\beta_1}) = log(\hbox{Life Expectancy} * e^{\beta_1}) \]</span>
+The additive increase of <span class="math inline">\(\beta_1\)</span> units in the expected value of <span class="math inline">\(log(\hbox{Life Expectancy})\)</span> is equivalent to a multiplicative increase of <span class="math inline">\(\hbox{Life Expectancy}\)</span> by a factor of <span class="math inline">\(e^{\beta_1}\)</span>.</p></li>
 </ul>
 </div>
 <div id="alternative-solutions" class="section level5">
-<h5><span class="header-section-number">3.8.2.0.2</span> Alternative Solutions</h5>
-<p>We could also model non-linear relationships by including higher degree terms in a [multiple linear regression model][Multiple Linear Regression Model] like the example below. By using <code>poly()</code>, we now include <span class="math inline">\(x\)</span> and <span class="math inline">\(x^2\)</span> as variables in the model.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="conditions-for-linear-regression-models.html#cb155-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1</span>)</span>
-<span id="cb155-2"><a href="conditions-for-linear-regression-models.html#cb155-2"></a>y &lt;-<span class="st"> </span><span class="dv">200</span> <span class="op">+</span><span class="st"> </span><span class="dv">20</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span><span class="dv">5</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">sd =</span> <span class="dv">10</span>)</span>
-<span id="cb155-3"><a href="conditions-for-linear-regression-models.html#cb155-3"></a>dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)</span>
-<span id="cb155-4"><a href="conditions-for-linear-regression-models.html#cb155-4"></a>dat <span class="op">%&gt;%</span></span>
-<span id="cb155-5"><a href="conditions-for-linear-regression-models.html#cb155-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
-<span id="cb155-6"><a href="conditions-for-linear-regression-models.html#cb155-6"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb155-7"><a href="conditions-for-linear-regression-models.html#cb155-7"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-57-1.png" width="672" /></p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="conditions-for-linear-regression-models.html#cb156-1"></a><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(x, <span class="dt">degree =</span> <span class="dv">2</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>), <span class="dt">data =</span> dat)</span></code></pre></div>
+<h5><span class="header-section-number">3.8.4.0.2</span> Alternative Solutions</h5>
+<p>We could also model curved relationships by including higher power terms in a [multiple linear regression model][Multiple Linear Regression Model] like the example below. By using <code>poly()</code> (short for polynomial), we now include <span class="math inline">\(X\)</span> and <span class="math inline">\(X^2\)</span> as variables in the model.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="conditions-for-linear-regression-models.html#cb170-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1</span>)</span>
+<span id="cb170-2"><a href="conditions-for-linear-regression-models.html#cb170-2"></a>y &lt;-<span class="st"> </span><span class="dv">200</span> <span class="op">+</span><span class="st"> </span><span class="dv">20</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span><span class="dv">5</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb170-3"><a href="conditions-for-linear-regression-models.html#cb170-3"></a>dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)</span>
+<span id="cb170-4"><a href="conditions-for-linear-regression-models.html#cb170-4"></a>dat <span class="op">%&gt;%</span></span>
+<span id="cb170-5"><a href="conditions-for-linear-regression-models.html#cb170-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb170-6"><a href="conditions-for-linear-regression-models.html#cb170-6"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb170-7"><a href="conditions-for-linear-regression-models.html#cb170-7"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="conditions-for-linear-regression-models.html#cb171-1"></a><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(x, <span class="dt">degree =</span> <span class="dv">2</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>), <span class="dt">data =</span> dat)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ poly(x, degree = 2, raw = TRUE), data = dat)
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          212.827                            14.540  
+##                          205.752                            16.635  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -4.501</code></pre>
-<p>A more advanced solution (which is not going to be covered in class) is a <strong>generalized additive model</strong> (GAM), which allows you to specify which variables have non-linear relationships with <span class="math inline">\(y\)</span> and estimates that relationship for you using spline functions (super cool stuff!). We won’t talk about how this model is fit or how to interpret the output, but there are other cool solutions out there!</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="conditions-for-linear-regression-models.html#cb158-1"></a><span class="kw">require</span>(gam)</span>
-<span id="cb158-2"><a href="conditions-for-linear-regression-models.html#cb158-2"></a><span class="kw">plot</span>(<span class="kw">gam</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x), <span class="dt">data =</span> dat))</span></code></pre></div>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+##                           -4.589</code></pre>
+<p>A more advanced solution (which is not going to be covered in class) is a <strong>generalized additive model</strong> (GAM), which allows you to specify which variables have non-linear relationships with <span class="math inline">\(Y\)</span> and estimates that relationship for you using spline functions (super cool stuff!). We won’t talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="conditions-for-linear-regression-models.html#cb173-1"></a><span class="kw">require</span>(gam)</span>
+<span id="cb173-2"><a href="conditions-for-linear-regression-models.html#cb173-2"></a><span class="kw">plot</span>(<span class="kw">gam</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x), <span class="dt">data =</span> dat))</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 </div>
 </div>
 </div>
@@ -564,7 +578,7 @@ The additive increase of <span class="math inline">\(\beta_1\)</span> units in <
         </div>
       </div>
 <a href="model-evaluation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="multiple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="multiple.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

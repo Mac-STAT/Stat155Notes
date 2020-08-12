@@ -4,12 +4,19 @@ library(dplyr)
 library(ggplot2)
 library(stringr)
 library(rvest)
-library(mosaicData)
+library(mosaicData) 
 library(ggmosaic)
 library(NHANES)
-library(mosaic)
+library(tidytext)
+library(glue)
+library(readr)
+library(ggdag)
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+
+
+
 
 # Visualizing Data
 
@@ -817,6 +824,7 @@ What if there were no "REAL" difference? Then the Depressed group labels wouldn'
 3. Repeat steps 1 and 2 many times (say 1000 times).
 4. Look at the differences based on random shuffles & compare to the observed difference.
 
+
 ```{r echo=TRUE}
 library(mosaic) 
 NHANES <- NHANES %>%
@@ -826,6 +834,8 @@ obsdiff <- data.frame(d = diff(mean(SleepHrsNight ~ DepressedMost, data = NHANES
 
 sim <- do(1000)*diff(mean(SleepHrsNight ~ shuffle(DepressedMost), data = NHANES, na.rm = TRUE)) #Randomly shuffle the DepressedMost labels (assuming no real difference in sleep, depressed feelings shouldn't impact sleep)
 ```
+
+
 
 Below, we have a histogram of 1000 values calculated by randomly shuffling individuals in the sample into two groups (assuming no relationship between depression and sleep) and then finding the difference in the mean amount of sleep. The red vertical line showed the observed difference in mean amount of sleep in the data.
 
@@ -1246,3 +1256,4 @@ Creating effective multivariate visualizations takes a lot of trial and error. S
 5. Be vigilant for unusual points as they could be due to human error in the data collection, but do not automatically throw away unusual or outlying points. Think about whether they are feasible first. 
 
 6. Visualizations are just a starting place. Stop to notice what you learn and what questions you have about the data. Let that inform the next visualization you make. 
+

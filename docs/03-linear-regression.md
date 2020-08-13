@@ -1072,9 +1072,9 @@ lm(y ~ poly(x, degree = 2, raw = TRUE), data = dat)
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          210.067                            15.048  
+##                          193.995                            21.461  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -4.463
+##                           -5.001
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
@@ -1788,7 +1788,7 @@ glance(lm.home5)
 In general, we'd like the most simple (least number of $X$ variables) that does a good job for our goals. If R-squared never goes down when you add an explanatory variable, we need a different tool to help us decide whether to add a variable. 
 
 Remember that 
-$$R^2 = 1 - \frac{SSE}{SSTO} = \hbox{% of variation in Y explained by model}$$
+$$R^2 = 1 - \frac{SSE}{SSTO} = \%\hbox{ of variation in Y explained by model}$$
 
 **Adjusted R-Squared** is a slightly adjusted version of R-squared that takes into account the number of $X$ variables in the model, denoted as $k$. It is calculated as
 

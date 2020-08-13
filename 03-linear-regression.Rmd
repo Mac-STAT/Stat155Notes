@@ -1370,7 +1370,7 @@ glance(lm.home5)
 In general, we'd like the most simple (least number of $X$ variables) that does a good job for our goals. If R-squared never goes down when you add an explanatory variable, we need a different tool to help us decide whether to add a variable. 
 
 Remember that 
-$$R^2 = 1 - \frac{SSE}{SSTO} = \hbox{% of variation in Y explained by model}$$
+$$R^2 = 1 - \frac{SSE}{SSTO} = \%\hbox{ of variation in Y explained by model}$$
 
 **Adjusted R-Squared** is a slightly adjusted version of R-squared that takes into account the number of $X$ variables in the model, denoted as $k$. It is calculated as
 

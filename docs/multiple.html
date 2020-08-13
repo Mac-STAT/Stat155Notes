@@ -853,7 +853,7 @@ Based on this evidence, do you think it is possible that the slopes are the same
 <p><strong>Fun Fact</strong>: Adding an explanatory variable <span class="math inline">\(X\)</span> to the model will always increase R-squared or keep it the same.</p>
 <p>In general, we’d like the most simple (least number of <span class="math inline">\(X\)</span> variables) that does a good job for our goals. If R-squared never goes down when you add an explanatory variable, we need a different tool to help us decide whether to add a variable.</p>
 <p>Remember that
-<span class="math display">\[R^2 = 1 - \frac{SSE}{SSTO} = \hbox{% of variation in Y explained by model}\]</span></p>
+<span class="math display">\[R^2 = 1 - \frac{SSE}{SSTO} = \%\hbox{ of variation in Y explained by model}\]</span></p>
 <p><strong>Adjusted R-Squared</strong> is a slightly adjusted version of R-squared that takes into account the number of <span class="math inline">\(X\)</span> variables in the model, denoted as <span class="math inline">\(k\)</span>. It is calculated as</p>
 <p><span class="math display">\[R^2_{adj} = 1 - \frac{SSE/(n-k-1)}{SSTO/(n-1)}\]</span></p>
 <p>It does NOT have the interpretation of “% of variation explained…” but it can be used to help us decide whether a variable is redundant or whether we should keep it in the model. The adjusted R-squared for these two models are 0.531 (with Rooms) and 0.529 (without Rooms). This is a judgment call that you as the data analyst makes and this is one tool to help you make the decision. See the next section for more tools to help you decide.</p>

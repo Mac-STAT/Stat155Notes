@@ -380,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb95-6"><a href="three-or-more-variables.html#cb95-6"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></span>
 <span id="cb95-7"><a href="three-or-more-variables.html#cb95-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></span>
 <span id="cb95-8"><a href="three-or-more-variables.html#cb95-8"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="02-visualization_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
+<p><img src="02-visualization_files/figure-html/unnamed-chunk-67-1.png" width="672" /></p>
 <p>We can see that years of education and hourly wage are positively correlated. What about the impact of other variables?</p>
 </div>
 <div id="enriching-with-color" class="section level3">
@@ -392,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb96-4"><a href="three-or-more-variables.html#cb96-4"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Years of education&quot;</span>) <span class="op">+</span></span>
 <span id="cb96-5"><a href="three-or-more-variables.html#cb96-5"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></span>
 <span id="cb96-6"><a href="three-or-more-variables.html#cb96-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="02-visualization_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p><img src="02-visualization_files/figure-html/unnamed-chunk-68-1.png" width="672" /></p>
 <p>Adding color for a quantitative variable, age, does not reveal any obvious patterns; that is, we don’t see obvious clustering by color. Perhaps this is because there are too many colors (remember Visualization Principle #6: Use Color Appropriately). Are any patterns revealed if we use 4 age categories instead?</p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="three-or-more-variables.html#cb97-1"></a>CPS85 <span class="op">%&gt;%</span></span>
 <span id="cb97-2"><a href="three-or-more-variables.html#cb97-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">age_cat =</span> <span class="kw">cut</span>(age, <span class="dv">4</span>)) <span class="op">%&gt;%</span></span>
@@ -402,7 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb97-6"><a href="three-or-more-variables.html#cb97-6"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></span>
 <span id="cb97-7"><a href="three-or-more-variables.html#cb97-7"></a><span class="st">    </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Age category&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></span>
 <span id="cb97-8"><a href="three-or-more-variables.html#cb97-8"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="02-visualization_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p><img src="02-visualization_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
 <p>With 4 age categories, no age patterns are evident, but this does help us see that the least educated people in this data set are mostly in the youngest and oldest age categories.</p>
 </div>
 <div id="enriching-with-shape" class="section level3">
@@ -415,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb98-5"><a href="three-or-more-variables.html#cb98-5"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></span>
 <span id="cb98-6"><a href="three-or-more-variables.html#cb98-6"></a><span class="st">    </span><span class="kw">guides</span>(<span class="dt">shape =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Marital status&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></span>
 <span id="cb98-7"><a href="three-or-more-variables.html#cb98-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="02-visualization_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p><img src="02-visualization_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
 <p>Often encoding information with color is preferable to encoding it with shapes because differences in shapes are not as easily discernible. Remember that statistical visualizations are meant to help you better understand your data. If you are having trouble easily picking out patterns when using a certain visual feature (e.g. shape, color), try another feature to see if the clarity of the plot increases for you.</p>
 </div>
 <div id="enriching-with-size" class="section level3">
@@ -428,7 +428,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb99-5"><a href="three-or-more-variables.html#cb99-5"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></span>
 <span id="cb99-6"><a href="three-or-more-variables.html#cb99-6"></a><span class="st">    </span><span class="kw">guides</span>(<span class="dt">size =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Age&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></span>
 <span id="cb99-7"><a href="three-or-more-variables.html#cb99-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="02-visualization_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
+<p><img src="02-visualization_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
 </div>
 <div id="enriching-with-panels" class="section level3">
 <h3><span class="header-section-number">2.9.5</span> Enriching with panels</h3>
@@ -441,7 +441,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb100-5"><a href="three-or-more-variables.html#cb100-5"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></span>
 <span id="cb100-6"><a href="three-or-more-variables.html#cb100-6"></a><span class="st">    </span><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>sector) <span class="op">+</span></span>
 <span id="cb100-7"><a href="three-or-more-variables.html#cb100-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="02-visualization_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p><img src="02-visualization_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 <p>With a small change in notation (<code>sector ~ .</code> versus <code>. ~ sector</code>), we can create a column of plots.</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="three-or-more-variables.html#cb101-1"></a>CPS85 <span class="op">%&gt;%</span></span>
 <span id="cb101-2"><a href="three-or-more-variables.html#cb101-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage)) <span class="op">+</span></span>
@@ -450,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb101-5"><a href="three-or-more-variables.html#cb101-5"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></span>
 <span id="cb101-6"><a href="three-or-more-variables.html#cb101-6"></a><span class="st">    </span><span class="kw">facet_grid</span>(sector <span class="op">~</span><span class="st"> </span>.) <span class="op">+</span></span>
 <span id="cb101-7"><a href="three-or-more-variables.html#cb101-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="02-visualization_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p><img src="02-visualization_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p>We can also create panels according to two categorical variables. How do the relationships additionally differ by union status?</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="three-or-more-variables.html#cb102-1"></a>CPS85 <span class="op">%&gt;%</span></span>
 <span id="cb102-2"><a href="three-or-more-variables.html#cb102-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> educ, <span class="dt">y =</span> wage)) <span class="op">+</span></span>
@@ -459,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb102-5"><a href="three-or-more-variables.html#cb102-5"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Hourly wage (US dollars)&quot;</span>) <span class="op">+</span></span>
 <span id="cb102-6"><a href="three-or-more-variables.html#cb102-6"></a><span class="st">    </span><span class="kw">facet_grid</span>(sector <span class="op">~</span><span class="st"> </span>union) <span class="op">+</span></span>
 <span id="cb102-7"><a href="three-or-more-variables.html#cb102-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="02-visualization_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<p><img src="02-visualization_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
 </div>
 <div id="enriching-with-smoothing" class="section level3">
 <h3><span class="header-section-number">2.9.6</span> Enriching with smoothing</h3>
@@ -473,7 +473,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb103-7"><a href="three-or-more-variables.html#cb103-7"></a><span class="st">    </span><span class="kw">facet_grid</span>(sector <span class="op">~</span><span class="st"> </span>.) <span class="op">+</span></span>
 <span id="cb103-8"><a href="three-or-more-variables.html#cb103-8"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="02-visualization_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p><img src="02-visualization_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 </div>
 <div id="putting-everything-together" class="section level3">
 <h3><span class="header-section-number">2.9.7</span> Putting everything together</h3>
@@ -488,7 +488,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb105-8"><a href="three-or-more-variables.html#cb105-8"></a><span class="st">    </span><span class="kw">guides</span>(<span class="dt">color =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;Marital status&quot;</span>)) <span class="op">+</span><span class="st"> </span><span class="co"># Legend title</span></span>
 <span id="cb105-9"><a href="three-or-more-variables.html#cb105-9"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="02-visualization_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<p><img src="02-visualization_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
 <p>Creating effective multivariate visualizations takes a lot of trial and error. Some visual elements will better highlight patterns than others, and often times, you’ll have to try several iterations before you feel that you are learning something insightful from the graphic. Be tenacious, and keep in mind the good visualization principles outlined at the beginning of this chapter!</p>
 </div>
 </div>

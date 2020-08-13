@@ -360,25 +360,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="logistic-and-logit" class="section level2">
 <h2><span class="header-section-number">4.1</span> Logistic and Logit</h2>
+<p>Since we can’t use a straight line model, we’ll need to consider other mathematical functions to model the relationship between <span class="math inline">\(X\)</span> and the chance of success, <span class="math inline">\(p=E[Y]\)</span>.</p>
 <p>The <strong>logistic function</strong> is an S shaped curve (sigmoid curve). For our purposes, the function will take the form</p>
-<p><span class="math display">\[f(x) = \frac{1}{1 + e^{b_0 +b_1x}}\]</span></p>
+<p><span class="math display">\[f(x) = \frac{1}{1 + e^{\beta_0 +\beta_1x}}\]</span></p>
 <p><img src="04-logistic-regression_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>For any real value <span class="math inline">\(x\)</span>, this function, <span class="math inline">\(f(x)\)</span>, will be a value between 0 and 1. This is perfect for us since probabilities or chances should also be between 0 and 1.</p>
-<p>In fact, we’ll let the chance of the other outcome (failure), <span class="math inline">\(1-p\)</span>, be modeled by this S function.</p>
-<span class="math display">\[1-p = \frac{1}{1 + e^{b_0 +b_1x}}\]</span>
+<p>In fact, we’ll let the chance of failure outcome (when <span class="math inline">\(Y=0\)</span>), <span class="math inline">\(1-p\)</span>, be modeled by this S function.</p>
+<span class="math display">\[1-p = \frac{1}{1 + e^{\beta_0 +\beta_1X}}\]</span>
 <div class="mathbox">
 <p>
 With a bit of algebra and rearranging terms, we can write this equation in terms of <span class="math inline"><span class="math inline">\(p\)</span></span>, the chance of success.
 </p>
 <p>
-<span class="math display"><span class="math display">\[1-p = \frac{1}{1 + e^{b_0 +b_1x}}\]</span></span> <span class="math display"><span class="math display">\[p = 1-\frac{1}{1 + e^{b_0 +b_1x}}\]</span></span>
+<span class="math display"><span class="math display">\[1-p = \frac{1}{1 + e^{\beta_0 +\beta_1X}}\]</span></span> <span class="math display"><span class="math display">\[p = 1-\frac{1}{1 + e^{\beta_0 +\beta_1X}}\]</span></span>
 </p>
 <p>
 <span class="math display"><span class="math display">\[p = 
-\frac{1 + e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}-\frac{1}{1 + e^{b_0 +b_1x}}\]</span></span>
+\frac{1 + e^{\beta_0 +\beta_1X}}{1 + e^{\beta_0 +\beta_1X}}-\frac{1}{1 + e^{\beta_0 +\beta_1X}}\]</span></span>
 </p>
 <p>
-<span class="math display"><span class="math display">\[p = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}\]</span></span>
+<span class="math display"><span class="math display">\[p = \frac{e^{\beta_0 +\beta_1X}}{1 + e^{\beta_0 +\beta_1X}}\]</span></span>
 </p>
 </div>
 <p>Let’s define one more term. The <strong>odds</strong> of an success outcome is the ratio of the chance of success to the chance of failure, odds <span class="math inline">\(=p/(1-p)\)</span>.</p>
@@ -387,13 +388,13 @@ With a bit of algebra and rearranging terms, we can write this equation in terms
 With a bit more algebra and rearranging terms, we can write the above model as a linear regression model.
 </p>
 <p>
-<span class="math display"><span class="math display">\[p/(1-p) = \frac{e^{b_0 +b_1x}}{1 + e^{b_0 +b_1x}}/\frac{1}{1 + e^{b_0 +b_1x}}\]</span></span> <span class="math display"><span class="math display">\[p/(1-p) = e^{b_0 +b_1x}\]</span></span> <span class="math display"><span class="math display">\[\log(p/(1-p)) = b_0 +b_1x\]</span></span>
+<span class="math display"><span class="math display">\[p/(1-p) = \frac{e^{\beta_0 +\beta_1X}}{1 + e^{\beta_0 +\beta_1X}}/\frac{1}{1 + e^{\beta_0 +\beta_1X}}\]</span></span> <span class="math display"><span class="math display">\[p/(1-p) = e^{\beta_0 +\beta_1X}\]</span></span> <span class="math display"><span class="math display">\[\log(p/(1-p)) = \beta_0 +\beta_1X\]</span></span>
 </p>
 </div>
-<p>This is a <strong>simple logistic regression model</strong>. On the left hand side, we have the natural log of the odds, called the <strong>logit</strong> function. Think of this as a transformed version of our outcome. On the right hand side, we have a familiar linear equation.</p>
-<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) = b_0 +b_1x\]</span></p>
-<p>Like a linear regression model, we can extend this model to a <strong>multiple logistic regression model</strong> by adding additional <span class="math inline">\(x\)</span> variables,</p>
-<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) = b_0 +b_1x_1+b_2x_2+b_3x_3+\cdots +b_kx_k\]</span></p>
+<p>This is a <strong>simple logistic regression model</strong>. On the left hand side, we have the natural log of the odds of success for a given value of <span class="math inline">\(X\)</span>. The log odds is called the <strong>logit</strong> function. Think of this as a transformed version of our expected outcome for a given value of <span class="math inline">\(X\)</span>. On the right hand side, we have a familiar linear model equation.</p>
+<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) =\log\left(\hbox{Odds of Success given } X\right) = \log\left(\frac{E[Y|X]}{1-E[Y|X]}\right) = \beta_0 +\beta_1X\]</span></p>
+<p>Like a linear regression model, we can extend this model to a <strong>multiple logistic regression model</strong> by adding additional <span class="math inline">\(X\)</span> variables,</p>
+<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) =\log\left(\hbox{Odds of Success given } X_1,...,X_k\right)= \log\left(\frac{E[Y|X_1,...,X_k]}{1-E[Y|X_1,...,X_k]}\right) = \beta_0 +\beta_1X_1+\beta_2X_2+\beta_3X_3+\cdots +\beta_kX_k\]</span></p>
 </div>
             </section>
 

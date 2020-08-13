@@ -1072,9 +1072,9 @@ lm(y ~ poly(x, degree = 2, raw = TRUE), data = dat)
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          205.752                            16.635  
+##                          202.461                            17.074  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -4.589
+##                           -4.525
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
@@ -1092,7 +1092,7 @@ plot(gam(y ~ s(x), data = dat))
 ## Multiple Linear Regression  {#multiple}
 
 
-As we've eluded to, we can generalize the idea of a simple linear regression model by including many predictor variables ($X$'s). A **multiple linear regression model** can be written as:
+As we've alluded to, we can generalize the idea of a simple linear regression model by including many predictor variables ($X$'s). A **multiple linear regression model** can be written as:
 
 $$ E[Y |X_1,...,X_k ] = \beta_0 + \beta_1\,X_{1} + \cdots + \beta_k\,X_{k}  $$
 

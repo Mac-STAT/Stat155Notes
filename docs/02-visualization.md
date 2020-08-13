@@ -763,7 +763,7 @@ sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
 ```
-## [1] 0.68
+## [1] 0.678
 ```
 
 So with this data set, about 68% of the data values fall within 1 SD of the mean.
@@ -996,7 +996,6 @@ What if there were no "REAL" difference? Then the Depressed group labels wouldn'
 3. Repeat steps 1 and 2 many times (say 1000 times).
 4. Look at the differences based on random shuffles & compare to the observed difference.
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-55-1.png" width="672" />
 
 
 ```r
@@ -1117,7 +1116,7 @@ sim %>%
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-57-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-56-1.png" width="672" />
 
 <div class="reflect">
 <p>The observed difference in mean hours of sleep (red line) is quite far from the distribution of differences that results when we break the association between depression status and sleep hours (through randomized shuffling of group labels). Thus, it is unlikely to get a difference that large if there were no relationhip.</p>
@@ -1148,7 +1147,7 @@ body %>%
     theme_minimal()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-59-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-58-1.png" width="672" />
 
 What do you notice about:
 
@@ -1177,7 +1176,7 @@ body %>%
   theme_minimal()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-61-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-60-1.png" width="672" />
 
 You should see that the x-axes changed but the overall shape of the plot stayed the same. Thus, the strength of the relationship was not affected by tranforming neck size from centimeters to inches (by dividing by 2.54). 
 
@@ -1187,7 +1186,7 @@ Since **shifting** (adding or subtracting) and **scaling** (multiplying or divid
 
 Below we plot Neck and Chest sizes after changing them to z-scores with the function `scale()` and we add some color:
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-62-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-61-1.png" width="672" />
 
 The blue points in the upper right (Quadrant 1) and lower left (Quadrant 3) quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the z-scores of the Neck and Chest values for the blue points, we will get a positive value. 
 
@@ -1268,7 +1267,7 @@ The value is much larger and more positive when all data points are used. The po
 
 Let's look at a few scatterplot examples and the corresponding correlation.
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-66-1.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-66-2.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-66-3.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-66-4.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-66-5.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-66-6.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-66-7.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-66-8.png" width="960" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-65-1.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-65-2.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-65-3.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-65-4.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-65-5.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-65-6.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-65-7.png" width="960" /><img src="02-visualization_files/figure-html/unnamed-chunk-65-8.png" width="960" />
 
 <div class="mathbox">
 <p>(Optional) Here are other equivalent expressions for <span class="math inline">\(r\)</span> for the mathematically intrigued:</p>
@@ -1315,7 +1314,7 @@ CPS85 %>%
     theme_minimal()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-68-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-67-1.png" width="672" />
 
 We can see that years of education and hourly wage are positively correlated. What about the impact of other variables?
 
@@ -1333,7 +1332,7 @@ CPS85 %>%
     theme_minimal()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-69-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-68-1.png" width="672" />
 
 Adding color for a quantitative variable, age, does not reveal any obvious patterns; that is, we don't see obvious clustering by color. Perhaps this is because there are too many colors (remember Visualization Principle #6: Use Color Appropriately). Are any patterns revealed if we use 4 age categories instead?
 
@@ -1349,7 +1348,7 @@ CPS85 %>%
     theme_minimal()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-70-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-69-1.png" width="672" />
 
 With 4 age categories, no age patterns are evident, but this does help us see that the least educated people in this data set are mostly in the youngest and oldest age categories.
 
@@ -1368,7 +1367,7 @@ CPS85 %>%
     theme_minimal()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-71-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-70-1.png" width="672" />
 
 Often encoding information with color is preferable to encoding it with shapes because differences in shapes are not as easily discernible. Remember that statistical visualizations are meant to help you better understand your data. If you are having trouble easily picking out patterns when using a certain visual feature (e.g. shape, color), try another feature to see if the clarity of the plot increases for you.
 
@@ -1387,7 +1386,7 @@ CPS85 %>%
     theme_minimal()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-72-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-71-1.png" width="672" />
 
 ### Enriching with panels
 
@@ -1406,7 +1405,7 @@ CPS85 %>%
     theme_minimal()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-73-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-72-1.png" width="672" />
 
 With a small change in notation (`sector ~ .` versus `. ~ sector`), we can create a column of plots.
 
@@ -1421,7 +1420,7 @@ CPS85 %>%
     theme_minimal()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-74-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-73-1.png" width="672" />
 
 We can also create panels according to two categorical variables. How do the relationships additionally differ by union status?
 
@@ -1436,7 +1435,7 @@ CPS85 %>%
     theme_minimal()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-75-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-74-1.png" width="672" />
 
 
 ### Enriching with smoothing
@@ -1460,7 +1459,7 @@ CPS85 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-76-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-75-1.png" width="672" />
 
 ### Putting everything together
 
@@ -1483,7 +1482,7 @@ CPS85 %>%
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-77-1.png" width="672" />
+<img src="02-visualization_files/figure-html/unnamed-chunk-76-1.png" width="672" />
 
 Creating effective multivariate visualizations takes a lot of trial and error. Some visual elements will better highlight patterns than others, and often times, you'll have to try several iterations before you feel that you are learning something insightful from the graphic. Be tenacious, and keep in mind the good visualization principles outlined at the beginning of this chapter!
 

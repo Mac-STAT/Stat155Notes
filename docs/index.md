@@ -1,7 +1,7 @@
 --- 
 title: "STAT 155 Notes"
 author: "Macalester Statistics Faculty (Heggeseth, Myint, Grinde)"
-date: "Updated: 2020-08-12"
+date: "Updated: 2020-08-13"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes

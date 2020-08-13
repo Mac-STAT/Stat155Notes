@@ -941,7 +941,7 @@ plot(gam(y ~ s(x), data = dat))
 ## Multiple Linear Regression  {#multiple}
 
 
-As we've eluded to, we can generalize the idea of a simple linear regression model by including many predictor variables ($X$'s). A **multiple linear regression model** can be written as:
+As we've alluded to, we can generalize the idea of a simple linear regression model by including many predictor variables ($X$'s). A **multiple linear regression model** can be written as:
 
 $$ E[Y |X_1,...,X_k ] = \beta_0 + \beta_1\,X_{1} + \cdots + \beta_k\,X_{k}  $$
 

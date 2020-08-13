@@ -361,36 +361,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prediction" class="section level2">
 <h2><span class="header-section-number">4.4</span> Prediction</h2>
 <p>On January 28, 1986, the temperature was 26 F degrees. Let’s predict the chance of “success,” which is a failure of o-rings in our data context, at that temperature.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="prediction.html#cb208-1"></a><span class="kw">predict</span>(model.glm, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Temperature =</span> <span class="dv">26</span>), <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>) <span class="co">#type = &#39;response&#39; gives chance, rather than odds</span></span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="prediction.html#cb208-1"></a><span class="kw">predict</span>(model.glm, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Temperature =</span> <span class="dv">26</span>), <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>) <span class="co">#type = &#39;response&#39; gives predicted chance, rather than predicted odds</span></span></code></pre></div>
 <pre><code>##         1 
 ## 0.9998774</code></pre>
 <p>They didn’t have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, we predict the chance of failure to be nearly 1 (near certainty).</p>
 <div id="hard-predictionsclassifications" class="section level3">
 <h3><span class="header-section-number">4.4.1</span> Hard Predictions/Classifications</h3>
-<p>These predicted chances of “success” are useful to give us a sense of uncertainty in our prediction. If the chance of o-ring failure were 0.8, we would be fairly certain that a failure were likely but not absolutely. If the chance of o-ring failure were 0.01, we would be very certain that a failure were not likely to occur.</p>
+<p>These predicted chances of “success” are useful to give us a sense of uncertainty in our prediction. If the chance of o-ring failure were 0.8, we would be fairly certain that a failure were likely but not absolutely. If the chance of o-ring failure were 0.01, we would be pretty certain that a failure was not likely to occur.</p>
 <p>But if we had to decide whether or not we should let the shuttle launch go, how high should the predicted chance be to delay the launch (even if it would cost a lot of money to delay)?</p>
 <p>It depends.</p>
 <p>If we used a threshold of 0.8, then we’d say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we’ll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our <strong>accuracy</strong> (# of correctly predicted/# of data points)?</p>
-<p>In the table below, we see that there were three data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn’t fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) = 0.82 or 82%.</p>
-<p>The only errors we made were <strong>false negatives</strong>; we didn’t predict o-ring failure but the o-rings did actual happen in the experiment. In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure.</p>
-<p>The <strong>false negative rate</strong> is the number of false negatives divided by the false negatives + true positives (denominator should be total number of experiments with actual o-ring failures). With a threshold of 0.80, our false negative rate is 4/(3+4) = 0.57 = 57%. We failed to predict 57% of the o-ring failures. This is fairly high when there are lives on the line.</p>
-<p>A <strong>false positive</strong> (predicting failure when it doesn’t happen) would delay launch but have minimal impact on human lives.</p>
-<p>The <strong>false positive rate</strong> is the number of false positives divided by the false positives + true negatives (denominator should be total number of experiments with no o-ring failures). With a threshold of 0.80, our false positive rate is 0/16 = 0. We always accurately predicted the o-rings would not fail.</p>
+<p>In the table below, we see that there were 3 data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn’t fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) = 0.82 or 82%.</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="prediction.html#cb210-1"></a><span class="kw">augment</span>(model.glm, <span class="dt">type.predict =</span><span class="st">&#39;response&#39;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb210-2"><a href="prediction.html#cb210-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictOFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.8</span>) <span class="op">%&gt;%</span></span>
-<span id="cb210-3"><a href="prediction.html#cb210-3"></a><span class="st">  </span><span class="kw">count</span>(Fail, predictOFail)</span></code></pre></div>
+<span id="cb210-2"><a href="prediction.html#cb210-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.8</span>) <span class="op">%&gt;%</span></span>
+<span id="cb210-3"><a href="prediction.html#cb210-3"></a><span class="st">  </span><span class="kw">count</span>(Fail, predictFail)</span></code></pre></div>
 <pre><code>## Warning: `count_()` is deprecated as of dplyr 0.7.0.
 ## Please use `count()` instead.
 ## See vignette(&#39;programming&#39;) for more help
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
 <pre><code>## # A tibble: 3 x 3
-##   Fail  predictOFail     n
-##   &lt;fct&gt; &lt;lgl&gt;        &lt;int&gt;
-## 1 no    FALSE           16
-## 2 yes   FALSE            4
-## 3 yes   TRUE             3</code></pre>
-<p>What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let’s lower it to 0.25 so that we predict o-ring failure more easily. Let’s find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let’s check false negative rate: 3/(3+4) = 0.43. That’s lower. But now we have a non-zero false positive rate: 6/(6+10) = 0.375. So of the experiments with no o-ring failure, we predicted wrong 37.5% of the time.</p>
+##   Fail  predictFail     n
+##   &lt;fct&gt; &lt;lgl&gt;       &lt;int&gt;
+## 1 no    FALSE          16
+## 2 yes   FALSE           4
+## 3 yes   TRUE            3</code></pre>
+<p>The only errors we made were <strong>false negatives</strong> (predict no “success” because <span class="math inline">\(\hat{p}\)</span> is less than threshold when outcome was true “success”, <span class="math inline">\(Y=1\)</span>); we predicted that the o-ring wouldn’t fail but the o-rings did fail in the experiment (<span class="math inline">\(Y=1\)</span>). In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure.</p>
+<p>The <strong>false negative rate</strong> is the number of false negatives divided by the false negatives + true positives (denominator should be total number of experiments with actual o-ring failures). With a threshold of 0.80, our false negative rate is 4/(3+4) = 0.57 = 57%. We failed to predict 57% of the o-ring failures. This is fairly high when there are lives on the line.</p>
+<p>The <strong>sensitivity</strong> of a prediction model is the true positives divided by the false negatives + true positives (denominator should be total number of experiments with actual o-ring failures). It is 1-false negative rate, so the model for o-ring failures has a 1-0.57 = 0.43 or 43% sensitivity.</p>
+<p>A <strong>false positive</strong> (predict “success” because <span class="math inline">\(\hat{p}\)</span> is greater than threshold when outcome was not a “success”, <span class="math inline">\(Y=0\)</span>). A false positive would happend when we predicted o-ring failure when it doesn’t actually happen. This would delay launch (cost $) but have minimal impact on human lives.</p>
+<p>The <strong>false positive rate</strong> is the number of false positives divided by the false positives + true negatives (denominator should be total number of experiments with no o-ring failures). With a threshold of 0.80, our false positive rate is 0/16 = 0. We always accurately predicted the o-rings would not fail.</p>
+<p>The <strong>specificity</strong> of a prediction model is the true negatives divided by the false positives + true negatives (denominator should be total number of experiments with no o-ring failures). It is 1-false positive rate, so the model for o-ring failures has a 1-0 = 1 or 100% specificity.</p>
+<div class="mathbox">
+<p>
+To recap,
+</p>
+<ul>
+<li>
+<p>
+The <strong>accuracy</strong> is the overall percentage of correctly predicted outcomes out of the total number of outcome values
+</p>
+</li>
+<li>
+<p>
+The <strong>false negative rate (FNR)</strong> is the percentage of incorrectly predicted outcomes out of the <span class="math inline"><span class="math inline">\(Y=1\)</span></span> “success” outcomes (conditional on “success”)
+</p>
+</li>
+<li>
+<p>
+The <strong>sensitivity</strong> is the percentage of correctly predicted outcomes out of the <span class="math inline"><span class="math inline">\(Y=1\)</span></span> “success” outcomes (conditional on “success”); 1 - FNR
+</p>
+</li>
+<li>
+<p>
+The <strong>false positive rate (FPR)</strong> is the percentage of incorrectly predicted outcomes out of the <span class="math inline"><span class="math inline">\(Y=0\)</span></span> “failure” outcomes (conditional on “failure” or “no success”)
+</p>
+</li>
+<li>
+<p>
+The <strong>specificity</strong> is the percentage of correctly predicted outcomes out of the <span class="math inline"><span class="math inline">\(Y=0\)</span></span> “failure” outcomes (conditional on “failure” or “no success”); 1 - FPR
+</p>
+</li>
+</ul>
+</div>
+<p>What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let’s lower it to 0.25 so that we predict o-ring failure more easily. Let’s find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let’s check false negative rate: 3/(3+4) = 0.43. That’s lower. But now we have a non-zero false positive rate: 6/(6+10) = 0.375. So of the experiments with no o-ring failure, we predicted incorrectly 37.5% of the time.</p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="prediction.html#cb213-1"></a><span class="kw">augment</span>(model.glm, <span class="dt">type.predict =</span><span class="st">&#39;response&#39;</span>) <span class="op">%&gt;%</span></span>
 <span id="cb213-2"><a href="prediction.html#cb213-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictOFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.25</span>) <span class="op">%&gt;%</span></span>
 <span id="cb213-3"><a href="prediction.html#cb213-3"></a><span class="st">  </span><span class="kw">count</span>(Fail, predictOFail)</span></code></pre></div>
@@ -401,7 +435,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 no    TRUE             6
 ## 3 yes   FALSE            3
 ## 4 yes   TRUE             4</code></pre>
-<p>Where the threshold goes depends on the real consequences of making those two types of errors.</p>
+<p>Where the threshold goes depends on the real consequences of making those two types of errors and needs to be made in the social and ethical context of the data.</p>
 </div>
 </div>
             </section>

@@ -230,9 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.2" data-path="multiple.html"><a href="multiple.html#confounder-adjustment"><i class="fa fa-check"></i><b>3.9.2</b> Confounder Adjustment</a></li>
 <li class="chapter" data-level="3.9.3" data-path="multiple.html"><a href="multiple.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.3</b> Interaction Variables</a></li>
 <li class="chapter" data-level="3.9.4" data-path="multiple.html"><a href="multiple.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.4</b> Is the Difference Real?</a></li>
+<li class="chapter" data-level="3.9.5" data-path="multiple.html"><a href="multiple.html#redundant"><i class="fa fa-check"></i><b>3.9.5</b> Redundancy and Multicollinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
-<li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="selecting-a-model.html"><a href="selecting-a-model.html"><i class="fa fa-check"></i><b>3.10</b> Selecting a Model</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="selecting-a-model.html"><a href="selecting-a-model.html#satisfying-conditions"><i class="fa fa-check"></i><b>3.10.1</b> Satisfying conditions</a></li>
+<li class="chapter" data-level="3.10.2" data-path="selecting-a-model.html"><a href="selecting-a-model.html#provide-useful-model"><i class="fa fa-check"></i><b>3.10.2</b> Provide useful model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
+<li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -373,28 +378,28 @@ What would happen if we drew WITHOUT REPLACEMENT?
 </div>
 <p><strong>2. Calculate</strong></p>
 <p>In our simulation above, we calculated the median and mean arrival delay. In theory, we could calculate any numerical summary of data (e.g. the mean, median, SD, 25th percentile, etc.)</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="irl-bootstrapping.html#cb247-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
-<span id="cb247-2"><a href="irl-bootstrapping.html#cb247-2"></a>    flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
-<span id="cb247-3"><a href="irl-bootstrapping.html#cb247-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
-<span id="cb247-4"><a href="irl-bootstrapping.html#cb247-4"></a><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay)) <span class="co"># Calculate statistics</span></span>
-<span id="cb247-5"><a href="irl-bootstrapping.html#cb247-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="irl-bootstrapping.html#cb259-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb259-2"><a href="irl-bootstrapping.html#cb259-2"></a>    flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb259-3"><a href="irl-bootstrapping.html#cb259-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb259-4"><a href="irl-bootstrapping.html#cb259-4"></a><span class="st">      </span><span class="kw">summarize</span>(<span class="dt">medians =</span> <span class="kw">median</span>(arr_delay), <span class="dt">means =</span> <span class="kw">mean</span>(arr_delay)) <span class="co"># Calculate statistics</span></span>
+<span id="cb259-5"><a href="irl-bootstrapping.html#cb259-5"></a>)</span></code></pre></div>
 <p><strong>3. Summarize</strong></p>
 <p>Let’s summarize these 1000 medians and 1000 means generated from resampling (with replacement) <em>from our sample</em> (our “fake population”).</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="irl-bootstrapping.html#cb248-1"></a><span class="co"># Summarize</span></span>
-<span id="cb248-2"><a href="irl-bootstrapping.html#cb248-2"></a>summary_boot &lt;-<span class="st"> </span>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb248-3"><a href="irl-bootstrapping.html#cb248-3"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
-<span id="cb248-4"><a href="irl-bootstrapping.html#cb248-4"></a>        <span class="dt">mean_medians =</span> <span class="kw">mean</span>(medians),</span>
-<span id="cb248-5"><a href="irl-bootstrapping.html#cb248-5"></a>        <span class="dt">mean_means =</span> <span class="kw">mean</span>(means),</span>
-<span id="cb248-6"><a href="irl-bootstrapping.html#cb248-6"></a>        <span class="dt">sd_medians =</span> <span class="kw">sd</span>(medians),</span>
-<span id="cb248-7"><a href="irl-bootstrapping.html#cb248-7"></a>        <span class="dt">sd_means =</span> <span class="kw">sd</span>(means)</span>
-<span id="cb248-8"><a href="irl-bootstrapping.html#cb248-8"></a>    )</span>
-<span id="cb248-9"><a href="irl-bootstrapping.html#cb248-9"></a>summary_boot</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="irl-bootstrapping.html#cb260-1"></a><span class="co"># Summarize</span></span>
+<span id="cb260-2"><a href="irl-bootstrapping.html#cb260-2"></a>summary_boot &lt;-<span class="st"> </span>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb260-3"><a href="irl-bootstrapping.html#cb260-3"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb260-4"><a href="irl-bootstrapping.html#cb260-4"></a>        <span class="dt">mean_medians =</span> <span class="kw">mean</span>(medians),</span>
+<span id="cb260-5"><a href="irl-bootstrapping.html#cb260-5"></a>        <span class="dt">mean_means =</span> <span class="kw">mean</span>(means),</span>
+<span id="cb260-6"><a href="irl-bootstrapping.html#cb260-6"></a>        <span class="dt">sd_medians =</span> <span class="kw">sd</span>(medians),</span>
+<span id="cb260-7"><a href="irl-bootstrapping.html#cb260-7"></a>        <span class="dt">sd_means =</span> <span class="kw">sd</span>(means)</span>
+<span id="cb260-8"><a href="irl-bootstrapping.html#cb260-8"></a>    )</span>
+<span id="cb260-9"><a href="irl-bootstrapping.html#cb260-9"></a>summary_boot</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 4
 ##   mean_medians mean_means sd_medians sd_means
 ##          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
 ## 1        -9.13       7.25       2.17     5.09</code></pre>
 <p>Let’s compare this to the summaries from the simulation of randomly sampling <em>from the population</em>.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="irl-bootstrapping.html#cb250-1"></a>summary_sim</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="irl-bootstrapping.html#cb262-1"></a>summary_sim</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 4
 ##   mean_medians mean_means sd_medians sd_means
 ##          &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
@@ -402,38 +407,38 @@ What would happen if we drew WITHOUT REPLACEMENT?
 <p>They won’t be exactly the same, but they should be of roughly similar magnitude.</p>
 <p><strong>4. Visualize</strong></p>
 <p>Let’s visualize these 1000 medians and 1000 means generated from resampling (with replacement) from our sample (our “fake population”).</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="irl-bootstrapping.html#cb252-1"></a><span class="co"># Visualize</span></span>
-<span id="cb252-2"><a href="irl-bootstrapping.html#cb252-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb252-3"><a href="irl-bootstrapping.html#cb252-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></span>
-<span id="cb252-4"><a href="irl-bootstrapping.html#cb252-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
-<span id="cb252-5"><a href="irl-bootstrapping.html#cb252-5"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
-<span id="cb252-6"><a href="irl-bootstrapping.html#cb252-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample median&quot;</span>) <span class="op">+</span></span>
-<span id="cb252-7"><a href="irl-bootstrapping.html#cb252-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="irl-bootstrapping.html#cb264-1"></a><span class="co"># Visualize</span></span>
+<span id="cb264-2"><a href="irl-bootstrapping.html#cb264-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb264-3"><a href="irl-bootstrapping.html#cb264-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></span>
+<span id="cb264-4"><a href="irl-bootstrapping.html#cb264-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb264-5"><a href="irl-bootstrapping.html#cb264-5"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
+<span id="cb264-6"><a href="irl-bootstrapping.html#cb264-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample median&quot;</span>) <span class="op">+</span></span>
+<span id="cb264-7"><a href="irl-bootstrapping.html#cb264-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="05-variability_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="irl-bootstrapping.html#cb253-1"></a><span class="co"># Visualize</span></span>
-<span id="cb253-2"><a href="irl-bootstrapping.html#cb253-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb253-3"><a href="irl-bootstrapping.html#cb253-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></span>
-<span id="cb253-4"><a href="irl-bootstrapping.html#cb253-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
-<span id="cb253-5"><a href="irl-bootstrapping.html#cb253-5"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
-<span id="cb253-6"><a href="irl-bootstrapping.html#cb253-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample mean&quot;</span>) <span class="op">+</span></span>
-<span id="cb253-7"><a href="irl-bootstrapping.html#cb253-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="irl-bootstrapping.html#cb265-1"></a><span class="co"># Visualize</span></span>
+<span id="cb265-2"><a href="irl-bootstrapping.html#cb265-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb265-3"><a href="irl-bootstrapping.html#cb265-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></span>
+<span id="cb265-4"><a href="irl-bootstrapping.html#cb265-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb265-5"><a href="irl-bootstrapping.html#cb265-5"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_boot, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
+<span id="cb265-6"><a href="irl-bootstrapping.html#cb265-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of the sample mean&quot;</span>) <span class="op">+</span></span>
+<span id="cb265-7"><a href="irl-bootstrapping.html#cb265-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="05-variability_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
 <p>Let’s compare these to the visuals from the simulation from the population.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="irl-bootstrapping.html#cb254-1"></a><span class="co"># Visualize</span></span>
-<span id="cb254-2"><a href="irl-bootstrapping.html#cb254-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb254-3"><a href="irl-bootstrapping.html#cb254-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></span>
-<span id="cb254-4"><a href="irl-bootstrapping.html#cb254-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
-<span id="cb254-5"><a href="irl-bootstrapping.html#cb254-5"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
-<span id="cb254-6"><a href="irl-bootstrapping.html#cb254-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample median</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></span>
-<span id="cb254-7"><a href="irl-bootstrapping.html#cb254-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="irl-bootstrapping.html#cb266-1"></a><span class="co"># Visualize</span></span>
+<span id="cb266-2"><a href="irl-bootstrapping.html#cb266-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb266-3"><a href="irl-bootstrapping.html#cb266-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> medians)) <span class="op">+</span></span>
+<span id="cb266-4"><a href="irl-bootstrapping.html#cb266-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb266-5"><a href="irl-bootstrapping.html#cb266-5"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_medians), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
+<span id="cb266-6"><a href="irl-bootstrapping.html#cb266-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample median</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb266-7"><a href="irl-bootstrapping.html#cb266-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="05-variability_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="irl-bootstrapping.html#cb255-1"></a><span class="co"># Visualize</span></span>
-<span id="cb255-2"><a href="irl-bootstrapping.html#cb255-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb255-3"><a href="irl-bootstrapping.html#cb255-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></span>
-<span id="cb255-4"><a href="irl-bootstrapping.html#cb255-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
-<span id="cb255-5"><a href="irl-bootstrapping.html#cb255-5"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
-<span id="cb255-6"><a href="irl-bootstrapping.html#cb255-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample mean</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></span>
-<span id="cb255-7"><a href="irl-bootstrapping.html#cb255-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="irl-bootstrapping.html#cb267-1"></a><span class="co"># Visualize</span></span>
+<span id="cb267-2"><a href="irl-bootstrapping.html#cb267-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb267-3"><a href="irl-bootstrapping.html#cb267-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> means)) <span class="op">+</span></span>
+<span id="cb267-4"><a href="irl-bootstrapping.html#cb267-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb267-5"><a href="irl-bootstrapping.html#cb267-5"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> summary_sim, <span class="kw">aes</span>(<span class="dt">xintercept =</span> mean_means), <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>) <span class="op">+</span></span>
+<span id="cb267-6"><a href="irl-bootstrapping.html#cb267-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of the sample mean</span><span class="ch">\n</span><span class="st">from a sample of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb267-7"><a href="irl-bootstrapping.html#cb267-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="05-variability_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
 <p>The process of resampling from our sample, called <strong>bootstrapping</strong>, is becoming the one of main computational tools for estimating sampling variability in the field of Statistics.</p>
 <div class="reflect">

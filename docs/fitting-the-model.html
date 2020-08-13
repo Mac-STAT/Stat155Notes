@@ -230,9 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.2" data-path="multiple.html"><a href="multiple.html#confounder-adjustment"><i class="fa fa-check"></i><b>3.9.2</b> Confounder Adjustment</a></li>
 <li class="chapter" data-level="3.9.3" data-path="multiple.html"><a href="multiple.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.3</b> Interaction Variables</a></li>
 <li class="chapter" data-level="3.9.4" data-path="multiple.html"><a href="multiple.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.4</b> Is the Difference Real?</a></li>
+<li class="chapter" data-level="3.9.5" data-path="multiple.html"><a href="multiple.html#redundant"><i class="fa fa-check"></i><b>3.9.5</b> Redundancy and Multicollinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
-<li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="selecting-a-model.html"><a href="selecting-a-model.html"><i class="fa fa-check"></i><b>3.10</b> Selecting a Model</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="selecting-a-model.html"><a href="selecting-a-model.html#satisfying-conditions"><i class="fa fa-check"></i><b>3.10.1</b> Satisfying conditions</a></li>
+<li class="chapter" data-level="3.10.2" data-path="selecting-a-model.html"><a href="selecting-a-model.html#provide-useful-model"><i class="fa fa-check"></i><b>3.10.2</b> Provide useful model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
+<li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -363,22 +368,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Based on observed data that includes an indicator variable for the responses (<span class="math inline">\(Y=1\)</span> for success, <span class="math inline">\(Y=0\)</span> for failure) and predictor variables, we need to find the slope coefficients, <span class="math inline">\(\beta_0\)</span>,…,<span class="math inline">\(\beta_k\)</span> that best fits the data. The way we do this is through a technique called <strong>maximum likelihood estimation</strong>. We will not discuss the details in this class; we’ll save this for an upper level statistics class such as Mathematical Statistics.</p>
 <p>In R, we do this with the <strong>g</strong>eneral <strong>l</strong>inear <strong>m</strong>odel function, <code>glm()</code>.</p>
 <p>For a data set, let’s go back in history to January 28, 1986. On this day, the U.S. space shuttle called Challenger took off and tragically exploded about minute after the launch. After the incident, scientists ruled that the disaster was due to an o-ring seal failure. Let’s look at experimental data on the o-rings prior to the fateful day.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="fitting-the-model.html#cb202-1"></a><span class="kw">require</span>(vcd)</span>
-<span id="cb202-2"><a href="fitting-the-model.html#cb202-2"></a><span class="kw">data</span>(SpaceShuttle)</span>
-<span id="cb202-3"><a href="fitting-the-model.html#cb202-3"></a></span>
-<span id="cb202-4"><a href="fitting-the-model.html#cb202-4"></a>SpaceShuttle <span class="op">%&gt;%</span></span>
-<span id="cb202-5"><a href="fitting-the-model.html#cb202-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Fail)) <span class="op">%&gt;%</span></span>
-<span id="cb202-6"><a href="fitting-the-model.html#cb202-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Fail), <span class="dt">y =</span> Temperature) )<span class="op">+</span><span class="st"> </span></span>
-<span id="cb202-7"><a href="fitting-the-model.html#cb202-7"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb202-8"><a href="fitting-the-model.html#cb202-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="fitting-the-model.html#cb214-1"></a><span class="kw">require</span>(vcd)</span>
+<span id="cb214-2"><a href="fitting-the-model.html#cb214-2"></a><span class="kw">data</span>(SpaceShuttle)</span>
+<span id="cb214-3"><a href="fitting-the-model.html#cb214-3"></a></span>
+<span id="cb214-4"><a href="fitting-the-model.html#cb214-4"></a>SpaceShuttle <span class="op">%&gt;%</span></span>
+<span id="cb214-5"><a href="fitting-the-model.html#cb214-5"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Fail)) <span class="op">%&gt;%</span></span>
+<span id="cb214-6"><a href="fitting-the-model.html#cb214-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(Fail), <span class="dt">y =</span> Temperature) )<span class="op">+</span><span class="st"> </span></span>
+<span id="cb214-7"><a href="fitting-the-model.html#cb214-7"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb214-8"><a href="fitting-the-model.html#cb214-8"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="04-logistic-regression_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="fitting-the-model.html#cb203-1"></a>SpaceShuttle <span class="op">%&gt;%</span></span>
-<span id="cb203-2"><a href="fitting-the-model.html#cb203-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Fail)) <span class="op">%&gt;%</span></span>
-<span id="cb203-3"><a href="fitting-the-model.html#cb203-3"></a><span class="st">  </span><span class="kw">group_by</span>(Temperature) <span class="op">%&gt;%</span></span>
-<span id="cb203-4"><a href="fitting-the-model.html#cb203-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">PercentFail =</span> <span class="kw">mean</span>(Fail <span class="op">==</span><span class="st"> &#39;yes&#39;</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb203-5"><a href="fitting-the-model.html#cb203-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Temperature, <span class="dt">y =</span> PercentFail)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb203-6"><a href="fitting-the-model.html#cb203-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb203-7"><a href="fitting-the-model.html#cb203-7"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="fitting-the-model.html#cb215-1"></a>SpaceShuttle <span class="op">%&gt;%</span></span>
+<span id="cb215-2"><a href="fitting-the-model.html#cb215-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(Fail)) <span class="op">%&gt;%</span></span>
+<span id="cb215-3"><a href="fitting-the-model.html#cb215-3"></a><span class="st">  </span><span class="kw">group_by</span>(Temperature) <span class="op">%&gt;%</span></span>
+<span id="cb215-4"><a href="fitting-the-model.html#cb215-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">PercentFail =</span> <span class="kw">mean</span>(Fail <span class="op">==</span><span class="st"> &#39;yes&#39;</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb215-5"><a href="fitting-the-model.html#cb215-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Temperature, <span class="dt">y =</span> PercentFail)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb215-6"><a href="fitting-the-model.html#cb215-6"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb215-7"><a href="fitting-the-model.html#cb215-7"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="04-logistic-regression_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <div class="reflect">
 <p>
@@ -386,8 +391,8 @@ What are the plots above telling us about the relationship between chance of o-r
 </p>
 </div>
 <p>Let’s fit a simple logistic regression model with one explanatory variable to predict the chance of o-ring failure (which is our “success” here – we know it sounds morbid) based on the temperature using the experimental data.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="fitting-the-model.html#cb204-1"></a>model.glm &lt;-<span class="st"> </span><span class="kw">glm</span>(Fail <span class="op">~</span><span class="st"> </span>Temperature, <span class="dt">data =</span> SpaceShuttle, <span class="dt">family =</span> binomial)</span>
-<span id="cb204-2"><a href="fitting-the-model.html#cb204-2"></a><span class="kw">summary</span>(model.glm)</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="fitting-the-model.html#cb216-1"></a>model.glm &lt;-<span class="st"> </span><span class="kw">glm</span>(Fail <span class="op">~</span><span class="st"> </span>Temperature, <span class="dt">data =</span> SpaceShuttle, <span class="dt">family =</span> binomial)</span>
+<span id="cb216-2"><a href="fitting-the-model.html#cb216-2"></a><span class="kw">summary</span>(model.glm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## glm(formula = Fail ~ Temperature, family = binomial, data = SpaceShuttle)

@@ -1072,9 +1072,9 @@ lm(y ~ poly(x, degree = 2, raw = TRUE), data = dat)
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          202.461                            17.074  
+##                          210.067                            15.048  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -4.525
+##                           -4.463
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
@@ -1630,6 +1630,196 @@ boot %>%
 <p>Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes (with and without fireplaces)? How would you justify your answer? Consider the plausible values of the difference in slopes given by the interval above.</p>
 </div>
 
+### Redundancy and Multicollinearity {#redundant}
+
+Beyond fireplaces and living area, there are other characteristics that may impact the price of a home. Typically, homes for sale are advertised with the square footage, the number of bedrooms, and the number of bathrooms in addition to the total number of rooms in the house. In general, we'd expect a positive relationship between each of these and the home price. Let's fit a model with those four explanatory variables.
+
+
+```r
+lm.home4 <- homes %>% with( lm(Price ~ Living.Area + Bedrooms + Bathrooms + Rooms))
+summary(lm.home4)
+```
+
+```
+## 
+## Call:
+## lm(formula = Price ~ Living.Area + Bedrooms + Bathrooms + Rooms)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -245900  -40224   -7387   28090  533563 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  18937.389   6871.239   2.756  0.00591 ** 
+## Living.Area     98.572      4.932  19.985  < 2e-16 ***
+## Bedrooms    -16922.902   2832.244  -5.975 2.79e-09 ***
+## Bathrooms    26038.557   3543.063   7.349 3.07e-13 ***
+## Rooms         3400.172   1109.628   3.064  0.00222 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 67390 on 1723 degrees of freedom
+## Multiple R-squared:  0.5325,	Adjusted R-squared:  0.5314 
+## F-statistic: 490.6 on 4 and 1723 DF,  p-value: < 2.2e-16
+```
+
+If we look at the estimates of the slope coefficients, are you surprised to see that `Bedrooms` has a negative slope estimate?
+
+Remember, the coefficients are the change in the expected price for a 1 unit change in that variable, keeping all other variables fixed. Is it *possible* to keep `Rooms` fixed while adding an additional `Bedroom`? In practice, that would mean you need to convert an existing room to a `Bedroom`. Let's look at a scatterplot between these two variables. If it not realistic or possible to fix one variable while increasing the other, we cannot interpret the slope coefficients in the standard way. 
+
+
+
+```r
+homes %>%
+  ggplot(aes(x = Rooms, y = Bedrooms)) + 
+  geom_point() +
+  theme_minimal()
+```
+
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-79-1.png" width="672" />
+
+```r
+homes %>%
+  summarize(cor(Rooms,Bedrooms))
+```
+
+```
+##   cor(Rooms, Bedrooms)
+## 1            0.6718633
+```
+
+These two characteristics are positively correlated because the count of `Rooms` is defined as the number of `Bedrooms` plus the number of other rooms in the house. So they contain some similar information about a home. Knowing how many rooms a house has, you can could have a pretty good guess at how many bedrooms it has. Maybe one of these variables is a bit redundant.
+
+Let's take another view at this model with an **Added Variable Plot**. Here are a few characteristics of an added variable plot.
+
+1. We have one scatterplot per $X$ explanatory variable in the model. 
+2. For each scatterplot, the values on the x and y axes are residuals from two different models, both of which we have not directly fit. 
+
+*What are these models?*
+
+- For the y-axes, the model that is fit is a multiple linear regression model for $E[Y |\hbox{ all other }X\hbox{ variables except }X_j]$. The residuals from this model encode the variation and information about $Y$ that is left unexplained by other $X$ variables. 
+- For the x-axes, the model that is fit is a multiple linear regression model for $E[X_j | \hbox{ all other }X\hbox{ variables except }X_j]$. The residuals from this model encode the variation and information about $X_j$ that is left unexplained by other $X$ variables. In other words, the unique information the $X_j$ has that is not contained in the other $X$ variables. 
+
+3. The slope of the line in each scatterplot is equal to the estimated slope coefficient for that variable in the model you fit. 
+
+If we look at the example below, we see a fairly strong positive relationship in the first (upper left) scatterplot. What we can conclude is that living area has quite a bit of unique information not contained in `Bedrooms`, `Rooms`, and `Bathrooms` that can explain variation in home price. Another way to phrase this is that after adjusting for or accounting for the number of `Bedrooms`, `Rooms`, and `Bathrooms`, we see a moderately strong positive linear relationship between `Living.Area` and `Price`. 
+
+In the second (upper right) scatterplot, we see a weak negative relationship between `Bedrooms` and `Price` after account for the square footage of the living area, the number of bathrooms, and the number of rooms. So there isn't much unique information about bedrooms that can help explain the variation in price that isn't already contained in `Rooms`, `Bathrooms`, and `Living.Area`. Since the slope is negative, we might conclude that converting an existing room (keeping square footage and number of rooms fixed) to a bedroom slightly decreases the estimated expected home price. 
+
+With `Rooms` and `Bathrooms`, we see positive but weak relationships after accounting for the other explanatory variables. In fact, the slope of these lines are equal to the estimated coefficients from the summary. 
+
+
+```r
+source('Data/ggavplot.R')
+ggAVPLOTS(lm.home4)
+```
+
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-80-1.png" width="672" />
+
+If we were to remove `Rooms` as it seems to be redundant, containing similar information as `Bedrooms`, we get a bit different estimated slope coefficients.
+
+
+```r
+lm.home5 <- homes %>% with( lm(Price ~ Living.Area + Bedrooms + Bathrooms ))
+summary(lm.home5)
+```
+
+```
+## 
+## Call:
+## lm(formula = Price ~ Living.Area + Bedrooms + Bathrooms)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -239040  -40340   -7775   28308  540154 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  21323.089   6843.580   3.116  0.00186 ** 
+## Living.Area    105.204      4.443  23.679  < 2e-16 ***
+## Bedrooms    -13702.463   2636.422  -5.197 2.26e-07 ***
+## Bathrooms    25912.548   3551.434   7.296 4.49e-13 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 67550 on 1724 degrees of freedom
+## Multiple R-squared:  0.5299,	Adjusted R-squared:  0.5291 
+## F-statistic: 647.8 on 3 and 1724 DF,  p-value: < 2.2e-16
+```
+
+*So should Rooms stay in the model or come out?*
+
+Does adding `Rooms` help explain more variation in home `Price`? 
+
+We can see that WITH `Rooms`, we explained 53.2% of the variation in home `Price`.
+
+We can see that WITHOUT `Rooms`, we explained 52.9% of the variation in home `Price`.
+
+So `Rooms` doesn't add a lot to the explanatory power of the model. 
+
+
+```r
+glance(lm.home4)
+```
+
+```
+## # A tibble: 1 x 12
+##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
+##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
+## 1     0.532         0.531 67388.      491. 1.58e-282     4 -21662. 43335. 43368.
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+```
+
+```r
+glance(lm.home5)
+```
+
+```
+## # A tibble: 1 x 12
+##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
+##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
+## 1     0.530         0.529 67552.      648. 6.15e-282     3 -21666. 43343. 43370.
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+```
+
+**Fun Fact**: Adding an explanatory variable $X$ to the model will always increase R-squared or keep it the same. 
+
+In general, we'd like the most simple (least number of $X$ variables) that does a good job for our goals. If R-squared never goes down when you add an explanatory variable, we need a different tool to help us decide whether to add a variable. 
+
+Remember that 
+$$R^2 = 1 - \frac{SSE}{SSTO} = \hbox{% of variation in Y explained by model}$$
+
+**Adjusted R-Squared** is a slightly adjusted version of R-squared that takes into account the number of $X$ variables in the model, denoted as $k$. It is calculated as
+
+$$R^2_{adj} = 1 - \frac{SSE/(n-k-1)}{SSTO/(n-1)}$$
+
+It does NOT have the interpretation of "% of variation explained..." but it can be used to help us decide whether a variable is redundant or whether we should keep it in the model. The adjusted R-squared for these two models are 0.531 (with Rooms) and 0.529 (without Rooms). This is a judgment call that you as the data analyst makes and this is one tool to help you make the decision. See the next section for more tools to help you decide. 
+
+
+
+## Selecting a Model
+
+With a multiple linear regression model, we have many decisions to make. We need to decide which explanatory variables should be in the model and what form (indicators, interactions, transformed) they should take. To help guide your decision making, we provide a list of helpful tools.
+
+### Satisfying conditions
+
+Choose $X$ variables (& their form) that:
+
+- have fairly strong linear relationship with equal spread with $Y$ (for quantitative $X$)
+- that don't have a pattern in a residual plot against $X$ (for quantitative $X$)
+- can explain large differences in average $Y$ (for categorical $X$)
+- capture modifying effects or different slopes (use visualizations to justify interaction terms)
+
+### Provide useful model
+
+Choose $X$ variables (& their form) that:
+
+- can explain a lot of variation in $Y$ (higher R-squared)
+- provide small prediction errors (smaller standard deviation of residual)
+- have coefficients that are really different from 0 ([Is the Difference Real?])
+- adjust for confounding variables to help you estimate direct causal relationships (not mediators; see Section \@ref(dag))
+- have unique information that is not redundant (higher adjusted R-squared; see Section \@ref{redundancy})
 
 
 ## Causal Inference {#dag}
@@ -1638,7 +1828,7 @@ A full overview of causal inference is beyond the scope of this course, but a fi
 
 In a DAG, we have circles or **nodes** that represented variables and arrow or **directed edges** that indicate the causal pathway (arrows point in the direction of the hypothesized casual effect). 
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-78-1.png" width="672" />
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-83-1.png" width="672" />
 
 
 

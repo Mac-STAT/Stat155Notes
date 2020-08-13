@@ -230,9 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.2" data-path="multiple.html"><a href="multiple.html#confounder-adjustment"><i class="fa fa-check"></i><b>3.9.2</b> Confounder Adjustment</a></li>
 <li class="chapter" data-level="3.9.3" data-path="multiple.html"><a href="multiple.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.3</b> Interaction Variables</a></li>
 <li class="chapter" data-level="3.9.4" data-path="multiple.html"><a href="multiple.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.4</b> Is the Difference Real?</a></li>
+<li class="chapter" data-level="3.9.5" data-path="multiple.html"><a href="multiple.html#redundant"><i class="fa fa-check"></i><b>3.9.5</b> Redundancy and Multicollinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
-<li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="selecting-a-model.html"><a href="selecting-a-model.html"><i class="fa fa-check"></i><b>3.10</b> Selecting a Model</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="selecting-a-model.html"><a href="selecting-a-model.html#satisfying-conditions"><i class="fa fa-check"></i><b>3.10.1</b> Satisfying conditions</a></li>
+<li class="chapter" data-level="3.10.2" data-path="selecting-a-model.html"><a href="selecting-a-model.html#provide-useful-model"><i class="fa fa-check"></i><b>3.10.2</b> Provide useful model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
+<li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -361,21 +366,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="randomness-and-probability" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Randomness and Probability</h1>
 <p>Now that we have some intuition about random variability, we will formalize some of the concepts of probability and chance.</p>
-<p>Recall the regression model we built to predict home price as a function of square footage and fireplaces in [Multiple Linear Regression].</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="randomness-and-probability.html#cb284-1"></a>homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</span>
-<span id="cb284-2"><a href="randomness-and-probability.html#cb284-2"></a>homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
-<span id="cb284-3"><a href="randomness-and-probability.html#cb284-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</span>
-<span id="cb284-4"><a href="randomness-and-probability.html#cb284-4"></a>homes <span class="op">%&gt;%</span></span>
-<span id="cb284-5"><a href="randomness-and-probability.html#cb284-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb284-6"><a href="randomness-and-probability.html#cb284-6"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></span>
-<span id="cb284-7"><a href="randomness-and-probability.html#cb284-7"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
-<span id="cb284-8"><a href="randomness-and-probability.html#cb284-8"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p>Recall the regression model we built to predict home price as a function of square footage and fireplaces in Section @ref{multiple}.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="randomness-and-probability.html#cb296-1"></a>homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</span>
+<span id="cb296-2"><a href="randomness-and-probability.html#cb296-2"></a>homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
+<span id="cb296-3"><a href="randomness-and-probability.html#cb296-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb296-4"><a href="randomness-and-probability.html#cb296-4"></a>homes <span class="op">%&gt;%</span></span>
+<span id="cb296-5"><a href="randomness-and-probability.html#cb296-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Living.Area, <span class="dt">y =</span> Price, <span class="dt">color =</span> AnyFireplace)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb296-6"><a href="randomness-and-probability.html#cb296-6"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></span>
+<span id="cb296-7"><a href="randomness-and-probability.html#cb296-7"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>) <span class="op">+</span></span>
+<span id="cb296-8"><a href="randomness-and-probability.html#cb296-8"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="06-probability_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>To allow for different slopes among homes with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our one sample, we observed a difference in the slopes of $26.85 per square foot.</p>
 <p>But is this true for the larger population of homes in the area? Is each square foot worth exactly $26.85 more, on average, in homes with a fireplace than in homes without a fireplace?</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="randomness-and-probability.html#cb286-1"></a>lm.home3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace<span class="op">*</span>Living.Area, <span class="dt">data =</span> homes)</span>
-<span id="cb286-2"><a href="randomness-and-probability.html#cb286-2"></a><span class="kw">tidy</span>(lm.home3)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="randomness-and-probability.html#cb298-1"></a>lm.home3 &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>AnyFireplace<span class="op">*</span>Living.Area, <span class="dt">data =</span> homes)</span>
+<span id="cb298-2"><a href="randomness-and-probability.html#cb298-2"></a><span class="kw">tidy</span>(lm.home3)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 5
 ##   term                         estimate std.error statistic  p.value
 ##   &lt;chr&gt;                           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;

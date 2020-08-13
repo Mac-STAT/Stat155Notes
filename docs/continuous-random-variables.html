@@ -230,9 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.2" data-path="multiple.html"><a href="multiple.html#confounder-adjustment"><i class="fa fa-check"></i><b>3.9.2</b> Confounder Adjustment</a></li>
 <li class="chapter" data-level="3.9.3" data-path="multiple.html"><a href="multiple.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.3</b> Interaction Variables</a></li>
 <li class="chapter" data-level="3.9.4" data-path="multiple.html"><a href="multiple.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.4</b> Is the Difference Real?</a></li>
+<li class="chapter" data-level="3.9.5" data-path="multiple.html"><a href="multiple.html#redundant"><i class="fa fa-check"></i><b>3.9.5</b> Redundancy and Multicollinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
-<li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="selecting-a-model.html"><a href="selecting-a-model.html"><i class="fa fa-check"></i><b>3.10</b> Selecting a Model</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="selecting-a-model.html"><a href="selecting-a-model.html#satisfying-conditions"><i class="fa fa-check"></i><b>3.10.1</b> Satisfying conditions</a></li>
+<li class="chapter" data-level="3.10.2" data-path="selecting-a-model.html"><a href="selecting-a-model.html#provide-useful-model"><i class="fa fa-check"></i><b>3.10.2</b> Provide useful model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
+<li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -394,18 +399,18 @@ and
 <li><p>We know that <span class="math inline">\(P(-1\leq X \leq 1) = F(1) - F(-1) = 0.68\)</span></p></li>
 </ul>
 <p><img src="appendix_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="continuous-random-variables.html#cb385-1"></a><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) <span class="co">#pnorm is the cdf</span></span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="continuous-random-variables.html#cb397-1"></a><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) <span class="co">#pnorm is the cdf</span></span></code></pre></div>
 <pre><code>## [1] 0.6826895</code></pre>
 <ul>
 <li><span class="math inline">\(P(-2\leq X \leq 2) = F(2) - F(-2) = 0.95\)</span></li>
 </ul>
 <p><img src="appendix_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="continuous-random-variables.html#cb387-1"></a><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="continuous-random-variables.html#cb399-1"></a><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9544997</code></pre>
 <ul>
 <li><span class="math inline">\(P(-3\leq X \leq 3) = F(3) - F(-3) = 0.997\)</span></li>
 </ul>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="continuous-random-variables.html#cb389-1"></a><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="continuous-random-variables.html#cb401-1"></a><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9973002</code></pre>
 <p>Let <span class="math inline">\(X\)</span> be a Binomial Random Variable and <span class="math inline">\(Y\)</span> be a Normal Random Variable.</p>
 <p>As <span class="math inline">\(n\rightarrow \infty\)</span> (<span class="math inline">\(p\)</span> is fixed), the <span class="math inline">\(P(X = x) \approx P(x-0.5 \leq Y \leq x+0.5)\)</span>.</p>
@@ -413,24 +418,24 @@ and
 <p><img src="appendix_files/figure-html/unnamed-chunk-12-1.png" width="672" /><img src="appendix_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
 <p>If <span class="math inline">\(n=1000\)</span> and <span class="math inline">\(p=0.2\)</span>, let’s compare <span class="math inline">\(P(X=200)\)</span> and <span class="math inline">\(P(199.5\leq Y\leq 200.5)\)</span>.</p>
 <p><img src="appendix_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="continuous-random-variables.html#cb391-1"></a><span class="kw">dbinom</span>(<span class="dv">200</span>,<span class="dt">size =</span> n, <span class="dt">p =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="continuous-random-variables.html#cb403-1"></a><span class="kw">dbinom</span>(<span class="dv">200</span>,<span class="dt">size =</span> n, <span class="dt">p =</span> p)</span></code></pre></div>
 <pre><code>## [1] 0.03152536</code></pre>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="continuous-random-variables.html#cb393-1"></a><span class="kw">pnorm</span>(<span class="fl">200.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p))) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">199.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p)))</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="continuous-random-variables.html#cb405-1"></a><span class="kw">pnorm</span>(<span class="fl">200.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p))) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">199.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p)))</span></code></pre></div>
 <pre><code>## [1] 0.03153095</code></pre>
 <p>If <span class="math inline">\(n=1000\)</span> and <span class="math inline">\(p=0.2\)</span>, let’s compare <span class="math inline">\(P(200\leq X\leq 210)\)</span> and <span class="math inline">\(P(199.5\leq Y\leq 210.5)\)</span>.</p>
 <p><img src="appendix_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="continuous-random-variables.html#cb395-1"></a><span class="kw">sum</span>(<span class="kw">dbinom</span>(<span class="dv">200</span><span class="op">:</span><span class="dv">210</span>,<span class="dt">size =</span> n, <span class="dt">p =</span> p))</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="continuous-random-variables.html#cb407-1"></a><span class="kw">sum</span>(<span class="kw">dbinom</span>(<span class="dv">200</span><span class="op">:</span><span class="dv">210</span>,<span class="dt">size =</span> n, <span class="dt">p =</span> p))</span></code></pre></div>
 <pre><code>## [1] 0.3100719</code></pre>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="continuous-random-variables.html#cb397-1"></a><span class="kw">pnorm</span>(<span class="fl">210.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p))) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">199.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p)))</span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="continuous-random-variables.html#cb409-1"></a><span class="kw">pnorm</span>(<span class="fl">210.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p))) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">199.5</span>,<span class="dt">mean =</span> n<span class="op">*</span>p, <span class="dt">sd =</span> <span class="kw">sqrt</span>(n<span class="op">*</span>p<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>p)))</span></code></pre></div>
 <pre><code>## [1] 0.3125238</code></pre>
 <p>How big does <span class="math inline">\(n\)</span> have to be for the Normal approximation to be appropriate?</p>
 <ul>
 <li><strong>Rule of Thumb</strong>: <span class="math inline">\(np \geq 10\)</span> and <span class="math inline">\(n(1-p)\geq 10\)</span> because that makes sure that <span class="math inline">\(E(X)-0&gt;3SD(X)\)</span> (mean is at least 3 SD’s from 0).</li>
 </ul>
 <p>For <span class="math inline">\(p=0.2\)</span>, that means that <span class="math inline">\(n\geq 50\)</span>.</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="continuous-random-variables.html#cb399-1"></a>n =<span class="st"> </span><span class="dv">50</span></span>
-<span id="cb399-2"><a href="continuous-random-variables.html#cb399-2"></a>p =<span class="st"> </span><span class="fl">0.2</span></span>
-<span id="cb399-3"><a href="continuous-random-variables.html#cb399-3"></a><span class="kw">barplot</span>(<span class="kw">dbinom</span>(<span class="dv">0</span><span class="op">:</span>n,<span class="dt">size =</span> n, <span class="dt">p =</span> p),<span class="dt">names.arg=</span><span class="dv">0</span><span class="op">:</span>n,<span class="dt">ylab=</span><span class="st">&#39;Probability&#39;</span>,<span class="dt">main=</span><span class="st">&#39;n = 50, p = 0.2&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="continuous-random-variables.html#cb411-1"></a>n =<span class="st"> </span><span class="dv">50</span></span>
+<span id="cb411-2"><a href="continuous-random-variables.html#cb411-2"></a>p =<span class="st"> </span><span class="fl">0.2</span></span>
+<span id="cb411-3"><a href="continuous-random-variables.html#cb411-3"></a><span class="kw">barplot</span>(<span class="kw">dbinom</span>(<span class="dv">0</span><span class="op">:</span>n,<span class="dt">size =</span> n, <span class="dt">p =</span> p),<span class="dt">names.arg=</span><span class="dv">0</span><span class="op">:</span>n,<span class="dt">ylab=</span><span class="st">&#39;Probability&#39;</span>,<span class="dt">main=</span><span class="st">&#39;n = 50, p = 0.2&#39;</span>)</span></code></pre></div>
 <p><img src="appendix_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 </div>
 </div>

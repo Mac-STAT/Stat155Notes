@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.1 Modeling Goals | STAT 155 Notes</title>
+  <title>3.10 Selecting a Model | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.1 Modeling Goals | STAT 155 Notes" />
+  <meta property="og:title" content="3.10 Selecting a Model | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.1 Modeling Goals | STAT 155 Notes" />
+  <meta name="twitter:title" content="3.10 Selecting a Model | STAT 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="linear-regression-models.html"/>
-<link rel="next" href="lines.html"/>
+<link rel="prev" href="multiple.html"/>
+<link rel="next" href="dag.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -363,42 +363,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="modeling-goals" class="section level2">
-<h2><span class="header-section-number">3.1</span> Modeling Goals</h2>
-<p>Broadly, a model is a simplified representation of the world. When we build models, we may have different goals.</p>
-<p>One goal when building models is <strong>prediction</strong>. Given data on a <strong>response</strong> or <strong>outcome variable</strong>, <span class="math inline">\(Y\)</span>, and one or more <strong>predictor or explanatory variables</strong>, <span class="math inline">\(X\)</span>, the goal is to find a mathematical function, <span class="math inline">\(f\)</span>, of <span class="math inline">\(X\)</span> that gives good predictions of <span class="math inline">\(Y\)</span>. For example, we might want to be able to predict a customer’s chest size knowing their neck size. This <span class="math inline">\(X\)</span> may be a single variable, but it is most often a set of variables. We’ll be building up to multivariate modeling over the course of this chapter.</p>
-<div class="reflect">
-<p>
-Can you think of some other concrete examples in which we’d want a model to do prediction? Consider what predictions might be made about you every day.
-</p>
+<div id="selecting-a-model" class="section level2">
+<h2><span class="header-section-number">3.10</span> Selecting a Model</h2>
+<p>With a multiple linear regression model, we have many decisions to make. We need to decide which explanatory variables should be in the model and what form (indicators, interactions, transformed) they should take. To help guide your decision making, we provide a list of helpful tools.</p>
+<div id="satisfying-conditions" class="section level3">
+<h3><span class="header-section-number">3.10.1</span> Satisfying conditions</h3>
+<p>Choose <span class="math inline">\(X\)</span> variables (&amp; their form) that:</p>
+<ul>
+<li>have fairly strong linear relationship with equal spread with <span class="math inline">\(Y\)</span> (for quantitative <span class="math inline">\(X\)</span>)</li>
+<li>that don’t have a pattern in a residual plot against <span class="math inline">\(X\)</span> (for quantitative <span class="math inline">\(X\)</span>)</li>
+<li>can explain large differences in average <span class="math inline">\(Y\)</span> (for categorical <span class="math inline">\(X\)</span>)</li>
+<li>capture modifying effects or different slopes (use visualizations to justify interaction terms)</li>
+</ul>
 </div>
-<p>What are the qualities of a good model and function, <span class="math inline">\(f\)</span>? We want to find an <span class="math inline">\(f(X)\)</span> such that if we plug in a value of <span class="math inline">\(X\)</span> such as <span class="math inline">\(X=x\)</span>, we’ll get a good predictor of the observed outcome values <span class="math inline">\(y\)</span>. In other words, we want the model prediction <span class="math inline">\(\hat{y}=f(x)\)</span> (read, “y hat”) to be close to the observed outcome value. We want <span class="math inline">\(y-\hat{y}\)</span> to be small. This difference between the observed value and the prediction, <span class="math inline">\(y-\hat{y}\)</span>, is called a <strong>residual</strong>. We’ll discuss residuals more later.</p>
-<p>Another goal when building models is <strong>description</strong>. We want a model to “explain” the relationship between the <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> variables. Note that an overly complicated model may not be that useful here because it can’t help us <em>understand</em> the relationship. A more complex model may, however, produce better predictions. <a href="https://en.wikipedia.org/wiki/George_E._P._Box">George Box</a> is often quoted “All models are wrong but some are useful.” Depending on our goal, one model may be more useful than another.</p>
-<div class="reflect">
-<p>
-Can you think of some concrete examples in which we’d want a model to do explain a phenomenon? Consider how policy decisions get made.
-</p>
-</div>
-<p>To begin, we will consider a simple, but powerful model in which we limit this function, <span class="math inline">\(f(X)\)</span>, to be a straight line with a y-intercept, <span class="math inline">\(\beta_0\)</span>, and slope, <span class="math inline">\(\beta_1\)</span>. (<span class="math inline">\(\beta\)</span> is the Greek letter beta.) The <span class="math inline">\(E[Y | X]\)</span> below stands for the <strong>expected value</strong> of the response variable <span class="math inline">\(Y\)</span> for a <em>given</em> value of <span class="math inline">\(X\)</span>.</p>
-<p><span class="math display">\[E[Y | X] = \beta_0 + \beta_1\,X\]</span></p>
-<p>This is a <strong>simple linear regression model</strong>. We model the expected value (the average value) of the response variable given an explanatory variable <span class="math inline">\(X\)</span> as a line. It is the foundation of many statistical models used in modern statistics and is more flexible than you may think.</p>
-<p>We’ll need to find the values of the slope and intercept that give us a line that gets close to the averages in order to explain the general relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. We’ll get to this soon.</p>
-<p>Once we have values the intercept and slope, we are going to call them estimates and put a hat on them, so <span class="math inline">\(\hat{\beta}_0\)</span> is our <strong>estimated intercept</strong> and our <strong>estimated slope</strong> is <span class="math inline">\(\hat{\beta}_1\)</span>. We can use those to make predictions by plugging in a value of x:</p>
-<p><span class="math display">\[\hat{y} = \hat{\beta}_0 +\hat{\beta}_1 x\]</span></p>
-<p>The little hat on top of <span class="math inline">\(\hat{y}\)</span> means that we’re talking about a predicted or estimated value of <span class="math inline">\(y\)</span>, so our model says that the predicted or estimated value of <span class="math inline">\(y\)</span> is equal to an estimated intercept (<span class="math inline">\(hat{\beta}_0\)</span>), plus an estimated slope (<span class="math inline">\(hat{\beta}_1\)</span>), times the value <span class="math inline">\(x\)</span>.</p>
-<div class="mathbox">
-<p>
-In the past, you may have seen the equation of a line as
-</p>
-<p>
-<span class="math display"><span class="math display">\[y = mx + b\]</span></span>
-</p>
-<p>
-where <span class="math inline"><span class="math inline">\(m\)</span></span> is the slope and <span class="math inline"><span class="math inline">\(b\)</span></span> is the y-intercept. We will be using different notation so that it can generalize to multiple linear regression.
-</p>
-<p>
-The y-intercept is the value when <span class="math inline"><span class="math inline">\(x=0\)</span></span> and the slope is change in <span class="math inline"><span class="math inline">\(y\)</span></span> for each 1 unit increase of <span class="math inline"><span class="math inline">\(x\)</span></span> (“rise over run”).
-</p>
+<div id="provide-useful-model" class="section level3">
+<h3><span class="header-section-number">3.10.2</span> Provide useful model</h3>
+<p>Choose <span class="math inline">\(X\)</span> variables (&amp; their form) that:</p>
+<ul>
+<li>can explain a lot of variation in <span class="math inline">\(Y\)</span> (higher R-squared)</li>
+<li>provide small prediction errors (smaller standard deviation of residual)</li>
+<li>have coefficients that are really different from 0 (<a href="multiple.html#is-the-difference-real">Is the Difference Real?</a>)</li>
+<li>adjust for confounding variables to help you estimate direct causal relationships (not mediators; see Section <a href="dag.html#dag">3.11</a>)</li>
+<li>have unique information that is not redundant (higher adjusted R-squared; see Section @ref{redundancy})</li>
+</ul>
 </div>
 </div>
             </section>
@@ -406,8 +393,8 @@ The y-intercept is the value when <span class="math inline"><span class="math in
           </div>
         </div>
       </div>
-<a href="linear-regression-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="lines.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="multiple.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dag.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

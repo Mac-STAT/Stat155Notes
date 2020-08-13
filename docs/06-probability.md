@@ -116,7 +116,7 @@
 
 Now that we have some intuition about random variability, we will formalize some of the concepts of probability and chance.
 
-Recall the regression model we built to predict home price as a function of square footage and fireplaces in [Multiple Linear Regression]. 
+Recall the regression model we built to predict home price as a function of square footage and fireplaces in Section \@ref{multiple}. 
 
 
 ```r

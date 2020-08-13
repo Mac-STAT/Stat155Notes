@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="conditions-for-linear-regression-models.html"/>
-<link rel="next" href="dag.html"/>
+<link rel="next" href="selecting-a-model.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -230,9 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.2" data-path="multiple.html"><a href="multiple.html#confounder-adjustment"><i class="fa fa-check"></i><b>3.9.2</b> Confounder Adjustment</a></li>
 <li class="chapter" data-level="3.9.3" data-path="multiple.html"><a href="multiple.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.3</b> Interaction Variables</a></li>
 <li class="chapter" data-level="3.9.4" data-path="multiple.html"><a href="multiple.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.4</b> Is the Difference Real?</a></li>
+<li class="chapter" data-level="3.9.5" data-path="multiple.html"><a href="multiple.html#redundant"><i class="fa fa-check"></i><b>3.9.5</b> Redundancy and Multicollinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
-<li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="selecting-a-model.html"><a href="selecting-a-model.html"><i class="fa fa-check"></i><b>3.10</b> Selecting a Model</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="selecting-a-model.html"><a href="selecting-a-model.html#satisfying-conditions"><i class="fa fa-check"></i><b>3.10.1</b> Satisfying conditions</a></li>
+<li class="chapter" data-level="3.10.2" data-path="selecting-a-model.html"><a href="selecting-a-model.html#provide-useful-model"><i class="fa fa-check"></i><b>3.10.2</b> Provide useful model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
+<li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -748,6 +753,111 @@ Based on this evidence, do you think it is possible that the slopes are the same
 </p>
 </div>
 </div>
+<div id="redundant" class="section level3">
+<h3><span class="header-section-number">3.9.5</span> Redundancy and Multicollinearity</h3>
+<p>Beyond fireplaces and living area, there are other characteristics that may impact the price of a home. Typically, homes for sale are advertised with the square footage, the number of bedrooms, and the number of bathrooms in addition to the total number of rooms in the house. In general, we’d expect a positive relationship between each of these and the home price. Let’s fit a model with those four explanatory variables.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="multiple.html#cb202-1"></a>lm.home4 &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">with</span>( <span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area <span class="op">+</span><span class="st"> </span>Bedrooms <span class="op">+</span><span class="st"> </span>Bathrooms <span class="op">+</span><span class="st"> </span>Rooms))</span>
+<span id="cb202-2"><a href="multiple.html#cb202-2"></a><span class="kw">summary</span>(lm.home4)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Price ~ Living.Area + Bedrooms + Bathrooms + Rooms)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -245900  -40224   -7387   28090  533563 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  18937.389   6871.239   2.756  0.00591 ** 
+## Living.Area     98.572      4.932  19.985  &lt; 2e-16 ***
+## Bedrooms    -16922.902   2832.244  -5.975 2.79e-09 ***
+## Bathrooms    26038.557   3543.063   7.349 3.07e-13 ***
+## Rooms         3400.172   1109.628   3.064  0.00222 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 67390 on 1723 degrees of freedom
+## Multiple R-squared:  0.5325,	Adjusted R-squared:  0.5314 
+## F-statistic: 490.6 on 4 and 1723 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>If we look at the estimates of the slope coefficients, are you surprised to see that <code>Bedrooms</code> has a negative slope estimate?</p>
+<p>Remember, the coefficients are the change in the expected price for a 1 unit change in that variable, keeping all other variables fixed. Is it <em>possible</em> to keep <code>Rooms</code> fixed while adding an additional <code>Bedroom</code>? In practice, that would mean you need to convert an existing room to a <code>Bedroom</code>. Let’s look at a scatterplot between these two variables. If it not realistic or possible to fix one variable while increasing the other, we cannot interpret the slope coefficients in the standard way.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="multiple.html#cb204-1"></a>homes <span class="op">%&gt;%</span></span>
+<span id="cb204-2"><a href="multiple.html#cb204-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Rooms, <span class="dt">y =</span> Bedrooms)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb204-3"><a href="multiple.html#cb204-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb204-4"><a href="multiple.html#cb204-4"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="multiple.html#cb205-1"></a>homes <span class="op">%&gt;%</span></span>
+<span id="cb205-2"><a href="multiple.html#cb205-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">cor</span>(Rooms,Bedrooms))</span></code></pre></div>
+<pre><code>##   cor(Rooms, Bedrooms)
+## 1            0.6718633</code></pre>
+<p>These two characteristics are positively correlated because the count of <code>Rooms</code> is defined as the number of <code>Bedrooms</code> plus the number of other rooms in the house. So they contain some similar information about a home. Knowing how many rooms a house has, you can could have a pretty good guess at how many bedrooms it has. Maybe one of these variables is a bit redundant.</p>
+<p>Let’s take another view at this model with an <strong>Added Variable Plot</strong>. Here are a few characteristics of an added variable plot.</p>
+<ol style="list-style-type: decimal">
+<li>We have one scatterplot per <span class="math inline">\(X\)</span> explanatory variable in the model.</li>
+<li>For each scatterplot, the values on the x and y axes are residuals from two different models, both of which we have not directly fit.</li>
+</ol>
+<p><em>What are these models?</em></p>
+<ul>
+<li>For the y-axes, the model that is fit is a multiple linear regression model for <span class="math inline">\(E[Y |\hbox{ all other }X\hbox{ variables except }X_j]\)</span>. The residuals from this model encode the variation and information about <span class="math inline">\(Y\)</span> that is left unexplained by other <span class="math inline">\(X\)</span> variables.</li>
+<li>For the x-axes, the model that is fit is a multiple linear regression model for <span class="math inline">\(E[X_j | \hbox{ all other }X\hbox{ variables except }X_j]\)</span>. The residuals from this model encode the variation and information about <span class="math inline">\(X_j\)</span> that is left unexplained by other <span class="math inline">\(X\)</span> variables. In other words, the unique information the <span class="math inline">\(X_j\)</span> has that is not contained in the other <span class="math inline">\(X\)</span> variables.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>The slope of the line in each scatterplot is equal to the estimated slope coefficient for that variable in the model you fit.</li>
+</ol>
+<p>If we look at the example below, we see a fairly strong positive relationship in the first (upper left) scatterplot. What we can conclude is that living area has quite a bit of unique information not contained in <code>Bedrooms</code>, <code>Rooms</code>, and <code>Bathrooms</code> that can explain variation in home price. Another way to phrase this is that after adjusting for or accounting for the number of <code>Bedrooms</code>, <code>Rooms</code>, and <code>Bathrooms</code>, we see a moderately strong positive linear relationship between <code>Living.Area</code> and <code>Price</code>.</p>
+<p>In the second (upper right) scatterplot, we see a weak negative relationship between <code>Bedrooms</code> and <code>Price</code> after account for the square footage of the living area, the number of bathrooms, and the number of rooms. So there isn’t much unique information about bedrooms that can help explain the variation in price that isn’t already contained in <code>Rooms</code>, <code>Bathrooms</code>, and <code>Living.Area</code>. Since the slope is negative, we might conclude that converting an existing room (keeping square footage and number of rooms fixed) to a bedroom slightly decreases the estimated expected home price.</p>
+<p>With <code>Rooms</code> and <code>Bathrooms</code>, we see positive but weak relationships after accounting for the other explanatory variables. In fact, the slope of these lines are equal to the estimated coefficients from the summary.</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="multiple.html#cb207-1"></a><span class="kw">source</span>(<span class="st">&#39;Data/ggavplot.R&#39;</span>)</span>
+<span id="cb207-2"><a href="multiple.html#cb207-2"></a><span class="kw">ggAVPLOTS</span>(lm.home4)</span></code></pre></div>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<p>If we were to remove <code>Rooms</code> as it seems to be redundant, containing similar information as <code>Bedrooms</code>, we get a bit different estimated slope coefficients.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="multiple.html#cb208-1"></a>lm.home5 &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">with</span>( <span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area <span class="op">+</span><span class="st"> </span>Bedrooms <span class="op">+</span><span class="st"> </span>Bathrooms ))</span>
+<span id="cb208-2"><a href="multiple.html#cb208-2"></a><span class="kw">summary</span>(lm.home5)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Price ~ Living.Area + Bedrooms + Bathrooms)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -239040  -40340   -7775   28308  540154 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  21323.089   6843.580   3.116  0.00186 ** 
+## Living.Area    105.204      4.443  23.679  &lt; 2e-16 ***
+## Bedrooms    -13702.463   2636.422  -5.197 2.26e-07 ***
+## Bathrooms    25912.548   3551.434   7.296 4.49e-13 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 67550 on 1724 degrees of freedom
+## Multiple R-squared:  0.5299,	Adjusted R-squared:  0.5291 
+## F-statistic: 647.8 on 3 and 1724 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><em>So should Rooms stay in the model or come out?</em></p>
+<p>Does adding <code>Rooms</code> help explain more variation in home <code>Price</code>?</p>
+<p>We can see that WITH <code>Rooms</code>, we explained 53.2% of the variation in home <code>Price</code>.</p>
+<p>We can see that WITHOUT <code>Rooms</code>, we explained 52.9% of the variation in home <code>Price</code>.</p>
+<p>So <code>Rooms</code> doesn’t add a lot to the explanatory power of the model.</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="multiple.html#cb210-1"></a><span class="kw">glance</span>(lm.home4)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 12
+##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
+##       &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     0.532         0.531 67388.      491. 1.58e-282     4 -21662. 43335. 43368.
+## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="multiple.html#cb212-1"></a><span class="kw">glance</span>(lm.home5)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 12
+##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
+##       &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+## 1     0.530         0.529 67552.      648. 6.15e-282     3 -21666. 43343. 43370.
+## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<p><strong>Fun Fact</strong>: Adding an explanatory variable <span class="math inline">\(X\)</span> to the model will always increase R-squared or keep it the same.</p>
+<p>In general, we’d like the most simple (least number of <span class="math inline">\(X\)</span> variables) that does a good job for our goals. If R-squared never goes down when you add an explanatory variable, we need a different tool to help us decide whether to add a variable.</p>
+<p>Remember that
+<span class="math display">\[R^2 = 1 - \frac{SSE}{SSTO} = \hbox{% of variation in Y explained by model}\]</span></p>
+<p><strong>Adjusted R-Squared</strong> is a slightly adjusted version of R-squared that takes into account the number of <span class="math inline">\(X\)</span> variables in the model, denoted as <span class="math inline">\(k\)</span>. It is calculated as</p>
+<p><span class="math display">\[R^2_{adj} = 1 - \frac{SSE/(n-k-1)}{SSTO/(n-1)}\]</span></p>
+<p>It does NOT have the interpretation of “% of variation explained…” but it can be used to help us decide whether a variable is redundant or whether we should keep it in the model. The adjusted R-squared for these two models are 0.531 (with Rooms) and 0.529 (without Rooms). This is a judgment call that you as the data analyst makes and this is one tool to help you make the decision. See the next section for more tools to help you decide.</p>
+</div>
 </div>
             </section>
 
@@ -755,7 +865,7 @@ Based on this evidence, do you think it is possible that the slopes are the same
         </div>
       </div>
 <a href="conditions-for-linear-regression-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dag.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="selecting-a-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

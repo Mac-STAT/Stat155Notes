@@ -230,9 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.2" data-path="multiple.html"><a href="multiple.html#confounder-adjustment"><i class="fa fa-check"></i><b>3.9.2</b> Confounder Adjustment</a></li>
 <li class="chapter" data-level="3.9.3" data-path="multiple.html"><a href="multiple.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.3</b> Interaction Variables</a></li>
 <li class="chapter" data-level="3.9.4" data-path="multiple.html"><a href="multiple.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.4</b> Is the Difference Real?</a></li>
+<li class="chapter" data-level="3.9.5" data-path="multiple.html"><a href="multiple.html#redundant"><i class="fa fa-check"></i><b>3.9.5</b> Redundancy and Multicollinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
-<li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="selecting-a-model.html"><a href="selecting-a-model.html"><i class="fa fa-check"></i><b>3.10</b> Selecting a Model</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="selecting-a-model.html"><a href="selecting-a-model.html#satisfying-conditions"><i class="fa fa-check"></i><b>3.10.1</b> Satisfying conditions</a></li>
+<li class="chapter" data-level="3.10.2" data-path="selecting-a-model.html"><a href="selecting-a-model.html#provide-useful-model"><i class="fa fa-check"></i><b>3.10.2</b> Provide useful model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
+<li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -362,22 +367,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.5</span> Simulating Randomization into Groups</h2>
 <p>We have been thinking about arrival delays in general. Let’s move now to comparing arrival delays between groups. If you were planning a trip, you may be able to choose between two flights that leave at different times of day. Do morning flights have shorter arrival delays on average than afternoon flights? If so, book the flight earlier in the day!</p>
 <p>Let’s look at the data! We use a random sample of 500 flights from the population to investigate this question.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="simulating-randomization-into-groups.html#cb256-1"></a>flights_samp500 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb256-2"><a href="simulating-randomization-into-groups.html#cb256-2"></a><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">500</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="simulating-randomization-into-groups.html#cb268-1"></a>flights_samp500 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb268-2"><a href="simulating-randomization-into-groups.html#cb268-2"></a><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">500</span>) </span></code></pre></div>
 <p>Let’s summarize and visualize the relationship between hour of the day (morning or afternoon) and the arrival delay.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="simulating-randomization-into-groups.html#cb257-1"></a>flights_samp500 <span class="op">%&gt;%</span></span>
-<span id="cb257-2"><a href="simulating-randomization-into-groups.html#cb257-2"></a><span class="st">    </span><span class="kw">group_by</span>(day_hour) <span class="op">%&gt;%</span></span>
-<span id="cb257-3"><a href="simulating-randomization-into-groups.html#cb257-3"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">median =</span> <span class="kw">median</span>(arr_delay), <span class="dt">mean =</span> <span class="kw">mean</span>(arr_delay))</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="simulating-randomization-into-groups.html#cb269-1"></a>flights_samp500 <span class="op">%&gt;%</span></span>
+<span id="cb269-2"><a href="simulating-randomization-into-groups.html#cb269-2"></a><span class="st">    </span><span class="kw">group_by</span>(day_hour) <span class="op">%&gt;%</span></span>
+<span id="cb269-3"><a href="simulating-randomization-into-groups.html#cb269-3"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">median =</span> <span class="kw">median</span>(arr_delay), <span class="dt">mean =</span> <span class="kw">mean</span>(arr_delay))</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 2 x 3
 ##   day_hour  median  mean
 ##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
 ## 1 afternoon     -1 12.6 
 ## 2 morning       -7 -2.39</code></pre>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="simulating-randomization-into-groups.html#cb260-1"></a>flights_samp500 <span class="op">%&gt;%</span></span>
-<span id="cb260-2"><a href="simulating-randomization-into-groups.html#cb260-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hour, <span class="dt">y =</span> arr_delay)) <span class="op">+</span></span>
-<span id="cb260-3"><a href="simulating-randomization-into-groups.html#cb260-3"></a><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb260-4"><a href="simulating-randomization-into-groups.html#cb260-4"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="simulating-randomization-into-groups.html#cb272-1"></a>flights_samp500 <span class="op">%&gt;%</span></span>
+<span id="cb272-2"><a href="simulating-randomization-into-groups.html#cb272-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hour, <span class="dt">y =</span> arr_delay)) <span class="op">+</span></span>
+<span id="cb272-3"><a href="simulating-randomization-into-groups.html#cb272-3"></a><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb272-4"><a href="simulating-randomization-into-groups.html#cb272-4"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="05-variability_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <div class="reflect">
 <p>

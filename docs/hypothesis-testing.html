@@ -230,9 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.2" data-path="multiple.html"><a href="multiple.html#confounder-adjustment"><i class="fa fa-check"></i><b>3.9.2</b> Confounder Adjustment</a></li>
 <li class="chapter" data-level="3.9.3" data-path="multiple.html"><a href="multiple.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.3</b> Interaction Variables</a></li>
 <li class="chapter" data-level="3.9.4" data-path="multiple.html"><a href="multiple.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.4</b> Is the Difference Real?</a></li>
+<li class="chapter" data-level="3.9.5" data-path="multiple.html"><a href="multiple.html#redundant"><i class="fa fa-check"></i><b>3.9.5</b> Redundancy and Multicollinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
-<li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="selecting-a-model.html"><a href="selecting-a-model.html"><i class="fa fa-check"></i><b>3.10</b> Selecting a Model</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="selecting-a-model.html"><a href="selecting-a-model.html#satisfying-conditions"><i class="fa fa-check"></i><b>3.10.1</b> Satisfying conditions</a></li>
+<li class="chapter" data-level="3.10.2" data-path="selecting-a-model.html"><a href="selecting-a-model.html#provide-useful-model"><i class="fa fa-check"></i><b>3.10.2</b> Provide useful model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
+<li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -465,13 +470,13 @@ If <span class="math inline"><span class="math inline">\(H_0\)</span></span> wer
 <div id="example-linear-regression" class="section level3">
 <h3><span class="header-section-number">7.3.7</span> Example: Linear Regression</h3>
 <p>Below we fit a linear regression model of house price on living area:</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="hypothesis-testing.html#cb355-1"></a>homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</span>
-<span id="cb355-2"><a href="hypothesis-testing.html#cb355-2"></a>mod_homes &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area, <span class="dt">data =</span> homes)</span>
-<span id="cb355-3"><a href="hypothesis-testing.html#cb355-3"></a><span class="kw">confint</span>(mod_homes) <span class="co">## 95% confidence interval by default</span></span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="hypothesis-testing.html#cb367-1"></a>homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</span>
+<span id="cb367-2"><a href="hypothesis-testing.html#cb367-2"></a>mod_homes &lt;-<span class="st"> </span><span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area, <span class="dt">data =</span> homes)</span>
+<span id="cb367-3"><a href="hypothesis-testing.html#cb367-3"></a><span class="kw">confint</span>(mod_homes) <span class="co">## 95% confidence interval by default</span></span></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 3647.6958 23231.0922
 ## Living.Area  107.8616   118.3835</code></pre>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="hypothesis-testing.html#cb357-1"></a><span class="kw">summary</span>(mod_homes)<span class="op">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="hypothesis-testing.html#cb369-1"></a><span class="kw">summary</span>(mod_homes)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##               Estimate  Std. Error   t value      Pr(&gt;|t|)
 ## (Intercept) 13439.3940 4992.352849  2.691996  7.171207e-03
 ## Living.Area   113.1225    2.682341 42.173065 9.486240e-268</code></pre>
@@ -491,14 +496,14 @@ This result is consistent with the 95% confidence interval in that the interval 
 <div id="example-logistic-regression" class="section level3">
 <h3><span class="header-section-number">7.3.8</span> Example: Logistic Regression</h3>
 <p>Below we fit a logistic regression model of whether a movie made a profit (response) on whether it is a history film:</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="hypothesis-testing.html#cb359-1"></a>movies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</span>
-<span id="cb359-2"><a href="hypothesis-testing.html#cb359-2"></a>mod_movies &lt;-<span class="st"> </span><span class="kw">glm</span>(profit<span class="op">==</span><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>History, <span class="dt">data =</span> movies, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb359-3"><a href="hypothesis-testing.html#cb359-3"></a><span class="kw">confint</span>(mod_movies) <span class="co">## 95% confidence interval by default</span></span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="hypothesis-testing.html#cb371-1"></a>movies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</span>
+<span id="cb371-2"><a href="hypothesis-testing.html#cb371-2"></a>mod_movies &lt;-<span class="st"> </span><span class="kw">glm</span>(profit<span class="op">==</span><span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span>History, <span class="dt">data =</span> movies, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
+<span id="cb371-3"><a href="hypothesis-testing.html#cb371-3"></a><span class="kw">confint</span>(mod_movies) <span class="co">## 95% confidence interval by default</span></span></code></pre></div>
 <pre><code>## Waiting for profiling to be done...</code></pre>
 <pre><code>##                   2.5 %    97.5 %
 ## (Intercept)  0.09438169 0.2102419
 ## HistoryTRUE -0.26484980 0.3085225</code></pre>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="hypothesis-testing.html#cb362-1"></a><span class="kw">summary</span>(mod_movies)<span class="op">$</span>coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="hypothesis-testing.html#cb374-1"></a><span class="kw">summary</span>(mod_movies)<span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##               Estimate Std. Error   z value     Pr(&gt;|z|)
 ## (Intercept) 0.15226921 0.02955458 5.1521364 2.575356e-07
 ## HistoryTRUE 0.02074995 0.14604883 0.1420754 8.870204e-01</code></pre>

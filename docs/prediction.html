@@ -230,9 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.9.2" data-path="multiple.html"><a href="multiple.html#confounder-adjustment"><i class="fa fa-check"></i><b>3.9.2</b> Confounder Adjustment</a></li>
 <li class="chapter" data-level="3.9.3" data-path="multiple.html"><a href="multiple.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.3</b> Interaction Variables</a></li>
 <li class="chapter" data-level="3.9.4" data-path="multiple.html"><a href="multiple.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.4</b> Is the Difference Real?</a></li>
+<li class="chapter" data-level="3.9.5" data-path="multiple.html"><a href="multiple.html#redundant"><i class="fa fa-check"></i><b>3.9.5</b> Redundancy and Multicollinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.10</b> Causal Inference</a></li>
-<li class="chapter" data-level="3.11" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.11</b> Chapter 3 Major Takeaways</a></li>
+<li class="chapter" data-level="3.10" data-path="selecting-a-model.html"><a href="selecting-a-model.html"><i class="fa fa-check"></i><b>3.10</b> Selecting a Model</a><ul>
+<li class="chapter" data-level="3.10.1" data-path="selecting-a-model.html"><a href="selecting-a-model.html#satisfying-conditions"><i class="fa fa-check"></i><b>3.10.1</b> Satisfying conditions</a></li>
+<li class="chapter" data-level="3.10.2" data-path="selecting-a-model.html"><a href="selecting-a-model.html#provide-useful-model"><i class="fa fa-check"></i><b>3.10.2</b> Provide useful model</a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
+<li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
@@ -361,7 +366,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="prediction" class="section level2">
 <h2><span class="header-section-number">4.4</span> Prediction</h2>
 <p>On January 28, 1986, the temperature was 26 F degrees. Let’s predict the chance of “success,” which is a failure of o-rings in our data context, at that temperature.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="prediction.html#cb208-1"></a><span class="kw">predict</span>(model.glm, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Temperature =</span> <span class="dv">26</span>), <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>) <span class="co">#type = &#39;response&#39; gives predicted chance, rather than predicted odds</span></span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="prediction.html#cb220-1"></a><span class="kw">predict</span>(model.glm, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">Temperature =</span> <span class="dv">26</span>), <span class="dt">type =</span> <span class="st">&#39;response&#39;</span>) <span class="co">#type = &#39;response&#39; gives predicted chance, rather than predicted odds</span></span></code></pre></div>
 <pre><code>##         1 
 ## 0.9998774</code></pre>
 <p>They didn’t have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, we predict the chance of failure to be nearly 1 (near certainty).</p>
@@ -372,9 +377,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It depends.</p>
 <p>If we used a threshold of 0.8, then we’d say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we’ll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our <strong>accuracy</strong> (# of correctly predicted/# of data points)?</p>
 <p>In the table below, we see that there were 3 data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn’t fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) = 0.82 or 82%.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="prediction.html#cb210-1"></a><span class="kw">augment</span>(model.glm, <span class="dt">type.predict =</span><span class="st">&#39;response&#39;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb210-2"><a href="prediction.html#cb210-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.8</span>) <span class="op">%&gt;%</span></span>
-<span id="cb210-3"><a href="prediction.html#cb210-3"></a><span class="st">  </span><span class="kw">count</span>(Fail, predictFail)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="prediction.html#cb222-1"></a><span class="kw">augment</span>(model.glm, <span class="dt">type.predict =</span><span class="st">&#39;response&#39;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb222-2"><a href="prediction.html#cb222-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.8</span>) <span class="op">%&gt;%</span></span>
+<span id="cb222-3"><a href="prediction.html#cb222-3"></a><span class="st">  </span><span class="kw">count</span>(Fail, predictFail)</span></code></pre></div>
 <pre><code>## Warning: `count_()` is deprecated as of dplyr 0.7.0.
 ## Please use `count()` instead.
 ## See vignette(&#39;programming&#39;) for more help
@@ -425,9 +430,9 @@ The <strong>specificity</strong> is the percentage of correctly predicted outcom
 </ul>
 </div>
 <p>What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let’s lower it to 0.25 so that we predict o-ring failure more easily. Let’s find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let’s check false negative rate: 3/(3+4) = 0.43. That’s lower. But now we have a non-zero false positive rate: 6/(6+10) = 0.375. So of the experiments with no o-ring failure, we predicted incorrectly 37.5% of the time.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="prediction.html#cb213-1"></a><span class="kw">augment</span>(model.glm, <span class="dt">type.predict =</span><span class="st">&#39;response&#39;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb213-2"><a href="prediction.html#cb213-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictOFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.25</span>) <span class="op">%&gt;%</span></span>
-<span id="cb213-3"><a href="prediction.html#cb213-3"></a><span class="st">  </span><span class="kw">count</span>(Fail, predictOFail)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="prediction.html#cb225-1"></a><span class="kw">augment</span>(model.glm, <span class="dt">type.predict =</span><span class="st">&#39;response&#39;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb225-2"><a href="prediction.html#cb225-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">predictOFail =</span> .fitted <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.25</span>) <span class="op">%&gt;%</span></span>
+<span id="cb225-3"><a href="prediction.html#cb225-3"></a><span class="st">  </span><span class="kw">count</span>(Fail, predictOFail)</span></code></pre></div>
 <pre><code>## # A tibble: 4 x 3
 ##   Fail  predictOFail     n
 ##   &lt;fct&gt; &lt;lgl&gt;        &lt;int&gt;

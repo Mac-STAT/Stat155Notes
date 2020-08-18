@@ -1,7 +1,7 @@
 --- 
 title: "STAT 155 Notes"
 author: "Macalester Statistics Faculty (Heggeseth, Myint, Grinde)"
-date: "Updated: 2020-08-13"
+date: "Updated: 2020-08-18"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
@@ -24,6 +24,6 @@ This online book of notes is licensed under the [Creative Commons Attribution-No
 
 ## Acknowledgments {-}
 
-These notes would not be possible without the **bookdown package** and the many open-course R packages used throughout the text. We thank the developers of these packages for making this work possible. 
+These notes would not be possible without the **bookdown package** and the many open-source R packages used throughout the text. We thank the developers of these packages for making this work possible. 
 
 The structure of this book is strongly influenced by the [`bookdown` text](https://bookdown.org/yihui/bookdown) written by Yihui Xie.

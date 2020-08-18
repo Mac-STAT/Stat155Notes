@@ -49,13 +49,12 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,16 +63,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -82,9 +79,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -239,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
 <li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
+<li class="chapter" data-level="4" data-path="logistic.html"><a href="logistic.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
 <li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
 <li class="chapter" data-level="4.3" data-path="coefficient-interpretation.html"><a href="coefficient-interpretation.html"><i class="fa fa-check"></i><b>4.3</b> Coefficient Interpretation</a></li>
@@ -366,8 +363,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="model-interpretation" class="section level2">
 <h2><span class="header-section-number">3.6</span> Model Interpretation</h2>
 <p>Let’s look at the summary output of the <code>lm()</code> function in R again. We’ll highlight some of the most important pieces of this output and discuss how you interpret them.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="model-interpretation.html#cb122-1"></a>tshirt_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> body)</span>
-<span id="cb122-2"><a href="model-interpretation.html#cb122-2"></a><span class="kw">summary</span>(tshirt_mod)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">tshirt_mod &lt;-<span class="st"> </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck, <span class="dt">data =</span> body)</a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="kw">summary</span>(tshirt_mod)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Chest ~ Neck, data = body)
@@ -394,9 +391,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Interpretation:</strong> If Neck size = 0, then the person doesn’t exist. In this context, the intercept doesn’t make much sense to interpret.</li>
 <li><strong>Discussion:</strong> If the intercept doesn’t make sense in the context, we might refit the model with the <span class="math inline">\(x\)</span> variable once it is <strong>centered</strong>. That is, the mean of <span class="math inline">\(x\)</span> for all individuals in the sample is computed, and this mean is subtracted from each person’s <span class="math inline">\(x\)</span> value. In this case, the intercept is interpreted as the average value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is at its (sample) mean value. See the example below – we get an intercept of 100.66, which is the average Chest size for customers with average Neck size. We could also choose to center Neck size at a value other than the mean. For example, we could center it at 30 cm by subtracting 30 from the Neck size of all cases.</li>
 </ul>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="model-interpretation.html#cb124-1"></a>body &lt;-<span class="st"> </span>body <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">CNeck =</span> Neck <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(Neck))</span>
-<span id="cb124-2"><a href="model-interpretation.html#cb124-2"></a>tshirt_mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>CNeck, <span class="dt">data =</span> body)</span>
-<span id="cb124-3"><a href="model-interpretation.html#cb124-3"></a><span class="kw">summary</span>(tshirt_mod2)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">body &lt;-<span class="st"> </span>body <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">CNeck =</span> Neck <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(Neck))</a>
+<a class="sourceLine" id="cb18-2" title="2">tshirt_mod2 &lt;-<span class="st"> </span><span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>CNeck, <span class="dt">data =</span> body)</a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="kw">summary</span>(tshirt_mod2)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Chest ~ CNeck, data = body)
@@ -423,7 +420,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Definition:</strong> The slope gives the change in average <span class="math inline">\(y\)</span> per 1 unit increase in <span class="math inline">\(x\)</span> (<strong>not for individuals and not a causal statement</strong>)</li>
 <li><strong>One Interpretation:</strong> If we compare two groups of individuals with a 1 cm difference in the neck size (e.g., 38 cm and 39 cm OR 40 cm and 41 cm), then we’d expect the average chest sizes to be different by about 2.7 cm.</li>
 <li><strong>Another Interpretation:</strong> We’d expect the average chest size to increase by about 2.7 cm for each centimeter increase in neck size.</li>
-<li><strong>Discussion:</strong> Note that both interpretations are not written about an individual because the least squares line (our fit model) is a description of the <strong>general trend</strong> in the population. The slope describes the change in the average, not the change for one person.</li>
+<li><strong>A Third Interpretation:</strong> We estimate that a one centimeter increase in neck size is associated with an increase, on average, of 2.7 cm in chest size.</li>
+<li><strong>Discussion:</strong> Note that the interpretations are not written about an individual because the least squares line (our fit model) is a description of the <strong>general trend</strong> in the population. The slope describes the change in the average, not the change for one person.</li>
 </ul>
 </div>
 <div id="least-squares-regression-line-haty-hatbeta_0-hatbeta_1x" class="section level3">

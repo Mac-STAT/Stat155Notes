@@ -49,13 +49,12 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,16 +63,14 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -82,9 +79,9 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  {  }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+a.sourceLine::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -239,7 +236,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
 <li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
+<li class="chapter" data-level="4" data-path="logistic.html"><a href="logistic.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
 <li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
 <li class="chapter" data-level="4.3" data-path="coefficient-interpretation.html"><a href="coefficient-interpretation.html"><i class="fa fa-check"></i><b>4.3</b> Coefficient Interpretation</a></li>
@@ -374,13 +371,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="residual-plot" class="section level3">
 <h3><span class="header-section-number">3.8.1</span> Residual Plot</h3>
 <p>To check the first two conditions, we look at the original scatterplot as well as a plot of the <em>residuals</em> against <em>fitted or predicted values</em>,</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="conditions-for-linear-regression-models.html#cb161-1"></a><span class="kw">augment</span>(lm.gpa, <span class="dt">data =</span> sat) <span class="op">%&gt;%</span></span>
-<span id="cb161-2"><a href="conditions-for-linear-regression-models.html#cb161-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></span>
-<span id="cb161-3"><a href="conditions-for-linear-regression-models.html#cb161-3"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb161-4"><a href="conditions-for-linear-regression-models.html#cb161-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb161-5"><a href="conditions-for-linear-regression-models.html#cb161-5"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></span>
-<span id="cb161-6"><a href="conditions-for-linear-regression-models.html#cb161-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Fitted values (predicted values)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="op">+</span></span>
-<span id="cb161-7"><a href="conditions-for-linear-regression-models.html#cb161-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">augment</span>(lm.gpa, <span class="dt">data =</span> sat) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb55-2" title="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .fitted, <span class="dt">y =</span> .resid)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-3" title="3"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-4" title="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-5" title="5"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-6" title="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Fitted values (predicted values)&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Residuals&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-7" title="7"><span class="st">    </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 <p>What do you think?</p>
 <ul>
@@ -408,7 +405,7 @@ If there is a pattern in the residuals, then we are systematically over or under
 <li>Issue: Both variables are NOT <strong>Quantitative</strong>
 <ul>
 <li>If your x-variable is categorical, we’ll turn it into a quantitative variable using <a href="multiple.html#indicator-variables"><strong>indicator variables</strong></a> (coming up)</li>
-<li>If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we’ll use [<strong>logistic regression models</strong>][Logistic Regression Models] (coming up)</li>
+<li>If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we’ll use <a href="logistic.html#logistic"><strong>logistic regression models</strong></a> (coming up)</li>
 </ul></li>
 <li>Issue: Relationship is NOT <strong>Straight Enough</strong>
 <ul>
@@ -457,61 +454,61 @@ y^{-1/3}\\
 <p><strong>Guideline #3:</strong> The sign of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> in the chosen quadrant tells you the direction to move on the ladder (positive = up, negative = down).</p>
 <p><img src="Photos/tukey.png" width="400" height="500" /></p>
 <p>Practice: Which quadrant of the circle does this relationship below resemble?</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="conditions-for-linear-regression-models.html#cb162-1"></a><span class="kw">require</span>(gapminder)</span>
-<span id="cb162-2"><a href="conditions-for-linear-regression-models.html#cb162-2"></a></span>
-<span id="cb162-3"><a href="conditions-for-linear-regression-models.html#cb162-3"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb162-4"><a href="conditions-for-linear-regression-models.html#cb162-4"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb162-5"><a href="conditions-for-linear-regression-models.html#cb162-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  gdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb162-6"><a href="conditions-for-linear-regression-models.html#cb162-6"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">require</span>(gapminder)</a>
+<a class="sourceLine" id="cb56-2" title="2"></a>
+<a class="sourceLine" id="cb56-3" title="3">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb56-4" title="4"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb56-5" title="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  gdpPercap)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb56-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 <p>Based on this plot, we see that the spread is roughly equal around the curved relationship (-&gt; focus on transforming <span class="math inline">\(X\)</span>) and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with <span class="math inline">\(X\)</span>.</p>
 <p>Try these transformations until you find a relationship that is roughly straight. If you go too far, the relationship will become more curved again.</p>
 <p>Let’s try going down the ladder.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="conditions-for-linear-regression-models.html#cb163-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb163-2"><a href="conditions-for-linear-regression-models.html#cb163-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb163-3"><a href="conditions-for-linear-regression-models.html#cb163-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">sqrt</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 1/2</span></span>
-<span id="cb163-4"><a href="conditions-for-linear-regression-models.html#cb163-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb163-5"><a href="conditions-for-linear-regression-models.html#cb163-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb57-2" title="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb57-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">sqrt</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 1/2</span></a>
+<a class="sourceLine" id="cb57-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb57-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
 <p>Not quite straight. Let’s keep going.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="conditions-for-linear-regression-models.html#cb164-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb164-2"><a href="conditions-for-linear-regression-models.html#cb164-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb164-3"><a href="conditions-for-linear-regression-models.html#cb164-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> gdpPercap<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 1/3</span></span>
-<span id="cb164-4"><a href="conditions-for-linear-regression-models.html#cb164-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb164-5"><a href="conditions-for-linear-regression-models.html#cb164-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb58-2" title="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> gdpPercap<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 1/3</span></a>
+<a class="sourceLine" id="cb58-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb58-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
 <p>Not quite straight. Let’s keep going.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="conditions-for-linear-regression-models.html#cb165-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb165-2"><a href="conditions-for-linear-regression-models.html#cb165-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb165-3"><a href="conditions-for-linear-regression-models.html#cb165-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 0</span></span>
-<span id="cb165-4"><a href="conditions-for-linear-regression-models.html#cb165-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb165-5"><a href="conditions-for-linear-regression-models.html#cb165-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb59-2" title="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb59-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#power = 0</span></a>
+<a class="sourceLine" id="cb59-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb59-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
 <p>Getting better. Let’s try to keep going.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="conditions-for-linear-regression-models.html#cb166-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb166-2"><a href="conditions-for-linear-regression-models.html#cb166-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb166-3"><a href="conditions-for-linear-regression-models.html#cb166-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="dv">-1</span><span class="op">/</span>gdpPercap) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#power = -1 (added a negative sign to maintain positive relationship)</span></span>
-<span id="cb166-4"><a href="conditions-for-linear-regression-models.html#cb166-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb166-5"><a href="conditions-for-linear-regression-models.html#cb166-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-2" title="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb60-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="dv">-1</span><span class="op">/</span>gdpPercap) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#power = -1 (added a negative sign to maintain positive relationship)</span></a>
+<a class="sourceLine" id="cb60-4" title="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> lifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-5" title="5"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
 <p>TOO FAR! Back up. Let’s stick with log(gdpPercap).</p>
 <p>Now we see some unequal spread so let’s also try transforming <span class="math inline">\(Y\)</span>.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="conditions-for-linear-regression-models.html#cb167-1"></a>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb167-2"><a href="conditions-for-linear-regression-models.html#cb167-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb167-3"><a href="conditions-for-linear-regression-models.html#cb167-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb167-4"><a href="conditions-for-linear-regression-models.html#cb167-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TlifeExp =</span> lifeExp<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb167-5"><a href="conditions-for-linear-regression-models.html#cb167-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> TlifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb167-6"><a href="conditions-for-linear-regression-models.html#cb167-6"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1">gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-2" title="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb61-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TlifeExp =</span> lifeExp<span class="op">^</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-5" title="5"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> TlifeExp, <span class="dt">x =</span>  TgdpPercap)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb61-6" title="6"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
 <p>That doesn’t change it much. Maybe this is as good as we are going to get.</p>
 <p>Transformations can’t make relationships look exactly linear with equal spread, but sometimes we can make it closer to that ideal.</p>
 <p>Let’s try and fit a model with these two variables.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="conditions-for-linear-regression-models.html#cb168-1"></a>lm.gap &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb168-2"><a href="conditions-for-linear-regression-models.html#cb168-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></span>
-<span id="cb168-3"><a href="conditions-for-linear-regression-models.html#cb168-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb168-4"><a href="conditions-for-linear-regression-models.html#cb168-4"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(lifeExp <span class="op">~</span><span class="st"> </span>TgdpPercap))</span>
-<span id="cb168-5"><a href="conditions-for-linear-regression-models.html#cb168-5"></a></span>
-<span id="cb168-6"><a href="conditions-for-linear-regression-models.html#cb168-6"></a><span class="kw">summary</span>(lm.gap)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">lm.gap &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb62-2" title="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2005</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb62-3" title="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TgdpPercap =</span> <span class="kw">log</span>(gdpPercap)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb62-4" title="4"><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(lifeExp <span class="op">~</span><span class="st"> </span>TgdpPercap))</a>
+<a class="sourceLine" id="cb62-5" title="5"></a>
+<a class="sourceLine" id="cb62-6" title="6"><span class="kw">summary</span>(lm.gap)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = lifeExp ~ TgdpPercap)
@@ -551,28 +548,28 @@ The additive increase of <span class="math inline">\(\beta_1\)</span> units in t
 </div>
 <div id="alternative-solutions" class="section level5">
 <h5><span class="header-section-number">3.8.4.0.2</span> Alternative Solutions</h5>
-<p>We could also model curved relationships by including higher power terms in a [multiple linear regression model][Multiple Linear Regression Model] like the example below. By using <code>poly()</code> (short for polynomial), we now include <span class="math inline">\(X\)</span> and <span class="math inline">\(X^2\)</span> as variables in the model.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="conditions-for-linear-regression-models.html#cb170-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1</span>)</span>
-<span id="cb170-2"><a href="conditions-for-linear-regression-models.html#cb170-2"></a>y &lt;-<span class="st"> </span><span class="dv">200</span> <span class="op">+</span><span class="st"> </span><span class="dv">20</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span><span class="dv">5</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">sd =</span> <span class="dv">10</span>)</span>
-<span id="cb170-3"><a href="conditions-for-linear-regression-models.html#cb170-3"></a>dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)</span>
-<span id="cb170-4"><a href="conditions-for-linear-regression-models.html#cb170-4"></a>dat <span class="op">%&gt;%</span></span>
-<span id="cb170-5"><a href="conditions-for-linear-regression-models.html#cb170-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
-<span id="cb170-6"><a href="conditions-for-linear-regression-models.html#cb170-6"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb170-7"><a href="conditions-for-linear-regression-models.html#cb170-7"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>We could also model curved relationships by including higher power terms in a <a href="multiple.html#multiple">multiple linear regression model</a> like the example below. By using <code>poly()</code> (short for polynomial), we now include <span class="math inline">\(X\)</span> and <span class="math inline">\(X^2\)</span> as variables in the model.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">5</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb64-2" title="2">y &lt;-<span class="st"> </span><span class="dv">200</span> <span class="op">+</span><span class="st"> </span><span class="dv">20</span><span class="op">*</span>x <span class="op">-</span><span class="st"> </span><span class="dv">5</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>,<span class="dt">sd =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb64-3" title="3">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(x,y)</a>
+<a class="sourceLine" id="cb64-4" title="4">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb64-5" title="5"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb64-6" title="6"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-7" title="7"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="conditions-for-linear-regression-models.html#cb171-1"></a><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(x, <span class="dt">degree =</span> <span class="dv">2</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>), <span class="dt">data =</span> dat)</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">poly</span>(x, <span class="dt">degree =</span> <span class="dv">2</span>, <span class="dt">raw =</span> <span class="ot">TRUE</span>), <span class="dt">data =</span> dat)</a></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ poly(x, degree = 2, raw = TRUE), data = dat)
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          193.995                            21.461  
+##                          220.274                            13.814  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -5.001</code></pre>
+##                           -4.502</code></pre>
 <p>A more advanced solution (which is not going to be covered in class) is a <strong>generalized additive model</strong> (GAM), which allows you to specify which variables have non-linear relationships with <span class="math inline">\(Y\)</span> and estimates that relationship for you using spline functions (super cool stuff!). We won’t talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="conditions-for-linear-regression-models.html#cb173-1"></a><span class="kw">require</span>(gam)</span>
-<span id="cb173-2"><a href="conditions-for-linear-regression-models.html#cb173-2"></a><span class="kw">plot</span>(<span class="kw">gam</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x), <span class="dt">data =</span> dat))</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1"><span class="kw">require</span>(gam)</a>
+<a class="sourceLine" id="cb67-2" title="2"><span class="kw">plot</span>(<span class="kw">gam</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">s</span>(x), <span class="dt">data =</span> dat))</a></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 </div>
 </div>

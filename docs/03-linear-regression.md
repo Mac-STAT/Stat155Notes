@@ -34,7 +34,7 @@ Once we have values the intercept and slope, we are going to call them estimates
 
 $$\hat{y} = \hat{\beta}_0 +\hat{\beta}_1 x$$
 
-The little hat on top of $\hat{y}$ means that we're talking about a predicted or estimated value of $y$, so our model says that the predicted or estimated value of $y$ is equal to an estimated intercept ($hat{\beta}_0$), plus an estimated slope ($hat{\beta}_1$), times the value $x$. 
+The little hat on top of $\hat{y}$ means that we're talking about a predicted or estimated value of $y$, so our model says that the predicted or estimated value of $y$ is equal to an estimated intercept ($\hat{\beta}_0$), plus an estimated slope ($\hat{\beta}_1$), times the value $x$. 
 
 <div class="mathbox">
 <p>In the past, you may have seen the equation of a line as</p>
@@ -420,7 +420,8 @@ summary(tshirt_mod2)
 - **Definition:** The slope gives the change in average $y$ per 1 unit increase in $x$ (**not for individuals and not a causal statement**)
 - **One Interpretation:** If we compare two groups of individuals with a 1 cm difference in the neck size (e.g., 38 cm and 39 cm OR 40 cm and 41 cm), then we'd expect the average chest sizes to be different by about 2.7 cm.
 - **Another Interpretation:** We'd expect the average chest size to increase by about 2.7 cm for each centimeter increase in neck size.
-- **Discussion:** Note that both interpretations are not written about an individual because the least squares line (our fit model) is a description of the **general trend** in the population. The slope describes the change in the average, not the change for one person.
+- **A Third Interpretation:** We estimate that a one centimeter increase in neck size is associated with an increase, on average, of 2.7 cm in chest size.
+- **Discussion:** Note that the interpretations are not written about an individual because the least squares line (our fit model) is a description of the **general trend** in the population. The slope describes the change in the average, not the change for one person. 
 
 ### Least Squares Regression Line ($\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x$)
 
@@ -456,7 +457,7 @@ In this section, we consider model evaluation. We seek to develop tools that all
 Aligning with our goals, we'd like to the model to:
 
 - have small prediction errors
-- accurate capture the relationship that explains variation in the outcome
+- accurately capture the relationship that explains variation in the outcome
 
 ### Prediction
 
@@ -465,7 +466,7 @@ Let's consider another data example. Can we predict your college grade point ave
 
 
 ```r
-sat <- read.csv("Data/sat.csv")
+sat <- read_csv("Data/sat.csv")
 ```
 
 
@@ -486,7 +487,7 @@ First things first. Let's describe the scatterplot.
 - **Direction**: Positive relationship (higher high school GPA is associated with higher college GPA)
 - **Form**: Roughly linear
 - **Strength**: There is a weak relationship when high school GPA < 3.0 ($r = 0.32$) and a fairly strong relationship when high school GPA > 3.0 ($r = 0.68$).
-- **Unusual**: As seen with the strength, there is greater variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening"** or **heteroscedasticity** (this terms is used quite a bit in Econometrics). 
+- **Unusual**: As seen with the strength, there is greater variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening"** or **heteroscedasticity** (this term is used quite a bit in Econometrics). 
 
 The code below computes the correlation coefficients separately for students with high school GPAs above 3 and for students with high school GPAs less than or equal to 3. We see that the correlation is higher for the high GPA group.
 
@@ -630,8 +631,10 @@ sat %>%
 ```
 
 ```
-##   max(high_GPA)
-## 1             4
+## # A tibble: 1 x 1
+##   `max(high_GPA)`
+##             <dbl>
+## 1               4
 ```
 
 Making predictions beyond the observed range of values is called **extrapolation** and is a risky thing to do. If you make prediction for values of $X$ beyond the minimum or maximum of the observed values of $X$, then you are assuming that the relationship you observe can be extended into the new prediction range. This is the main issue of **forecasting**, making predictions in the future. You have to assume that the trend that you observe now will continue in the future and that the current state of affairs will stay the same. For an infamous case of extrapolation, check out [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173856/) that appeared in the journal Nature.
@@ -640,7 +643,7 @@ Making predictions beyond the observed range of values is called **extrapolation
 
 Recall that a residual, $e_i$, for the $i$th data point is the difference between the actual observed value and predicted value from the model: $e_i = y_i - \hat{y}_i$.
 
-If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section \@ref(intro-zscore).) Let's check: it is unimodal and roughly symmetric, but we see more larger residuals that we might usually expect. Let's keep that in mind. 
+If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section \@ref(intro-zscore).) Let's check: the distribution of residuals is unimodal and roughly symmetric, but we see more large residuals that we might usually expect. Let's keep that in mind. 
 
 
 ```r
@@ -769,7 +772,7 @@ glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.608         0.604 0.281      160. 1.18e-22     1  -14.9  35.7  43.7
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 - Is there a "good" value of $R^2$? Same answer as correlation -- no.
@@ -832,7 +835,7 @@ If the observed data do not satisfy the conditions above, what can we do? Should
 
 - Issue: Both variables are NOT **Quantitative**
     - If your x-variable is categorical, we'll turn it into a quantitative variable using [**indicator variables**][Indicator Variables] (coming up) 
-    - If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we'll use [**logistic regression models**][Logistic Regression Models] (coming up)
+    - If you have a binary variable (exactly 2 categories) that you want to predict as your y variable, we'll use [**logistic regression models**](#logistic) (coming up)
 
 - Issue: Relationship is NOT **Straight Enough**
     - We can try to use the [Solutions for Curvature].
@@ -1046,7 +1049,7 @@ The additive increase of $\beta_1$ units in the expected value of $log(\hbox{Lif
 
 ##### Alternative Solutions
 
-We could also model curved relationships by including higher power terms in a [multiple linear regression model][Multiple Linear Regression Model] like the example below. By using `poly()` (short for polynomial), we now include $X$ and $X^2$ as variables in the model.
+We could also model curved relationships by including higher power terms in a [multiple linear regression model][Multiple Linear Regression] like the example below. By using `poly()` (short for polynomial), we now include $X$ and $X^2$ as variables in the model.
 
 
 ```r
@@ -1072,9 +1075,9 @@ lm(y ~ poly(x, degree = 2, raw = TRUE), data = dat)
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          193.995                            21.461  
+##                          218.253                            12.639  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -5.001
+##                           -4.274
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
@@ -1140,7 +1143,7 @@ head(homes)
 
 ### Indicator Variables
 
-In New England, fireplaces are often used as a way to provide supplementary heat to the house. Let's study the impact of a fireplace has on the sale price of a home. In particular, we only care if the home has 1 or more fireplaces or no fireplaces. So we make a new variable, `AnyFireplace`, that is `TRUE` if there is at least one fireplace in a home and `FALSE` otherwise.
+In New England, fireplaces are often used as a way to provide supplementary heat to the house. Let's study the impact a fireplace has on the sale price of a home. In particular, we only care if the home has 1 or more fireplaces or no fireplaces. So we make a new variable, `AnyFireplace`, that is `TRUE` if there is at least one fireplace in a home and `FALSE` otherwise.
 
 
 ```r
@@ -1250,7 +1253,7 @@ homes %>%
 
 <img src="03-linear-regression_files/figure-html/unnamed-chunk-66-1.png" width="672" />
 
-We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, `Living.Area` could confound the relationship between `AnyFireplace` and `Price` because it is related to both variables. That is, it is possible that Living Area is a cause of having a fireplace and Living Area also clearly is a cause of Price.
+We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, `Living.Area` could confound the relationship between `AnyFireplace` and `Price` because it is related to both variables. That is, it is possible that Living Area is a cause of having a fireplace (if you have a bigger house, you have more space to put in a fireplace) and Living Area also clearly is a cause of Price (the bigger the house, the more it costs).
 
 Let's put `Living.Area` in the model along with `AnyFireplace` to account for it (to control or adjust for it),
 
@@ -1369,7 +1372,7 @@ homes %>%
 
 <img src="03-linear-regression_files/figure-html/unnamed-chunk-69-1.png" width="672" />
 
-In this case, it look as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, the increase in your average price for every 1 square foot is greater for a home with a fireplace than that for homes without fireplaces (slopes are different).
+In this case, it looks as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, the increase in your average price for every 1 square foot is greater for a home with a fireplace than that for homes without fireplaces (slopes are different).
 
 
 ### Interaction Variables
@@ -1497,8 +1500,8 @@ $$
 \end{align*}
 $$
 
-- $\$-37610.41$ is the difference in the estimated intercepts between homes with and without a fireplace
-- $\$26.85$ is the difference in the estimated slopes between homes with and without a fireplace
+- $\$-37610.41$ is the difference in the estimated intercepts between homes with and without a fireplace (or, put another way, $\$-37610.41$ is the difference in the estimated average price between homes with and without a fireplace that are 0 square feet)
+- $\$26.85$ is the difference in the estimated slopes between homes with and without a fireplace (or, put another way, $\$26.85$ is the difference in the estimated "effect" of living area on price between homes with and without a fireplace, where the "effect" of living area on price is the change in average price associated with a 1 square foot increase in living area)
 
 
 ### Is the Difference Real?
@@ -1666,7 +1669,7 @@ summary(lm.home4)
 
 If we look at the estimates of the slope coefficients, are you surprised to see that `Bedrooms` has a negative slope estimate?
 
-Remember, the coefficients are the change in the expected price for a 1 unit change in that variable, keeping all other variables fixed. Is it *possible* to keep `Rooms` fixed while adding an additional `Bedroom`? In practice, that would mean you need to convert an existing room to a `Bedroom`. Let's look at a scatterplot between these two variables. If it not realistic or possible to fix one variable while increasing the other, we cannot interpret the slope coefficients in the standard way. 
+Remember, the coefficients are the change in the expected price for a 1 unit change in that variable, keeping all other variables fixed. Is it *possible* to keep `Rooms` fixed while adding an additional `Bedroom`? In practice, that would mean you need to convert an existing room to a `Bedroom`. Let's look at a scatterplot between these two variables. If it is not realistic or possible to fix one variable while increasing the other, we cannot interpret the slope coefficients in the standard way. 
 
 
 
@@ -1705,7 +1708,7 @@ Let's take another view at this model with an **Added Variable Plot**. Here are 
 
 If we look at the example below, we see a fairly strong positive relationship in the first (upper left) scatterplot. What we can conclude is that living area has quite a bit of unique information not contained in `Bedrooms`, `Rooms`, and `Bathrooms` that can explain variation in home price. Another way to phrase this is that after adjusting for or accounting for the number of `Bedrooms`, `Rooms`, and `Bathrooms`, we see a moderately strong positive linear relationship between `Living.Area` and `Price`. 
 
-In the second (upper right) scatterplot, we see a weak negative relationship between `Bedrooms` and `Price` after account for the square footage of the living area, the number of bathrooms, and the number of rooms. So there isn't much unique information about bedrooms that can help explain the variation in price that isn't already contained in `Rooms`, `Bathrooms`, and `Living.Area`. Since the slope is negative, we might conclude that converting an existing room (keeping square footage and number of rooms fixed) to a bedroom slightly decreases the estimated expected home price. 
+In the second (upper right) scatterplot, we see a weak negative relationship between `Bedrooms` and `Price` after accounting for the square footage of the living area, the number of bathrooms, and the number of rooms. So there isn't much unique information about bedrooms that can help explain the variation in price that isn't already contained in `Rooms`, `Bathrooms`, and `Living.Area`. Since the slope is negative, we might conclude that converting an existing room (keeping square footage and number of rooms fixed) to a bedroom slightly decreases the estimated expected home price. 
 
 With `Rooms` and `Bathrooms`, we see positive but weak relationships after accounting for the other explanatory variables. In fact, the slope of these lines are equal to the estimated coefficients from the summary. 
 
@@ -1768,7 +1771,7 @@ glance(lm.home4)
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.532         0.531 67388.      491. 1.58e-282     4 -21662. 43335. 43368.
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 ```r
@@ -1780,12 +1783,12 @@ glance(lm.home5)
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.530         0.529 67552.      648. 6.15e-282     3 -21666. 43343. 43370.
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 **Fun Fact**: Adding an explanatory variable $X$ to the model will always increase R-squared or keep it the same. 
 
-In general, we'd like the most simple (least number of $X$ variables) that does a good job for our goals. If R-squared never goes down when you add an explanatory variable, we need a different tool to help us decide whether to add a variable. 
+In general, we'd like the most simple model (with the fewest $X$ variables) that does a good job for our goals. If R-squared never goes down when you add an explanatory variable, we need a different tool to help us decide whether to add a variable. 
 
 Remember that 
 $$R^2 = 1 - \frac{SSE}{SSTO} = \%\hbox{ of variation in Y explained by model}$$
@@ -1806,7 +1809,7 @@ With a multiple linear regression model, we have many decisions to make. We need
 
 Choose $X$ variables (& their form) that:
 
-- have fairly strong linear relationship with equal spread with $Y$ (for quantitative $X$)
+- have a fairly strong linear relationship with equal spread with $Y$ (for quantitative $X$)
 - that don't have a pattern in a residual plot against $X$ (for quantitative $X$)
 - can explain large differences in average $Y$ (for categorical $X$)
 - capture modifying effects or different slopes (use visualizations to justify interaction terms)
@@ -1818,8 +1821,8 @@ Choose $X$ variables (& their form) that:
 - can explain a lot of variation in $Y$ (higher R-squared)
 - provide small prediction errors (smaller standard deviation of residual)
 - have coefficients that are really different from 0 ([Is the Difference Real?])
-- adjust for confounding variables to help you estimate direct causal relationships (not mediators; see Section \@ref(dag))
-- have unique information that is not redundant (higher adjusted R-squared; see Section \@ref{redundancy})
+- adjust for confounding variables to help you estimate direct causal relationships (not mediators or colliders; see Section \@ref(dag))
+- have unique information that is not redundant (higher adjusted R-squared; see Section \@ref(redundant)
 
 
 ## Causal Inference {#dag}
@@ -1845,7 +1848,7 @@ These structures are important to understand because they can help guide our ana
 - There is a **direct path** from smoking through cholesterol to cardiac arrest. Smokers may have a higher cholesterol level and thus a higher risk of cardiac arrest.
 - There is an **indirect (backdoor) path** from smoking to cardiac arrest through weight. Smokers also have an unhealty lifestyle which means they are likely to have a higher weight leading to a higher cholesterol level and thus a higher risk of cardiac arrest. 
 
-If we only want to estimate the direct relationship between smoking and cardiac arrest, we need to block the impact the indirect path. We alluded earlier that multiple linear regression could provide estimates of causal effects in the right circumstances. What are those circumstances? When we include **all** confounding variables in the model. 
+If we only want to estimate the direct relationship between smoking and cardiac arrest, we need to block the impact of the indirect path. We alluded earlier that multiple linear regression could provide estimates of causal effects in the right circumstances. What are those circumstances? When we include **all** confounding variables in the model. 
 
 Remember, a confounder is a **common cause** of both the causal variable of interest and the outcome (e.g. living area could be a confounder of fireplace presence and house price).
 

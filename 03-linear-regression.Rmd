@@ -46,7 +46,7 @@ Once we have values the intercept and slope, we are going to call them estimates
 
 $$\hat{y} = \hat{\beta}_0 +\hat{\beta}_1 x$$
 
-The little hat on top of $\hat{y}$ means that we're talking about a predicted or estimated value of $y$, so our model says that the predicted or estimated value of $y$ is equal to an estimated intercept ($hat{\beta}_0$), plus an estimated slope ($hat{\beta}_1$), times the value $x$. 
+The little hat on top of $\hat{y}$ means that we're talking about a predicted or estimated value of $y$, so our model says that the predicted or estimated value of $y$ is equal to an estimated intercept ($\hat{\beta}_0$), plus an estimated slope ($\hat{\beta}_1$), times the value $x$. 
 
 ```{block, type='mathbox'}
 In the past, you may have seen the equation of a line as 
@@ -429,7 +429,8 @@ summary(tshirt_mod2)
 - **Definition:** The slope gives the change in average $y$ per 1 unit increase in $x$ (**not for individuals and not a causal statement**)
 - **One Interpretation:** If we compare two groups of individuals with a 1 cm difference in the neck size (e.g., 38 cm and 39 cm OR 40 cm and 41 cm), then we'd expect the average chest sizes to be different by about 2.7 cm.
 - **Another Interpretation:** We'd expect the average chest size to increase by about 2.7 cm for each centimeter increase in neck size.
-- **Discussion:** Note that both interpretations are not written about an individual because the least squares line (our fit model) is a description of the **general trend** in the population. The slope describes the change in the average, not the change for one person.
+- **A Third Interpretation:** We estimate that a one centimeter increase in neck size is associated with an increase, on average, of 2.7 cm in chest size.
+- **Discussion:** Note that the interpretations are not written about an individual because the least squares line (our fit model) is a description of the **general trend** in the population. The slope describes the change in the average, not the change for one person. 
 
 ### Least Squares Regression Line ($\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x$)
 
@@ -465,7 +466,7 @@ In this section, we consider model evaluation. We seek to develop tools that all
 Aligning with our goals, we'd like to the model to:
 
 - have small prediction errors
-- accurate capture the relationship that explains variation in the outcome
+- accurately capture the relationship that explains variation in the outcome
 
 ### Prediction
 
@@ -491,7 +492,7 @@ First things first. Let's describe the scatterplot.
 - **Direction**: Positive relationship (higher high school GPA is associated with higher college GPA)
 - **Form**: Roughly linear
 - **Strength**: There is a weak relationship when high school GPA < 3.0 ($r = 0.32$) and a fairly strong relationship when high school GPA > 3.0 ($r = 0.68$).
-- **Unusual**: As seen with the strength, there is greater variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening"** or **heteroscedasticity** (this terms is used quite a bit in Econometrics). 
+- **Unusual**: As seen with the strength, there is greater variability in college GPA among individuals with lower high school GPA. That variability decreases with increased high school GPA. We call this pattern of unequal variation as **"thickening"** or **heteroscedasticity** (this term is used quite a bit in Econometrics). 
 
 The code below computes the correlation coefficients separately for students with high school GPAs above 3 and for students with high school GPAs less than or equal to 3. We see that the correlation is higher for the high GPA group.
 
@@ -570,7 +571,7 @@ Making predictions beyond the observed range of values is called **extrapolation
 
 Recall that a residual, $e_i$, for the $i$th data point is the difference between the actual observed value and predicted value from the model: $e_i = y_i - \hat{y}_i$.
 
-If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section \@ref(intro-zscore).) Let's check: it is unimodal and roughly symmetric, but we see more larger residuals that we might usually expect. Let's keep that in mind. 
+If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section \@ref(intro-zscore).) Let's check: the distribution of residuals is unimodal and roughly symmetric, but we see more large residuals that we might usually expect. Let's keep that in mind. 
 
 ```{r echo=TRUE}
 sat %>%

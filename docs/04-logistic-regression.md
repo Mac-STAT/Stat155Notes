@@ -1,6 +1,6 @@
 
 
-# Logistic Regression Models
+# Logistic Regression Models {#logistic}
 
 If you want to predict a binary categorical variable (only 2 possible outcomes), the standard linear regression models don't apply. If you let the two possible outcome values be $Y=0$ and $Y=1$, you'll never get a straight line relationship with any $X$ variable. 
 

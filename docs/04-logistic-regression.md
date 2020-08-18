@@ -33,7 +33,7 @@ $$1-p = \frac{1}{1 + e^{\beta_0 +\beta_1X}}$$
 <p><span class="math display">\[p = \frac{e^{\beta_0 +\beta_1X}}{1 + e^{\beta_0 +\beta_1X}}\]</span></p>
 </div>
 
-Let's define one more term. The **odds** of an success outcome is the ratio of the chance of success to the chance of failure, odds $=p/(1-p)$.
+Let's define one more term. The **odds** of a success is the ratio of the chance of success to the chance of failure, odds $=p/(1-p)$.
 
 <div class="mathbox">
 <p>With a bit more algebra and rearranging terms, we can write the above model as a linear regression model.</p>
@@ -46,7 +46,7 @@ $$\log\left(\frac{p}{1-p}\right) =\log\left(\hbox{Odds of Success given } X\righ
 
 Like a linear regression model, we can extend this model to a **multiple logistic regression model** by adding additional $X$ variables,
 
-$$\log\left(\frac{p}{1-p}\right) =\log\left(\hbox{Odds of Success given } X_1,...,X_k\right)= \log\left(\frac{E[Y|X_1,...,X_k]}{1-E[Y|X_1,...,X_k]}\right) = \beta_0 +\beta_1X_1+\beta_2X_2+\beta_3X_3+\cdots +\beta_kX_k$$
+$$\log\left(\frac{p}{1-p}\right) =\log\left(\hbox{Odds of Success given } X_1,...,X_k\right)= \log\left(\frac{E[Y|X_1,...,X_k]}{1-E[Y|X_1,...,X_k]}\right) \\ = \beta_0 +\beta_1X_1+\beta_2X_2+\beta_3X_3+\cdots +\beta_kX_k$$
 
 ## Fitting the Model
 

@@ -384,7 +384,7 @@ With a bit of algebra and rearranging terms, we can write this equation in terms
 <span class="math display"><span class="math display">\[p = \frac{e^{\beta_0 +\beta_1X}}{1 + e^{\beta_0 +\beta_1X}}\]</span></span>
 </p>
 </div>
-<p>Let’s define one more term. The <strong>odds</strong> of an success outcome is the ratio of the chance of success to the chance of failure, odds <span class="math inline">\(=p/(1-p)\)</span>.</p>
+<p>Let’s define one more term. The <strong>odds</strong> of a success is the ratio of the chance of success to the chance of failure, odds <span class="math inline">\(=p/(1-p)\)</span>.</p>
 <div class="mathbox">
 <p>
 With a bit more algebra and rearranging terms, we can write the above model as a linear regression model.
@@ -396,7 +396,7 @@ With a bit more algebra and rearranging terms, we can write the above model as a
 <p>This is a <strong>simple logistic regression model</strong>. On the left hand side, we have the natural log of the odds of success for a given value of <span class="math inline">\(X\)</span>. The log odds is called the <strong>logit</strong> function. Think of this as a transformed version of our expected outcome for a given value of <span class="math inline">\(X\)</span>. On the right hand side, we have a familiar linear model equation.</p>
 <p><span class="math display">\[\log\left(\frac{p}{1-p}\right) =\log\left(\hbox{Odds of Success given } X\right) = \log\left(\frac{E[Y|X]}{1-E[Y|X]}\right) = \beta_0 +\beta_1X\]</span></p>
 <p>Like a linear regression model, we can extend this model to a <strong>multiple logistic regression model</strong> by adding additional <span class="math inline">\(X\)</span> variables,</p>
-<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) =\log\left(\hbox{Odds of Success given } X_1,...,X_k\right)= \log\left(\frac{E[Y|X_1,...,X_k]}{1-E[Y|X_1,...,X_k]}\right) = \beta_0 +\beta_1X_1+\beta_2X_2+\beta_3X_3+\cdots +\beta_kX_k\]</span></p>
+<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) =\log\left(\hbox{Odds of Success given } X_1,...,X_k\right)= \log\left(\frac{E[Y|X_1,...,X_k]}{1-E[Y|X_1,...,X_k]}\right) \\ = \beta_0 +\beta_1X_1+\beta_2X_2+\beta_3X_3+\cdots +\beta_kX_k\]</span></p>
 </div>
             </section>
 

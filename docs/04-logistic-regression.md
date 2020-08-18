@@ -52,9 +52,9 @@ $$\log\left(\frac{p}{1-p}\right) =\log\left(\hbox{Odds of Success given } X_1,..
 
 Based on observed data that includes an indicator variable for the responses ($Y=1$ for success, $Y=0$ for failure) and predictor variables, we need to find the slope coefficients, $\beta_0$,...,$\beta_k$ that best fits the data. The way we do this is through a technique called **maximum likelihood estimation**. We will not discuss the details in this class; we'll save this for an upper level statistics class such as Mathematical Statistics.
 
-In R, we do this with the **g**eneral **l**inear **m**odel function, `glm()`.
+In R, we do this with the **g**eneralized **l**inear **m**odel function, `glm()`.
 
-For a data set, let's go back in history to January 28, 1986. On this day, the U.S. space shuttle called Challenger took off and tragically exploded about minute after the launch. After the incident, scientists ruled that the disaster was due to an o-ring seal failure. Let's look at experimental data on the o-rings prior to the fateful day.
+For a data set, let's go back in history to January 28, 1986. On this day, the U.S. space shuttle called Challenger took off and tragically exploded about one minute after the launch. After the incident, scientists ruled that the disaster was due to an o-ring seal failure. Let's look at experimental data on the o-rings prior to the fateful day.
 
 
 ```r
@@ -161,7 +161,7 @@ summary(model.glm)
 ## Number of Fisher Scoring iterations: 5
 ```
 
-The slope coefficient (-0.232) tells you how much the predicted log odds increase with an increase of 1 degree increase in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra to get something more interpretable. 
+The slope coefficient (-0.232) tells you how much the predicted log odds of o-ring failure increase with an increase of 1 degree  in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra to get something more interpretable. 
 
 <div class="mathbox">
 <p>Our model is</p>
@@ -173,7 +173,7 @@ The slope coefficient (-0.232) tells you how much the predicted log odds increas
 <p>Let’s find the difference between these two equations,</p>
 <p><span class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)- \log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  (\beta_0 +\beta_1(x+1)) - ( \beta_0 +\beta_1x)\]</span> and simplify the right hand side (we love it when things cancel!),</p>
 <p><span class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)- \log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  \beta_1\]</span> and then simplify the left hand side (using our rules of logarithms),</p>
-<p><span class="math display">\[\log\left( \frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right) = b_1\]</span></p>
+<p><span class="math display">\[\log\left( \frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right) = \beta_1\]</span></p>
 <p>Let’s exponentiate both sides,</p>
 <p><span class="math display">\[\left( \frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right)= e^{\beta_1}\]</span></p>
 <p><span class="math display">\[\left( \frac{\hbox{Odds of Success when }X=x+1}{\hbox{Odds of Success when }X=x}\right)= e^{\beta_1}\]</span></p>
@@ -182,7 +182,7 @@ The slope coefficient (-0.232) tells you how much the predicted log odds increas
 After that algebra, we find that $e^{\beta_1}$ is equal to the **odds ratio**, the ratio of the odds of success between two groups of values (those with $X=x+1$ and those with $X=x$, 1 unit apart)
 
 
-When we fit the model to the o-ring experimental data, we estimate the coefficients to be $\hat{\beta}_0 = 15.04$ and $\hat{\beta}_1 = -0.232$. So the estimated odds ratio is $e^{\hat{\beta}_1} = e^{-0.232} = 0.793$ or an increase in Farenheit degree in temperature (Temperature=T+1 v. Temperature=T). 
+When we fit the model to the o-ring experimental data, we estimate the coefficients to be $\hat{\beta}_0 = 15.04$ and $\hat{\beta}_1 = -0.232$. So the estimated odds ratio is $e^{\hat{\beta}_1} = e^{-0.232} = 0.793$ for an increase in one degree Fahrenheit in temperature (Temperature=T+1 v. Temperature=T). 
 
 - If a ratio is greater than 1, that means that the denominator is less than the numerator or equivalently the numerator is greater than denominator (odds of success are greater with T+1 as compared to T --> positive relationship between $X$ variable and odds of success). 
 
@@ -191,11 +191,11 @@ When we fit the model to the o-ring experimental data, we estimate the coefficie
 - If the ratio is equal to one, the numerator equals the denominator (odds of success are equal for the two groups --> no relationship).
 
 
-In this case, we have an odds ratio < 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree). This makes sense since we saw that the chance of o-ring failure decrease with warmer temperatures. 
+In this case, we have an odds ratio < 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree Fahrenheit). This makes sense since we saw in experimental data that the proportion of o-ring failures was lower in warmer temperatures. 
 
 ## Prediction
 
-On January 28, 1986, the temperature was 26 F degrees. Let's predict the chance of "success," which is a failure of o-rings in our data context, at that temperature.  
+On January 28, 1986, the temperature was 26 degrees F. Let's predict the chance of "success," which is a failure of o-rings in our data context, at that temperature.  
 
 
 ```r
@@ -219,7 +219,7 @@ It depends.
 
 If we used a threshold of 0.8, then we'd say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we'll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our **accuracy** (# of correctly predicted/# of data points)? 
 
-In the table below, we see that there were 3 data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn't fail when it actually did and correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) =  0.82 or 82%. 
+In the table below, we see that there were 3 data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn't fail when it actually did, and we correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) =  0.82 or 82%. 
 
 
 ```r
@@ -251,7 +251,7 @@ The **false negative rate** is the number of false negatives divided by the fals
 
 The **sensitivity** of a prediction model is the true positives divided by the false negatives + true positives (denominator should be total number of experiments with actual o-ring failures). It is 1-false negative rate, so the model for o-ring failures has a 1-0.57 = 0.43 or 43% sensitivity. 
 
-A **false positive** (predict "success" because $\hat{p}$ is greater than threshold when outcome was not a "success", $Y=0$). A false positive would happend when we predicted o-ring failure when it doesn't actually happen. This would delay launch (cost \$) but have minimal impact on human lives. 
+A **false positive** (predict "success" because $\hat{p}$ is greater than threshold when outcome was not a "success", $Y=0$). A false positive would happen when we predicted o-ring failure when it doesn't actually happen. This would delay launch (cost \$) but have minimal impact on human lives. 
 
 The **false positive rate** is the number of false positives divided by the false positives + true negatives (denominator should be total number of experiments with no o-ring failures). With a threshold of 0.80, our false positive rate is 0/16 = 0. We always accurately predicted the o-rings would not fail.
 

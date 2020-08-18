@@ -363,8 +363,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fitting-the-model" class="section level2">
 <h2><span class="header-section-number">4.2</span> Fitting the Model</h2>
 <p>Based on observed data that includes an indicator variable for the responses (<span class="math inline">\(Y=1\)</span> for success, <span class="math inline">\(Y=0\)</span> for failure) and predictor variables, we need to find the slope coefficients, <span class="math inline">\(\beta_0\)</span>,…,<span class="math inline">\(\beta_k\)</span> that best fits the data. The way we do this is through a technique called <strong>maximum likelihood estimation</strong>. We will not discuss the details in this class; we’ll save this for an upper level statistics class such as Mathematical Statistics.</p>
-<p>In R, we do this with the <strong>g</strong>eneral <strong>l</strong>inear <strong>m</strong>odel function, <code>glm()</code>.</p>
-<p>For a data set, let’s go back in history to January 28, 1986. On this day, the U.S. space shuttle called Challenger took off and tragically exploded about minute after the launch. After the incident, scientists ruled that the disaster was due to an o-ring seal failure. Let’s look at experimental data on the o-rings prior to the fateful day.</p>
+<p>In R, we do this with the <strong>g</strong>eneralized <strong>l</strong>inear <strong>m</strong>odel function, <code>glm()</code>.</p>
+<p>For a data set, let’s go back in history to January 28, 1986. On this day, the U.S. space shuttle called Challenger took off and tragically exploded about one minute after the launch. After the incident, scientists ruled that the disaster was due to an o-ring seal failure. Let’s look at experimental data on the o-rings prior to the fateful day.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">require</span>(vcd)</a>
 <a class="sourceLine" id="cb1-2" title="2"><span class="kw">data</span>(SpaceShuttle)</a>
 <a class="sourceLine" id="cb1-3" title="3"></a>

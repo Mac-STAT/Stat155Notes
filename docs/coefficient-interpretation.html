@@ -387,7 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## AIC: 24.315
 ## 
 ## Number of Fisher Scoring iterations: 5</code></pre>
-<p>The slope coefficient (-0.232) tells you how much the predicted log odds increase with an increase of 1 degree increase in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra to get something more interpretable.</p>
+<p>The slope coefficient (-0.232) tells you how much the predicted log odds of o-ring failure increase with an increase of 1 degree in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra to get something more interpretable.</p>
 <div class="mathbox">
 <p>
 Our model is
@@ -417,7 +417,7 @@ Let’s find the difference between these two equations,
 <span class="math display"><span class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)- \log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  \beta_1\]</span></span> and then simplify the left hand side (using our rules of logarithms),
 </p>
 <p>
-<span class="math display"><span class="math display">\[\log\left( \frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right) = b_1\]</span></span>
+<span class="math display"><span class="math display">\[\log\left( \frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right) = \beta_1\]</span></span>
 </p>
 <p>
 Let’s exponentiate both sides,
@@ -430,13 +430,13 @@ Let’s exponentiate both sides,
 </p>
 </div>
 <p>After that algebra, we find that <span class="math inline">\(e^{\beta_1}\)</span> is equal to the <strong>odds ratio</strong>, the ratio of the odds of success between two groups of values (those with <span class="math inline">\(X=x+1\)</span> and those with <span class="math inline">\(X=x\)</span>, 1 unit apart)</p>
-<p>When we fit the model to the o-ring experimental data, we estimate the coefficients to be <span class="math inline">\(\hat{\beta}_0 = 15.04\)</span> and <span class="math inline">\(\hat{\beta}_1 = -0.232\)</span>. So the estimated odds ratio is <span class="math inline">\(e^{\hat{\beta}_1} = e^{-0.232} = 0.793\)</span> or an increase in Farenheit degree in temperature (Temperature=T+1 v. Temperature=T).</p>
+<p>When we fit the model to the o-ring experimental data, we estimate the coefficients to be <span class="math inline">\(\hat{\beta}_0 = 15.04\)</span> and <span class="math inline">\(\hat{\beta}_1 = -0.232\)</span>. So the estimated odds ratio is <span class="math inline">\(e^{\hat{\beta}_1} = e^{-0.232} = 0.793\)</span> for an increase in one degree Fahrenheit in temperature (Temperature=T+1 v. Temperature=T).</p>
 <ul>
 <li><p>If a ratio is greater than 1, that means that the denominator is less than the numerator or equivalently the numerator is greater than denominator (odds of success are greater with T+1 as compared to T –&gt; positive relationship between <span class="math inline">\(X\)</span> variable and odds of success).</p></li>
 <li><p>If a ratio is less than 1, that means that the denominator is greater than the numerator or equivalently the numerator is less than denominator (odds of success are less with T+1 as compared to T –&gt; negative relationship between <span class="math inline">\(X\)</span> variable and odds of success).</p></li>
 <li><p>If the ratio is equal to one, the numerator equals the denominator (odds of success are equal for the two groups –&gt; no relationship).</p></li>
 </ul>
-<p>In this case, we have an odds ratio &lt; 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree). This makes sense since we saw that the chance of o-ring failure decrease with warmer temperatures.</p>
+<p>In this case, we have an odds ratio &lt; 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree Fahrenheit). This makes sense since we saw in experimental data that the proportion of o-ring failures was lower in warmer temperatures.</p>
 </div>
             </section>
 

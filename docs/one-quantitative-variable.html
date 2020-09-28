@@ -239,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
 <li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
+<li class="chapter" data-level="4" data-path="logistic.html"><a href="logistic.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
 <li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
 <li class="chapter" data-level="4.3" data-path="coefficient-interpretation.html"><a href="coefficient-interpretation.html"><i class="fa fa-check"></i><b>4.3</b> Coefficient Interpretation</a></li>
@@ -616,7 +616,7 @@ What percentage of the data is between the green dashed lines (length of interva
 </div>
 <p>The code below computes the fraction of data points, <code>x</code>, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean.</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="one-quantitative-variable.html#cb56-1"></a><span class="kw">sum</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(x) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(x))<span class="op">/</span><span class="kw">length</span>(x)</span></code></pre></div>
-<pre><code>## [1] 0.6853333</code></pre>
+<pre><code>## [1] 0.676</code></pre>
 <p>So with this data set, about 68% of the data values fall within 1 SD of the mean.</p>
 <div class="reflect">
 <p>

@@ -495,31 +495,11 @@ Our **null hypothesis** (a hypothesis that is conservative/not interesting/does 
 We can generate 1000 new data sets based on randomly reshuffling the labels of `day_hour`. For each of these data sets, we calculate the difference in mean arrival delay between morning and afternoon groups. 
 
 
-```r
-require(infer) #install.packages('infer')
-null_dist <-  flights_samp500 %>% 
-    specify(arr_delay ~ day_hour) %>%
-    hypothesize(null = "independence") %>% # Hypothesize
-    generate(reps = 1000, type = "permute") %>% # Generate permutations
-    calculate(stat = "diff in means", order = c("morning", "afternoon")) #calculate difference in means
-```
 
 **3. Visualize**
 
 The histogram below shows the histogram of differences in means if the null hypothesis were true. The vertical line shows the observed difference in means. 
 
-
-```r
-obs <- flights_samp500 %>% 
-    specify(arr_delay ~ day_hour) %>%
-    calculate(stat = "diff in means", order = c("morning", "afternoon"))
-
-null_dist %>% 
-    ggplot(aes(x = stat)) +
-    geom_histogram() + 
-    geom_vline(data = obs, aes(xintercept = stat), color = "red") +
-    theme_minimal()
-```
 
 ```
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.

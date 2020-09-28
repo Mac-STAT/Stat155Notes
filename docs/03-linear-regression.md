@@ -772,7 +772,7 @@ glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.608         0.604 0.281      160. 1.18e-22     1  -14.9  35.7  43.7
-## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 - Is there a "good" value of $R^2$? Same answer as correlation -- no.
@@ -1075,9 +1075,9 @@ lm(y ~ poly(x, degree = 2, raw = TRUE), data = dat)
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          218.253                            12.639  
+##                          205.329                            17.697  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -4.274
+##                           -4.741
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
@@ -1771,7 +1771,7 @@ glance(lm.home4)
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.532         0.531 67388.      491. 1.58e-282     4 -21662. 43335. 43368.
-## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 ```r
@@ -1783,7 +1783,7 @@ glance(lm.home5)
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.530         0.529 67552.      648. 6.15e-282     3 -21666. 43343. 43370.
-## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 **Fun Fact**: Adding an explanatory variable $X$ to the model will always increase R-squared or keep it the same. 

@@ -239,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
 <li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
+<li class="chapter" data-level="4" data-path="logistic.html"><a href="logistic.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
 <li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
 <li class="chapter" data-level="4.3" data-path="coefficient-interpretation.html"><a href="coefficient-interpretation.html"><i class="fa fa-check"></i><b>4.3</b> Coefficient Interpretation</a></li>
@@ -425,9 +425,9 @@ where <span class="math inline">\(k\)</span> is the number of estimated coeffici
 <span class="math display">\[CV_{(k)} = \frac{1}{k}\sum^k_{i=1}MSE_i \]</span>
 where <span class="math inline">\(MSE_i\)</span> is the MSE based on the <span class="math inline">\(i\)</span>th group as the test group. In practice, one performs k-fold CV with <span class="math inline">\(k=5\)</span> or <span class="math inline">\(k=10\)</span> as it reduces the computational time and it also is more accurate.</p></li>
 </ul>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="model-selection.html#cb376-1"></a><span class="kw">require</span>(boot)</span>
-<span id="cb376-2"><a href="model-selection.html#cb376-2"></a>cv.err &lt;-<span class="st"> </span><span class="kw">cv.glm</span>(data,glm1, <span class="dt">K =</span> <span class="dv">5</span>)</span>
-<span id="cb376-3"><a href="model-selection.html#cb376-3"></a><span class="kw">sqrt</span>(cv.err<span class="op">$</span>delta[<span class="dv">1</span>]) <span class="co">#out of sample average prediction error</span></span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="model-selection.html#cb374-1"></a><span class="kw">require</span>(boot)</span>
+<span id="cb374-2"><a href="model-selection.html#cb374-2"></a>cv.err &lt;-<span class="st"> </span><span class="kw">cv.glm</span>(data,glm1, <span class="dt">K =</span> <span class="dv">5</span>)</span>
+<span id="cb374-3"><a href="model-selection.html#cb374-3"></a><span class="kw">sqrt</span>(cv.err<span class="op">$</span>delta[<span class="dv">1</span>]) <span class="co">#out of sample average prediction error</span></span></code></pre></div>
 
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>

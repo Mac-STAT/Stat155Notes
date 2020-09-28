@@ -239,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
 <li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="logistic-regression-models.html"><a href="logistic-regression-models.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
+<li class="chapter" data-level="4" data-path="logistic.html"><a href="logistic.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
 <li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
 <li class="chapter" data-level="4.3" data-path="coefficient-interpretation.html"><a href="coefficient-interpretation.html"><i class="fa fa-check"></i><b>4.3</b> Coefficient Interpretation</a></li>
@@ -378,21 +378,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Let’s consider the particular Normal model with <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma=1\)</span>. This is called the <strong>standard normal distribution</strong>. We know that <span class="math inline">\(P(-1\leq X \leq 1) = 0.68\)</span>, which is calculated as the area under the curve between -1 and 1.</li>
 </ul>
 <p><img src="06-probability_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="normal-model.html#cb300-1"></a><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="normal-model.html#cb298-1"></a><span class="kw">pnorm</span>(<span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">1</span>) </span></code></pre></div>
 <pre><code>## [1] 0.6826895</code></pre>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="normal-model.html#cb302-1"></a><span class="co">#pnorm(1) gives the area under the curve to the left of 1</span></span>
-<span id="cb302-2"><a href="normal-model.html#cb302-2"></a><span class="co">#pnorm(-1) gives the area under the curve to the left of -1</span></span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="normal-model.html#cb300-1"></a><span class="co">#pnorm(1) gives the area under the curve to the left of 1</span></span>
+<span id="cb300-2"><a href="normal-model.html#cb300-2"></a><span class="co">#pnorm(-1) gives the area under the curve to the left of -1</span></span></code></pre></div>
 <ul>
 <li>We know that <span class="math inline">\(P(-2\leq X \leq 2) = 0.95\)</span>, calculated as the area under the curve between -2 and 2.</li>
 </ul>
 <p><img src="06-probability_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="normal-model.html#cb303-1"></a><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="normal-model.html#cb301-1"></a><span class="kw">pnorm</span>(<span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9544997</code></pre>
 <ul>
 <li>We know that <span class="math inline">\(P(-3\leq X \leq 3) = 0.997\)</span>, calculated as the area under the curve between -3 and 3.</li>
 </ul>
 <p><img src="06-probability_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="normal-model.html#cb305-1"></a><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="normal-model.html#cb303-1"></a><span class="kw">pnorm</span>(<span class="dv">3</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="op">-</span><span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9973002</code></pre>
 <p>The standard normal distribution is very convenient to work with. No matter what the long-run average <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span> are for a normally-distributed random variable <span class="math inline">\(X\)</span>, we can standardize the values to obtain <strong>z-scores</strong> by subtracting <span class="math inline">\(\mu\)</span> and dividing by <span class="math inline">\(\sigma\)</span>:</p>
 <p><span class="math display">\[\text{z-score} = \frac{X - \mu}{\sigma}\]</span></p>

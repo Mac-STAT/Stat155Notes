@@ -582,7 +582,7 @@ NHANES %>%
 
 ```
 ## # A tibble: 1 x 3
-##   `mean(SleepHrsNight, na~ `median(SleepHrsNight, ~ `mean(SleepHrsNight, trim =~
+##   `mean(SleepHrsNight, na… `median(SleepHrsNight, … `mean(SleepHrsNight, trim =…
 ##                      <dbl>                    <int>                        <dbl>
 ## 1                     6.93                        7                         6.95
 ```
@@ -706,30 +706,27 @@ We can calculate all of these in R.
 
 
 ```r
-NHANES %>%
-  summarize(diff(range(SleepHrsNight, na.rm = TRUE)), IQR(SleepHrsNight, na.rm = TRUE), sd(SleepHrsNight, na.rm = TRUE), var(SleepHrsNight, na.rm = TRUE))
+NHANES %>% summarize(diff(range(SleepHrsNight, na.rm = TRUE)), IQR(SleepHrsNight, 
+    na.rm = TRUE), sd(SleepHrsNight, na.rm = TRUE), var(SleepHrsNight, na.rm = TRUE))
 ```
 
 ```
 ## # A tibble: 1 x 4
-##   `diff(range(SleepHr~ `IQR(SleepHrsNight~ `sd(SleepHrsNight~ `var(SleepHrsNigh~
+##   `diff(range(SleepHr… `IQR(SleepHrsNight… `sd(SleepHrsNight… `var(SleepHrsNigh…
 ##                  <int>               <dbl>              <dbl>              <dbl>
 ## 1                   10                   2               1.35               1.81
 ```
 
 ```r
-# range gives max and min; take difference betwee max and min
-# IQR = Q3-Q1
-# sd = standard deviation
-# var = variance
+# range gives max and min; take difference betwee max and min IQR = Q3-Q1 sd =
+# standard deviation var = variance
 ```
 
 - **CEO salary information from NYT**
 
 
 ```r
-ceo %>%
-  summarize(diff(range(salary)), IQR(salary), sd(salary), var(salary))
+ceo %>% summarize(diff(range(salary)), IQR(salary), sd(salary), var(salary))
 ```
 
 ```
@@ -744,10 +741,10 @@ We've looked at different measures of the spread of a distribution. Do some meas
 
 ```r
 x <- rnorm(1500)
-boxplot(x,horizontal = TRUE,xlab='Generated Data')
-abline(v = range(x), col='blue',lty=3) 
-abline(v = quantile(x,c(.25,.75)),col='purple',lty=1)
-abline(v = c(mean(x) - sd(x), mean(x) + sd(x)),col='green',lty=2)
+boxplot(x, horizontal = TRUE, xlab = "Generated Data")
+abline(v = range(x), col = "blue", lty = 3)
+abline(v = quantile(x, c(0.25, 0.75)), col = "purple", lty = 1)
+abline(v = c(mean(x) - sd(x), mean(x) + sd(x)), col = "green", lty = 2)
 ```
 
 <img src="02-visualization_files/figure-html/unnamed-chunk-37-1.png" width="672" />
@@ -766,7 +763,7 @@ sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
 ```
-## [1] 0.692
+## [1] 0.676
 ```
 
 So with this data set, about 68% of the data values fall within 1 SD of the mean.

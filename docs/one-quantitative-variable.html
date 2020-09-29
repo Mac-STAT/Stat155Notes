@@ -243,8 +243,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
 <li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
 <li class="chapter" data-level="4.3" data-path="coefficient-interpretation.html"><a href="coefficient-interpretation.html"><i class="fa fa-check"></i><b>4.3</b> Coefficient Interpretation</a></li>
-<li class="chapter" data-level="4.4" data-path="model-evaluation.html"><a href="model-evaluation.html#prediction"><i class="fa fa-check"></i><b>4.4</b> Prediction</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="prediction.html"><a href="prediction.html"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
+<li class="chapter" data-level="4.4" data-path="logistic-model-prediction.html"><a href="logistic-model-prediction.html"><i class="fa fa-check"></i><b>4.4</b> Logistic Model Prediction</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="logistic-model-prediction.html"><a href="logistic-model-prediction.html#hard-predictionsclassifications"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="logistic-model-evaluation.html"><a href="logistic-model-evaluation.html"><i class="fa fa-check"></i><b>4.5</b> Logistic Model Evaluation</a></li>
 <li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
@@ -616,7 +616,7 @@ What percentage of the data is between the green dashed lines (length of interva
 </div>
 <p>The code below computes the fraction of data points, <code>x</code>, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean.</p>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="one-quantitative-variable.html#cb56-1"></a><span class="kw">sum</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">-</span><span class="st"> </span><span class="kw">sd</span>(x) <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;</span><span class="st"> </span><span class="kw">mean</span>(x) <span class="op">+</span><span class="st"> </span><span class="kw">sd</span>(x))<span class="op">/</span><span class="kw">length</span>(x)</span></code></pre></div>
-<pre><code>## [1] 0.676</code></pre>
+<pre><code>## [1] 0.6746667</code></pre>
 <p>So with this data set, about 68% of the data values fall within 1 SD of the mean.</p>
 <div class="reflect">
 <p>

@@ -170,7 +170,7 @@ When we fit the model to the o-ring experimental data, we estimate the coefficie
 
 In this case, we have an odds ratio < 1 which means that the estimated odds of o-ring failure is lower for increased temperatures (in particular by increasing by 1 degree Fahrenheit). This makes sense since we saw in experimental data that the proportion of o-ring failures was lower in warmer temperatures. 
 
-## Prediction
+## Logistic Model Prediction
 
 On January 28, 1986, the temperature was 26 degrees F. Let's predict the chance of "success," which is a failure of o-rings in our data context, at that temperature.  
 

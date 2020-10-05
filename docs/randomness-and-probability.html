@@ -249,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="logistic-model-evaluation.html"><a href="logistic-model-evaluation.html"><i class="fa fa-check"></i><b>4.5</b> Logistic Model Evaluation</a></li>
 <li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="random-variability.html"><a href="random-variability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
+<li class="chapter" data-level="5" data-path="randvariability.html"><a href="randvariability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
 <li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
 <li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a></li>
 <li class="chapter" data-level="5.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>5.3</b> Simulating Random Sampling from a Population</a></li>
@@ -366,7 +366,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="randomness-and-probability" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Randomness and Probability</h1>
 <p>Now that we have some intuition about random variability, we will formalize some of the concepts of probability and chance.</p>
-<p>Recall the regression model we built to predict home price as a function of square footage and fireplaces in Section @ref{multiple}.</p>
+<p>Recall the regression model we built to predict home price as a function of square footage and fireplaces in Section <a href="multiple.html#multiple">3.9</a>.</p>
 <div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="randomness-and-probability.html#cb294-1"></a>homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</span>
 <span id="cb294-2"><a href="randomness-and-probability.html#cb294-2"></a>homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
 <span id="cb294-3"><a href="randomness-and-probability.html#cb294-3"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">AnyFireplace =</span> Fireplaces <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>)</span>
@@ -388,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 AnyFireplaceTRUE             -37610.   11025.       -3.41 6.61e- 4
 ## 3 Living.Area                      92.4      5.41     17.1  1.84e-60
 ## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5</code></pre>
-<p>Probably not. In fact, our sample is just one random sample from the larger population of homes in upstate New York. If we had gotten a slightly different sample of homes, then we would have different estimates for each of the regression coefficients. We explored this sampling variation in [Chapter 4][Random Variability] using bootstrapping.</p>
+<p>Probably not. In fact, our sample is just one random sample from the larger population of homes in upstate New York. If we had gotten a slightly different sample of homes, then we would have different estimates for each of the regression coefficients. We explored this sampling variation in <a href="randvariability.html#randvariability">Chapter 5</a> using bootstrapping.</p>
 <p>Let’s connect our goals to the terms <strong>statistic</strong>, <strong>estimate</strong>, and <strong>parameter</strong>.</p>
 <p>The interaction coefficient is a <strong>statistic</strong>. It (as well as the other coefficient estimates) is a numerical summary of our data that was estimated from a <strong>sample</strong>. The actual numerical value of the interaction coefficient in the R output is called the <strong>estimate</strong>. If we had a census, a full set of data on all homes in upstate New York, we could fit the same linear regression model. The coefficient estimates given to us by R would represent population <strong>parameters</strong> because they are computed from the whole population, rather than a sample. By understanding <strong>how much</strong> statistics vary from sample to sample, we can start to <strong>quantify the amount of uncertainty</strong> in our estimates. Because the process of obtaining a sample is a type of random process, we will spend some time discussing formal probability.</p>
 <p>This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand and discuss random events. This framework provides a way of thinking about <strong>uncertainty</strong>, <strong>random variability</strong>, and <strong>average behavior in the long run.</strong></p>

@@ -116,7 +116,7 @@
 
 Now that we have some intuition about random variability, we will formalize some of the concepts of probability and chance.
 
-Recall the regression model we built to predict home price as a function of square footage and fireplaces in Section \@ref{multiple}. 
+Recall the regression model we built to predict home price as a function of square footage and fireplaces in Section \@ref(multiple). 
 
 
 ```r
@@ -156,7 +156,7 @@ tidy(lm.home3)
 ## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5
 ```
 
-Probably not. In fact, our sample is just one random sample from the larger population of homes in upstate New York. If we had gotten a slightly different sample of homes, then we would have different estimates for each of the regression coefficients. We explored this sampling variation in [Chapter 4][Random Variability] using bootstrapping.
+Probably not. In fact, our sample is just one random sample from the larger population of homes in upstate New York. If we had gotten a slightly different sample of homes, then we would have different estimates for each of the regression coefficients. We explored this sampling variation in [Chapter 5](#randvariability) using bootstrapping.
 
 Let's connect our goals to the terms **statistic**, **estimate**, and **parameter**. 
 

@@ -1084,12 +1084,12 @@ We see this by taking the difference between the two equations, fixing the Livin
 
 $$E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area = A}] - E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area = A}]$$
 
-$$
+
 \begin{align*}
 \,&= (\beta_0+\beta_1 + \beta_2 \times \hbox{A}) - ( \beta_0 + \beta_2 \times \hbox{A})\\
 \,&= \beta_1
 \end{align*}
-$$
+
 
 Another way to describe $\beta_1$ is that it is the difference between the intercepts.
 
@@ -1171,23 +1171,23 @@ Let's think about two types of homes: a home with one or more fireplaces and a h
 
 - Home with fireplace (indicator = 1):    
 
-$$
+
 \begin{align*}
 E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &= \beta_0 + \beta_1*\,1 + \beta_2\,\hbox{Living.Area}+ \beta_3*\,1*\hbox{Living.Area}\\
 &= (\beta_0 + \beta_1) + (\beta_2+\beta_3)\,\hbox{Living.Area}\\
 \end{align*}
-$$
+
 
 
 
 - Home without fireplace (indicator = 0):    
 
-$$
+
 \begin{align*}
 E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &= \beta_0 + \beta_1*\,0 + \beta_2\,\hbox{Living.Area}+ \beta_3*\,0*\hbox{Living.Area}\\
 &= \beta_0  + \beta_2\,\hbox{Living.Area}\\
 \end{align*}
-$$
+
 
 Note that there are different intercepts **and** different slopes for these two groups of homes. Thus, including an interaction term between a categorical and a quantitative predictor variable allows us to describe **effect modification**. How does the effect of one variable on the response variable differ according to another variable? How is the effect modified by another variable?
 
@@ -1207,12 +1207,12 @@ summary(lm.home3)
 
 - Homes with fireplace (indicator = 1):    
 
-$$
+
 \begin{align*}
 \hbox{Predicted Price} &= 40901.29 + -37610.41 \times 1 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 1 \\
 & = \$3,290.88 + \$119.21 \times \hbox{Living.Area}
 \end{align*}
-$$
+
 
 ```{r echo=TRUE}
 40901.29 + -37610.41*1
@@ -1221,12 +1221,12 @@ $$
 
 - Homes without fireplace (indicator = 0):    
 
-$$
+
 \begin{align*}
 \hbox{Predicted Price} &= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 0 \\
 &= \$40,901.29 + \$92.36 \times \hbox{Living.Area}
 \end{align*}
-$$
+
 
 - $\$-37610.41$ is the difference in the estimated intercepts between homes with and without a fireplace (or, put another way, $\$-37610.41$ is the difference in the estimated average price between homes with and without a fireplace that are 0 square feet)
 - $\$26.85$ is the difference in the estimated slopes between homes with and without a fireplace (or, put another way, $\$26.85$ is the difference in the estimated "effect" of living area on price between homes with and without a fireplace, where the "effect" of living area on price is the change in average price associated with a 1 square foot increase in living area)

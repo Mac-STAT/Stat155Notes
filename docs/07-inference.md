@@ -129,9 +129,10 @@ Let's remember our goal of "turning data into information." Based on a sample da
 
 Let's do some statistical inference based on a simple random sample (SRS) of 100 flights leaving NYC in 2013. 
 
-<div class="reflect">
-<p>What is our population of interest? What population could we generalize to?</p>
-</div>
+\begin{reflect}
+What is our population of interest? What population could we generalize
+to?
+\end{reflect}
 
 
 ```r
@@ -182,20 +183,37 @@ $$\text{Estimate }\pm z^* *SE(\text{Estimate})$$
 The fact that confidence intervals can be created as above is rooted in the Central Limit Theorem (CLT). If you would like to see how the form above is derived, see the Math Box below.
 
 
-<div class="mathbox">
-<p>(Optional) Deriving confidence intervals from the CLT</p>
-<p>The CLT originally expresses that</p>
-<p><span class="math display">\[\frac{\text{sample mean} - \text{true mean}}{\text{true std. dev. of sample mean}} \sim \text{Normal}(0,1)\]</span></p>
-<p>It turns out that the CLT also applies to regression coefficients:</p>
-<p><span class="math display">\[\frac{\hat{\beta} - \beta}{\text{ESTIMATED std. dev. of }\hat{\beta}} \sim \text{Normal}(0,1)\]</span></p>
-<p>From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:</p>
-<p><span class="math display">\[P(-2\leq\frac{\hat{\beta} - \beta}{SE}\leq2) = 0.95\]</span></p>
-<p><span class="math display">\[P(-2 SE\leq\hat{\beta} - \beta \leq2 SE ) = 0.95\]</span></p>
-<p><span class="math display">\[P(-2 SE-\hat{\beta} \leq  -\beta \leq2 SE-\hat{\beta} ) = 0.95\]</span></p>
-<p><span class="math display">\[P(2 SE+\hat{\beta} \geq \beta \geq -2 SE+\hat{\beta} ) = 0.95\]</span></p>
-<p><span class="math display">\[P(\hat{\beta}-2 SE \leq \beta \leq\hat{\beta}+2 SE ) = 0.95\]</span></p>
-<p>You’ve seen the Student T distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the Student t distribution is more accurate for linear regression coefficients (especially if sample size is small). The normal distribution is appropriate for logistic regression coefficients.</p>
-</div>
+\begin{mathbox}
+(Optional) Deriving confidence intervals from the CLT
+
+The CLT originally expresses that
+
+\[\frac{\text{sample mean} - \text{true mean}}{\text{true std. dev. of sample mean}} \sim \text{Normal}(0,1)\]
+
+It turns out that the CLT also applies to regression coefficients:
+
+\[\frac{\hat{\beta} - \beta}{\text{ESTIMATED std. dev. of }\hat{\beta}} \sim \text{Normal}(0,1)\]
+
+From there we can write a probability statement using the 68-95-99.7
+rule of the normal distribution and rearrange the expression using
+algebra:
+
+\[P(-2\leq\frac{\hat{\beta} - \beta}{SE}\leq2) = 0.95\]
+
+\[P(-2 SE\leq\hat{\beta} - \beta \leq2 SE ) = 0.95\]
+
+\[P(-2 SE-\hat{\beta} \leq  -\beta \leq2 SE-\hat{\beta} ) = 0.95\]
+
+\[P(2 SE+\hat{\beta} \geq \beta \geq -2 SE+\hat{\beta} ) = 0.95\]
+
+\[P(\hat{\beta}-2 SE \leq \beta \leq\hat{\beta}+2 SE ) = 0.95\]
+
+You've seen the Student T distribution introduced in the previous
+chapter. We used the Normal distribution in this derivation, but it
+turns out that the Student t distribution is more accurate for linear
+regression coefficients (especially if sample size is small). The normal
+distribution is appropriate for logistic regression coefficients.
+\end{mathbox}
 
 ### Via Bootstrapping
 
@@ -693,9 +711,10 @@ $$t_{obs} = \text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\
 
 Note that test statistics are random variables! Why? Because they are based on our random sample of data. Thus, it will be helpful to understand the distributions of test statistics in terms of probability density functions.
 
-<div class="reflect">
-<p>If <span class="math inline">\(H_0\)</span> were true, where would the probability density function of the test statistic be centered?</p>
-</div>
+\begin{reflect}
+If \(H_0\) were true, where would the probability density function of
+the test statistic be centered?
+\end{reflect}
 
 ### Distributions of test statistics
 
@@ -703,7 +722,8 @@ What test statistics are we likely to get if $H_0$ is true? The probability dens
 
 It would be very unlikely for us to get a pretty large (extreme) test statistic if indeed $H_0$ were true. Why? The density drops rapidly at more extreme values.
 
-<img src="07-inference_files/figure-html/unnamed-chunk-22-1.png" width="768" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{07-inference_files/figure-latex/unnamed-chunk-22-1} \end{center}
 
 ### Graphical description of p-values
 
@@ -716,7 +736,8 @@ What test statistics are "as or more extreme"?
 
 The p-value corresponding to our test statistic is the area under the probability density function in those "as or more extreme" regions.
 
-<img src="07-inference_files/figure-html/unnamed-chunk-23-1.png" width="960" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{07-inference_files/figure-latex/unnamed-chunk-23-1} \end{center}
 
 ### Example: Linear Regression
 

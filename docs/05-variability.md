@@ -177,7 +177,7 @@ flights_samp1 %>%
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+![](05-variability_files/figure-latex/unnamed-chunk-2-1.pdf)<!-- --> 
 
 ```r
 flights_samp1 %>%
@@ -191,10 +191,14 @@ flights_samp1 %>%
 ## 1      -9  7.09
 ```
 
-<div class="reflect">
-<p>At this point, we haven’t looked at the entire population of flights from 2013. Based on a sample of 100 flights, what do you think the distribution of arrival delays looks like for the entire population? Shape? Center? Spread?</p>
-<p>Why do you think that?</p>
-</div>
+\begin{reflect}
+At this point, we haven't looked at the entire population of flights
+from 2013. Based on a sample of 100 flights, what do you think the
+distribution of arrival delays looks like for the entire population?
+Shape? Center? Spread?
+
+Why do you think that?
+\end{reflect}
 
 Now, let's take another random sample of 100 flights from the full population of flights.
 
@@ -213,7 +217,7 @@ flights_samp2 %>%
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](05-variability_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 ```r
 flights_samp2 %>%
@@ -227,9 +231,10 @@ flights_samp2 %>%
 ## 1    -4.5  2.14
 ```
 
-<div class="reflect">
-<p>How does the second sample differ from the first sample? What do they have in common?</p>
-</div>
+\begin{reflect}
+How does the second sample differ from the first sample? What do they
+have in common?
+\end{reflect}
 
 We could keep the process going. Take a sample of 100 flights, look at the histogram, and calculate the median and mean. Repeat many, many times. 
 
@@ -265,7 +270,7 @@ sim_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+![](05-variability_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
 
 ```r
 # Visualize
@@ -277,13 +282,14 @@ sim_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-7-2.png" width="672" />
+![](05-variability_files/figure-latex/unnamed-chunk-7-2.pdf)<!-- --> 
 
 These histograms approximate the **sampling distribution** of sample median arrival delay and the **sampling distribution** of sample mean arrival delay, both of which describe the variability in the sample statistic *across all possible random samples from the population*. 
 
-<div class="reflect">
-<p>Describe the shape, center, and spread of the sampling distribution for the sample mean.</p>
-</div>
+\begin{reflect}
+Describe the shape, center, and spread of the sampling distribution for
+the sample mean.
+\end{reflect}
 
 ## IRL: Bootstrapping 
 
@@ -299,9 +305,9 @@ There are four steps to bootstrapping. They are very similar to simulating the s
 
 To generate different random samples of the same size (100 flights) from our "fake population", we have to draw sample of 100 flights WITH REPLACEMENT, meaning that we have to put a flight back into the pool after drawing them out. 
 
-<div class="reflect">
-<p>What would happen if we drew WITHOUT REPLACEMENT?</p>
-</div>
+\begin{reflect}
+What would happen if we drew WITHOUT REPLACEMENT?
+\end{reflect}
 
 **2. Calculate**
 
@@ -371,7 +377,7 @@ boot_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+![](05-variability_files/figure-latex/unnamed-chunk-13-1.pdf)<!-- --> 
 
 ```r
 # Visualize
@@ -383,7 +389,7 @@ boot_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-13-2.png" width="672" />
+![](05-variability_files/figure-latex/unnamed-chunk-13-2.pdf)<!-- --> 
 
 Let's compare these to the visuals from the simulation from the population.
 
@@ -398,7 +404,7 @@ sim_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+![](05-variability_files/figure-latex/unnamed-chunk-14-1.pdf)<!-- --> 
 
 ```r
 # Visualize
@@ -410,19 +416,23 @@ sim_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-14-2.png" width="672" />
+![](05-variability_files/figure-latex/unnamed-chunk-14-2.pdf)<!-- --> 
 
 The process of resampling from our sample, called **bootstrapping**, is becoming the one of main computational tools for estimating sampling variability in the field of Statistics.
 
-<div class="reflect">
-<p>How well does bootstrapping do in mimicking the simulations from the population? What could we change to improve bootstrap’s ability to mimic the simulations?</p>
-</div>
+\begin{reflect}
+How well does bootstrapping do in mimicking the simulations from the
+population? What could we change to improve bootstrap's ability to mimic
+the simulations?
+\end{reflect}
 
 This is a really important concept in Statistics! We'll come back to the ideas of sampling variability and bootstrapping throughout the rest of the course.
 
-<div class="reflect">
-<p>What do you think the mean arrival delay is in the population? If you had to give an interval of plausible values for the population mean, what range would you give? Why?</p>
-</div>
+\begin{reflect}
+What do you think the mean arrival delay is in the population? If you
+had to give an interval of plausible values for the population mean,
+what range would you give? Why?
+\end{reflect}
 
 
 ## Simulating Randomization into Groups
@@ -465,11 +475,12 @@ flights_samp500 %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+![](05-variability_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
 
-<div class="reflect">
-<p>Based solely on the visual and numerical summaries, are arrival delays less in the morning than in the afternoon?</p>
-</div>
+\begin{reflect}
+Based solely on the visual and numerical summaries, are arrival delays
+less in the morning than in the afternoon?
+\end{reflect}
 
 
 We don't know the exact reason why some flights were scheduled in the morning or the afternoon and why one flight might be delayed (it's probably due to a complex combination of factors). Let's imagine that a randomization process was used to decide when particular flights were scheduled (morning or afternoon); a flip of a coin to decide morning or afternoon.
@@ -505,11 +516,13 @@ The histogram below shows the histogram of differences in means if the null hypo
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+![](05-variability_files/figure-latex/unnamed-chunk-21-1.pdf)<!-- --> 
 
-<div class="reflect">
-<p>Do you think that the mean arrival delay is different for morning and afternoon? Is the observed difference in means likely to have occurred if there were no relationship?</p>
-</div>
+\begin{reflect}
+Do you think that the mean arrival delay is different for morning and
+afternoon? Is the observed difference in means likely to have occurred
+if there were no relationship?
+\end{reflect}
 
 We will return to the ideas of testing hypotheses later in the course.
 

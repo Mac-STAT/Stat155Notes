@@ -123,9 +123,10 @@ Let's remember our goal of "turning data into information." Based on a sample da
 
 Let's do some statistical inference based on a simple random sample (SRS) of 100 flights leaving NYC in 2013. 
 
-<div class="reflect">
-<p>What is our population of interest? What population could we generalize to?</p>
-</div>
+\begin{reflect}
+What is our population of interest? What population could we generalize
+to?
+\end{reflect}
 
 
 
@@ -230,9 +231,10 @@ These are two *different* ways of quantifying the random variability and uncerta
 
 Using either estimate of the standard error, based on the sample data, our best guess is that the mean arrival delays is about 0.6 minutes less in winter than in summer but we might be off by about 13.6 minutes. So we could say that our best guess at the difference in mean arrival delays is $0.6\pm 13.6$ minutes, which is an interval estimate of the true population value.   
 
-<div class="reflect">
-<p>How “good” of a guess is the interval estimate? Is the population value in the interval or not? How might we know?</p>
-</div>
+\begin{reflect}
+How ``good'' of a guess is the interval estimate? Is the population
+value in the interval or not? How might we know?
+\end{reflect}
 
 
 ## Confidence Intervals
@@ -273,7 +275,9 @@ plot_area_std_normal <- function(x1, x2, title = "") {
 plot_area_std_normal(-2, 2, title = "P(-2 < X < 2)")
 ```
 
-<img src="07-inference_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-inference_files/figure-latex/unnamed-chunk-7-1} \end{center}
 
 
 You can either trust the mathematical theory or we can simulate the sampling distribution by drawing from our population because in this rare circumstance, we have access to all flights in the population.
@@ -298,7 +302,9 @@ sim_data %>%
   theme_classic()
 ```
 
-<img src="07-inference_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-inference_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 
 
@@ -310,7 +316,8 @@ So if we take each 1000 simulated random samples from the population and create 
 
 Let's look at the confidence intervals for the first 100 random samples from the population. The dashed line indicates the true population value of the slope coefficient (yes, we are in the rare circumstance in which we have access to the true population). We've created one line for each interval and colored the according to whether or not the interval covers or contains the true population value. In the first 100 intervals, we see that 95% of the intervals contain the true population value and 5% do not. In the 500 random samples generated, close to 95% of them have intervals that contain the true population parameter. When we get one of these samples, we never know if we are one of the 95% or one of the 5%. 
 
-<img src="07-inference_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{07-inference_files/figure-latex/unnamed-chunk-10-1} \end{center}
 
 ```
 ## Warning: `count_()` is deprecated as of dplyr 0.7.0.
@@ -351,7 +358,9 @@ dat %>%
       axis.ticks.y=element_blank())
 ```
 
-<img src="07-inference_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{07-inference_files/figure-latex/unnamed-chunk-11-1} \end{center}
 
 
 
@@ -447,18 +456,36 @@ abs(qnorm(alpha/2)) #z* for 90% CI
 The fact that confidence intervals can be created as above is rooted in probability theory. If you would like to see how the form above is derived, see the Math Box below.
 
 
-<div class="mathbox">
-<p>(Optional) Deriving confidence intervals from theory</p>
-<p>We know that for a regression coefficient, the sampling distribution of regression coefficient estimates are approximately Normal and thus the standardized version is approximately Normal with mean 0 and standard deviation 1.</p>
-<p><span class="math display">\[\frac{\hat{\beta} - \beta}{SE(\hat{\beta})} \sim \text{Normal}(0,1)\]</span></p>
-<p>From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:</p>
-<p><span class="math display">\[P(-2\leq\frac{\hat{\beta} - \beta}{SE(\hat{\beta})}\leq2) = 0.95\]</span></p>
-<p><span class="math display">\[P(-2 *SE(\hat{\beta})\leq\hat{\beta} - \beta \leq2 *SE(\hat{\beta}) ) = 0.95\]</span></p>
-<p><span class="math display">\[P(-2* SE(\hat{\beta})-\hat{\beta} \leq  -\beta \leq2 *SE(\hat{\beta})-\hat{\beta} ) = 0.95\]</span></p>
-<p><span class="math display">\[P(2 *SE(\hat{\beta})+\hat{\beta} \geq \beta \geq -2* SE(\hat{\beta})+\hat{\beta} ) = 0.95\]</span></p>
-<p><span class="math display">\[P(\hat{\beta}-2 *SE(\hat{\beta}) \leq \beta \leq\hat{\beta}+2 *SE(\hat{\beta}) ) = 0.95\]</span></p>
-<p>You’ve seen the Student T distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the Student t distribution is more accurate for linear regression coefficients (especially if sample size is small). The normal distribution is appropriate for logistic regression coefficients.</p>
-</div>
+\begin{mathbox}
+(Optional) Deriving confidence intervals from theory
+
+We know that for a regression coefficient, the sampling distribution of
+regression coefficient estimates are approximately Normal and thus the
+standardized version is approximately Normal with mean 0 and standard
+deviation 1.
+
+\[\frac{\hat{\beta} - \beta}{SE(\hat{\beta})} \sim \text{Normal}(0,1)\]
+
+From there we can write a probability statement using the 68-95-99.7
+rule of the normal distribution and rearrange the expression using
+algebra:
+
+\[P(-2\leq\frac{\hat{\beta} - \beta}{SE(\hat{\beta})}\leq2) = 0.95\]
+
+\[P(-2 *SE(\hat{\beta})\leq\hat{\beta} - \beta \leq2 *SE(\hat{\beta}) ) = 0.95\]
+
+\[P(-2* SE(\hat{\beta})-\hat{\beta} \leq  -\beta \leq2 *SE(\hat{\beta})-\hat{\beta} ) = 0.95\]
+
+\[P(2 *SE(\hat{\beta})+\hat{\beta} \geq \beta \geq -2* SE(\hat{\beta})+\hat{\beta} ) = 0.95\]
+
+\[P(\hat{\beta}-2 *SE(\hat{\beta}) \leq \beta \leq\hat{\beta}+2 *SE(\hat{\beta}) ) = 0.95\]
+
+You've seen the Student T distribution introduced in the previous
+chapter. We used the Normal distribution in this derivation, but it
+turns out that the Student t distribution is more accurate for linear
+regression coefficients (especially if sample size is small). The normal
+distribution is appropriate for logistic regression coefficients.
+\end{mathbox}
 
 #### Via Bootstrapping
 
@@ -790,7 +817,8 @@ Test statistics are random variables! Why? Because they are based on our random 
 
 What test statistics are we likely to get if $H_0$ is true? The distribution of the test statistic introduced above "under $H_0$" (that is, if $H_0$ is true) is shown below. Note that it is centered at 0. This distribution shows that if indeed the population parameter equals the null value, there is variation in the test statistics we might obtain from random samples, but most test statistics are around zero.
 
-<img src="07-inference_files/figure-html/unnamed-chunk-26-1.png" width="768" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{07-inference_files/figure-latex/unnamed-chunk-26-1} \end{center}
 
 It would be very unlikely for us to get a pretty large (extreme) test statistic if indeed $H_0$ were true. Why? The density drops rapidly at more extreme values.
 
@@ -809,12 +837,14 @@ Suppose that our observed test statistic for a slope coefficient is 2. What test
 
 The p-value is the area under the curve of the probability density function in those "as or more extreme" regions.
 
-<img src="07-inference_files/figure-html/unnamed-chunk-27-1.png" width="960" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{07-inference_files/figure-latex/unnamed-chunk-27-1} \end{center}
 
 
 Suppose the test statistic for a slope coefficient is -0.5. This means that the estimated slope is half of a standard error away from 0, which indicates no relationship. This is not the far and happens quite frequently, about 62% of the time, when the true slope is actually 0.
 
-<img src="07-inference_files/figure-html/unnamed-chunk-28-1.png" width="960" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{07-inference_files/figure-latex/unnamed-chunk-28-1} \end{center}
 
 
 #### Making Decisions

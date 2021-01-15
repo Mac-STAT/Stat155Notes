@@ -371,11 +371,11 @@ What is our population of interest? What population could we generalize to?
 </div>
 <p>Based on this sample of 100 flights, we can estimate the difference in the mean arrival delay times between flights in the winter compared to the summer. The fit linear regression model suggests that flights in the winter have on average are about half a minute less delayed than summer flights. Do you think that is true for all flights?</p>
 <p>If we had a different sample of 100 flights, how much different might that estimate be?</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="statistical-inference.html#cb295-1"></a>lm.delay &lt;-<span class="st"> </span>flights_samp <span class="op">%&gt;%</span></span>
-<span id="cb295-2"><a href="statistical-inference.html#cb295-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season))</span>
-<span id="cb295-3"><a href="statistical-inference.html#cb295-3"></a></span>
-<span id="cb295-4"><a href="statistical-inference.html#cb295-4"></a>lm.delay <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb295-5"><a href="statistical-inference.html#cb295-5"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="statistical-inference.html#cb296-1"></a>lm.delay &lt;-<span class="st"> </span>flights_samp <span class="op">%&gt;%</span></span>
+<span id="cb296-2"><a href="statistical-inference.html#cb296-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season))</span>
+<span id="cb296-3"><a href="statistical-inference.html#cb296-3"></a></span>
+<span id="cb296-4"><a href="statistical-inference.html#cb296-4"></a>lm.delay <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb296-5"><a href="statistical-inference.html#cb296-5"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term         estimate std.error statistic p.value
 ##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;

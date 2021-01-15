@@ -359,8 +359,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="coefficient-interpretation" class="section level2">
 <h2><span class="header-section-number">4.3</span> Coefficient Interpretation</h2>
 <p>Let’s take a look at the estimates from the model. What do they mean?</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="coefficient-interpretation.html#cb181-1"></a><span class="kw">tidy</span>(model.glm) <span class="op">%&gt;%</span></span>
-<span id="cb181-2"><a href="coefficient-interpretation.html#cb181-2"></a><span class="st">  </span><span class="kw">select</span>(term, estimate)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="coefficient-interpretation.html#cb182-1"></a><span class="kw">tidy</span>(model.glm) <span class="op">%&gt;%</span></span>
+<span id="cb182-2"><a href="coefficient-interpretation.html#cb182-2"></a><span class="st">  </span><span class="kw">select</span>(term, estimate)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   term        estimate
 ##   &lt;chr&gt;          &lt;dbl&gt;
@@ -410,10 +410,10 @@ Let’s exponentiate both sides,
 </div>
 <p>After that algebra, we find that <span class="math inline">\(e^{\beta_1}\)</span> is equal to the <strong>odds ratio</strong>, the ratio of the odds of success between two groups of values (those with <span class="math inline">\(X=x+1\)</span> and those with <span class="math inline">\(X=x\)</span>, 1 unit apart)</p>
 <p>When we fit the model to the o-ring experimental data, we estimate the coefficients to be <span class="math inline">\(\hat{\beta}_0 = 15.04\)</span> and <span class="math inline">\(\hat{\beta}_1 = -0.232\)</span>. So the estimated odds ratio is <span class="math inline">\(e^{\hat{\beta}_1} = e^{-0.232} = 0.793\)</span> for an increase in one degree Fahrenheit in temperature (Temperature=T+1 v. Temperature=T).</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="coefficient-interpretation.html#cb183-1"></a><span class="kw">tidy</span>(model.glm) <span class="op">%&gt;%</span></span>
-<span id="cb183-2"><a href="coefficient-interpretation.html#cb183-2"></a><span class="st">  </span><span class="kw">select</span>(term, estimate) <span class="op">%&gt;%</span></span>
-<span id="cb183-3"><a href="coefficient-interpretation.html#cb183-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estimate_exp =</span> <span class="kw">exp</span>(estimate)) <span class="op">%&gt;%</span></span>
-<span id="cb183-4"><a href="coefficient-interpretation.html#cb183-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estimate_exp =</span> <span class="kw">round</span>(estimate_exp,<span class="dv">3</span>)) <span class="co">#round to 3 decimal places</span></span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="coefficient-interpretation.html#cb184-1"></a><span class="kw">tidy</span>(model.glm) <span class="op">%&gt;%</span></span>
+<span id="cb184-2"><a href="coefficient-interpretation.html#cb184-2"></a><span class="st">  </span><span class="kw">select</span>(term, estimate) <span class="op">%&gt;%</span></span>
+<span id="cb184-3"><a href="coefficient-interpretation.html#cb184-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estimate_exp =</span> <span class="kw">exp</span>(estimate)) <span class="op">%&gt;%</span></span>
+<span id="cb184-4"><a href="coefficient-interpretation.html#cb184-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">estimate_exp =</span> <span class="kw">round</span>(estimate_exp,<span class="dv">3</span>)) <span class="co">#round to 3 decimal places</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 x 3
 ##   term        estimate estimate_exp
 ##   &lt;chr&gt;          &lt;dbl&gt;        &lt;dbl&gt;

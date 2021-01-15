@@ -364,9 +364,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb70-3"><a href="lines.html#cb70-3"></a>body <span class="op">%&gt;%</span></span>
 <span id="cb70-4"><a href="lines.html#cb70-4"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Neck, <span class="dt">y =</span> Chest)) <span class="op">+</span></span>
 <span id="cb70-5"><a href="lines.html#cb70-5"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb70-6"><a href="lines.html#cb70-6"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb70-7"><a href="lines.html#cb70-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></span>
-<span id="cb70-8"><a href="lines.html#cb70-8"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<span id="cb70-6"><a href="lines.html#cb70-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Neck size (cm)&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></span>
+<span id="cb70-7"><a href="lines.html#cb70-7"></a><span class="st">    </span><span class="kw">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="reflect">
 <p>
@@ -379,9 +378,8 @@ If you were to add one or multiple lines to the plot above to help you make busi
 <span id="cb71-3"><a href="lines.html#cb71-3"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb71-4"><a href="lines.html#cb71-4"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(body<span class="op">$</span>Chest)) <span class="op">+</span></span>
 <span id="cb71-5"><a href="lines.html#cb71-5"></a><span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(body<span class="op">$</span>Neck)) <span class="op">+</span></span>
-<span id="cb71-6"><a href="lines.html#cb71-6"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;Neck size (cm)&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb71-7"><a href="lines.html#cb71-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></span>
-<span id="cb71-8"><a href="lines.html#cb71-8"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<span id="cb71-6"><a href="lines.html#cb71-6"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Neck size (cm)&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Chest size (cm)&#39;</span>) <span class="op">+</span></span>
+<span id="cb71-7"><a href="lines.html#cb71-7"></a><span class="st">    </span><span class="kw">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can see that a shirt made to these specifications would fit the “average person.” However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger than average. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller than average.</p>
 <p>Let’s try something else. Let’s allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the neck size variable into 5 groups of equal length and estimate the mean chest sizes within each of these groups.</p>

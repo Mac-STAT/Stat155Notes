@@ -372,9 +372,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb90-2"><a href="model-evaluation.html#cb90-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> high_GPA, <span class="dt">y =</span> univ_GPA)) <span class="op">+</span></span>
 <span id="cb90-3"><a href="model-evaluation.html#cb90-3"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="op">+</span></span>
 <span id="cb90-4"><a href="model-evaluation.html#cb90-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb90-5"><a href="model-evaluation.html#cb90-5"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&#39;High School GPA&#39;</span>) <span class="op">+</span></span>
-<span id="cb90-6"><a href="model-evaluation.html#cb90-6"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&#39;College GPA&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb90-7"><a href="model-evaluation.html#cb90-7"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<span id="cb90-5"><a href="model-evaluation.html#cb90-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;High School GPA&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;College GPA&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb90-6"><a href="model-evaluation.html#cb90-6"></a><span class="st">    </span><span class="kw">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>First things first. Let’s describe the scatterplot.</p>
 <ul>
@@ -387,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="model-evaluation.html#cb91-1"></a>sat <span class="op">%&gt;%</span></span>
 <span id="cb91-2"><a href="model-evaluation.html#cb91-2"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">HighHSGPA =</span> high_GPA <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span>) <span class="op">%&gt;%</span></span>
 <span id="cb91-3"><a href="model-evaluation.html#cb91-3"></a><span class="st">    </span><span class="kw">group_by</span>(HighHSGPA) <span class="op">%&gt;%</span></span>
-<span id="cb91-4"><a href="model-evaluation.html#cb91-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">Cor =</span> <span class="kw">cor</span>(high_GPA,univ_GPA))</span></code></pre></div>
+<span id="cb91-4"><a href="model-evaluation.html#cb91-4"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">Cor =</span> <span class="kw">cor</span>(high_GPA, univ_GPA))</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   HighHSGPA   Cor
 ##   &lt;lgl&gt;     &lt;dbl&gt;
@@ -396,25 +395,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s build a model to predict college GPA based on high school GPA based on this sample data. Since we noted that there was a linear relationship, let’s fit a linear model by finding the least squares regression line.</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="model-evaluation.html#cb93-1"></a>sat <span class="op">%&gt;%</span></span>
 <span id="cb93-2"><a href="model-evaluation.html#cb93-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA)) <span class="op">%&gt;%</span></span>
-<span id="cb93-3"><a href="model-evaluation.html#cb93-3"></a><span class="st">  </span><span class="kw">summary</span>()</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = univ_GPA ~ high_GPA)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.69040 -0.11922  0.03274  0.17397  0.91278 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  1.09682    0.16663   6.583 1.98e-09 ***
-## high_GPA     0.67483    0.05342  12.632  &lt; 2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 0.2814 on 103 degrees of freedom
-## Multiple R-squared:  0.6077,	Adjusted R-squared:  0.6039 
-## F-statistic: 159.6 on 1 and 103 DF,  p-value: &lt; 2.2e-16</code></pre>
+<span id="cb93-3"><a href="model-evaluation.html#cb93-3"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    1.10     0.167       6.58 1.98e- 9
+## 2 high_GPA       0.675    0.0534     12.6  1.18e-22</code></pre>
 <p>The best fitting line is</p>
 <p><span class="math display">\[ \hbox{Predicted College GPA} = 1.09 + 0.675 \times \hbox{High School GPA} \]</span></p>
 <p>Let’s plug in a few values for the High School GPA to get predicted College GPA’s.</p>
@@ -479,30 +465,36 @@ Does it make sense to use this model for high school GPA’s &gt; 4? Some high s
 <span id="cb109-3"><a href="model-evaluation.html#cb109-3"></a><span class="st">  </span><span class="kw">augment</span>() <span class="op">%&gt;%</span></span>
 <span id="cb109-4"><a href="model-evaluation.html#cb109-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> .resid)) <span class="op">+</span></span>
 <span id="cb109-5"><a href="model-evaluation.html#cb109-5"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">20</span>) <span class="op">+</span></span>
-<span id="cb109-6"><a href="model-evaluation.html#cb109-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&#39;Residuals&#39;</span>, <span class="dt">title=</span> <span class="st">&quot;Distribution of residuals in the GPA model&quot;</span>) <span class="op">+</span></span>
-<span id="cb109-7"><a href="model-evaluation.html#cb109-7"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<span id="cb109-6"><a href="model-evaluation.html#cb109-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Residuals&#39;</span>, <span class="dt">title =</span>  <span class="st">&quot;Distribution of residuals in the GPA model&quot;</span>) <span class="op">+</span></span>
+<span id="cb109-7"><a href="model-evaluation.html#cb109-7"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Below we calculate <span class="math inline">\(SSE\)</span> (the sum of squared errors/residuals), and the standard deviation of the residuals (<span class="math inline">\(s_e\)</span>).</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="model-evaluation.html#cb110-1"></a>lm.gpa &lt;-<span class="st"> </span>sat <span class="op">%&gt;%</span></span>
-<span id="cb110-2"><a href="model-evaluation.html#cb110-2"></a><span class="st">  </span><span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA, <span class="dt">data =</span> .)</span>
-<span id="cb110-3"><a href="model-evaluation.html#cb110-3"></a>SSE &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(lm.gpa)<span class="op">^</span><span class="dv">2</span>)</span>
-<span id="cb110-4"><a href="model-evaluation.html#cb110-4"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">residuals</span>(lm.gpa)) <span class="co"># Sample size</span></span>
-<span id="cb110-5"><a href="model-evaluation.html#cb110-5"></a>s &lt;-<span class="st"> </span><span class="kw">sqrt</span>(SSE<span class="op">/</span>(n<span class="dv">-2</span>)) <span class="co">#sd of residuals</span></span>
-<span id="cb110-6"><a href="model-evaluation.html#cb110-6"></a>s</span></code></pre></div>
+<span id="cb110-2"><a href="model-evaluation.html#cb110-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(univ_GPA <span class="op">~</span><span class="st"> </span>high_GPA))</span>
+<span id="cb110-3"><a href="model-evaluation.html#cb110-3"></a></span>
+<span id="cb110-4"><a href="model-evaluation.html#cb110-4"></a>SSE &lt;-<span class="st"> </span><span class="kw">sum</span>(<span class="kw">residuals</span>(lm.gpa)<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb110-5"><a href="model-evaluation.html#cb110-5"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">residuals</span>(lm.gpa)) <span class="co"># Sample size</span></span>
+<span id="cb110-6"><a href="model-evaluation.html#cb110-6"></a>s &lt;-<span class="st"> </span><span class="kw">sqrt</span>(SSE<span class="op">/</span>(n<span class="dv">-2</span>)) <span class="co">#sd of residuals</span></span>
+<span id="cb110-7"><a href="model-evaluation.html#cb110-7"></a>s</span></code></pre></div>
 <pre><code>## [1] 0.2814443</code></pre>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="model-evaluation.html#cb112-1"></a><span class="dv">2</span><span class="op">*</span>s</span></code></pre></div>
 <pre><code>## [1] 0.5628886</code></pre>
 <p>Using this model (that is, using your high school GPA), we can predict your college GPA within about <span class="math inline">\(0.56\)</span> GPA points. Is this useful? Is predicting within a margin of <span class="math inline">\(0.56\)</span> GPA points good enough? Let’s compare this model margin of error with the margin of error predicting with just the mean:</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="model-evaluation.html#cb114-1"></a><span class="kw">sd</span>(sat<span class="op">$</span>univ_GPA)</span></code></pre></div>
-<pre><code>## [1] 0.4471936</code></pre>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="model-evaluation.html#cb116-1"></a><span class="dv">2</span><span class="op">*</span><span class="kw">sd</span>(sat<span class="op">$</span>univ_GPA)</span></code></pre></div>
-<pre><code>## [1] 0.8943873</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="model-evaluation.html#cb114-1"></a>sat <span class="op">%&gt;%</span></span>
+<span id="cb114-2"><a href="model-evaluation.html#cb114-2"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb114-3"><a href="model-evaluation.html#cb114-3"></a>    <span class="kw">sd</span>(univ_GPA), </span>
+<span id="cb114-4"><a href="model-evaluation.html#cb114-4"></a>    <span class="dv">2</span><span class="op">*</span><span class="kw">sd</span>(univ_GPA))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   `sd(univ_GPA)` `2 * sd(univ_GPA)`
+##            &lt;dbl&gt;              &lt;dbl&gt;
+## 1          0.447              0.894</code></pre>
 <p><em>Without</em> knowing your high school GPA, we could have just guessed your college GPA as the overall mean college GPA in the sample, and this guess would probably be within <span class="math inline">\(\pm 0.89\)</span> of your actual college GPA. This is a higher margin of error than the approximate <span class="math inline">\(0.56\)</span> if we did use your high school GPA (in the simple linear regression model). We are able to predict your college GPA with a smaller margin of error than if we just guessed your college GPA with the mean. Our model has <em>explained</em> some (but not all) of the variation in college GPA.</p>
 <p>The standard deviation of college GPA is based on the sum of squared total variation, SSTO (variation around the mean),</p>
 <p><span class="math display">\[ SSTO = \sum{(y_i -\bar{y})^2} \]</span></p>
 <p><span class="math inline">\(SSTO\)</span> is the numerator of the standard deviation of <span class="math inline">\(Y\)</span> (without knowing anything about <span class="math inline">\(X\)</span>).</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="model-evaluation.html#cb118-1"></a>(<span class="dt">SSTO =</span> <span class="kw">sum</span>((sat<span class="op">$</span>univ_GPA <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(sat<span class="op">$</span>univ_GPA))<span class="op">^</span><span class="dv">2</span>))</span></code></pre></div>
-<pre><code>## [1] 20.79814</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="model-evaluation.html#cb116-1"></a>SSTO &lt;-<span class="st"> </span>sat <span class="op">%&gt;%</span></span>
+<span id="cb116-2"><a href="model-evaluation.html#cb116-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">SSTO =</span> <span class="kw">sum</span>((univ_GPA <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(univ_GPA))<span class="op">^</span><span class="dv">2</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb116-3"><a href="model-evaluation.html#cb116-3"></a><span class="st">  </span><span class="kw">pull</span>()</span></code></pre></div>
 <p>We define <span class="math inline">\(SSTO\)</span> here because it will help to compare <span class="math inline">\(SSTO\)</span> to <span class="math inline">\(SSE\)</span> (sum of squared residuals from the model) to obtain a measure of how well our models are <strong>fitting</strong> the data - how well they are predicting the outcome.</p>
 </div>
 <div id="r2" class="section level3">
@@ -531,9 +523,9 @@ Does it make sense to use this model for high school GPA’s &gt; 4? Some high s
 </p>
 </div>
 <p>In R, <code>lm()</code> will calculate R-Squared (<span class="math inline">\(R^2\)</span>) for us, but we can also see that it equals the value from the formula above.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="model-evaluation.html#cb120-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>SSE<span class="op">/</span>SSTO</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="model-evaluation.html#cb117-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span>SSE<span class="op">/</span>SSTO</span></code></pre></div>
 <pre><code>## [1] 0.6077187</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="model-evaluation.html#cb122-1"></a><span class="kw">glance</span>(lm.gpa) <span class="co">#r.squared = R^2, sigma = s_e (ignore the rest)</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="model-evaluation.html#cb119-1"></a><span class="kw">glance</span>(lm.gpa) <span class="co">#r.squared = R^2, sigma = s_e (ignore the rest)</span></span></code></pre></div>
 <pre><code>## # A tibble: 1 x 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;

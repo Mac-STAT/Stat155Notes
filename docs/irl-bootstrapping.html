@@ -371,11 +371,11 @@ What would happen if we drew WITHOUT REPLACEMENT?
 </div>
 <p><strong>2. Calculate</strong></p>
 <p>In our simulation above, we calculated the median and mean arrival delay. In theory, we could calculate any numerical summary of data (e.g. the mean, median, SD, 25th percentile, etc.)</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="irl-bootstrapping.html#cb230-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
-<span id="cb230-2"><a href="irl-bootstrapping.html#cb230-2"></a>    flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
-<span id="cb230-3"><a href="irl-bootstrapping.html#cb230-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
-<span id="cb230-4"><a href="irl-bootstrapping.html#cb230-4"></a><span class="st">      </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour)) <span class="co"># Fit linear model</span></span>
-<span id="cb230-5"><a href="irl-bootstrapping.html#cb230-5"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="irl-bootstrapping.html#cb231-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb231-2"><a href="irl-bootstrapping.html#cb231-2"></a>    flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb231-3"><a href="irl-bootstrapping.html#cb231-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb231-4"><a href="irl-bootstrapping.html#cb231-4"></a><span class="st">      </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour)) <span class="co"># Fit linear model</span></span>
+<span id="cb231-5"><a href="irl-bootstrapping.html#cb231-5"></a>)</span></code></pre></div>
 <div class="reflect">
 <p>
 Notice the similarities and differences in the R code for boot_data, in which we are sampling from the sample, and sim_data, in which we are sampling from the population, above.
@@ -383,19 +383,19 @@ Notice the similarities and differences in the R code for boot_data, in which we
 </div>
 <p><strong>3. Summarize</strong></p>
 <p>Let’s summarize these 1000 model estimates generated from resampling (with replacement) <em>from our sample</em> (our “fake population”).</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="irl-bootstrapping.html#cb231-1"></a><span class="co"># Summarize</span></span>
-<span id="cb231-2"><a href="irl-bootstrapping.html#cb231-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb231-3"><a href="irl-bootstrapping.html#cb231-3"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
-<span id="cb231-4"><a href="irl-bootstrapping.html#cb231-4"></a>        <span class="dt">mean_Intercept =</span> <span class="kw">mean</span>(Intercept),</span>
-<span id="cb231-5"><a href="irl-bootstrapping.html#cb231-5"></a>        <span class="dt">mean_dayhourmorning =</span> <span class="kw">mean</span>(day_hourmorning),</span>
-<span id="cb231-6"><a href="irl-bootstrapping.html#cb231-6"></a>        <span class="dt">sd_Intercept =</span> <span class="kw">sd</span>(Intercept),</span>
-<span id="cb231-7"><a href="irl-bootstrapping.html#cb231-7"></a>        <span class="dt">sd_dayhourmorning =</span> <span class="kw">sd</span>(day_hourmorning))</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="irl-bootstrapping.html#cb232-1"></a><span class="co"># Summarize</span></span>
+<span id="cb232-2"><a href="irl-bootstrapping.html#cb232-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb232-3"><a href="irl-bootstrapping.html#cb232-3"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb232-4"><a href="irl-bootstrapping.html#cb232-4"></a>        <span class="dt">mean_Intercept =</span> <span class="kw">mean</span>(Intercept),</span>
+<span id="cb232-5"><a href="irl-bootstrapping.html#cb232-5"></a>        <span class="dt">mean_dayhourmorning =</span> <span class="kw">mean</span>(day_hourmorning),</span>
+<span id="cb232-6"><a href="irl-bootstrapping.html#cb232-6"></a>        <span class="dt">sd_Intercept =</span> <span class="kw">sd</span>(Intercept),</span>
+<span id="cb232-7"><a href="irl-bootstrapping.html#cb232-7"></a>        <span class="dt">sd_dayhourmorning =</span> <span class="kw">sd</span>(day_hourmorning))</span></code></pre></div>
 <pre><code>##   mean_Intercept mean_dayhourmorning sd_Intercept sd_dayhourmorning
 ## 1       14.58742           -20.49495     7.218149           8.44133</code></pre>
 <p>Note how the mean’s are very close to the original estimates from the sample, below.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="irl-bootstrapping.html#cb233-1"></a>flights_samp1 <span class="op">%&gt;%</span></span>
-<span id="cb233-2"><a href="irl-bootstrapping.html#cb233-2"></a><span class="st">    </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour)) <span class="op">%&gt;%</span></span>
-<span id="cb233-3"><a href="irl-bootstrapping.html#cb233-3"></a><span class="st">    </span><span class="kw">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="irl-bootstrapping.html#cb234-1"></a>flights_samp1 <span class="op">%&gt;%</span></span>
+<span id="cb234-2"><a href="irl-bootstrapping.html#cb234-2"></a><span class="st">    </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour)) <span class="op">%&gt;%</span></span>
+<span id="cb234-3"><a href="irl-bootstrapping.html#cb234-3"></a><span class="st">    </span><span class="kw">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term            estimate std.error statistic p.value
 ##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
@@ -403,46 +403,46 @@ Notice the similarities and differences in the R code for boot_data, in which we
 ## 2 day_hourmorning    -20.4     10.6      -1.92  0.0578</code></pre>
 <p>This is not a coincidence. Since we are resampling from our original sample, we’d expect the bootstrap estimates to bounce around the original sample estimates, <em>similar to how the simulated sampling distributions had means close the the population values</em></p>
 <p>Let’s compare this to the summaries from the simulation of randomly sampling <em>from the population</em>.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="irl-bootstrapping.html#cb235-1"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb235-2"><a href="irl-bootstrapping.html#cb235-2"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
-<span id="cb235-3"><a href="irl-bootstrapping.html#cb235-3"></a>        <span class="dt">mean_Intercept =</span> <span class="kw">mean</span>(Intercept),</span>
-<span id="cb235-4"><a href="irl-bootstrapping.html#cb235-4"></a>        <span class="dt">mean_dayhourmorning =</span> <span class="kw">mean</span>(day_hourmorning),</span>
-<span id="cb235-5"><a href="irl-bootstrapping.html#cb235-5"></a>        <span class="dt">sd_Intercept =</span> <span class="kw">sd</span>(Intercept),</span>
-<span id="cb235-6"><a href="irl-bootstrapping.html#cb235-6"></a>        <span class="dt">sd_dayhourmorning =</span> <span class="kw">sd</span>(day_hourmorning))</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="irl-bootstrapping.html#cb236-1"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb236-2"><a href="irl-bootstrapping.html#cb236-2"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb236-3"><a href="irl-bootstrapping.html#cb236-3"></a>        <span class="dt">mean_Intercept =</span> <span class="kw">mean</span>(Intercept),</span>
+<span id="cb236-4"><a href="irl-bootstrapping.html#cb236-4"></a>        <span class="dt">mean_dayhourmorning =</span> <span class="kw">mean</span>(day_hourmorning),</span>
+<span id="cb236-5"><a href="irl-bootstrapping.html#cb236-5"></a>        <span class="dt">sd_Intercept =</span> <span class="kw">sd</span>(Intercept),</span>
+<span id="cb236-6"><a href="irl-bootstrapping.html#cb236-6"></a>        <span class="dt">sd_dayhourmorning =</span> <span class="kw">sd</span>(day_hourmorning))</span></code></pre></div>
 <pre><code>##   mean_Intercept mean_dayhourmorning sd_Intercept sd_dayhourmorning
 ## 1       13.45053           -14.54158     7.233256           8.87308</code></pre>
 <p>The means won’t be exactly the same because <em>the center of the bootstrap distribution is the original sample and the center of the sampling distribution is the population values</em>.</p>
 <p>But, <em>the standard deviations should be of roughly similar magnitude</em> because they are in fact trying to estimate the same thing, the <strong>sampling variability</strong>.</p>
 <p><strong>4. Visualize</strong></p>
 <p>Let’s visualize these 1000 models generated from resampling (with replacement) from our sample (our “fake population”).</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="irl-bootstrapping.html#cb237-1"></a><span class="co"># Visualize Intercepts</span></span>
-<span id="cb237-2"><a href="irl-bootstrapping.html#cb237-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb237-3"><a href="irl-bootstrapping.html#cb237-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Intercept)) <span class="op">+</span></span>
-<span id="cb237-4"><a href="irl-bootstrapping.html#cb237-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
-<span id="cb237-5"><a href="irl-bootstrapping.html#cb237-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of Intercepts</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
-<span id="cb237-6"><a href="irl-bootstrapping.html#cb237-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="05-variability_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="irl-bootstrapping.html#cb238-1"></a><span class="co"># Visualize Slopes</span></span>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="irl-bootstrapping.html#cb238-1"></a><span class="co"># Visualize Intercepts</span></span>
 <span id="cb238-2"><a href="irl-bootstrapping.html#cb238-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb238-3"><a href="irl-bootstrapping.html#cb238-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hourmorning)) <span class="op">+</span></span>
+<span id="cb238-3"><a href="irl-bootstrapping.html#cb238-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Intercept)) <span class="op">+</span></span>
 <span id="cb238-4"><a href="irl-bootstrapping.html#cb238-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
-<span id="cb238-5"><a href="irl-bootstrapping.html#cb238-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of Slopes</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb238-5"><a href="irl-bootstrapping.html#cb238-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of Intercepts</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
 <span id="cb238-6"><a href="irl-bootstrapping.html#cb238-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="05-variability_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="irl-bootstrapping.html#cb239-1"></a><span class="co"># Visualize Slopes</span></span>
+<span id="cb239-2"><a href="irl-bootstrapping.html#cb239-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb239-3"><a href="irl-bootstrapping.html#cb239-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hourmorning)) <span class="op">+</span></span>
+<span id="cb239-4"><a href="irl-bootstrapping.html#cb239-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb239-5"><a href="irl-bootstrapping.html#cb239-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of Slopes</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb239-6"><a href="irl-bootstrapping.html#cb239-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="05-variability_files/figure-html/unnamed-chunk-17-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Let’s compare these to the visuals from the simulation from the population.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="irl-bootstrapping.html#cb239-1"></a><span class="co"># Visualize Intercepts</span></span>
-<span id="cb239-2"><a href="irl-bootstrapping.html#cb239-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb239-3"><a href="irl-bootstrapping.html#cb239-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Intercept)) <span class="op">+</span></span>
-<span id="cb239-4"><a href="irl-bootstrapping.html#cb239-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
-<span id="cb239-5"><a href="irl-bootstrapping.html#cb239-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of Intercepts</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
-<span id="cb239-6"><a href="irl-bootstrapping.html#cb239-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
-<p><img src="05-variability_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="irl-bootstrapping.html#cb240-1"></a><span class="co"># Visualize Slopes</span></span>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="irl-bootstrapping.html#cb240-1"></a><span class="co"># Visualize Intercepts</span></span>
 <span id="cb240-2"><a href="irl-bootstrapping.html#cb240-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb240-3"><a href="irl-bootstrapping.html#cb240-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hourmorning)) <span class="op">+</span></span>
+<span id="cb240-3"><a href="irl-bootstrapping.html#cb240-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Intercept)) <span class="op">+</span></span>
 <span id="cb240-4"><a href="irl-bootstrapping.html#cb240-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
-<span id="cb240-5"><a href="irl-bootstrapping.html#cb240-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of Slopes</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb240-5"><a href="irl-bootstrapping.html#cb240-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of Intercepts</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
 <span id="cb240-6"><a href="irl-bootstrapping.html#cb240-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="05-variability_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="irl-bootstrapping.html#cb241-1"></a><span class="co"># Visualize Slopes</span></span>
+<span id="cb241-2"><a href="irl-bootstrapping.html#cb241-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb241-3"><a href="irl-bootstrapping.html#cb241-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hourmorning)) <span class="op">+</span></span>
+<span id="cb241-4"><a href="irl-bootstrapping.html#cb241-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb241-5"><a href="irl-bootstrapping.html#cb241-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of Slopes</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb241-6"><a href="irl-bootstrapping.html#cb241-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <p><img src="05-variability_files/figure-html/unnamed-chunk-18-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The process of resampling from our sample, called <strong>bootstrapping</strong>, is becoming the one of main computational tools for estimating sampling variability in the field of Statistics.</p>
 <div class="reflect">

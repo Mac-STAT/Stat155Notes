@@ -1379,7 +1379,7 @@ The code below computes the fraction of data points, \texttt{x}, that fall betwe
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6626667
+## [1] 0.6846667
 \end{verbatim}
 
 So with this data set, about 68\% of the data values fall within 1 SD of the mean.
@@ -2220,9 +2220,8 @@ Let's return to the thought experiment in which you were a manufacturer of butto
 \NormalTok{body }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Neck, }\DataTypeTok{y =}\NormalTok{ Chest)) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =} \StringTok{'steelblue'}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{'Neck size (cm)'}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{'Chest size (cm)'}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{'Neck size (cm)'}\NormalTok{, }\DataTypeTok{y =} \StringTok{'Chest size (cm)'}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2242,9 +2241,8 @@ Let's say you were only going to make one size of shirt. You might want to add a
 \StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =} \StringTok{'steelblue'}\NormalTok{) }\OperatorTok{+}\StringTok{ }
 \StringTok{    }\KeywordTok{geom_hline}\NormalTok{(}\DataTypeTok{yintercept =} \KeywordTok{mean}\NormalTok{(body}\OperatorTok{$}\NormalTok{Chest)) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom_vline}\NormalTok{(}\DataTypeTok{xintercept =} \KeywordTok{mean}\NormalTok{(body}\OperatorTok{$}\NormalTok{Neck)) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{'Neck size (cm)'}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{'Chest size (cm)'}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{'Neck size (cm)'}\NormalTok{, }\DataTypeTok{y =} \StringTok{'Chest size (cm)'}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2418,8 +2416,15 @@ Let's do that calculation ``by hand'' first in R.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{body }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{sy =} \KeywordTok{sd}\NormalTok{(Chest), }\DataTypeTok{sx =} \KeywordTok{sd}\NormalTok{(Neck), }\DataTypeTok{r =} \KeywordTok{cor}\NormalTok{(Chest,Neck), }\DataTypeTok{ybar =} \KeywordTok{mean}\NormalTok{(Chest), }\DataTypeTok{xbar =} \KeywordTok{mean}\NormalTok{(Neck)) }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{beta1 =}\NormalTok{ r}\OperatorTok{*}\NormalTok{sy}\OperatorTok{/}\NormalTok{sx, }\DataTypeTok{beta0 =}\NormalTok{ ybar }\OperatorTok{-}\StringTok{ }\NormalTok{beta1}\OperatorTok{*}\NormalTok{xbar) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{summarize}\NormalTok{(}
+      \DataTypeTok{sy =} \KeywordTok{sd}\NormalTok{(Chest), }
+      \DataTypeTok{sx =} \KeywordTok{sd}\NormalTok{(Neck), }
+      \DataTypeTok{r =} \KeywordTok{cor}\NormalTok{(Chest,Neck), }
+      \DataTypeTok{ybar =} \KeywordTok{mean}\NormalTok{(Chest), }
+      \DataTypeTok{xbar =} \KeywordTok{mean}\NormalTok{(Neck)) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{mutate}\NormalTok{(}
+      \DataTypeTok{beta1 =}\NormalTok{ r}\OperatorTok{*}\NormalTok{sy}\OperatorTok{/}\NormalTok{sx, }
+      \DataTypeTok{beta0 =}\NormalTok{ ybar }\OperatorTok{-}\StringTok{ }\NormalTok{beta1}\OperatorTok{*}\NormalTok{xbar) }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{select}\NormalTok{(beta0, beta1)}
 \end{Highlighting}
 \end{Shaded}
@@ -2476,29 +2481,16 @@ In R: the standard deviation of the residuals, \(s_e\), is referred to as the ``
 \begin{Highlighting}[]
 \NormalTok{body }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(Chest }\OperatorTok{~}\StringTok{ }\NormalTok{Neck)) }\OperatorTok{%>%}\StringTok{ }
-\StringTok{    }\KeywordTok{summary}\NormalTok{()}
+\StringTok{    }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = Chest ~ Neck)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.1447  -3.3328  -0.5342   3.0738  16.5974 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -3.1885     5.4951   -0.58    0.562    
-## Neck          2.7369     0.1446   18.93   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 5.225 on 248 degrees of freedom
-## Multiple R-squared:  0.5911,	Adjusted R-squared:  0.5894 
-## F-statistic: 358.5 on 1 and 248 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)    -3.19     5.50     -0.580 5.62e- 1
+## 2 Neck            2.74     0.145    18.9   4.59e-50
 \end{verbatim}
 
 This fit simple linear regression line is
@@ -2575,30 +2567,20 @@ Let's look at the summary output of the \texttt{lm()} function in R again. We'll
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{tshirt_mod <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Chest }\OperatorTok{~}\StringTok{ }\NormalTok{Neck, }\DataTypeTok{data =}\NormalTok{ body)}
-\KeywordTok{summary}\NormalTok{(tshirt_mod)}
+\NormalTok{tshirt_mod <-}\StringTok{ }\NormalTok{body }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(Chest }\OperatorTok{~}\StringTok{ }\NormalTok{Neck))}
+
+\NormalTok{tshirt_mod }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = Chest ~ Neck, data = body)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.1447  -3.3328  -0.5342   3.0738  16.5974 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -3.1885     5.4951   -0.58    0.562    
-## Neck          2.7369     0.1446   18.93   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 5.225 on 248 degrees of freedom
-## Multiple R-squared:  0.5911,	Adjusted R-squared:  0.5894 
-## F-statistic: 358.5 on 1 and 248 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)    -3.19     5.50     -0.580 5.62e- 1
+## 2 Neck            2.74     0.145    18.9   4.59e-50
 \end{verbatim}
 
 \hypertarget{intercept-hatbeta_0}{%
@@ -2618,31 +2600,23 @@ Let's look at the summary output of the \texttt{lm()} function in R again. We'll
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{body <-}\StringTok{ }\NormalTok{body }\OperatorTok{%>%}\StringTok{ }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{CNeck =}\NormalTok{ Neck }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(Neck))}
-\NormalTok{tshirt_mod2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Chest }\OperatorTok{~}\StringTok{ }\NormalTok{CNeck, }\DataTypeTok{data =}\NormalTok{ body)}
-\KeywordTok{summary}\NormalTok{(tshirt_mod2)}
+\NormalTok{body <-}\StringTok{ }\NormalTok{body }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{CNeck =}\NormalTok{ Neck }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(Neck))}
+
+\NormalTok{tshirt_mod2 <-}\StringTok{ }\NormalTok{body }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(Chest }\OperatorTok{~}\StringTok{ }\NormalTok{CNeck))}
+       
+\NormalTok{tshirt_mod2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = Chest ~ CNeck, data = body)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.1447  -3.3328  -0.5342   3.0738  16.5974 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 100.6620     0.3304  304.63   <2e-16 ***
-## CNeck         2.7369     0.1446   18.93   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 5.225 on 248 degrees of freedom
-## Multiple R-squared:  0.5911,	Adjusted R-squared:  0.5894 
-## F-statistic: 358.5 on 1 and 248 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic   p.value
+##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
+## 1 (Intercept)   101.       0.330     305.  3.14e-321
+## 2 CNeck           2.74     0.145      18.9 4.59e- 50
 \end{verbatim}
 
 \hypertarget{slope-hatbeta_1}{%
@@ -2736,9 +2710,8 @@ Let's consider another data example. Can we predict your college grade point ave
 \StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ high_GPA, }\DataTypeTok{y =}\NormalTok{ univ_GPA)) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =} \StringTok{'steelblue'}\NormalTok{) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{'lm'}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{'High School GPA'}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{ylab}\NormalTok{(}\StringTok{'College GPA'}\NormalTok{) }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{'High School GPA'}\NormalTok{, }\DataTypeTok{y =} \StringTok{'College GPA'}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2765,7 +2738,7 @@ The code below computes the correlation coefficients separately for students wit
 \NormalTok{sat }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{HighHSGPA =}\NormalTok{ high_GPA }\OperatorTok{>}\StringTok{ }\DecValTok{3}\NormalTok{) }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{group_by}\NormalTok{(HighHSGPA) }\OperatorTok{%>%}
-\StringTok{    }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Cor =} \KeywordTok{cor}\NormalTok{(high_GPA,univ_GPA))}
+\StringTok{    }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{Cor =} \KeywordTok{cor}\NormalTok{(high_GPA, univ_GPA))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2783,29 +2756,16 @@ Let's build a model to predict college GPA based on high school GPA based on thi
 \begin{Highlighting}[]
 \NormalTok{sat }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(univ_GPA }\OperatorTok{~}\StringTok{ }\NormalTok{high_GPA)) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summary}\NormalTok{()}
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = univ_GPA ~ high_GPA)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.69040 -0.11922  0.03274  0.17397  0.91278 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  1.09682    0.16663   6.583 1.98e-09 ***
-## high_GPA     0.67483    0.05342  12.632  < 2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.2814 on 103 degrees of freedom
-## Multiple R-squared:  0.6077,	Adjusted R-squared:  0.6039 
-## F-statistic: 159.6 on 1 and 103 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)    1.10     0.167       6.58 1.98e- 9
+## 2 high_GPA       0.675    0.0534     12.6  1.18e-22
 \end{verbatim}
 
 The best fitting line is
@@ -2950,8 +2910,8 @@ If the residuals were approximately unimodal and symmetric, we expect about 95\%
 \StringTok{  }\KeywordTok{augment}\NormalTok{() }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ .resid)) }\OperatorTok{+}
 \StringTok{  }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{bins =} \DecValTok{20}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{'Residuals'}\NormalTok{, }\DataTypeTok{title=} \StringTok{"Distribution of residuals in the GPA model"}\NormalTok{) }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{'Residuals'}\NormalTok{, }\DataTypeTok{title =}  \StringTok{"Distribution of residuals in the GPA model"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2962,7 +2922,8 @@ Below we calculate \(SSE\) (the sum of squared errors/residuals), and the standa
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{lm.gpa <-}\StringTok{ }\NormalTok{sat }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{lm}\NormalTok{(univ_GPA }\OperatorTok{~}\StringTok{ }\NormalTok{high_GPA, }\DataTypeTok{data =}\NormalTok{ .)}
+\StringTok{  }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(univ_GPA }\OperatorTok{~}\StringTok{ }\NormalTok{high_GPA))}
+
 \NormalTok{SSE <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(}\KeywordTok{residuals}\NormalTok{(lm.gpa)}\OperatorTok{^}\DecValTok{2}\NormalTok{)}
 \NormalTok{n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(}\KeywordTok{residuals}\NormalTok{(lm.gpa)) }\CommentTok{# Sample size}
 \NormalTok{s <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(SSE}\OperatorTok{/}\NormalTok{(n}\DecValTok{-2}\NormalTok{)) }\CommentTok{#sd of residuals}
@@ -2988,22 +2949,18 @@ Using this model (that is, using your high school GPA), we can predict your coll
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{sd}\NormalTok{(sat}\OperatorTok{$}\NormalTok{univ_GPA)}
+\NormalTok{sat }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \KeywordTok{sd}\NormalTok{(univ_GPA), }
+    \DecValTok{2}\OperatorTok{*}\KeywordTok{sd}\NormalTok{(univ_GPA))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.4471936
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DecValTok{2}\OperatorTok{*}\KeywordTok{sd}\NormalTok{(sat}\OperatorTok{$}\NormalTok{univ_GPA)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 0.8943873
+## # A tibble: 1 x 2
+##   `sd(univ_GPA)` `2 * sd(univ_GPA)`
+##            <dbl>              <dbl>
+## 1          0.447              0.894
 \end{verbatim}
 
 \emph{Without} knowing your high school GPA, we could have just guessed your college GPA as the overall mean college GPA in the sample, and this guess would probably be within \(\pm 0.89\) of your actual college GPA. This is a higher margin of error than the approximate \(0.56\) if we did use your high school GPA (in the simple linear regression model). We are able to predict your college GPA with a smaller margin of error than if we just guessed your college GPA with the mean. Our model has \emph{explained} some (but not all) of the variation in college GPA.
@@ -3016,13 +2973,11 @@ The standard deviation of college GPA is based on the sum of squared total varia
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{(}\DataTypeTok{SSTO =} \KeywordTok{sum}\NormalTok{((sat}\OperatorTok{$}\NormalTok{univ_GPA }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(sat}\OperatorTok{$}\NormalTok{univ_GPA))}\OperatorTok{^}\DecValTok{2}\NormalTok{))}
+\NormalTok{SSTO <-}\StringTok{ }\NormalTok{sat }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{SSTO =} \KeywordTok{sum}\NormalTok{((univ_GPA }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(univ_GPA))}\OperatorTok{^}\DecValTok{2}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pull}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## [1] 20.79814
-\end{verbatim}
 
 We define \(SSTO\) here because it will help to compare \(SSTO\) to \(SSE\) (sum of squared residuals from the model) to obtain a measure of how well our models are \textbf{fitting} the data - how well they are predicting the outcome.
 
@@ -3131,7 +3086,7 @@ To check the first two conditions, we look at the original scatterplot as well a
 \StringTok{    }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom_hline}\NormalTok{(}\DataTypeTok{yintercept =} \DecValTok{0}\NormalTok{) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Fitted values (predicted values)"}\NormalTok{, }\DataTypeTok{y =} \StringTok{"Residuals"}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3166,9 +3121,36 @@ Additionally, we want to avoid extreme outliers because points that are both far
 
 See the example below. See how the relationship changes with the addition of one point, one extreme outlier.
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-50-1} \end{center}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x,}\DataTypeTok{y =}\NormalTok{ y)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{'lm'}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-50-2} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-51-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(x }\OperatorTok{<}\StringTok{ }\DecValTok{15} \OperatorTok{&}\StringTok{ }\NormalTok{y }\OperatorTok{<}\StringTok{ }\DecValTok{5}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#filter out outliers}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(x,y)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method=}\StringTok{'lm'}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-51-2} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#compare conclusions}
+\end{Highlighting}
+\end{Shaded}
 
 Check out this interactive visualization to get a feel for outlier points and their potential leverage: \url{http://omaymas.github.io/InfluenceAnalysis/}
 
@@ -3271,11 +3253,12 @@ Practice: Which quadrant of the circle does this relationship below resemble?
 \NormalTok{gapminder }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{>}\StringTok{ }\DecValTok{2005}\NormalTok{) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ lifeExp, }\DataTypeTok{x =}\NormalTok{  gdpPercap)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-51-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-52-1} \end{center}
 
 Based on this plot, we see that the spread is roughly equal around the curved relationship (-\textgreater{} focus on transforming \(X\)) and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with \(X\).
 
@@ -3289,21 +3272,8 @@ Let's try going down the ladder.
 \StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{>}\StringTok{ }\DecValTok{2005}\NormalTok{) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TgdpPercap =} \KeywordTok{sqrt}\NormalTok{(gdpPercap)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#power = 1/2}
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ lifeExp, }\DataTypeTok{x =}\NormalTok{  TgdpPercap)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-52-1} \end{center}
-
-Not quite straight. Let's keep going.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{gapminder }\OperatorTok{%>%}\StringTok{ }
-\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{>}\StringTok{ }\DecValTok{2005}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TgdpPercap =}\NormalTok{ gdpPercap}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#power = 1/3}
-\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ lifeExp, }\DataTypeTok{x =}\NormalTok{  TgdpPercap)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3315,27 +3285,45 @@ Not quite straight. Let's keep going.
 \begin{Highlighting}[]
 \NormalTok{gapminder }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{>}\StringTok{ }\DecValTok{2005}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TgdpPercap =} \KeywordTok{log}\NormalTok{(gdpPercap)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#power = 0}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TgdpPercap =}\NormalTok{ gdpPercap}\OperatorTok{^}\NormalTok{(}\DecValTok{1}\OperatorTok{/}\DecValTok{3}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#power = 1/3}
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ lifeExp, }\DataTypeTok{x =}\NormalTok{  TgdpPercap)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-54-1} \end{center}
 
-Getting better. Let's try to keep going.
+Not quite straight. Let's keep going.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{gapminder }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{>}\StringTok{ }\DecValTok{2005}\NormalTok{) }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TgdpPercap =} \DecValTok{-1}\OperatorTok{/}\NormalTok{gdpPercap) }\OperatorTok{%>%}\StringTok{  }\CommentTok{#power = -1 (added a negative sign to maintain positive relationship)}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TgdpPercap =} \KeywordTok{log}\NormalTok{(gdpPercap)) }\OperatorTok{%>%}\StringTok{ }\CommentTok{#power = 0}
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ lifeExp, }\DataTypeTok{x =}\NormalTok{  TgdpPercap)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-55-1} \end{center}
+
+Getting better. Let's try to keep going.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#power = -1 (added a negative sign to maintain positive relationship)}
+\NormalTok{gapminder }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{>}\StringTok{ }\DecValTok{2005}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TgdpPercap =} \DecValTok{-1}\OperatorTok{/}\NormalTok{gdpPercap) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ lifeExp, }\DataTypeTok{x =}\NormalTok{  TgdpPercap)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-56-1} \end{center}
 
 TOO FAR! Back up. Let's stick with log(gdpPercap).
 
@@ -3348,11 +3336,12 @@ Now we see some unequal spread so let's also try transforming \(Y\).
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TgdpPercap =} \KeywordTok{log}\NormalTok{(gdpPercap)) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TlifeExp =}\NormalTok{ lifeExp}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ TlifeExp, }\DataTypeTok{x =}\NormalTok{  TgdpPercap)) }\OperatorTok{+}\StringTok{ }
-\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-56-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-57-1} \end{center}
 
 That doesn't change it much. Maybe this is as good as we are going to get.
 
@@ -3367,29 +3356,17 @@ Let's try and fit a model with these two variables.
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{TgdpPercap =} \KeywordTok{log}\NormalTok{(gdpPercap)) }\OperatorTok{%>%}\StringTok{ }
 \StringTok{  }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(lifeExp }\OperatorTok{~}\StringTok{ }\NormalTok{TgdpPercap))}
 
-\KeywordTok{summary}\NormalTok{(lm.gap)}
+\NormalTok{lm.gap }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = lifeExp ~ TgdpPercap)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -25.947  -2.661   1.215   4.469  13.115 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   4.9496     3.8577   1.283    0.202    
-## TgdpPercap    7.2028     0.4423  16.283   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 7.122 on 140 degrees of freedom
-## Multiple R-squared:  0.6544,	Adjusted R-squared:  0.652 
-## F-statistic: 265.2 on 1 and 140 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)     4.95     3.86       1.28 2.02e- 1
+## 2 TgdpPercap      7.20     0.442     16.3  4.12e-34
 \end{verbatim}
 
 \textbf{Interpretations}
@@ -3433,31 +3410,34 @@ We could also model curved relationships by including higher power terms in a \p
 \NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{1}\NormalTok{)}
 \NormalTok{y <-}\StringTok{ }\DecValTok{200} \OperatorTok{+}\StringTok{ }\DecValTok{20}\OperatorTok{*}\NormalTok{x }\OperatorTok{-}\StringTok{ }\DecValTok{5}\OperatorTok{*}\NormalTok{x}\OperatorTok{^}\DecValTok{2} \OperatorTok{+}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{,}\DataTypeTok{sd =} \DecValTok{10}\NormalTok{)}
 \NormalTok{dat <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(x,y)}
+
 \NormalTok{dat }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x, }\DataTypeTok{y =}\NormalTok{ y)) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }
-\StringTok{    }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{)}
+\StringTok{    }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-58-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-59-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{lm}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\KeywordTok{poly}\NormalTok{(x, }\DataTypeTok{degree =} \DecValTok{2}\NormalTok{, }\DataTypeTok{raw =} \OtherTok{TRUE}\NormalTok{), }\DataTypeTok{data =}\NormalTok{ dat)}
+\NormalTok{dat }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(y }\OperatorTok{~}\StringTok{ }\KeywordTok{poly}\NormalTok{(x, }\DataTypeTok{degree =} \DecValTok{2}\NormalTok{, }\DataTypeTok{raw =} \OtherTok{TRUE}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## 
 ## Call:
-## lm(formula = y ~ poly(x, degree = 2, raw = TRUE), data = dat)
+## lm(formula = y ~ poly(x, degree = 2, raw = TRUE))
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          200.110                            20.020  
+##                           203.97                             20.16  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -5.046
+##                            -5.12
 \end{verbatim}
 
 A more advanced solution (which is not going to be covered in class) is a \textbf{generalized additive model} (GAM), which allows you to specify which variables have non-linear relationships with \(Y\) and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
@@ -3469,7 +3449,7 @@ A more advanced solution (which is not going to be covered in class) is a \textb
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-59-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-60-1} \end{center}
 
 \hypertarget{multiple}{%
 \section{Multiple Linear Regression}\label{multiple}}
@@ -3567,30 +3547,20 @@ To get an estimate of \(\beta_1\), we need to fit our model to the data. In fact
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lm.home <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{AnyFireplace, }\DataTypeTok{data =}\NormalTok{ homes)}
-\KeywordTok{summary}\NormalTok{(lm.home)}
+\NormalTok{lm.home <-}\StringTok{ }\NormalTok{homes }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{AnyFireplace))}
+
+\NormalTok{lm.home }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = Price ~ AnyFireplace, data = homes)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -234914  -59653  -18784   42145  585347 
-## 
-## Coefficients:
-##                  Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)        174653       3419   51.08   <2e-16 ***
-## AnyFireplaceTRUE    65261       4522   14.43   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 93020 on 1726 degrees of freedom
-## Multiple R-squared:  0.1077,	Adjusted R-squared:  0.1072 
-## F-statistic: 208.3 on 1 and 1726 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term             estimate std.error statistic  p.value
+##   <chr>               <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)       174653.     3419.      51.1 0.      
+## 2 AnyFireplaceTRUE   65261.     4522.      14.4 1.17e-44
 \end{verbatim}
 
 Our best fitting ``line'' is
@@ -3636,11 +3606,11 @@ Let's consider the size of the house. Is price related to the area of living spa
 \NormalTok{homes }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Living.Area, }\DataTypeTok{y =}\NormalTok{ Price)) }\OperatorTok{+}\StringTok{ }
 \StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\DataTypeTok{color =} \StringTok{'steelblue'}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-65-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-66-1} \end{center}
 
 Is the presence of a fireplace related to area of living space?
 
@@ -3649,11 +3619,11 @@ Is the presence of a fireplace related to area of living space?
 \NormalTok{homes }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ AnyFireplace, }\DataTypeTok{y =}\NormalTok{ Living.Area)) }\OperatorTok{+}\StringTok{ }
 \StringTok{    }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-66-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-67-1} \end{center}
 
 We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, \texttt{Living.Area} could confound the relationship between \texttt{AnyFireplace} and \texttt{Price} because it is related to both variables. That is, it is possible that Living Area is a cause of having a fireplace (if you have a bigger house, you have more space to put in a fireplace) and Living Area also clearly is a cause of Price (the bigger the house, the more it costs).
 
@@ -3703,7 +3673,7 @@ Now let's compare homes that are the same size.
 
 We see this by taking the difference between the two equations, fixing the Living Area:
 
-\[E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area = A}] - E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area = A}]\]
+\[E[\hbox{Price}| \hbox{AnyFireplace = T, Living.Area = A}] - E[\hbox{Price}| \hbox{AnyFireplace = F, Living.Area = A}]\]
 
 \begin{align*}
 \,&= (\beta_0+\beta_1 + \beta_2 \times \hbox{A}) - ( \beta_0 + \beta_2 \times \hbox{A})\\
@@ -3716,31 +3686,21 @@ To get the estimates of \(\beta_0,\beta_1,\) and \(\beta_2\), we fit the model i
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lm.home2 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{AnyFireplace }\OperatorTok{+}\StringTok{ }\NormalTok{Living.Area, }\DataTypeTok{data =}\NormalTok{ homes)}
-\KeywordTok{summary}\NormalTok{(lm.home2)}
+\NormalTok{lm.home2 <-}\StringTok{ }\NormalTok{homes }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{AnyFireplace }\OperatorTok{+}\StringTok{ }\NormalTok{Living.Area))}
+
+\NormalTok{lm.home2 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = Price ~ AnyFireplace + Living.Area, data = homes)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -271421  -39935   -7887   28215  554651 
-## 
-## Coefficients:
-##                   Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)      13599.164   4991.695   2.724  0.00651 ** 
-## AnyFireplaceTRUE  5567.377   3716.947   1.498  0.13436    
-## Living.Area        111.218      2.968  37.476  < 2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 69080 on 1725 degrees of freedom
-## Multiple R-squared:  0.5081,	Adjusted R-squared:  0.5076 
-## F-statistic:   891 on 2 and 1725 DF,  p-value: < 2.2e-16
+## # A tibble: 3 x 5
+##   term             estimate std.error statistic   p.value
+##   <chr>               <dbl>     <dbl>     <dbl>     <dbl>
+## 1 (Intercept)        13599.   4992.        2.72 6.51e-  3
+## 2 AnyFireplaceTRUE    5567.   3717.        1.50 1.34e-  1
+## 3 Living.Area          111.      2.97     37.5  2.20e-225
 \end{verbatim}
 
 Our best fitting ``line'' is
@@ -3756,7 +3716,7 @@ Our best fitting ``line'' is
 
 Note that the ``slope'' for the indicator variable is very different with the addition of Living.Area. This suggests that \texttt{Living.Area} was confounding the relationship between \texttt{Price} and \texttt{AnyFireplace}.
 
-Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines).
+Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines). We can create the lines manually,
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3765,11 +3725,26 @@ Let's look back at the relationship between Living.Area and Price and color the 
 \StringTok{    }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom_abline}\NormalTok{(}\DataTypeTok{intercept =} \FloatTok{13599.164}\NormalTok{ , }\DataTypeTok{slope =} \FloatTok{111.218}\NormalTok{, }\DataTypeTok{color =}\NormalTok{ scales}\OperatorTok{::}\KeywordTok{hue_pal}\NormalTok{()(}\DecValTok{2}\NormalTok{)[}\DecValTok{1}\NormalTok{]) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom_abline}\NormalTok{(}\DataTypeTok{intercept =} \FloatTok{13599.164} \OperatorTok{+}\StringTok{ }\FloatTok{5567.377}\NormalTok{, }\DataTypeTok{slope =} \FloatTok{111.218}\NormalTok{ , }\DataTypeTok{color =}\NormalTok{ scales}\OperatorTok{::}\KeywordTok{hue_pal}\NormalTok{()(}\DecValTok{2}\NormalTok{)[}\DecValTok{2}\NormalTok{]) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-68-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-69-1} \end{center}
+
+or we could use our model to plot the lines for us.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm.home2 }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{augment}\NormalTok{() }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Living.Area, }\DataTypeTok{color =}\NormalTok{ AnyFireplace)) }\OperatorTok{+}\StringTok{ }
+\StringTok{    }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ Price)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ .fitted)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-70-1} \end{center}
 
 Let's try and fit two separate lines to these two groups of homes, home with any fireplaces and home with no fireplaces. Do these lines have the same intercepts? Same slopes?
 
@@ -3779,11 +3754,11 @@ Let's try and fit two separate lines to these two groups of homes, home with any
 \StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Living.Area, }\DataTypeTok{y =}\NormalTok{ Price, }\DataTypeTok{color =}\NormalTok{ AnyFireplace)) }\OperatorTok{+}\StringTok{ }
 \StringTok{    }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{'lm'}\NormalTok{, }\DataTypeTok{se =} \OtherTok{FALSE}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-69-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-71-1} \end{center}
 
 In this case, it looks as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, the increase in your average price for every 1 square foot is greater for a home with a fireplace than that for homes without fireplaces (slopes are different).
 
@@ -3819,13 +3794,16 @@ This is called \textbf{effect modification} (when one variable can modify the ef
 \tightlist
 \item
   A model with effect modification looks like this:
-  \[E[Y | X_1, X_2] = \beta_0 + \beta_1X_{1} + \beta_2X_{2}= \beta_0 + \beta_1X_{1} + (a+bX_1)X_{2}= \beta_0 + \beta_1X_{1} +aX_2+bX_1X_{2}\]
-  The model above has an \textbf{interaction term,} which is the product of two variables. Here we have \(X_1*X_2\).
+  \[E[Y | X_1, X_2] = \beta_0 + \beta_1X_{1} + \beta_2X_{2} \]
+  \[= \beta_0 + \beta_1X_{1} + (a+bX_1)X_{2}\]
+  \[ = \beta_0 + \beta_1X_{1} +aX_2+bX_1X_{2}\]
 \end{itemize}
+
+The model above has an \textbf{interaction term,} which is the product of two variables. Here we have \(X_1*X_2\).
 
 Let's build a model with effect modification for our housing data. Let's include an interaction term between AnyFireplace and Living.Area to allow for different slopes.
 
-\[E[\hbox{Price}| \hbox{AnyFireplace, Living.Area}] = \beta_0+ \beta_1\,\hbox{AnyFireplaceTRUE} + \beta_2\,\hbox{Living.Area}+ \beta_3\,\hbox{AnyFireplaceTRUE}*\hbox{Living.Area}\]
+\[E[\hbox{Price}| \hbox{AnyFireplace, Living.Area}] = \beta_0+ \beta_1\,\hbox{AnyFireplaceTRUE}\\ + \beta_2\,\hbox{Living.Area} + \beta_3\,\hbox{AnyFireplaceTRUE}*\hbox{Living.Area}\]
 
 \textbf{What does this mean?}
 
@@ -3838,7 +3816,8 @@ Let's think about two types of homes: a home with one or more fireplaces and a h
 \end{itemize}
 
 \begin{align*}
-E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &= \beta_0 + \beta_1*\,1 + \beta_2\,\hbox{Living.Area}+ \beta_3*\,1*\hbox{Living.Area}\\
+E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &= \beta_0 + \beta_1*\,1 + \beta_2\,\hbox{Living.Area}\\
+& + \beta_3*\,1*\hbox{Living.Area}\\
 &= (\beta_0 + \beta_1) + (\beta_2+\beta_3)\,\hbox{Living.Area}\\
 \end{align*}
 
@@ -3849,7 +3828,8 @@ E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &= \beta_0 + \beta_1*\,
 \end{itemize}
 
 \begin{align*}
-E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &= \beta_0 + \beta_1*\,0 + \beta_2\,\hbox{Living.Area}+ \beta_3*\,0*\hbox{Living.Area}\\
+E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &= \beta_0 + \beta_1*\,0 + \beta_2\,\hbox{Living.Area}\\
+&+ \beta_3*\,0*\hbox{Living.Area}\\
 &= \beta_0  + \beta_2\,\hbox{Living.Area}\\
 \end{align*}
 
@@ -3869,32 +3849,22 @@ If we fit this model with interaction terms, we get the following estimates:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lm.home3 <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{AnyFireplace}\OperatorTok{*}\NormalTok{Living.Area, }\DataTypeTok{data =}\NormalTok{ homes)}
-\KeywordTok{summary}\NormalTok{(lm.home3)}
+\NormalTok{lm.home3 <-}\StringTok{ }\NormalTok{homes }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{AnyFireplace}\OperatorTok{*}\NormalTok{Living.Area))}
+
+\NormalTok{lm.home3 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = Price ~ AnyFireplace * Living.Area, data = homes)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -241710  -39588   -7821   28480  542055 
-## 
-## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                   40901.294   8234.665   4.967 7.47e-07 ***
-## AnyFireplaceTRUE             -37610.413  11024.853  -3.411 0.000661 ***
-## Living.Area                      92.364      5.412  17.066  < 2e-16 ***
-## AnyFireplaceTRUE:Living.Area     26.852      6.459   4.157 3.38e-05 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 68760 on 1724 degrees of freedom
-## Multiple R-squared:  0.513,	Adjusted R-squared:  0.5122 
-## F-statistic: 605.4 on 3 and 1724 DF,  p-value: < 2.2e-16
+## # A tibble: 4 x 5
+##   term                         estimate std.error statistic  p.value
+##   <chr>                           <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)                   40901.    8235.        4.97 7.47e- 7
+## 2 AnyFireplaceTRUE             -37610.   11025.       -3.41 6.61e- 4
+## 3 Living.Area                      92.4      5.41     17.1  1.84e-60
+## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5
 \end{verbatim}
 
 \begin{itemize}
@@ -3935,7 +3905,8 @@ If we fit this model with interaction terms, we get the following estimates:
 \end{itemize}
 
 \begin{align*}
-\hbox{Predicted Price} &= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 0 \\
+\hbox{Predicted Price} &= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area}\\
+&+ 26.85 \times \hbox{Living.Area} \times 0 \\
 &= \$40,901.29 + \$92.36 \times \hbox{Living.Area}
 \end{align*}
 
@@ -3954,31 +3925,19 @@ We could ask: is there \emph{really} a difference in the slopes for Living Area 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(lm.home3)}
+\NormalTok{lm.home3 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = Price ~ AnyFireplace * Living.Area, data = homes)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -241710  -39588   -7821   28480  542055 
-## 
-## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                   40901.294   8234.665   4.967 7.47e-07 ***
-## AnyFireplaceTRUE             -37610.413  11024.853  -3.411 0.000661 ***
-## Living.Area                      92.364      5.412  17.066  < 2e-16 ***
-## AnyFireplaceTRUE:Living.Area     26.852      6.459   4.157 3.38e-05 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 68760 on 1724 degrees of freedom
-## Multiple R-squared:  0.513,	Adjusted R-squared:  0.5122 
-## F-statistic: 605.4 on 3 and 1724 DF,  p-value: < 2.2e-16
+## # A tibble: 4 x 5
+##   term                         estimate std.error statistic  p.value
+##   <chr>                           <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)                   40901.    8235.        4.97 7.47e- 7
+## 2 AnyFireplaceTRUE             -37610.   11025.       -3.41 6.61e- 4
+## 3 Living.Area                      92.4      5.41     17.1  1.84e-60
+## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5
 \end{verbatim}
 
 If we ask ourselves this question, we are assuming a few things:
@@ -4015,18 +3974,22 @@ If we ask ourselves this question, we are assuming a few things:
 \begin{Highlighting}[]
 \KeywordTok{set.seed}\NormalTok{(}\DecValTok{333}\NormalTok{) }\CommentTok{## Setting the seed ensures that our results are reproducible}
 \CommentTok{## Repeat the sampling and regression modeling 1000 times}
-\NormalTok{boot <-}\StringTok{ }\KeywordTok{do}\NormalTok{(}\DecValTok{1000}\NormalTok{)}\OperatorTok{*}\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{Living.Area}\OperatorTok{*}\NormalTok{AnyFireplace, }\DataTypeTok{data =} \KeywordTok{resample}\NormalTok{(homes))}
+\NormalTok{boot <-}\StringTok{ }\KeywordTok{do}\NormalTok{(}\DecValTok{1000}\NormalTok{)}\OperatorTok{*}\NormalTok{(}
+\NormalTok{    homes }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{sample_frac}\NormalTok{(}\DataTypeTok{replace =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{    }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{Living.Area}\OperatorTok{*}\NormalTok{AnyFireplace))}
+\NormalTok{)}
 
 \CommentTok{## Plot the distribution of the 1000 slope differences}
 \NormalTok{boot }\OperatorTok{%>%}
 \StringTok{    }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Living.Area.AnyFireplaceTRUE)) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom_histogram}\NormalTok{() }\OperatorTok{+}
-\StringTok{    }\KeywordTok{xlab}\NormalTok{(}\StringTok{'Bootstrap Difference in Slopes'}\NormalTok{) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{'Bootstrap Difference in Slopes'}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-74-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-76-1} \end{center}
 
 We see that if we were to have a slightly different sample (drawn from our ``fake'' population), then the difference in the slope could be as long as 0 and as large as 50.
 
@@ -4046,7 +4009,7 @@ Let's first look at the variability of the difference in slopes across the boots
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{boot }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\KeywordTok{sd}\NormalTok{(Living.Area.AnyFireplaceTRUE)) }\CommentTok{#this is going to be of similar magnitude (not exactly the same) to the Std. Error for the Living.Area.AnyFireplaceTRUE coefficient in output}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\KeywordTok{sd}\NormalTok{(Living.Area.AnyFireplaceTRUE)) }
 \end{Highlighting}
 \end{Shaded}
 
@@ -4057,41 +4020,33 @@ Let's first look at the variability of the difference in slopes across the boots
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(lm.home3)}
+\CommentTok{#this is going to be of similar magnitude (not exactly the same) to the Std. Error for the Living.Area.AnyFireplaceTRUE coefficient in output}
+
+\NormalTok{lm.home3 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = Price ~ AnyFireplace * Living.Area, data = homes)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -241710  -39588   -7821   28480  542055 
-## 
-## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                   40901.294   8234.665   4.967 7.47e-07 ***
-## AnyFireplaceTRUE             -37610.413  11024.853  -3.411 0.000661 ***
-## Living.Area                      92.364      5.412  17.066  < 2e-16 ***
-## AnyFireplaceTRUE:Living.Area     26.852      6.459   4.157 3.38e-05 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 68760 on 1724 degrees of freedom
-## Multiple R-squared:  0.513,	Adjusted R-squared:  0.5122 
-## F-statistic: 605.4 on 3 and 1724 DF,  p-value: < 2.2e-16
+## # A tibble: 4 x 5
+##   term                         estimate std.error statistic  p.value
+##   <chr>                           <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)                   40901.    8235.        4.97 7.47e- 7
+## 2 AnyFireplaceTRUE             -37610.   11025.       -3.41 6.61e- 4
+## 3 Living.Area                      92.4      5.41     17.1  1.84e-60
+## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5
 \end{verbatim}
 
-This standard deviation is somewhat close to the \(6.459\) for Living.Area.AnyFireplaceTRUE coefficient in the Std. Error column of the \texttt{summary(lm.home3)} output above.
+This standard deviation is somewhat close to the \(6.459\) for Living.Area.AnyFireplaceTRUE coefficient in the Std. Error column of the \texttt{tidy(lm.home3)} output above.
 
 To get an interval of plausible values for the difference in the slopes, we look at the histogram and take the middle 95\%. The lower end will be the 2.5th percentile and the upper end will be the 97.5th percentile.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{boot }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\DataTypeTok{lower =} \KeywordTok{quantile}\NormalTok{(Living.Area.AnyFireplaceTRUE, }\FloatTok{0.025}\NormalTok{), }\DataTypeTok{upper =} \KeywordTok{quantile}\NormalTok{(Living.Area.AnyFireplaceTRUE, }\FloatTok{0.975}\NormalTok{))}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}
+    \DataTypeTok{lower =} \KeywordTok{quantile}\NormalTok{(Living.Area.AnyFireplaceTRUE, }\FloatTok{0.025}\NormalTok{), }
+    \DataTypeTok{upper =} \KeywordTok{quantile}\NormalTok{(Living.Area.AnyFireplaceTRUE, }\FloatTok{0.975}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4114,33 +4069,23 @@ Beyond fireplaces and living area, there are other characteristics that may impa
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lm.home4 <-}\StringTok{ }\NormalTok{homes }\OperatorTok{%>%}\StringTok{ }\KeywordTok{with}\NormalTok{( }\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{Living.Area }\OperatorTok{+}\StringTok{ }\NormalTok{Bedrooms }\OperatorTok{+}\StringTok{ }\NormalTok{Bathrooms }\OperatorTok{+}\StringTok{ }\NormalTok{Rooms))}
-\KeywordTok{summary}\NormalTok{(lm.home4)}
+\NormalTok{lm.home4 <-}\StringTok{ }\NormalTok{homes }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{with}\NormalTok{( }\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{Living.Area }\OperatorTok{+}\StringTok{ }\NormalTok{Bedrooms }\OperatorTok{+}\StringTok{ }\NormalTok{Bathrooms }\OperatorTok{+}\StringTok{ }\NormalTok{Rooms))}
+
+\NormalTok{lm.home4 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = Price ~ Living.Area + Bedrooms + Bathrooms + Rooms)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -245900  -40224   -7387   28090  533563 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  18937.389   6871.239   2.756  0.00591 ** 
-## Living.Area     98.572      4.932  19.985  < 2e-16 ***
-## Bedrooms    -16922.902   2832.244  -5.975 2.79e-09 ***
-## Bathrooms    26038.557   3543.063   7.349 3.07e-13 ***
-## Rooms         3400.172   1109.628   3.064  0.00222 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 67390 on 1723 degrees of freedom
-## Multiple R-squared:  0.5325,	Adjusted R-squared:  0.5314 
-## F-statistic: 490.6 on 4 and 1723 DF,  p-value: < 2.2e-16
+## # A tibble: 5 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)  18937.    6871.        2.76 5.91e- 3
+## 2 Living.Area     98.6      4.93     20.0  4.40e-80
+## 3 Bedrooms    -16923.    2832.       -5.98 2.79e- 9
+## 4 Bathrooms    26039.    3543.        7.35 3.07e-13
+## 5 Rooms         3400.    1110.        3.06 2.22e- 3
 \end{verbatim}
 
 If we look at the estimates of the slope coefficients, are you surprised to see that \texttt{Bedrooms} has a negative slope estimate?
@@ -4152,16 +4097,16 @@ Remember, the coefficients are the change in the expected price for a 1 unit cha
 \NormalTok{homes }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Rooms, }\DataTypeTok{y =}\NormalTok{ Bedrooms)) }\OperatorTok{+}\StringTok{ }
 \StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
-\StringTok{  }\KeywordTok{theme_minimal}\NormalTok{()}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-79-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-81-1} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{homes }\OperatorTok{%>%}
-\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\KeywordTok{cor}\NormalTok{(Rooms,Bedrooms))}
+\StringTok{  }\KeywordTok{summarize}\NormalTok{(}\KeywordTok{cor}\NormalTok{(Rooms, Bedrooms))}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4214,38 +4159,28 @@ With \texttt{Rooms} and \texttt{Bathrooms}, we see positive but weak relationshi
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-80-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-82-1} \end{center}
 
 If we were to remove \texttt{Rooms} as it seems to be redundant, containing similar information as \texttt{Bedrooms}, we get a bit different estimated slope coefficients.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lm.home5 <-}\StringTok{ }\NormalTok{homes }\OperatorTok{%>%}\StringTok{ }\KeywordTok{with}\NormalTok{( }\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{Living.Area }\OperatorTok{+}\StringTok{ }\NormalTok{Bedrooms }\OperatorTok{+}\StringTok{ }\NormalTok{Bathrooms ))}
-\KeywordTok{summary}\NormalTok{(lm.home5)}
+\NormalTok{lm.home5 <-}\StringTok{ }\NormalTok{homes }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{with}\NormalTok{(}\KeywordTok{lm}\NormalTok{(Price }\OperatorTok{~}\StringTok{ }\NormalTok{Living.Area }\OperatorTok{+}\StringTok{ }\NormalTok{Bedrooms }\OperatorTok{+}\StringTok{ }\NormalTok{Bathrooms ))}
+
+\NormalTok{lm.home5 }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{tidy}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## 
-## Call:
-## lm(formula = Price ~ Living.Area + Bedrooms + Bathrooms)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -239040  -40340   -7775   28308  540154 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  21323.089   6843.580   3.116  0.00186 ** 
-## Living.Area    105.204      4.443  23.679  < 2e-16 ***
-## Bedrooms    -13702.463   2636.422  -5.197 2.26e-07 ***
-## Bathrooms    25912.548   3551.434   7.296 4.49e-13 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 67550 on 1724 degrees of freedom
-## Multiple R-squared:  0.5299,	Adjusted R-squared:  0.5291 
-## F-statistic: 647.8 on 3 and 1724 DF,  p-value: < 2.2e-16
+## # A tibble: 4 x 5
+##   term        estimate std.error statistic   p.value
+##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
+## 1 (Intercept)   21323.   6844.        3.12 1.86e-  3
+## 2 Living.Area     105.      4.44     23.7  1.50e-107
+## 3 Bedrooms     -13702.   2636.       -5.20 2.26e-  7
+## 4 Bathrooms     25913.   3551.        7.30 4.49e- 13
 \end{verbatim}
 
 \emph{So should Rooms stay in the model or come out?}
@@ -4351,7 +4286,7 @@ In a DAG, we have circles or \textbf{nodes} that represented variables and arrow
 ## Error in get(genname, envir = envir) : object 'testthat_print' not found
 \end{verbatim}
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-83-1} \end{center}
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-85-1} \end{center}
 
 Below we discuss the three basic DAG structures.
 

@@ -361,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A full overview of causal inference is beyond the scope of this course, but a first good step in this direction is to consider a <strong>causal model</strong>, which is a representation of the causal mechanism by which data were generated. We typically visualize these models with a graphical structure called a <strong>directed acyclic graph or DAG</strong> for short.</p>
 <p>In a DAG, we have circles or <strong>nodes</strong> that represented variables and arrow or <strong>directed edges</strong> that indicate the causal pathway (arrows point in the direction of the hypothesized casual effect).</p>
 <pre><code>## Error in get(genname, envir = envir) : object &#39;testthat_print&#39; not found</code></pre>
-<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-83-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="03-linear-regression_files/figure-html/unnamed-chunk-85-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Below we discuss the three basic DAG structures.</p>
 <ul>
 <li><p><strong>Chain</strong>: <em>A chain includes three nodes and two edges, with one directed into and one edge directed out of the middle variable.</em> In the above example, we see a few chains. There is a chain that suggests an unhealthy lifestyle leads to smoking which directly impacts cholesterol levels. Another chain suggests an unhealthy lifestyle direclty impacts human weight which impacts cholesterol levels. By our DAG, there are two causal pathways that directly impact cholesterol levels.</p></li>

@@ -10,17 +10,20 @@ Broadly, a model is a simplified representation of the world. When we build mode
 
 One goal when building models is **prediction**. Given data on a **response** or **outcome variable**, $Y$, and one or more **predictor or explanatory variables**, $X$, the goal is to find a mathematical function, $f$, of $X$ that gives good predictions of $Y$.  For example, we might want to be able to predict a customer's chest size knowing their neck size. This $X$ may be a single variable, but it is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. 
 
-<div class="reflect">
-<p>Can you think of some other concrete examples in which we’d want a model to do prediction? Consider what predictions might be made about you every day.</p>
-</div>
+\begin{reflect}
+Can you think of some other concrete examples in which we'd want a model
+to do prediction? Consider what predictions might be made about you
+every day.
+\end{reflect}
 
 What are the qualities of a good model and function, $f$? We want to find an $f(X)$ such that if we plug in a value of $X$ such as $X=x$, we'll get a good predictor of the observed outcome values $y$. In other words, we want the model prediction $\hat{y}=f(x)$ (read, "y hat") to be close to the observed outcome value. We want $y-\hat{y}$ to be small. This difference between the observed value and the prediction, $y-\hat{y}$, is called a **residual**. We'll discuss residuals more later.
 
 Another goal when building models is **description**. We want a model to "explain" the relationship between the $X$ and $Y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. [George Box](https://en.wikipedia.org/wiki/George_E._P._Box) is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
 
-<div class="reflect">
-<p>Can you think of some concrete examples in which we’d want a model to do explain a phenomenon? Consider how policy decisions get made.</p>
-</div>
+\begin{reflect}
+Can you think of some concrete examples in which we'd want a model to do
+explain a phenomenon? Consider how policy decisions get made.
+\end{reflect}
 
 To begin, we will consider a simple, but powerful model in which we limit this function, $f(X)$, to be a straight line with a y-intercept, $\beta_0$, and slope, $\beta_1$. ($\beta$ is the Greek letter beta.) The $E[Y | X]$ below stands for the **expected value** of the response variable $Y$ for a *given* value of $X$. 
 
@@ -36,12 +39,18 @@ $$\hat{y} = \hat{\beta}_0 +\hat{\beta}_1 x$$
 
 The little hat on top of $\hat{y}$ means that we're talking about a predicted or estimated value of $y$, so our model says that the predicted or estimated value of $y$ is equal to an estimated intercept ($\hat{\beta}_0$), plus an estimated slope ($\hat{\beta}_1$), times the value $x$. 
 
-<div class="mathbox">
-<p>In the past, you may have seen the equation of a line as</p>
-<p><span class="math display">\[y = mx + b\]</span></p>
-<p>where <span class="math inline">\(m\)</span> is the slope and <span class="math inline">\(b\)</span> is the y-intercept. We will be using different notation so that it can generalize to multiple linear regression.</p>
-<p>The y-intercept is the value when <span class="math inline">\(x=0\)</span> and the slope is change in <span class="math inline">\(y\)</span> for each 1 unit increase of <span class="math inline">\(x\)</span> (“rise over run”).</p>
-</div>
+\begin{mathbox}
+In the past, you may have seen the equation of a line as
+
+\[y = mx + b\]
+
+where \(m\) is the slope and \(b\) is the y-intercept. We will be using
+different notation so that it can generalize to multiple linear
+regression.
+
+The y-intercept is the value when \(x=0\) and the slope is change in
+\(y\) for each 1 unit increase of \(x\) (``rise over run'').
+\end{mathbox}
 
 
 ## Lines
@@ -55,16 +64,18 @@ body <- read.delim("Data/bodyfat.txt")
 body %>%
     ggplot(aes(x = Neck, y = Chest)) +
     geom_point(color = 'steelblue') + 
-    xlab('Neck size (cm)') + 
-    ylab('Chest size (cm)') +
-    theme_minimal()
+    labs(x = 'Neck size (cm)', y = 'Chest size (cm)') +
+    theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>If you were to add one or multiple lines to the plot above to help you make business decisions, where would you want it (or them)?</p>
-</div>
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-4-1} \end{center}
+
+\begin{reflect}
+If you were to add one or multiple lines to the plot above to help you
+make business decisions, where would you want it (or them)?
+\end{reflect}
 
 Let's say you were only going to make one size of shirt. You might want to add a horizontal line at the mean Chest size and a vertical line at the mean Neck size. 
 
@@ -75,42 +86,48 @@ body %>%
     geom_point(color = 'steelblue') + 
     geom_hline(yintercept = mean(body$Chest)) +
     geom_vline(xintercept = mean(body$Neck)) +
-    xlab('Neck size (cm)') + 
-    ylab('Chest size (cm)') +
-    theme_minimal()
+    labs(x = 'Neck size (cm)', y = 'Chest size (cm)') +
+    theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
 We can see that a shirt made to these specifications would fit the "average person." However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger than average. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller than average. 
 
 Let's try something else. Let's allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the neck size variable into 5 groups of equal length and estimate the mean chest sizes within each of these groups. 
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>What do these lines tell us for our business venture?</p>
-</div>
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-7-1} \end{center}
+
+\begin{reflect}
+What do these lines tell us for our business venture?
+\end{reflect}
 
 What if we wanted to be able to make more sizes? Could we get a pretty good sense of what the chest sizes should be for a given neck size? Let's try allowing for 8 different sizes. 
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>What are the pros and cons of having a larger number of sizes?</p>
-</div>
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-9-1} \end{center}
 
-<div class="reflect">
-<p>Stop and think about the data collection process. If you were measuring your own neck size, how precise do you think you could get? What factors might impact that precision?</p>
-</div>
+\begin{reflect}
+What are the pros and cons of having a larger number of sizes?
+\end{reflect}
+
+\begin{reflect}
+Stop and think about the data collection process. If you were measuring
+your own neck size, how precise do you think you could get? What factors
+might impact that precision?
+\end{reflect}
 
 We can see from this scatterplot that there is generally a linear relationship between neck and chest size. Perhaps we can find one line to describe the relationship between neck size and chest size and use that line to decide on sizes later.
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>What does line tell us for our business venture?</p>
-</div>
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-12-1} \end{center}
+
+\begin{reflect}
+What does line tell us for our business venture?
+\end{reflect}
 
 If the scatterplot between two quantitative variables **resembles a straight line**,
 
@@ -127,9 +144,11 @@ $$ E[Y | X] =  \beta_0 + \beta_1\,X $$
 
 that gives us the "best" fit to the $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$. 
 
-<div class="reflect">
-<p>What do we mean by “best”? In general, we’d like good predictions and a model that describes the average relationship. But we need to be more precise about what we mean by “best”.</p>
-</div>
+\begin{reflect}
+What do we mean by ``best''? In general, we'd like good predictions and
+a model that describes the average relationship. But we need to be more
+precise about what we mean by ``best''.
+\end{reflect}
 
 ### First idea
 
@@ -156,15 +175,18 @@ Let's try to find the line that **minimizes the Sum of Squared Residuals** by se
 
 Below is a visual of the sum of squared residuals for a variety of values of the intercept and slope. The surface height is sum of squared residuals for each combination of slope and intercept.
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-15-1} \end{center}
 
 We can see there is valley where the minimum must be. Let's visualize this in a slightly different way. We'll encode the surface height as color (white is lowest).
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-16-1} \end{center}
 
 The large values of the sum of squared residuals are dominating this image, so let's change the color scheme to see more variation in smaller values (white is lowest).
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 We can limit our search to $\beta_0 \in (-10,10)$ and $\beta_1 \in (2,3)$.
 
@@ -185,16 +207,29 @@ b[ss == min(ss),]
 
 We have the minimum point. Over the grid of pairs of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
 
-<div class="mathbox">
-<p>(Optional) Alternative ways (faster than exhaustive search) to find the minimum sum of squared residuals:</p>
-<ul>
-<li>We could try a numerical optimization algorithm such as steepest descent.</li>
-<li>We could use multivariable calculus (find partial derivatives, set equal to 0, and solve).</li>
-</ul>
-<p>To get started on the calculus, solve the following two equations for the two unknowns (<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>):</p>
-<p><span class="math display">\[\frac{\partial }{\partial \beta_0}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]</span> <span class="math display">\[\frac{\partial }{\partial \beta_1}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]</span></p>
-<p>If you are a math/stat/physics/cs major, you should try this by hand and see if you can get the solutions below.</p>
-</div>
+\begin{mathbox}
+(Optional) Alternative ways (faster than exhaustive search) to find the
+minimum sum of squared residuals:
+
+\begin{itemize}
+\tightlist
+\item
+  We could try a numerical optimization algorithm such as steepest
+  descent.
+\item
+  We could use multivariable calculus (find partial derivatives, set
+  equal to 0, and solve).
+\end{itemize}
+
+To get started on the calculus, solve the following two equations for
+the two unknowns (\(\beta_0\) and \(\beta_1\)):
+
+\[\frac{\partial }{\partial \beta_0}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]
+\[\frac{\partial }{\partial \beta_1}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]
+
+If you are a math/stat/physics/cs major, you should try this by hand and
+see if you can get the solutions below.
+\end{mathbox}
 
 If you find the minimum using calculus (super useful class!), you'll find that we can write the Least Squares solution in an equation format as functions of summary statistics (!), the estimated slope is
 
@@ -211,8 +246,15 @@ Let's do that calculation "by hand" first in R.
 
 ```r
 body %>%
-    summarize(sy = sd(Chest), sx = sd(Neck), r = cor(Chest,Neck), ybar = mean(Chest), xbar = mean(Neck)) %>%
-    mutate(beta1 = r*sy/sx, beta0 = ybar - beta1*xbar) %>%
+    summarize(
+      sy = sd(Chest), 
+      sx = sd(Neck), 
+      r = cor(Chest,Neck), 
+      ybar = mean(Chest), 
+      xbar = mean(Neck)) %>%
+    mutate(
+      beta1 = r*sy/sx, 
+      beta0 = ybar - beta1*xbar) %>%
     select(beta0, beta1)
 ```
 
@@ -262,28 +304,15 @@ In R: the standard deviation of the residuals, $s_e$, is referred to as the "res
 ```r
 body %>%
     with(lm(Chest ~ Neck)) %>% 
-    summary()
+    tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = Chest ~ Neck)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.1447  -3.3328  -0.5342   3.0738  16.5974 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -3.1885     5.4951   -0.58    0.562    
-## Neck          2.7369     0.1446   18.93   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 5.225 on 248 degrees of freedom
-## Multiple R-squared:  0.5911,	Adjusted R-squared:  0.5894 
-## F-statistic: 358.5 on 1 and 248 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)    -3.19     5.50     -0.580 5.62e- 1
+## 2 Neck            2.74     0.145    18.9   4.59e-50
 ```
 
 This fit simple linear regression line is
@@ -317,35 +346,45 @@ body %>%
 
 Given your neck size, we can probably predict your chest size within 5 to 10 cm since $s_e = 5.22$ (1 to 2 SD's -- recall Section \@ref(intro-zscore)). 
 
-<div class="reflect">
-<p>If you were a shirt manufacturer, is this a good enough prediction? What is the impact on the customer? Think of if the prediction were an overestimate (loose) or an underestimate (too tight).</p>
-</div>
+\begin{reflect}
+If you were a shirt manufacturer, is this a good enough prediction? What
+is the impact on the customer? Think of if the prediction were an
+overestimate (loose) or an underestimate (too tight).
+\end{reflect}
 
 ### Real companies
 
 Let's see how some real companies create shirts. In the plots below, the red boxes represent the advertised range (in cm) for Neck and Chest sizes for each brand.
 
-<img src="Photos/shirtchart.png" width=".25\textwidth" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=.25\textwidth]{Photos/shirtchart} \end{center}
 
 For Calvin Klein, we see that the red boxes are below the least squares line (black line). So for a given neck size, Calvin Klein makes shirts that are a little bit too small at the chest.
 
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-26-1} \end{center}
 
 For Express, we see that the red boxes are generally on the least squares line, except for the smallest size. This means that Express shirts are generally a good fit at the chest and neck for the 4 largest sizes, but the smallest shirt size is a bit too small at the chest for the neck size.
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-27-1} \end{center}
 
 For Brooks Brothers, the red boxes are a bit below the least squares line for the 3 smallest sizes and a little above the line for the largest size. This means that the 3 smallest sizes are a bit too small in the chest for our customers (in our data set) with those neck sizes and that the largest shirt is a bit big at the chest for that neck size.
 
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-28-1} \end{center}
 
 
-<div class="reflect">
-<p>We haven’t told you how the customer data we’ve been using was collected. As you compared the brand sizes to this sample data, what assumptions were you making about the population that the sample was drawn from?</p>
-<p>What questions do you have about the sampling procedure?</p>
-</div>
+\begin{reflect}
+We haven't told you how the customer data we've been using was
+collected. As you compared the brand sizes to this sample data, what
+assumptions were you making about the population that the sample was
+drawn from?
+
+What questions do you have about the sampling procedure?
+\end{reflect}
 
 ## Model Interpretation
 
@@ -353,29 +392,19 @@ Let's look at the summary output of the `lm()` function in R again. We'll highli
 
 
 ```r
-tshirt_mod <- lm(Chest ~ Neck, data = body)
-summary(tshirt_mod)
+tshirt_mod <- body %>%
+  with(lm(Chest ~ Neck))
+
+tshirt_mod %>%
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = Chest ~ Neck, data = body)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.1447  -3.3328  -0.5342   3.0738  16.5974 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  -3.1885     5.4951   -0.58    0.562    
-## Neck          2.7369     0.1446   18.93   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 5.225 on 248 degrees of freedom
-## Multiple R-squared:  0.5911,	Adjusted R-squared:  0.5894 
-## F-statistic: 358.5 on 1 and 248 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)    -3.19     5.50     -0.580 5.62e- 1
+## 2 Neck            2.74     0.145    18.9   4.59e-50
 ```
 
 ### Intercept ($\hat{\beta}_0$)
@@ -387,30 +416,22 @@ summary(tshirt_mod)
 
 
 ```r
-body <- body %>% mutate(CNeck = Neck - mean(Neck))
-tshirt_mod2 <- lm(Chest ~ CNeck, data = body)
-summary(tshirt_mod2)
+body <- body %>% 
+  mutate(CNeck = Neck - mean(Neck))
+
+tshirt_mod2 <- body %>%
+  with(lm(Chest ~ CNeck))
+       
+tshirt_mod2 %>%
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = Chest ~ CNeck, data = body)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.1447  -3.3328  -0.5342   3.0738  16.5974 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) 100.6620     0.3304  304.63   <2e-16 ***
-## CNeck         2.7369     0.1446   18.93   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 5.225 on 248 degrees of freedom
-## Multiple R-squared:  0.5911,	Adjusted R-squared:  0.5894 
-## F-statistic: 358.5 on 1 and 248 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic   p.value
+##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
+## 1 (Intercept)   101.       0.330     305.  3.14e-321
+## 2 CNeck           2.74     0.145      18.9 4.59e- 50
 ```
 
 
@@ -475,12 +496,13 @@ sat %>%
     ggplot(aes(x = high_GPA, y = univ_GPA)) +
     geom_point(color = 'steelblue') +
     geom_smooth(method = 'lm', se = FALSE) +
-    xlab('High School GPA') +
-    ylab('College GPA') + 
-    theme_minimal()
+    labs(x = 'High School GPA', y = 'College GPA') + 
+    theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-33-1} \end{center}
 
 First things first. Let's describe the scatterplot. 
 
@@ -496,7 +518,7 @@ The code below computes the correlation coefficients separately for students wit
 sat %>%
     mutate(HighHSGPA = high_GPA > 3) %>%
     group_by(HighHSGPA) %>%
-    summarize(Cor = cor(high_GPA,univ_GPA))
+    summarize(Cor = cor(high_GPA, univ_GPA))
 ```
 
 ```
@@ -513,28 +535,15 @@ Let's build a model to predict college GPA based on high school GPA based on thi
 ```r
 sat %>%
   with(lm(univ_GPA ~ high_GPA)) %>%
-  summary()
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = univ_GPA ~ high_GPA)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -0.69040 -0.11922  0.03274  0.17397  0.91278 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  1.09682    0.16663   6.583 1.98e-09 ***
-## high_GPA     0.67483    0.05342  12.632  < 2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 0.2814 on 103 degrees of freedom
-## Multiple R-squared:  0.6077,	Adjusted R-squared:  0.6039 
-## F-statistic: 159.6 on 1 and 103 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)    1.10     0.167       6.58 1.98e- 9
+## 2 high_GPA       0.675    0.0534     12.6  1.18e-22
 ```
 
 
@@ -616,9 +625,11 @@ sat %>%
 ## 4.133558
 ```
 
-<div class="reflect">
-<p>Does it make sense to use this model for high school GPA’s &gt; 4? Some high schools have a max GPA of 5.0 due to the weighting of advanced courses.</p>
-</div>
+\begin{reflect}
+Does it make sense to use this model for high school GPA's
+\textgreater{} 4? Some high schools have a max GPA of 5.0 due to the
+weighting of advanced courses.
+\end{reflect}
 
 - What is the maximum high school GPA in this data set? 
 - What if your college doesn't allow for GPA's above 4.0? 
@@ -652,18 +663,21 @@ sat %>%
   augment() %>%
   ggplot(aes(x = .resid)) +
   geom_histogram(bins = 20) +
-  labs(x='Residuals', title= "Distribution of residuals in the GPA model") +
-  theme_minimal()
+  labs(x = 'Residuals', title =  "Distribution of residuals in the GPA model") +
+  theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-41-1} \end{center}
 
 Below we calculate $SSE$ (the sum of squared errors/residuals), and the standard deviation of the residuals ($s_e$).
 
 
 ```r
 lm.gpa <- sat %>%
-  lm(univ_GPA ~ high_GPA, data = .)
+  with(lm(univ_GPA ~ high_GPA))
+
 SSE <- sum(residuals(lm.gpa)^2)
 n <- length(residuals(lm.gpa)) # Sample size
 s <- sqrt(SSE/(n-2)) #sd of residuals
@@ -686,19 +700,17 @@ Using this model (that is, using your high school GPA), we can predict your coll
 
 
 ```r
-sd(sat$univ_GPA)
+sat %>%
+  summarize(
+    sd(univ_GPA), 
+    2*sd(univ_GPA))
 ```
 
 ```
-## [1] 0.4471936
-```
-
-```r
-2*sd(sat$univ_GPA)
-```
-
-```
-## [1] 0.8943873
+## # A tibble: 1 x 2
+##   `sd(univ_GPA)` `2 * sd(univ_GPA)`
+##            <dbl>              <dbl>
+## 1          0.447              0.894
 ```
 
 *Without* knowing your high school GPA, we could have just guessed your college GPA as the overall mean college GPA in the sample, and this guess would probably be within $\pm 0.89$ of your actual college GPA. This is a higher margin of error than the approximate $0.56$ if we did use your high school GPA (in the simple linear regression model). We are able to predict your college GPA with a smaller margin of error than if we just guessed your college GPA with the mean. Our model has *explained* some (but not all) of the variation in college GPA.
@@ -711,11 +723,9 @@ $SSTO$ is the numerator of the standard deviation of $Y$ (without knowing anythi
 
 
 ```r
-(SSTO = sum((sat$univ_GPA - mean(sat$univ_GPA))^2))
-```
-
-```
-## [1] 20.79814
+SSTO <- sat %>%
+  summarize(SSTO = sum((univ_GPA - mean(univ_GPA))^2)) %>%
+  pull()
 ```
 
 We define $SSTO$ here because it will help to compare $SSTO$ to $SSE$ (sum of squared residuals from the model) to obtain a measure of how well our models are **fitting** the data - how well they are predicting the outcome.
@@ -729,7 +739,8 @@ Let's study how *models reduce unexplained variation*.
 
 So to study how models reduce unexplained variation, we compare the magnitude of the residuals from a linear regression model (which uses the predictor $X$) with the original deviations from the mean (which do not use the predictor $X$).
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-45-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-45-1} \end{center}
 
 
 We started with the sum of the deviations from the mean $SSTO = \sum{(y_i - \bar{y})^2}$ before we had info about high school GPA ($X$).
@@ -747,9 +758,9 @@ Two extreme cases:
 
 
 
-<div class="mathbox">
-<p><span class="math display">\[ R^2 = 1 - \frac{SSE}{SSTO} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}\]</span></p>
-</div>
+\begin{mathbox}
+\[ R^2 = 1 - \frac{SSE}{SSTO} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}\]
+\end{mathbox}
 
 In R, `lm()` will calculate R-Squared ($R^2$) for us, but we can also see that it equals the value from the formula above. 
 
@@ -772,7 +783,7 @@ glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.608         0.604 0.281      160. 1.18e-22     1  -14.9  35.7  43.7
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 - Is there a "good" value of $R^2$? Same answer as correlation -- no.
@@ -802,10 +813,12 @@ augment(lm.gpa, data = sat) %>%
     geom_smooth(se = FALSE) +
     geom_hline(yintercept = 0) +
     labs(x = "Fitted values (predicted values)", y = "Residuals") +
-    theme_minimal()
+    theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-48-1} \end{center}
 
 What do you think?
 
@@ -815,9 +828,15 @@ What do you think?
 Studying the residuals can highlight subtle non-linear patterns and thickening in the original scatterplot. Think the residual plot as a magnifying glass that helps you see these patterns.
 
 
-<div class="reflect">
-<p>If there is a pattern in the residuals, then we are systematically over or underpredicting our outcomes. What if we are systematically overpredicting the outcome for a group? What if we are systematically underpredicting the outcome for a different group? Consider a model for predicting home values for Zillow or consider an admissions model predicting college GPA. What are the real human consequences if there is a pattern in the residuals?</p>
-</div>
+\begin{reflect}
+If there is a pattern in the residuals, then we are systematically over
+or underpredicting our outcomes. What if we are systematically
+overpredicting the outcome for a group? What if we are systematically
+underpredicting the outcome for a different group? Consider a model for
+predicting home values for Zillow or consider an admissions model
+predicting college GPA. What are the real human consequences if there is
+a pattern in the residuals?
+\end{reflect}
 
 ### Sensitivity Analysis
 
@@ -825,7 +844,37 @@ Additionally, we want to avoid extreme outliers because points that are both far
 
 See the example below. See how the relationship changes with the addition of one point, one extreme outlier.  
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-50-1.png" width="672" style="display: block; margin: auto;" /><img src="03-linear-regression_files/figure-html/unnamed-chunk-50-2.png" width="672" style="display: block; margin: auto;" />
+
+
+
+```r
+dat %>%
+  ggplot(aes(x = x,y = y)) + 
+  geom_point() + 
+  geom_smooth(method='lm', se = FALSE) + 
+  theme_classic() 
+```
+
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-51-1} \end{center}
+
+```r
+dat %>%
+  filter(x < 15 & y < 5) %>% #filter out outliers
+  ggplot(aes(x,y)) + 
+  geom_point() + 
+  geom_smooth(method='lm', se = FALSE) + 
+  theme_classic() 
+```
+
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-51-2} \end{center}
+
+```r
+#compare conclusions
+```
 
 Check out this interactive visualization to get a feel for outlier points and their potential leverage: http://omaymas.github.io/InfluenceAnalysis/
 
@@ -904,10 +953,13 @@ require(gapminder)
 gapminder %>% 
   filter(year > 2005) %>%
   ggplot(aes(y = lifeExp, x =  gdpPercap)) + 
-  geom_point()
+  geom_point() + 
+  theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-51-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-52-1} \end{center}
 
 Based on this plot, we see that the spread is roughly equal around the curved relationship (-> focus on transforming $X$) and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with $X$. 
 
@@ -921,10 +973,13 @@ gapminder %>%
   filter(year > 2005) %>%
   mutate(TgdpPercap = sqrt(gdpPercap)) %>% #power = 1/2
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
-  geom_point()
+  geom_point() + 
+  theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-52-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-53-1} \end{center}
 
 Not quite straight. Let's keep going.
 
@@ -934,10 +989,13 @@ gapminder %>%
   filter(year > 2005) %>%
   mutate(TgdpPercap = gdpPercap^(1/3)) %>% #power = 1/3
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
-  geom_point()
+  geom_point() + 
+  theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-54-1} \end{center}
 
 Not quite straight. Let's keep going.
 
@@ -947,23 +1005,30 @@ gapminder %>%
   filter(year > 2005) %>%
   mutate(TgdpPercap = log(gdpPercap)) %>% #power = 0
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
-  geom_point()
+  geom_point() + 
+  theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-54-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-55-1} \end{center}
 
 Getting better. Let's try to keep going.
 
 
 ```r
+#power = -1 (added a negative sign to maintain positive relationship)
 gapminder %>% 
   filter(year > 2005) %>%
-  mutate(TgdpPercap = -1/gdpPercap) %>%  #power = -1 (added a negative sign to maintain positive relationship)
+  mutate(TgdpPercap = -1/gdpPercap) %>% 
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
-  geom_point()
+  geom_point() + 
+  theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-56-1} \end{center}
 
 TOO FAR! Back up. Let's stick with log(gdpPercap).
 
@@ -976,10 +1041,13 @@ gapminder %>%
   mutate(TgdpPercap = log(gdpPercap)) %>% 
   mutate(TlifeExp = lifeExp^2) %>% 
   ggplot(aes(y = TlifeExp, x =  TgdpPercap)) + 
-  geom_point()
+  geom_point() +
+  theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-57-1} \end{center}
 
 That doesn't change it much. Maybe this is as good as we are going to get. 
 
@@ -994,28 +1062,16 @@ lm.gap <- gapminder %>%
   mutate(TgdpPercap = log(gdpPercap)) %>% 
   with(lm(lifeExp ~ TgdpPercap))
 
-summary(lm.gap)
+lm.gap %>% 
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = lifeExp ~ TgdpPercap)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -25.947  -2.661   1.215   4.469  13.115 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)   4.9496     3.8577   1.283    0.202    
-## TgdpPercap    7.2028     0.4423  16.283   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 7.122 on 140 degrees of freedom
-## Multiple R-squared:  0.6544,	Adjusted R-squared:  0.652 
-## F-statistic: 265.2 on 1 and 140 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)     4.95     3.86       1.28 2.02e- 1
+## 2 TgdpPercap      7.20     0.442     16.3  4.12e-34
 ```
 
 **Interpretations**
@@ -1056,28 +1112,33 @@ We could also model curved relationships by including higher power terms in a [m
 x <- rnorm(100, 5, 1)
 y <- 200 + 20*x - 5*x^2 + rnorm(100,sd = 10)
 dat <- data.frame(x,y)
+
 dat %>%
     ggplot(aes(x = x, y = y)) +
     geom_point() + 
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-58-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-59-1} \end{center}
 
 ```r
-lm(y ~ poly(x, degree = 2, raw = TRUE), data = dat)
+dat %>%
+  with(lm(y ~ poly(x, degree = 2, raw = TRUE)))
 ```
 
 ```
 ## 
 ## Call:
-## lm(formula = y ~ poly(x, degree = 2, raw = TRUE), data = dat)
+## lm(formula = y ~ poly(x, degree = 2, raw = TRUE))
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          226.413                            11.908  
+##                           203.97                             20.16  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -4.393
+##                            -5.12
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
@@ -1088,7 +1149,9 @@ require(gam)
 plot(gam(y ~ s(x), data = dat))
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-59-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-60-1} \end{center}
 
 
 
@@ -1175,29 +1238,19 @@ To get an estimate of $\beta_1$, we need to fit our model to the data. In fact, 
 
 
 ```r
-lm.home <- lm(Price ~ AnyFireplace, data = homes)
-summary(lm.home)
+lm.home <- homes %>%
+  with(lm(Price ~ AnyFireplace))
+
+lm.home %>%
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = Price ~ AnyFireplace, data = homes)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -234914  -59653  -18784   42145  585347 
-## 
-## Coefficients:
-##                  Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)        174653       3419   51.08   <2e-16 ***
-## AnyFireplaceTRUE    65261       4522   14.43   <2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 93020 on 1726 degrees of freedom
-## Multiple R-squared:  0.1077,	Adjusted R-squared:  0.1072 
-## F-statistic: 208.3 on 1 and 1726 DF,  p-value: < 2.2e-16
+## # A tibble: 2 x 5
+##   term             estimate std.error statistic  p.value
+##   <chr>               <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)       174653.     3419.      51.1 0.      
+## 2 AnyFireplaceTRUE   65261.     4522.      14.4 1.17e-44
 ```
 
 Our best fitting "line" is
@@ -1222,10 +1275,15 @@ $$\hbox{Predicted Price} = 174653 + 65261 \times 0 = \$ 174,653$$
 
 The difference between these predicted prices is $\hat{\beta}_1$ = \$65,261, the estimated value of the "slope" for the indicator variable.
 
-<div class="reflect">
-<p>So is this how much a fireplace is worth? If I installed a fireplace in my house, should the value of my house go up $65,260?</p>
-<p><strong>No</strong>, because we should not make causal statements based on observational data without thinking deeply about the context. What could be confounding this relationship? What third variable may be related to both the price and whether or not a house has a fireplace?</p>
-</div>
+\begin{reflect}
+So is this how much a fireplace is worth? If I installed a fireplace in
+my house, should the value of my house go up \$65,260?
+
+\textbf{No}, because we should not make causal statements based on
+observational data without thinking deeply about the context. What could
+be confounding this relationship? What third variable may be related to
+both the price and whether or not a house has a fireplace?
+\end{reflect}
 
 ### Confounder Adjustment
 
@@ -1236,10 +1294,12 @@ Let's consider the size of the house. Is price related to the area of living spa
 homes %>%
     ggplot(aes(x = Living.Area, y = Price)) + 
     geom_point(color = 'steelblue') +
-    theme_minimal()
+    theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-65-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-66-1} \end{center}
 
 Is the presence of a fireplace related to area of living space?
 
@@ -1248,10 +1308,12 @@ Is the presence of a fireplace related to area of living space?
 homes %>%
     ggplot(aes(x = AnyFireplace, y = Living.Area)) + 
     geom_boxplot() +
-    theme_minimal()
+    theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-67-1} \end{center}
 
 We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, `Living.Area` could confound the relationship between `AnyFireplace` and `Price` because it is related to both variables. That is, it is possible that Living Area is a cause of having a fireplace (if you have a bigger house, you have more space to put in a fireplace) and Living Area also clearly is a cause of Price (the bigger the house, the more it costs).
 
@@ -1292,7 +1354,7 @@ Now let's compare homes that are the same size.
 
 We see this by taking the difference between the two equations, fixing the Living Area:
 
-$$E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area = A}] - E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area = A}]$$
+$$E[\hbox{Price}| \hbox{AnyFireplace = T, Living.Area = A}] - E[\hbox{Price}| \hbox{AnyFireplace = F, Living.Area = A}]$$
 
 
 \begin{align*}
@@ -1308,30 +1370,20 @@ To get the estimates of $\beta_0,\beta_1,$ and $\beta_2$, we fit the model in R,
 
 
 ```r
-lm.home2 <- lm(Price ~ AnyFireplace + Living.Area, data = homes)
-summary(lm.home2)
+lm.home2 <- homes %>%
+  with(lm(Price ~ AnyFireplace + Living.Area))
+
+lm.home2 %>% 
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = Price ~ AnyFireplace + Living.Area, data = homes)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -271421  -39935   -7887   28215  554651 
-## 
-## Coefficients:
-##                   Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)      13599.164   4991.695   2.724  0.00651 ** 
-## AnyFireplaceTRUE  5567.377   3716.947   1.498  0.13436    
-## Living.Area        111.218      2.968  37.476  < 2e-16 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 69080 on 1725 degrees of freedom
-## Multiple R-squared:  0.5081,	Adjusted R-squared:  0.5076 
-## F-statistic:   891 on 2 and 1725 DF,  p-value: < 2.2e-16
+## # A tibble: 3 x 5
+##   term             estimate std.error statistic   p.value
+##   <chr>               <dbl>     <dbl>     <dbl>     <dbl>
+## 1 (Intercept)        13599.   4992.        2.72 6.51e-  3
+## 2 AnyFireplaceTRUE    5567.   3717.        1.50 1.34e-  1
+## 3 Living.Area          111.      2.97     37.5  2.20e-225
 ```
 
 Our best fitting "line" is
@@ -1345,7 +1397,7 @@ $$\hbox{Predicted Price} = 13599.16 + 5567.37\,\hbox{AnyFireplaceTRUE} + 111.21\
 
 Note that the "slope" for the indicator variable is very different with the addition of Living.Area. This suggests that `Living.Area` was confounding the relationship between `Price` and `AnyFireplace`.
 
-Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines).
+Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines). We can create the lines manually,
 
 
 ```r
@@ -1354,10 +1406,28 @@ homes %>%
     geom_point() +
     geom_abline(intercept = 13599.164 , slope = 111.218, color = scales::hue_pal()(2)[1]) +
     geom_abline(intercept = 13599.164 + 5567.377, slope = 111.218 , color = scales::hue_pal()(2)[2]) +
-    theme_minimal()
+    theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-68-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-69-1} \end{center}
+
+or we could use our model to plot the lines for us.
+
+
+```r
+lm.home2 %>%
+    augment() %>%
+    ggplot(aes(x = Living.Area, color = AnyFireplace)) + 
+    geom_point(aes(y = Price)) +
+    geom_line(aes(y = .fitted)) +
+    theme_classic()
+```
+
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-70-1} \end{center}
 
 Let's try and fit two separate lines to these two groups of homes, home with any fireplaces and home with no fireplaces. Do these lines have the same intercepts? Same slopes?
 
@@ -1367,10 +1437,12 @@ homes %>%
     ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
     geom_point() +
     geom_smooth(method = 'lm', se = FALSE) +
-    theme_minimal()
+    theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-69-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-71-1} \end{center}
 
 In this case, it looks as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, the increase in your average price for every 1 square foot is greater for a home with a fireplace than that for homes without fireplaces (slopes are different).
 
@@ -1379,12 +1451,18 @@ In this case, it looks as though having a fireplace in your house slightly chang
 
 We can allow for different slopes within one regression model (!), rather than fitting two separate models. 
 
-<div class="reflect">
-<p>When should we fit only one model; when should we fit separate models?</p>
-<p>If we fit separate models, we are <strong>stratifying</strong> and then modeling. But what if some of the strata are small?</p>
-<p>Fitting one model allows us to “borrow information across groups.”</p>
-<p>There is no one right answer. Researchers struggle with this decision <a href="https://www.ncbi.nlm.nih.gov/pubmed/22125224">to stratify or not to stratify</a>.</p>
-</div>
+\begin{reflect}
+When should we fit only one model; when should we fit separate models?
+
+If we fit separate models, we are \textbf{stratifying} and then
+modeling. But what if some of the strata are small?
+
+Fitting one model allows us to ``borrow information across groups.''
+
+There is no one right answer. Researchers struggle with this decision
+\href{https://www.ncbi.nlm.nih.gov/pubmed/22125224}{to stratify or not
+to stratify}.
+\end{reflect}
 
 - If we add a variable in the model (without an interaction), it only changes the intercept.
 
@@ -1394,12 +1472,15 @@ $$\beta_2 = a + bX_1$$
 This is called **effect modification** (when one variable can modify the effect of another variable on the outcome).
 
 - A model with effect modification looks like this:
-$$E[Y | X_1, X_2] = \beta_0 + \beta_1X_{1} + \beta_2X_{2}= \beta_0 + \beta_1X_{1} + (a+bX_1)X_{2}= \beta_0 + \beta_1X_{1} +aX_2+bX_1X_{2}$$
+$$E[Y | X_1, X_2] = \beta_0 + \beta_1X_{1} + \beta_2X_{2} $$
+$$= \beta_0 + \beta_1X_{1} + (a+bX_1)X_{2}$$
+$$ = \beta_0 + \beta_1X_{1} +aX_2+bX_1X_{2}$$
+
 The model above has an **interaction term,** which is the product of two variables. Here we have $X_1*X_2$.
 
 Let's build a model with effect modification for our housing data. Let's include an interaction term between AnyFireplace and Living.Area to allow for different slopes.
 
-$$E[\hbox{Price}| \hbox{AnyFireplace, Living.Area}] = \beta_0+ \beta_1\,\hbox{AnyFireplaceTRUE} + \beta_2\,\hbox{Living.Area}+ \beta_3\,\hbox{AnyFireplaceTRUE}*\hbox{Living.Area}$$
+$$E[\hbox{Price}| \hbox{AnyFireplace, Living.Area}] = \beta_0+ \beta_1\,\hbox{AnyFireplaceTRUE}\\ + \beta_2\,\hbox{Living.Area} + \beta_3\,\hbox{AnyFireplaceTRUE}*\hbox{Living.Area}$$
 
 **What does this mean?** 
 
@@ -1409,7 +1490,8 @@ Let's think about two types of homes: a home with one or more fireplaces and a h
 
 
 \begin{align*}
-E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &= \beta_0 + \beta_1*\,1 + \beta_2\,\hbox{Living.Area}+ \beta_3*\,1*\hbox{Living.Area}\\
+E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &= \beta_0 + \beta_1*\,1 + \beta_2\,\hbox{Living.Area}\\
+& + \beta_3*\,1*\hbox{Living.Area}\\
 &= (\beta_0 + \beta_1) + (\beta_2+\beta_3)\,\hbox{Living.Area}\\
 \end{align*}
 
@@ -1420,7 +1502,8 @@ E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &= \beta_0 + \beta_1*\,
 
 
 \begin{align*}
-E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &= \beta_0 + \beta_1*\,0 + \beta_2\,\hbox{Living.Area}+ \beta_3*\,0*\hbox{Living.Area}\\
+E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &= \beta_0 + \beta_1*\,0 + \beta_2\,\hbox{Living.Area}\\
+&+ \beta_3*\,0*\hbox{Living.Area}\\
 &= \beta_0  + \beta_2\,\hbox{Living.Area}\\
 \end{align*}
 
@@ -1438,31 +1521,21 @@ If we fit this model with interaction terms, we get the following estimates:
 
 
 ```r
-lm.home3 <- lm(Price ~ AnyFireplace*Living.Area, data = homes)
-summary(lm.home3)
+lm.home3 <- homes %>%
+  with(lm(Price ~ AnyFireplace*Living.Area))
+
+lm.home3 %>%
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = Price ~ AnyFireplace * Living.Area, data = homes)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -241710  -39588   -7821   28480  542055 
-## 
-## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                   40901.294   8234.665   4.967 7.47e-07 ***
-## AnyFireplaceTRUE             -37610.413  11024.853  -3.411 0.000661 ***
-## Living.Area                      92.364      5.412  17.066  < 2e-16 ***
-## AnyFireplaceTRUE:Living.Area     26.852      6.459   4.157 3.38e-05 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 68760 on 1724 degrees of freedom
-## Multiple R-squared:  0.513,	Adjusted R-squared:  0.5122 
-## F-statistic: 605.4 on 3 and 1724 DF,  p-value: < 2.2e-16
+## # A tibble: 4 x 5
+##   term                         estimate std.error statistic  p.value
+##   <chr>                           <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)                   40901.    8235.        4.97 7.47e- 7
+## 2 AnyFireplaceTRUE             -37610.   11025.       -3.41 6.61e- 4
+## 3 Living.Area                      92.4      5.41     17.1  1.84e-60
+## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5
 ```
 
 - Homes with fireplace (indicator = 1):    
@@ -1495,7 +1568,8 @@ summary(lm.home3)
 
 
 \begin{align*}
-\hbox{Predicted Price} &= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 0 \\
+\hbox{Predicted Price} &= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area}\\
+&+ 26.85 \times \hbox{Living.Area} \times 0 \\
 &= \$40,901.29 + \$92.36 \times \hbox{Living.Area}
 \end{align*}
 
@@ -1510,30 +1584,18 @@ We could ask: is there *really* a difference in the slopes for Living Area and P
 
 
 ```r
-summary(lm.home3)
+lm.home3 %>% 
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = Price ~ AnyFireplace * Living.Area, data = homes)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -241710  -39588   -7821   28480  542055 
-## 
-## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                   40901.294   8234.665   4.967 7.47e-07 ***
-## AnyFireplaceTRUE             -37610.413  11024.853  -3.411 0.000661 ***
-## Living.Area                      92.364      5.412  17.066  < 2e-16 ***
-## AnyFireplaceTRUE:Living.Area     26.852      6.459   4.157 3.38e-05 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 68760 on 1724 degrees of freedom
-## Multiple R-squared:  0.513,	Adjusted R-squared:  0.5122 
-## F-statistic: 605.4 on 3 and 1724 DF,  p-value: < 2.2e-16
+## # A tibble: 4 x 5
+##   term                         estimate std.error statistic  p.value
+##   <chr>                           <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)                   40901.    8235.        4.97 7.47e- 7
+## 2 AnyFireplaceTRUE             -37610.   11025.       -3.41 6.61e- 4
+## 3 Living.Area                      92.4      5.41     17.1  1.84e-60
+## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5
 ```
 
 If we ask ourselves this question, we are assuming a few things:
@@ -1555,17 +1617,23 @@ If we ask ourselves this question, we are assuming a few things:
 ```r
 set.seed(333) ## Setting the seed ensures that our results are reproducible
 ## Repeat the sampling and regression modeling 1000 times
-boot <- do(1000)*lm(Price ~ Living.Area*AnyFireplace, data = resample(homes))
+boot <- do(1000)*(
+    homes %>%
+    sample_frac(replace = TRUE) %>%
+    with(lm(Price ~ Living.Area*AnyFireplace))
+)
 
 ## Plot the distribution of the 1000 slope differences
 boot %>%
     ggplot(aes(x = Living.Area.AnyFireplaceTRUE)) +
     geom_histogram() +
-    xlab('Bootstrap Difference in Slopes') +
-    theme_minimal()
+    labs(x = 'Bootstrap Difference in Slopes') +
+    theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-74-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-76-1} \end{center}
 
 We see that if we were to have a slightly different sample (drawn from our "fake" population), then the difference in the slope could be as long as 0 and as large as 50.
 
@@ -1579,7 +1647,7 @@ Let's first look at the variability of the difference in slopes across the boots
 
 ```r
 boot %>%
-  summarize(sd(Living.Area.AnyFireplaceTRUE)) #this is going to be of similar magnitude (not exactly the same) to the Std. Error for the Living.Area.AnyFireplaceTRUE coefficient in output
+  summarize(sd(Living.Area.AnyFireplaceTRUE)) 
 ```
 
 ```
@@ -1588,40 +1656,32 @@ boot %>%
 ```
 
 ```r
-summary(lm.home3)
+#this is going to be of similar magnitude (not exactly the same) to the Std. Error for the Living.Area.AnyFireplaceTRUE coefficient in output
+
+lm.home3 %>%
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = Price ~ AnyFireplace * Living.Area, data = homes)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -241710  -39588   -7821   28480  542055 
-## 
-## Coefficients:
-##                                Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)                   40901.294   8234.665   4.967 7.47e-07 ***
-## AnyFireplaceTRUE             -37610.413  11024.853  -3.411 0.000661 ***
-## Living.Area                      92.364      5.412  17.066  < 2e-16 ***
-## AnyFireplaceTRUE:Living.Area     26.852      6.459   4.157 3.38e-05 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 68760 on 1724 degrees of freedom
-## Multiple R-squared:  0.513,	Adjusted R-squared:  0.5122 
-## F-statistic: 605.4 on 3 and 1724 DF,  p-value: < 2.2e-16
+## # A tibble: 4 x 5
+##   term                         estimate std.error statistic  p.value
+##   <chr>                           <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)                   40901.    8235.        4.97 7.47e- 7
+## 2 AnyFireplaceTRUE             -37610.   11025.       -3.41 6.61e- 4
+## 3 Living.Area                      92.4      5.41     17.1  1.84e-60
+## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5
 ```
 
-This standard deviation is somewhat close to the $6.459$ for Living.Area.AnyFireplaceTRUE coefficient in the Std. Error column of the `summary(lm.home3)` output above.
+This standard deviation is somewhat close to the $6.459$ for Living.Area.AnyFireplaceTRUE coefficient in the Std. Error column of the `tidy(lm.home3)` output above.
 
 To get an interval of plausible values for the difference in the slopes, we look at the histogram and take the middle 95%. The lower end will be the 2.5th percentile and the upper end will be the 97.5th percentile.
 
 
 ```r
 boot %>%
-  summarize(lower = quantile(Living.Area.AnyFireplaceTRUE, 0.025), upper = quantile(Living.Area.AnyFireplaceTRUE, 0.975))
+  summarize(
+    lower = quantile(Living.Area.AnyFireplaceTRUE, 0.025), 
+    upper = quantile(Living.Area.AnyFireplaceTRUE, 0.975))
 ```
 
 ```
@@ -1629,9 +1689,12 @@ boot %>%
 ## 1 7.686552 45.43513
 ```
 
-<div class="reflect">
-<p>Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes (with and without fireplaces)? How would you justify your answer? Consider the plausible values of the difference in slopes given by the interval above.</p>
-</div>
+\begin{reflect}
+Based on this evidence, do you think it is possible that the slopes are
+the same for the two types of homes (with and without fireplaces)? How
+would you justify your answer? Consider the plausible values of the
+difference in slopes given by the interval above.
+\end{reflect}
 
 ### Redundancy and Multicollinearity {#redundant}
 
@@ -1639,32 +1702,22 @@ Beyond fireplaces and living area, there are other characteristics that may impa
 
 
 ```r
-lm.home4 <- homes %>% with( lm(Price ~ Living.Area + Bedrooms + Bathrooms + Rooms))
-summary(lm.home4)
+lm.home4 <- homes %>% 
+  with( lm(Price ~ Living.Area + Bedrooms + Bathrooms + Rooms))
+
+lm.home4 %>% 
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = Price ~ Living.Area + Bedrooms + Bathrooms + Rooms)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -245900  -40224   -7387   28090  533563 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  18937.389   6871.239   2.756  0.00591 ** 
-## Living.Area     98.572      4.932  19.985  < 2e-16 ***
-## Bedrooms    -16922.902   2832.244  -5.975 2.79e-09 ***
-## Bathrooms    26038.557   3543.063   7.349 3.07e-13 ***
-## Rooms         3400.172   1109.628   3.064  0.00222 ** 
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 67390 on 1723 degrees of freedom
-## Multiple R-squared:  0.5325,	Adjusted R-squared:  0.5314 
-## F-statistic: 490.6 on 4 and 1723 DF,  p-value: < 2.2e-16
+## # A tibble: 5 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)  18937.    6871.        2.76 5.91e- 3
+## 2 Living.Area     98.6      4.93     20.0  4.40e-80
+## 3 Bedrooms    -16923.    2832.       -5.98 2.79e- 9
+## 4 Bathrooms    26039.    3543.        7.35 3.07e-13
+## 5 Rooms         3400.    1110.        3.06 2.22e- 3
 ```
 
 If we look at the estimates of the slope coefficients, are you surprised to see that `Bedrooms` has a negative slope estimate?
@@ -1677,14 +1730,16 @@ Remember, the coefficients are the change in the expected price for a 1 unit cha
 homes %>%
   ggplot(aes(x = Rooms, y = Bedrooms)) + 
   geom_point() +
-  theme_minimal()
+  theme_classic()
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-79-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-81-1} \end{center}
 
 ```r
 homes %>%
-  summarize(cor(Rooms,Bedrooms))
+  summarize(cor(Rooms, Bedrooms))
 ```
 
 ```
@@ -1718,37 +1773,29 @@ source('Data/ggavplot.R')
 ggAVPLOTS(lm.home4)
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-82-1} \end{center}
 
 If we were to remove `Rooms` as it seems to be redundant, containing similar information as `Bedrooms`, we get a bit different estimated slope coefficients.
 
 
 ```r
-lm.home5 <- homes %>% with( lm(Price ~ Living.Area + Bedrooms + Bathrooms ))
-summary(lm.home5)
+lm.home5 <- homes %>% 
+  with(lm(Price ~ Living.Area + Bedrooms + Bathrooms ))
+
+lm.home5 %>% 
+  tidy()
 ```
 
 ```
-## 
-## Call:
-## lm(formula = Price ~ Living.Area + Bedrooms + Bathrooms)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -239040  -40340   -7775   28308  540154 
-## 
-## Coefficients:
-##               Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  21323.089   6843.580   3.116  0.00186 ** 
-## Living.Area    105.204      4.443  23.679  < 2e-16 ***
-## Bedrooms    -13702.463   2636.422  -5.197 2.26e-07 ***
-## Bathrooms    25912.548   3551.434   7.296 4.49e-13 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 67550 on 1724 degrees of freedom
-## Multiple R-squared:  0.5299,	Adjusted R-squared:  0.5291 
-## F-statistic: 647.8 on 3 and 1724 DF,  p-value: < 2.2e-16
+## # A tibble: 4 x 5
+##   term        estimate std.error statistic   p.value
+##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
+## 1 (Intercept)   21323.   6844.        3.12 1.86e-  3
+## 2 Living.Area     105.      4.44     23.7  1.50e-107
+## 3 Bedrooms     -13702.   2636.       -5.20 2.26e-  7
+## 4 Bathrooms     25913.   3551.        7.30 4.49e- 13
 ```
 
 *So should Rooms stay in the model or come out?*
@@ -1771,7 +1818,7 @@ glance(lm.home4)
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.532         0.531 67388.      491. 1.58e-282     4 -21662. 43335. 43368.
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 ```r
@@ -1783,7 +1830,7 @@ glance(lm.home5)
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.530         0.529 67552.      648. 6.15e-282     3 -21666. 43343. 43370.
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 **Fun Fact**: Adding an explanatory variable $X$ to the model will always increase R-squared or keep it the same. 
@@ -1836,7 +1883,9 @@ In a DAG, we have circles or **nodes** that represented variables and arrow or *
 ## Error in get(genname, envir = envir) : object 'testthat_print' not found
 ```
 
-<img src="03-linear-regression_files/figure-html/unnamed-chunk-83-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-85-1} \end{center}
 
 
 

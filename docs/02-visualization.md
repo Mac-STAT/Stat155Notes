@@ -112,9 +112,10 @@ data %>%
 We pass the aesthetic mapping from the data set to the plot with `aes()`. The visual layers are features such as points, lines, and panels. We'll introduce these soon. The `+`'s allow us to add layers to build up a plot (note this is not the pipe!).
 
 
-<div class="reflect">
-<p>What are the function names in the example above? There are only two as it is written right now.</p>
-</div>
+\begin{reflect}
+What are the function names in the example above? There are only two as
+it is written right now.
+\end{reflect}
 
 
 ## One Categorical Variable
@@ -150,9 +151,10 @@ head(Whickham)
 ## 6   Alive    Yes  38   (34.5,51]
 ```
 
-<div class="reflect">
-<p>What do you lose when you convert a quantitative variable to a categorical variable? What do you gain?</p>
-</div>
+\begin{reflect}
+What do you lose when you convert a quantitative variable to a
+categorical variable? What do you gain?
+\end{reflect}
 
 ### Bar Plot
 
@@ -187,11 +189,13 @@ Whickham %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>What do you notice? What do you wonder?</p>
-</div>
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-10-1} \end{center}
+
+\begin{reflect}
+What do you notice? What do you wonder?
+\end{reflect}
 
 ### Pie Chart
 
@@ -199,7 +203,8 @@ Pie charts are only useful if you have 2 to 3 possible categories and you want t
 
 This is the best use for a pie chart:
 
-<img src="Photos/pie.jpg" width=".5\textwidth" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics[width=.5\textwidth]{Photos/pie} \end{center}
 
 We are intentionally not showing you how to make a pie chart because a bar chart is a better choice. 
 
@@ -242,11 +247,13 @@ Whickham %>%
   theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>What additional information do you gain by considering smoking status?</p>
-</div>
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-13-1} \end{center}
+
+\begin{reflect}
+What additional information do you gain by considering smoking status?
+\end{reflect}
 
 ### Stacked Bar Plot
 
@@ -306,11 +313,14 @@ Whickham %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>What information is highlighted when you stack the bars as compared to having them side-by-side?</p>
-</div>
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-15-1} \end{center}
+
+\begin{reflect}
+What information is highlighted when you stack the bars as compared to
+having them side-by-side?
+\end{reflect}
 
 ### Stacked Bar Plot (Relative Frequencies)
 
@@ -332,7 +342,9 @@ Whickham %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 ### Mosaic Plot
 
@@ -353,17 +365,23 @@ Whickham %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>What information is highlighted when you focus on relative frequency in the mosaic plots as compared to other bar plots?</p>
-</div>
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-18-1} \end{center}
+
+\begin{reflect}
+What information is highlighted when you focus on relative frequency in
+the mosaic plots as compared to other bar plots?
+\end{reflect}
 
 With this type of plot, you can see that there are more non-smokers than smokers. Also, you see that there is a higher mortality rate for non-smokers. 
 
-<div class="reflect">
-<p>Does our data suggest that smoking <em>is associated</em> with a lower mortality rate? Does our data suggest that smoking <em>reduces</em> mortality? Note the difference in these two questions - the second implies a cause and effect relationship.</p>
-</div>
+\begin{reflect}
+Does our data suggest that smoking \emph{is associated} with a lower
+mortality rate? Does our data suggest that smoking \emph{reduces}
+mortality? Note the difference in these two questions - the second
+implies a cause and effect relationship.
+\end{reflect}
 
 Let's consider a third variable here, age distribution. We can create the same plot, separately for each age group. 
 
@@ -378,15 +396,19 @@ Whickham %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>What do you gain by creating plots within subgroups?</p>
-</div>
 
-<div class="reflect">
-<p>How is it that our conclusions are exactly the opposite if we consider the relationship between smoking and mortality within age subsets? What might be going on?</p>
-</div>
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-21-1} \end{center}
+
+\begin{reflect}
+What do you gain by creating plots within subgroups?
+\end{reflect}
+
+\begin{reflect}
+How is it that our conclusions are exactly the opposite if we consider
+the relationship between smoking and mortality within age subsets? What
+might be going on?
+\end{reflect}
 
 This is called **Simpson's Paradox,** which is a situation in which you come to two different conclusions if you look at results overall versus within subsets (e.g. age groups).
 
@@ -419,7 +441,9 @@ NHANES %>%
     theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-24-1} \end{center}
 
 Note the warning message above: "Removed __ rows containing non-finite values (stat_bin)." Sometimes there is missing information for a variable for some units in the dataset. We cannot plot these because we don't know their values! This warning message is just a friendly reminder from R to let you know what it is doing.
 
@@ -434,7 +458,9 @@ NHANES %>%
     theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-25-1} \end{center}
 
 Lastly, notice that the y-axis in the previous two histograms has been the counts (or frequency) within each sleep hour interval. We can adjust this to **density**, which is relative frequency adjusted for the width of interval so that the sum of the areas of the bars (height x width) equals 1. 
 
@@ -448,7 +474,9 @@ NHANES %>%
     theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-26-1} \end{center}
 
 The smooth curved line on this plot is called a **density plot**. It is essentially a smoother version of the histogram. Both the area under a density plot and the total area of all the rectangles in a density histogram equal 1.
 
@@ -476,13 +504,16 @@ ceo %>%
     theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-28-1} \end{center}
 
 We note that some of the highest salaries were close to 200 million U.S. dollars (in 2016), but the majority of the salaries in this sample are closer to 50 million U.D. dollars.
 
-<div class="reflect">
-<p>Is this distribution of salaries left-skewed or right-skewed? In what populations do you think salaries might be left-skewed? Right-skewed?</p>
-</div>
+\begin{reflect}
+Is this distribution of salaries left-skewed or right-skewed? In what
+populations do you think salaries might be left-skewed? Right-skewed?
+\end{reflect}
 
 ### Center
 
@@ -495,9 +526,13 @@ There are some choices for numerically summarizing the center of a distribution:
 - **Trimmed means**:  Drop the lowest and highest k% and take the mean of the rest.
     + A good compromise, but not widely used.
     
-<div class="mathbox">
-<p>The Greek capital letter sigma, <span class="math inline">\(\sum\)</span>, is used in mathematics to denote a sum. We let <span class="math inline">\(y_i\)</span> represent the value of the <span class="math inline">\(i\)</span>th person for a variable called <span class="math inline">\(y\)</span>. So <span class="math inline">\(\sum^n_{i=1}y_i\)</span> is the sum of all the <span class="math inline">\(n\)</span> values of a variable <span class="math inline">\(y\)</span>, all the way from the 1st person to the <span class="math inline">\(n\)</span>th person.</p>
-</div>
+\begin{mathbox}
+The Greek capital letter sigma, \(\sum\), is used in mathematics to
+denote a sum. We let \(y_i\) represent the value of the \(i\)th person
+for a variable called \(y\). So \(\sum^n_{i=1}y_i\) is the sum of all
+the \(n\) values of a variable \(y\), all the way from the 1st person to
+the \(n\)th person.
+\end{mathbox}
 
 We can calculate all of these in R.
 
@@ -531,7 +566,7 @@ NHANES %>%
 
 ```
 ## # A tibble: 1 x 3
-##   `mean(SleepHrsNight, na… `median(SleepHrsNight, … `mean(SleepHrsNight, trim =…
+##   `mean(SleepHrsNight, na~ `median(SleepHrsNight, ~ `mean(SleepHrsNight, trim =~
 ##                      <dbl>                    <int>                        <dbl>
 ## 1                     6.93                        7                         6.95
 ```
@@ -585,9 +620,12 @@ An alternative graphical summary is a boxplot, which is a simplification of the 
 - Tails/Whiskers: The lines extend out from the box to most extreme observed values within $1.5 \times (Q3-Q1)$ from $Q1$ (bottom) or $Q3$ (top)
 - Points: If any points are beyond $1.5 \times (Q3-Q1)$ from the box edges, they are considered outliers and are plotted separately
 
-<div class="mathbox">
-<p>A percentile is a measure indicating the value below which a given percentage of observations in a group of observations fall. So the 25th percentile is the value at which 25% of the values are below. The 95th percentile is the point at which 95% of the observations are below.</p>
-</div>
+\begin{mathbox}
+A percentile is a measure indicating the value below which a given
+percentage of observations in a group of observations fall. So the 25th
+percentile is the value at which 25\% of the values are below. The 95th
+percentile is the point at which 95\% of the observations are below.
+\end{mathbox}
 
 Here is a boxplot of the sleep amount from NHANES.
 
@@ -600,7 +638,9 @@ NHANES %>%
     theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-34-1} \end{center}
 
 Compare that to the boxplot of the CEO salaries. 
 
@@ -613,23 +653,30 @@ ceo %>%
     theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-35-1} \end{center}
 
 Note: In these 2 plots above, the x-axis has number labels, but they don't mean anything.
 
 Let's put the boxplots next to the histograms so we can better compare the two types of visualizations. Also, let's add the mean (red dashed), median (blue dotted), and 5% trimmed mean (purple dash-dot) as annotations.
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-36-1} \end{center}
 
 For the hours of sleep, the mean, median, and 5% trimmed mean are all pretty much the same. Note also that the distribution looks pretty symmetric based on the histogram.
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-37-1} \end{center}
 
 For CEO salaries, the mean and 5% trimmed mean are a bit higher than the median. **The mean is always pulled toward the long tail.** 
 
-<div class="reflect">
-<p>What would the boxplot look like if all of the values were exactly the same? Sometimes when making multiple boxplots for each of multiple groups, a group may only have one value or a small number of values that all happen to be identical. What will this look like?</p>
-</div>
+\begin{reflect}
+What would the boxplot look like if all of the values were exactly the
+same? Sometimes when making multiple boxplots for each of multiple
+groups, a group may only have one value or a small number of values that
+all happen to be identical. What will this look like?
+\end{reflect}
 
 ### Spread
 
@@ -668,7 +715,7 @@ NHANES %>%
 
 ```
 ## # A tibble: 1 x 4
-##   `diff(range(SleepHr… `IQR(SleepHrsNight… `sd(SleepHrsNight… `var(SleepHrsNigh…
+##   `diff(range(SleepHr~ `IQR(SleepHrsNight~ `sd(SleepHrsNight~ `var(SleepHrsNigh~
 ##                  <int>               <dbl>              <dbl>              <dbl>
 ## 1                   10                   2               1.35               1.81
 ```
@@ -696,13 +743,19 @@ ceo %>% summarize(diff(range(salary)), IQR(salary), sd(salary), var(salary))
 
 We've looked at different measures of the spread of a distribution. Do some measures of spread encompass a lot of the data? Just a little? Can we be more precise about how much of the data is encompassed by intervals created from different spread measures?
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>What percentage of the data is between the blue dotted lines (length of interval is range)?</p>
-<p>What percentage of the data is between the purple solid lines (length of interval is IQR)?</p>
-<p>What percentage of the data is between the green dashed lines (length of interval is 2*SD)?</p>
-</div>
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-41-1} \end{center}
+
+\begin{reflect}
+What percentage of the data is between the blue dotted lines (length of
+interval is range)?
+
+What percentage of the data is between the purple solid lines (length of
+interval is IQR)?
+
+What percentage of the data is between the green dashed lines (length of
+interval is 2*SD)?
+\end{reflect}
 
 The code below computes the fraction of data points, `x`, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean. 
 
@@ -712,19 +765,28 @@ sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
 ```
-## [1] 0.664
+## [1] 0.6846667
 ```
 
 So with this data set, about 68% of the data values fall within 1 SD of the mean.
 
-<div class="reflect">
-<p>If we had a different data set, do you know that answer to the following questions? <em>You should know the answer to 2 of them at this point…</em></p>
-<ul>
-<li><p>What percentage of the data would be between the minimum and maximum (blue dotted lines above)?</p></li>
-<li><p>What percentage of the data would be between bottom and top of the box (purple solid lines above)?</p></li>
-<li><p>What percentage of the data would be between 1 SD below the mean and 1 SD above the mean (green dashed lines)?</p></li>
-</ul>
-</div>
+\begin{reflect}
+If we had a different data set, do you know that answer to the following
+questions? \emph{You should know the answer to 2 of them at this
+point\ldots{}}
+
+\begin{itemize}
+\item
+  What percentage of the data would be between the minimum and maximum
+  (blue dotted lines above)?
+\item
+  What percentage of the data would be between bottom and top of the box
+  (purple solid lines above)?
+\item
+  What percentage of the data would be between 1 SD below the mean and 1
+  SD above the mean (green dashed lines)?
+\end{itemize}
+\end{reflect}
 
 ### Z-scores
 
@@ -741,10 +803,15 @@ To do this, we often calculate a **z-score**, a standardized data value which we
 
 The z-score tells you how many standard deviations the observation is above or below the mean. 
 
-<div class="reflect">
-<p>Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5. That means that you got an 85 on the exam because your exam is one SD above the mean (<span class="math inline">\(mean + z \times SD = 80 + 1 \times 5\)</span>).</p>
-<p>If you got a z = -2 on an exam with mean = 80 and SD = 5, that means you got a 70 on the exam because your exam is two SD below the mean (<span class="math inline">\(mean + z \times SD = 80 + -2 \times 5\)</span>).</p>
-</div>
+\begin{reflect}
+Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5.
+That means that you got an 85 on the exam because your exam is one SD
+above the mean (\(mean + z \times SD = 80 + 1 \times 5\)).
+
+If you got a z = -2 on an exam with mean = 80 and SD = 5, that means you
+got a 70 on the exam because your exam is two SD below the mean
+(\(mean + z \times SD = 80 + -2 \times 5\)).
+\end{reflect}
 
 In general, it is quite common to have z-scores between -3 and 3, but fairly unusual to have them greater than 3 or less than -3. 
 
@@ -758,17 +825,37 @@ This is not true for every histogram, but it will be true for a particularly spe
 
 However, we do know that z-scores of 5 or larger in magnitude (ignoring negative sign) are very unusual, no matter the shape of the histogram/distribution. For those inclined, see the mathematical theorem below that tells us this. 
 
-<div class="mathbox">
-<p>(Optional) Chebyshev’s inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number <span class="math inline">\(k\)</span> &gt; 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than <span class="math inline">\(k\)</span> is less than or equal to <span class="math inline">\(1/k^2\)</span>,</p>
-<p><span class="math display">\[P\left(|Z| \geq k\right) \leq \frac{1}{k^2}\]</span> where <span class="math inline">\(Z = \frac{|X - \mu|}{\sigma}\)</span> is a z-score, <span class="math inline">\(\mu\)</span> is the mean, and <span class="math inline">\(\sigma\)</span> is the standard deviation.</p>
-<p>If we plug in values for <span class="math inline">\(k\)</span>, we see that the chance of getting a z-score</p>
-<ul>
-<li>at least 3 in magnitude (&gt; 3 or &lt; -3) is less than <span class="math inline">\((1/3^2) = 0.11 = 11\%\)</span>.</li>
-<li>at least 4 in magnitude (&gt; 4 or &lt; -4) is less than <span class="math inline">\((1/4^2) = 0.06 = 6\%\)</span>.</li>
-<li>at least 5 in magnitude (&gt; 5 or &lt; -5) is less than <span class="math inline">\((1/5^2) = 0.04 = 4\%\)</span>.</li>
-</ul>
-<p>This is true for any shaped distribution (skewed, bimodal, etc.). See <a href="https://en.wikipedia.org/wiki/Markov%27s_inequality">proof here</a> based on probability theory.</p>
-</div>
+\begin{mathbox}
+(Optional) Chebyshev's inequality gives bounds for the percentages no
+matter the shape of the distribution. It states that for any real number
+\(k\) \textgreater{} 0, the chance of getting a z-score greater in
+magnitude (ignoring the negative sign) than \(k\) is less than or equal
+to \(1/k^2\),
+
+\[P\left(|Z| \geq k\right) \leq \frac{1}{k^2}\] where
+\(Z = \frac{|X - \mu|}{\sigma}\) is a z-score, \(\mu\) is the mean, and
+\(\sigma\) is the standard deviation.
+
+If we plug in values for \(k\), we see that the chance of getting a
+z-score
+
+\begin{itemize}
+\tightlist
+\item
+  at least 3 in magnitude (\textgreater{} 3 or \textless{} -3) is less
+  than \((1/3^2) = 0.11 = 11\%\).
+\item
+  at least 4 in magnitude (\textgreater{} 4 or \textless{} -4) is less
+  than \((1/4^2) = 0.06 = 6\%\).
+\item
+  at least 5 in magnitude (\textgreater{} 5 or \textless{} -5) is less
+  than \((1/5^2) = 0.04 = 4\%\).
+\end{itemize}
+
+This is true for any shaped distribution (skewed, bimodal, etc.). See
+\href{https://en.wikipedia.org/wiki/Markov\%27s_inequality}{proof here}
+based on probability theory.
+\end{mathbox}
 
 
 In summary, for a quantitative variable,
@@ -790,10 +877,17 @@ Let's look at the distribution of hours of sleep at night within subsets or grou
 
 **Does the recorded binary gender explain the variability in the hours of sleep?**
 
-<div class="reflect">
-<p>What are the <em>ethical implications</em> of collecting gender identity as a binary variable (male/female) if some individuals do not identify with these categories?</p>
-<p>What might be the <em>causal mechanism</em> between gender identity and sleep? Might you be more interested in hormone levels, which might not necessarily correspond to gender identity? How might you change the data collection procedure so that the data can address the underlying research question?</p>
-</div>
+\begin{reflect}
+What are the \emph{ethical implications} of collecting gender identity
+as a binary variable (male/female) if some individuals do not identify
+with these categories?
+
+What might be the \emph{causal mechanism} between gender identity and
+sleep? Might you be more interested in hormone levels, which might not
+necessarily correspond to gender identity? How might you change the data
+collection procedure so that the data can address the underlying
+research question?
+\end{reflect}
 
 Let's make a histogram for each gender category by adding `facet_grid(. ~ Gender)` which separates the data into groups defined by the variable, `Gender`, and creates two plots along the x-axis. 
 
@@ -807,18 +901,23 @@ NHANES %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>Do you notice any differences in sleep hour distributions between males and females?</p>
-<p>What is easy to compare and what is hard to compare between the two histograms?</p>
-</div>
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-48-1} \end{center}
+
+\begin{reflect}
+Do you notice any differences in sleep hour distributions between males
+and females?
+
+What is easy to compare and what is hard to compare between the two
+histograms?
+\end{reflect}
 
 **Does the number of children a woman has explain the variability in the hours of sleep?** 
 
-<div class="reflect">
-<p>Who have we excluded from our analysis by asking this question?</p>
-</div>
+\begin{reflect}
+Who have we excluded from our analysis by asking this question?
+\end{reflect}
 
 
 ```r
@@ -832,14 +931,20 @@ NHANES %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-51-1.png" width="960" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-51-1} \end{center}
 
 The 0 to 12 labels at the top of each of these panels correspond to the number of babies a woman had. 
 
-<div class="reflect">
-<p>Do you notice any differences in sleep hour distributions between these groups?</p>
-<p>Note the x and y axes are the same for all of the groups to facilitate comparison. What is easy to compare and what is hard to compare between the histograms?</p>
-</div>
+\begin{reflect}
+Do you notice any differences in sleep hour distributions between these
+groups?
+
+Note the x and y axes are the same for all of the groups to facilitate
+comparison. What is easy to compare and what is hard to compare between
+the histograms?
+\end{reflect}
 
 **Does the number of days someone has felt depressed explain the variability in the hours of sleep?**
 
@@ -853,13 +958,15 @@ NHANES %>%
     theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-53-1} \end{center}
 
 What's the rightmost "NA" category? Some individuals in this study did not answer questions about days that they might have felt depressed, but they did report their hours of sleep per night.
 
-<div class="reflect">
-<p>What type of biases might be at play here?</p>
-</div>
+\begin{reflect}
+What type of biases might be at play here?
+\end{reflect}
 
 ### Multiple Boxplots
 
@@ -874,7 +981,9 @@ NHANES %>%
     theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-55-1} \end{center}
 
 
 
@@ -886,7 +995,9 @@ NHANES %>%
     theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-56-1} \end{center}
 
 
 
@@ -898,12 +1009,16 @@ NHANES %>%
     theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>What is easy to compare and what is hard to compare between the boxplots?</p>
-<p>Why might you use multiple boxplots instead of multiple histograms?</p>
-</div>
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-57-1} \end{center}
+
+\begin{reflect}
+What is easy to compare and what is hard to compare between the
+boxplots?
+
+Why might you use multiple boxplots instead of multiple histograms?
+\end{reflect}
 
 ### Is this a Real Difference?
 
@@ -954,12 +1069,20 @@ sim %>%
   theme_classic() 
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>The observed difference in mean hours of sleep (red line) is quite far from the distribution of differences that results when we break the association between depression status and sleep hours (through randomized shuffling of group labels). Thus, it is unlikely to get a difference that large if there were no relationhip.</p>
-<p>What do you think this indicates? How might you use this as evidence for or against a “real” population difference?</p>
-</div>
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-60-1} \end{center}
+
+\begin{reflect}
+The observed difference in mean hours of sleep (red line) is quite far
+from the distribution of differences that results when we break the
+association between depression status and sleep hours (through
+randomized shuffling of group labels). Thus, it is unlikely to get a
+difference that large if there were no relationhip.
+
+What do you think this indicates? How might you use this as evidence for
+or against a ``real'' population difference?
+\end{reflect}
 
 
 
@@ -984,7 +1107,9 @@ body %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-62-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-62-1} \end{center}
 
 What do you notice about:
 
@@ -993,9 +1118,11 @@ What do you notice about:
 3. **Strength** of relationship (compactness around the average relationship)
 4. **Unusual** features (outliers, differences in variability in $y$ variable across different values of $x$ variable)
 
-<div class="reflect">
-<p>How might you use this information to determine shirt sizes for your new business venture? Come up with a few ways you could define sizes such as small, medium, large, extra large, etc.</p>
-</div>
+\begin{reflect}
+How might you use this information to determine shirt sizes for your new
+business venture? Come up with a few ways you could define sizes such as
+small, medium, large, extra large, etc.
+\end{reflect}
 
 Suppose instead of *Chest* in inches and *Neck size* in cm, we plotted *Chest* in inches and *Neck size* in inches. 
 
@@ -1012,7 +1139,9 @@ body %>%
   theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-64-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-64-1} \end{center}
 
 You should see that the x-axes changed but the overall shape of the plot stayed the same. Thus, the strength of the relationship was not affected by tranforming neck size from centimeters to inches (by dividing by 2.54). 
 
@@ -1022,17 +1151,22 @@ Since **shifting** (adding or subtracting) and **scaling** (multiplying or divid
 
 Below we plot Neck and Chest sizes after changing them to z-scores with the function `scale()` and we add some color:
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-65-1.png" width="672" style="display: block; margin: auto;" />
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-65-1} \end{center}
 
 The blue points in the upper right (Quadrant 1) and lower left (Quadrant 3) quadrants are either both positive or both negative in their z-score values. This means that those individuals are above average in both Neck Size and Chest Size (upper right), or they are below average in both Neck Size and Chest Size (lower left). If we multiply the z-scores of the Neck and Chest values for the blue points, we will get a positive value. 
 
 The red points in the upper left (Quadrant 2) and lower right (Quadrant 4) quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size (lower right) or they are below average in Neck Size and above average in Chest Size (upper left). If we multiply the z-scores of the Neck and Chest values for the red points, we will get a negative value. 
 
-<div class="reflect">
-<p>If we were to have a weaker positive relationship, how would this plot change?</p>
-<p>If we were to have a stronger positive relationship, how would this plot change?</p>
-<p>If we were to have a negative relationship, how would this plot change?</p>
-</div>
+\begin{reflect}
+If we were to have a weaker positive relationship, how would this plot
+change?
+
+If we were to have a stronger positive relationship, how would this plot
+change?
+
+If we were to have a negative relationship, how would this plot change?
+\end{reflect}
 
 We want one number to represent **strength** and **direction** of a linear relationship.
 
@@ -1103,12 +1237,48 @@ The value is much larger and more positive when all data points are used. The po
 
 Let's look at a few scatterplot examples and the corresponding correlation.
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-69-1.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-2.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-3.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-4.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-5.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-6.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-7.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-8.png" width="960" style="display: block; margin: auto;" />
 
-<div class="mathbox">
-<p>(Optional) Here are other equivalent expressions for <span class="math inline">\(r\)</span> for the mathematically intrigued:</p>
-<p><span class="math display">\[ r = \frac{\sum z_x z_y}{n-1}  \]</span> <span class="math display">\[ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\times\frac{(y_i-\bar{y})}{s_y}}}{n-1}\]</span> <span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}\]</span> <span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}\]</span> <span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum{(x_i-\bar{x})^2}}\sqrt{\sum{(y_i-\bar{y})^2}}}\]</span> <span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}\]</span></p>
-</div>
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-69-1} \end{center}
+
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-69-2} \end{center}
+
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-69-3} \end{center}
+
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-69-4} \end{center}
+
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-69-5} \end{center}
+
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-69-6} \end{center}
+
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-69-7} \end{center}
+
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-69-8} \end{center}
+
+\begin{mathbox}
+(Optional) Here are other equivalent expressions for \(r\) for the
+mathematically intrigued:
+
+\[ r = \frac{\sum z_x z_y}{n-1}  \]
+\[ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\times\frac{(y_i-\bar{y})}{s_y}}}{n-1}\]
+\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}\]
+\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}\]
+\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum{(x_i-\bar{x})^2}}\sqrt{\sum{(y_i-\bar{y})^2}}}\]
+\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}\]
+\end{mathbox}
 
 
 ### Is correlation always the right way to judge strength?
@@ -1149,7 +1319,9 @@ CPS85 %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-71-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-71-1} \end{center}
 
 We can see that years of education and hourly wage are positively correlated. What about the impact of other variables?
 
@@ -1166,7 +1338,9 @@ CPS85 %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-72-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-72-1} \end{center}
 
 Adding color for a quantitative variable, age, does not reveal any obvious patterns; that is, we don't see obvious clustering by color. Perhaps this is because there are too many colors (remember Visualization Principle #6: Use Color Appropriately). Are any patterns revealed if we use 4 age categories instead?
 
@@ -1181,7 +1355,9 @@ CPS85 %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-73-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-73-1} \end{center}
 
 With 4 age categories, no age patterns are evident, but this does help us see that the least educated people in this data set are mostly in the youngest and oldest age categories.
 
@@ -1198,7 +1374,9 @@ CPS85 %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-74-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-74-1} \end{center}
 
 Often encoding information with color is preferable to encoding it with shapes because differences in shapes are not as easily discernible. Remember that statistical visualizations are meant to help you better understand your data. If you are having trouble easily picking out patterns when using a certain visual feature (e.g. shape, color), try another feature to see if the clarity of the plot increases for you.
 
@@ -1215,7 +1393,9 @@ CPS85 %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-75-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-75-1} \end{center}
 
 ### Enriching with panels
 
@@ -1234,7 +1414,9 @@ CPS85 %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-76-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-76-1} \end{center}
 
 With a small change in notation (`sector ~ .` versus `. ~ sector`) and flipt the coordinates, we can create a column of plots.
 
@@ -1250,7 +1432,9 @@ CPS85 %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-77-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-77-1} \end{center}
 
 We can also create panels according to two categorical variables. How do the relationships additionally differ by union status?
 
@@ -1266,7 +1450,9 @@ CPS85 %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-78-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-78-1} \end{center}
 
 
 ### Enriching with smoothing
@@ -1285,7 +1471,9 @@ CPS85 %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-79-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-79-1} \end{center}
 
 ### Putting everything together
 
@@ -1302,7 +1490,9 @@ CPS85 %>%
     theme_classic()
 ```
 
-<img src="02-visualization_files/figure-html/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{02-visualization_files/figure-latex/unnamed-chunk-80-1} \end{center}
 
 Creating effective multivariate visualizations takes a lot of trial and error. Some visual elements will better highlight patterns than others, and often times, you'll have to try several iterations before you feel that you are learning something insightful from the graphic. Be tenacious, and keep in mind the good visualization principles outlined at the beginning of this chapter!
 

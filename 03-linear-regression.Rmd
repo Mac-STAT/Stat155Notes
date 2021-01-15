@@ -71,9 +71,8 @@ body <- read.delim("Data/bodyfat.txt")
 body %>%
     ggplot(aes(x = Neck, y = Chest)) +
     geom_point(color = 'steelblue') + 
-    xlab('Neck size (cm)') + 
-    ylab('Chest size (cm)') +
-    theme_minimal()
+    labs(x = 'Neck size (cm)', y = 'Chest size (cm)') +
+    theme_classic()
 ```
 
 ```{block type='reflect'}
@@ -88,9 +87,8 @@ body %>%
     geom_point(color = 'steelblue') + 
     geom_hline(yintercept = mean(body$Chest)) +
     geom_vline(xintercept = mean(body$Neck)) +
-    xlab('Neck size (cm)') + 
-    ylab('Chest size (cm)') +
-    theme_minimal()
+    labs(x = 'Neck size (cm)', y = 'Chest size (cm)') +
+    theme_classic()
 ```
 
 We can see that a shirt made to these specifications would fit the "average person." However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger than average. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller than average. 
@@ -116,9 +114,8 @@ body %>%
     geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
     geom_vline(aes(xintercept = upper), data = bfmeans) +
     geom_vline(aes(xintercept = lower), data = bfmeans) +
-    xlab('Neck size (cm)') + 
-    ylab('Chest size (cm)') +
-    theme_minimal()
+    labs(x = 'Neck size (cm)', y = 'Chest size (cm)') +
+    theme_classic()
 ```
 
 ```{block, type="reflect"}
@@ -146,9 +143,8 @@ body %>%
     geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
     geom_vline(aes(xintercept = upper), data = bfmeans) +
     geom_vline(aes(xintercept = lower), data = bfmeans) +
-    xlab('Neck size (cm)') + 
-    ylab('Chest size (cm)') +
-    theme_minimal()
+    labs(x = 'Neck size (cm)', y = 'Chest size (cm)') +
+    theme_classic()
 ```
 
 ```{block, type="reflect"}
@@ -169,9 +165,8 @@ body %>%
     geom_segment(aes(x = lower, xend = upper, y = Means, yend = Means),bfmeans)+
     geom_vline(aes(xintercept = upper), data = bfmeans) +
     geom_vline(aes(xintercept = lower), data = bfmeans) +
-    xlab('Neck size (cm)') + 
-    ylab('Chest size (cm)') +
-    theme_minimal()
+    labs(x = 'Neck size (cm)', y = 'Chest size (cm)') +
+    theme_classic()
 ```
 
 ```{block, type='reflect'}
@@ -292,8 +287,15 @@ Let's do that calculation "by hand" first in R.
 
 ```{r echo=TRUE}
 body %>%
-    summarize(sy = sd(Chest), sx = sd(Neck), r = cor(Chest,Neck), ybar = mean(Chest), xbar = mean(Neck)) %>%
-    mutate(beta1 = r*sy/sx, beta0 = ybar - beta1*xbar) %>%
+    summarize(
+      sy = sd(Chest), 
+      sx = sd(Neck), 
+      r = cor(Chest,Neck), 
+      ybar = mean(Chest), 
+      xbar = mean(Neck)) %>%
+    mutate(
+      beta1 = r*sy/sx, 
+      beta0 = ybar - beta1*xbar) %>%
     select(beta0, beta1)
 ```
 
@@ -323,7 +325,7 @@ In R: the standard deviation of the residuals, $s_e$, is referred to as the "res
 ```{r echo=TRUE}
 body %>%
     with(lm(Chest ~ Neck)) %>% 
-    summary()
+    tidy()
 ```
 
 This fit simple linear regression line is
@@ -407,8 +409,11 @@ What questions do you have about the sampling procedure?
 Let's look at the summary output of the `lm()` function in R again. We'll highlight some of the most important pieces of this output and discuss how you interpret them.
 
 ```{r echo=TRUE}
-tshirt_mod <- lm(Chest ~ Neck, data = body)
-summary(tshirt_mod)
+tshirt_mod <- body %>%
+  with(lm(Chest ~ Neck))
+
+tshirt_mod %>%
+  tidy()
 ```
 
 ### Intercept ($\hat{\beta}_0$)
@@ -419,9 +424,14 @@ summary(tshirt_mod)
 - **Discussion:** If the intercept doesn't make sense in the context, we might refit the model with the $x$ variable once it is **centered**. That is, the mean of $x$ for all individuals in the sample is computed, and this mean is subtracted from each person's $x$ value. In this case, the intercept is interpreted as the average value of $y$ when $x$ is at its (sample) mean value. See the example below -- we get an intercept of 100.66, which is the average Chest size for customers with average Neck size. We could also choose to center Neck size at a value other than the mean. For example, we could center it at 30 cm by subtracting 30 from the Neck size of all cases.
 
 ```{r echo=TRUE}
-body <- body %>% mutate(CNeck = Neck - mean(Neck))
-tshirt_mod2 <- lm(Chest ~ CNeck, data = body)
-summary(tshirt_mod2)
+body <- body %>% 
+  mutate(CNeck = Neck - mean(Neck))
+
+tshirt_mod2 <- body %>%
+  with(lm(Chest ~ CNeck))
+       
+tshirt_mod2 %>%
+  tidy()
 ```
 
 
@@ -484,9 +494,8 @@ sat %>%
     ggplot(aes(x = high_GPA, y = univ_GPA)) +
     geom_point(color = 'steelblue') +
     geom_smooth(method = 'lm', se = FALSE) +
-    xlab('High School GPA') +
-    ylab('College GPA') + 
-    theme_minimal()
+    labs(x = 'High School GPA', y = 'College GPA') + 
+    theme_classic()
 ```
 
 First things first. Let's describe the scatterplot. 
@@ -502,7 +511,7 @@ The code below computes the correlation coefficients separately for students wit
 sat %>%
     mutate(HighHSGPA = high_GPA > 3) %>%
     group_by(HighHSGPA) %>%
-    summarize(Cor = cor(high_GPA,univ_GPA))
+    summarize(Cor = cor(high_GPA, univ_GPA))
 ```
 
 Let's build a model to predict college GPA based on high school GPA based on this sample data. Since we noted that there was a linear relationship, let's fit a linear model by finding the least squares regression line.
@@ -510,7 +519,7 @@ Let's build a model to predict college GPA based on high school GPA based on thi
 ```{r echo=TRUE}
 sat %>%
   with(lm(univ_GPA ~ high_GPA)) %>%
-  summary()
+  tidy()
 ```
 
 
@@ -549,6 +558,7 @@ $$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 4.5 = 4.13 $$
 
 ```{r echo=TRUE}
 1.09 + 0.675*4.5 #rounded before prediction
+
 sat %>%
   with(lm(univ_GPA ~ high_GPA)) %>%
   predict(newdata = data.frame(high_GPA = 4.5)) #rounded after prediction 
@@ -581,15 +591,16 @@ sat %>%
   augment() %>%
   ggplot(aes(x = .resid)) +
   geom_histogram(bins = 20) +
-  labs(x='Residuals', title= "Distribution of residuals in the GPA model") +
-  theme_minimal()
+  labs(x = 'Residuals', title =  "Distribution of residuals in the GPA model") +
+  theme_classic()
 ```
 
 Below we calculate $SSE$ (the sum of squared errors/residuals), and the standard deviation of the residuals ($s_e$).
 
 ```{r echo=TRUE}
 lm.gpa <- sat %>%
-  lm(univ_GPA ~ high_GPA, data = .)
+  with(lm(univ_GPA ~ high_GPA))
+
 SSE <- sum(residuals(lm.gpa)^2)
 n <- length(residuals(lm.gpa)) # Sample size
 s <- sqrt(SSE/(n-2)) #sd of residuals
@@ -600,8 +611,10 @@ s
 Using this model (that is, using your high school GPA), we can predict your college GPA within about $0.56$ GPA points. Is this useful? Is predicting within a margin of $0.56$ GPA points good enough? Let's compare this model margin of error with the margin of error predicting with just the mean:
 
 ```{r echo=TRUE}
-sd(sat$univ_GPA)
-2*sd(sat$univ_GPA)
+sat %>%
+  summarize(
+    sd(univ_GPA), 
+    2*sd(univ_GPA))
 ```
 
 *Without* knowing your high school GPA, we could have just guessed your college GPA as the overall mean college GPA in the sample, and this guess would probably be within $\pm 0.89$ of your actual college GPA. This is a higher margin of error than the approximate $0.56$ if we did use your high school GPA (in the simple linear regression model). We are able to predict your college GPA with a smaller margin of error than if we just guessed your college GPA with the mean. Our model has *explained* some (but not all) of the variation in college GPA.
@@ -613,7 +626,9 @@ $$ SSTO = \sum{(y_i -\bar{y})^2} $$
 $SSTO$ is the numerator of the standard deviation of $Y$ (without knowing anything about $X$).
 
 ```{r echo=TRUE}
-(SSTO = sum((sat$univ_GPA - mean(sat$univ_GPA))^2))
+SSTO <- sat %>%
+  summarize(SSTO = sum((univ_GPA - mean(univ_GPA))^2)) %>%
+  pull()
 ```
 
 We define $SSTO$ here because it will help to compare $SSTO$ to $SSE$ (sum of squared residuals from the model) to obtain a measure of how well our models are **fitting** the data - how well they are predicting the outcome.
@@ -634,7 +649,8 @@ gpavar %>%
   ggplot(aes(x = type, y = resids)) +
   geom_boxplot() +
   ylab('Residuals') +
-  xlab('Type of Residuals')
+  xlab('Type of Residuals') +
+  theme_classic()
 ```
 
 
@@ -691,7 +707,7 @@ augment(lm.gpa, data = sat) %>%
     geom_smooth(se = FALSE) +
     geom_hline(yintercept = 0) +
     labs(x = "Fitted values (predicted values)", y = "Residuals") +
-    theme_minimal()
+    theme_classic()
 ```
 
 What do you think?
@@ -715,26 +731,28 @@ See the example below. See how the relationship changes with the addition of one
 ```{r echo=FALSE}
 x = runif(50,0,10)
 y = rnorm(50)
-dat = data.frame(x,y)
-dat %>%
-  ggplot(aes(x,y)) + 
-  geom_point() + 
-  geom_smooth(method='lm', se = FALSE) + 
-  xlim(0,20) + 
-  ylim(-5,10) + 
-  theme_minimal() 
-
 x = c(x,20)
 y = c(y,10)
+
 dat = data.frame(x,y)
+```
+
+```{r}
+dat %>%
+  ggplot(aes(x = x,y = y)) + 
+  geom_point() + 
+  geom_smooth(method='lm', se = FALSE) + 
+  theme_classic() 
+
 
 dat %>%
+  filter(x < 15 & y < 5) %>% #filter out outliers
   ggplot(aes(x,y)) + 
   geom_point() + 
   geom_smooth(method='lm', se = FALSE) + 
-  xlim(0,20) + 
-  ylim(-5,10) + 
-  theme_minimal() 
+  theme_classic() 
+
+#compare conclusions
 ```
 
 Check out this interactive visualization to get a feel for outlier points and their potential leverage: http://omaymas.github.io/InfluenceAnalysis/
@@ -813,7 +831,8 @@ require(gapminder)
 gapminder %>% 
   filter(year > 2005) %>%
   ggplot(aes(y = lifeExp, x =  gdpPercap)) + 
-  geom_point()
+  geom_point() + 
+  theme_classic()
 ```
 
 Based on this plot, we see that the spread is roughly equal around the curved relationship (-> focus on transforming $X$) and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with $X$. 
@@ -827,7 +846,8 @@ gapminder %>%
   filter(year > 2005) %>%
   mutate(TgdpPercap = sqrt(gdpPercap)) %>% #power = 1/2
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
-  geom_point()
+  geom_point() + 
+  theme_classic()
 ```
 
 Not quite straight. Let's keep going.
@@ -837,7 +857,8 @@ gapminder %>%
   filter(year > 2005) %>%
   mutate(TgdpPercap = gdpPercap^(1/3)) %>% #power = 1/3
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
-  geom_point()
+  geom_point() + 
+  theme_classic()
 ```
 
 Not quite straight. Let's keep going.
@@ -847,17 +868,20 @@ gapminder %>%
   filter(year > 2005) %>%
   mutate(TgdpPercap = log(gdpPercap)) %>% #power = 0
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
-  geom_point()
+  geom_point() + 
+  theme_classic()
 ```
 
 Getting better. Let's try to keep going.
 
 ```{r}
+#power = -1 (added a negative sign to maintain positive relationship)
 gapminder %>% 
   filter(year > 2005) %>%
-  mutate(TgdpPercap = -1/gdpPercap) %>%  #power = -1 (added a negative sign to maintain positive relationship)
+  mutate(TgdpPercap = -1/gdpPercap) %>% 
   ggplot(aes(y = lifeExp, x =  TgdpPercap)) + 
-  geom_point()
+  geom_point() + 
+  theme_classic()
 ```
 
 TOO FAR! Back up. Let's stick with log(gdpPercap).
@@ -870,7 +894,8 @@ gapminder %>%
   mutate(TgdpPercap = log(gdpPercap)) %>% 
   mutate(TlifeExp = lifeExp^2) %>% 
   ggplot(aes(y = TlifeExp, x =  TgdpPercap)) + 
-  geom_point()
+  geom_point() +
+  theme_classic()
 ```
 
 That doesn't change it much. Maybe this is as good as we are going to get. 
@@ -885,7 +910,8 @@ lm.gap <- gapminder %>%
   mutate(TgdpPercap = log(gdpPercap)) %>% 
   with(lm(lifeExp ~ TgdpPercap))
 
-summary(lm.gap)
+lm.gap %>% 
+  tidy()
 ```
 
 **Interpretations**
@@ -925,11 +951,15 @@ We could also model curved relationships by including higher power terms in a [m
 x <- rnorm(100, 5, 1)
 y <- 200 + 20*x - 5*x^2 + rnorm(100,sd = 10)
 dat <- data.frame(x,y)
+
 dat %>%
     ggplot(aes(x = x, y = y)) +
     geom_point() + 
-    geom_smooth(se = FALSE)
-lm(y ~ poly(x, degree = 2, raw = TRUE), data = dat)
+    geom_smooth(se = FALSE) +
+    theme_classic()
+
+dat %>%
+  with(lm(y ~ poly(x, degree = 2, raw = TRUE)))
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
@@ -997,8 +1027,11 @@ The difference between the expected price is $\beta_1$, the value of the "slope"
 To get an estimate of $\beta_1$, we need to fit our model to the data. In fact, R creates this indicator variable for you when you include a categorical variable as an $X$ variable the `lm()` function.
 
 ```{r echo=TRUE}
-lm.home <- lm(Price ~ AnyFireplace, data = homes)
-summary(lm.home)
+lm.home <- homes %>%
+  with(lm(Price ~ AnyFireplace))
+
+lm.home %>%
+  tidy()
 ```
 
 Our best fitting "line" is
@@ -1032,7 +1065,7 @@ Let's consider the size of the house. Is price related to the area of living spa
 homes %>%
     ggplot(aes(x = Living.Area, y = Price)) + 
     geom_point(color = 'steelblue') +
-    theme_minimal()
+    theme_classic()
 ```
 
 Is the presence of a fireplace related to area of living space?
@@ -1041,7 +1074,7 @@ Is the presence of a fireplace related to area of living space?
 homes %>%
     ggplot(aes(x = AnyFireplace, y = Living.Area)) + 
     geom_boxplot() +
-    theme_minimal()
+    theme_classic()
 ```
 
 We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, `Living.Area` could confound the relationship between `AnyFireplace` and `Price` because it is related to both variables. That is, it is possible that Living Area is a cause of having a fireplace (if you have a bigger house, you have more space to put in a fireplace) and Living Area also clearly is a cause of Price (the bigger the house, the more it costs).
@@ -1083,7 +1116,7 @@ Now let's compare homes that are the same size.
 
 We see this by taking the difference between the two equations, fixing the Living Area:
 
-$$E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area = A}] - E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area = A}]$$
+$$E[\hbox{Price}| \hbox{AnyFireplace = T, Living.Area = A}] - E[\hbox{Price}| \hbox{AnyFireplace = F, Living.Area = A}]$$
 
 
 \begin{align*}
@@ -1098,8 +1131,11 @@ Another way to describe $\beta_1$ is that it is the difference between the inter
 To get the estimates of $\beta_0,\beta_1,$ and $\beta_2$, we fit the model in R,
 
 ```{r echo=TRUE}
-lm.home2 <- lm(Price ~ AnyFireplace + Living.Area, data = homes)
-summary(lm.home2)
+lm.home2 <- homes %>%
+  with(lm(Price ~ AnyFireplace + Living.Area))
+
+lm.home2 %>% 
+  tidy()
 ```
 
 Our best fitting "line" is
@@ -1113,7 +1149,7 @@ $$\hbox{Predicted Price} = 13599.16 + 5567.37\,\hbox{AnyFireplaceTRUE} + 111.21\
 
 Note that the "slope" for the indicator variable is very different with the addition of Living.Area. This suggests that `Living.Area` was confounding the relationship between `Price` and `AnyFireplace`.
 
-Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines).
+Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines). We can create the lines manually,
 
 ```{r echo=TRUE}
 homes %>%
@@ -1121,7 +1157,18 @@ homes %>%
     geom_point() +
     geom_abline(intercept = 13599.164 , slope = 111.218, color = scales::hue_pal()(2)[1]) +
     geom_abline(intercept = 13599.164 + 5567.377, slope = 111.218 , color = scales::hue_pal()(2)[2]) +
-    theme_minimal()
+    theme_classic()
+```
+
+or we could use our model to plot the lines for us.
+
+```{r echo=TRUE}
+lm.home2 %>%
+    augment() %>%
+    ggplot(aes(x = Living.Area, color = AnyFireplace)) + 
+    geom_point(aes(y = Price)) +
+    geom_line(aes(y = .fitted)) +
+    theme_classic()
 ```
 
 Let's try and fit two separate lines to these two groups of homes, home with any fireplaces and home with no fireplaces. Do these lines have the same intercepts? Same slopes?
@@ -1131,7 +1178,7 @@ homes %>%
     ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
     geom_point() +
     geom_smooth(method = 'lm', se = FALSE) +
-    theme_minimal()
+    theme_classic()
 ```
 
 In this case, it looks as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, the increase in your average price for every 1 square foot is greater for a home with a fireplace than that for homes without fireplaces (slopes are different).
@@ -1159,12 +1206,15 @@ $$\beta_2 = a + bX_1$$
 This is called **effect modification** (when one variable can modify the effect of another variable on the outcome).
 
 - A model with effect modification looks like this:
-$$E[Y | X_1, X_2] = \beta_0 + \beta_1X_{1} + \beta_2X_{2}= \beta_0 + \beta_1X_{1} + (a+bX_1)X_{2}= \beta_0 + \beta_1X_{1} +aX_2+bX_1X_{2}$$
+$$E[Y | X_1, X_2] = \beta_0 + \beta_1X_{1} + \beta_2X_{2} $$
+$$= \beta_0 + \beta_1X_{1} + (a+bX_1)X_{2}$$
+$$ = \beta_0 + \beta_1X_{1} +aX_2+bX_1X_{2}$$
+
 The model above has an **interaction term,** which is the product of two variables. Here we have $X_1*X_2$.
 
 Let's build a model with effect modification for our housing data. Let's include an interaction term between AnyFireplace and Living.Area to allow for different slopes.
 
-$$E[\hbox{Price}| \hbox{AnyFireplace, Living.Area}] = \beta_0+ \beta_1\,\hbox{AnyFireplaceTRUE} + \beta_2\,\hbox{Living.Area}+ \beta_3\,\hbox{AnyFireplaceTRUE}*\hbox{Living.Area}$$
+$$E[\hbox{Price}| \hbox{AnyFireplace, Living.Area}] = \beta_0+ \beta_1\,\hbox{AnyFireplaceTRUE}\\ + \beta_2\,\hbox{Living.Area} + \beta_3\,\hbox{AnyFireplaceTRUE}*\hbox{Living.Area}$$
 
 **What does this mean?** 
 
@@ -1174,7 +1224,8 @@ Let's think about two types of homes: a home with one or more fireplaces and a h
 
 
 \begin{align*}
-E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &= \beta_0 + \beta_1*\,1 + \beta_2\,\hbox{Living.Area}+ \beta_3*\,1*\hbox{Living.Area}\\
+E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &= \beta_0 + \beta_1*\,1 + \beta_2\,\hbox{Living.Area}\\
+& + \beta_3*\,1*\hbox{Living.Area}\\
 &= (\beta_0 + \beta_1) + (\beta_2+\beta_3)\,\hbox{Living.Area}\\
 \end{align*}
 
@@ -1185,7 +1236,8 @@ E[\hbox{Price}| \hbox{AnyFireplace = TRUE, Living.Area}] &= \beta_0 + \beta_1*\,
 
 
 \begin{align*}
-E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &= \beta_0 + \beta_1*\,0 + \beta_2\,\hbox{Living.Area}+ \beta_3*\,0*\hbox{Living.Area}\\
+E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &= \beta_0 + \beta_1*\,0 + \beta_2\,\hbox{Living.Area}\\
+&+ \beta_3*\,0*\hbox{Living.Area}\\
 &= \beta_0  + \beta_2\,\hbox{Living.Area}\\
 \end{align*}
 
@@ -1202,8 +1254,11 @@ What this means in the context of this model of price as a function of living ar
 If we fit this model with interaction terms, we get the following estimates:
 
 ```{r echo=TRUE}
-lm.home3 <- lm(Price ~ AnyFireplace*Living.Area, data = homes)
-summary(lm.home3)
+lm.home3 <- homes %>%
+  with(lm(Price ~ AnyFireplace*Living.Area))
+
+lm.home3 %>%
+  tidy()
 ```
 
 - Homes with fireplace (indicator = 1):    
@@ -1224,7 +1279,8 @@ summary(lm.home3)
 
 
 \begin{align*}
-\hbox{Predicted Price} &= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 0 \\
+\hbox{Predicted Price} &= 40901.29 + -37610.41 \times 0 + 92.36391 \times \hbox{Living.Area}\\
+&+ 26.85 \times \hbox{Living.Area} \times 0 \\
 &= \$40,901.29 + \$92.36 \times \hbox{Living.Area}
 \end{align*}
 
@@ -1238,7 +1294,8 @@ summary(lm.home3)
 We could ask: is there *really* a difference in the slopes for Living Area and Price between homes with and without a fireplace?
 
 ```{r echo=TRUE}
-summary(lm.home3)
+lm.home3 %>% 
+  tidy()
 ```
 
 If we ask ourselves this question, we are assuming a few things:
@@ -1259,14 +1316,18 @@ If we ask ourselves this question, we are assuming a few things:
 ```{r echo=TRUE}
 set.seed(333) ## Setting the seed ensures that our results are reproducible
 ## Repeat the sampling and regression modeling 1000 times
-boot <- do(1000)*lm(Price ~ Living.Area*AnyFireplace, data = resample(homes))
+boot <- do(1000)*(
+    homes %>%
+    sample_frac(replace = TRUE) %>%
+    with(lm(Price ~ Living.Area*AnyFireplace))
+)
 
 ## Plot the distribution of the 1000 slope differences
 boot %>%
     ggplot(aes(x = Living.Area.AnyFireplaceTRUE)) +
     geom_histogram() +
-    xlab('Bootstrap Difference in Slopes') +
-    theme_minimal()
+    labs(x = 'Bootstrap Difference in Slopes') +
+    theme_classic()
 ```
 
 We see that if we were to have a slightly different sample (drawn from our "fake" population), then the difference in the slope could be as long as 0 and as large as 50.
@@ -1280,17 +1341,22 @@ Let's first look at the variability of the difference in slopes across the boots
 
 ```{r echo=TRUE}
 boot %>%
-  summarize(sd(Living.Area.AnyFireplaceTRUE)) #this is going to be of similar magnitude (not exactly the same) to the Std. Error for the Living.Area.AnyFireplaceTRUE coefficient in output
-summary(lm.home3)
+  summarize(sd(Living.Area.AnyFireplaceTRUE)) 
+#this is going to be of similar magnitude (not exactly the same) to the Std. Error for the Living.Area.AnyFireplaceTRUE coefficient in output
+
+lm.home3 %>%
+  tidy()
 ```
 
-This standard deviation is somewhat close to the $6.459$ for Living.Area.AnyFireplaceTRUE coefficient in the Std. Error column of the `summary(lm.home3)` output above.
+This standard deviation is somewhat close to the $6.459$ for Living.Area.AnyFireplaceTRUE coefficient in the Std. Error column of the `tidy(lm.home3)` output above.
 
 To get an interval of plausible values for the difference in the slopes, we look at the histogram and take the middle 95%. The lower end will be the 2.5th percentile and the upper end will be the 97.5th percentile.
 
 ```{r echo=TRUE}
 boot %>%
-  summarize(lower = quantile(Living.Area.AnyFireplaceTRUE, 0.025), upper = quantile(Living.Area.AnyFireplaceTRUE, 0.975))
+  summarize(
+    lower = quantile(Living.Area.AnyFireplaceTRUE, 0.025), 
+    upper = quantile(Living.Area.AnyFireplaceTRUE, 0.975))
 ```
 
 ```{block, type="reflect"}
@@ -1302,8 +1368,11 @@ Based on this evidence, do you think it is possible that the slopes are the same
 Beyond fireplaces and living area, there are other characteristics that may impact the price of a home. Typically, homes for sale are advertised with the square footage, the number of bedrooms, and the number of bathrooms in addition to the total number of rooms in the house. In general, we'd expect a positive relationship between each of these and the home price. Let's fit a model with those four explanatory variables.
 
 ```{r}
-lm.home4 <- homes %>% with( lm(Price ~ Living.Area + Bedrooms + Bathrooms + Rooms))
-summary(lm.home4)
+lm.home4 <- homes %>% 
+  with( lm(Price ~ Living.Area + Bedrooms + Bathrooms + Rooms))
+
+lm.home4 %>% 
+  tidy()
 ```
 
 If we look at the estimates of the slope coefficients, are you surprised to see that `Bedrooms` has a negative slope estimate?
@@ -1315,10 +1384,10 @@ Remember, the coefficients are the change in the expected price for a 1 unit cha
 homes %>%
   ggplot(aes(x = Rooms, y = Bedrooms)) + 
   geom_point() +
-  theme_minimal()
+  theme_classic()
 
 homes %>%
-  summarize(cor(Rooms,Bedrooms))
+  summarize(cor(Rooms, Bedrooms))
 ```
 
 These two characteristics are positively correlated because the count of `Rooms` is defined as the number of `Bedrooms` plus the number of other rooms in the house. So they contain some similar information about a home. Knowing how many rooms a house has, you can could have a pretty good guess at how many bedrooms it has. Maybe one of these variables is a bit redundant.
@@ -1349,8 +1418,11 @@ ggAVPLOTS(lm.home4)
 If we were to remove `Rooms` as it seems to be redundant, containing similar information as `Bedrooms`, we get a bit different estimated slope coefficients.
 
 ```{r}
-lm.home5 <- homes %>% with( lm(Price ~ Living.Area + Bedrooms + Bathrooms ))
-summary(lm.home5)
+lm.home5 <- homes %>% 
+  with(lm(Price ~ Living.Area + Bedrooms + Bathrooms ))
+
+lm.home5 %>% 
+  tidy()
 ```
 
 *So should Rooms stay in the model or come out?*

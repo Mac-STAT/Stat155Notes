@@ -367,11 +367,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 The test statistic is equal to the slope estimate divided by the standard error.</p>
 <p><span class="math display">\[t_{obs} = \text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}} = \frac{\text{estimate} - 0}{\text{std. error of estimate}} \]</span></p>
 <p><strong>Linear Regression Example:</strong> Below we fit a linear regression model of house price on living area:</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="model-selection.html#cb341-1"></a>homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</span>
-<span id="cb341-2"><a href="model-selection.html#cb341-2"></a>mod_homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
-<span id="cb341-3"><a href="model-selection.html#cb341-3"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area))</span>
-<span id="cb341-4"><a href="model-selection.html#cb341-4"></a></span>
-<span id="cb341-5"><a href="model-selection.html#cb341-5"></a>mod_homes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="model-selection.html#cb342-1"></a>homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</span>
+<span id="cb342-2"><a href="model-selection.html#cb342-2"></a>mod_homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
+<span id="cb342-3"><a href="model-selection.html#cb342-3"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area))</span>
+<span id="cb342-4"><a href="model-selection.html#cb342-4"></a></span>
+<span id="cb342-5"><a href="model-selection.html#cb342-5"></a>mod_homes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -389,17 +389,17 @@ We see that the estimated slope for Living Area is 42 standard errors away from 
 Note that when you see <code>e</code> in R output, this means “10 to the power”. So <code>9.486240e-268</code> means <span class="math inline">\(9.49 \times 10^{-268}\)</span>, which is practically 0. This p-value is far less than our threshold <span class="math inline">\(\alpha = 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span> and say that we have strong evidence to support a relationship between price and living area.</p></li>
 </ul>
 <p>Is this consistent with conclusions from a confidence interval?</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="model-selection.html#cb343-1"></a><span class="kw">confint</span>(mod_homes)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="model-selection.html#cb344-1"></a><span class="kw">confint</span>(mod_homes)</span></code></pre></div>
 <pre><code>##                 2.5 %     97.5 %
 ## (Intercept) 3647.6958 23231.0922
 ## Living.Area  107.8616   118.3835</code></pre>
 <p>The interval does not include 0 so we conclude that 0 is not supported as a plausible value for the average increase in price for every 1 square foot increase in living area size of a house, based on the observed sample data.</p>
 <p><strong>Logistic Regression Example:</strong> Below we fit a logistic regression model of whether a movie made a profit (response) on whether it is a history film:</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="model-selection.html#cb345-1"></a>movies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</span>
-<span id="cb345-2"><a href="model-selection.html#cb345-2"></a>mod_movies &lt;-<span class="st"> </span>movies <span class="op">%&gt;%</span></span>
-<span id="cb345-3"><a href="model-selection.html#cb345-3"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">glm</span>( profit <span class="op">~</span><span class="st"> </span>History, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>))</span>
-<span id="cb345-4"><a href="model-selection.html#cb345-4"></a>mod_movies <span class="op">%&gt;%</span></span>
-<span id="cb345-5"><a href="model-selection.html#cb345-5"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="model-selection.html#cb346-1"></a>movies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</span>
+<span id="cb346-2"><a href="model-selection.html#cb346-2"></a>mod_movies &lt;-<span class="st"> </span>movies <span class="op">%&gt;%</span></span>
+<span id="cb346-3"><a href="model-selection.html#cb346-3"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">glm</span>( profit <span class="op">~</span><span class="st"> </span>History, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>))</span>
+<span id="cb346-4"><a href="model-selection.html#cb346-4"></a>mod_movies <span class="op">%&gt;%</span></span>
+<span id="cb346-5"><a href="model-selection.html#cb346-5"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term        estimate std.error statistic     p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
@@ -413,7 +413,7 @@ Note that when you see <code>e</code> in R output, this means “10 to the power
 <li>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?</li>
 <li>Is this consistent with the confidence interval?</li>
 </ul>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="model-selection.html#cb347-1"></a><span class="kw">confint</span>(mod_movies)</span></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="model-selection.html#cb348-1"></a><span class="kw">confint</span>(mod_movies)</span></code></pre></div>
 <pre><code>##                   2.5 %    97.5 %
 ## (Intercept)  0.09438169 0.2102419
 ## HistoryTRUE -0.26484980 0.3085225</code></pre>
@@ -456,10 +456,10 @@ Yes, the 95% confidence interval includes and in fact straddles 0, which suggest
 The test statistic for this nested test compares the smaller model to the larger full model; it is a measure of how much better the full model is over the smaller model. For a linear regression model, this test is called a <strong>nested F test</strong> and the test statistic is a ratio comparing the sum of squared residuals (F ~ 1 if <span class="math inline">\(H_0\)</span> is true). For logistic regression, this nested test is called a <strong>likelihood ratio test</strong> and the test statistic is a ratio comparing the likelihood or “goodness” of a model (Chi ~ 1 if <span class="math inline">\(H_0\)</span> is true). The larger the test statistics are, the bigger the difference is between the smaller model (<span class="math inline">\(H_0\)</span>) and the larger model, suggesting that the larger model might be better.</p>
 <p>We can compare these models in R using the <code>anova()</code> function.</p>
 <p><strong>Linear Regression Example:</strong> Below we fit a larger linear regression model of house price using living area, the number of bedrooms, and the number of bathrooms:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="model-selection.html#cb349-1"></a>mod_homes_full &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
-<span id="cb349-2"><a href="model-selection.html#cb349-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area <span class="op">+</span><span class="st"> </span>Bedrooms <span class="op">+</span><span class="st"> </span>Bathrooms))</span>
-<span id="cb349-3"><a href="model-selection.html#cb349-3"></a></span>
-<span id="cb349-4"><a href="model-selection.html#cb349-4"></a><span class="kw">anova</span>(mod_homes,mod_homes_full)</span></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="model-selection.html#cb350-1"></a>mod_homes_full &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
+<span id="cb350-2"><a href="model-selection.html#cb350-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area <span class="op">+</span><span class="st"> </span>Bedrooms <span class="op">+</span><span class="st"> </span>Bathrooms))</span>
+<span id="cb350-3"><a href="model-selection.html#cb350-3"></a></span>
+<span id="cb350-4"><a href="model-selection.html#cb350-4"></a><span class="kw">anova</span>(mod_homes,mod_homes_full)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Model 1: Price ~ Living.Area
@@ -480,10 +480,10 @@ The F = 41.126 is the test statistic. Unlike the test for slopes, this test stat
 The p-value of <span class="math inline">\(&lt; 2.2*10^{-16}\)</span> is well below the threshold suggesting that it is very unlikely to have observed a difference between these two models as big as we did if the smaller model were true. Thus, we reject <span class="math inline">\(H_0\)</span> that the model with only living area is correct in favor of the larger model.</p></li>
 </ul>
 <p><strong>Logistic Regression Example:</strong> Below we fit a larger logistic regression model of whether a movie made a profit (response) based on whether it is a history, drama, comedy, or a family film:</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="model-selection.html#cb351-1"></a>mod_movies_full &lt;-<span class="st"> </span>movies <span class="op">%&gt;%</span></span>
-<span id="cb351-2"><a href="model-selection.html#cb351-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">glm</span>( profit <span class="op">~</span><span class="st"> </span>History <span class="op">+</span><span class="st"> </span>Drama <span class="op">+</span><span class="st"> </span>Comedy <span class="op">+</span><span class="st"> </span>Family, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>))</span>
-<span id="cb351-3"><a href="model-selection.html#cb351-3"></a></span>
-<span id="cb351-4"><a href="model-selection.html#cb351-4"></a><span class="kw">anova</span>(mod_movies,mod_movies_full,<span class="dt">test=</span><span class="st">&#39;LRT&#39;</span>) <span class="co">#test=&#39;LRT&#39; is needed for logistic models</span></span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="model-selection.html#cb352-1"></a>mod_movies_full &lt;-<span class="st"> </span>movies <span class="op">%&gt;%</span></span>
+<span id="cb352-2"><a href="model-selection.html#cb352-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">glm</span>( profit <span class="op">~</span><span class="st"> </span>History <span class="op">+</span><span class="st"> </span>Drama <span class="op">+</span><span class="st"> </span>Comedy <span class="op">+</span><span class="st"> </span>Family, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>))</span>
+<span id="cb352-3"><a href="model-selection.html#cb352-3"></a></span>
+<span id="cb352-4"><a href="model-selection.html#cb352-4"></a><span class="kw">anova</span>(mod_movies,mod_movies_full,<span class="dt">test=</span><span class="st">&#39;LRT&#39;</span>) <span class="co">#test=&#39;LRT&#39; is needed for logistic models</span></span></code></pre></div>
 <pre><code>## Analysis of Deviance Table
 ## 
 ## Model 1: profit ~ History
@@ -601,9 +601,9 @@ where <span class="math inline">\(k\)</span> is the number of estimated coeffici
 <span class="math display">\[CV_{(k)} = \frac{1}{k}\sum^k_{i=1}MSE_i \]</span>
 where <span class="math inline">\(MSE_i\)</span> is the MSE based on the <span class="math inline">\(i\)</span>th group as the test group. In practice, one performs k-fold CV with <span class="math inline">\(k=5\)</span> or <span class="math inline">\(k=10\)</span> as it reduces the computational time and it also is more accurate.</p></li>
 </ul>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="model-selection.html#cb353-1"></a><span class="kw">require</span>(boot)</span>
-<span id="cb353-2"><a href="model-selection.html#cb353-2"></a>cv.err &lt;-<span class="st"> </span><span class="kw">cv.glm</span>(data,glm1, <span class="dt">K =</span> <span class="dv">5</span>)</span>
-<span id="cb353-3"><a href="model-selection.html#cb353-3"></a><span class="kw">sqrt</span>(cv.err<span class="op">$</span>delta[<span class="dv">1</span>]) <span class="co">#out of sample average prediction error</span></span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="model-selection.html#cb354-1"></a><span class="kw">require</span>(boot)</span>
+<span id="cb354-2"><a href="model-selection.html#cb354-2"></a>cv.err &lt;-<span class="st"> </span><span class="kw">cv.glm</span>(data,glm1, <span class="dt">K =</span> <span class="dv">5</span>)</span>
+<span id="cb354-3"><a href="model-selection.html#cb354-3"></a><span class="kw">sqrt</span>(cv.err<span class="op">$</span>delta[<span class="dv">1</span>]) <span class="co">#out of sample average prediction error</span></span></code></pre></div>
 
 <pre><code>## 
 ## Attaching package: &#39;dplyr&#39;</code></pre>

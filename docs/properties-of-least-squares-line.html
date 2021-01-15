@@ -368,25 +368,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In R: the standard deviation of the residuals, <span class="math inline">\(s_e\)</span>, is referred to as the “residual standard error”. Don’t confuse this with “Std. Error,” which is something else that we’ll get to later in the semester.</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="properties-of-least-squares-line.html#cb79-1"></a>body <span class="op">%&gt;%</span></span>
 <span id="cb79-2"><a href="properties-of-least-squares-line.html#cb79-2"></a><span class="st">    </span><span class="kw">with</span>(<span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb79-3"><a href="properties-of-least-squares-line.html#cb79-3"></a><span class="st">    </span><span class="kw">summary</span>()</span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = Chest ~ Neck)
-## 
-## Residuals:
-##      Min       1Q   Median       3Q      Max 
-## -15.1447  -3.3328  -0.5342   3.0738  16.5974 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  -3.1885     5.4951   -0.58    0.562    
-## Neck          2.7369     0.1446   18.93   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 5.225 on 248 degrees of freedom
-## Multiple R-squared:  0.5911,	Adjusted R-squared:  0.5894 
-## F-statistic: 358.5 on 1 and 248 DF,  p-value: &lt; 2.2e-16</code></pre>
+<span id="cb79-3"><a href="properties-of-least-squares-line.html#cb79-3"></a><span class="st">    </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    -3.19     5.50     -0.580 5.62e- 1
+## 2 Neck            2.74     0.145    18.9   4.59e-50</code></pre>
 <p>This fit simple linear regression line is</p>
 <p><span class="math display">\[ \widehat{\hbox{Chest}} = -3.18 + 2.73\,\hbox{Neck}\]</span></p>
 <p>If you have a neck size of 38 cm, then we predict the chest size of an ideal shirt is about 100.5 cm:</p>

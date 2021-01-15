@@ -188,9 +188,11 @@ flights_samp1 %>%
 ## 2 day_hourmorning    -20.4     10.6      -1.92  0.0578
 ```
 
-<div class="reflect">
-<p>At this point, we haven’t looked at the entire population of flights from 2013. Based on one sample of 100 flights, how do you think the time of day impacts arrival delay times in the entire population?</p>
-</div>
+\begin{reflect}
+At this point, we haven't looked at the entire population of flights
+from 2013. Based on one sample of 100 flights, how do you think the time
+of day impacts arrival delay times in the entire population?
+\end{reflect}
 
 Now, let's take another random sample of 100 flights from the full population of flights.
 
@@ -212,9 +214,10 @@ flights_samp2 %>%
 ## 2 day_hourmorning    -2.11      6.44    -0.328   0.744
 ```
 
-<div class="reflect">
-<p>How does the second sample differ from the first sample? What do they have in common?</p>
-</div>
+\begin{reflect}
+How does the second sample differ from the first sample? What do they
+have in common?
+\end{reflect}
 
 We could keep the process going. Take a sample of 100 flights, fit a model, and look at the estimated regression coefficient for `day_hourmorning`. Repeat many, many times. 
 
@@ -256,7 +259,9 @@ sim_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-8-1} \end{center}
 
 ```r
 # Visualize Slopes
@@ -267,13 +272,16 @@ sim_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-8-2.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-8-2} \end{center}
 
 These histograms approximate the **sampling distribution** of estimated intercepts and the **sampling distribution** of estimated slopes from a linear model predicting the arrival delay as a function of time of day, both of which describe the variability in the sample statistics *across all possible random samples from the population*. 
 
-<div class="reflect">
-<p>Describe the shape, center, and spread of the sampling distribution for the intercepts. Do the same for the slopes.</p>
-</div>
+\begin{reflect}
+Describe the shape, center, and spread of the sampling distribution for
+the intercepts. Do the same for the slopes.
+\end{reflect}
 
 
 Notice how these means of the sampling distributions are very close to the population values, below. This makes sense since we are sampling from the population so we'd expect the estimates to bounce around the true population values. 
@@ -323,9 +331,9 @@ There are four steps to bootstrapping. They are very similar to simulating the s
 
 To generate different random samples of the same size (100 flights) from our "fake population", we have to draw sample of 100 flights WITH REPLACEMENT, meaning that we have to put a flight back into the pool after drawing them out. 
 
-<div class="reflect">
-<p>What would happen if we drew WITHOUT REPLACEMENT?</p>
-</div>
+\begin{reflect}
+What would happen if we drew WITHOUT REPLACEMENT?
+\end{reflect}
 
 **2. Calculate**
 
@@ -340,9 +348,11 @@ boot_data <- mosaic::do(1000)*(
 )
 ```
 
-<div class="reflect">
-<p>Notice the similarities and differences in the R code for boot_data, in which we are sampling from the sample, and sim_data, in which we are sampling from the population, above.</p>
-</div>
+\begin{reflect}
+Notice the similarities and differences in the R code for boot\_data, in
+which we are sampling from the sample, and sim\_data, in which we are
+sampling from the population, above.
+\end{reflect}
 
 **3. Summarize**
 
@@ -420,7 +430,9 @@ boot_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-17-1} \end{center}
 
 ```r
 # Visualize Slopes
@@ -431,7 +443,9 @@ boot_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-17-2.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-17-2} \end{center}
 
 Let's compare these to the visuals from the simulation from the population.
 
@@ -445,7 +459,9 @@ sim_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-18-1} \end{center}
 
 ```r
 # Visualize Slopes
@@ -456,21 +472,30 @@ sim_data %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-18-2.png" width="672" style="display: block; margin: auto;" />
+
+
+\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-18-2} \end{center}
 
 The process of resampling from our sample, called **bootstrapping**, is becoming the one of main computational tools for estimating sampling variability in the field of Statistics.
 
-<div class="reflect">
-<p>How well does bootstrapping do in mimicking the simulations from the population? What could we change to improve bootstrap’s ability to mimic the simulations?</p>
-</div>
+\begin{reflect}
+How well does bootstrapping do in mimicking the simulations from the
+population? What could we change to improve bootstrap's ability to mimic
+the simulations?
+\end{reflect}
 
 
 This is a really important concept in Statistics! We'll come back to the ideas of sampling variability and bootstrapping throughout the rest of the course.
 
-<div class="reflect">
-<p>Based on the bootstrap sampling distribution, what would you guess the difference in mean arrival delay between morning and afternoon is in the population of flights?</p>
-<p>Based on the bootstrap sampling distribution, if you had to give an interval of plausible values for the population difference, what range would you give? Why? Is a difference of 0 a plausible value?</p>
-</div>
+\begin{reflect}
+Based on the bootstrap sampling distribution, what would you guess the
+difference in mean arrival delay between morning and afternoon is in the
+population of flights?
+
+Based on the bootstrap sampling distribution, if you had to give an
+interval of plausible values for the population difference, what range
+would you give? Why? Is a difference of 0 a plausible value?
+\end{reflect}
 
 
 ## Simulating Randomization into Groups
@@ -509,11 +534,14 @@ flights_samp500 %>%
     theme_minimal()
 ```
 
-<img src="05-variability_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>Based solely on the visual and numerical summaries, are arrival delays less in the morning than in the afternoon?</p>
-</div>
+
+\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-22-1} \end{center}
+
+\begin{reflect}
+Based solely on the visual and numerical summaries, are arrival delays
+less in the morning than in the afternoon?
+\end{reflect}
 
 
 We don't know the exact reason why some flights were scheduled in the morning or the afternoon and why one flight might be delayed (it's probably due to a complex combination of factors). Let's imagine that a randomization process was used to decide when particular flights were scheduled (morning or afternoon); a flip of a coin to decide morning or afternoon.
@@ -544,11 +572,14 @@ We can generate 1000 new data sets based on randomly reshuffling the labels of `
 
 The histogram below shows the histogram of differences in means if the null hypothesis were true. The vertical line shows the observed difference in means. 
 
-<img src="05-variability_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" />
 
-<div class="reflect">
-<p>Do you think that the mean arrival delay is different for morning and afternoon? Is the observed difference in means likely to have occurred if there were no relationship?</p>
-</div>
+\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-25-1} \end{center}
+
+\begin{reflect}
+Do you think that the mean arrival delay is different for morning and
+afternoon? Is the observed difference in means likely to have occurred
+if there were no relationship?
+\end{reflect}
 
 We will return to the ideas of testing hypotheses later in the course.
 

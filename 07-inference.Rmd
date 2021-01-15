@@ -1,10 +1,4 @@
----
-title: "Math 155 - Statistical Inference"
-author: "Prof. Heggeseth"
-date: "September 6, 2018"
-output: 
-  html_document: default
----
+
 
 ```{r setup7, echo=FALSE}
 library(stringr)
@@ -19,12 +13,12 @@ library(mosaicData)
 library(ggmosaic)
 library(NHANES)
 library(mosaic)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
 ```
 
 # Statistical Inference
 
-Let's remember our goal of "turning data into information." Based on a sample data set, we want to be able to say something about the larger population of interest. This endeavor is called **statistical inference**. In statistical inference, we care about using sample data to make statements about "truths" in the larger population.
+Let's remember our goal of "turning data into information." Based on a sample data set, we want to be able to say something about the larger population of interest or the general phenomena (not just the data you have collected). If our data is representative of the general population/phenomena, then our sample estimates provide some information but we also need to account for the uncertainty of our estimates due to randomness in the data collection process. Putting our estimates *in the context of uncertainty & random variability* is called **statistical inference**. In statistical inference, we care about using sample data to make statements about "truths" in the larger population.
 
 - To make causal inferences in the sample, we need to account for all possible confounding variables, or we need to randomize the "treatment" and assure there are no other possible reasons for an observed effect.
 - To generalize to a larger population, we need the sample to be representative of the larger population. Ideally, that sample would be randomly drawn from the population. If we actually have a census in that we have data on country, state, or county-level, then we can consider the observed data as a "snapshot in time". There are random processes that govern how things behave over time, and we have just observed one period in time.
@@ -35,7 +29,7 @@ Let's do some statistical inference based on a simple random sample (SRS) of 100
 What is our population of interest? What population could we generalize to?
 ```
 
-```{r}
+```{r echo=FALSE}
 data(flights)
 flights <- flights %>% 
     na.omit() %>%
@@ -49,232 +43,380 @@ flights <- flights %>%
     )) %>% 
     select(arr_delay, dep_delay, season, day_hour, origin, carrier)
 
-set.seed(2018)
+set.seed(2018) #ensures our random sample is the same every time we run this code
 ## This creates a dataset called flights_samp
 ## that contains the SRS of size 100
 flights_samp <- flights %>%
     sample_n(size = 100)
 ```
 
-We've already been thinking about random variation and how that plays a role in the conclusions we can draw. In this chapter, we will formalize two techniques that we use to do perform statistican inference: confidence intervals and hypothesis tests. 
+Based on this sample of 100 flights, we can estimate the difference in the mean arrival delay times between flights in the winter compared to the summer. The fit linear regression model suggests that flights in the winter have on average are about half a minute less delayed than summer flights. Do you think that is true for all flights? 
+
+If we had a different sample of 100 flights, how much different might that estimate be? 
+
+```{r}
+lm.delay <- flights_samp %>%
+  with(lm(arr_delay ~ season))
+
+lm.delay %>% 
+  tidy()
+```
+
+
+
+
+You've had a taste of random variation in Chapter 5 and how that plays a role in the conclusions we can draw. In this chapter, we will formalize two techniques that we use to do perform statistical inference: confidence intervals and hypothesis tests. First, we need to formalize the idea of random variation.
+
+## Standard Error
+
+In Chapter 5, we talked about how our estimates might vary if we had a different sample of data. This random variability could be due to random sampling or randomness if the data values. In order to get a sense of the uncertainty of our information as it relates to the true population, we need to quantify this variability across potential samples of data.
+
+The tricky piece is that we do not get to observe more than one sample in real life. We have to imagine all other possible samples without actually observing them. 
+
+In Chapter 5, one tool we used was **bootstrapping,** in which we resampled from our sample (with replacement) to mimic the other possible samples. The variation in the bootstrap estimates could be used. 
+
+In Chapter 6, another tool we used was **probability,** in which we use mathematical theory and assumption to help us imagine the other possible samples. We can estimate the standard deviation of a random variable. We'll refer to this as the **classical approach** as compared to the **bootstrap approach**.
+
+Using either of these techniques, we can calculate the **standard error (SE)** of a sample estimate which is the estimated standard deviation across all possible random samples. In other words, the standard error is our best guess of the standard deviation of the sampling distribution, the distribution of sample values across all possible samples of the same size. 
+
+### Bootstrap Standard Error Estimate
+
+We started this chapter with a question about arrival delay times in the winter compared to the summer. Based on one sample of 100 flights, we estimated that in the winter, the delay times are on average about 0.6 minutes less than in the summer. How certain are we about this number? 
+
+Let's resample our sample and quantify our uncertainty through bootstrapping. 
+
+```{r}
+boot_data <- mosaic::do(1000)*( 
+    flights_samp %>% # Start with the SAMPLE (not the FULL POPULATION)
+      sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
+      with(lm(arr_delay ~ season)) # Fit linear model
+)
+
+
+# Bootstrap Standard Error Estimates of coefficients
+boot_data %>% 
+    summarize(
+        se_Intercept = sd(Intercept),
+        se_seasonwinter = sd(seasonwinter))
+```
+The standard error for the regression coefficient for `seasonwinter` is 6.8 minutes using the bootstrapping technique. That tells us that on average, the difference in mean arrival delays between winter and summer could be 6.8 minutes greater or smaller. Also, this tells us that our sample estimate could be off the true difference in the population by as much as 2\*SE  = 2\*6.8 = 13.6 minutes (think back to the 68-95-99.7 Rule). In the context of the scale of the observed difference (half a minute), we are very uncertain!
+
+If the standard error was 0.1 minutes rather than 6.8 minutes, we'd be much more certain that there is about a half a minute difference in the mean arrival delays between winter and summer. 
+
+You'll notice that the code above has exactly the same structure as the bootstrapping code in Chapter 5. We *calculate the bootstrap standard error by calculating the standard deviation of the bootstrap estimates*. We ran this code in Chapter 5 to summarize the spread of our bootstrap sampling distribution. We didn't name it the standard error quite yet. Also note that every time you run this code, you'll get slightly different estimate of the standard error because bootstrapping is a random process. 
+
+Focus on the magnitude of the standard error and consider the number of significant digits of both the estimate and the SE. If our estimate might be off by almost 15 minutes, we should worry too much about the hundredths of a minute in our estimate.
+
+### Classical Standard Error Estimate
+
+The other tool we can use to get our standard errors is with mathematical theory and probability. Using probability, we can write out equations to estimate the standard error. If you are interested in learning about these equations, you should take Mathematical Statistics! 
+
+For this class, you just need to know that R knows these equations and calculates the classical standard error for us. 
+
+In fact, you've already been looking at them in the output of the fit linear model. With the tidy output below, look for the column that says `std.error`. These are the **classical standard errors**. 
+
+```{r}
+lm.delay %>% 
+  tidy() #SE for each estimate is in the std.error column
+```
+
+You'll notice that for the `seasonwinter` regression coefficient, the equations give a standard error of 6.817 minutes, which when rounded is the same as the rounded bootstrap standard error of 6.8 minutes. 
+
+These are two *different* ways of quantifying the random variability and uncertainty in our sample estimates only using ONE observed sample of data. In practice, we only need to use one of these approaches because they should give us similar values assuming a few conditions hold. 
+
+
+Using either estimate of the standard error, based on the sample data, our best guess is that the mean arrival delays is about 0.6 minutes less in winter than in summer but we might be off by about 13.6 minutes. So we could say that our best guess at the difference in mean arrival delays is $0.6\pm 13.6$ minutes, which is an interval estimate of the true population value.   
+
+```{block type="reflect", echo=TRUE}
+How "good" of a guess is the interval estimate? Is the population value in the interval or not? How might we know? 
+```
 
 
 ## Confidence Intervals
 
-A **confidence interval** (also known as an interval estimate) is an interval of plausible values of the unknown population parameter of interest based on randomly sampled data. However, the interval computed from a particular sample does not necessarily include the true value of the parameter. Since the observed data are random samples from the population, the confidence interval obtained from the data is also random.
+A **confidence interval** (also known as an interval estimate) is an interval of plausible values of the unknown population parameter of interest based on randomly generated sample data. We construct these intervals in a way so that we can know how "good" of a guess the interval is of the true population parameter value. The interval computed from one sample may include or contain the true value of the parameter but it may not. 
 
-The **confidence level** represents the proportion of possible random samples and thus confidence intervals that contain the true value of the unknown population parameter. Typically, the confidence level is represented by $(1-\alpha)$ such that if $\alpha = 0.05$, then the confidence level is 95% or 0.95. What is $\alpha$? We will define $\alpha$ when we get to hypothesis testing, but for now, we will describe $\alpha$ as an error probability. Because we want an error probability to be low, it makes sense that the confidence level is $(1-\alpha)$.
+Above, we used the standard error (SE) to create an interval by going up 2 SE's and going down SE's from the estimate. 
+
+$$\text{Estimate }\pm 2*SE(\text{Estimate}) = (\text{Estimate} - 2*\text{SE}, \text{Estimate} + 2*\text{SE})$$
+### Properties of Confidence Intervals
+
+So, how "good" of a guess is this? If our sampling distribution is roughly Normal (unimodal, symmetric), then we know that the sample estimate in about 95% of the random samples should be within 2 standard deviations of the true population parameter. 
+
+```{r}
+## Plots area between x1 and x2 for the standard normal
+## To plot tails, let x1 = -4 or x2 = 4
+plot_area_std_normal <- function(x1, x2, title = "") {
+    x <- seq(-4, 4, 0.01)
+    y <- dnorm(x)
+    plot(x, y, type = "l", main = title, xlab = "x", ylab = "Density")
+    area <- pnorm(x2) - pnorm(x1)
+    bool <- x >= x1 & x <= x2
+    x_shaded <- x[bool]
+    y_shaded <- y[bool]
+    if (x1 == -4) {
+        area <- pnorm(x2)
+        x1 <- NULL
+    }
+    if (x2 == 4) {
+        area <- 1-pnorm(x1)
+        x2 <- NULL
+    }
+    abline(v = c(x1, x2), col = "red", lty = "dashed", lwd = 2)
+    polygon(x = c(x_shaded, tail(x_shaded, 1), head(x_shaded, 1)), y = c(y_shaded, 0, 0), col = "darkorchid")
+    text(x = 3, y = 0.3, paste("Area =", round(area, 3)))
+}
+plot_area_std_normal(-2, 2, title = "P(-2 < X < 2)")
+```
 
 
-**Valid Interpretation:** Assuming the sampling distribution model is accurate, I am 95% confident that my confidence interval of (lower, upper) contains the true population parameter (*put in context*), which means that we'd expect 95% of samples to lead to intervals that contain the true population parameter value. We just don't know if our particular interval from our study contains that true population parameter value or not.
+You can either trust the mathematical theory or we can simulate the sampling distribution by drawing from our population because in this rare circumstance, we have access to all flights in the population.
 
-### Via Classical Theory
+```{r}
+sim_data <- mosaic::do(500)*( 
+    flights %>% 
+      sample_n(size = 100) %>%  # Generate samples of 100 flights
+      with(lm(arr_delay ~ season)) # Fit linear model
+)
 
-If we can use theoretical probability to approximate the sampling distribution, then we can create a confidence interval by taking taking our estimate and adding and subtracting a margin of error:
+lines <- sim_data %>%
+  summarize(lower = quantile(seasonwinter,0.025),upper = quantile(seasonwinter,0.975),)
+
+sim_data %>%
+  ggplot(aes(x = seasonwinter)) + 
+  geom_histogram() + 
+  geom_vline(data = lines, aes(xintercept=lower), color='red') + 
+  geom_vline(data = lines, aes(xintercept=upper), color='red') + 
+  labs(x = 'Estimates of seasonwinter',title='Sampling Distribution with lines indicating middle 95%') + 
+  theme_classic()
+```
+
+
+```{r echo=FALSE}
+SD <- sim_data %>% 
+    summarize(sd_seasonwinter = sd(seasonwinter)) %>%# Calculate true SD of sampling distribution
+  pull(sd_seasonwinter)
+
+Popvalue <- flights %>%       
+    with(lm(arr_delay ~ season)) %>% # Fit linear model
+    tidy() %>%
+    filter(term == 'seasonwinter') %>%
+    select(term, estimate) %>% 
+    pull(estimate)
+```
+
+Based on the simulation of drawing from the population, we see that 95% of the samples have estimated slopes between `r round(lines,1)[1]` and `r round(lines,1)[2]`. If we take the population values (center of this distribution) and add and subtract 2 standard deviations, then we get `r round(Popvalue - 2*SD,1)` and `r round(Popvalue + 2*SD,1)`. 
+
+So if we take each 1000 simulated random samples from the population and create an interval estimate by adding and subtracting 2 standard errors (estimates of the standard deviation), we can check to see how often those intervals contain the true population value at the center of the distribution. 
+
+
+Let's look at the confidence intervals for the first 100 random samples from the population. The dashed line indicates the true population value of the slope coefficient (yes, we are in the rare circumstance in which we have access to the true population). We've created one line for each interval and colored the according to whether or not the interval covers or contains the true population value. In the first 100 intervals, we see that 95% of the intervals contain the true population value and 5% do not. In the 500 random samples generated, close to 95% of them have intervals that contain the true population parameter. When we get one of these samples, we never know if we are one of the 95% or one of the 5%. 
+
+```{r echo=FALSE}
+sim_data <- mosaic::do(500)*( 
+    flights %>% 
+      sample_n(size = 100) %>%  # Generate samples of 100 flights
+      with(lm(arr_delay ~ season)) %>% # Fit linear model
+      tidy() %>%
+      mutate(LB = estimate - 2*std.error, UB = estimate + 2*std.error) %>% 
+      filter(term == 'seasonwinter')
+)
+
+sim_data <- sim_data %>%
+  mutate(SlopeCover = if_else(Popvalue <= UB & Popvalue >= LB, 'Yes', 'No')) #check if population slope in interval
+
+
+# plot 100 CIs for slope
+sim_data %>%
+  filter(.index < 101 ) %>%
+  ggplot(aes(x = .index)) + 
+  geom_segment(aes(xend = .index, y = LB, yend = UB, color = SlopeCover)) +
+  xlab('Data set') + 
+  ylab('SeasonWinter Coefficient') +
+  geom_hline(yintercept = Popvalue, linetype = 2) +
+    scale_color_manual('Population Parameter Covered', values = c('darkred','lightgreen'), limits = c('No','Yes')) + 
+  ggtitle('100 CIs for seasonwinter coefficient') + 
+  theme(axis.text.x = element_text(angle = 90)) + 
+  theme_classic()
+
+sim_data %>%
+  count(SlopeCover) %>%
+  mutate(prop = n/sum(n))
+```
+
+This makes sense given our **interval construction process**. If the estimate is within 2 standard errors of the true population parameter (between the dashed lines below), then the interval will contain the true population parameter. If the estimate is not within 2 standard errors of the true population parameter (outside the dashed lines below), then the interval will NOT contain the true population parameter.
+
+```{r}
+dat <- data.frame(z = seq(-4,4,by=.01))
+dat <- dat %>% mutate(f = dnorm(z))
+dat2 <- data.frame(x = c(1,-2.3), y = c(0.01,0.03), x1 = c(1,-2.3) - 2, x2 =c(1,-2.3) + 2, y1 = c(0.01,0.03), y2= c(0.01,0.03))
+
+dat %>%
+  ggplot(aes(x = z, y = f)) + 
+  geom_line(color='grey') + 
+  geom_hline(yintercept = 0) + 
+  geom_vline(xintercept = c(-2,2,0),linetype = c('dashed','dashed','solid')) + 
+  geom_point(data = dat2, aes(x = x, y=y),color = 'blue') + 
+  geom_segment(data=dat2, aes(x =x1, xend = x2, y = y1, yend=y2),color = 'blue') + 
+  labs(x = 'Number of SEs away from Population Parameter Value',y='') +
+  scale_x_continuous(breaks=c(-2,0,2)) + 
+  theme_classic() +
+  theme(axis.line.y=element_blank(),
+      axis.text.y=element_blank(),
+      axis.ticks.y=element_blank())
+
+```
+
+
+
+### Interval Construction Process
+
+In the intervals we constructed above, we used 95% confidence intervals. That 95% is the confidence level of the interval estimate.
+
+The **confidence level** represents the proportion of possible random samples and thus confidence intervals that contain the true value of the unknown population parameter. Typically, the confidence level is abstractly represented by $(1-\alpha)$ such that if $\alpha = 0.05$, then the confidence level is 95% or 0.95. 
+
+What is $\alpha$? We will define $\alpha$ when we get to hypothesis testing, but for now, we will describe $\alpha$ as an error probability. We want the error probability to be low and we want the confidence level, $(1-\alpha)$, to be high.
+
+We will now formally discuss two ways of creating confidence intervals. One was have already introduced, which is the classical approach, and the other approach uses bootstrapping. 
+
+
+
+#### Via Classical Theory
+
+If we can use probability theory to approximate the sampling distribution, then we can create a confidence interval by taking taking our estimate and adding and subtracting a margin of error:
 
 $$\text{Estimate }\pm \text{ Margin of Error}$$
 
-The margin of error is typically constructed using z-scores from the sampling distribution (such as $z^* = 2$ that corresponds to a 95% confidence interval) and an estimate of the standard deviation of the estimate, called a **standard error**. 
+The margin of error is typically constructed using z-scores from the sampling distribution (such as $z^* = 2$ that corresponds to a 95% confidence interval or $\alpha = 0.05$) and an estimate of the standard deviation of the estimate, called a **standard error**. 
 
 Once we have an estimate of the standard deviation (through a formula or R output) and an approximate sampling distribution, we can create the interval estimate:
 
 $$\text{Estimate }\pm z^* *SE(\text{Estimate})$$
+With linear and logistic regression models, we can have R create the confidence intervals for the slope coefficients.
 
-The fact that confidence intervals can be created as above is rooted in the Central Limit Theorem (CLT). If you would like to see how the form above is derived, see the Math Box below.
+```{r}
+# Classical Confidence Interval for Models
+confint(lm.delay) #default level is 0.95
+
+confint(lm.delay, level = 0.99)
+
+confint(lm.delay, level = 0.90)
+```
+
+
+See code below to find the $z^*$ values for other confidence levels beyond 95% to create the intervals manually. 
+
+```{r}
+alpha <- 0.05 
+abs(qnorm(alpha/2)) #z* for 95% CI
+
+alpha <- 0.01 
+abs(qnorm(alpha/2)) #z* for 99% CI
+
+alpha <- 0.1 
+abs(qnorm(alpha/2)) #z* for 90% CI
+```
+
+
+The fact that confidence intervals can be created as above is rooted in probability theory. If you would like to see how the form above is derived, see the Math Box below.
 
 
 ```{block, type="mathbox"}
-(Optional) Deriving confidence intervals from the CLT
+(Optional) Deriving confidence intervals from theory
 
-The CLT originally expresses that 
+We know that for a regression coefficient, the sampling distribution of regression coefficient estimates are approximately Normal and thus the standardized version is approximately Normal with mean 0 and standard deviation 1. 
 
-$$\frac{\text{sample mean} - \text{true mean}}{\text{true std. dev. of sample mean}} \sim \text{Normal}(0,1)$$
-
-It turns out that the CLT also applies to regression coefficients:
-
-$$\frac{\hat{\beta} - \beta}{\text{ESTIMATED std. dev. of }\hat{\beta}} \sim \text{Normal}(0,1)$$
+$$\frac{\hat{\beta} - \beta}{SE(\hat{\beta})} \sim \text{Normal}(0,1)$$
 
 From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:
 
 
-$$P(-2\leq\frac{\hat{\beta} - \beta}{SE}\leq2) = 0.95$$
+$$P(-2\leq\frac{\hat{\beta} - \beta}{SE(\hat{\beta})}\leq2) = 0.95$$
 
 
-$$P(-2 SE\leq\hat{\beta} - \beta \leq2 SE ) = 0.95$$
+$$P(-2 *SE(\hat{\beta})\leq\hat{\beta} - \beta \leq2 *SE(\hat{\beta}) ) = 0.95$$
 
-$$P(-2 SE-\hat{\beta} \leq  -\beta \leq2 SE-\hat{\beta} ) = 0.95$$
+$$P(-2* SE(\hat{\beta})-\hat{\beta} \leq  -\beta \leq2 *SE(\hat{\beta})-\hat{\beta} ) = 0.95$$
 
-$$P(2 SE+\hat{\beta} \geq \beta \geq -2 SE+\hat{\beta} ) = 0.95$$
+$$P(2 *SE(\hat{\beta})+\hat{\beta} \geq \beta \geq -2* SE(\hat{\beta})+\hat{\beta} ) = 0.95$$
 
-$$P(\hat{\beta}-2 SE \leq \beta \leq\hat{\beta}+2 SE ) = 0.95$$
+$$P(\hat{\beta}-2 *SE(\hat{\beta}) \leq \beta \leq\hat{\beta}+2 *SE(\hat{\beta}) ) = 0.95$$
 
 You've seen the Student T distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the Student t distribution is more accurate for linear regression coefficients (especially if sample size is small). The normal distribution is appropriate for logistic regression coefficients.
 ```
 
-### Via Bootstrapping
+#### Via Bootstrapping
 
+In order to quantify the sampling variability, we can treat our sample as our "fake population" and generate repeated samples from this "population" using the technique of bootstrapping.
 
-In order to gauge the sampling variability, we can treat our sample as our "fake population" and generate repeated samples from this "population" using the technique of bootstrapping.
+Once we have a distribution of sample statistics based on the generated data sets, we'll create a confidence interval by finding the $\alpha/2$th percentile and the $(1-\alpha/2)$th percentile for our lower and upper bounds. For example, for a 95% bootstrap confidence interval, $\alpha = 0.05$ and you would find the values that are the 2.5th and 97.5th percentiles.
 
-Once we have a distribution of sample statistics based on the generated data sets, we'll create a confidence interval by finding the $\alpha/2$th percentile and the $(1-\alpha/2)$th percentile for our lower and upper bounds. For example, for a 99% bootstrap confidence interval, $\alpha = 0.01$ and you would find the values that are the 0.5th and 99.5th percentiles.
+Let's return to the example of predicting arrival delays as a function of season. We bootstrapped the data already, but here is the code we used.
 
-## Confidence Interval Examples
-
-### Proportion Outcome
-
-Let's return to the flight data and estimate the proportion of afternoon flights based on a sample of 100 flights from NYC. 
-
-First, the classical 95% confidence interval can be constructed using the theory of the Binomial Model (Do the 3 conditions hold? Is n large enough for it to look Normal?)
-
-```{r}
-flights_samp %>% 
-  summarize(prop = count(day_hour)/100) %>%
-  mutate(SE = sqrt(prop*(1-prop)/100)) %>%
-  mutate(lb = prop - 2*SE, ub = prop + 2*SE)
-```
-
-Or we could bootstrap and get our confidence interval that way. 
-
-```{r}
-alpha <- 0.05
-
+```{r eval=FALSE, echo=TRUE}
 boot_data <- mosaic::do(1000)*( 
     flights_samp %>% # Start with the SAMPLE (not the FULL POPULATION)
       sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
-      summarize(prop = count(day_hour)/100) # Calculate statistics
+      with(lm(arr_delay ~ season)) # Fit linear model
 )
-
-boot_data %>%
-  summarize(lower = quantile(prop, alpha/2),
-    upper = quantile(prop, 1-alpha/2))
 ```
 
-Our confidence interval gives a sense of the true proportion of flights departed NYC in the afternoon, keeping in mind that this sample could be one of the unlucky samples (the 5%) that have intervals that don't contain the true value.
+Rather than using the classical approach to create confidence intervals, we can find the middle $(1-\alpha)$*100% (if $\alpha = 0.05$, 95%) of the bootstrap sampling distribution to give us lower and upper bounds for our interval estimate. 
 
-### Mean and then Median
+```{r echo=TRUE}
+# Bootstrap Confidence Interval
+boot_data %>% 
+    summarize(
+        lb = quantile(seasonwinter, 0.025),
+        ub = quantile(seasonwinter, 0.975))
+```
 
-Perhaps you really care about the arrival delay time because you have somewhere important you need to be when you take flights out of NYC. Let's estimate the mean arrival delay based on a sample of 100 flights from NYC. 
+This interval construction process has the same general properties that the classical approach and the same interpretation, which we'll talk about next.
 
-First off, let's create a classical confidence interval. Since our sample size is relatively large, we can use the Normal model (instead of William Gosset's work). We use the sample standard deviation and plug into the SE formula. 
+#### Probability Theory vs. Bootstrapping
+
+In the modern age, computing power allows us to perform bootstrapping easily to create confidence intervals. Before computing was as powerful as it is today, scientists needed mathematical theory to provide simple formulas for confidence intervals.
+
+If certain assumptions hold, the mathematical theory proves to be just as accurate and less computationally-intensive than bootstrapping. Many scientists using statistics right now learned the theory because when they learned statistics, computers were not powerful enough to handle techniques such as bootstrapping.
+
+Why do we teach both the mathematical theory and bootstrapping? You will encounter both types of techniques in your fields, and you'll need to have an understanding of what these techniques are to bridge the gap until statistical inference uses modern computational techniques more widely.
+
+### Confidence Interval Interpretation
+
+So how should we talk about these intervals the we create?
+
+In general, this is what we know about confidence intervals:
+
+- The estimated interval provides plausible values for true population parameter based on our sample data.
+- Assuming the sampling distribution model is accurate, we are 95% confident that our confidence interval of (lower value, upper value) contains the true population parameter.
+- We are confident in the interval construction process because we expect 95% of samples to lead to intervals that contain the true population parameter value. We just don't know if our particular interval from our sample contains that true population parameter value or not.
+- It is useful to notice whether a slope of 0 or odds ratio of 1 is a plausible value because these values indicate no differences.
+
+Most importantly, we should **incorporate the data context and describe the population parameter we are trying to learn about**. For example, let's interpret the bootstrap confidence interval of (-13.9,	12.3) from above; notice how we rounded the lower and upper values so as to not overstate our certainty. 
+
+- Based on a sample of 100 flights from NYC, we estimate that the true mean arrival delays are between 13.9 minutes shorter and 12.3 minutes longer in winter as compared to summer months in NYC. [Notice the data context]
+- We created this interval estimate such that we'd expect that 95% of the time, we'd capture the true difference in seasons but we cannot know for sure for this interval. [Notice how we've written out the population parameter in context]
+- Additionally, this interval is quite wide (and containing 0) highlighting our uncertainty and direction of the relationship between season and delay times. [Notice how we are acknowledging the uncertainty in our conclusions]
+
+
+
+### More Examples
+
+We'll discuss a few more examples of models and confidence intervals based on those models. 
+
+#### Linear Regression Model
+
+Using the flight data, how well can the departure delay predict the arrival delay? What is the effect of departing 1 more minute later? Does that correspond to 1 minute later in arrival on average? Let's look at the estimated slope between departure and arrival delays for the sample of 100 flights from NYC.
 
 ```{r}
-flights_samp %>% 
-  summarize(mean = mean(arr_delay), s = sd(arr_delay)) %>%
-  mutate(SE = s/sqrt(100)) %>%
-  mutate(lb = mean - 2*SE, ub = mean + 2*SE)
+lm.delay2 <- flights_samp %>%
+  with(lm(arr_delay ~ dep_delay))
+       
+lm.delay2 %>% 
+  tidy()
 ```
 
-
-```{r}
-alpha <- 0.05
-
-boot_data <- mosaic::do(1000)*( 
-    flights_samp %>% # Start with the SAMPLE (not the FULL POPULATION)
-      sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
-      summarize(means = mean(arr_delay),medians = median(arr_delay)) # Calculate statistics
-)
-
-boot_data %>%
-  summarize(lower = quantile(means, alpha/2),
-    upper = quantile(means, 1-alpha/2))
-```
-
-Our confidence interval gives potential values for of the true mean arrival delay for flights that departed NYC, keeping in mind that this sample could be one of the unlucky samples (the 5%) that have intervals that don't contain the true value. Also remember that the mean is sensitive to outliers...Let's consider the median.
-
-We get a slightly different story if we are interested in the middle number versus the average. But notice, we aren't using a classical CI here because the sampling distribution of a median is not necessarily Normal. 
-
-
-```{r}
-boot_data %>%
-  summarize(lower = quantile(medians, alpha/2),
-    upper = quantile(medians, 1-alpha/2))
-```
-
-### Logistic Regression Model
-
-Are the same relative numbers of morning flights in the winter and the summer? Let's fit a logistic regression model and see what our sample says.
-
-```{r}
-flights_samp$afternoon = flights_samp$day_hour == 'afternoon'
-
-glm.afternoon <- glm(afternoon ~ season, data = flights_samp, family = 'binomial')
-summary(glm.afternoon)
-```
-
-The output for the model gives standard errors for the slopes, so we can create the classical confidence intervals directly from the output, 
-
-```{r}
-confint(glm.afternoon)
-```
-
-Or with bootstrapping,
-
-```{r}
-boot_data <- mosaic::do(1000)*( 
-    flights_samp %>% # Start with the SAMPLE (not the FULL POPULATION)
-      sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
-      glm(afternoon ~ season, data = ., family = 'binomial') # Calculate statistics
-)
-
-boot_data %>%
-  summarize(lower = quantile(seasonwinter, alpha/2),
-    upper = quantile(seasonwinter, 1-alpha/2))
-```
-
-Knowing that the sample is random, the interval estimate for the logistic regression slope is given by the confidence interval. But for logistic regression, we exponentiate the slopes to get an more interpretable value, the odds ratio. Here, we are comparing the odds of having a flight in the afternoon between winter months (numerator) and summer months (denominator). Is 1 in the interval? If so, what does that tell you?
-
-```{r}
-exp(confint(glm.afternoon))
-
-boot_data %>%
-  summarize(lower = exp(quantile(seasonwinter, alpha/2)),
-    upper = exp(quantile(seasonwinter, 1-alpha/2)))
-```
-
-
-
-### Linear Regression Model Slope (Categorical Variable)
-
-Everything says that there are longer delays in winter. Is that actually true? Let's fit a linear regression model to test it
-
-```{r}
-lm.delay <- lm(arr_delay ~ season, data = flights_samp)
-summary(lm.delay)
-```
-
-The classical CI for the slope is given with by
-
-```{r}
-confint(lm.delay)
-```
-
-or with bootstrapping,
-
-```{r}
-boot_data <- mosaic::do(1000)*( 
-    flights_samp %>% # Start with the SAMPLE (not the FULL POPULATION)
-      sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
-      lm(arr_delay ~ season, data = .) # Calculate statistics
-)
-
-boot_data %>%
-  summarize(lower = quantile(seasonwinter, alpha/2),
-    upper = quantile(seasonwinter, 1-alpha/2))
-```
-
-The 95% confidence interval gives a sense of the difference of mean arrival delays of flights between winter and summer is given by the confidence interval. Is zero in the interval? If so, what does that tell you?
-
-
-### Linear Regression Model Slope (Quantitative Var)
-
-How well can the departure delay predict the arrival delay? What is the effect of departing 1 more minute later? Does that correspond to 1 minute later in arrival on average? Let's look at the estimated slope between departure and arrival delays for the sample of 100 flights from NYC.
-
-```{r}
-lm.delay2 <- lm(arr_delay ~ dep_delay, data = flights_samp)
-summary(lm.delay2)
-```
-
-The classical CI for the slope is given with by
+The classical 95% CI for the slope is given with by
 
 ```{r}
 confint(lm.delay2)
@@ -286,20 +428,77 @@ or with bootstrapping,
 boot_data <- mosaic::do(1000)*( 
     flights_samp %>% # Start with the SAMPLE (not the FULL POPULATION)
       sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
-      lm(arr_delay ~ dep_delay, data = .) # Calculate statistics
+      with(lm(arr_delay ~ dep_delay)) # Fit linear model
 )
 
 boot_data %>%
-  summarize(lower = quantile(dep_delay, alpha/2),
-    upper = quantile(dep_delay, 1-alpha/2))
+  summarize(
+    lower = quantile(dep_delay, 0.025),
+    upper = quantile(dep_delay, 0.975))
 ```
 
 
-If the flight leaves an additional minute later, then we'd expect the arrival delay to be increased by a value in the interval above, on average. 
+**Interpretation:** If the flight's departure is delayed an additional minute, then I'm 95% confident that we'd expect the arrival delay to be increased by 0.88 to 1.12 minutes, on average. This makes sense in this context since leaving a minute later on average leads to arriving a minute later give or take tenths of a second. 
 
-### Confidence Intervals for Prediction
 
-Imagine we are on a plane, we left 15 minutes late, how late will arrive? Since we only have a sample of 100 flights, we are a bit unsure of our prediction. 
+#### Logistic Regression Model
+
+Are the same proportion of afternoon flights in the winter and the summer? Let's fit a logistic regression model and see what our sample of 100 flights indicates.
+
+```{r}
+flights_samp <- flights_samp %>%
+  mutate(afternoon = flights_samp$day_hour == 'afternoon')
+
+glm.afternoon <- flights_samp %>%
+  with(glm(afternoon ~ season, family = 'binomial'))
+
+glm.afternoon %>% 
+  tidy()
+```
+
+The output for the model gives standard errors for the slopes, so we can create the classical confidence intervals for the slopes first, 
+
+```{r}
+confint(glm.afternoon) #confidence interval for the slope
+```
+
+Or with bootstrapping,
+
+```{r}
+#confidence interval for the slope
+
+boot_data <- mosaic::do(1000)*( 
+    flights_samp %>% # Start with the SAMPLE (not the FULL POPULATION)
+    sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
+    with(glm(afternoon ~ season, family = 'binomial')) # Fit model
+)
+
+boot_data %>%
+  summarize(
+    lower = quantile(seasonwinter, 0.025),
+    upper = quantile(seasonwinter, 0.975))
+```
+
+For logistic regression, we exponentiate the slopes to get an more interpretable value, **the odds ratio**. The tricky thing is that we need to exponentiate after we create the confidence interval for the slope, rather than before. 
+
+Here, we are comparing the odds of having a flight in the afternoon between winter months (numerator) and summer months (denominator). Is 1 in the interval? If so, what does that tell you?
+
+```{r}
+confint(glm.afternoon) %>% 
+  exp()
+
+boot_data %>%
+  summarize(
+    lower = quantile(seasonwinter, 0.025),
+    upper = quantile(seasonwinter, 0.975)) %>%
+  exp()
+```
+
+**Interpretation:** Flights from NYC in the winter have about the same odds of being an afternoon flight as compared to the summer time. I'm 95% confident that the odds of a flight being in the afternoon is between 0.7 and 1.5 times the odds in the summer. We conclude that we don't have any evidence there any more afternoon flights in the winter versus the summer leaving from NYC. 
+
+#### Confidence Intervals for Prediction
+
+Imagine we are on a plane, we left 15 minutes late, how late will arrive? We've already looked at the slope measuring the relationship, but what about predicting the arrival delay? Since we only have a sample of 100 flights, we are a bit unsure of our prediction. 
 
 A classical CI can give us an interval estimate of what the prediction should be (if we had data on all flights).
 
@@ -309,8 +508,11 @@ predict(lm.delay2, newdata = data.frame(dep_delay = 15), interval = 'confidence'
 
 This is taking into account how uncertain we are about our model prediction because our model is based on sample data rather than population data. 
 
+**Interpretation:** I'm 95% confident that flights from NYC that left 15 minutes late will arrive on average between 8.9 and 16 minutes. It is interesting that we estimate the average arrival delay for a flight that left 15 minutes late to be as low as 8.9 minutes suggesting that maybe flights can typically make up time in the air. We could investigate this by studying the differences in arrival and departure delays. 
 
-### Prediction Intervals
+
+
+#### Prediction Intervals
 
 We also know that every flight is different (different length, different weather conditions, etc), so the true arrival delay won't be exactly what we predict. 
 
@@ -320,14 +522,10 @@ So to get a better prediction for our arrival delay, we can account for the size
 predict(lm.delay2, newdata = data.frame(dep_delay = 15), interval = 'prediction')
 ```
 
+You'll notice that the prediction interval is wider than the confidence intervals. In fact, the prediction interval incorporates information about the standard deviation of residuals to account for the average size of prediction error. To learn more, take Mathematical Statistics. 
 
-### Probability Theory vs. Bootstrapping
+**Interpretation:** I predict that 95% of flights from NYC that leave 15 minutes late will arrive on average between 23 minutes early and 48 minutes late. This is a huge range which suggests that the departure delay is only one factor in determine when a flight arrives at its destination.
 
-In the modern age, computing power allows us to perform boostrapping easily to create confidence intervals. Before computing was as powerful as it is today, scientists needed mathematical theory to provide simple formulas for confidence intervals.
-
-If certain assumptions hold, the mathematical theory proves to be just as accurate and less computationally-intensive than bootstrapping. Many scientists using statistics right now learned the theory because when they learned statistics, computers were not powerful enough to handle techniques such as bootstrapping.
-
-Why do we teach both the mathematical theory and bootstrapping? You will encounter both types of techniques in your fields, and you'll need to have an understanding of what these techniques are to bridge the gap until statistical inference uses modern computational techniques more widely.
 
 ## Hypothesis Testing
 
@@ -338,10 +536,10 @@ Suppose that we are thinking about the relationship between housing prices and s
 - ...**is there** a real relationship between price and living area?
 - ...**what** is the real relationship between price and living area?
 
-Whether by the Central Limit Theorem (mathematical theory) or bootstrapping, confidence intervals provide a *range of plausible values* for the true population parameter and allow us to answer both types of questions:
+Whether by mathematical theory or bootstrapping, confidence intervals provide a *range of plausible values* for the true population parameter and allow us to answer both types of questions:
 
 - **Is there** a real relationship between price and living area?
-    - Is the null value in the interval?
+    - Is the null value (0 for slopes, 1 for odds ratios) in the interval?
 - **What** is the relationship between price and living area?
     - Look at the estimate and the values in the interval
 
@@ -354,84 +552,51 @@ Whether by the Central Limit Theorem (mathematical theory) or bootstrapping, con
 - **Example 2**    
     In the model $\text{Price} = \beta_0 + \beta_1\text{Living Area} + \text{Error}$, decide between $\beta_1 = 0$ and $\beta_1 \neq 0$.
 
-In a hypothesis test, we use data to decide between two "hypotheses" labeled as follows:
+### Hypothesis Test Procedure
+
+#### Hypotheses
+
+In a hypothesis test, we use data to decide between two "hypotheses" about the population. These hypotheses can be described using mathematical notation and words. 
 
 1. **Null hypothesis** ($H_0$ = "H naught")    
-Hypothesis that is assumed to be true by default.    
-A status quo hypothesis: hypothesis of no effect/relationship/difference.
+- A status quo hypothesis
+- In words: there is no effect/relationship/difference.
+- In notation: the population parameter equals a **null value**, such as the slope being zero $H_0: \beta_1 = 0$ or the odds ratio being 1, $H_0: e^{\beta_1} = 1$.
+- Hypothesis that is assumed to be true by default.    
 
 2. **Alternative hypothesis** ($H_A$ or $H_1$)    
-A non-status quo hypothesis.    
-Claim being made about the population.
+- A non-status quo hypothesis
+- In words: there is an effect/relationship/difference.
+- In notation: the population parameter does not equal a **null value**, $H_A: \beta_1 \neq 0$ or $H_A: e^{\beta_1} \neq 1$.
+- This is typically news worthy.
 
-### Test statistics
+#### Test statistics
 
-Let's consider the question: Is there a relationship between house price and living area? We can try to answer that with the linear regression model below:
+Let's consider an example research question: Is there a relationship between house price and living area? We can try to answer that with the linear regression model below:
 
-$$\text{Price} = \beta_0 + \beta_1\text{Living Area} + \text{Error}$$
+$$E[\text{Price} | \text{Living Area}] = \beta_0 + \beta_1\text{Living Area}$$
 
-We would phrase our null and alternative hypotheses as follows:
+We would phrase our null and alternative hypotheses using mathematical notation as follows:
 
 $$H_0: \beta_1 = 0 \qquad \text{vs.} \qquad H_A: \beta_1 \neq 0$$
+In words, the null hypothesis $H_0$ describes the situation of "no relationship" because it hypothesizes that the true slope $\beta_1$ is 0. The alternative hypothesis posits a real relationship: the true population slope $\beta_1$ is not 0. That is, there is not no relationship. (*Double negatives!*)
 
-The null hypothesis $H_0$ describes the situation of "no relationship" because it hypothesizes that the true slope $\beta_1$ is 0. The alternative hypothesis posits a real relationship: the true population slope $\beta_1$ is not 0. That is, there is not no relationship. (*Double negatives!*)
+To gather evidence, we collect data and fit a model. From the model, we can compute a **test statistic**, which tells us how far the observed data is from the null hypothesis. The test statistic is a *discrepancy measure* where large values indicate higher discrepancy with the null hypothesis, $H_0$.
 
-To gather evidence, we collect data and fit a model. From the model, we can compute a **test statistic**, which tells us how far the observed slope is from the null hypothesis value of 0 (called the **null value**). The test statistic is a *discrepancy measure* where large values indicate higher discrepancy with the null hypothesis, $H_0$.
+When we are studying slopes in a linear model, the test statistic is the distance from the null hypothesis value of 0 (the **null value**) in terms of standard errors. The test statistic for testing one slope coefficient is:
 
-The test statistic below is a reasonable proposal for our modeling context:
+$$T= \text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}}$$
 
-$$\text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}}$$
+It looks like a z-score. It expresses: how far away is our slope estimate from the null value in units of standard error? With large values (in magnitude) of the test statistic, our data (and our estimate) is discrepant with what the null hypothesis proposes because our estimate is quite far away from the null value in standard error units. A large test statistic makes us start to doubt the null value. 
 
-It looks like a z-score. It expresses: how far away is our estimate from the null value in units of standard error? With large values (in magnitude) of the test statistic, our data (and our estimate) is discrepant with what the null hypothesis proposes because our estimate is quite far away from the null value in standard error units.
 
-### Logic of hypothesis testing
 
-How large in magnitude must the test statistic be in order to make a decision between $H_0$ and $H_A$? We will use another metric called a **p-value**.
 
-**Assuming $H_0$ is true**, we ask: What is the chance of observing a test statistic which is "as or even more extreme" than the one we just saw? This conditional probability is called a **p-value**, $P(|T| \geq t_{obs} | H_0\text{ is true})$.
+#### Accounting for Uncertainty
 
-If our test statistic is large, then our estimate is quite far away from the null value (in standard error units), and then the chance of observing someone this large or larger (assuming $H_0$ is true) would be very small. **A large test statistic leads to a small p-value.**
+Test statistics are random variables! Why? Because they are based on our random sample of data. Thus, it will be helpful to understand the sampling distributions of test statistics.
 
-If our test statistic is small, then our estimate is quite close to the null value (in standard error units), and then the chance of observing someone this large or larger (assuming $H_0$ is true) would be very large. **A small test statistic leads to a large p-value.**
-
-#### Making Decisions
-
-If the p-value is "small", then we reject $H_0$ in favor of $H_A$. Why? A small p-value (by definition) says that if the null hypotheses were indeed true, we are unlikely to have seen such an extreme discrepancy measure (test statistic). We made an assumption that the null is true, and operating under that assumption, we observed something odd and unusual. This makes us reconsider our null hypothesis.
-
-How small is small enough for a p-value? We will set a threshold $\alpha$. P-values less than this threshold will be "small enough". When we talk about error rates of the decisions associated with rejecting or not rejecting the null hypothesis, the meaning of $\alpha$ will become more clear.
-
-### Summary of procedure
-
-1. State hypotheses $H_0$ and $H_A$.
-2. Select $\alpha$, a threshold for what is considered to be a small enough p-value.
-3. Calculate a test statistic.
-4. Calculate the corresponding p-value.
-5. Make a decision:
-    - If p-value $\leq\alpha$, reject $H_0$ in favor of $H_A$.
-    - Otherwise, we fail to reject $H_0$ for lack of evidence.    
-        (Jurors' decisions are "guilty" and "not guilty". Not "guilty" and "innocent".)
-
-### Testing single model coefficients
-
-A major emphasis of our course is regression models. It turns out that many scientific questions of interest can be framed using regression models.
-
-In the `summary()` output, R performs the following hypothesis test by default (for any slope coefficient $\beta$):
-
-$$H_0: \beta = 0 \qquad \text{vs} \qquad H_A: \beta \neq 0$$
-
-$$t_{obs} = \text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}} = \frac{\text{estimate} - 0}{\text{std. error of estimate}} $$
-
-Note that test statistics are random variables! Why? Because they are based on our random sample of data. Thus, it will be helpful to understand the distributions of test statistics in terms of probability density functions.
-
-```{block type="reflect", echo=TRUE}
-If $H_0$ were true, where would the probability density function of the test statistic be centered?
-```
-
-### Distributions of test statistics
-
-What test statistics are we likely to get if $H_0$ is true? The probability density function of the test statistic "under $H_0$" (that is, if $H_0$ is true) is shown below. Note that it is centered at 0. This distribution shows that if indeed the null is true, there is variation in the test statistics we might obtain from random samples, but most test statistics are around zero.
-
-It would be very unlikely for us to get a pretty large (extreme) test statistic if indeed $H_0$ were true. Why? The density drops rapidly at more extreme values.
+What test statistics are we likely to get if $H_0$ is true? The distribution of the test statistic introduced above "under $H_0$" (that is, if $H_0$ is true) is shown below. Note that it is centered at 0. This distribution shows that if indeed the population parameter equals the null value, there is variation in the test statistics we might obtain from random samples, but most test statistics are around zero.
 
 ```{r echo=FALSE, fig.align="center", fig.height=5.3, fig.width=8}
 x <- seq(-4,4,0.01)
@@ -442,16 +607,22 @@ lines(x, y2, col = "red", lty = "dashed")
 legend("topright", legend = c("Logistic regression\n(Normal distribution)", "", "Linear regression\n(Student's t-distribution)\n df = 20 here"), col = c("black", NA, "red"), lty = c("solid", NA, "dashed"), bty = "n", cex = 0.9)
 ```
 
-### Graphical description of p-values
+It would be very unlikely for us to get a pretty large (extreme) test statistic if indeed $H_0$ were true. Why? The density drops rapidly at more extreme values.
 
-Suppose that our observed test statistic is 2.
+How large in magnitude must the test statistic be in order to make a decision between $H_0$ and $H_A$? We will use another metric called a **p-value**. This allows us to account for the variability and randomness of our sample data. 
 
-What test statistics are "as or more extreme"?
+**Assuming $H_0$ is true**, we ask: What is the chance of observing a test statistic which is "as or even more extreme" than the one we just saw? This conditional probability is called a **p-value**, $P(|T| \geq t_{obs} | H_0\text{ is true})$.
+
+If our test statistic is large, then our estimate is quite far away from the null value (in standard error units), and then the chance of observing someone this large or larger (assuming $H_0$ is true) would be very small. **A large test statistic leads to a small p-value.**
+
+If our test statistic is small, then our estimate is quite close to the null value (in standard error units), and then the chance of observing someone this large or larger (assuming $H_0$ is true) would be very large. **A small test statistic leads to a large p-value.**
+
+Suppose that our observed test statistic for a slope coefficient is 2. What test statistics are "as or more extreme"?
 
 - Absolute value of test statistic is at least 2: $|\text{Test statistic}| \geq 2$
 - In other words: $\text{Test statistic} \geq 2$ or $\text{Test statistic} \leq -2$
 
-The p-value corresponding to our test statistic is the area under the probability density function in those "as or more extreme" regions.
+The p-value is the area under the curve of the probability density function in those "as or more extreme" regions.
 
 ```{r echo=FALSE, fig.align="center", fig.height=4.5, fig.width=10}
 x <- seq(-4,4,0.01)
@@ -470,48 +641,45 @@ area <- pnorm(-2) + pnorm(2, lower.tail = FALSE)
 text(x = 3, y = 0.3, paste("Area = p-value =", round(area, 3)))
 ```
 
-### Example: Linear Regression
 
-Below we fit a linear regression model of house price on living area:
+Suppose the test statistic for a slope coefficient is -0.5. This means that the estimated slope is half of a standard error away from 0, which indicates no relationship. This is not the far and happens quite frequently, about 62% of the time, when the true slope is actually 0.
 
-```{r}
-homes <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt")
-mod_homes <- lm(Price ~ Living.Area, data = homes)
-confint(mod_homes) ## 95% confidence interval by default
-summary(mod_homes)$coefficients
+```{r echo=FALSE, fig.align="center", fig.height=4.5, fig.width=10}
+x <- seq(-4,4,0.01)
+y <- dnorm(x)
+plot(x, y, type = "l", xlab = "Test statistic", ylab = "Density", main = expression(paste("Sampling distribution of test statistic if ", H[0], " true (\"under ", H[0], "\")")))
+bool <- x >= 0.5 & x <= 4
+x_shaded <- x[bool]
+y_shaded <- y[bool]
+abline(v = c(-0.5,0.5), col = "red", lty = "dashed", lwd = 2)
+polygon(x = c(x_shaded, tail(x_shaded, 1), head(x_shaded, 1)), y = c(y_shaded, 0, 0), col = "darkorchid")
+bool <- x >= -4 & x <= -0.5
+x_shaded <- x[bool]
+y_shaded <- y[bool]
+polygon(x = c(x_shaded, tail(x_shaded, 1), head(x_shaded, 1)), y = c(y_shaded, 0, 0), col = "darkorchid")
+area <- pnorm(-0.5) + pnorm(0.5, lower.tail = FALSE)
+text(x = 3, y = 0.3, paste("Area = p-value =", round(area, 3)))
 ```
 
-The `t value` column is the test statistic, and the `Pr(>|t|)` column is the p-value. Note that the "t" comes from the Student t distribution.
 
-- What are $H_0$ and $H_A$?    
-    We write the model $\text{Price} = \beta_0 + \beta_1\text{Living Area} + \text{Error}$.    
-    $H_0: \beta_1 = 0$ (There is no relationship between price and living area.)    
-    $H_A: \beta_1 \neq 0$ (There is a relationship between price and living area.)    
-- For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?    
-    Note that when you see `e` in R output, this means "10 to the power". So `9.486240e-268` means $9.49 \times 10^{-268}$. This p-value is less than our threshold $\alpha = 0.05$, so we reject $H_0$ and say that we have significant evidence for a relationship between price and living area.
-- Is this consistent with the confidence interval?    
-    This result is consistent with the 95% confidence interval in that the interval does not contain 0.
+#### Making Decisions
 
-### Example: Logistic Regression
+If the p-value is "small", then we reject $H_0$ in favor of $H_A$. Why? A small p-value (by definition) says that if the null hypotheses were indeed true, we are unlikely to have seen such an extreme discrepancy measure (test statistic). We made an assumption that the null is true, and operating under that assumption, we observed something odd and unusual. This makes us reconsider our null hypothesis.
 
-Below we fit a logistic regression model of whether a movie made a profit (response) on whether it is a history film:
+How small is small enough for a p-value? We will set a threshold $\alpha$ ahead of time, before looking at the data. P-values less than this threshold will be "small enough". When we talk about errors of the decisions associated with rejecting or not rejecting the null hypothesis, the meaning of $\alpha$ will become more clear.
 
-```{r}
-movies <- read.csv("https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1")
-mod_movies <- glm(profit==TRUE ~ History, data = movies, family = "binomial")
-confint(mod_movies) ## 95% confidence interval by default
-summary(mod_movies)$coefficients
-```
+#### Procedure Summary
 
-The `z value` column is the test statistic, and the `Pr(>|z|)` column is the p-value. Note that the "z" refers to z-score and the Normal distribution.
-
-Try for yourselves!
-
-- What are $H_0$ and $H_A$?
-- For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?
-- Is this consistent with the confidence interval?
-
-### Errors 
+1. State hypotheses $H_0$ and $H_A$.
+2. Select $\alpha$, a threshold for what is considered to be a small enough p-value.
+3. Calculate a test statistic.
+4. Calculate the corresponding p-value.
+5. Make a decision:
+    - If p-value $\leq\alpha$, reject $H_0$ in favor of $H_A$.
+    - Otherwise, we fail to reject $H_0$ for lack of evidence.    
+        (If this helps to remember: U.S. jurors' decisions are "guilty" and "not guilty". Not "guilty" and "innocent".)
+        
+### Hypothesis Testing Errors 
 
 Just as with model predictions, we may make errors when doing hypothesis tests. 
 
@@ -527,7 +695,7 @@ We care about both of these types of errors. Sometimes we prioritize one over th
 
 $$P(\text{ Type 1 Error }) = P(\text{ Reject }H_0 ~|~H_0\text{ is true} ) =  \alpha$$
 
-Let $\alpha = 0.05$ for a moment. If the Null Hypothesis ($H_0$) is actually true, then about 5% of the time, we'd get unusual test statistics through random chance. With those samples, we would incorrectly conclude that there was a real relationship.
+Let $\alpha = 0.05$ for a moment. If the null hypothesis ($H_0$) is actually true, then about 5% of the time, we'd get unusual test statistics due to random sample data. With those samples, we would incorrectly conclude that there was a real relationship.
 
 The chance of a Type 2 Error is often notated as $\beta$ (but this is not the same value as the slope),
 
@@ -542,7 +710,7 @@ To recap,
 - Lowering $\alpha$ makes it harder to reject $H_0$, thus we might have a higher chance of a Type 2 Error. 
 - Another way we can increase the power and thus decrease the chance of a Type 2 Error is to increase the sample size. 
 
-## Statistical Significance v. Practical Significance
+### Statistical Significance v. Practical Significance
 
 The common underlying question that we ask as Statisticians is "Is there a real relationship in the population?"
 
@@ -558,10 +726,192 @@ Hypothesis tests are useful in determining statistical significance (Answering: 
 
 Confidence intervals are more useful in determining practical significance (Answering: "What is the relationship?")
 
+**Recommended Readings about P-values and Limitations of Hypothesis Testing**:
+
+- [The ASA Statement on p-Values: Context, Process, and Purpose](https://www.tandfonline.com/doi/full/10.1080/00031305.2016.1154108)
+- [Moving to a World Beyond "p < 0.05"](https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913)
+- [Scientific method: Statistical errors](https://www.nature.com/news/scientific-method-statistical-errors-1.14700)
 
 ## Model Selection
 
-In practice, you need to decide which variables should be included in an model. This is referred to as **model selection** or **variable selection**. We have many tools that can help us make these decisions.
+For this class, we will use hypothesis testing primarily as a way to help us decide which variables should be included in an model. This is referred to as **model selection** or **variable selection**. We have many tools that can help us make these decisions. We'll first discuss two types of hypothesis tests that are useful for model selection and explain another hypothesis test that is automatically completed when you fit a model. Finally, we summarize all of the model selection tools you have at your disposal that we've covered in this class and point to other tools that you may learn in future courses. 
+
+### Testing Individual Slopes
+
+A major emphasis of our course is regression models. It turns out that many scientific questions of interest can be framed using regression models.
+
+In the `tidy()` output, R performs the following hypothesis tests by default (for every slope coefficient $\beta_j$):
+
+$$H_0: \beta_j = 0 \qquad \text{vs} \qquad H_A: \beta_j \neq 0$$
+The test statistic is equal to the slope estimate divided by the standard error. 
+
+$$t_{obs} = \text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}} = \frac{\text{estimate} - 0}{\text{std. error of estimate}} $$
+
+**Linear Regression Example:** Below we fit a linear regression model of house price on living area:
+
+```{r}
+homes <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt")
+mod_homes <- homes %>%
+  with(lm(Price ~ Living.Area))
+
+mod_homes %>% tidy()
+```
+
+The `statistic` column is the test statistic equal to `estimate/std.error`, and the `p.value` column is the p-value.
+
+- What are $H_0$ and $H_A$?    
+    We write the model $E[\text{Price}|\text{Living Area} ] = \beta_0 + \beta_1\text{Living Area}$.    
+    $H_0: \beta_1 = 0$ (There is no relationship between price and living area.)    
+    $H_A: \beta_1 \neq 0$ (There is a relationship between price and living area.)    
+    
+- What is the test statistic?
+    We see that the estimated slope for Living Area is 42 standard errors away from the null value of 0, which makes us start to doubt the null hypothesis of no relationship. 
+    
+- For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?    
+    Note that when you see `e` in R output, this means "10 to the power". So `9.486240e-268` means $9.49 \times 10^{-268}$, which is practically 0. This p-value is far less than our threshold $\alpha = 0.05$, so we reject $H_0$ and say that we have strong evidence to support a relationship between price and living area.
+    
+  
+Is this consistent with conclusions from a confidence interval?    
+
+```{r}
+confint(mod_homes)
+```
+
+The interval does not include 0 so we conclude that 0 is not supported as a plausible value for the average increase in price for every 1 square foot increase in living area size of a house, based on the observed sample data.
+
+
+**Logistic Regression Example:** Below we fit a logistic regression model of whether a movie made a profit (response) on whether it is a history film:
+
+```{r}
+movies <- read.csv("https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1")
+mod_movies <- movies %>%
+  with(glm( profit ~ History, family = "binomial"))
+mod_movies %>%
+  tidy()
+```
+
+The `statistic` column is the test statistic equal to `estimate/std.error`, and the `p.value` column is the p-value. Note that if we test the slope, we can make conclusions about the odds ratios because $e^0 = 1$. 
+
+Try yourself!
+
+- What are $H_0$ and $H_A$?
+- What is the test statistic?
+- For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?
+- Is this consistent with the confidence interval?
+
+```{r}
+confint(mod_movies)
+```
+
+
+ANSWER:
+
+- What are $H_0$ and $H_A$?    
+    We write the model $\log(Odds(\text{Profit}|\text{History})) = \beta_0 + \beta_1\text{HistoryTRUE}$.    
+    $H_0: \beta_1 = 0$ (There is no relationship between odds of profit and whether a movie is a history file.)    
+    $H_A: \beta_1 \neq 0$ (There is a relationship between odds of profit and whether a movie is a history file.)    
+
+- What is the test statistic?
+    We see that the estimate slope for HistoryTRUE is 0.14 standard errors away from 0. This is not the far so we don't have much evidence against the null hypothesis that history films are not more or less profitable than other films. 
+    
+- For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?    
+    The p-value is 0.88, which is quite large and greater than our threshold $\alpha = 0.05$, so we fail to reject $H_0$ because it is quite likely to see an observed difference in estimated log odds of making a profit if history were not more or less likely to be profitable.
+  
+- Is this consistent with the confidence interval?
+    Yes, the 95% confidence interval includes and in fact straddles 0, which suggests we are quite uncertain as to the true relationship between categorizing a film as a history film and the likelihood of it being profitable. 
+    
+#### Suggested Actions
+
+You might be wondering how to use the information gained by testing individual slopes to see if they are far from zero, taking into account the uncertainty in our estimates.
+
+If the value of a slope coefficient in the population is truly 0, *after accounting for the other variables in the model*, then it plays no role in the model. If we get a small test statistic and thus a large p-value, it suggests that *we try to remove that slope* and corresponding variable from the model and compare models because we do not have enough evidence to say that the slope is far from 0,  *after accounting for the other variables in the model*. 
+
+Notice, we say *try* to remove the variable. We do not say *eliminate* the variable from all models going forward because there are many reasons why a variable might have a slope of 0. 
+
+- A variable may not have any bearing or relationship with the outcome and thus the slope is practically 0. In these circumstances, you generally should remove it from the model because we want a simpler model with fewer variables. 
+- A variable may have a weak relationship with the outcome, even *after accounting for the other variables in the model*, but if the sample size is small, there is so much uncertainty that we can't ascertain that it is different from 0. You'll need to decide whether or not it is important to include based on the context and causal inference arguments.
+- If two explanatory variables are highly correlated but can explain a lot of the variability in the outcome, they both have a slope near 0 because *after accounting for the other variable in the model*, it can't add much. Try to remove one of the variables and see how the slope estimates change.
+- Two category levels in a categorical variable may not be that different (slope which measure the difference may be 0). You can try to combine categories that are similar, if it makes sense in the data context, or acknowledge the information gained about how those groups are not different,  *after accounting for the other variable in the model*.
+
+
+### Nested Tests
+
+If you've removed one or more variables from a model, the result is a smaller nested model. We can directly compare the larger model and the smaller **nested model** (from removing 1 or more variables from the larger model) using a hypothesis test. 
+
+For this test,
+
+- Null Hypothesis ($H_0$): Smaller nested model is correct
+- Alternative Hypothesis ($H_A$): Smaller nested model is not correct and at least one of the removed variables has a non-zero slope in the population.
+
+In notation, we can write these hypotheses in terms of the larger model,
+
+$$H_0: \beta_j = 0 \text{ for the variables removed} \qquad \text{vs} \qquad H_A: \beta_j \neq 0  \text{ for the variables removed}$$
+The test statistic for this nested test compares the smaller model to the larger full model; it is a measure of how much better the full model is over the smaller model. For a linear regression model, this test is called a **nested F test** and the test statistic is a ratio comparing the sum of squared residuals (F ~ 1 if $H_0$ is true). For logistic regression, this nested test is called a **likelihood ratio test** and the test statistic is a ratio comparing the likelihood or "goodness" of a model (Chi ~ 1 if $H_0$ is true). The larger the test statistics are, the bigger the difference is between the smaller model ($H_0$) and the larger model, suggesting that the larger model might be better. 
+
+We can compare these models in R using the `anova()` function.
+
+**Linear Regression Example:** Below we fit a larger linear regression model of house price using living area, the number of bedrooms, and the number of bathrooms:
+
+```{r}
+mod_homes_full <- homes %>%
+  with(lm(Price ~ Living.Area + Bedrooms + Bathrooms))
+
+anova(mod_homes,mod_homes_full)
+```
+Notice that we get the smaller nested model by removing `Bedrooms` and `Bathrooms` from the larger model. This means that they are nested and can be compared using the nested test. 
+
+- What are $H_0$ and $H_A$?
+    $H_0$: The smaller model with just Living.Area is correct; the number of Bathrooms and Bedrooms do not have an impact on average price after accounting for living area.
+    $H_A$: The smaller model with just Living.Area is not correct; the number of Bathrooms or Bedrooms do have an impact on average price after accounting for living area.
+
+- What is the test statistic?
+    The F = 41.126 is the test statistic. Unlike the test for slopes, this test statistic does not have a nice interpretation. It seems quite far from 1 (which is what F should be close to if $H_0$ were true), but there are no rules for "how far is far".
+    
+- For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?
+    The p-value of $< 2.2*10^{-16}$ is well below the threshold suggesting that it is very unlikely to have observed a difference between these two models as big as we did if the smaller model were true. Thus, we reject $H_0$ that the model with only living area is correct in favor of the larger model. 
+  
+
+
+**Logistic Regression Example:** Below we fit a larger logistic regression model of whether a movie made a profit (response) based on whether it is a history, drama, comedy, or a family film:
+
+```{r}
+mod_movies_full <- movies %>%
+  with(glm( profit ~ History + Drama + Comedy + Family, family = "binomial"))
+
+anova(mod_movies,mod_movies_full,test='LRT') #test='LRT' is needed for logistic models
+```
+Notice that we get the smaller nested model by removing `Drama`, `Comedy`, and `Family` from the larger model. This means that they are nested and can be compared using the nested test. 
+
+- What are $H_0$ and $H_A$?
+    $H_0$: The smaller model with just History is correct; indicators of Drama, Comedy, and Family do not have an impact on whether a movie makes a profit.
+    $H_A$:  The smaller model with just History is not correct; indicators of Drama, Comedy, or Family do  have an impact on whether a movie makes a profit.
+
+- What is the test statistic?
+    The Deviance = 74.941 is the test statistic. Unlike the test for slopes, this test statistic does not have a nice interpretation. It seems quite far from 1 (which is it should be close to if $H_0$ were true), but there are no rules for "how far is far".
+    
+- For a threshold $\alpha = 0.05$, what is the decision regarding $H_0$?
+    The p-value of $3.729 * 10^{-16}$ is well below the threshold suggesting that it is very unlikely to have observed a difference between these two models as big as we did if the smaller model were true. Thus, we reject $H_0$ that the model with only History indicator is correct in favor of the larger model. 
+  
+#### Suggested Actions
+
+You might be wondering how to use the information gained by comparing a smaller nested model to a larger model. 
+
+- If the p-value is large, then you don't have evidence to support the larger model.
+- If the p-value is small, then you need to look back at the variables you removed.
+
+This tool is particularly helpful if you have a categorical variable with three or more categories as you can test all of the slopes for that one variable at once.
+
+This tools can also be helpful to stop you from removing too many variables at once. 
+
+In practice, you can iterate between testing individual slopes to determine which variables to consider removing and then comparing nested models. Also, you'll incorporate other model selection tools in your process, not just these two types of hypothesis tests. 
+
+
+
+### Summary of Model Selection Methods
+
+In general, we want a simple model that works well. We want to follow Occam's Razor, a philosophy that suggests that it is a good principle to explain the phenomena by the simplest hypothesis possible. In our case, that mean the fewest variables in our models. 
+
+#### Linear Regression Tools
 
 - Exploratory visualizations give us an indication for which variables have the strongest relationship with our response of interest (also if it is not linear)
 - $R^2$ can tell us the percent of variation in our response that is explained by the model -- We want HIGH $R^2$
@@ -569,30 +919,45 @@ In practice, you need to decide which variables should be included in an model. 
 
 With the addition of statistical inference in our tool set, we now have many other ways to help guide our decision making process.
 
-
 - Confidence intervals or tests for individual coefficients or slopes ($H_0: \beta_k = 0$, population slope for kth variable is 0 meaning no relationship)
-    - See `summary(lm1)`
+    - See `tidy(lm1)`
 - Nested tests for a subset of coefficients or slopes ($H_0: \beta_k = 0$, population slope for kth variable is 0 meaning no relationship)
     - `anova(lm1, lm2)` for comparing two linear regression models (one larger model and one model with some variables removed)
-    - `anova(glm1, glm2, test = 'LRT')` for comparing two logistic regression models (one larger model and one model with some variables removed)
-
-In general, we want a simple model that works well. We want to follow Occam's Razor, a philosophy that suggests that it is a good principle to explain the phenomena by the simplest hypothesis possible. In our case, that mean the fewest variables in our models. 
-
+   
 So there are model selection criteria that we can use that penalizes you for having too many variables. Here are some below.
-
-
-- Choose a model with a LOWER Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC) calculated as
-  
- $$AIC = n\log(SSE) - n\log(n) + 2(k+1) = -2\log(L) + 2(k+1)$$
- $$BIC = n\log(SSE) -n\log(n) + (k+1)\log(n)= -2\log(L) + (k+1)\log(n)$$  
-    - Calculated using `BIC(lm1)` and `AIC(lm1)`
 
 - Choose a model with a higher adjusted $R^2$, calculated as,
 $$R^2_{adj} = 1 - \frac{SSE/(n-k-1)}{SSTO/(n-1)}$$
 where $k$ is the number of estimated coefficients in the model. 
-    - Find the adjusted R squared in the output of `summary(lm1)`
-    
-    
+    - Find the adjusted R squared in the output of `glance(lm1)`
+   
+   
+#### Logistic Regression Tools  
+
+- Exploratory visualizations give us an indication for which variables have the strongest relationship with our response of interest (also if it is not linear)   
+- We want HIGH accuracy and LOW false positive and false negative rates that can separate predicted probabilities fairly well between the true outcome groups.
+   
+With the addition of statistical inference in our tool set, we now have many other ways to help guide our decision making process.
+
+- Confidence intervals or tests for individual coefficients or slopes ($H_0: \beta_k = 0$, population slope for kth variable is 0 meaning no relationship)
+    - See `tidy(lm1)`
+- Nested tests for a subset of coefficients or slopes ($H_0: \beta_k = 0$, population slope for kth variable is 0 meaning no relationship)
+    - `anova(glm1, glm2, test = 'LRT')` for comparing two logistic regression models (one larger model and one model with some variables removed)
+
+
+So there are model selection criteria that we can use that penalizes you for having too many variables. Here are some below that you'll see in future classes.
+
+- Choose a model with a LOWER Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC) calculated as
+  
+ $$AIC = -2\log(L) + 2(k+1)$$
+ $$BIC= -2\log(L) + (k+1)\log(n)$$  
+    - Calculated using `BIC(glm1)` and `AIC(glm1)`
+
+
+#### Prediction Tools
+
+Here is a taste of Statistical Machine Learning:
+
 If our goal is prediction, then we will want to choose a model that has the lowest prediction error. BUT, if we fit our model to our data and then calculate the prediction error from that SAME data, we aren't getting an accurate estimate of the prediction error because we are cheating. We aren't doing predictions for new data values. 
  
  

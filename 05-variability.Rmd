@@ -11,8 +11,7 @@ library(mosaicData)
 library(ggmosaic)
 library(NHANES)
 library(mosaic)
-knitr::opts_chunk$set(echo = TRUE)
-set.seed(1234)
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
 ```
 
 # Random Variability {#randvariability}
@@ -27,13 +26,13 @@ Throughout the past three chapters, we have also sprinkled in the idea that **th
 
 ## Sampling Variability
 
-If we could repeat the random sampling process, each sample we would get would be slightly different. The composition of units in the sample would differ every time. Sometimes we would randomly over-represent one group of people and another time we would randomly over-represent another group of people, just by chance. The statistic of interest (e.g. a mean, a median, a regression coefficient) that we calculate would vary between across the different samples. 
+If we could repeat the random sampling process, each sample we would get would be slightly different. The composition of units/cases in the sample would differ every time. Sometimes we would randomly over-represent one group of people and another time we would randomly over-represent another group of people, just by chance. The statistic of interest (e.g. a mean, a median, a regression coefficient) that we calculate would vary between across the different samples. 
 
 ## Randomization Variability
 
 Another source of random variation in a statistic that can arise is that of random treatment/control group assignments in an experiment. If we could repeat the randomization process in an experiment, each treatment group would be slightly different. The individual composition of the units in the treatment and control groups would differ every time. Sometimes we would randomly over-represent one group of people in the treatment group, and another time we would randomly over-represent another group of people in the treatment group, just by chance. The statistic that we calculate and compare between groups (e.g. a difference in means, a difference in medians, a regression coefficient) would change for every reshuffling of the individuals.
 
-These descriptions cover the idea of **random variability**. This random variability is typically due to random sampling or randomized group assignments. The sample composition can vary, and therefore, the statistics that we calculate vary between different sample.
+These descriptions cover the idea of **random variability**. This random variability is typically due to random sampling or randomized group assignments. The sample and group composition can vary, and therefore, the statistics that we calculate vary between different sample.
 
 *The important thing to keep in mind is that we only get to see one sample, one particular composition of individuals. But we need to put this one observed sample and statistic in the context of the random variability.* 
 
@@ -60,27 +59,28 @@ flights <- flights %>%
     select(arr_delay, dep_delay, season, day_hour, origin, carrier)
 ```
 
-Since we have the full population of flights in 2013, we could just describe the flights that happened in that year. Having data on the full population is very rare in practice. Instead, we are going to use this population to illustrate sampling variability.
+Since we have the full population of flights in 2013, we could just describe the flights that happened in that year. But, having data on the full population is *very rare* in practice. Instead, we are going to use this population to illustrate sampling variability.
 
-Let's take one random sample of 100 flights from the data set, using a simple random sampling strategy. Let's look at the arrival delay (in minutes) `arr_delay` with a histogram and calculate the median and mean arrival delay.
+Let's take one random sample of 100 flights from the data set, using a simple random sampling strategy.
 
 ```{r}
+set.seed(1234) #ensures our random sample is the same every time we run this code
 flights_samp1 <- flights %>%
     sample_n(size = 100) ## Sample 100 flights randomly
+```
 
-flights_samp1 %>% 
-    ggplot(aes(x = arr_delay)) +
-    geom_histogram() +
-    theme_minimal()
+If you were planning a trip, you may be able to choose between two flights that leave at different times of day. Do morning flights have shorter arrival delays on average than afternoon flights? If so, book the flight earlier in the day!
 
+Let's look at whether the arrival delay (in minutes) `arr_delay` differs between the morning and the afternoon, `day_hour`, by fitting a linear regression model and looking at the estimate for `day_hourmorning`. This -20.4 minutes is the estimated difference in mean arrival delay times between morning and afternoon flights, so the delay time is less in the morning on average.   
+
+```{r}
 flights_samp1 %>%
-    summarize(medians = median(arr_delay), means = mean(arr_delay))
+    with(lm(arr_delay ~ day_hour)) %>%
+    tidy()
 ```
 
 ```{block type="reflect"}
-At this point, we haven't looked at the entire population of flights from 2013. Based on a sample of 100 flights, what do you think the distribution of arrival delays looks like for the entire population? Shape? Center? Spread? 
-
-Why do you think that?
+At this point, we haven't looked at the entire population of flights from 2013. Based on one sample of 100 flights, how do you think the time of day impacts arrival delay times in the entire population?
 ```
 
 Now, let's take another random sample of 100 flights from the full population of flights.
@@ -90,63 +90,73 @@ flights_samp2 <- flights %>%
     sample_n(size = 100) ## Sample 100 flights randomly
 
 flights_samp2 %>%
-    ggplot(aes(x = arr_delay)) +
-    geom_histogram() +
-    theme_minimal()
-
-flights_samp2 %>%
-    summarize(medians = median(arr_delay), means = mean(arr_delay))
+    with(lm(arr_delay ~ day_hour)) %>%
+    tidy()
 ```
 
 ```{block type="reflect"}
 How does the second sample differ from the first sample? What do they have in common?
 ```
 
-We could keep the process going. Take a sample of 100 flights, look at the histogram, and calculate the median and mean. Repeat many, many times. 
+We could keep the process going. Take a sample of 100 flights, fit a model, and look at the estimated regression coefficient for `day_hourmorning`. Repeat many, many times. 
 
-We can add a little bit of code to help us simulate this sampling process 1000 times and calculate the median and mean arrival delay for each random sample of 100 flights. 
+We can add a little bit of code to help us simulate this sampling process 1000 times and estimate the difference in mean arrival delay between morning and afternoon for each random sample of 100 flights. 
 
 ```{r}
 sim_data <- mosaic::do(1000)*( 
     flights %>% 
       sample_n(size = 100) %>%  # Generate samples of 100 flights
-      summarize(medians = median(arr_delay), means = mean(arr_delay)) # Calculate the median and mean
+      with(lm(arr_delay ~ day_hour)) # Fit linear model
 )
 ```
 
-Now we have 1000 medians and 1000 means, each corresponding to one random sample of 100 flights from the population. Let's summarize and visualize this simulation.
+Now we have 1000 fit models, each corresponding to one random sample of 100 flights from the population. Let's summarize and visualize this simulation.
 
 ```{r}
 # Summarize
-summary_sim <- sim_data %>% 
-    summarize(
-        mean_medians = mean(medians),
-        mean_means = mean(means),
-        sd_medians = sd(medians),
-        sd_means = sd(means))
-
-# Visualize M
 sim_data %>% 
-    ggplot(aes(x = medians)) +
+    summarize(
+        mean_Intercept = mean(Intercept),
+        mean_dayhourmorning = mean(day_hourmorning),
+        sd_Intercept = sd(Intercept),
+        sd_dayhourmorning = sd(day_hourmorning))
+
+# Visualize Intercepts
+sim_data %>% 
+    ggplot(aes(x = Intercept)) +
     geom_histogram(bins = 15) +
-    geom_vline(data = summary_sim, aes(xintercept = mean_medians), color = "red") +
-    labs(title = "Sampling distribution of the sample median\nfrom a sample of 100 flights") +
+    labs(title = "Sampling distribution of Intercepts\nfrom samples of 100 flights") +
     theme_minimal()
 
-# Visualize
+# Visualize Slopes
 sim_data %>% 
-    ggplot(aes(x = means)) +
+    ggplot(aes(x = day_hourmorning)) +
     geom_histogram(bins = 15) +
-    geom_vline(data = summary_sim, aes(xintercept = mean_means), color = "red") +
-    labs(title = "Sampling distribution of the sample mean\nfrom a sample of 100 flights") +
+    labs(title = "Sampling distribution of Slopes\nfrom samples of 100 flights") +
     theme_minimal()
 ```
 
-These histograms approximate the **sampling distribution** of sample median arrival delay and the **sampling distribution** of sample mean arrival delay, both of which describe the variability in the sample statistic *across all possible random samples from the population*. 
+These histograms approximate the **sampling distribution** of estimated intercepts and the **sampling distribution** of estimated slopes from a linear model predicting the arrival delay as a function of time of day, both of which describe the variability in the sample statistics *across all possible random samples from the population*. 
 
 ```{block type="reflect"}
-Describe the shape, center, and spread of the sampling distribution for the sample mean.
+Describe the shape, center, and spread of the sampling distribution for the intercepts. Do the same for the slopes. 
 ```
+
+
+Notice how these means of the sampling distributions are very close to the population values, below. This makes sense since we are sampling from the population so we'd expect the estimates to bounce around the true population values. 
+
+```{r}
+sim_data %>% # Means and standard deviations of sampling distribution
+    summarize(
+        mean_Intercept = mean(Intercept),
+        mean_dayhourmorning = mean(day_hourmorning),
+        sd_Intercept = sd(Intercept),
+        sd_dayhourmorning = sd(day_hourmorning))
+
+flights %>% # Population of flights
+    with(lm(arr_delay ~ day_hour)) # Fit linear model
+```
+
 
 ## IRL: Bootstrapping 
 
@@ -174,73 +184,90 @@ In our simulation above, we calculated the median and mean arrival delay. In the
 boot_data <- mosaic::do(1000)*( 
     flights_samp1 %>% # Start with the SAMPLE (not the FULL POPULATION)
       sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
-      summarize(medians = median(arr_delay), means = mean(arr_delay)) # Calculate statistics
+      with(lm(arr_delay ~ day_hour)) # Fit linear model
 )
+```
+
+```{block type="reflect"}
+Notice the similarities and differences in the R code for boot_data, in which we are sampling from the sample, and sim_data, in which we are sampling from the population, above. 
 ```
 
 **3. Summarize**
 
-Let's summarize these 1000 medians and 1000 means generated from resampling (with replacement) *from our sample* (our "fake population").
+Let's summarize these 1000 model estimates generated from resampling (with replacement) *from our sample* (our "fake population").
 
 ```{r}
 # Summarize
-summary_boot <- boot_data %>% 
+boot_data %>% 
     summarize(
-        mean_medians = mean(medians),
-        mean_means = mean(means),
-        sd_medians = sd(medians),
-        sd_means = sd(means)
-    )
-summary_boot
+        mean_Intercept = mean(Intercept),
+        mean_dayhourmorning = mean(day_hourmorning),
+        sd_Intercept = sd(Intercept),
+        sd_dayhourmorning = sd(day_hourmorning))
 ```
+
+Note how the mean's are very close to the original estimates from the sample, below.
+
+```{r}
+flights_samp1 %>%
+    with(lm(arr_delay ~ day_hour)) %>%
+    tidy()
+```
+This is not a coincidence. Since we are resampling from our original sample, we'd expect the bootstrap estimates to bounce around the original sample estimates, *similar to how the simulated sampling distributions had means close the the population values*
+
 
 Let's compare this to the summaries from the simulation of randomly sampling *from the population*.
 
 ```{r}
-summary_sim
+sim_data %>% 
+    summarize(
+        mean_Intercept = mean(Intercept),
+        mean_dayhourmorning = mean(day_hourmorning),
+        sd_Intercept = sd(Intercept),
+        sd_dayhourmorning = sd(day_hourmorning))
 ```
 
-They won't be exactly the same, but they should be of roughly similar magnitude. 
+
+
+The means won't be exactly the same because *the center of the bootstrap distribution is the original sample and the center of the sampling distribution is the population values*. 
+
+But, *the standard deviations should be of roughly similar magnitude* because they are in fact trying to estimate the same thing, the **sampling variability**. 
 
 **4. Visualize**
 
-Let's visualize these 1000 medians and 1000 means generated from resampling (with replacement) from our sample (our "fake population").
+Let's visualize these 1000 models generated from resampling (with replacement) from our sample (our "fake population").
 
 ```{r}
-# Visualize
+# Visualize Intercepts
 boot_data %>% 
-    ggplot(aes(x = medians)) +
+    ggplot(aes(x = Intercept)) +
     geom_histogram(bins = 15) +
-    geom_vline(data = summary_boot, aes(xintercept = mean_medians), color = 'red') +
-    labs(title = "Bootstrap sampling distribution of the sample median") +
+    labs(title = "Bootstrap sampling distribution of Intercepts\nfrom samples of 100 flights") +
     theme_minimal()
 
-# Visualize
+# Visualize Slopes
 boot_data %>% 
-    ggplot(aes(x = means)) +
+    ggplot(aes(x = day_hourmorning)) +
     geom_histogram(bins = 15) +
-    geom_vline(data = summary_boot, aes(xintercept = mean_means), color = 'red') +
-    labs(title = "Bootstrap sampling distribution of the sample mean") +
+    labs(title = "Bootstrap sampling distribution of Slopes\nfrom samples of 100 flights") +
     theme_minimal()
 ```
 
 Let's compare these to the visuals from the simulation from the population.
 
 ```{r}
-# Visualize
+# Visualize Intercepts
 sim_data %>% 
-    ggplot(aes(x = medians)) +
+    ggplot(aes(x = Intercept)) +
     geom_histogram(bins = 15) +
-    geom_vline(data = summary_sim, aes(xintercept = mean_medians), color = 'red') +
-    labs(title = "Sampling distribution of the sample median\nfrom a sample of 100 flights") +
+    labs(title = "Sampling distribution of Intercepts\nfrom samples of 100 flights") +
     theme_minimal()
 
-# Visualize
+# Visualize Slopes
 sim_data %>% 
-    ggplot(aes(x = means)) +
+    ggplot(aes(x = day_hourmorning)) +
     geom_histogram(bins = 15) +
-    geom_vline(data = summary_sim, aes(xintercept = mean_means), color = 'red') +
-    labs(title = "Sampling distribution of the sample mean\nfrom a sample of 100 flights") +
+    labs(title = "Sampling distribution of Slopes\nfrom samples of 100 flights") +
     theme_minimal()
 ```
 
@@ -250,18 +277,21 @@ The process of resampling from our sample, called **bootstrapping**, is becoming
 How well does bootstrapping do in mimicking the simulations from the population? What could we change to improve bootstrap's ability to mimic the simulations?
 ```
 
+
 This is a really important concept in Statistics! We'll come back to the ideas of sampling variability and bootstrapping throughout the rest of the course.
 
 ```{block type="reflect"}
-What do you think the mean arrival delay is in the population? If you had to give an interval of plausible values for the population mean, what range would you give? Why?
+Based on the bootstrap sampling distribution, what would you guess the difference in mean arrival delay between morning and afternoon is in the population of flights? 
+
+Based on the bootstrap sampling distribution, if you had to give an interval of plausible values for the population difference, what range would you give? Why? Is a difference of 0 a plausible value?
 ```
 
 
 ## Simulating Randomization into Groups
 
-We have been thinking about arrival delays in general. Let's move now to comparing arrival delays between groups. If you were planning a trip, you may be able to choose between two flights that leave at different times of day. Do morning flights have shorter arrival delays on average than afternoon flights? If so, book the flight earlier in the day!
+We have been thinking about estimating the differences in mean arrival delays. But we are interested in whether there is actually a true, real difference because we need to decide whether to have this influence our decisions in booking flights. If the difference is 0, then there is no real difference between morning and afternoon flights.  
 
-Let's look at the data! We use a random sample of 500 flights from the population to investigate this question.
+Let's use a random sample of 500 flights from the population to investigate this question using a difference approach.
 
 ```{r}
 flights_samp500 <- flights %>% 
@@ -302,19 +332,18 @@ In real life, we don't often consider every possible permutation (reshuffling of
 
 **1. Hypothesis**
 
-Our **null hypothesis** (a hypothesis that is conservative/not interesting/does not elicit action) is that there is no relationship between time of day and the arrival delay. 
+Our **null hypothesis** (a hypothesis that is conservative/not interesting/does not elicit action) is that there is no relationship between time of day and the mean arrival delay. 
 
 **2. Generate and Calculate**
 
 We can generate 1000 new data sets based on randomly reshuffling the labels of `day_hour`. For each of these data sets, we calculate the difference in mean arrival delay between morning and afternoon groups. 
 
 ```{r echo=FALSE}
-require(infer) #install.packages('infer')
-null_dist <-  flights_samp500 %>% 
-    specify(arr_delay ~ day_hour) %>%
-    hypothesize(null = "independence") %>% # Hypothesize
-    generate(reps = 1000, type = "permute") %>% # Generate permutations
-    calculate(stat = "diff in means", order = c("morning", "afternoon")) #calculate difference in means
+null_dist <- mosaic::do(1000)*( 
+    flights_samp1 %>% # Start with the SAMPLE (not the FULL POPULATION)
+      mosaic::sample(shuffled = 'day_hour') %>% # Shuffle labels in day_hour
+      with(lm(arr_delay ~ day_hour)) # Fit linear model
+)
 ```
 
 **3. Visualize**
@@ -323,13 +352,15 @@ The histogram below shows the histogram of differences in means if the null hypo
 
 ```{r echo=FALSE}
 obs <- flights_samp500 %>% 
-    specify(arr_delay ~ day_hour) %>%
-    calculate(stat = "diff in means", order = c("morning", "afternoon"))
+    with(lm(arr_delay ~ day_hour)) %>%
+    tidy() %>%
+    select(term,estimate) %>%
+    filter(term == 'day_hourmorning') 
 
 null_dist %>% 
-    ggplot(aes(x = stat)) +
+    ggplot(aes(x = day_hourmorning)) +
     geom_histogram() + 
-    geom_vline(data = obs, aes(xintercept = stat), color = "red") +
+    geom_vline(data = obs, aes(xintercept = estimate), color = "red") +
     theme_minimal()
 ```
 
@@ -346,7 +377,7 @@ We will return to the ideas of testing hypotheses later in the course.
     1. If we randomly choose a sample from the population
     2. If we randomly assign individuals to a treatment group in an experiment
 
-- If we do random sampling, then we need to consider how our numeric summaries (means, medians, estimated slopes, estimated odds ratios) might vary if we had gotten a different sample from the population.
+- If we do random sampling, then we need to consider how our numeric summaries (estimated slopes, estimated odds ratios) might vary if we had gotten a different sample from the population. This variation gives a sense of how uncertain we should be in making conclusions about the population from our sample. If it varies quite a lot, then we are more uncertain about the population. If it does not vary much, then we can be more certain about the information we have about the population.
 
     - We can get an estimate of this sample variation through bootstrapping from our sample (resampling from our sample).
 

@@ -130,11 +130,7 @@ homes %>%
     theme_minimal()
 ```
 
-```
-## `geom_smooth()` using formula 'y ~ x'
-```
-
-![](06-probability_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" />
 
 To allow for different slopes among homes with and without a fireplace, we used an interaction term between Living.Area and AnyFireplace. Based on our one sample, we observed a difference in the slopes of \$26.85 per square foot. 
 
@@ -172,10 +168,9 @@ For a much more in-depth discussion of probability (calculus-based), take STAT/M
 
 ## Three Types of Probability
 
-\begin{reflect}
-What is the probability of rolling a 1 on a six-sided die? How do you
-know this? How can you justify that number?
-\end{reflect}
+<div class="reflect">
+<p>What is the probability of rolling a 1 on a six-sided die? How do you know this? How can you justify that number?</p>
+</div>
 
 There are three types of probability.
 
@@ -183,10 +178,9 @@ There are three types of probability.
 
 2. **Theoretical Probability:** If you don't have time to toss a die a million times, you could calculate probabilities based on mathematical theory and assumptions. When tossing a balanced die, you would assume that each side is equally likely to land face-up. Thus the chance of rolling a 1, is 1/6 for a six-sided die.
 
-\begin{reflect}
-What is the probability that you'll talk to someone you do not know this
-week? What does that number represent? How can you justify that number?
-\end{reflect}
+<div class="reflect">
+<p>What is the probability that you’ll talk to someone you do not know this week? What does that number represent? How can you justify that number?</p>
+</div>
 
 3. **Subjective Probability:** If you use a number between 0 and 1 (100%) to reflect your uncertainty in an outcome (rather than based on empirical evidence or mathematical theory), then you are using subjective probability. 
 
@@ -225,20 +219,12 @@ For more details on theoretical probability, please see [Appendix A]. This mater
 
 Let's start by taking a moment to consider a recent [Washington Post article](https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c) that discusses the role of probability in medical diagnostics. Before you read the whole article, consider a question.
 
-\begin{reflect}
-Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of
-every 1,000 people will have it).
-
-The test to detect Disease X has a false-positive rate of 5 percent
-(meaning that out of every 100 subjects who do not have Disease X, 5
-will falsely test positive for it).
-
-The test's accuracy is 99 percent (meaning that out of every 100 who do
-have Disease X, 99 will correctly test positive for it).
-
-If a patient's test result comes back positive, what is the probability
-that this patient actually has the disease?
-\end{reflect}
+<div class="reflect">
+<p>Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of every 1,000 people will have it).</p>
+<p>The test to detect Disease X has a false-positive rate of 5 percent (meaning that out of every 100 subjects who do not have Disease X, 5 will falsely test positive for it).</p>
+<p>The test’s accuracy is 99 percent (meaning that out of every 100 who do have Disease X, 99 will correctly test positive for it).</p>
+<p>If a patient’s test result comes back positive, what is the probability that this patient actually has the disease?</p>
+</div>
 
 If you said the probability is 95%, then you are wrong, but almost half of the doctors surveyed in 2014 thought exactly the same thing.
 
@@ -378,7 +364,7 @@ When a random variable can take infinitely many values (i.e. a quantitative vari
 
 We have looked at density plots previously when we learned about data visualization. These were smooth curves that showed us the distribution of quantitative variable. In this class, the probability density functions that we will look at will be smooth curves. One example of a pdf for a famous named probability model (called the Normal distribution) is shown below:
 
-![](06-probability_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
 
 There are two main ideas that you should be comfortable with when working with quantitative random variables:
 
@@ -387,7 +373,7 @@ There are two main ideas that you should be comfortable with when working with q
 
 The pictures below illustrate how different probability statements correspond to different areas beneath the pdf curve.
 
-![](06-probability_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> ![](06-probability_files/figure-latex/unnamed-chunk-7-2.pdf)<!-- --> ![](06-probability_files/figure-latex/unnamed-chunk-7-3.pdf)<!-- --> ![](06-probability_files/figure-latex/unnamed-chunk-7-4.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /><img src="06-probability_files/figure-html/unnamed-chunk-7-2.png" width="672" style="display: block; margin: auto;" /><img src="06-probability_files/figure-html/unnamed-chunk-7-3.png" width="672" style="display: block; margin: auto;" /><img src="06-probability_files/figure-html/unnamed-chunk-7-4.png" width="672" style="display: block; margin: auto;" />
 
 
 ### Expected value and variance
@@ -435,15 +421,15 @@ If we randomly draw 5000 people, we'd expect $0.001*5000 = 5$ people to have the
 Let's look at the probability mass function for the Binomial Model for $n = 10, p = 0.01$.
 
 
-![](06-probability_files/figure-latex/unnamed-chunk-8-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" />
 
 If we increase the sample size to $n = 500$, then the probability mass function looks like this.
 
-![](06-probability_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
 
 Let's zoom in on the left hand side of this plot.
 
-![](06-probability_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" />
 
 What does this look like? A Normal Model!!!
 
@@ -456,17 +442,17 @@ $$f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
 
 For every potential value of $\mu$ and $\sigma$, there is a different function/curve. Some examples are shown below.
 
-![](06-probability_files/figure-latex/unnamed-chunk-11-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" />
 
 If a random variable $X$ is modeled with a Normal model, we also say that "$X$ follows a normal distribution" or that "$X$ is normally-distributed".
 
 - In general, the center of the distribution is $\mu$ and the standard devation $\sigma$, the square root of the variance, determines the spread of the distribution.
 
-![](06-probability_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
 
 - Let's consider the particular Normal model with $\mu=0$ and $\sigma=1$. This is called the **standard normal distribution**. We know that $P(-1\leq X \leq 1) = 0.68$, which is calculated as the area under the curve between -1 and 1.
 
-![](06-probability_files/figure-latex/unnamed-chunk-13-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" />
 
 
 ```r
@@ -484,7 +470,7 @@ pnorm(1) - pnorm(-1)
 
 - We know that $P(-2\leq X \leq 2) = 0.95$, calculated as the area under the curve between -2 and 2.
 
-![](06-probability_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" />
 
 
 ```r
@@ -497,7 +483,7 @@ pnorm(2) - pnorm(-2)
 
 - We know that $P(-3\leq X \leq 3) = 0.997$, calculated as the area under the curve between -3 and 3.
 
-![](06-probability_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" />
 
 
 ```r
@@ -533,7 +519,7 @@ As we wade through the formal theory, let's remind ourselves why we need to unde
 
 We appreciate that our estimates will vary from sample to sample because we have different units in each sample. We care about *how much* they can vary because we want to *quantify* the amount of uncertainty in our estimates. Sure, we may use linear regression modeling to find that the estimate for an interaction coefficient is \$26.85, but how different could that estimate have been if we had obtained a different sample (of the same size)?
 
-The **sampling ditribution** of a statistic (e.g. sampling distribution of the sample mean, of the sample median, of a regression coefficient) tells us exactly how that statistic would vary across all possible samples of a given size. For example, in our New York housing data (1728 homes), the sampling distribution for the interaction coefficient tells us exactly the distribution of interaction coefficient estimates that result from all possible samples of size 1728 *from the population of New York homes*. This distribution is centered at the true value of the population interaction coefficient (the value we would get from linear modeling if we did indeed use the full population). The spread of the distribution gives us a measure of the precision of our estimate. If the sampling distribution is very wide, then our estimate is imprecise; our estimate would vary widely from sample to sample. If the sampling distribution is very narrow, then our estimate is precise; our estimate would not vary much from sample to sample.
+The **sampling distribution** of a statistic (e.g. sampling distribution of the sample mean, of the sample median, of a regression coefficient) tells us exactly how that statistic would vary across all possible samples of a given size. For example, in our New York housing data (1728 homes), the sampling distribution for the interaction coefficient tells us exactly the distribution of interaction coefficient estimates that result from all possible samples of size 1728 *from the population of New York homes*. This distribution is centered at the true value of the population interaction coefficient (the value we would get from linear modeling if we did indeed use the full population). The spread of the distribution gives us a measure of the precision of our estimate. If the sampling distribution is very wide, then our estimate is imprecise; our estimate would vary widely from sample to sample. If the sampling distribution is very narrow, then our estimate is precise; our estimate would not vary much from sample to sample.
 
 The emphasis on "from the population of New York homes" when defining the sampling distribution earlier is deliberate. We don't have the population, and we never will (usually)! The sampling distribution is a theoretical idea, but we wish to know what it looks like because we care about the precision of our estimate. We have done our best to estimate the center of the sampling distribution: our best guess is the sample estimate itself. For our housing data, we estimate an interaction coefficient of $26.85. This is our best guess for the center of the sampling distribution. What about the spread?
 
@@ -554,11 +540,11 @@ What does the CLT tell us? It tells us that with a "sufficiently large" sample s
 
 Let's visualize what is happening with the Central Limit Theorem. Below we have simulated (generated ourselves) data for a full population of cases. The distribution of values in the full population is shown below. The true population mean (expected value) is 4. Beneath, we show the sampling distributions of the sample mean for different sample sizes. We see the CLT in action. The center of the sampling distributions is the expected value 4. The sampling distributions look normally distributed, and the spread decreases with sample size. Note that the original population values do not look normally-distributed, and yet, by the CLT, the sample means are normally-distributed.
 
-![](06-probability_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> ![](06-probability_files/figure-latex/unnamed-chunk-19-2.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-19-1.png" width="960" style="display: block; margin: auto;" /><img src="06-probability_files/figure-html/unnamed-chunk-19-2.png" width="960" style="display: block; margin: auto;" />
 
 Let's look at one more example. Again, the population distribution is clearly not normally-distributed, and yet, the sample means are normally-distributed. These normal distributions are centered at the true population mean (expected value) and have smaller and smaller spread with increased sample size.
 
-![](06-probability_files/figure-latex/unnamed-chunk-20-1.pdf)<!-- --> ![](06-probability_files/figure-latex/unnamed-chunk-20-2.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-20-1.png" width="960" style="display: block; margin: auto;" /><img src="06-probability_files/figure-html/unnamed-chunk-20-2.png" width="960" style="display: block; margin: auto;" />
 
 The different ways in which we think about sampling variability in Statistics are shown in the figure below.
 
@@ -590,11 +576,11 @@ $$ z = \frac{\bar{x} - \mu}{s/\sqrt{4}}$$
 
 
 
-![](06-probability_files/figure-latex/unnamed-chunk-22-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" />
 
 - Does this distribution of z-scores look Normal? We can try to see more clearly by making a **Q-Q plot**, shown below.
 
-![](06-probability_files/figure-latex/unnamed-chunk-23-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" />
 
 If the z-scores follow a normal distribution, the points in the Q-Q plot should fall on a straight line. However, we see some deviation at the left and right of the plots. This indicates that the tails of our z-score distribution are thicker (more populous) than expected if they were actually normally-distributed. 
 
@@ -615,9 +601,19 @@ if the histogram of the **population is unimodal and roughly symmetric** (approx
 - The spread is determined by a parameter called **degrees of freedom** (for standardized means, $df = n - 1$).
 - As $n\rightarrow\infty$, this model looks more like the Normal model. 
 
-![](06-probability_files/figure-latex/unnamed-chunk-24-1.pdf)<!-- --> 
+<img src="06-probability_files/figure-html/unnamed-chunk-24-1.png" width="768" style="display: block; margin: auto;" />
 
 Since the Student T distribution is approximately Normal when sample sizes are large, we will typically use the Normal model. However, if sample sizes are small ($n<30$ or so), the Normal model is not appropriate. So, in those rare cases, we'll need to refer to Student's T.
+
+## Regression Model Sampling Distributions
+
+Prior to this point, we've looked at the probability theory for sample means. This is because the equations are easier to write down and work with. 
+
+But, how does all of this apply to linear models and regression coefficients? 
+
+Since the estimates for linear models are very similar to means, **the sampling distribution of a sample regression coefficient is approximately Normal with mean = population regression coefficient, $\beta_j$, and standard deviation, $SD(\hat{\beta_j})$. **
+
+- When the sample size is small $n<30$, we need to consider William Gosset's work because $\frac{\hat{\beta_j} - \beta_j}{SE(\hat{\beta_j})}$ is not quite Normally distributed!
 
 
 ## Chapter 6 Major Takeaways
@@ -665,3 +661,8 @@ Since the Student T distribution is approximately Normal when sample sizes are l
         
 
 - When the sample size is small $n<30$, we need to consider William Gosset's work because $\frac{\bar{X} - \mu}{s/\sqrt{n}}$ is not quite Normally distributed!
+
+Now, how does all of this apply to models and regression coefficients? Since the estimates for linear models are very similar to means, the sampling distribution of a sample regression coefficient is approximately Normal with mean = population regression coefficient, $\beta_j$, and standard deviation, $SD(\hat{\beta_j})$. 
+
+- When the sample size is small $n<30$, we need to consider William Gosset's work because $\frac{\hat{\beta_j} - \beta_j}{SE(\hat{\beta_j})}$ is not quite Normally distributed!
+

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.1 Confidence Intervals | STAT 155 Notes</title>
+  <title>7.2 Confidence Intervals | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.1 Confidence Intervals | STAT 155 Notes" />
+  <meta property="og:title" content="7.2 Confidence Intervals | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.1 Confidence Intervals | STAT 155 Notes" />
+  <meta name="twitter:title" content="7.2 Confidence Intervals | STAT 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="statistical-inference.html"/>
-<link rel="next" href="confidence-interval-examples.html"/>
+<link rel="prev" href="standard-error.html"/>
+<link rel="next" href="hypothesis-testing.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -281,36 +281,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>6.8.2</b> Beer Helps the Field of Statistics</a></li>
 <li class="chapter" data-level="6.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>6.8.3</b> Student’s T Model</a></li>
 </ul></li>
-<li class="chapter" data-level="6.9" data-path="chapter-6-major-takeaways.html"><a href="chapter-6-major-takeaways.html"><i class="fa fa-check"></i><b>6.9</b> Chapter 6 Major Takeaways</a></li>
+<li class="chapter" data-level="6.9" data-path="regression-model-sampling-distributions.html"><a href="regression-model-sampling-distributions.html"><i class="fa fa-check"></i><b>6.9</b> Regression Model Sampling Distributions</a></li>
+<li class="chapter" data-level="6.10" data-path="chapter-6-major-takeaways.html"><a href="chapter-6-major-takeaways.html"><i class="fa fa-check"></i><b>6.10</b> Chapter 6 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>7</b> Statistical Inference</a><ul>
-<li class="chapter" data-level="7.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7.1</b> Confidence Intervals</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#via-classical-theory"><i class="fa fa-check"></i><b>7.1.1</b> Via Classical Theory</a></li>
-<li class="chapter" data-level="7.1.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#via-bootstrapping"><i class="fa fa-check"></i><b>7.1.2</b> Via Bootstrapping</a></li>
+<li class="chapter" data-level="7.1" data-path="standard-error.html"><a href="standard-error.html"><i class="fa fa-check"></i><b>7.1</b> Standard Error</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="standard-error.html"><a href="standard-error.html#bootstrap-standard-error-estimate"><i class="fa fa-check"></i><b>7.1.1</b> Bootstrap Standard Error Estimate</a></li>
+<li class="chapter" data-level="7.1.2" data-path="standard-error.html"><a href="standard-error.html#classical-standard-error-estimate"><i class="fa fa-check"></i><b>7.1.2</b> Classical Standard Error Estimate</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html"><i class="fa fa-check"></i><b>7.2</b> Confidence Interval Examples</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#proportion-outcome"><i class="fa fa-check"></i><b>7.2.1</b> Proportion Outcome</a></li>
-<li class="chapter" data-level="7.2.2" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#mean-and-then-median"><i class="fa fa-check"></i><b>7.2.2</b> Mean and then Median</a></li>
-<li class="chapter" data-level="7.2.3" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#logistic-regression-model"><i class="fa fa-check"></i><b>7.2.3</b> Logistic Regression Model</a></li>
-<li class="chapter" data-level="7.2.4" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#linear-regression-model-slope-categorical-variable"><i class="fa fa-check"></i><b>7.2.4</b> Linear Regression Model Slope (Categorical Variable)</a></li>
-<li class="chapter" data-level="7.2.5" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#linear-regression-model-slope-quantitative-var"><i class="fa fa-check"></i><b>7.2.5</b> Linear Regression Model Slope (Quantitative Var)</a></li>
-<li class="chapter" data-level="7.2.6" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#confidence-intervals-for-prediction"><i class="fa fa-check"></i><b>7.2.6</b> Confidence Intervals for Prediction</a></li>
-<li class="chapter" data-level="7.2.7" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#prediction-intervals"><i class="fa fa-check"></i><b>7.2.7</b> Prediction Intervals</a></li>
-<li class="chapter" data-level="7.2.8" data-path="confidence-interval-examples.html"><a href="confidence-interval-examples.html#probability-theory-vs.-bootstrapping"><i class="fa fa-check"></i><b>7.2.8</b> Probability Theory vs. Bootstrapping</a></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7.2</b> Confidence Intervals</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#interval-construction-process"><i class="fa fa-check"></i><b>7.2.1</b> Interval Construction Process</a></li>
+<li class="chapter" data-level="7.2.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>7.2.2</b> Confidence Interval Interpretation</a></li>
+<li class="chapter" data-level="7.2.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#more-examples"><i class="fa fa-check"></i><b>7.2.3</b> More Examples</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7.3</b> Hypothesis Testing</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#test-statistics"><i class="fa fa-check"></i><b>7.3.1</b> Test statistics</a></li>
-<li class="chapter" data-level="7.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#logic-of-hypothesis-testing"><i class="fa fa-check"></i><b>7.3.2</b> Logic of hypothesis testing</a></li>
-<li class="chapter" data-level="7.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#summary-of-procedure"><i class="fa fa-check"></i><b>7.3.3</b> Summary of procedure</a></li>
-<li class="chapter" data-level="7.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#testing-single-model-coefficients"><i class="fa fa-check"></i><b>7.3.4</b> Testing single model coefficients</a></li>
-<li class="chapter" data-level="7.3.5" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#distributions-of-test-statistics"><i class="fa fa-check"></i><b>7.3.5</b> Distributions of test statistics</a></li>
-<li class="chapter" data-level="7.3.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#graphical-description-of-p-values"><i class="fa fa-check"></i><b>7.3.6</b> Graphical description of p-values</a></li>
-<li class="chapter" data-level="7.3.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#example-linear-regression"><i class="fa fa-check"></i><b>7.3.7</b> Example: Linear Regression</a></li>
-<li class="chapter" data-level="7.3.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#example-logistic-regression"><i class="fa fa-check"></i><b>7.3.8</b> Example: Logistic Regression</a></li>
-<li class="chapter" data-level="7.3.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#errors"><i class="fa fa-check"></i><b>7.3.9</b> Errors</a></li>
+<li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-procedure"><i class="fa fa-check"></i><b>7.3.1</b> Hypothesis Test Procedure</a></li>
+<li class="chapter" data-level="7.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-errors"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesis Testing Errors</a></li>
+<li class="chapter" data-level="7.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#statistical-significance-v.-practical-significance"><i class="fa fa-check"></i><b>7.3.3</b> Statistical Significance v. Practical Significance</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="statistical-significance-v-practical-significance.html"><a href="statistical-significance-v-practical-significance.html"><i class="fa fa-check"></i><b>7.4</b> Statistical Significance v. Practical Significance</a></li>
-<li class="chapter" data-level="7.5" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>7.5</b> Model Selection</a></li>
+<li class="chapter" data-level="7.4" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>7.4</b> Model Selection</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="model-selection.html"><a href="model-selection.html#testing-individual-slopes"><i class="fa fa-check"></i><b>7.4.1</b> Testing Individual Slopes</a></li>
+<li class="chapter" data-level="7.4.2" data-path="model-selection.html"><a href="model-selection.html#nested-tests"><i class="fa fa-check"></i><b>7.4.2</b> Nested Tests</a></li>
+<li class="chapter" data-level="7.4.3" data-path="model-selection.html"><a href="model-selection.html#summary-of-model-selection-methods"><i class="fa fa-check"></i><b>7.4.3</b> Summary of Model Selection Methods</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>8</b> Appendix A - Theoretical Probability</a><ul>
 <li class="chapter" data-level="8.1" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>8.1</b> Probability Rules</a><ul>
@@ -364,61 +357,310 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="confidence-intervals" class="section level2">
-<h2><span class="header-section-number">7.1</span> Confidence Intervals</h2>
-<p>A <strong>confidence interval</strong> (also known as an interval estimate) is an interval of plausible values of the unknown population parameter of interest based on randomly sampled data. However, the interval computed from a particular sample does not necessarily include the true value of the parameter. Since the observed data are random samples from the population, the confidence interval obtained from the data is also random.</p>
-<p>The <strong>confidence level</strong> represents the proportion of possible random samples and thus confidence intervals that contain the true value of the unknown population parameter. Typically, the confidence level is represented by <span class="math inline">\((1-\alpha)\)</span> such that if <span class="math inline">\(\alpha = 0.05\)</span>, then the confidence level is 95% or 0.95. What is <span class="math inline">\(\alpha\)</span>? We will define <span class="math inline">\(\alpha\)</span> when we get to hypothesis testing, but for now, we will describe <span class="math inline">\(\alpha\)</span> as an error probability. Because we want an error probability to be low, it makes sense that the confidence level is <span class="math inline">\((1-\alpha)\)</span>.</p>
-<p><strong>Valid Interpretation:</strong> Assuming the sampling distribution model is accurate, I am 95% confident that my confidence interval of (lower, upper) contains the true population parameter (<em>put in context</em>), which means that we’d expect 95% of samples to lead to intervals that contain the true population parameter value. We just don’t know if our particular interval from our study contains that true population parameter value or not.</p>
-<div id="via-classical-theory" class="section level3">
-<h3><span class="header-section-number">7.1.1</span> Via Classical Theory</h3>
-<p>If we can use theoretical probability to approximate the sampling distribution, then we can create a confidence interval by taking taking our estimate and adding and subtracting a margin of error:</p>
+<h2><span class="header-section-number">7.2</span> Confidence Intervals</h2>
+<p>A <strong>confidence interval</strong> (also known as an interval estimate) is an interval of plausible values of the unknown population parameter of interest based on randomly generated sample data. We construct these intervals in a way so that we can know how “good” of a guess the interval is of the true population parameter value. The interval computed from one sample may include or contain the true value of the parameter but it may not.</p>
+<p>Above, we used the standard error (SE) to create an interval by going up 2 SE’s and going down SE’s from the estimate.</p>
+<p><span class="math display">\[\text{Estimate }\pm 2*SE(\text{Estimate}) = (\text{Estimate} - 2*\text{SE}, \text{Estimate} + 2*\text{SE})\]</span>
+### Properties of Confidence Intervals</p>
+<p>So, how “good” of a guess is this? If our sampling distribution is roughly Normal (unimodal, symmetric), then we know that the sample estimate in about 95% of the random samples should be within 2 standard deviations of the true population parameter.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="confidence-intervals.html#cb301-1"></a><span class="co">## Plots area between x1 and x2 for the standard normal</span></span>
+<span id="cb301-2"><a href="confidence-intervals.html#cb301-2"></a><span class="co">## To plot tails, let x1 = -4 or x2 = 4</span></span>
+<span id="cb301-3"><a href="confidence-intervals.html#cb301-3"></a>plot_area_std_normal &lt;-<span class="st"> </span><span class="cf">function</span>(x1, x2, <span class="dt">title =</span> <span class="st">&quot;&quot;</span>) {</span>
+<span id="cb301-4"><a href="confidence-intervals.html#cb301-4"></a>    x &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="fl">0.01</span>)</span>
+<span id="cb301-5"><a href="confidence-intervals.html#cb301-5"></a>    y &lt;-<span class="st"> </span><span class="kw">dnorm</span>(x)</span>
+<span id="cb301-6"><a href="confidence-intervals.html#cb301-6"></a>    <span class="kw">plot</span>(x, y, <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">main =</span> title, <span class="dt">xlab =</span> <span class="st">&quot;x&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;Density&quot;</span>)</span>
+<span id="cb301-7"><a href="confidence-intervals.html#cb301-7"></a>    area &lt;-<span class="st"> </span><span class="kw">pnorm</span>(x2) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(x1)</span>
+<span id="cb301-8"><a href="confidence-intervals.html#cb301-8"></a>    bool &lt;-<span class="st"> </span>x <span class="op">&gt;=</span><span class="st"> </span>x1 <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;=</span><span class="st"> </span>x2</span>
+<span id="cb301-9"><a href="confidence-intervals.html#cb301-9"></a>    x_shaded &lt;-<span class="st"> </span>x[bool]</span>
+<span id="cb301-10"><a href="confidence-intervals.html#cb301-10"></a>    y_shaded &lt;-<span class="st"> </span>y[bool]</span>
+<span id="cb301-11"><a href="confidence-intervals.html#cb301-11"></a>    <span class="cf">if</span> (x1 <span class="op">==</span><span class="st"> </span><span class="dv">-4</span>) {</span>
+<span id="cb301-12"><a href="confidence-intervals.html#cb301-12"></a>        area &lt;-<span class="st"> </span><span class="kw">pnorm</span>(x2)</span>
+<span id="cb301-13"><a href="confidence-intervals.html#cb301-13"></a>        x1 &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb301-14"><a href="confidence-intervals.html#cb301-14"></a>    }</span>
+<span id="cb301-15"><a href="confidence-intervals.html#cb301-15"></a>    <span class="cf">if</span> (x2 <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) {</span>
+<span id="cb301-16"><a href="confidence-intervals.html#cb301-16"></a>        area &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span><span class="kw">pnorm</span>(x1)</span>
+<span id="cb301-17"><a href="confidence-intervals.html#cb301-17"></a>        x2 &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb301-18"><a href="confidence-intervals.html#cb301-18"></a>    }</span>
+<span id="cb301-19"><a href="confidence-intervals.html#cb301-19"></a>    <span class="kw">abline</span>(<span class="dt">v =</span> <span class="kw">c</span>(x1, x2), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">lty =</span> <span class="st">&quot;dashed&quot;</span>, <span class="dt">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb301-20"><a href="confidence-intervals.html#cb301-20"></a>    <span class="kw">polygon</span>(<span class="dt">x =</span> <span class="kw">c</span>(x_shaded, <span class="kw">tail</span>(x_shaded, <span class="dv">1</span>), <span class="kw">head</span>(x_shaded, <span class="dv">1</span>)), <span class="dt">y =</span> <span class="kw">c</span>(y_shaded, <span class="dv">0</span>, <span class="dv">0</span>), <span class="dt">col =</span> <span class="st">&quot;darkorchid&quot;</span>)</span>
+<span id="cb301-21"><a href="confidence-intervals.html#cb301-21"></a>    <span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">3</span>, <span class="dt">y =</span> <span class="fl">0.3</span>, <span class="kw">paste</span>(<span class="st">&quot;Area =&quot;</span>, <span class="kw">round</span>(area, <span class="dv">3</span>)))</span>
+<span id="cb301-22"><a href="confidence-intervals.html#cb301-22"></a>}</span>
+<span id="cb301-23"><a href="confidence-intervals.html#cb301-23"></a><span class="kw">plot_area_std_normal</span>(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dt">title =</span> <span class="st">&quot;P(-2 &lt; X &lt; 2)&quot;</span>)</span></code></pre></div>
+<p><img src="07-inference_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>You can either trust the mathematical theory or we can simulate the sampling distribution by drawing from our population because in this rare circumstance, we have access to all flights in the population.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="confidence-intervals.html#cb302-1"></a>sim_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">500</span>)<span class="op">*</span>( </span>
+<span id="cb302-2"><a href="confidence-intervals.html#cb302-2"></a>    flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb302-3"><a href="confidence-intervals.html#cb302-3"></a><span class="st">      </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Generate samples of 100 flights</span></span>
+<span id="cb302-4"><a href="confidence-intervals.html#cb302-4"></a><span class="st">      </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season)) <span class="co"># Fit linear model</span></span>
+<span id="cb302-5"><a href="confidence-intervals.html#cb302-5"></a>)</span>
+<span id="cb302-6"><a href="confidence-intervals.html#cb302-6"></a></span>
+<span id="cb302-7"><a href="confidence-intervals.html#cb302-7"></a>lines &lt;-<span class="st"> </span>sim_data <span class="op">%&gt;%</span></span>
+<span id="cb302-8"><a href="confidence-intervals.html#cb302-8"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(seasonwinter,<span class="fl">0.025</span>),<span class="dt">upper =</span> <span class="kw">quantile</span>(seasonwinter,<span class="fl">0.975</span>),)</span>
+<span id="cb302-9"><a href="confidence-intervals.html#cb302-9"></a></span>
+<span id="cb302-10"><a href="confidence-intervals.html#cb302-10"></a>sim_data <span class="op">%&gt;%</span></span>
+<span id="cb302-11"><a href="confidence-intervals.html#cb302-11"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> seasonwinter)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb302-12"><a href="confidence-intervals.html#cb302-12"></a><span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb302-13"><a href="confidence-intervals.html#cb302-13"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> lines, <span class="kw">aes</span>(<span class="dt">xintercept=</span>lower), <span class="dt">color=</span><span class="st">&#39;red&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb302-14"><a href="confidence-intervals.html#cb302-14"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">data =</span> lines, <span class="kw">aes</span>(<span class="dt">xintercept=</span>upper), <span class="dt">color=</span><span class="st">&#39;red&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb302-15"><a href="confidence-intervals.html#cb302-15"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Estimates of seasonwinter&#39;</span>,<span class="dt">title=</span><span class="st">&#39;Sampling Distribution with lines indicating middle 95%&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb302-16"><a href="confidence-intervals.html#cb302-16"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
+<p><img src="07-inference_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Based on the simulation of drawing from the population, we see that 95% of the samples have estimated slopes between -19.1 and 13.9. If we take the population values (center of this distribution) and add and subtract 2 standard deviations, then we get -20.1 and 14.2.</p>
+<p>So if we take each 1000 simulated random samples from the population and create an interval estimate by adding and subtracting 2 standard errors (estimates of the standard deviation), we can check to see how often those intervals contain the true population value at the center of the distribution.</p>
+<p>Let’s look at the confidence intervals for the first 100 random samples from the population. The dashed line indicates the true population value of the slope coefficient (yes, we are in the rare circumstance in which we have access to the true population). We’ve created one line for each interval and colored the according to whether or not the interval covers or contains the true population value. In the first 100 intervals, we see that 95% of the intervals contain the true population value and 5% do not. In the 500 random samples generated, close to 95% of them have intervals that contain the true population parameter. When we get one of these samples, we never know if we are one of the 95% or one of the 5%.</p>
+<p><img src="07-inference_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre><code>## Warning: `count_()` is deprecated as of dplyr 0.7.0.
+## Please use `count()` instead.
+## See vignette(&#39;programming&#39;) for more help
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   SlopeCover     n  prop
+##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt;
+## 1 No            24 0.048
+## 2 Yes          476 0.952</code></pre>
+<p>This makes sense given our <strong>interval construction process</strong>. If the estimate is within 2 standard errors of the true population parameter (between the dashed lines below), then the interval will contain the true population parameter. If the estimate is not within 2 standard errors of the true population parameter (outside the dashed lines below), then the interval will NOT contain the true population parameter.</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="confidence-intervals.html#cb305-1"></a>dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">z =</span> <span class="kw">seq</span>(<span class="op">-</span><span class="dv">4</span>,<span class="dv">4</span>,<span class="dt">by=</span>.<span class="dv">01</span>))</span>
+<span id="cb305-2"><a href="confidence-intervals.html#cb305-2"></a>dat &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">f =</span> <span class="kw">dnorm</span>(z))</span>
+<span id="cb305-3"><a href="confidence-intervals.html#cb305-3"></a>dat2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="op">-</span><span class="fl">2.3</span>), <span class="dt">y =</span> <span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.03</span>), <span class="dt">x1 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="op">-</span><span class="fl">2.3</span>) <span class="op">-</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">x2 =</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="op">-</span><span class="fl">2.3</span>) <span class="op">+</span><span class="st"> </span><span class="dv">2</span>, <span class="dt">y1 =</span> <span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.03</span>), <span class="dt">y2=</span> <span class="kw">c</span>(<span class="fl">0.01</span>,<span class="fl">0.03</span>))</span>
+<span id="cb305-4"><a href="confidence-intervals.html#cb305-4"></a></span>
+<span id="cb305-5"><a href="confidence-intervals.html#cb305-5"></a>dat <span class="op">%&gt;%</span></span>
+<span id="cb305-6"><a href="confidence-intervals.html#cb305-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> z, <span class="dt">y =</span> f)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb305-7"><a href="confidence-intervals.html#cb305-7"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color=</span><span class="st">&#39;grey&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb305-8"><a href="confidence-intervals.html#cb305-8"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb305-9"><a href="confidence-intervals.html#cb305-9"></a><span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">0</span>),<span class="dt">linetype =</span> <span class="kw">c</span>(<span class="st">&#39;dashed&#39;</span>,<span class="st">&#39;dashed&#39;</span>,<span class="st">&#39;solid&#39;</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb305-10"><a href="confidence-intervals.html#cb305-10"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">data =</span> dat2, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y=</span>y),<span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb305-11"><a href="confidence-intervals.html#cb305-11"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data=</span>dat2, <span class="kw">aes</span>(<span class="dt">x =</span>x1, <span class="dt">xend =</span> x2, <span class="dt">y =</span> y1, <span class="dt">yend=</span>y2),<span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb305-12"><a href="confidence-intervals.html#cb305-12"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Number of SEs away from Population Parameter Value&#39;</span>,<span class="dt">y=</span><span class="st">&#39;&#39;</span>) <span class="op">+</span></span>
+<span id="cb305-13"><a href="confidence-intervals.html#cb305-13"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">2</span>)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb305-14"><a href="confidence-intervals.html#cb305-14"></a><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></span>
+<span id="cb305-15"><a href="confidence-intervals.html#cb305-15"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.line.y=</span><span class="kw">element_blank</span>(),</span>
+<span id="cb305-16"><a href="confidence-intervals.html#cb305-16"></a>      <span class="dt">axis.text.y=</span><span class="kw">element_blank</span>(),</span>
+<span id="cb305-17"><a href="confidence-intervals.html#cb305-17"></a>      <span class="dt">axis.ticks.y=</span><span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="07-inference_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="interval-construction-process" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Interval Construction Process</h3>
+<p>In the intervals we constructed above, we used 95% confidence intervals. That 95% is the confidence level of the interval estimate.</p>
+<p>The <strong>confidence level</strong> represents the proportion of possible random samples and thus confidence intervals that contain the true value of the unknown population parameter. Typically, the confidence level is abstractly represented by <span class="math inline">\((1-\alpha)\)</span> such that if <span class="math inline">\(\alpha = 0.05\)</span>, then the confidence level is 95% or 0.95.</p>
+<p>What is <span class="math inline">\(\alpha\)</span>? We will define <span class="math inline">\(\alpha\)</span> when we get to hypothesis testing, but for now, we will describe <span class="math inline">\(\alpha\)</span> as an error probability. We want the error probability to be low and we want the confidence level, <span class="math inline">\((1-\alpha)\)</span>, to be high.</p>
+<p>We will now formally discuss two ways of creating confidence intervals. One was have already introduced, which is the classical approach, and the other approach uses bootstrapping.</p>
+<div id="via-classical-theory" class="section level4">
+<h4><span class="header-section-number">7.2.1.1</span> Via Classical Theory</h4>
+<p>If we can use probability theory to approximate the sampling distribution, then we can create a confidence interval by taking taking our estimate and adding and subtracting a margin of error:</p>
 <p><span class="math display">\[\text{Estimate }\pm \text{ Margin of Error}\]</span></p>
-<p>The margin of error is typically constructed using z-scores from the sampling distribution (such as <span class="math inline">\(z^* = 2\)</span> that corresponds to a 95% confidence interval) and an estimate of the standard deviation of the estimate, called a <strong>standard error</strong>.</p>
+<p>The margin of error is typically constructed using z-scores from the sampling distribution (such as <span class="math inline">\(z^* = 2\)</span> that corresponds to a 95% confidence interval or <span class="math inline">\(\alpha = 0.05\)</span>) and an estimate of the standard deviation of the estimate, called a <strong>standard error</strong>.</p>
 <p>Once we have an estimate of the standard deviation (through a formula or R output) and an approximate sampling distribution, we can create the interval estimate:</p>
-<p><span class="math display">\[\text{Estimate }\pm z^* *SE(\text{Estimate})\]</span></p>
-<p>The fact that confidence intervals can be created as above is rooted in the Central Limit Theorem (CLT). If you would like to see how the form above is derived, see the Math Box below.</p>
+<p><span class="math display">\[\text{Estimate }\pm z^* *SE(\text{Estimate})\]</span>
+With linear and logistic regression models, we can have R create the confidence intervals for the slope coefficients.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="confidence-intervals.html#cb306-1"></a><span class="co"># Classical Confidence Interval for Models</span></span>
+<span id="cb306-2"><a href="confidence-intervals.html#cb306-2"></a><span class="kw">confint</span>(lm.delay) <span class="co">#default level is 0.95</span></span></code></pre></div>
+<pre><code>##                   2.5 %   97.5 %
+## (Intercept)   -2.967923 16.35568
+## seasonwinter -14.183889 12.87457</code></pre>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="confidence-intervals.html#cb308-1"></a><span class="kw">confint</span>(lm.delay, <span class="dt">level =</span> <span class="fl">0.99</span>)</span></code></pre></div>
+<pre><code>##                   0.5 %   99.5 %
+## (Intercept)   -6.095894 19.48365
+## seasonwinter -18.563924 17.25460</code></pre>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="confidence-intervals.html#cb310-1"></a><span class="kw">confint</span>(lm.delay, <span class="dt">level =</span> <span class="fl">0.90</span>)</span></code></pre></div>
+<pre><code>##                     5 %     95 %
+## (Intercept)   -1.390868 14.77862
+## seasonwinter -11.975571 10.66625</code></pre>
+<p>See code below to find the <span class="math inline">\(z^*\)</span> values for other confidence levels beyond 95% to create the intervals manually.</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="confidence-intervals.html#cb312-1"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.05</span> </span>
+<span id="cb312-2"><a href="confidence-intervals.html#cb312-2"></a><span class="kw">abs</span>(<span class="kw">qnorm</span>(alpha<span class="op">/</span><span class="dv">2</span>)) <span class="co">#z* for 95% CI</span></span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="confidence-intervals.html#cb314-1"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.01</span> </span>
+<span id="cb314-2"><a href="confidence-intervals.html#cb314-2"></a><span class="kw">abs</span>(<span class="kw">qnorm</span>(alpha<span class="op">/</span><span class="dv">2</span>)) <span class="co">#z* for 99% CI</span></span></code></pre></div>
+<pre><code>## [1] 2.575829</code></pre>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="confidence-intervals.html#cb316-1"></a>alpha &lt;-<span class="st"> </span><span class="fl">0.1</span> </span>
+<span id="cb316-2"><a href="confidence-intervals.html#cb316-2"></a><span class="kw">abs</span>(<span class="kw">qnorm</span>(alpha<span class="op">/</span><span class="dv">2</span>)) <span class="co">#z* for 90% CI</span></span></code></pre></div>
+<pre><code>## [1] 1.644854</code></pre>
+<p>The fact that confidence intervals can be created as above is rooted in probability theory. If you would like to see how the form above is derived, see the Math Box below.</p>
 <div class="mathbox">
 <p>
-(Optional) Deriving confidence intervals from the CLT
+(Optional) Deriving confidence intervals from theory
 </p>
 <p>
-The CLT originally expresses that
+We know that for a regression coefficient, the sampling distribution of regression coefficient estimates are approximately Normal and thus the standardized version is approximately Normal with mean 0 and standard deviation 1.
 </p>
 <p>
-<span class="math display"><span class="math display">\[\frac{\text{sample mean} - \text{true mean}}{\text{true std. dev. of sample mean}} \sim \text{Normal}(0,1)\]</span></span>
-</p>
-<p>
-It turns out that the CLT also applies to regression coefficients:
-</p>
-<p>
-<span class="math display"><span class="math display">\[\frac{\hat{\beta} - \beta}{\text{ESTIMATED std. dev. of }\hat{\beta}} \sim \text{Normal}(0,1)\]</span></span>
+<span class="math display"><span class="math display">\[\frac{\hat{\beta} - \beta}{SE(\hat{\beta})} \sim \text{Normal}(0,1)\]</span></span>
 </p>
 <p>
 From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:
 </p>
 <p>
-<span class="math display"><span class="math display">\[P(-2\leq\frac{\hat{\beta} - \beta}{SE}\leq2) = 0.95\]</span></span>
+<span class="math display"><span class="math display">\[P(-2\leq\frac{\hat{\beta} - \beta}{SE(\hat{\beta})}\leq2) = 0.95\]</span></span>
 </p>
 <p>
-<span class="math display"><span class="math display">\[P(-2 SE\leq\hat{\beta} - \beta \leq2 SE ) = 0.95\]</span></span>
+<span class="math display"><span class="math display">\[P(-2 *SE(\hat{\beta})\leq\hat{\beta} - \beta \leq2 *SE(\hat{\beta}) ) = 0.95\]</span></span>
 </p>
 <p>
-<span class="math display"><span class="math display">\[P(-2 SE-\hat{\beta} \leq  -\beta \leq2 SE-\hat{\beta} ) = 0.95\]</span></span>
+<span class="math display"><span class="math display">\[P(-2* SE(\hat{\beta})-\hat{\beta} \leq  -\beta \leq2 *SE(\hat{\beta})-\hat{\beta} ) = 0.95\]</span></span>
 </p>
 <p>
-<span class="math display"><span class="math display">\[P(2 SE+\hat{\beta} \geq \beta \geq -2 SE+\hat{\beta} ) = 0.95\]</span></span>
+<span class="math display"><span class="math display">\[P(2 *SE(\hat{\beta})+\hat{\beta} \geq \beta \geq -2* SE(\hat{\beta})+\hat{\beta} ) = 0.95\]</span></span>
 </p>
 <p>
-<span class="math display"><span class="math display">\[P(\hat{\beta}-2 SE \leq \beta \leq\hat{\beta}+2 SE ) = 0.95\]</span></span>
+<span class="math display"><span class="math display">\[P(\hat{\beta}-2 *SE(\hat{\beta}) \leq \beta \leq\hat{\beta}+2 *SE(\hat{\beta}) ) = 0.95\]</span></span>
 </p>
 <p>
 You’ve seen the Student T distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the Student t distribution is more accurate for linear regression coefficients (especially if sample size is small). The normal distribution is appropriate for logistic regression coefficients.
 </p>
 </div>
 </div>
-<div id="via-bootstrapping" class="section level3">
-<h3><span class="header-section-number">7.1.2</span> Via Bootstrapping</h3>
-<p>In order to gauge the sampling variability, we can treat our sample as our “fake population” and generate repeated samples from this “population” using the technique of bootstrapping.</p>
-<p>Once we have a distribution of sample statistics based on the generated data sets, we’ll create a confidence interval by finding the <span class="math inline">\(\alpha/2\)</span>th percentile and the <span class="math inline">\((1-\alpha/2)\)</span>th percentile for our lower and upper bounds. For example, for a 99% bootstrap confidence interval, <span class="math inline">\(\alpha = 0.01\)</span> and you would find the values that are the 0.5th and 99.5th percentiles.</p>
+<div id="via-bootstrapping" class="section level4">
+<h4><span class="header-section-number">7.2.1.2</span> Via Bootstrapping</h4>
+<p>In order to quantify the sampling variability, we can treat our sample as our “fake population” and generate repeated samples from this “population” using the technique of bootstrapping.</p>
+<p>Once we have a distribution of sample statistics based on the generated data sets, we’ll create a confidence interval by finding the <span class="math inline">\(\alpha/2\)</span>th percentile and the <span class="math inline">\((1-\alpha/2)\)</span>th percentile for our lower and upper bounds. For example, for a 95% bootstrap confidence interval, <span class="math inline">\(\alpha = 0.05\)</span> and you would find the values that are the 2.5th and 97.5th percentiles.</p>
+<p>Let’s return to the example of predicting arrival delays as a function of season. We bootstrapped the data already, but here is the code we used.</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="confidence-intervals.html#cb318-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb318-2"><a href="confidence-intervals.html#cb318-2"></a>    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb318-3"><a href="confidence-intervals.html#cb318-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb318-4"><a href="confidence-intervals.html#cb318-4"></a><span class="st">      </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season)) <span class="co"># Fit linear model</span></span>
+<span id="cb318-5"><a href="confidence-intervals.html#cb318-5"></a>)</span></code></pre></div>
+<p>Rather than using the classical approach to create confidence intervals, we can find the middle <span class="math inline">\((1-\alpha)\)</span>*100% (if <span class="math inline">\(\alpha = 0.05\)</span>, 95%) of the bootstrap sampling distribution to give us lower and upper bounds for our interval estimate.</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="confidence-intervals.html#cb319-1"></a><span class="co"># Bootstrap Confidence Interval</span></span>
+<span id="cb319-2"><a href="confidence-intervals.html#cb319-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb319-3"><a href="confidence-intervals.html#cb319-3"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb319-4"><a href="confidence-intervals.html#cb319-4"></a>        <span class="dt">lb =</span> <span class="kw">quantile</span>(seasonwinter, <span class="fl">0.025</span>),</span>
+<span id="cb319-5"><a href="confidence-intervals.html#cb319-5"></a>        <span class="dt">ub =</span> <span class="kw">quantile</span>(seasonwinter, <span class="fl">0.975</span>))</span></code></pre></div>
+<pre><code>##          lb       ub
+## 1 -13.99145 12.32934</code></pre>
+<p>This interval construction process has the same general properties that the classical approach and the same interpretation, which we’ll talk about next.</p>
+</div>
+<div id="probability-theory-vs.-bootstrapping" class="section level4">
+<h4><span class="header-section-number">7.2.1.3</span> Probability Theory vs. Bootstrapping</h4>
+<p>In the modern age, computing power allows us to perform bootstrapping easily to create confidence intervals. Before computing was as powerful as it is today, scientists needed mathematical theory to provide simple formulas for confidence intervals.</p>
+<p>If certain assumptions hold, the mathematical theory proves to be just as accurate and less computationally-intensive than bootstrapping. Many scientists using statistics right now learned the theory because when they learned statistics, computers were not powerful enough to handle techniques such as bootstrapping.</p>
+<p>Why do we teach both the mathematical theory and bootstrapping? You will encounter both types of techniques in your fields, and you’ll need to have an understanding of what these techniques are to bridge the gap until statistical inference uses modern computational techniques more widely.</p>
+</div>
+</div>
+<div id="confidence-interval-interpretation" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> Confidence Interval Interpretation</h3>
+<p>So how should we talk about these intervals the we create?</p>
+<p>In general, this is what we know about confidence intervals:</p>
+<ul>
+<li>The estimated interval provides plausible values for true population parameter based on our sample data.</li>
+<li>Assuming the sampling distribution model is accurate, we are 95% confident that our confidence interval of (lower value, upper value) contains the true population parameter.</li>
+<li>We are confident in the interval construction process because we expect 95% of samples to lead to intervals that contain the true population parameter value. We just don’t know if our particular interval from our sample contains that true population parameter value or not.</li>
+<li>It is useful to notice whether a slope of 0 or odds ratio of 1 is a plausible value because these values indicate no differences.</li>
+</ul>
+<p>Most importantly, we should <strong>incorporate the data context and describe the population parameter we are trying to learn about</strong>. For example, let’s interpret the bootstrap confidence interval of (-13.9, 12.3) from above; notice how we rounded the lower and upper values so as to not overstate our certainty.</p>
+<ul>
+<li>Based on a sample of 100 flights from NYC, we estimate that the true mean arrival delays are between 13.9 minutes shorter and 12.3 minutes longer in winter as compared to summer months in NYC. [Notice the data context]</li>
+<li>We created this interval estimate such that we’d expect that 95% of the time, we’d capture the true difference in seasons but we cannot know for sure for this interval. [Notice how we’ve written out the population parameter in context]</li>
+<li>Additionally, this interval is quite wide (and containing 0) highlighting our uncertainty and direction of the relationship between season and delay times. [Notice how we are acknowledging the uncertainty in our conclusions]</li>
+</ul>
+</div>
+<div id="more-examples" class="section level3">
+<h3><span class="header-section-number">7.2.3</span> More Examples</h3>
+<p>We’ll discuss a few more examples of models and confidence intervals based on those models.</p>
+<div id="linear-regression-model" class="section level4">
+<h4><span class="header-section-number">7.2.3.1</span> Linear Regression Model</h4>
+<p>Using the flight data, how well can the departure delay predict the arrival delay? What is the effect of departing 1 more minute later? Does that correspond to 1 minute later in arrival on average? Let’s look at the estimated slope between departure and arrival delays for the sample of 100 flights from NYC.</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="confidence-intervals.html#cb321-1"></a>lm.delay2 &lt;-<span class="st"> </span>flights_samp <span class="op">%&gt;%</span></span>
+<span id="cb321-2"><a href="confidence-intervals.html#cb321-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>dep_delay))</span>
+<span id="cb321-3"><a href="confidence-intervals.html#cb321-3"></a>       </span>
+<span id="cb321-4"><a href="confidence-intervals.html#cb321-4"></a>lm.delay2 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb321-5"><a href="confidence-intervals.html#cb321-5"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    -2.59    1.86       -1.39 1.66e- 1
+## 2 dep_delay       1.00    0.0617     16.3  1.35e-29</code></pre>
+<p>The classical 95% CI for the slope is given with by</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="confidence-intervals.html#cb323-1"></a><span class="kw">confint</span>(lm.delay2)</span></code></pre></div>
+<pre><code>##                  2.5 %   97.5 %
+## (Intercept) -6.2690537 1.094198
+## dep_delay    0.8816967 1.126705</code></pre>
+<p>or with bootstrapping,</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="confidence-intervals.html#cb325-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb325-2"><a href="confidence-intervals.html#cb325-2"></a>    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb325-3"><a href="confidence-intervals.html#cb325-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb325-4"><a href="confidence-intervals.html#cb325-4"></a><span class="st">      </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>dep_delay)) <span class="co"># Fit linear model</span></span>
+<span id="cb325-5"><a href="confidence-intervals.html#cb325-5"></a>)</span>
+<span id="cb325-6"><a href="confidence-intervals.html#cb325-6"></a></span>
+<span id="cb325-7"><a href="confidence-intervals.html#cb325-7"></a>boot_data <span class="op">%&gt;%</span></span>
+<span id="cb325-8"><a href="confidence-intervals.html#cb325-8"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb325-9"><a href="confidence-intervals.html#cb325-9"></a>    <span class="dt">lower =</span> <span class="kw">quantile</span>(dep_delay, <span class="fl">0.025</span>),</span>
+<span id="cb325-10"><a href="confidence-intervals.html#cb325-10"></a>    <span class="dt">upper =</span> <span class="kw">quantile</span>(dep_delay, <span class="fl">0.975</span>))</span></code></pre></div>
+<pre><code>##       lower    upper
+## 1 0.9259392 1.189972</code></pre>
+<p><strong>Interpretation:</strong> If the flight’s departure is delayed an additional minute, then I’m 95% confident that we’d expect the arrival delay to be increased by 0.88 to 1.12 minutes, on average. This makes sense in this context since leaving a minute later on average leads to arriving a minute later give or take tenths of a second.</p>
+</div>
+<div id="logistic-regression-model" class="section level4">
+<h4><span class="header-section-number">7.2.3.2</span> Logistic Regression Model</h4>
+<p>Are the same proportion of afternoon flights in the winter and the summer? Let’s fit a logistic regression model and see what our sample of 100 flights indicates.</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="confidence-intervals.html#cb327-1"></a>flights_samp &lt;-<span class="st"> </span>flights_samp <span class="op">%&gt;%</span></span>
+<span id="cb327-2"><a href="confidence-intervals.html#cb327-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">afternoon =</span> flights_samp<span class="op">$</span>day_hour <span class="op">==</span><span class="st"> &#39;afternoon&#39;</span>)</span>
+<span id="cb327-3"><a href="confidence-intervals.html#cb327-3"></a></span>
+<span id="cb327-4"><a href="confidence-intervals.html#cb327-4"></a>glm.afternoon &lt;-<span class="st"> </span>flights_samp <span class="op">%&gt;%</span></span>
+<span id="cb327-5"><a href="confidence-intervals.html#cb327-5"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">glm</span>(afternoon <span class="op">~</span><span class="st"> </span>season, <span class="dt">family =</span> <span class="st">&#39;binomial&#39;</span>))</span>
+<span id="cb327-6"><a href="confidence-intervals.html#cb327-6"></a></span>
+<span id="cb327-7"><a href="confidence-intervals.html#cb327-7"></a>glm.afternoon <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb327-8"><a href="confidence-intervals.html#cb327-8"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term         estimate std.error statistic p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)    -0.123     0.286    -0.428   0.668
+## 2 seasonwinter    0.479     0.404     1.19    0.235</code></pre>
+<p>The output for the model gives standard errors for the slopes, so we can create the classical confidence intervals for the slopes first,</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="confidence-intervals.html#cb329-1"></a><span class="kw">confint</span>(glm.afternoon) <span class="co">#confidence interval for the slope</span></span></code></pre></div>
+<pre><code>##                   2.5 %    97.5 %
+## (Intercept)  -0.6905940 0.4389059
+## seasonwinter -0.3081988 1.2791414</code></pre>
+<p>Or with bootstrapping,</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="confidence-intervals.html#cb331-1"></a><span class="co">#confidence interval for the slope</span></span>
+<span id="cb331-2"><a href="confidence-intervals.html#cb331-2"></a></span>
+<span id="cb331-3"><a href="confidence-intervals.html#cb331-3"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb331-4"><a href="confidence-intervals.html#cb331-4"></a>    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb331-5"><a href="confidence-intervals.html#cb331-5"></a><span class="st">    </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb331-6"><a href="confidence-intervals.html#cb331-6"></a><span class="st">    </span><span class="kw">with</span>(<span class="kw">glm</span>(afternoon <span class="op">~</span><span class="st"> </span>season, <span class="dt">family =</span> <span class="st">&#39;binomial&#39;</span>)) <span class="co"># Fit model</span></span>
+<span id="cb331-7"><a href="confidence-intervals.html#cb331-7"></a>)</span>
+<span id="cb331-8"><a href="confidence-intervals.html#cb331-8"></a></span>
+<span id="cb331-9"><a href="confidence-intervals.html#cb331-9"></a>boot_data <span class="op">%&gt;%</span></span>
+<span id="cb331-10"><a href="confidence-intervals.html#cb331-10"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb331-11"><a href="confidence-intervals.html#cb331-11"></a>    <span class="dt">lower =</span> <span class="kw">quantile</span>(seasonwinter, <span class="fl">0.025</span>),</span>
+<span id="cb331-12"><a href="confidence-intervals.html#cb331-12"></a>    <span class="dt">upper =</span> <span class="kw">quantile</span>(seasonwinter, <span class="fl">0.975</span>))</span></code></pre></div>
+<pre><code>##        lower   upper
+## 1 -0.2719337 1.23918</code></pre>
+<p>For logistic regression, we exponentiate the slopes to get an more interpretable value, <strong>the odds ratio</strong>. The tricky thing is that we need to exponentiate after we create the confidence interval for the slope, rather than before.</p>
+<p>Here, we are comparing the odds of having a flight in the afternoon between winter months (numerator) and summer months (denominator). Is 1 in the interval? If so, what does that tell you?</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="confidence-intervals.html#cb333-1"></a><span class="kw">confint</span>(glm.afternoon) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb333-2"><a href="confidence-intervals.html#cb333-2"></a><span class="st">  </span><span class="kw">exp</span>()</span></code></pre></div>
+<pre><code>##                  2.5 %   97.5 %
+## (Intercept)  0.5012782 1.551009
+## seasonwinter 0.7347692 3.593553</code></pre>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="confidence-intervals.html#cb335-1"></a>boot_data <span class="op">%&gt;%</span></span>
+<span id="cb335-2"><a href="confidence-intervals.html#cb335-2"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb335-3"><a href="confidence-intervals.html#cb335-3"></a>    <span class="dt">lower =</span> <span class="kw">quantile</span>(seasonwinter, <span class="fl">0.025</span>),</span>
+<span id="cb335-4"><a href="confidence-intervals.html#cb335-4"></a>    <span class="dt">upper =</span> <span class="kw">quantile</span>(seasonwinter, <span class="fl">0.975</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb335-5"><a href="confidence-intervals.html#cb335-5"></a><span class="st">  </span><span class="kw">exp</span>()</span></code></pre></div>
+<pre><code>##       lower    upper
+## 1 0.7619048 3.452783</code></pre>
+<p><strong>Interpretation:</strong> Flights from NYC in the winter have about the same odds of being an afternoon flight as compared to the summer time. I’m 95% confident that the odds of a flight being in the afternoon is between 0.7 and 1.5 times the odds in the summer. We conclude that we don’t have any evidence there any more afternoon flights in the winter versus the summer leaving from NYC.</p>
+</div>
+<div id="confidence-intervals-for-prediction" class="section level4">
+<h4><span class="header-section-number">7.2.3.3</span> Confidence Intervals for Prediction</h4>
+<p>Imagine we are on a plane, we left 15 minutes late, how late will arrive? We’ve already looked at the slope measuring the relationship, but what about predicting the arrival delay? Since we only have a sample of 100 flights, we are a bit unsure of our prediction.</p>
+<p>A classical CI can give us an interval estimate of what the prediction should be (if we had data on all flights).</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="confidence-intervals.html#cb337-1"></a><span class="kw">predict</span>(lm.delay2, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">dep_delay =</span> <span class="dv">15</span>), <span class="dt">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span></code></pre></div>
+<pre><code>##        fit      lwr      upr
+## 1 12.47558 8.881202 16.06996</code></pre>
+<p>This is taking into account how uncertain we are about our model prediction because our model is based on sample data rather than population data.</p>
+<p><strong>Interpretation:</strong> I’m 95% confident that flights from NYC that left 15 minutes late will arrive on average between 8.9 and 16 minutes. It is interesting that we estimate the average arrival delay for a flight that left 15 minutes late to be as low as 8.9 minutes suggesting that maybe flights can typically make up time in the air. We could investigate this by studying the differences in arrival and departure delays.</p>
+</div>
+<div id="prediction-intervals" class="section level4">
+<h4><span class="header-section-number">7.2.3.4</span> Prediction Intervals</h4>
+<p>We also know that every flight is different (different length, different weather conditions, etc), so the true arrival delay won’t be exactly what we predict.</p>
+<p>So to get a better prediction for our arrival delay, we can account for the size of errors or residuals by creating a <strong>prediction interval</strong>. This interval will be much wider than the confidence interval because it takes into account how far the true values are from the prediction line.</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="confidence-intervals.html#cb339-1"></a><span class="kw">predict</span>(lm.delay2, <span class="dt">newdata =</span> <span class="kw">data.frame</span>(<span class="dt">dep_delay =</span> <span class="dv">15</span>), <span class="dt">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
+<pre><code>##        fit       lwr      upr
+## 1 12.47558 -22.86868 47.81985</code></pre>
+<p>You’ll notice that the prediction interval is wider than the confidence intervals. In fact, the prediction interval incorporates information about the standard deviation of residuals to account for the average size of prediction error. To learn more, take Mathematical Statistics.</p>
+<p><strong>Interpretation:</strong> I predict that 95% of flights from NYC that leave 15 minutes late will arrive on average between 23 minutes early and 48 minutes late. This is a huge range which suggests that the departure delay is only one factor in determine when a flight arrives at its destination.</p>
+</div>
 </div>
 </div>
             </section>
@@ -426,8 +668,8 @@ You’ve seen the Student T distribution introduced in the previous chapter. We 
           </div>
         </div>
       </div>
-<a href="statistical-inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="confidence-interval-examples.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="standard-error.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hypothesis-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

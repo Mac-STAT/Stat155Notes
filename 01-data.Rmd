@@ -11,7 +11,8 @@ library(tidytext)
 library(glue)
 library(readr)
 library(ggdag)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=TRUE)
+options(warn=-1)
 ```
 
 # Data Collection and Quality
@@ -26,7 +27,8 @@ Because data are at the center of all of these endeavors, we will first take tim
 
 Data is *anything* that contains information. We typically think of data being stored in spreadsheets, but it can come in many other formats such as images or collections of text (whether 280 character tweets or fictional novels). 
 
-For example, we can take the pixels of digital images or text from one of the State of the Union addresses and transform them into a tidy, rectangular format. Below we show the top 10 words from the most recent State of the Union address given in the United States (excluding words such as "the", "and", "or", etc.).
+For example, we can take the pixels of digital images or text from one of the State of the Union addresses and transform them into a tidy, rectangular format. Below we show the top 10 words from the most recent State of the Union address given in the United States (excluding words such as "the", "and", "or", etc.). Notice that we've taken a string of text and converted it to rectangular shape with rows and columns. In this case, each row represents one word and the columns we have are the word and the number of times it appears in the text.
+
 
 ```{r echo=FALSE}
 files <- list.files("./Data/sotu")
@@ -42,6 +44,10 @@ data_frame(text = fileText) %>%
     count(word, sort = TRUE) %>% # sort by frequency
     top_n(10) # get the top 10 words
 ```
+
+*If you are interested in analyzing text as data, check out resources such as [Text Mining with R](https://www.tidytextmining.com/) after you complete this course.*
+
+One of the first steps of working with any data is to reformat it as a **tidy data** set.
 
 **Tidy data** is a table with the following characteristics:
 
@@ -70,11 +76,17 @@ What the row represents is often referred to as the **unit of analysis**. As dat
 For any data set, you should always ask yourself a few questions to provide vital **context** about that data set. 
 
 - **Who is in the data set?** What is the observational unit? How did they end up in the data set? Were they selected randomly or were they in a particular location a particular time?
+
 - **What is being measured or recorded on each unit?** What are the characteristics, features, or *variables* that were collected?
+
 - **Where were they collected?** In one location? Multiple locations?
+
 - **When was the data collected?** One point in time? Over time? If data quality degrades over time (e.g. lab specimens), we should be concerned.
+
 - **How were they collected?** What instruments and methods used for measurement? What questions were asked and how? Online survey? By phone? In person?
+
 - **Why were they collected?** For profit? For academic research? Are there conflicts of interest?
+
 - **Who collected this data?** An agency, a consortium of researchers, an individual researcher?
 
 Thinking about this data context informs us how we analyze the data, what conclusions we can draw, and whether we can generalize our conclusions to a larger population.
@@ -131,7 +143,9 @@ Let’s say that an individual opens up our e-mail survey. They may answer the f
 Lastly, separate from sampling, bias can arise in how we record or measure observations. Some of these biases are types of cognitive biases that and others are statistical biases. Here are a few types of information biases that can occur:
 
 - **Response bias/Self-report bias/Social desirability bias:** *Bias occurs when the recorded response does not accurately represent the true value for the individual due to wording of the question, ordering of the questions, format of response, or to increase social desirability. Most people like to present themselves in a favorable light, so they will be reluctant to admit to unsavory attitudes or characteristics (e.g. weight, income, alcohol consumption, mental illness) or illegal activities in a survey, particularly if the survey is completed in an interview setting and/or the results are not confidential. Additionally, this could arise if the possible responses do not allow for accurate reporting (e.g. [gender identity](https://www.hrc.org/resources/collecting-transgender-inclusive-gender-data-in-workplace-and-other-surveys), [race](https://www.pewsocialtrends.org/interactives/multiracial-timeline/)).* 
+
 - **Recall bias:** *People often unintentionally make mistakes in remembering details about the past. If the study design is retrospective in that it requires units to rely on their memory, we may get bias in the information collected.* 
+
 - **Measurement error:** *Technologies that measure variables of interest may not always be accurate and human calibration of those instruments may be off as well.* 
 
 There are many other forms of bias, many of which are studied by cognitive and social pscyhologists. When designing questionnaires and surveys, it is important to keep these in mind. A researcher must first decide what specific information they want to collect and then figure out the best way to accurately collect that. 
@@ -152,7 +166,7 @@ Individuals that take daily multivitamins may be more health-conscious, eating m
 
 **Confounding Variables:** *A third variable that is a common cause for the "treatment" (e.g. multivitamin) and the "response" (e.g. blood pressure). In this case, a healthy lifestyle could be a variable that confounds the relationship between multivitamin use and blood pressure.*
 
-```{r}
+```{r echo=FALSE, out.width = '50%',fig.align = "center"}
 confounder_triangle(y= "Blood\n Pressure", 
                   z = "Healthy\n Lifestyle",
                   x= "Multivitamin\n Use") %>%

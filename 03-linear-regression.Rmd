@@ -10,7 +10,8 @@ library(NHANES)
 library(mosaic)
 library(ggdag)
 library(readr)
-knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE)
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
+options(warn=-1)
 ```
 
 # Linear Regression Models

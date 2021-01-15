@@ -399,15 +399,15 @@ $$Var(X) = np(1-p) $$
 
 Let's plot the pmf of the Binomial in a bar plot, 
 
-![](appendix_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 If we increase $n$, but leave $p$, then
 
-![](appendix_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 If we increase $n$, but decrease $p$ proportionally (such that $np$ stays the same), then
 
-![](appendix_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 We will talk about two ways to approximate the Binomial distribution.
 
@@ -457,13 +457,13 @@ $$E(X+b) = E(X) + b$$
 For $X$ such that $E(X) = \mu$ and $SD(X) = \sigma$, a Normal random variable has a pdf of
 $$f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
 
-![](appendix_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 - Let the expected value be 0 and standard deviation be 1, $\mu = 0$ and $\sigma = 1$
 
 - We know that $P(-1\leq X \leq 1) = F(1) - F(-1) = 0.68$
 
-![](appendix_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 
 ```r
@@ -476,7 +476,7 @@ pnorm(1) - pnorm(-1) #pnorm is the cdf
 
 - $P(-2\leq X \leq 2) = F(2) - F(-2) = 0.95$
 
-![](appendix_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 
 ```r
@@ -504,11 +504,11 @@ As $n\rightarrow \infty$ ($p$ is fixed), the $P(X = x) \approx P(x-0.5 \leq Y \l
 
 *Note: adding and subtracting 0.5 is the continuity correction*
 
-![](appendix_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> ![](appendix_files/figure-latex/unnamed-chunk-12-2.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-12-1.png" width="672" /><img src="appendix_files/figure-html/unnamed-chunk-12-2.png" width="672" />
 
 If $n=1000$ and $p=0.2$, let's compare $P(X=200)$ and $P(199.5\leq Y\leq 200.5)$.
 
-![](appendix_files/figure-latex/unnamed-chunk-13-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 
 ```r
@@ -529,7 +529,7 @@ pnorm(200.5,mean = n*p, sd = sqrt(n*p*(1-p))) - pnorm(199.5,mean = n*p, sd = sqr
 
 If $n=1000$ and $p=0.2$, let's compare $P(200\leq X\leq 210)$ and $P(199.5\leq Y\leq 210.5)$.
 
-![](appendix_files/figure-latex/unnamed-chunk-15-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 
 ```r
@@ -561,7 +561,7 @@ p = 0.2
 barplot(dbinom(0:n,size = n, p = p),names.arg=0:n,ylab='Probability',main='n = 50, p = 0.2')
 ```
 
-![](appendix_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 
 
@@ -596,11 +596,11 @@ But, what is the shape of the distribution (probability model) of the mean?
 
 Let's randomly generate data from a probability model with a skewed pdf. 
 
-![](appendix_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 Let $\bar{y}$ be the mean of those $n$ random values. If we repeat the process multiple times, we get a sense of the **sampling distribution for $\bar{y}$**, the mean of a sample of $n$ random values from the population distribution above. 
 
-![](appendix_files/figure-latex/unnamed-chunk-19-1.pdf)<!-- --> 
+<img src="appendix_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 
 The **Central Limit Theorem** (CLT) tells us that as the sample size get larger and larger, the shape of the sampling distribution for the sample mean get closer and closer to Normal. That is why it makes sense we've seen unimodal, symmetric distributions pop up when we simulate bootstrapping and random assignments. However, the CLT only applies when we are talking about sample means or proportions.
 

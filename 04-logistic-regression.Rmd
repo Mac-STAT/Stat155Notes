@@ -8,7 +8,7 @@ library(mosaicData)
 library(ggmosaic)
 library(NHANES)
 library(mosaic)
-knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE)
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
 ```
 
 # Logistic Regression Models {#logistic}
@@ -89,13 +89,16 @@ SpaceShuttle %>%
   ggplot(aes(x = factor(Fail), y = Temperature) )+ 
   geom_boxplot() +
   theme_minimal()
+```
 
+```{r echo=FALSE}
 SpaceShuttle %>%
   filter(!is.na(Fail)) %>%
   group_by(Temperature) %>%
   summarise(PercentFail = mean(Fail == 'yes')) %>%
   ggplot(aes(x = Temperature, y = PercentFail)) + 
   geom_point() +
+  labs(y = 'Failure Percentage')+
   theme_minimal()
 ```
 
@@ -107,8 +110,12 @@ What are the plots above telling us about the relationship between chance of o-r
 Let's fit a simple logistic regression model with one explanatory variable to predict the chance of o-ring failure (which is our "success" here -- we know it sounds morbid) based on the temperature using the experimental data. 
 
 ```{r echo=TRUE}
+SpaceShuttle <- SpaceShuttle %>%
+  mutate(Fail = ifelse(Fail == 'yes', 1, 0))
+
 model.glm <- glm(Fail ~ Temperature, data = SpaceShuttle, family = binomial)
-summary(model.glm)
+
+tidy(model.glm) 
 ```
 
 Based on a logistic regression model, the predicted log odds of an o-ring failure is given by
@@ -121,7 +128,8 @@ $$\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = 15.0429 -0.2322\cdot Temperature$
 Let's take a look at the estimates from the model. What do they mean?
 
 ```{r echo=TRUE}
-summary(model.glm)
+tidy(model.glm) %>%
+  select(term, estimate)
 ```
 
 The slope coefficient (-0.232) tells you how much the predicted log odds of o-ring failure increase with an increase of 1 degree  in temperature. But what does a 1 unit increase in log odds mean? We need to do a bit of algebra to get something more interpretable. 
@@ -161,6 +169,13 @@ After that algebra, we find that $e^{\beta_1}$ is equal to the **odds ratio**, t
 
 When we fit the model to the o-ring experimental data, we estimate the coefficients to be $\hat{\beta}_0 = 15.04$ and $\hat{\beta}_1 = -0.232$. So the estimated odds ratio is $e^{\hat{\beta}_1} = e^{-0.232} = 0.793$ for an increase in one degree Fahrenheit in temperature (Temperature=T+1 v. Temperature=T). 
 
+```{r echo=TRUE}
+tidy(model.glm) %>%
+  select(term, estimate) %>%
+  mutate(estimate_exp = exp(estimate)) %>%
+  mutate(estimate_exp = round(estimate_exp,3)) #round to 3 decimal places
+```
+
 - If a ratio is greater than 1, that means that the denominator is less than the numerator or equivalently the numerator is greater than denominator (odds of success are greater with T+1 as compared to T --> positive relationship between $X$ variable and odds of success). 
 
 - If a ratio is less than 1, that means that the denominator is greater than the numerator or equivalently the numerator is less than denominator (odds of success are less with T+1 as compared to T --> negative relationship between $X$ variable and odds of success). 
@@ -186,16 +201,40 @@ These predicted chances of "success" are useful to give us a sense of uncertaint
 
 But if we had to decide whether or not we should let the shuttle launch go, how high should the predicted chance be to delay the launch (even if it would cost a lot of money to delay)?
 
-It depends. 
+It depends. Let's look at a boxplot of **predicted probabilities** of "success" compared to the true outcomes.
+
+```{r}
+model.glm%>%
+  augment(type.predict = 'response') %>%
+  ggplot(aes(x = factor(Fail), y = .fitted)) + 
+  geom_boxplot() +
+  labs(y = 'Predicted Probability of Outcome', x = 'True Outcome') +
+  theme_classic()
+```
 
 If we used a threshold of 0.8, then we'd say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we'll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our **accuracy** (# of correctly predicted/# of data points)? 
+
+```{r}
+model.glm%>%
+  augment(type.predict = 'response') %>%
+  ggplot(aes(x = factor(Fail), y = .fitted)) + 
+  geom_boxplot() +
+  labs(y = 'Predicted Probability of Outcome', x = 'True Outcome') +
+  geom_hline(yintercept = 0.8, color = 'red') + #threshold
+  theme_classic()
+```
 
 In the table below, we see that there were 3 data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn't fail when it actually did, and we correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) =  0.82 or 82%. 
 
 ```{r}
+threshold <- 0.80
+
 augment(model.glm, type.predict ='response') %>%
-  mutate(predictFail = .fitted >= 0.8) %>%
-  count(Fail, predictFail)
+  mutate(predictFail = .fitted >= threshold) %>%
+  count(Fail, predictFail) %>%
+  mutate(correct = (Fail == predictFail)) %>%
+  group_by(Fail) %>%
+  mutate(prop = n/sum(n)) #Specificity, False pos, False neg, Sensitivity 
 ```
 
 The only errors we made were **false negatives** (predict no "success" because $\hat{p}$ is less than threshold when outcome was true "success", $Y=1$); we predicted that the o-ring wouldn't fail  but the o-rings did fail in the experiment ($Y=1$). In this data context, false negatives have real consequences on human lives because a shuttle would launch and potentially explode because we had predicted there would be no o-ring failure. 
@@ -225,19 +264,35 @@ To recap,
 ```
 
 
-What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let's lower it to 0.25 so that we predict o-ring failure more easily. Let's find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let's check false negative rate: 3/(3+4) = 0.43. That's lower. But now we have a non-zero false positive rate: 6/(6+10) = 0.375. So of the experiments with no o-ring failure, we predicted incorrectly 37.5% of the time. 
+What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let's lower it to 0.25 so that we predict o-ring failure more easily. 
+```{r}
+model.glm%>%
+  augment(type.predict = 'response') %>%
+  ggplot(aes(x = factor(Fail), y = .fitted)) + 
+  geom_boxplot() +
+  labs(y = 'Predicted Probability of Outcome', x = 'True Outcome') +
+  geom_hline(yintercept = 0.25, color = 'red') + #threshold
+  theme_classic()
+```
+
+Let's find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let's check false negative rate: 3/(3+4) = 0.43. That's lower. But now we have a non-zero false positive rate: 6/(6+10) = 0.375. So of the experiments with no o-ring failure, we predicted incorrectly 37.5% of the time. 
 
 ```{r}
+threshold <- 0.25
+
 augment(model.glm, type.predict ='response') %>%
-  mutate(predictOFail = .fitted >= 0.25) %>%
-  count(Fail, predictOFail)
+  mutate(predictFail = .fitted >= threshold) %>%
+  count(Fail, predictFail) %>%
+  mutate(correct = (Fail == predictFail)) %>%
+  group_by(Fail) %>%
+  mutate(prop = n/sum(n)) #Specificity, False pos, False neg, Sensitivity 
 ```
 
 Where the threshold goes depends on the real consequences of making those two types of errors and needs to be made in the social and ethical context of the data. 
 
 ## Logistic Model Evaluation
 
-In deciding whether a logistic regression model is a good and useful model, we need to consider the accuracy, sensitivity, specificity, the false positive rate,  and the false negative rate. Depending on the context, we may focus on maximizing the overall accuracy or we may focus on minimizing the false negative rate (maximizing sensitivity) or minimizing the false positive rate  (maximizing specificity).  
+In deciding whether a logistic regression model is a good and useful model, we need to consider the accuracy, sensitivity, specificity, the false positive rate,  and the false negative rate. Depending on the context, we may focus on maximizing the overall accuracy or we may focus on minimizing the false negative rate (maximizing sensitivity) or minimizing the false positive rate  (maximizing specificity) or balancing the false positive and false negative rates.  
 
 There are other measures of model fit for a logistic regression such as AIC and BIC (lower is better), but those are beyond the scope of this course. You'll learn about them in future statistics courses. 
 

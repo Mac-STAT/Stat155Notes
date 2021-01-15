@@ -10,7 +10,7 @@ library(mosaicData)
 library(ggmosaic)
 library(NHANES)
 library(mosaic)
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
 ```
 
 # Randomness and Probability
@@ -456,7 +456,7 @@ As we wade through the formal theory, let's remind ourselves why we need to unde
 
 We appreciate that our estimates will vary from sample to sample because we have different units in each sample. We care about *how much* they can vary because we want to *quantify* the amount of uncertainty in our estimates. Sure, we may use linear regression modeling to find that the estimate for an interaction coefficient is \$26.85, but how different could that estimate have been if we had obtained a different sample (of the same size)?
 
-The **sampling ditribution** of a statistic (e.g. sampling distribution of the sample mean, of the sample median, of a regression coefficient) tells us exactly how that statistic would vary across all possible samples of a given size. For example, in our New York housing data (1728 homes), the sampling distribution for the interaction coefficient tells us exactly the distribution of interaction coefficient estimates that result from all possible samples of size 1728 *from the population of New York homes*. This distribution is centered at the true value of the population interaction coefficient (the value we would get from linear modeling if we did indeed use the full population). The spread of the distribution gives us a measure of the precision of our estimate. If the sampling distribution is very wide, then our estimate is imprecise; our estimate would vary widely from sample to sample. If the sampling distribution is very narrow, then our estimate is precise; our estimate would not vary much from sample to sample.
+The **sampling distribution** of a statistic (e.g. sampling distribution of the sample mean, of the sample median, of a regression coefficient) tells us exactly how that statistic would vary across all possible samples of a given size. For example, in our New York housing data (1728 homes), the sampling distribution for the interaction coefficient tells us exactly the distribution of interaction coefficient estimates that result from all possible samples of size 1728 *from the population of New York homes*. This distribution is centered at the true value of the population interaction coefficient (the value we would get from linear modeling if we did indeed use the full population). The spread of the distribution gives us a measure of the precision of our estimate. If the sampling distribution is very wide, then our estimate is imprecise; our estimate would vary widely from sample to sample. If the sampling distribution is very narrow, then our estimate is precise; our estimate would not vary much from sample to sample.
 
 The emphasis on "from the population of New York homes" when defining the sampling distribution earlier is deliberate. We don't have the population, and we never will (usually)! The sampling distribution is a theoretical idea, but we wish to know what it looks like because we care about the precision of our estimate. We have done our best to estimate the center of the sampling distribution: our best guess is the sample estimate itself. For our housing data, we estimate an interaction coefficient of $26.85. This is our best guess for the center of the sampling distribution. What about the spread?
 
@@ -629,6 +629,16 @@ legend('topright',legend=c('df = 5','df = 10','df = 25', 'df = 100','Std. Normal
 
 Since the Student T distribution is approximately Normal when sample sizes are large, we will typically use the Normal model. However, if sample sizes are small ($n<30$ or so), the Normal model is not appropriate. So, in those rare cases, we'll need to refer to Student's T.
 
+## Regression Model Sampling Distributions
+
+Prior to this point, we've looked at the probability theory for sample means. This is because the equations are easier to write down and work with. 
+
+But, how does all of this apply to linear models and regression coefficients? 
+
+Since the estimates for linear models are very similar to means, **the sampling distribution of a sample regression coefficient is approximately Normal with mean = population regression coefficient, $\beta_j$, and standard deviation, $SD(\hat{\beta_j})$. **
+
+- When the sample size is small $n<30$, we need to consider William Gosset's work because $\frac{\hat{\beta_j} - \beta_j}{SE(\hat{\beta_j})}$ is not quite Normally distributed!
+
 
 ## Chapter 6 Major Takeaways
 
@@ -675,3 +685,8 @@ Since the Student T distribution is approximately Normal when sample sizes are l
         
 
 - When the sample size is small $n<30$, we need to consider William Gosset's work because $\frac{\bar{X} - \mu}{s/\sqrt{n}}$ is not quite Normally distributed!
+
+Now, how does all of this apply to models and regression coefficients? Since the estimates for linear models are very similar to means, the sampling distribution of a sample regression coefficient is approximately Normal with mean = population regression coefficient, $\beta_j$, and standard deviation, $SD(\hat{\beta_j})$. 
+
+- When the sample size is small $n<30$, we need to consider William Gosset's work because $\frac{\hat{\beta_j} - \beta_j}{SE(\hat{\beta_j})}$ is not quite Normally distributed!
+

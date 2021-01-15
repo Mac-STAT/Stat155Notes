@@ -11,7 +11,8 @@ library(tidytext)
 library(glue)
 library(readr)
 library(ggdag)
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
+options(warn=-1)
 ```
 
 
@@ -58,7 +59,7 @@ While you'll be learning about and using R throughout the course, this is not a 
 
 For this class, we will have data that we want to pass to a function that performs a particular operation (does something cool) on our data. Thus, we'll pass **inputs** as arguments to a **function**:
 
-```
+```{r eval=FALSE}
 FunctionName(argument1 = a1, argument2 = a2,..., argumentk = ak)
 ```
 
@@ -67,20 +68,20 @@ Note the `FunctionName` and the use of parantheses. Inside the parantheses, the 
 
 We may want to save the **output** of the function by assigning it a name using the assignment operator, `<-`:
 
-```
+```{r eval=FALSE}
 OutputName <- FunctionName(argument1 = a1, argument2 = a2,..., argumentk = ak)
 ```
 
 
 R allows us to be lazy and not include the argument name as long as we provide the input in the correct order:
 
-```
+```{r eval=FALSE}
 OutputName <- FunctionName(a1, a2,..., ak)
 ```
 
 We can also **nest** functions by first performing one operation and then passing that as an input into another function. In the code below, `Function1()` would first run with the input `data` and create some output that is then passed as the first input in `Function2()`. So R evaluates functions from the inside-out. 
 
-```
+```{r eval=FALSE}
 Function2(Function1(data))
 ```
 
@@ -88,7 +89,7 @@ As we go through real examples below, notice the names of the functions that we 
 
 Additionally, we are going to use a shortcut that makes our code more readable. It is called a **pipe** and looks like `%>%`. What this does is pass the output on its left as the first argument to the function on the right. The following two sections of code do exactly the same thing but the second is easier to read. For this code, we take data and summarize the variable height and then take the mean of the heights. 
 
-```
+```{r eval=FALSE}
 summarize(data, mean(height))
 
 data %>%
@@ -140,8 +141,9 @@ library(dplyr) # Load the dplyr package
 library(ggplot2) # Load the ggplot2 package
 data(Whickham) # Load the data set from Whickham R package
 
+# Create a new categorical variable with 4 categories based on age
 Whickham <- Whickham %>%
-    mutate(ageCat = cut(age, 4)) # Create a new categorical variable with 4 categories based on age (equal length of age intervals)
+    mutate(ageCat = cut(age, 4)) 
 
 head(Whickham)
 ```
@@ -158,7 +160,7 @@ One of the best ways to show the distribution of one categorical variable is wit
 - The height can either represent the **frequency** (count of units) or the **relative frequency** (proportion of units).
 
 
-```{r}
+```{r tidy=FALSE}
 ## Numerical summary (frequency and relative frequency)
 Whickham %>%
     count(ageCat) %>%
@@ -168,9 +170,8 @@ Whickham %>%
 Whickham %>%
     ggplot(aes(x = ageCat)) + 
     geom_bar(fill="steelblue") + 
-    xlab('Age Categories in Years') + 
-    ylab('Counts') + 
-    theme_minimal()
+    labs(x = 'Age Categories in Years', y = 'Counts') + 
+    theme_classic()
 ```
 
 ```{block type='reflect'}
@@ -183,7 +184,7 @@ Pie charts are only useful if you have 2 to 3 possible categories and you want t
 
 This is the best use for a pie chart:
 
-```{r, out.width = '.25\\textwidth', echo=FALSE}
+```{r, out.width = '.5\\textwidth', echo=FALSE, fig.align = 'center'}
 knitr::include_graphics("Photos/pie.jpg")
 ```
 
@@ -202,7 +203,7 @@ There are a few options for visualizing the relationship between two categorical
 
 - The **height of the bars** shows the frequency of the categories within subsets.
 
-```{r}
+```{r tidy=FALSE}
 ## Numerical summary (frequency and overall relative frequency)
 Whickham %>%
   count(outcome, smoker) %>%
@@ -211,11 +212,10 @@ Whickham %>%
 ## Graphical summary (side-by-side bar plot)
 Whickham %>%
   ggplot(aes(x = smoker, fill = outcome)) + 
-  geom_bar(position = position_dodge()) + 
-  xlab('Smoker Status') + 
-  ylab('Counts') + 
-  scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
-  theme_minimal()
+  geom_bar(position = "dodge") +
+  labs(x = 'Smoker Status', y = 'Counts', fill = '20 Year Mortality') + 
+  scale_fill_manual(values = c("steelblue", "lightblue")) + 
+  theme_classic()
 ```
 
 ```{block type='reflect'}
@@ -248,10 +248,9 @@ Whickham %>%
 Whickham %>%
     ggplot(aes(x = smoker, fill = outcome)) + 
     geom_bar() + 
-    xlab('Smoker Status') + 
-    ylab('Counts') + 
-    scale_fill_manual('20 Year Mortality',values=c("steelblue", "lightblue")) + 
-    theme_minimal()
+    labs(x = 'Smoker Status', y = 'Counts', fill = '20 Year Mortality') + 
+    scale_fill_manual(values = c("steelblue", "lightblue")) + 
+    theme_classic()
 ```
 
 ```{block type='reflect'}
@@ -265,31 +264,16 @@ We can adjust the stacked bar plot to make the heights the same, so that you can
 - The **relative heights** show **conditional distributions** (relative frequencies within subsets).
 - The **widths** of the bars have no meaning.
 
-The code below computes the conditional distributions manually first (fractions of outcomes within the two smoking groups). Then these calculations are plotted directly.
+The code below computes the conditional distributions first (fractions of outcomes within the two smoking groups) and then plots these proportions.
 
-```{r}
-Whickham %>%
-    count(outcome, smoker) %>%
-    group_by(smoker) %>%
-    mutate(relfreq = n / sum(n)) %>%
-    ggplot(aes(x = smoker, y = relfreq, fill = outcome)) + 
-    geom_bar(stat = 'identity') + 
-    xlab('Smoker Status') + 
-    ylab('Proportion') + 
-    scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
-    theme_minimal()
-```
-
-Another way to make a proportional bar plot is to use the `position = "fill"`
 
 ```{r}
 Whickham %>%
     ggplot(aes(x = smoker, fill = outcome)) +
     geom_bar(position = "fill") +
-    xlab('Smoker Status') + 
-    ylab('Proportion') + 
-    scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
-    theme_minimal()
+    labs(x = 'Smoker Status', y = 'Proportion', fill = '20 Year Mortality') + 
+    scale_fill_manual(values = c("steelblue", "lightblue")) + 
+    theme_classic()
 ```
 
 ### Mosaic Plot
@@ -305,10 +289,9 @@ library(ggmosaic)
 Whickham %>%
     ggplot() +
     geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) +
-    xlab('Smoker Status') + 
-    ylab('Counts') + 
-    scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
-    theme_minimal()
+    labs(x = 'Smoker Status', y = '', fill = '20 Year Mortality') + 
+    scale_fill_manual(values = c("steelblue", "lightblue")) + 
+    theme_classic()
 ```
 
 ```{block, type="reflect"}
@@ -328,10 +311,9 @@ Whickham %>%
     ggplot() +
     geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) + 
     facet_grid( . ~ ageCat) + 
-    xlab('Smoker Status') + 
-    ylab('Counts') + 
-    scale_fill_manual('20 Year Mortality', values = c("steelblue", "lightblue")) + 
-    theme_minimal()
+    labs(x = 'Smoker Status', y = '', fill = '20 Year Mortality') + 
+    scale_fill_manual(values = c("steelblue", "lightblue")) + 
+    theme_classic()
 ```
 
 ```{block, type="reflect"}
@@ -368,9 +350,8 @@ data(NHANES)
 NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(fill = "steelblue") + 
-    xlab('Hours of Sleep (hours)') + 
-    ylab('Counts') + 
-    theme_minimal() 
+    labs(x = 'Hours of Sleep (hours)', y = 'Counts') + 
+    theme_classic() 
 ```
 
 Note the warning message above: "Removed __ rows containing non-finite values (stat_bin)." Sometimes there is missing information for a variable for some units in the dataset. We cannot plot these because we don't know their values! This warning message is just a friendly reminder from R to let you know what it is doing.
@@ -381,9 +362,8 @@ Also note the message that R gives about bin width to remind us that we can choo
 NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(binwidth = 1, fill = "steelblue") + 
-    xlab('Hours of Sleep (hours)') + 
-    ylab('Counts') + 
-    theme_minimal() 
+    labs(x = 'Hours of Sleep (hours)', y = 'Counts') + 
+    theme_classic() 
 ```
 
 Lastly, notice that the y-axis in the previous two histograms has been the counts (or frequency) within each sleep hour interval. We can adjust this to **density**, which is relative frequency adjusted for the width of interval so that the sum of the areas of the bars (height x width) equals 1. 
@@ -393,9 +373,8 @@ NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(aes(y = ..density..), binwidth = 1, fill = "steelblue") + 
     geom_density(alpha = 0.2, fill = "steelblue", adjust = 3) + 
-    xlab('Hours of Sleep (hours)') + 
-    ylab('Density') + 
-    theme_minimal() 
+    labs(x = 'Hours of Sleep (hours)', y = 'Density') + 
+    theme_classic() 
 ```
 
 The smooth curved line on this plot is called a **density plot**. It is essentially a smoother version of the histogram. Both the area under a density plot and the total area of all the rectangles in a density histogram equal 1.
@@ -410,7 +389,7 @@ When describing a distribution, we focus on three aspects of the histogram:
 
 Here is another data set for comparison. Here are the annual salaries for the highest paid CEOs in 2016 (Source: NYTimes). To get the data, we are scraping the data from a NYTimes website. For fun, you can look at the code below. 
 
-```{r}
+```{r echo=FALSE}
 nyturl <- 'https://www.nytimes.com/interactive/2017/05/26/business/highest-paid-ceos.html?mcubz=0'
 dat <- read_html(nyturl)
 ceo <- dat %>% 
@@ -429,11 +408,10 @@ Let's create a density histogram of the annual salaries for the highest paid CEO
 ```{r}
 ceo %>%
     ggplot(aes(x = salary)) +
-    geom_histogram(aes(y = ..density..), binwidth = 15, fill = "steelblue") + 
+    geom_histogram(aes(y = ..density..), binwidth = 5, fill = "steelblue") + 
     geom_density(alpha = 0.2, fill = "steelblue") + 
-    xlab('Salary ($ Millions)') + 
-    ylab('Counts') + 
-    theme_minimal() 
+    labs(x = 'Salary ($ Millions)', y = 'Density') + 
+    theme_classic() 
 ```
 
 We note that some of the highest salaries were close to 200 million U.S. dollars (in 2016), but the majority of the salaries in this sample are closer to 50 million U.D. dollars.
@@ -467,7 +445,12 @@ NHANES %>%
   summary()
 
 NHANES %>%
-  summarize(mean(SleepHrsNight, na.rm = TRUE), median(SleepHrsNight, na.rm = TRUE), mean(SleepHrsNight, trim = 0.05, na.rm = TRUE)) # na.rm = TRUE removes missing values; Trimmed mean: trim 5% from both tails before taking mean
+  summarize(
+    mean(SleepHrsNight, na.rm = TRUE),
+    median(SleepHrsNight, na.rm = TRUE), 
+    mean(SleepHrsNight, trim = 0.05, na.rm = TRUE)) # na.rm = TRUE removes missing values 
+
+#Trimmed mean: trim 5% from both tails before taking mean
 
 ```
 
@@ -479,7 +462,10 @@ ceo %>%
   summary()  # Note the differences between mean and median
 
 ceo %>%
-  summarize(mean(salary), median(salary), mean(salary, trim = 0.05))
+  summarize(
+    mean(salary), 
+    median(salary), 
+    mean(salary, trim = 0.05))
 ```
 
 Note that the mean, median, and trimmed mean are all fairly close for the sleep hours distribution, which looks fairly symmetric.
@@ -506,7 +492,7 @@ NHANES %>%
     ggplot(aes(y = SleepHrsNight)) +
     geom_boxplot() + 
     ylab('Hours of Sleep (hours)') + 
-    theme_minimal() 
+    theme_classic() 
 ```
 
 Compare that to the boxplot of the CEO salaries. 
@@ -516,7 +502,7 @@ ceo %>%
     ggplot(aes(y = salary)) +
     geom_boxplot() + 
     ylab('Salary ($M)') + 
-    theme_minimal() 
+    theme_classic() 
 ```
 
 Note: In these 2 plots above, the x-axis has number labels, but they don't mean anything.
@@ -584,9 +570,13 @@ We can calculate all of these in R.
 
 - **Hours of sleep per night from the NHANES dataset**
 
-```{r tidy=TRUE, echo=TRUE}
+```{r echo=TRUE}
 NHANES %>%
-  summarize(diff(range(SleepHrsNight, na.rm = TRUE)), IQR(SleepHrsNight, na.rm = TRUE), sd(SleepHrsNight, na.rm = TRUE), var(SleepHrsNight, na.rm = TRUE))
+  summarize(
+    diff(range(SleepHrsNight, na.rm = TRUE)), 
+    IQR(SleepHrsNight, na.rm = TRUE), 
+    sd(SleepHrsNight, na.rm = TRUE), 
+    var(SleepHrsNight, na.rm = TRUE))
 
 # range gives max and min; take difference betwee max and min
 # IQR = Q3-Q1
@@ -598,14 +588,18 @@ NHANES %>%
 
 ```{r tidy=TRUE, echo=TRUE}
 ceo %>%
-  summarize(diff(range(salary)), IQR(salary), sd(salary), var(salary))
+  summarize(
+    diff(range(salary)), 
+    IQR(salary), 
+    sd(salary), 
+    var(salary))
 ```
 
 ### Some data accounting {#intro-zscore}
 
 We've looked at different measures of the spread of a distribution. Do some measures of spread encompass a lot of the data? Just a little? Can we be more precise about how much of the data is encompassed by intervals created from different spread measures?
 
-```{r tidy=TRUE, echo=TRUE}
+```{r echo=FALSE}
 x <- rnorm(1500)
 boxplot(x,horizontal = TRUE,xlab='Generated Data')
 abline(v = range(x), col='blue',lty=3) 
@@ -719,9 +713,9 @@ Let's make a histogram for each gender category by adding `facet_grid(. ~ Gender
 NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(binwidth = 1, fill = "steelblue") + 
-    xlab('Hours of Sleep (hours)') + 
+    labs(x = 'Hours of Sleep (hours)') + 
     facet_grid(. ~ Gender) + 
-    theme_minimal()
+    theme_classic()
 ```
 
 ```{block, type='reflect'}
@@ -741,10 +735,10 @@ NHANES %>%
     filter(!is.na(nBabies)) %>% 
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(binwidth = 1, fill = "steelblue") + 
-    xlab('Hours of Sleep (hours)') + 
+    labs(x = 'Hours of Sleep (hours)') + 
     facet_wrap(. ~ factor(nBabies), ncol = 4) + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-    theme_minimal()
+    theme_classic()
 ```
 
 The 0 to 12 labels at the top of each of these panels correspond to the number of babies a woman had. 
@@ -761,9 +755,9 @@ Note the x and y axes are the same for all of the groups to facilitate compariso
 NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(binwidth = 1, fill = "steelblue") + 
-    xlab('Hours of Sleep (hours)') + 
+    labs(x = 'Hours of Sleep (hours)') + 
     facet_grid(. ~ Depressed) + 
-    theme_minimal() 
+    theme_classic() 
 ```
 
 What's the rightmost "NA" category? Some individuals in this study did not answer questions about days that they might have felt depressed, but they did report their hours of sleep per night.
@@ -780,9 +774,8 @@ Let's visualize the same information but with boxplots instead of histograms and
 NHANES %>%
     ggplot(aes(x = Gender, y = SleepHrsNight)) +
     geom_boxplot() + 
-    ylab('Hours of Sleep (hours)') + 
-    xlab('Binary Gender') + 
-    theme_minimal() 
+    labs(x = 'Binary Gender', y = 'Hours of Sleep (hours)') + 
+    theme_classic() 
 ```
 
 
@@ -790,9 +783,8 @@ NHANES %>%
 NHANES %>%
     ggplot(aes(x = factor(nBabies), y = SleepHrsNight)) +
     geom_boxplot() + 
-    ylab('Hours of Sleep (hours)') + 
-    xlab('Number of Babies') + 
-    theme_minimal() 
+    labs(x = 'Number of Babies', y = 'Hours of Sleep (hours)') + 
+    theme_classic() 
 ```
 
 
@@ -800,9 +792,8 @@ NHANES %>%
 NHANES %>%
     ggplot(aes(x = factor(Depressed), y = SleepHrsNight)) +
     geom_boxplot() + 
-    ylab('Hours of Sleep (hours)') + 
-    xlab('Days Depressed') + 
-    theme_minimal() 
+    labs(x = 'Days Depressed', y = 'Hours of Sleep (hours)') + 
+    theme_classic() 
 ```
 
 ```{block type='reflect'}
@@ -827,12 +818,22 @@ What if there were no "REAL" difference? Then the Depressed group labels wouldn'
 
 ```{r echo=TRUE}
 library(mosaic) 
+#TRUE or FALSE (converted Depressed to a 2 category variable)
 NHANES <- NHANES %>%
-  mutate(DepressedMost = (Depressed == 'Most')) #TRUE or FALSE (converted Depressed to a 2 category variable)
+  mutate(DepressedMost = (Depressed == 'Most')) 
 
-obsdiff <- data.frame(d = diff(mean(SleepHrsNight ~ DepressedMost, data = NHANES, na.rm = TRUE)))
+obsdiff <- NHANES %>% 
+  with(lm(SleepHrsNight ~ DepressedMost)) %>%
+  tidy() %>%
+  filter(term == 'DepressedMostTRUE')
 
-sim <- do(1000)*diff(mean(SleepHrsNight ~ shuffle(DepressedMost), data = NHANES, na.rm = TRUE)) #Randomly shuffle the DepressedMost labels (assuming no real difference in sleep, depressed feelings shouldn't impact sleep)
+sim <- do(1000)*(
+  NHANES %>%
+    with(lm(SleepHrsNight ~ shuffle(DepressedMost)))
+)
+
+#Randomly shuffle the DepressedMost labels 
+#assuming no real difference in sleep
 ```
 
 
@@ -841,12 +842,11 @@ Below, we have a histogram of 1000 values calculated by randomly shuffling indiv
 
 ```{r}
 sim %>%
-  ggplot(aes(x = TRUE.)) + 
+  ggplot(aes(x = DepressedMostTRUE)) + 
   geom_histogram(fill = 'steelblue') +
-  geom_vline(aes(xintercept = d), obsdiff, color = 'red') + 
-  xlab('Difference in Mean Hours of Sleep') + 
-  ylab('Counts') + 
-  theme_minimal() 
+  geom_vline(aes(xintercept = estimate), obsdiff, color = 'red') + 
+  labs(x = 'Difference in Mean Hours of Sleep', y = 'Counts') + 
+  theme_classic() 
 ```
 
 ```{block, type='reflect'}
@@ -873,9 +873,8 @@ body <- read.delim("Data/bodyfat.txt")
 body %>%
     ggplot(aes(x = Neck, y = Chest)) +
     geom_point(color = 'steelblue') + 
-    xlab('Neck size (cm)') + 
-    ylab('Chest size (cm)') +
-    theme_minimal()
+    labs(x = 'Neck size (cm)', y = 'Chest size (cm)') +
+    theme_classic()
 ```
 
 What do you notice about:
@@ -899,9 +898,8 @@ Look at the plot in inches below. Does this plot look the same as the centimeter
 body %>%
   ggplot(aes(x = Neck/2.54, y = Chest/2.54)) +
   geom_point(color = 'steelblue') + 
-  xlab('Neck size (in)') + 
-  ylab('Chest size (in)') +
-  theme_minimal()
+  labs(x = 'Neck size (in)', y = 'Chest size (in)') +
+  theme_classic()
 ```
 
 You should see that the x-axes changed but the overall shape of the plot stayed the same. Thus, the strength of the relationship was not affected by tranforming neck size from centimeters to inches (by dividing by 2.54). 
@@ -914,7 +912,10 @@ Below we plot Neck and Chest sizes after changing them to z-scores with the func
 
 ```{r echo=FALSE}
 body <- body %>%
-    mutate(zNeck = scale(Neck), zChest = scale(Chest), Product = factor(sign(zChest*zNeck)))
+    mutate(
+      zNeck = scale(Neck), 
+      zChest = scale(Chest), 
+      Product = factor(sign(zChest*zNeck)))
 
 body %>%
     ggplot(aes(x = zNeck, y = zChest, color = Product)) +
@@ -924,7 +925,7 @@ body %>%
     xlab('Z-scores of Neck size') + 
     ylab('Z-scores of Chest size') +
     guides(color = guide_legend(title = "Sign of the product\n of the z-scores")) +
-    theme_minimal() +
+    theme_classic() +
     coord_cartesian(xlim = c(-3.5,3.5), ylim = c(-3.5,3.5)) +
     annotate("text", x = c(3, -3, -3, 3), y = c(3.5, 3.5, -3.5, -3.5), label = paste("Quadrant", 1:4))
 ```
@@ -1102,9 +1103,8 @@ data(CPS85) # Load the data from the R package CPS85
 CPS85 %>%
     ggplot(aes(x = educ, y = wage)) +
     geom_point() +
-    xlab("Years of education") +
-    ylab("Hourly wage (US dollars)") +
-    theme_minimal()
+    labs(x = "Years of education", y = "Hourly wage (US dollars)") +
+    theme_classic()
 ```
 
 We can see that years of education and hourly wage are positively correlated. What about the impact of other variables?
@@ -1117,9 +1117,8 @@ We can enrich this bivariate scatterplot by showing additional information via c
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, color = age)) +
     geom_point() +
-    xlab("Years of education") +
-    ylab("Hourly wage (US dollars)") +
-    theme_minimal()
+    labs(x = "Years of education", y = "Hourly wage (US dollars)", color = "Age") +
+    theme_classic()
 ```
 
 Adding color for a quantitative variable, age, does not reveal any obvious patterns; that is, we don't see obvious clustering by color. Perhaps this is because there are too many colors (remember Visualization Principle #6: Use Color Appropriately). Are any patterns revealed if we use 4 age categories instead?
@@ -1129,10 +1128,9 @@ CPS85 %>%
     mutate(age_cat = cut(age, 4)) %>%
     ggplot(aes(x = educ, y = wage, color = age_cat)) +
     geom_point() +
-    xlab("Years of education") +
-    ylab("Hourly wage (US dollars)") +
-    guides(color = guide_legend(title = "Age category")) + # Legend title
-    theme_minimal()
+    geom_smooth(se = FALSE) + 
+    labs(x = "Years of education", y = "Hourly wage (US dollars)", color = "Age category") +
+    theme_classic()
 ```
 
 With 4 age categories, no age patterns are evident, but this does help us see that the least educated people in this data set are mostly in the youngest and oldest age categories.
@@ -1145,10 +1143,8 @@ We can also encode information via point shape. Here we let shape encode marital
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, shape = married)) +
     geom_point() +
-    xlab("Years of education") +
-    ylab("Hourly wage (US dollars)") +
-    guides(shape = guide_legend(title = "Marital status")) + # Legend title
-    theme_minimal()
+    labs(x = "Years of education", y = "Hourly wage (US dollars)", shape = "Marital status") +
+    theme_classic()
 ```
 
 Often encoding information with color is preferable to encoding it with shapes because differences in shapes are not as easily discernible. Remember that statistical visualizations are meant to help you better understand your data. If you are having trouble easily picking out patterns when using a certain visual feature (e.g. shape, color), try another feature to see if the clarity of the plot increases for you.
@@ -1160,11 +1156,9 @@ The size of a point is useful for conveying the magnitude of a quantitative vari
 ```{r}
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, size = age)) +
-    geom_point(alpha = 0.5) + #alpha specifies the level of transparency of the points
-    xlab("Years of education") +
-    ylab("Hourly wage (US dollars)") +
-    guides(size = guide_legend(title = "Age")) + # Legend title
-    theme_minimal()
+    geom_point(alpha = 0.2) + #alpha specifies the level of transparency of the points
+    labs(x = "Years of education", y = "Hourly wage (US dollars)", size = "Age") +
+    theme_classic()
 ```
 
 ### Enriching with panels
@@ -1175,69 +1169,69 @@ Let's look at the relationship between hourly wage and years of education across
 
 ```{r}
 CPS85 %>%
-    ggplot(aes(x = educ, y = wage)) +
-    geom_point() +
-    xlab("Years of education") +
-    ylab("Hourly wage (US dollars)") +
+    mutate(MorethanHS = educ > 12) %>% 
+    ggplot(aes(x = MorethanHS, y = wage)) +
+    geom_boxplot() +
+    labs(x = "More than 12 years of Education", y = "Hourly wage (US dollars)") +
     facet_grid(. ~ sector) +
-    theme_minimal()
+    theme_classic()
 ```
 
-With a small change in notation (`sector ~ .` versus `. ~ sector`), we can create a column of plots.
+With a small change in notation (`sector ~ .` versus `. ~ sector`) and flipt the coordinates, we can create a column of plots.
 
 ```{r}
 CPS85 %>%
-    ggplot(aes(x = educ, y = wage)) +
-    geom_point() +
-    xlab("Years of education") +
-    ylab("Hourly wage (US dollars)") +
+    mutate(MorethanHS = educ > 12) %>% 
+    ggplot(aes(x = MorethanHS, y = wage)) +
+    geom_boxplot() +
+    coord_flip() + 
+    labs(x = "More than 12 years of Education", y = "Hourly wage (US dollars)") +
     facet_grid(sector ~ .) +
-    theme_minimal()
+    theme_classic()
 ```
 
 We can also create panels according to two categorical variables. How do the relationships additionally differ by union status?
 
 ```{r}
 CPS85 %>%
-    ggplot(aes(x = educ, y = wage)) +
-    geom_point() +
-    xlab("Years of education") +
-    ylab("Hourly wage (US dollars)") +
+    mutate(MorethanHS = educ > 12) %>% 
+    ggplot(aes(x = MorethanHS, y = wage)) +
+    geom_boxplot() +
+    coord_flip() + 
+    labs(x = "More than 12 years of Education", y = "Hourly wage (US dollars)") +
     facet_grid(sector ~ union) +
-    theme_minimal()
+    theme_classic()
+
 ```
 
 
 ### Enriching with smoothing
 
-If we have a scatterplot, we may want to get an understanding of the overal relationship between x and y within subsets. We can add `geom_smooth(method = 'lm')` to estimate and plot the linear relationships.
+If we have a scatterplot, we may want to get an understanding of the overall relationship between x and y within subsets. We can add `geom_smooth(method = 'lm', se = FALSE)` to estimate and plot the linear relationships.
 
-
-```{r}
-CPS85 %>%
-    ggplot(aes(x = educ, y = wage)) +
-    geom_point() +
-    geom_smooth(method = 'lm') +
-    xlab("Years of education") +
-    ylab("Hourly wage (US dollars)") +
-    facet_grid(sector ~ .) +
-    theme_minimal()
-```
-
-### Putting everything together
-
-The combination of these different visual features can result in powerful visual understanding. Let's combine paneling with color information to explore if there are marital status patterns in these union-job sector subgroups.
 
 ```{r}
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, color = married)) +
     geom_point() +
-    geom_smooth(method = 'lm') +
-    xlab("Years of education") +
-    ylab("Hourly wage (US dollars)") +
-    facet_grid(. ~ sector) + 
-    guides(color = guide_legend(title = "Marital status")) + # Legend title
-    theme_minimal()
+    geom_point() +
+    geom_smooth(method = 'lm', se = FALSE) +
+    labs(x = "Years of education", y = "Hourly wage (US dollars)", color = "Marital status") +
+    theme_classic()
+```
+
+### Putting everything together
+
+The combination of these different visual features can result in powerful visual understanding. Let's combine paneling with color information to explore if there are marital status patterns between union or not union job subgroups.
+
+```{r}
+CPS85 %>%
+    ggplot(aes(x = educ, y = wage, color = married)) +
+    geom_point() +
+    geom_smooth(method = 'lm', se = FALSE) +
+    labs(x = "Years of education", y = "Hourly wage (US dollars)", color = "Marital status") +
+    facet_grid(. ~ union) + 
+    theme_classic()
 ```
 
 Creating effective multivariate visualizations takes a lot of trial and error. Some visual elements will better highlight patterns than others, and often times, you'll have to try several iterations before you feel that you are learning something insightful from the graphic. Be tenacious, and keep in mind the good visualization principles outlined at the beginning of this chapter!

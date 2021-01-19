@@ -1,116 +1,4 @@
 
-```
-## 
-## Attaching package: 'dplyr'
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
-```
-
-```
-## Loading required package: xml2
-```
-
-```
-## Loading required package: lattice
-```
-
-```
-## Loading required package: ggformula
-```
-
-```
-## Loading required package: ggstance
-```
-
-```
-## 
-## Attaching package: 'ggstance'
-```
-
-```
-## The following objects are masked from 'package:ggplot2':
-## 
-##     geom_errorbarh, GeomErrorbarh
-```
-
-```
-## 
-## New to ggformula?  Try the tutorials: 
-## 	learnr::run_tutorial("introduction", package = "ggformula")
-## 	learnr::run_tutorial("refining", package = "ggformula")
-```
-
-```
-## Loading required package: Matrix
-```
-
-```
-## Registered S3 method overwritten by 'mosaic':
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2
-```
-
-```
-## 
-## The 'mosaic' package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.
-## 
-## Note: If you use the Matrix package, be sure to load it BEFORE loading mosaic.
-## 
-## Have you tried the ggformula package for your plots?
-```
-
-```
-## 
-## Attaching package: 'mosaic'
-```
-
-```
-## The following object is masked from 'package:Matrix':
-## 
-##     mean
-```
-
-```
-## The following object is masked from 'package:ggplot2':
-## 
-##     stat
-```
-
-```
-## The following objects are masked from 'package:dplyr':
-## 
-##     count, do, tally
-```
-
-```
-## The following objects are masked from 'package:infer':
-## 
-##     prop_test, t_test
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     max, mean, min, prod, range, sample, sum
-```
 
 # Random Variability {#randvariability}
 
@@ -126,17 +14,13 @@ Throughout the past three chapters, we have also sprinkled in the idea that **th
 
 If we could repeat the random sampling process, each sample we would get would be slightly different. The composition of units/cases in the sample would differ every time. Sometimes we would randomly over-represent one group of people and another time we would randomly over-represent another group of people, just by chance. The statistic of interest (e.g. a mean, a median, a regression coefficient) that we calculate would vary between across the different samples. 
 
-## Randomization Variability
-
-Another source of random variation in a statistic that can arise is that of random treatment/control group assignments in an experiment. If we could repeat the randomization process in an experiment, each treatment group would be slightly different. The individual composition of the units in the treatment and control groups would differ every time. Sometimes we would randomly over-represent one group of people in the treatment group, and another time we would randomly over-represent another group of people in the treatment group, just by chance. The statistic that we calculate and compare between groups (e.g. a difference in means, a difference in medians, a regression coefficient) would change for every reshuffling of the individuals.
-
-These descriptions cover the idea of **random variability**. This random variability is typically due to random sampling or randomized group assignments. The sample and group composition can vary, and therefore, the statistics that we calculate vary between different sample.
+This is one type of **random variability**. The sample composition can vary, and therefore, the statistics that we calculate vary between different sample.
 
 *The important thing to keep in mind is that we only get to see one sample, one particular composition of individuals. But we need to put this one observed sample and statistic in the context of the random variability.* 
 
 Let's explore this concept a bit more before we formally talk about probability and chance. 
 
-## Simulating Random Sampling from a Population
+### Simulating Random Sampling from a Population
 
 The data set that we will work with contains ALL flights leaving New York City in 2013. This data represents a full census of the target population of flights leaving NYC in a particular year. 
 
@@ -188,11 +72,9 @@ flights_samp1 %>%
 ## 2 day_hourmorning    -20.4     10.6      -1.92  0.0578
 ```
 
-\begin{reflect}
-At this point, we haven't looked at the entire population of flights
-from 2013. Based on one sample of 100 flights, how do you think the time
-of day impacts arrival delay times in the entire population?
-\end{reflect}
+<div class="reflect">
+<p>At this point, we haven’t looked at the entire population of flights from 2013. Based on one sample of 100 flights, how do you think the time of day impacts arrival delay times in the entire population?</p>
+</div>
 
 Now, let's take another random sample of 100 flights from the full population of flights.
 
@@ -214,10 +96,9 @@ flights_samp2 %>%
 ## 2 day_hourmorning    -2.11      6.44    -0.328   0.744
 ```
 
-\begin{reflect}
-How does the second sample differ from the first sample? What do they
-have in common?
-\end{reflect}
+<div class="reflect">
+<p>How does the second sample differ from the first sample? What do they have in common?</p>
+</div>
 
 We could keep the process going. Take a sample of 100 flights, fit a model, and look at the estimated regression coefficient for `day_hourmorning`. Repeat many, many times. 
 
@@ -259,9 +140,7 @@ sim_data %>%
     theme_minimal()
 ```
 
-
-
-\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-8-1} \end{center}
+<img src="05-variability_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" />
 
 ```r
 # Visualize Slopes
@@ -272,16 +151,13 @@ sim_data %>%
     theme_minimal()
 ```
 
-
-
-\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-8-2} \end{center}
+<img src="05-variability_files/figure-html/unnamed-chunk-8-2.png" width="672" style="display: block; margin: auto;" />
 
 These histograms approximate the **sampling distribution** of estimated intercepts and the **sampling distribution** of estimated slopes from a linear model predicting the arrival delay as a function of time of day, both of which describe the variability in the sample statistics *across all possible random samples from the population*. 
 
-\begin{reflect}
-Describe the shape, center, and spread of the sampling distribution for
-the intercepts. Do the same for the slopes.
-\end{reflect}
+<div class="reflect">
+<p>Describe the shape, center, and spread of the sampling distribution for the intercepts. Do the same for the slopes.</p>
+</div>
 
 
 Notice how these means of the sampling distributions are very close to the population values, below. This makes sense since we are sampling from the population so we'd expect the estimates to bounce around the true population values. 
@@ -317,7 +193,7 @@ flights %>% # Population of flights
 ```
 
 
-## IRL: Bootstrapping 
+### IRL: Bootstrapping 
 
 In real life (IRL), we don't have a full target population from which we can repeatedly draw samples. We only have one **sample** that was already drawn from the larger target population.
 
@@ -331,9 +207,9 @@ There are four steps to bootstrapping. They are very similar to simulating the s
 
 To generate different random samples of the same size (100 flights) from our "fake population", we have to draw sample of 100 flights WITH REPLACEMENT, meaning that we have to put a flight back into the pool after drawing them out. 
 
-\begin{reflect}
-What would happen if we drew WITHOUT REPLACEMENT?
-\end{reflect}
+<div class="reflect">
+<p>What would happen if we drew WITHOUT REPLACEMENT?</p>
+</div>
 
 **2. Calculate**
 
@@ -348,11 +224,9 @@ boot_data <- mosaic::do(1000)*(
 )
 ```
 
-\begin{reflect}
-Notice the similarities and differences in the R code for boot\_data, in
-which we are sampling from the sample, and sim\_data, in which we are
-sampling from the population, above.
-\end{reflect}
+<div class="reflect">
+<p>Notice the similarities and differences in the R code for boot_data, in which we are sampling from the sample, and sim_data, in which we are sampling from the population, above.</p>
+</div>
 
 **3. Summarize**
 
@@ -430,9 +304,7 @@ boot_data %>%
     theme_minimal()
 ```
 
-
-
-\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-17-1} \end{center}
+<img src="05-variability_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" />
 
 ```r
 # Visualize Slopes
@@ -443,9 +315,7 @@ boot_data %>%
     theme_minimal()
 ```
 
-
-
-\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-17-2} \end{center}
+<img src="05-variability_files/figure-html/unnamed-chunk-17-2.png" width="672" style="display: block; margin: auto;" />
 
 Let's compare these to the visuals from the simulation from the population.
 
@@ -459,9 +329,7 @@ sim_data %>%
     theme_minimal()
 ```
 
-
-
-\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-18-1} \end{center}
+<img src="05-variability_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" />
 
 ```r
 # Visualize Slopes
@@ -472,33 +340,32 @@ sim_data %>%
     theme_minimal()
 ```
 
-
-
-\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-18-2} \end{center}
+<img src="05-variability_files/figure-html/unnamed-chunk-18-2.png" width="672" style="display: block; margin: auto;" />
 
 The process of resampling from our sample, called **bootstrapping**, is becoming the one of main computational tools for estimating sampling variability in the field of Statistics.
 
-\begin{reflect}
-How well does bootstrapping do in mimicking the simulations from the
-population? What could we change to improve bootstrap's ability to mimic
-the simulations?
-\end{reflect}
+<div class="reflect">
+<p>How well does bootstrapping do in mimicking the simulations from the population? What could we change to improve bootstrap’s ability to mimic the simulations?</p>
+</div>
 
 
 This is a really important concept in Statistics! We'll come back to the ideas of sampling variability and bootstrapping throughout the rest of the course.
 
-\begin{reflect}
-Based on the bootstrap sampling distribution, what would you guess the
-difference in mean arrival delay between morning and afternoon is in the
-population of flights?
+<div class="reflect">
+<p>Based on the bootstrap sampling distribution, what would you guess the difference in mean arrival delay between morning and afternoon is in the population of flights?</p>
+<p>Based on the bootstrap sampling distribution, if you had to give an interval of plausible values for the population difference, what range would you give? Why? Is a difference of 0 a plausible value?</p>
+</div>
 
-Based on the bootstrap sampling distribution, if you had to give an
-interval of plausible values for the population difference, what range
-would you give? Why? Is a difference of 0 a plausible value?
-\end{reflect}
+## Randomization Variability
+
+Another source of random variation in a statistic that can arise is that of random treatment/control group assignments in an experiment. If we could repeat the randomization process in an experiment, each treatment group would be slightly different. The individual composition of the units in the treatment and control groups would differ every time. Sometimes we would randomly over-represent one group of people in the treatment group, and another time we would randomly over-represent another group of people in the treatment group, just by chance. The statistic that we calculate and compare between groups (e.g. a difference in means, a difference in medians, a regression coefficient) would change for every reshuffling of the individuals.
+
+This is another type of **random variability**. The group composition can vary, and therefore, the statistics that we calculate vary between different randomization.
+
+*The important thing to keep in mind is that we only get to see one sample, one particular composition of individuals. But we need to put this one observed sample and statistic in the context of the random variability.* 
 
 
-## Simulating Randomization into Groups
+### Simulating Randomization into Groups
 
 We have been thinking about estimating the differences in mean arrival delays. But we are interested in whether there is actually a true, real difference because we need to decide whether to have this influence our decisions in booking flights. If the difference is 0, then there is no real difference between morning and afternoon flights.  
 
@@ -534,14 +401,11 @@ flights_samp500 %>%
     theme_minimal()
 ```
 
+<img src="05-variability_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" />
 
-
-\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-22-1} \end{center}
-
-\begin{reflect}
-Based solely on the visual and numerical summaries, are arrival delays
-less in the morning than in the afternoon?
-\end{reflect}
+<div class="reflect">
+<p>Based solely on the visual and numerical summaries, are arrival delays less in the morning than in the afternoon?</p>
+</div>
 
 
 We don't know the exact reason why some flights were scheduled in the morning or the afternoon and why one flight might be delayed (it's probably due to a complex combination of factors). Let's imagine that a randomization process was used to decide when particular flights were scheduled (morning or afternoon); a flip of a coin to decide morning or afternoon.
@@ -554,7 +418,7 @@ Wouldn't it be great if we could see how the mean arrival delays might change if
 
 In fact, wouldn't it be great if we could look at every permutation of flights between two groups? 
 
-## IRL: Randomization Tests
+### IRL: Randomization Tests
 
 In real life, we don't often consider every possible permutation (reshuffling of group members) due to the immensely large number of permutations. However, we can randomly reshuffle flights about 1000 times to try to approximate many of those permutations. Such a procedure is called a **randomization or permutation procedure**. There are three main steps:
 
@@ -572,14 +436,11 @@ We can generate 1000 new data sets based on randomly reshuffling the labels of `
 
 The histogram below shows the histogram of differences in means if the null hypothesis were true. The vertical line shows the observed difference in means. 
 
+<img src="05-variability_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" />
 
-\begin{center}\includegraphics{05-variability_files/figure-latex/unnamed-chunk-25-1} \end{center}
-
-\begin{reflect}
-Do you think that the mean arrival delay is different for morning and
-afternoon? Is the observed difference in means likely to have occurred
-if there were no relationship?
-\end{reflect}
+<div class="reflect">
+<p>Do you think that the mean arrival delay is different for morning and afternoon? Is the observed difference in means likely to have occurred if there were no relationship?</p>
+</div>
 
 We will return to the ideas of testing hypotheses later in the course.
 

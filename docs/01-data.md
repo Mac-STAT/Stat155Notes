@@ -85,10 +85,9 @@ Many of these data context questions also hint at general considerations for thr
 
 When we study a phenomenon, we generally care about making a conclusion that applies to some **target population of interest** (e.g. all likely voters in the U.S., all eligible voters in the U.S., college students in Minnesota, etc.). However, we cannot feasibly collect data on that entire population (this is called a **census** and is very expensive to complete) due to financial and time constraints, so we collect a **sample** of individuals. We want our sample to be **representative** of the target population in that we want our sample to resemble the target population in the characteristics we are studying.
 
-\begin{reflect}
-How is representativeness affected by our research question? Can a
-sample be representative for one goal but not another?
-\end{reflect}
+<div class="reflect">
+<p>How is representativeness affected by our research question? Can a sample be representative for one goal but not another?</p>
+</div>
 
 When our method of selecting a sample is flawed, **sampling bias** can result, and our sample is unrepresentative of the target population. We need to be aware of how this tends to happen, and how can we avoid it.
 
@@ -155,16 +154,13 @@ Individuals that take daily multivitamins may be more health-conscious, eating m
 
 **Confounding Variables:** *A third variable that is a common cause for the "treatment" (e.g. multivitamin) and the "response" (e.g. blood pressure). In this case, a healthy lifestyle could be a variable that confounds the relationship between multivitamin use and blood pressure.*
 
-
-\begin{center}\includegraphics[width=0.5\linewidth]{01-data_files/figure-latex/unnamed-chunk-3-1} \end{center}
-
+<img src="01-data_files/figure-html/unnamed-chunk-3-1.png" width="50%" style="display: block; margin: auto;" />
 
 
-\begin{reflect}
-For example, say we note that on days with higher ice cream sales, there
-are typically a higher number of pool drownings. What variable could be
-confounding the relationship between ice cream sales and pool drownings?
-\end{reflect}
+
+<div class="reflect">
+<p>For example, say we note that on days with higher ice cream sales, there are typically a higher number of pool drownings. What variable could be confounding the relationship between ice cream sales and pool drownings?</p>
+</div>
 
 In an experiment, we "manipulate" the characteristics for an individual by randomly assigning them to a treatment group. This random assignment is intended to break the relationship between any common causes and the treatment so as to try to reduce the impact of confounding. It is impossible to entirely remove the possibility of confounding, but the random assignment to a treatment helps. (Note: things can get complicated if individuals don't comply with the treatment such as take the multivitamin every single day...)
 

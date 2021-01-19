@@ -1,4 +1,6 @@
-```{r setup4, include=FALSE}
+```{r setup4, include=FALSE, warnings = FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
+options(warn=-1)
 library(broom)
 library(dplyr)
 library(ggplot2)
@@ -8,7 +10,6 @@ library(mosaicData)
 library(ggmosaic)
 library(NHANES)
 library(mosaic)
-knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
 ```
 
 # Logistic Regression Models {#logistic}
@@ -113,9 +114,11 @@ Let's fit a simple logistic regression model with one explanatory variable to pr
 SpaceShuttle <- SpaceShuttle %>%
   mutate(Fail = ifelse(Fail == 'yes', 1, 0))
 
-model.glm <- glm(Fail ~ Temperature, data = SpaceShuttle, family = binomial)
+model.glm <- SpaceShuttle %>%
+  with(glm(Fail ~ Temperature, family = binomial))
 
-tidy(model.glm) 
+model.glm %>% 
+  tidy()
 ```
 
 Based on a logistic regression model, the predicted log odds of an o-ring failure is given by
@@ -190,7 +193,8 @@ In this case, we have an odds ratio < 1 which means that the estimated odds of o
 On January 28, 1986, the temperature was 26 degrees F. Let's predict the chance of "success," which is a failure of o-rings in our data context, at that temperature.  
 
 ```{r echo=TRUE}
-predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response') #type = 'response' gives predicted chance, rather than predicted odds
+#type = 'response' gives predicted chance, rather than predicted odds
+predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response') 
 ```
 
 They didn't have any experimental data testing o-rings at this low of temperatures, but even based on the data collected, we predict the chance of failure to be nearly 1 (near certainty). 
@@ -204,7 +208,7 @@ But if we had to decide whether or not we should let the shuttle launch go, how 
 It depends. Let's look at a boxplot of **predicted probabilities** of "success" compared to the true outcomes.
 
 ```{r}
-model.glm%>%
+model.glm %>%
   augment(type.predict = 'response') %>%
   ggplot(aes(x = factor(Fail), y = .fitted)) + 
   geom_boxplot() +
@@ -215,7 +219,7 @@ model.glm%>%
 If we used a threshold of 0.8, then we'd say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we'll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our **accuracy** (# of correctly predicted/# of data points)? 
 
 ```{r}
-model.glm%>%
+model.glm %>%
   augment(type.predict = 'response') %>%
   ggplot(aes(x = factor(Fail), y = .fitted)) + 
   geom_boxplot() +
@@ -229,7 +233,8 @@ In the table below, we see that there were 3 data points in which we correctly p
 ```{r}
 threshold <- 0.80
 
-augment(model.glm, type.predict ='response') %>%
+model.glm %>%
+  augment(type.predict ='response') %>%
   mutate(predictFail = .fitted >= threshold) %>%
   count(Fail, predictFail) %>%
   mutate(correct = (Fail == predictFail)) %>%
@@ -266,7 +271,7 @@ To recap,
 
 What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let's lower it to 0.25 so that we predict o-ring failure more easily. 
 ```{r}
-model.glm%>%
+model.glm %>%
   augment(type.predict = 'response') %>%
   ggplot(aes(x = factor(Fail), y = .fitted)) + 
   geom_boxplot() +
@@ -292,11 +297,33 @@ Where the threshold goes depends on the real consequences of making those two ty
 
 ## Logistic Model Evaluation
 
-In deciding whether a logistic regression model is a good and useful model, we need to consider the accuracy, sensitivity, specificity, the false positive rate,  and the false negative rate. Depending on the context, we may focus on maximizing the overall accuracy or we may focus on minimizing the false negative rate (maximizing sensitivity) or minimizing the false positive rate  (maximizing specificity) or balancing the false positive and false negative rates.  
+In deciding whether a logistic regression model is a good and useful model, we need to consider how well it predicts the outcome. We have a few measures that we've already discussed: the accuracy, sensitivity, specificity, the false positive rate, and the false negative rate. 
 
-There are other measures of model fit for a logistic regression such as AIC and BIC (lower is better), but those are beyond the scope of this course. You'll learn about them in future statistics courses. 
+In order to calculate accuracy, sensitivity, and specificity, you have to choose a threshold to deem how high a predicted probability of success needs to be to predict a success. But, **what threshold should be used?** 
+
+The threshold directly impacts the balance of false positives and false negatives. 
+
+- If we have a high threshold (closer to 1), we have a very high bar needed to predict a success. This makes it harder to predict a success outcome and thus, we will have fewer false positives. In fact, if our threshold is 1, we wouldn't predict any successes so we'd have zero false positives but a lot of false negatives. 
+- If we have a low threshold (closer to 0), we have a lower bar to predict a success. It will be easier to predict a success and we will have many more false positives and fewer false negatives. If the threshold were 0, we would predict every unit to have a success and have zero false negative rate.
+
+In practice, we have to consider the human consequences of each type of error (false positive and false negative) in order to determine the appropriate balance for the data context.
+
+- For example, let's consider the real consequences of an error in a mammogram. If the procedure indicates abnormal tissue but it ends up not being breast cancer, it's a false positive; this result might lead to unnecessary tests and procedures and invoke stress and anxiety for the patient. A false negative happens with a normal mammogram when, in fact, the patient does have breast cancer and this could delay important treatment. How do you weigh the benefits of catching early stages of breast cancer with the costs of unnecessary tests and anxiety? 
+
+- What about the consequences of false positive or false negative in advertising and sales? A business wants to predict whether a customer would buy something if it is on sale but it costs some money to send an advertisement in the mail. A false positive happens when the business predicts a customer would be enticed to make a purchase based on an advertisement but they do not; this costs money. A false negative is a missed opportunity and a missed revenue because a customer did not receive the advertisement. 
+
+Depending on the context, we may focus on
+
+- maximizing the overall accuracy 
+- minimizing the false negative rate (maximizing sensitivity) with greater weight than false positives
+- minimizing the false positive rate  (maximizing specificity) with greater weight than false negatives
+- balancing the false positive and false negative rates.  
+
+There are techniques that attempt to capture the "goodness" of fit without choosing a specific threshold, such as the ROC curve and likelihood measures (AIC and BIC -- lower is better), which you'll learn about in future statistics classes.
+
 
 ## Alternative Classification Models
+
 
 Logistic regression is a very useful model to predict a binary outcome. However, it has its limitations. We are assuming a linear relationship between explanatory variables and the log odds of success. This is hard to check because we don't have a variable for odds that we could quickly plot. 
 
@@ -311,4 +338,13 @@ Other methods out there are more flexible but also more complex. Here is a list 
 - Neural Networks are a type of classification algorithm that creates new features based on the original data that are the best predictors of the outcome. 
 
 Take Statistical Machine Learning to learn more about these methods. But keep in mind that sometimes for a task, complex is not necessary: see https://www.huffingtonpost.com/2014/02/10/klemens-torggler-evolution-door_n_4762261.html.
+
+## Chapter 4 Major Takeaways
+
+Logistic regression is used to predict binary categorical outcomes based on explanatory variables.
+
+- The benefit of using logistic regression in this setting over linear regression is that we constrain the predicted probabilities to be between 0 and 1. 
+- When interpreting logistic regression models, you need to exponentiate the slope coefficients to get meaning values to interpret. The exponentiate slopes are ratios of odds of the outcome, compare two groups defined by the explanatory variable (quantitative X: groups are 1 unit apart in X; categorical X: indicator group compared to reference level).
+- To evaluate the model, we consider the predicted probabilities within groups based on the true outcome. We hope that the predicted probabilities given from the model are well separated between the groups based on true outcome values.
+- Additionally, to evaluate the model, we convert those probabilities to predicted outcomes by setting a threshold from which the accuracy, sensitivity, specificity, false positive rate, and false negative rate can be calculated.
 

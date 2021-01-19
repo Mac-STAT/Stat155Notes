@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.4 Model Selection | STAT 155 Notes</title>
+  <title>4.7 Chapter 4 Major Takeaways | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.4 Model Selection | STAT 155 Notes" />
+  <meta property="og:title" content="4.7 Chapter 4 Major Takeaways | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.4 Model Selection | STAT 155 Notes" />
+  <meta name="twitter:title" content="4.7 Chapter 4 Major Takeaways | STAT 155 Notes" />
   
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="hypothesis-testing.html"/>
-<link rel="next" href="appendix-a-theoretical-probability.html"/>
+<link rel="prev" href="alternative-classification-models.html"/>
+<link rel="next" href="randvariability.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -359,311 +359,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="model-selection" class="section level2">
-<h2><span class="header-section-number">7.4</span> Model Selection</h2>
-<p>For this class, we will use hypothesis testing primarily as a way to help us decide which variables should be included in an model. This is referred to as <strong>model selection</strong> or <strong>variable selection</strong>. We have many tools that can help us make these decisions. We’ll first discuss two types of hypothesis tests that are useful for model selection and explain another hypothesis test that is automatically completed when you fit a model. Finally, we summarize all of the model selection tools you have at your disposal that we’ve covered in this class and point to other tools that you may learn in future courses.</p>
-<div id="testing-individual-slopes" class="section level3">
-<h3><span class="header-section-number">7.4.1</span> Testing Individual Slopes</h3>
-<p>A major emphasis of our course is regression models. It turns out that many scientific questions of interest can be framed using regression models.</p>
-<p>In the <code>tidy()</code> output, R performs the following hypothesis tests by default (for every slope coefficient <span class="math inline">\(\beta_j\)</span>):</p>
-<p><span class="math display">\[H_0: \beta_j = 0 \qquad \text{vs} \qquad H_A: \beta_j \neq 0\]</span>
-The test statistic is equal to the slope estimate divided by the standard error.</p>
-<p><span class="math display">\[t_{obs} = \text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}} = \frac{\text{estimate} - 0}{\text{std. error of estimate}} \]</span></p>
-<p><strong>Linear Regression Example:</strong> Below we fit a linear regression model of house price on living area:</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="model-selection.html#cb280-1"></a>homes &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</span>
-<span id="cb280-2"><a href="model-selection.html#cb280-2"></a>mod_homes &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
-<span id="cb280-3"><a href="model-selection.html#cb280-3"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area))</span>
-<span id="cb280-4"><a href="model-selection.html#cb280-4"></a></span>
-<span id="cb280-5"><a href="model-selection.html#cb280-5"></a>mod_homes <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 5
-##   term        estimate std.error statistic   p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-## 1 (Intercept)   13439.   4992.        2.69 7.17e-  3
-## 2 Living.Area     113.      2.68     42.2  9.49e-268</code></pre>
-<p>The <code>statistic</code> column is the test statistic equal to <code>estimate/std.error</code>, and the <code>p.value</code> column is the p-value.</p>
+<div id="chapter-4-major-takeaways" class="section level2">
+<h2><span class="header-section-number">4.7</span> Chapter 4 Major Takeaways</h2>
+<p>Logistic regression is used to predict binary categorical outcomes based on explanatory variables.</p>
 <ul>
-<li><p>What are <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>?<br />
-We write the model <span class="math inline">\(E[\text{Price}|\text{Living Area} ] = \beta_0 + \beta_1\text{Living Area}\)</span>.<br />
-<span class="math inline">\(H_0: \beta_1 = 0\)</span> (There is no relationship between price and living area.)<br />
-<span class="math inline">\(H_A: \beta_1 \neq 0\)</span> (There is a relationship between price and living area.)</p></li>
-<li><p>What is the test statistic?
-We see that the estimated slope for Living Area is 42 standard errors away from the null value of 0, which makes us start to doubt the null hypothesis of no relationship.</p></li>
-<li><p>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?<br />
-Note that when you see <code>e</code> in R output, this means “10 to the power”. So <code>9.486240e-268</code> means <span class="math inline">\(9.49 \times 10^{-268}\)</span>, which is practically 0. This p-value is far less than our threshold <span class="math inline">\(\alpha = 0.05\)</span>, so we reject <span class="math inline">\(H_0\)</span> and say that we have strong evidence to support a relationship between price and living area.</p></li>
+<li>The benefit of using logistic regression in this setting over linear regression is that we constrain the predicted probabilities to be between 0 and 1.</li>
+<li>When interpreting logistic regression models, you need to exponentiate the slope coefficients to get meaning values to interpret. The exponentiate slopes are ratios of odds of the outcome, compare two groups defined by the explanatory variable (quantitative X: groups are 1 unit apart in X; categorical X: indicator group compared to reference level).</li>
+<li>To evaluate the model, we consider the predicted probabilities within groups based on the true outcome. We hope that the predicted probabilities given from the model are well separated between the groups based on true outcome values.</li>
+<li>Additionally, to evaluate the model, we convert those probabilities to predicted outcomes by setting a threshold from which the accuracy, sensitivity, specificity, false positive rate, and false negative rate can be calculated.</li>
 </ul>
-<p>Is this consistent with conclusions from a confidence interval?</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="model-selection.html#cb282-1"></a><span class="kw">confint</span>(mod_homes)</span></code></pre></div>
-<pre><code>##                 2.5 %     97.5 %
-## (Intercept) 3647.6958 23231.0922
-## Living.Area  107.8616   118.3835</code></pre>
-<p>The interval does not include 0 so we conclude that 0 is not supported as a plausible value for the average increase in price for every 1 square foot increase in living area size of a house, based on the observed sample data.</p>
-<p><strong>Logistic Regression Example:</strong> Below we fit a logistic regression model of whether a movie made a profit (response) on whether it is a history film:</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="model-selection.html#cb284-1"></a>movies &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</span>
-<span id="cb284-2"><a href="model-selection.html#cb284-2"></a>mod_movies &lt;-<span class="st"> </span>movies <span class="op">%&gt;%</span></span>
-<span id="cb284-3"><a href="model-selection.html#cb284-3"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">glm</span>( profit <span class="op">~</span><span class="st"> </span>History, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>))</span>
-<span id="cb284-4"><a href="model-selection.html#cb284-4"></a>mod_movies <span class="op">%&gt;%</span></span>
-<span id="cb284-5"><a href="model-selection.html#cb284-5"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 5
-##   term        estimate std.error statistic     p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
-## 1 (Intercept)   0.152     0.0296     5.15  0.000000258
-## 2 HistoryTRUE   0.0207    0.146      0.142 0.887</code></pre>
-<p>The <code>statistic</code> column is the test statistic equal to <code>estimate/std.error</code>, and the <code>p.value</code> column is the p-value. Note that if we test the slope, we can make conclusions about the odds ratios because <span class="math inline">\(e^0 = 1\)</span>.</p>
-<p>Try yourself!</p>
-<ul>
-<li>What are <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>?</li>
-<li>What is the test statistic?</li>
-<li>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?</li>
-<li>Is this consistent with the confidence interval?</li>
-</ul>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="model-selection.html#cb286-1"></a><span class="kw">confint</span>(mod_movies)</span></code></pre></div>
-<pre><code>##                   2.5 %    97.5 %
-## (Intercept)  0.09438169 0.2102419
-## HistoryTRUE -0.26484980 0.3085225</code></pre>
-<p>ANSWER:</p>
-<ul>
-<li><p>What are <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>?<br />
-We write the model <span class="math inline">\(\log(Odds(\text{Profit}|\text{History})) = \beta_0 + \beta_1\text{HistoryTRUE}\)</span>.<br />
-<span class="math inline">\(H_0: \beta_1 = 0\)</span> (There is no relationship between odds of profit and whether a movie is a history file.)<br />
-<span class="math inline">\(H_A: \beta_1 \neq 0\)</span> (There is a relationship between odds of profit and whether a movie is a history file.)</p></li>
-<li><p>What is the test statistic?
-We see that the estimate slope for HistoryTRUE is 0.14 standard errors away from 0. This is not the far so we don’t have much evidence against the null hypothesis that history films are not more or less profitable than other films.</p></li>
-<li><p>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?<br />
-The p-value is 0.88, which is quite large and greater than our threshold <span class="math inline">\(\alpha = 0.05\)</span>, so we fail to reject <span class="math inline">\(H_0\)</span> because it is quite likely to see an observed difference in estimated log odds of making a profit if history were not more or less likely to be profitable.</p></li>
-<li><p>Is this consistent with the confidence interval?
-Yes, the 95% confidence interval includes and in fact straddles 0, which suggests we are quite uncertain as to the true relationship between categorizing a film as a history film and the likelihood of it being profitable.</p></li>
-</ul>
-<div id="suggested-actions" class="section level4">
-<h4><span class="header-section-number">7.4.1.1</span> Suggested Actions</h4>
-<p>You might be wondering how to use the information gained by testing individual slopes to see if they are far from zero, taking into account the uncertainty in our estimates.</p>
-<p>If the value of a slope coefficient in the population is truly 0, <em>after accounting for the other variables in the model</em>, then it plays no role in the model. If we get a small test statistic and thus a large p-value, it suggests that <em>we try to remove that slope</em> and corresponding variable from the model and compare models because we do not have enough evidence to say that the slope is far from 0, <em>after accounting for the other variables in the model</em>.</p>
-<p>Notice, we say <em>try</em> to remove the variable. We do not say <em>eliminate</em> the variable from all models going forward because there are many reasons why a variable might have a slope of 0.</p>
-<ul>
-<li>A variable may not have any bearing or relationship with the outcome and thus the slope is practically 0. In these circumstances, you generally should remove it from the model because we want a simpler model with fewer variables.</li>
-<li>A variable may have a weak relationship with the outcome, even <em>after accounting for the other variables in the model</em>, but if the sample size is small, there is so much uncertainty that we can’t ascertain that it is different from 0. You’ll need to decide whether or not it is important to include based on the context and causal inference arguments.</li>
-<li>If two explanatory variables are highly correlated but can explain a lot of the variability in the outcome, they both have a slope near 0 because <em>after accounting for the other variable in the model</em>, it can’t add much. Try to remove one of the variables and see how the slope estimates change.</li>
-<li>Two category levels in a categorical variable may not be that different (slope which measure the difference may be 0). You can try to combine categories that are similar, if it makes sense in the data context, or acknowledge the information gained about how those groups are not different, <em>after accounting for the other variable in the model</em>.</li>
-</ul>
-</div>
-</div>
-<div id="nested-tests" class="section level3">
-<h3><span class="header-section-number">7.4.2</span> Nested Tests</h3>
-<p>If you’ve removed one or more variables from a model, the result is a smaller nested model. We can directly compare the larger model and the smaller <strong>nested model</strong> (from removing 1 or more variables from the larger model) using a hypothesis test.</p>
-<p>For this test,</p>
-<ul>
-<li>Null Hypothesis (<span class="math inline">\(H_0\)</span>): Smaller nested model is correct</li>
-<li>Alternative Hypothesis (<span class="math inline">\(H_A\)</span>): Smaller nested model is not correct and at least one of the removed variables has a non-zero slope in the population.</li>
-</ul>
-<p>In notation, we can write these hypotheses in terms of the larger model,</p>
-<p><span class="math display">\[H_0: \beta_j = 0 \text{ for the variables removed} \qquad \text{vs} \qquad H_A: \beta_j \neq 0  \text{ for the variables removed}\]</span>
-The test statistic for this nested test compares the smaller model to the larger full model; it is a measure of how much better the full model is over the smaller model. For a linear regression model, this test is called a <strong>nested F test</strong> and the test statistic is a ratio comparing the sum of squared residuals (F ~ 1 if <span class="math inline">\(H_0\)</span> is true). For logistic regression, this nested test is called a <strong>likelihood ratio test</strong> and the test statistic is a ratio comparing the likelihood or “goodness” of a model (Chi ~ 1 if <span class="math inline">\(H_0\)</span> is true). The larger the test statistics are, the bigger the difference is between the smaller model (<span class="math inline">\(H_0\)</span>) and the larger model, suggesting that the larger model might be better.</p>
-<p>We can compare these models in R using the <code>anova()</code> function.</p>
-<p><strong>Linear Regression Example:</strong> Below we fit a larger linear regression model of house price using living area, the number of bedrooms, and the number of bathrooms:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="model-selection.html#cb288-1"></a>mod_homes_full &lt;-<span class="st"> </span>homes <span class="op">%&gt;%</span></span>
-<span id="cb288-2"><a href="model-selection.html#cb288-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(Price <span class="op">~</span><span class="st"> </span>Living.Area <span class="op">+</span><span class="st"> </span>Bedrooms <span class="op">+</span><span class="st"> </span>Bathrooms))</span>
-<span id="cb288-3"><a href="model-selection.html#cb288-3"></a></span>
-<span id="cb288-4"><a href="model-selection.html#cb288-4"></a><span class="kw">anova</span>(mod_homes,mod_homes_full)</span></code></pre></div>
-<pre><code>## Analysis of Variance Table
-## 
-## Model 1: Price ~ Living.Area
-## Model 2: Price ~ Living.Area + Bedrooms + Bathrooms
-##   Res.Df        RSS Df  Sum of Sq      F    Pr(&gt;F)    
-## 1   1726 8.2424e+12                                   
-## 2   1724 7.8671e+12  2 3.7534e+11 41.126 &lt; 2.2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Notice that we get the smaller nested model by removing <code>Bedrooms</code> and <code>Bathrooms</code> from the larger model. This means that they are nested and can be compared using the nested test.</p>
-<ul>
-<li><p>What are <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>?
-<span class="math inline">\(H_0\)</span>: The smaller model with just Living.Area is correct; the number of Bathrooms and Bedrooms do not have an impact on average price after accounting for living area.
-<span class="math inline">\(H_A\)</span>: The smaller model with just Living.Area is not correct; the number of Bathrooms or Bedrooms do have an impact on average price after accounting for living area.</p></li>
-<li><p>What is the test statistic?
-The F = 41.126 is the test statistic. Unlike the test for slopes, this test statistic does not have a nice interpretation. It seems quite far from 1 (which is what F should be close to if <span class="math inline">\(H_0\)</span> were true), but there are no rules for “how far is far”.</p></li>
-<li><p>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?
-The p-value of <span class="math inline">\(&lt; 2.2*10^{-16}\)</span> is well below the threshold suggesting that it is very unlikely to have observed a difference between these two models as big as we did if the smaller model were true. Thus, we reject <span class="math inline">\(H_0\)</span> that the model with only living area is correct in favor of the larger model.</p></li>
-</ul>
-<p><strong>Logistic Regression Example:</strong> Below we fit a larger logistic regression model of whether a movie made a profit (response) based on whether it is a history, drama, comedy, or a family film:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="model-selection.html#cb290-1"></a>mod_movies_full &lt;-<span class="st"> </span>movies <span class="op">%&gt;%</span></span>
-<span id="cb290-2"><a href="model-selection.html#cb290-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">glm</span>( profit <span class="op">~</span><span class="st"> </span>History <span class="op">+</span><span class="st"> </span>Drama <span class="op">+</span><span class="st"> </span>Comedy <span class="op">+</span><span class="st"> </span>Family, <span class="dt">family =</span> <span class="st">&quot;binomial&quot;</span>))</span>
-<span id="cb290-3"><a href="model-selection.html#cb290-3"></a></span>
-<span id="cb290-4"><a href="model-selection.html#cb290-4"></a><span class="kw">anova</span>(mod_movies,mod_movies_full,<span class="dt">test=</span><span class="st">&#39;LRT&#39;</span>) <span class="co">#test=&#39;LRT&#39; is needed for logistic models</span></span></code></pre></div>
-<pre><code>## Analysis of Deviance Table
-## 
-## Model 1: profit ~ History
-## Model 2: profit ~ History + Drama + Comedy + Family
-##   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
-## 1      4801     6630.3                          
-## 2      4798     6555.3  3   74.941 3.729e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<p>Notice that we get the smaller nested model by removing <code>Drama</code>, <code>Comedy</code>, and <code>Family</code> from the larger model. This means that they are nested and can be compared using the nested test.</p>
-<ul>
-<li><p>What are <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>?
-<span class="math inline">\(H_0\)</span>: The smaller model with just History is correct; indicators of Drama, Comedy, and Family do not have an impact on whether a movie makes a profit.
-<span class="math inline">\(H_A\)</span>: The smaller model with just History is not correct; indicators of Drama, Comedy, or Family do have an impact on whether a movie makes a profit.</p></li>
-<li><p>What is the test statistic?
-The Deviance = 74.941 is the test statistic. Unlike the test for slopes, this test statistic does not have a nice interpretation. It seems quite far from 1 (which is it should be close to if <span class="math inline">\(H_0\)</span> were true), but there are no rules for “how far is far”.</p></li>
-<li><p>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?
-The p-value of <span class="math inline">\(3.729 * 10^{-16}\)</span> is well below the threshold suggesting that it is very unlikely to have observed a difference between these two models as big as we did if the smaller model were true. Thus, we reject <span class="math inline">\(H_0\)</span> that the model with only History indicator is correct in favor of the larger model.</p></li>
-</ul>
-<div id="suggested-actions-1" class="section level4">
-<h4><span class="header-section-number">7.4.2.1</span> Suggested Actions</h4>
-<p>You might be wondering how to use the information gained by comparing a smaller nested model to a larger model.</p>
-<ul>
-<li>If the p-value is large, then you don’t have evidence to support the larger model.</li>
-<li>If the p-value is small, then you need to look back at the variables you removed.</li>
-</ul>
-<p>This tool is particularly helpful if you have a categorical variable with three or more categories as you can test all of the slopes for that one variable at once.</p>
-<p>This tools can also be helpful to stop you from removing too many variables at once.</p>
-<p>In practice, you can iterate between testing individual slopes to determine which variables to consider removing and then comparing nested models. Also, you’ll incorporate other model selection tools in your process, not just these two types of hypothesis tests.</p>
-</div>
-</div>
-<div id="summary-of-model-selection-methods" class="section level3">
-<h3><span class="header-section-number">7.4.3</span> Summary of Model Selection Methods</h3>
-<p>In general, we want a simple model that works well. We want to follow Occam’s Razor, a philosophy that suggests that it is a good principle to explain the phenomena by the simplest hypothesis possible. In our case, that mean the fewest variables in our models.</p>
-<div id="linear-regression-tools" class="section level4">
-<h4><span class="header-section-number">7.4.3.1</span> Linear Regression Tools</h4>
-<ul>
-<li>Exploratory visualizations give us an indication for which variables have the strongest relationship with our response of interest (also if it is not linear)</li>
-<li><span class="math inline">\(R^2\)</span> can tell us the percent of variation in our response that is explained by the model – We want HIGH <span class="math inline">\(R^2\)</span></li>
-<li>The standard deviation of the residuals, <span class="math inline">\(s_e\)</span> (residual standard error), tells us the average magnitude of our residuals (prediction errors for our data set) – We want LOW <span class="math inline">\(s_e\)</span></li>
-</ul>
-<p>With the addition of statistical inference in our tool set, we now have many other ways to help guide our decision making process.</p>
-<ul>
-<li>Confidence intervals or tests for individual coefficients or slopes (<span class="math inline">\(H_0: \beta_k = 0\)</span>, population slope for kth variable is 0 meaning no relationship)
-<ul>
-<li>See <code>tidy(lm1)</code></li>
-</ul></li>
-<li>Nested tests for a subset of coefficients or slopes (<span class="math inline">\(H_0: \beta_k = 0\)</span>, population slope for kth variable is 0 meaning no relationship)
-<ul>
-<li><code>anova(lm1, lm2)</code> for comparing two linear regression models (one larger model and one model with some variables removed)</li>
-</ul></li>
-</ul>
-<p>So there are model selection criteria that we can use that penalizes you for having too many variables. Here are some below.</p>
-<ul>
-<li>Choose a model with a higher adjusted <span class="math inline">\(R^2\)</span>, calculated as,
-<span class="math display">\[R^2_{adj} = 1 - \frac{SSE/(n-k-1)}{SSTO/(n-1)}\]</span>
-where <span class="math inline">\(k\)</span> is the number of estimated coefficients in the model.
-<ul>
-<li>Find the adjusted R squared in the output of <code>glance(lm1)</code></li>
-</ul></li>
-</ul>
-</div>
-<div id="logistic-regression-tools" class="section level4">
-<h4><span class="header-section-number">7.4.3.2</span> Logistic Regression Tools</h4>
-<ul>
-<li>Exploratory visualizations give us an indication for which variables have the strongest relationship with our response of interest (also if it is not linear)<br />
-</li>
-<li>We want HIGH accuracy and LOW false positive and false negative rates that can separate predicted probabilities fairly well between the true outcome groups.</li>
-</ul>
-<p>With the addition of statistical inference in our tool set, we now have many other ways to help guide our decision making process.</p>
-<ul>
-<li>Confidence intervals or tests for individual coefficients or slopes (<span class="math inline">\(H_0: \beta_k = 0\)</span>, population slope for kth variable is 0 meaning no relationship)
-<ul>
-<li>See <code>tidy(lm1)</code></li>
-</ul></li>
-<li>Nested tests for a subset of coefficients or slopes (<span class="math inline">\(H_0: \beta_k = 0\)</span>, population slope for kth variable is 0 meaning no relationship)
-<ul>
-<li><code>anova(glm1, glm2, test = 'LRT')</code> for comparing two logistic regression models (one larger model and one model with some variables removed)</li>
-</ul></li>
-</ul>
-<p>So there are model selection criteria that we can use that penalizes you for having too many variables. Here are some below that you’ll see in future classes.</p>
-<ul>
-<li>Choose a model with a LOWER Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC) calculated as</li>
-</ul>
-<p><span class="math display">\[AIC = -2\log(L) + 2(k+1)\]</span>
-<span class="math display">\[BIC= -2\log(L) + (k+1)\log(n)\]</span><br />
-- Calculated using <code>BIC(glm1)</code> and <code>AIC(glm1)</code></p>
-</div>
-<div id="prediction-tools" class="section level4">
-<h4><span class="header-section-number">7.4.3.3</span> Prediction Tools</h4>
-<p>Here is a taste of Statistical Machine Learning:</p>
-<p>If our goal is prediction, then we will want to choose a model that has the lowest prediction error. BUT, if we fit our model to our data and then calculate the prediction error from that SAME data, we aren’t getting an accurate estimate of the prediction error because we are cheating. We aren’t doing predictions for new data values.</p>
-<p><strong>Training and Testing</strong></p>
-<p>In order to be able to predict for new data, we can randomly split our observed data into two groups, a <strong>training</strong> set and a <strong>testing</strong> set (also known as a validation or hold-out set).</p>
-<ul>
-<li>Fit the model to the training set and do prediction on the observations in the testing set.</li>
-<li>The prediction Mean Squared Error, <span class="math inline">\(\frac{1}{n}\sum(y_i - \hat{y}_i)^2\)</span> can be calulated based on the predictions from the testing set.</li>
-</ul>
-<p><strong>Drawbacks of Validation Testing</strong></p>
-<ul>
-<li><ol style="list-style-type: decimal">
-<li>The MSE can be highly variable as it depends on how you randomly split the data.</li>
-</ol></li>
-<li><ol start="2" style="list-style-type: decimal">
-<li>We aren’t fully utilizing all of our data to fit the model; therefore, we will tend to overestimate the prediction error.</li>
-</ol></li>
-</ul>
-<p><strong>K-Fold Cross-Validation</strong></p>
-<p>If we have a small data set and we want to fully use all of the data in our training, we can do <strong>K-Fold Cross-Validation</strong>. The steps are as follows:</p>
-<ul>
-<li><p>Randomly splitting the set of observations into <span class="math inline">\(k\)</span> groups, or folds, of about equal size.</p></li>
-<li><p>The first group is treated as the test set and the method or model is fit on the remaining <span class="math inline">\(k-1\)</span> groups. The MSE is calculated on the observations in the test set.</p></li>
-<li><p>Repeat <span class="math inline">\(k\)</span> times; each group is treated as the test set once.</p></li>
-<li><p>The k-fold CV estimate of MSE is an average of these values,
-<span class="math display">\[CV_{(k)} = \frac{1}{k}\sum^k_{i=1}MSE_i \]</span>
-where <span class="math inline">\(MSE_i\)</span> is the MSE based on the <span class="math inline">\(i\)</span>th group as the test group. In practice, one performs k-fold CV with <span class="math inline">\(k=5\)</span> or <span class="math inline">\(k=10\)</span> as it reduces the computational time and it also is more accurate.</p></li>
-</ul>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="model-selection.html#cb292-1"></a><span class="kw">require</span>(boot)</span>
-<span id="cb292-2"><a href="model-selection.html#cb292-2"></a>cv.err &lt;-<span class="st"> </span><span class="kw">cv.glm</span>(data,glm1, <span class="dt">K =</span> <span class="dv">5</span>)</span>
-<span id="cb292-3"><a href="model-selection.html#cb292-3"></a><span class="kw">sqrt</span>(cv.err<span class="op">$</span>delta[<span class="dv">1</span>]) <span class="co">#out of sample average prediction error</span></span></code></pre></div>
-<p>##Chapter 7 Major Takeaways</p>
 
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre><code>## Loading required package: xml2</code></pre>
-<pre><code>## Loading required package: lattice</code></pre>
-<pre><code>## Loading required package: ggformula</code></pre>
-<pre><code>## Loading required package: ggstance</code></pre>
-<pre><code>## 
-## Attaching package: &#39;ggstance&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:ggplot2&#39;:
-## 
-##     geom_errorbarh, GeomErrorbarh</code></pre>
-<pre><code>## 
-## New to ggformula?  Try the tutorials: 
-## 	learnr::run_tutorial(&quot;introduction&quot;, package = &quot;ggformula&quot;)
-## 	learnr::run_tutorial(&quot;refining&quot;, package = &quot;ggformula&quot;)</code></pre>
-<pre><code>## Loading required package: Matrix</code></pre>
-<pre><code>## Registered S3 method overwritten by &#39;mosaic&#39;:
-##   method                           from   
-##   fortify.SpatialPolygonsDataFrame ggplot2</code></pre>
-<pre><code>## 
-## The &#39;mosaic&#39; package masks several functions from core packages in order to add 
-## additional features.  The original behavior of these functions should not be affected by this.
-## 
-## Note: If you use the Matrix package, be sure to load it BEFORE loading mosaic.
-## 
-## Have you tried the ggformula package for your plots?</code></pre>
-<pre><code>## 
-## Attaching package: &#39;mosaic&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:Matrix&#39;:
-## 
-##     mean</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     stat</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     count, do, tally</code></pre>
-<pre><code>## The following objects are masked from &#39;package:infer&#39;:
-## 
-##     prop_test, t_test</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     binom.test, cor, cor.test, cov, fivenum, IQR, median, prop.test,
-##     quantile, sd, t.test, var</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     max, mean, min, prod, range, sample, sum</code></pre>
-</div>
-</div>
 </div>
 <!-- </div> -->
             </section>
@@ -671,8 +376,8 @@ where <span class="math inline">\(MSE_i\)</span> is the MSE based on the <span c
           </div>
         </div>
       </div>
-<a href="hypothesis-testing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-a-theoretical-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="alternative-classification-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="randvariability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -703,7 +408,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-inference.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-logistic-regression.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="sampling-variability.html"/>
-<link rel="next" href="simulating-random-sampling-from-a-population.html"/>
+<link rel="next" href="chapter-5-major-takeaways.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -248,15 +248,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="logistic-model-evaluation.html"><a href="logistic-model-evaluation.html"><i class="fa fa-check"></i><b>4.5</b> Logistic Model Evaluation</a></li>
 <li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
+<li class="chapter" data-level="4.7" data-path="chapter-4-major-takeaways.html"><a href="chapter-4-major-takeaways.html"><i class="fa fa-check"></i><b>4.7</b> Chapter 4 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randvariability.html"><a href="randvariability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
-<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
-<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a></li>
-<li class="chapter" data-level="5.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>5.3</b> Simulating Random Sampling from a Population</a></li>
-<li class="chapter" data-level="5.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>5.4</b> IRL: Bootstrapping</a></li>
-<li class="chapter" data-level="5.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>5.5</b> Simulating Randomization into Groups</a></li>
-<li class="chapter" data-level="5.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>5.6</b> IRL: Randomization Tests</a></li>
-<li class="chapter" data-level="5.7" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.7</b> Chapter 5 Major Takeaways</a></li>
+<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="sampling-variability.html"><a href="sampling-variability.html#simulating-random-sampling-from-a-population"><i class="fa fa-check"></i><b>5.1.1</b> Simulating Random Sampling from a Population</a></li>
+<li class="chapter" data-level="5.1.2" data-path="sampling-variability.html"><a href="sampling-variability.html#irl-bootstrapping"><i class="fa fa-check"></i><b>5.1.2</b> IRL: Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="randomization-variability.html"><a href="randomization-variability.html#simulating-randomization-into-groups"><i class="fa fa-check"></i><b>5.2.1</b> Simulating Randomization into Groups</a></li>
+<li class="chapter" data-level="5.2.2" data-path="randomization-variability.html"><a href="randomization-variability.html#irl-randomization-tests"><i class="fa fa-check"></i><b>5.2.2</b> IRL: Randomization Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.3</b> Chapter 5 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>6</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="6.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>6.1</b> Three Types of Probability</a></li>
@@ -359,9 +362,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="randomization-variability" class="section level2">
 <h2><span class="header-section-number">5.2</span> Randomization Variability</h2>
 <p>Another source of random variation in a statistic that can arise is that of random treatment/control group assignments in an experiment. If we could repeat the randomization process in an experiment, each treatment group would be slightly different. The individual composition of the units in the treatment and control groups would differ every time. Sometimes we would randomly over-represent one group of people in the treatment group, and another time we would randomly over-represent another group of people in the treatment group, just by chance. The statistic that we calculate and compare between groups (e.g. a difference in means, a difference in medians, a regression coefficient) would change for every reshuffling of the individuals.</p>
-<p>These descriptions cover the idea of <strong>random variability</strong>. This random variability is typically due to random sampling or randomized group assignments. The sample and group composition can vary, and therefore, the statistics that we calculate vary between different sample.</p>
+<p>This is another type of <strong>random variability</strong>. The group composition can vary, and therefore, the statistics that we calculate vary between different randomization.</p>
 <p><em>The important thing to keep in mind is that we only get to see one sample, one particular composition of individuals. But we need to put this one observed sample and statistic in the context of the random variability.</em></p>
-<p>Let’s explore this concept a bit more before we formally talk about probability and chance.</p>
+<div id="simulating-randomization-into-groups" class="section level3">
+<h3><span class="header-section-number">5.2.1</span> Simulating Randomization into Groups</h3>
+<p>We have been thinking about estimating the differences in mean arrival delays. But we are interested in whether there is actually a true, real difference because we need to decide whether to have this influence our decisions in booking flights. If the difference is 0, then there is no real difference between morning and afternoon flights.</p>
+<p>Let’s use a random sample of 500 flights from the population to investigate this question using a difference approach.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="randomization-variability.html#cb221-1"></a>flights_samp500 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb221-2"><a href="randomization-variability.html#cb221-2"></a><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">500</span>) </span></code></pre></div>
+<p>Let’s summarize and visualize the relationship between hour of the day (morning or afternoon) and the arrival delay.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="randomization-variability.html#cb222-1"></a>flights_samp500 <span class="op">%&gt;%</span></span>
+<span id="cb222-2"><a href="randomization-variability.html#cb222-2"></a><span class="st">    </span><span class="kw">group_by</span>(day_hour) <span class="op">%&gt;%</span></span>
+<span id="cb222-3"><a href="randomization-variability.html#cb222-3"></a><span class="st">    </span><span class="kw">summarize</span>(<span class="dt">median =</span> <span class="kw">median</span>(arr_delay), <span class="dt">mean =</span> <span class="kw">mean</span>(arr_delay))</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 3
+##   day_hour  median  mean
+##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1 afternoon     -1 12.6 
+## 2 morning       -7 -2.39</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="randomization-variability.html#cb224-1"></a>flights_samp500 <span class="op">%&gt;%</span></span>
+<span id="cb224-2"><a href="randomization-variability.html#cb224-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hour, <span class="dt">y =</span> arr_delay)) <span class="op">+</span></span>
+<span id="cb224-3"><a href="randomization-variability.html#cb224-3"></a><span class="st">    </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb224-4"><a href="randomization-variability.html#cb224-4"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="05-variability_files/figure-html/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="reflect">
+<p>
+Based solely on the visual and numerical summaries, are arrival delays less in the morning than in the afternoon?
+</p>
+</div>
+<p>We don’t know the exact reason why some flights were scheduled in the morning or the afternoon and why one flight might be delayed (it’s probably due to a complex combination of factors). Let’s imagine that a randomization process was used to decide when particular flights were scheduled (morning or afternoon); a flip of a coin to decide morning or afternoon.</p>
+<p>We want to compare the mean arrival delays in morning flights and in afternoon flights.</p>
+<p>If there were <strong>no difference</strong> in arrival delays between morning and afternoon flights, then it wouldn’t matter whether a flight left in the morning or afternoon. That is, the <code>day_hour</code> variable would be irrelevant to the arrival delay <code>arr_delay</code>. If that were true, then we could reshuffle the values of <code>day_hour</code> and it wouldn’t change our conclusions.</p>
+<p>Wouldn’t it be great if we could see how the mean arrival delays might change if we shuffled the flights between the “morning” group and “afternoon” group, randomly?</p>
+<p>In fact, wouldn’t it be great if we could look at every permutation of flights between two groups?</p>
+</div>
+<div id="irl-randomization-tests" class="section level3">
+<h3><span class="header-section-number">5.2.2</span> IRL: Randomization Tests</h3>
+<p>In real life, we don’t often consider every possible permutation (reshuffling of group members) due to the immensely large number of permutations. However, we can randomly reshuffle flights about 1000 times to try to approximate many of those permutations. Such a procedure is called a <strong>randomization or permutation procedure</strong>. There are three main steps:</p>
+<p><strong>1. Hypothesis</strong></p>
+<p>Our <strong>null hypothesis</strong> (a hypothesis that is conservative/not interesting/does not elicit action) is that there is no relationship between time of day and the mean arrival delay.</p>
+<p><strong>2. Generate and Calculate</strong></p>
+<p>We can generate 1000 new data sets based on randomly reshuffling the labels of <code>day_hour</code>. For each of these data sets, we calculate the difference in mean arrival delay between morning and afternoon groups.</p>
+<p><strong>3. Visualize</strong></p>
+<p>The histogram below shows the histogram of differences in means if the null hypothesis were true. The vertical line shows the observed difference in means.</p>
+<p><img src="05-variability_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="reflect">
+<p>
+Do you think that the mean arrival delay is different for morning and afternoon? Is the observed difference in means likely to have occurred if there were no relationship?
+</p>
+</div>
+<p>We will return to the ideas of testing hypotheses later in the course.</p>
+</div>
 </div>
             </section>
 
@@ -369,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="sampling-variability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="simulating-random-sampling-from-a-population.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-5-major-takeaways.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

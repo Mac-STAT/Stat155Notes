@@ -1,6 +1,8 @@
 
 
-```{r setup7, echo=FALSE}
+```{r setup7, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
+options(warn=-1)
 library(stringr)
 library(infer)
 library(nycflights13)
@@ -13,7 +15,6 @@ library(mosaicData)
 library(ggmosaic)
 library(NHANES)
 library(mosaic)
-knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
 ```
 
 # Statistical Inference
@@ -994,3 +995,7 @@ require(boot)
 cv.err <- cv.glm(data,glm1, K = 5)
 sqrt(cv.err$delta[1]) #out of sample average prediction error
 ```
+
+##Chapter 7 Major Takeaways
+
+

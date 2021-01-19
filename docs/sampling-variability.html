@@ -248,15 +248,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="logistic-model-evaluation.html"><a href="logistic-model-evaluation.html"><i class="fa fa-check"></i><b>4.5</b> Logistic Model Evaluation</a></li>
 <li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
+<li class="chapter" data-level="4.7" data-path="chapter-4-major-takeaways.html"><a href="chapter-4-major-takeaways.html"><i class="fa fa-check"></i><b>4.7</b> Chapter 4 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randvariability.html"><a href="randvariability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
-<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
-<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a></li>
-<li class="chapter" data-level="5.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>5.3</b> Simulating Random Sampling from a Population</a></li>
-<li class="chapter" data-level="5.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>5.4</b> IRL: Bootstrapping</a></li>
-<li class="chapter" data-level="5.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>5.5</b> Simulating Randomization into Groups</a></li>
-<li class="chapter" data-level="5.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>5.6</b> IRL: Randomization Tests</a></li>
-<li class="chapter" data-level="5.7" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.7</b> Chapter 5 Major Takeaways</a></li>
+<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="sampling-variability.html"><a href="sampling-variability.html#simulating-random-sampling-from-a-population"><i class="fa fa-check"></i><b>5.1.1</b> Simulating Random Sampling from a Population</a></li>
+<li class="chapter" data-level="5.1.2" data-path="sampling-variability.html"><a href="sampling-variability.html#irl-bootstrapping"><i class="fa fa-check"></i><b>5.1.2</b> IRL: Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="randomization-variability.html"><a href="randomization-variability.html#simulating-randomization-into-groups"><i class="fa fa-check"></i><b>5.2.1</b> Simulating Randomization into Groups</a></li>
+<li class="chapter" data-level="5.2.2" data-path="randomization-variability.html"><a href="randomization-variability.html#irl-randomization-tests"><i class="fa fa-check"></i><b>5.2.2</b> IRL: Randomization Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.3</b> Chapter 5 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>6</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="6.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>6.1</b> Three Types of Probability</a></li>
@@ -359,6 +362,222 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sampling-variability" class="section level2">
 <h2><span class="header-section-number">5.1</span> Sampling Variability</h2>
 <p>If we could repeat the random sampling process, each sample we would get would be slightly different. The composition of units/cases in the sample would differ every time. Sometimes we would randomly over-represent one group of people and another time we would randomly over-represent another group of people, just by chance. The statistic of interest (e.g. a mean, a median, a regression coefficient) that we calculate would vary between across the different samples.</p>
+<p>This is one type of <strong>random variability</strong>. The sample composition can vary, and therefore, the statistics that we calculate vary between different sample.</p>
+<p><em>The important thing to keep in mind is that we only get to see one sample, one particular composition of individuals. But we need to put this one observed sample and statistic in the context of the random variability.</em></p>
+<p>Let’s explore this concept a bit more before we formally talk about probability and chance.</p>
+<div id="simulating-random-sampling-from-a-population" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Simulating Random Sampling from a Population</h3>
+<p>The data set that we will work with contains ALL flights leaving New York City in 2013. This data represents a full census of the target population of flights leaving NYC in a particular year.</p>
+<p>We’ll start by creating two new variables, <code>season</code> defined as winter (Oct - March) or summer (April - Sept) and <code>day_hour</code> defined as morning (midnight to noon) or afternoon (noon to midnight).</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="sampling-variability.html#cb195-1"></a><span class="kw">data</span>(flights)</span>
+<span id="cb195-2"><a href="sampling-variability.html#cb195-2"></a>flights &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb195-3"><a href="sampling-variability.html#cb195-3"></a><span class="st">    </span><span class="kw">na.omit</span>() <span class="op">%&gt;%</span></span>
+<span id="cb195-4"><a href="sampling-variability.html#cb195-4"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">season =</span> <span class="kw">case_when</span>(</span>
+<span id="cb195-5"><a href="sampling-variability.html#cb195-5"></a>      month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">12</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="op">~</span><span class="st"> &quot;winter&quot;</span>,</span>
+<span id="cb195-6"><a href="sampling-variability.html#cb195-6"></a>      month <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span><span class="op">:</span><span class="dv">9</span>) <span class="op">~</span><span class="st"> &quot;summer&quot;</span></span>
+<span id="cb195-7"><a href="sampling-variability.html#cb195-7"></a>    )) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb195-8"><a href="sampling-variability.html#cb195-8"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">day_hour =</span> <span class="kw">case_when</span>(</span>
+<span id="cb195-9"><a href="sampling-variability.html#cb195-9"></a>      <span class="kw">between</span>(hour, <span class="dv">1</span>, <span class="dv">12</span>) <span class="op">~</span><span class="st"> &quot;morning&quot;</span>,</span>
+<span id="cb195-10"><a href="sampling-variability.html#cb195-10"></a>      <span class="kw">between</span>(hour, <span class="dv">13</span>, <span class="dv">24</span>) <span class="op">~</span><span class="st"> &quot;afternoon&quot;</span></span>
+<span id="cb195-11"><a href="sampling-variability.html#cb195-11"></a>    )) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb195-12"><a href="sampling-variability.html#cb195-12"></a><span class="st">    </span><span class="kw">select</span>(arr_delay, dep_delay, season, day_hour, origin, carrier)</span></code></pre></div>
+<p>Since we have the full population of flights in 2013, we could just describe the flights that happened in that year. But, having data on the full population is <em>very rare</em> in practice. Instead, we are going to use this population to illustrate sampling variability.</p>
+<p>Let’s take one random sample of 100 flights from the data set, using a simple random sampling strategy.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="sampling-variability.html#cb196-1"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>) <span class="co">#ensures our random sample is the same every time we run this code</span></span>
+<span id="cb196-2"><a href="sampling-variability.html#cb196-2"></a>flights_samp1 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></span>
+<span id="cb196-3"><a href="sampling-variability.html#cb196-3"></a><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>) <span class="co">## Sample 100 flights randomly</span></span></code></pre></div>
+<p>If you were planning a trip, you may be able to choose between two flights that leave at different times of day. Do morning flights have shorter arrival delays on average than afternoon flights? If so, book the flight earlier in the day!</p>
+<p>Let’s look at whether the arrival delay (in minutes) <code>arr_delay</code> differs between the morning and the afternoon, <code>day_hour</code>, by fitting a linear regression model and looking at the estimate for <code>day_hourmorning</code>. This -20.4 minutes is the estimated difference in mean arrival delay times between morning and afternoon flights, so the delay time is less in the morning on average.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="sampling-variability.html#cb197-1"></a>flights_samp1 <span class="op">%&gt;%</span></span>
+<span id="cb197-2"><a href="sampling-variability.html#cb197-2"></a><span class="st">    </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour)) <span class="op">%&gt;%</span></span>
+<span id="cb197-3"><a href="sampling-variability.html#cb197-3"></a><span class="st">    </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term            estimate std.error statistic p.value
+##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)         14.4      6.38      2.26  0.0258
+## 2 day_hourmorning    -20.4     10.6      -1.92  0.0578</code></pre>
+<div class="reflect">
+<p>
+At this point, we haven’t looked at the entire population of flights from 2013. Based on one sample of 100 flights, how do you think the time of day impacts arrival delay times in the entire population?
+</p>
+</div>
+<p>Now, let’s take another random sample of 100 flights from the full population of flights.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="sampling-variability.html#cb199-1"></a>flights_samp2 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></span>
+<span id="cb199-2"><a href="sampling-variability.html#cb199-2"></a><span class="st">    </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>) <span class="co">## Sample 100 flights randomly</span></span>
+<span id="cb199-3"><a href="sampling-variability.html#cb199-3"></a></span>
+<span id="cb199-4"><a href="sampling-variability.html#cb199-4"></a>flights_samp2 <span class="op">%&gt;%</span></span>
+<span id="cb199-5"><a href="sampling-variability.html#cb199-5"></a><span class="st">    </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour)) <span class="op">%&gt;%</span></span>
+<span id="cb199-6"><a href="sampling-variability.html#cb199-6"></a><span class="st">    </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term            estimate std.error statistic p.value
+##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)         3.15      4.46     0.707   0.481
+## 2 day_hourmorning    -2.11      6.44    -0.328   0.744</code></pre>
+<div class="reflect">
+<p>
+How does the second sample differ from the first sample? What do they have in common?
+</p>
+</div>
+<p>We could keep the process going. Take a sample of 100 flights, fit a model, and look at the estimated regression coefficient for <code>day_hourmorning</code>. Repeat many, many times.</p>
+<p>We can add a little bit of code to help us simulate this sampling process 1000 times and estimate the difference in mean arrival delay between morning and afternoon for each random sample of 100 flights.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="sampling-variability.html#cb201-1"></a>sim_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb201-2"><a href="sampling-variability.html#cb201-2"></a>    flights <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb201-3"><a href="sampling-variability.html#cb201-3"></a><span class="st">      </span><span class="kw">sample_n</span>(<span class="dt">size =</span> <span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># Generate samples of 100 flights</span></span>
+<span id="cb201-4"><a href="sampling-variability.html#cb201-4"></a><span class="st">      </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour)) <span class="co"># Fit linear model</span></span>
+<span id="cb201-5"><a href="sampling-variability.html#cb201-5"></a>)</span></code></pre></div>
+<p>Now we have 1000 fit models, each corresponding to one random sample of 100 flights from the population. Let’s summarize and visualize this simulation.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="sampling-variability.html#cb202-1"></a><span class="co"># Summarize</span></span>
+<span id="cb202-2"><a href="sampling-variability.html#cb202-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb202-3"><a href="sampling-variability.html#cb202-3"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb202-4"><a href="sampling-variability.html#cb202-4"></a>        <span class="dt">mean_Intercept =</span> <span class="kw">mean</span>(Intercept),</span>
+<span id="cb202-5"><a href="sampling-variability.html#cb202-5"></a>        <span class="dt">mean_dayhourmorning =</span> <span class="kw">mean</span>(day_hourmorning),</span>
+<span id="cb202-6"><a href="sampling-variability.html#cb202-6"></a>        <span class="dt">sd_Intercept =</span> <span class="kw">sd</span>(Intercept),</span>
+<span id="cb202-7"><a href="sampling-variability.html#cb202-7"></a>        <span class="dt">sd_dayhourmorning =</span> <span class="kw">sd</span>(day_hourmorning))</span></code></pre></div>
+<pre><code>##   mean_Intercept mean_dayhourmorning sd_Intercept sd_dayhourmorning
+## 1       13.45053           -14.54158     7.233256           8.87308</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="sampling-variability.html#cb204-1"></a><span class="co"># Visualize Intercepts</span></span>
+<span id="cb204-2"><a href="sampling-variability.html#cb204-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb204-3"><a href="sampling-variability.html#cb204-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Intercept)) <span class="op">+</span></span>
+<span id="cb204-4"><a href="sampling-variability.html#cb204-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb204-5"><a href="sampling-variability.html#cb204-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of Intercepts</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb204-6"><a href="sampling-variability.html#cb204-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="05-variability_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="sampling-variability.html#cb205-1"></a><span class="co"># Visualize Slopes</span></span>
+<span id="cb205-2"><a href="sampling-variability.html#cb205-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb205-3"><a href="sampling-variability.html#cb205-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hourmorning)) <span class="op">+</span></span>
+<span id="cb205-4"><a href="sampling-variability.html#cb205-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb205-5"><a href="sampling-variability.html#cb205-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of Slopes</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb205-6"><a href="sampling-variability.html#cb205-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="05-variability_files/figure-html/unnamed-chunk-8-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>These histograms approximate the <strong>sampling distribution</strong> of estimated intercepts and the <strong>sampling distribution</strong> of estimated slopes from a linear model predicting the arrival delay as a function of time of day, both of which describe the variability in the sample statistics <em>across all possible random samples from the population</em>.</p>
+<div class="reflect">
+<p>
+Describe the shape, center, and spread of the sampling distribution for the intercepts. Do the same for the slopes.
+</p>
+</div>
+<p>Notice how these means of the sampling distributions are very close to the population values, below. This makes sense since we are sampling from the population so we’d expect the estimates to bounce around the true population values.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="sampling-variability.html#cb206-1"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Means and standard deviations of sampling distribution</span></span>
+<span id="cb206-2"><a href="sampling-variability.html#cb206-2"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb206-3"><a href="sampling-variability.html#cb206-3"></a>        <span class="dt">mean_Intercept =</span> <span class="kw">mean</span>(Intercept),</span>
+<span id="cb206-4"><a href="sampling-variability.html#cb206-4"></a>        <span class="dt">mean_dayhourmorning =</span> <span class="kw">mean</span>(day_hourmorning),</span>
+<span id="cb206-5"><a href="sampling-variability.html#cb206-5"></a>        <span class="dt">sd_Intercept =</span> <span class="kw">sd</span>(Intercept),</span>
+<span id="cb206-6"><a href="sampling-variability.html#cb206-6"></a>        <span class="dt">sd_dayhourmorning =</span> <span class="kw">sd</span>(day_hourmorning))</span></code></pre></div>
+<pre><code>##   mean_Intercept mean_dayhourmorning sd_Intercept sd_dayhourmorning
+## 1       13.45053           -14.54158     7.233256           8.87308</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="sampling-variability.html#cb208-1"></a>flights <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Population of flights</span></span>
+<span id="cb208-2"><a href="sampling-variability.html#cb208-2"></a><span class="st">    </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour)) <span class="co"># Fit linear model</span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = arr_delay ~ day_hour)
+## 
+## Coefficients:
+##     (Intercept)  day_hourmorning  
+##           13.42           -14.60</code></pre>
+</div>
+<div id="irl-bootstrapping" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> IRL: Bootstrapping</h3>
+<p>In real life (IRL), we don’t have a full target population from which we can repeatedly draw samples. We only have one <strong>sample</strong> that was already drawn from the larger target population.</p>
+<p>To get a sense of the sampling variability, we could try to mimic this process of sampling from the full target population using our best stand-in for the population: our sample. We will call the sample our “fake population” for the moment. This process of resampling our sample is called <strong>bootstrapping</strong>.</p>
+<p>We bootstrap our sample in order to 1) estimate the variability of the statistic and 2) get a range of plausible values for the true population parameter.</p>
+<p>There are four steps to bootstrapping. They are very similar to simulating the sampling process from a population.</p>
+<p><strong>1. Generate</strong></p>
+<p>To generate different random samples of the same size (100 flights) from our “fake population”, we have to draw sample of 100 flights WITH REPLACEMENT, meaning that we have to put a flight back into the pool after drawing them out.</p>
+<div class="reflect">
+<p>
+What would happen if we drew WITHOUT REPLACEMENT?
+</p>
+</div>
+<p><strong>2. Calculate</strong></p>
+<p>In our simulation above, we calculated the median and mean arrival delay. In theory, we could calculate any numerical summary of data (e.g. the mean, median, SD, 25th percentile, etc.)</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="sampling-variability.html#cb210-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb210-2"><a href="sampling-variability.html#cb210-2"></a>    flights_samp1 <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb210-3"><a href="sampling-variability.html#cb210-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb210-4"><a href="sampling-variability.html#cb210-4"></a><span class="st">      </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour)) <span class="co"># Fit linear model</span></span>
+<span id="cb210-5"><a href="sampling-variability.html#cb210-5"></a>)</span></code></pre></div>
+<div class="reflect">
+<p>
+Notice the similarities and differences in the R code for boot_data, in which we are sampling from the sample, and sim_data, in which we are sampling from the population, above.
+</p>
+</div>
+<p><strong>3. Summarize</strong></p>
+<p>Let’s summarize these 1000 model estimates generated from resampling (with replacement) <em>from our sample</em> (our “fake population”).</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="sampling-variability.html#cb211-1"></a><span class="co"># Summarize</span></span>
+<span id="cb211-2"><a href="sampling-variability.html#cb211-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb211-3"><a href="sampling-variability.html#cb211-3"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb211-4"><a href="sampling-variability.html#cb211-4"></a>        <span class="dt">mean_Intercept =</span> <span class="kw">mean</span>(Intercept),</span>
+<span id="cb211-5"><a href="sampling-variability.html#cb211-5"></a>        <span class="dt">mean_dayhourmorning =</span> <span class="kw">mean</span>(day_hourmorning),</span>
+<span id="cb211-6"><a href="sampling-variability.html#cb211-6"></a>        <span class="dt">sd_Intercept =</span> <span class="kw">sd</span>(Intercept),</span>
+<span id="cb211-7"><a href="sampling-variability.html#cb211-7"></a>        <span class="dt">sd_dayhourmorning =</span> <span class="kw">sd</span>(day_hourmorning))</span></code></pre></div>
+<pre><code>##   mean_Intercept mean_dayhourmorning sd_Intercept sd_dayhourmorning
+## 1       14.58742           -20.49495     7.218149           8.44133</code></pre>
+<p>Note how the mean’s are very close to the original estimates from the sample, below.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="sampling-variability.html#cb213-1"></a>flights_samp1 <span class="op">%&gt;%</span></span>
+<span id="cb213-2"><a href="sampling-variability.html#cb213-2"></a><span class="st">    </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>day_hour)) <span class="op">%&gt;%</span></span>
+<span id="cb213-3"><a href="sampling-variability.html#cb213-3"></a><span class="st">    </span><span class="kw">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   term            estimate std.error statistic p.value
+##   &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+## 1 (Intercept)         14.4      6.38      2.26  0.0258
+## 2 day_hourmorning    -20.4     10.6      -1.92  0.0578</code></pre>
+<p>This is not a coincidence. Since we are resampling from our original sample, we’d expect the bootstrap estimates to bounce around the original sample estimates, <em>similar to how the simulated sampling distributions had means close the the population values</em></p>
+<p>Let’s compare this to the summaries from the simulation of randomly sampling <em>from the population</em>.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="sampling-variability.html#cb215-1"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb215-2"><a href="sampling-variability.html#cb215-2"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb215-3"><a href="sampling-variability.html#cb215-3"></a>        <span class="dt">mean_Intercept =</span> <span class="kw">mean</span>(Intercept),</span>
+<span id="cb215-4"><a href="sampling-variability.html#cb215-4"></a>        <span class="dt">mean_dayhourmorning =</span> <span class="kw">mean</span>(day_hourmorning),</span>
+<span id="cb215-5"><a href="sampling-variability.html#cb215-5"></a>        <span class="dt">sd_Intercept =</span> <span class="kw">sd</span>(Intercept),</span>
+<span id="cb215-6"><a href="sampling-variability.html#cb215-6"></a>        <span class="dt">sd_dayhourmorning =</span> <span class="kw">sd</span>(day_hourmorning))</span></code></pre></div>
+<pre><code>##   mean_Intercept mean_dayhourmorning sd_Intercept sd_dayhourmorning
+## 1       13.45053           -14.54158     7.233256           8.87308</code></pre>
+<p>The means won’t be exactly the same because <em>the center of the bootstrap distribution is the original sample and the center of the sampling distribution is the population values</em>.</p>
+<p>But, <em>the standard deviations should be of roughly similar magnitude</em> because they are in fact trying to estimate the same thing, the <strong>sampling variability</strong>.</p>
+<p><strong>4. Visualize</strong></p>
+<p>Let’s visualize these 1000 models generated from resampling (with replacement) from our sample (our “fake population”).</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="sampling-variability.html#cb217-1"></a><span class="co"># Visualize Intercepts</span></span>
+<span id="cb217-2"><a href="sampling-variability.html#cb217-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb217-3"><a href="sampling-variability.html#cb217-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Intercept)) <span class="op">+</span></span>
+<span id="cb217-4"><a href="sampling-variability.html#cb217-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb217-5"><a href="sampling-variability.html#cb217-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of Intercepts</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb217-6"><a href="sampling-variability.html#cb217-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="05-variability_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="sampling-variability.html#cb218-1"></a><span class="co"># Visualize Slopes</span></span>
+<span id="cb218-2"><a href="sampling-variability.html#cb218-2"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb218-3"><a href="sampling-variability.html#cb218-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hourmorning)) <span class="op">+</span></span>
+<span id="cb218-4"><a href="sampling-variability.html#cb218-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb218-5"><a href="sampling-variability.html#cb218-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Bootstrap sampling distribution of Slopes</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb218-6"><a href="sampling-variability.html#cb218-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="05-variability_files/figure-html/unnamed-chunk-17-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Let’s compare these to the visuals from the simulation from the population.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="sampling-variability.html#cb219-1"></a><span class="co"># Visualize Intercepts</span></span>
+<span id="cb219-2"><a href="sampling-variability.html#cb219-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb219-3"><a href="sampling-variability.html#cb219-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Intercept)) <span class="op">+</span></span>
+<span id="cb219-4"><a href="sampling-variability.html#cb219-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb219-5"><a href="sampling-variability.html#cb219-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of Intercepts</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb219-6"><a href="sampling-variability.html#cb219-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="05-variability_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="sampling-variability.html#cb220-1"></a><span class="co"># Visualize Slopes</span></span>
+<span id="cb220-2"><a href="sampling-variability.html#cb220-2"></a>sim_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb220-3"><a href="sampling-variability.html#cb220-3"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> day_hourmorning)) <span class="op">+</span></span>
+<span id="cb220-4"><a href="sampling-variability.html#cb220-4"></a><span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">bins =</span> <span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb220-5"><a href="sampling-variability.html#cb220-5"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Sampling distribution of Slopes</span><span class="ch">\n</span><span class="st">from samples of 100 flights&quot;</span>) <span class="op">+</span></span>
+<span id="cb220-6"><a href="sampling-variability.html#cb220-6"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
+<p><img src="05-variability_files/figure-html/unnamed-chunk-18-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The process of resampling from our sample, called <strong>bootstrapping</strong>, is becoming the one of main computational tools for estimating sampling variability in the field of Statistics.</p>
+<div class="reflect">
+<p>
+How well does bootstrapping do in mimicking the simulations from the population? What could we change to improve bootstrap’s ability to mimic the simulations?
+</p>
+</div>
+<p>This is a really important concept in Statistics! We’ll come back to the ideas of sampling variability and bootstrapping throughout the rest of the course.</p>
+<div class="reflect">
+<p>
+Based on the bootstrap sampling distribution, what would you guess the difference in mean arrival delay between morning and afternoon is in the population of flights?
+</p>
+<p>
+Based on the bootstrap sampling distribution, if you had to give an interval of plausible values for the population difference, what range would you give? Why? Is a difference of 0 a plausible value?
+</p>
+</div>
+</div>
 </div>
             </section>
 

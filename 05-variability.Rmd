@@ -1,4 +1,6 @@
-```{r setup5, echo=FALSE}
+```{r setup5, include=FALSE, message=FALSE, warnings=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
+options(warn=-1)
 library(stringr)
 library(infer)
 library(nycflights13)
@@ -11,7 +13,6 @@ library(mosaicData)
 library(ggmosaic)
 library(NHANES)
 library(mosaic)
-knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=FALSE, fig.align = 'center')
 ```
 
 # Random Variability {#randvariability}
@@ -28,17 +29,13 @@ Throughout the past three chapters, we have also sprinkled in the idea that **th
 
 If we could repeat the random sampling process, each sample we would get would be slightly different. The composition of units/cases in the sample would differ every time. Sometimes we would randomly over-represent one group of people and another time we would randomly over-represent another group of people, just by chance. The statistic of interest (e.g. a mean, a median, a regression coefficient) that we calculate would vary between across the different samples. 
 
-## Randomization Variability
-
-Another source of random variation in a statistic that can arise is that of random treatment/control group assignments in an experiment. If we could repeat the randomization process in an experiment, each treatment group would be slightly different. The individual composition of the units in the treatment and control groups would differ every time. Sometimes we would randomly over-represent one group of people in the treatment group, and another time we would randomly over-represent another group of people in the treatment group, just by chance. The statistic that we calculate and compare between groups (e.g. a difference in means, a difference in medians, a regression coefficient) would change for every reshuffling of the individuals.
-
-These descriptions cover the idea of **random variability**. This random variability is typically due to random sampling or randomized group assignments. The sample and group composition can vary, and therefore, the statistics that we calculate vary between different sample.
+This is one type of **random variability**. The sample composition can vary, and therefore, the statistics that we calculate vary between different sample.
 
 *The important thing to keep in mind is that we only get to see one sample, one particular composition of individuals. But we need to put this one observed sample and statistic in the context of the random variability.* 
 
 Let's explore this concept a bit more before we formally talk about probability and chance. 
 
-## Simulating Random Sampling from a Population
+### Simulating Random Sampling from a Population
 
 The data set that we will work with contains ALL flights leaving New York City in 2013. This data represents a full census of the target population of flights leaving NYC in a particular year. 
 
@@ -158,7 +155,7 @@ flights %>% # Population of flights
 ```
 
 
-## IRL: Bootstrapping 
+### IRL: Bootstrapping 
 
 In real life (IRL), we don't have a full target population from which we can repeatedly draw samples. We only have one **sample** that was already drawn from the larger target population.
 
@@ -286,8 +283,16 @@ Based on the bootstrap sampling distribution, what would you guess the differenc
 Based on the bootstrap sampling distribution, if you had to give an interval of plausible values for the population difference, what range would you give? Why? Is a difference of 0 a plausible value?
 ```
 
+## Randomization Variability
 
-## Simulating Randomization into Groups
+Another source of random variation in a statistic that can arise is that of random treatment/control group assignments in an experiment. If we could repeat the randomization process in an experiment, each treatment group would be slightly different. The individual composition of the units in the treatment and control groups would differ every time. Sometimes we would randomly over-represent one group of people in the treatment group, and another time we would randomly over-represent another group of people in the treatment group, just by chance. The statistic that we calculate and compare between groups (e.g. a difference in means, a difference in medians, a regression coefficient) would change for every reshuffling of the individuals.
+
+This is another type of **random variability**. The group composition can vary, and therefore, the statistics that we calculate vary between different randomization.
+
+*The important thing to keep in mind is that we only get to see one sample, one particular composition of individuals. But we need to put this one observed sample and statistic in the context of the random variability.* 
+
+
+### Simulating Randomization into Groups
 
 We have been thinking about estimating the differences in mean arrival delays. But we are interested in whether there is actually a true, real difference because we need to decide whether to have this influence our decisions in booking flights. If the difference is 0, then there is no real difference between morning and afternoon flights.  
 
@@ -326,7 +331,7 @@ Wouldn't it be great if we could see how the mean arrival delays might change if
 
 In fact, wouldn't it be great if we could look at every permutation of flights between two groups? 
 
-## IRL: Randomization Tests
+### IRL: Randomization Tests
 
 In real life, we don't often consider every possible permutation (reshuffling of group members) due to the immensely large number of permutations. However, we can randomly reshuffle flights about 1000 times to try to approximate many of those permutations. Such a procedure is called a **randomization or permutation procedure**. There are three main steps:
 

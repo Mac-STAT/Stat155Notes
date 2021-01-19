@@ -1,4 +1,6 @@
 ```{r setup1, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=TRUE)
+options(warn=-1)
 library(broom)
 library(dplyr)
 library(ggplot2)
@@ -11,8 +13,6 @@ library(tidytext)
 library(glue)
 library(readr)
 library(ggdag)
-knitr::opts_chunk$set(echo = TRUE, warnings=FALSE, message=FALSE, tidy=TRUE)
-options(warn=-1)
 ```
 
 # Data Collection and Quality

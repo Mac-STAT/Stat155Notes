@@ -248,15 +248,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="logistic-model-evaluation.html"><a href="logistic-model-evaluation.html"><i class="fa fa-check"></i><b>4.5</b> Logistic Model Evaluation</a></li>
 <li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
+<li class="chapter" data-level="4.7" data-path="chapter-4-major-takeaways.html"><a href="chapter-4-major-takeaways.html"><i class="fa fa-check"></i><b>4.7</b> Chapter 4 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randvariability.html"><a href="randvariability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
-<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
-<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a></li>
-<li class="chapter" data-level="5.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>5.3</b> Simulating Random Sampling from a Population</a></li>
-<li class="chapter" data-level="5.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>5.4</b> IRL: Bootstrapping</a></li>
-<li class="chapter" data-level="5.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>5.5</b> Simulating Randomization into Groups</a></li>
-<li class="chapter" data-level="5.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>5.6</b> IRL: Randomization Tests</a></li>
-<li class="chapter" data-level="5.7" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.7</b> Chapter 5 Major Takeaways</a></li>
+<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="sampling-variability.html"><a href="sampling-variability.html#simulating-random-sampling-from-a-population"><i class="fa fa-check"></i><b>5.1.1</b> Simulating Random Sampling from a Population</a></li>
+<li class="chapter" data-level="5.1.2" data-path="sampling-variability.html"><a href="sampling-variability.html#irl-bootstrapping"><i class="fa fa-check"></i><b>5.1.2</b> IRL: Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="randomization-variability.html"><a href="randomization-variability.html#simulating-randomization-into-groups"><i class="fa fa-check"></i><b>5.2.1</b> Simulating Randomization into Groups</a></li>
+<li class="chapter" data-level="5.2.2" data-path="randomization-variability.html"><a href="randomization-variability.html#irl-randomization-tests"><i class="fa fa-check"></i><b>5.2.2</b> IRL: Randomization Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.3</b> Chapter 5 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>6</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="6.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>6.1</b> Three Types of Probability</a></li>
@@ -371,11 +374,11 @@ What is our population of interest? What population could we generalize to?
 </div>
 <p>Based on this sample of 100 flights, we can estimate the difference in the mean arrival delay times between flights in the winter compared to the summer. The fit linear regression model suggests that flights in the winter have on average are about half a minute less delayed than summer flights. Do you think that is true for all flights?</p>
 <p>If we had a different sample of 100 flights, how much different might that estimate be?</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="statistical-inference.html#cb296-1"></a>lm.delay &lt;-<span class="st"> </span>flights_samp <span class="op">%&gt;%</span></span>
-<span id="cb296-2"><a href="statistical-inference.html#cb296-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season))</span>
-<span id="cb296-3"><a href="statistical-inference.html#cb296-3"></a></span>
-<span id="cb296-4"><a href="statistical-inference.html#cb296-4"></a>lm.delay <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb296-5"><a href="statistical-inference.html#cb296-5"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="statistical-inference.html#cb235-1"></a>lm.delay &lt;-<span class="st"> </span>flights_samp <span class="op">%&gt;%</span></span>
+<span id="cb235-2"><a href="statistical-inference.html#cb235-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season))</span>
+<span id="cb235-3"><a href="statistical-inference.html#cb235-3"></a></span>
+<span id="cb235-4"><a href="statistical-inference.html#cb235-4"></a>lm.delay <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb235-5"><a href="statistical-inference.html#cb235-5"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term         estimate std.error statistic p.value
 ##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;

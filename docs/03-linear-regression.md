@@ -10,20 +10,17 @@ Broadly, a model is a simplified representation of the world. When we build mode
 
 One goal when building models is **prediction**. Given data on a **response** or **outcome variable**, $Y$, and one or more **predictor or explanatory variables**, $X$, the goal is to find a mathematical function, $f$, of $X$ that gives good predictions of $Y$.  For example, we might want to be able to predict a customer's chest size knowing their neck size. This $X$ may be a single variable, but it is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. 
 
-\begin{reflect}
-Can you think of some other concrete examples in which we'd want a model
-to do prediction? Consider what predictions might be made about you
-every day.
-\end{reflect}
+<div class="reflect">
+<p>Can you think of some other concrete examples in which we’d want a model to do prediction? Consider what predictions might be made about you every day.</p>
+</div>
 
 What are the qualities of a good model and function, $f$? We want to find an $f(X)$ such that if we plug in a value of $X$ such as $X=x$, we'll get a good predictor of the observed outcome values $y$. In other words, we want the model prediction $\hat{y}=f(x)$ (read, "y hat") to be close to the observed outcome value. We want $y-\hat{y}$ to be small. This difference between the observed value and the prediction, $y-\hat{y}$, is called a **residual**. We'll discuss residuals more later.
 
 Another goal when building models is **description**. We want a model to "explain" the relationship between the $X$ and $Y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. [George Box](https://en.wikipedia.org/wiki/George_E._P._Box) is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
 
-\begin{reflect}
-Can you think of some concrete examples in which we'd want a model to do
-explain a phenomenon? Consider how policy decisions get made.
-\end{reflect}
+<div class="reflect">
+<p>Can you think of some concrete examples in which we’d want a model to do explain a phenomenon? Consider how policy decisions get made.</p>
+</div>
 
 To begin, we will consider a simple, but powerful model in which we limit this function, $f(X)$, to be a straight line with a y-intercept, $\beta_0$, and slope, $\beta_1$. ($\beta$ is the Greek letter beta.) The $E[Y | X]$ below stands for the **expected value** of the response variable $Y$ for a *given* value of $X$. 
 
@@ -39,18 +36,12 @@ $$\hat{y} = \hat{\beta}_0 +\hat{\beta}_1 x$$
 
 The little hat on top of $\hat{y}$ means that we're talking about a predicted or estimated value of $y$, so our model says that the predicted or estimated value of $y$ is equal to an estimated intercept ($\hat{\beta}_0$), plus an estimated slope ($\hat{\beta}_1$), times the value $x$. 
 
-\begin{mathbox}
-In the past, you may have seen the equation of a line as
-
-\[y = mx + b\]
-
-where \(m\) is the slope and \(b\) is the y-intercept. We will be using
-different notation so that it can generalize to multiple linear
-regression.
-
-The y-intercept is the value when \(x=0\) and the slope is change in
-\(y\) for each 1 unit increase of \(x\) (``rise over run'').
-\end{mathbox}
+<div class="mathbox">
+<p>In the past, you may have seen the equation of a line as</p>
+<p><span class="math display">\[y = mx + b\]</span></p>
+<p>where <span class="math inline">\(m\)</span> is the slope and <span class="math inline">\(b\)</span> is the y-intercept. We will be using different notation so that it can generalize to multiple linear regression.</p>
+<p>The y-intercept is the value when <span class="math inline">\(x=0\)</span> and the slope is change in <span class="math inline">\(y\)</span> for each 1 unit increase of <span class="math inline">\(x\)</span> (“rise over run”).</p>
+</div>
 
 
 ## Lines
@@ -68,14 +59,11 @@ body %>%
     theme_classic()
 ```
 
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" />
 
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-4-1} \end{center}
-
-\begin{reflect}
-If you were to add one or multiple lines to the plot above to help you
-make business decisions, where would you want it (or them)?
-\end{reflect}
+<div class="reflect">
+<p>If you were to add one or multiple lines to the plot above to help you make business decisions, where would you want it (or them)?</p>
+</div>
 
 Let's say you were only going to make one size of shirt. You might want to add a horizontal line at the mean Chest size and a vertical line at the mean Neck size. 
 
@@ -90,44 +78,37 @@ body %>%
     theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-6-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" />
 
 We can see that a shirt made to these specifications would fit the "average person." However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger than average. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller than average. 
 
 Let's try something else. Let's allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the neck size variable into 5 groups of equal length and estimate the mean chest sizes within each of these groups. 
 
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-7-1} \end{center}
-
-\begin{reflect}
-What do these lines tell us for our business venture?
-\end{reflect}
+<div class="reflect">
+<p>What do these lines tell us for our business venture?</p>
+</div>
 
 What if we wanted to be able to make more sizes? Could we get a pretty good sense of what the chest sizes should be for a given neck size? Let's try allowing for 8 different sizes. 
 
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" />
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-9-1} \end{center}
+<div class="reflect">
+<p>What are the pros and cons of having a larger number of sizes?</p>
+</div>
 
-\begin{reflect}
-What are the pros and cons of having a larger number of sizes?
-\end{reflect}
-
-\begin{reflect}
-Stop and think about the data collection process. If you were measuring
-your own neck size, how precise do you think you could get? What factors
-might impact that precision?
-\end{reflect}
+<div class="reflect">
+<p>Stop and think about the data collection process. If you were measuring your own neck size, how precise do you think you could get? What factors might impact that precision?</p>
+</div>
 
 We can see from this scatterplot that there is generally a linear relationship between neck and chest size. Perhaps we can find one line to describe the relationship between neck size and chest size and use that line to decide on sizes later.
 
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-12-1} \end{center}
-
-\begin{reflect}
-What does line tell us for our business venture?
-\end{reflect}
+<div class="reflect">
+<p>What does line tell us for our business venture?</p>
+</div>
 
 If the scatterplot between two quantitative variables **resembles a straight line**,
 
@@ -144,11 +125,9 @@ $$ E[Y | X] =  \beta_0 + \beta_1\,X $$
 
 that gives us the "best" fit to the $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$. 
 
-\begin{reflect}
-What do we mean by ``best''? In general, we'd like good predictions and
-a model that describes the average relationship. But we need to be more
-precise about what we mean by ``best''.
-\end{reflect}
+<div class="reflect">
+<p>What do we mean by “best”? In general, we’d like good predictions and a model that describes the average relationship. But we need to be more precise about what we mean by “best”.</p>
+</div>
 
 ### First idea
 
@@ -175,18 +154,15 @@ Let's try to find the line that **minimizes the Sum of Squared Residuals** by se
 
 Below is a visual of the sum of squared residuals for a variety of values of the intercept and slope. The surface height is sum of squared residuals for each combination of slope and intercept.
 
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-15-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" />
 
 We can see there is valley where the minimum must be. Let's visualize this in a slightly different way. We'll encode the surface height as color (white is lowest).
 
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-16-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" />
 
 The large values of the sum of squared residuals are dominating this image, so let's change the color scheme to see more variation in smaller values (white is lowest).
 
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-17-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" />
 
 We can limit our search to $\beta_0 \in (-10,10)$ and $\beta_1 \in (2,3)$.
 
@@ -207,29 +183,16 @@ b[ss == min(ss),]
 
 We have the minimum point. Over the grid of pairs of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
 
-\begin{mathbox}
-(Optional) Alternative ways (faster than exhaustive search) to find the
-minimum sum of squared residuals:
-
-\begin{itemize}
-\tightlist
-\item
-  We could try a numerical optimization algorithm such as steepest
-  descent.
-\item
-  We could use multivariable calculus (find partial derivatives, set
-  equal to 0, and solve).
-\end{itemize}
-
-To get started on the calculus, solve the following two equations for
-the two unknowns (\(\beta_0\) and \(\beta_1\)):
-
-\[\frac{\partial }{\partial \beta_0}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]
-\[\frac{\partial }{\partial \beta_1}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]
-
-If you are a math/stat/physics/cs major, you should try this by hand and
-see if you can get the solutions below.
-\end{mathbox}
+<div class="mathbox">
+<p>(Optional) Alternative ways (faster than exhaustive search) to find the minimum sum of squared residuals:</p>
+<ul>
+<li>We could try a numerical optimization algorithm such as steepest descent.</li>
+<li>We could use multivariable calculus (find partial derivatives, set equal to 0, and solve).</li>
+</ul>
+<p>To get started on the calculus, solve the following two equations for the two unknowns (<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>):</p>
+<p><span class="math display">\[\frac{\partial }{\partial \beta_0}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]</span> <span class="math display">\[\frac{\partial }{\partial \beta_1}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]</span></p>
+<p>If you are a math/stat/physics/cs major, you should try this by hand and see if you can get the solutions below.</p>
+</div>
 
 If you find the minimum using calculus (super useful class!), you'll find that we can write the Least Squares solution in an equation format as functions of summary statistics (!), the estimated slope is
 
@@ -346,45 +309,35 @@ body %>%
 
 Given your neck size, we can probably predict your chest size within 5 to 10 cm since $s_e = 5.22$ (1 to 2 SD's -- recall Section \@ref(intro-zscore)). 
 
-\begin{reflect}
-If you were a shirt manufacturer, is this a good enough prediction? What
-is the impact on the customer? Think of if the prediction were an
-overestimate (loose) or an underestimate (too tight).
-\end{reflect}
+<div class="reflect">
+<p>If you were a shirt manufacturer, is this a good enough prediction? What is the impact on the customer? Think of if the prediction were an overestimate (loose) or an underestimate (too tight).</p>
+</div>
 
 ### Real companies
 
 Let's see how some real companies create shirts. In the plots below, the red boxes represent the advertised range (in cm) for Neck and Chest sizes for each brand.
 
-
-\begin{center}\includegraphics[width=.25\textwidth]{Photos/shirtchart} \end{center}
+<img src="Photos/shirtchart.png" width=".25\textwidth" style="display: block; margin: auto;" />
 
 For Calvin Klein, we see that the red boxes are below the least squares line (black line). So for a given neck size, Calvin Klein makes shirts that are a little bit too small at the chest.
 
 
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-26-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" />
 
 For Express, we see that the red boxes are generally on the least squares line, except for the smallest size. This means that Express shirts are generally a good fit at the chest and neck for the 4 largest sizes, but the smallest shirt size is a bit too small at the chest for the neck size.
 
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-27-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" />
 
 For Brooks Brothers, the red boxes are a bit below the least squares line for the 3 smallest sizes and a little above the line for the largest size. This means that the 3 smallest sizes are a bit too small in the chest for our customers (in our data set) with those neck sizes and that the largest shirt is a bit big at the chest for that neck size.
 
 
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" />
 
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-28-1} \end{center}
 
-
-\begin{reflect}
-We haven't told you how the customer data we've been using was
-collected. As you compared the brand sizes to this sample data, what
-assumptions were you making about the population that the sample was
-drawn from?
-
-What questions do you have about the sampling procedure?
-\end{reflect}
+<div class="reflect">
+<p>We haven’t told you how the customer data we’ve been using was collected. As you compared the brand sizes to this sample data, what assumptions were you making about the population that the sample was drawn from?</p>
+<p>What questions do you have about the sampling procedure?</p>
+</div>
 
 ## Model Interpretation
 
@@ -500,9 +453,7 @@ sat %>%
     theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-33-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" />
 
 First things first. Let's describe the scatterplot. 
 
@@ -625,11 +576,9 @@ sat %>%
 ## 4.133558
 ```
 
-\begin{reflect}
-Does it make sense to use this model for high school GPA's
-\textgreater{} 4? Some high schools have a max GPA of 5.0 due to the
-weighting of advanced courses.
-\end{reflect}
+<div class="reflect">
+<p>Does it make sense to use this model for high school GPA’s &gt; 4? Some high schools have a max GPA of 5.0 due to the weighting of advanced courses.</p>
+</div>
 
 - What is the maximum high school GPA in this data set? 
 - What if your college doesn't allow for GPA's above 4.0? 
@@ -667,9 +616,7 @@ sat %>%
   theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-41-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" />
 
 Below we calculate $SSE$ (the sum of squared errors/residuals), and the standard deviation of the residuals ($s_e$).
 
@@ -739,8 +686,7 @@ Let's study how *models reduce unexplained variation*.
 
 So to study how models reduce unexplained variation, we compare the magnitude of the residuals from a linear regression model (which uses the predictor $X$) with the original deviations from the mean (which do not use the predictor $X$).
 
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-45-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-45-1.png" width="672" style="display: block; margin: auto;" />
 
 
 We started with the sum of the deviations from the mean $SSTO = \sum{(y_i - \bar{y})^2}$ before we had info about high school GPA ($X$).
@@ -758,9 +704,9 @@ Two extreme cases:
 
 
 
-\begin{mathbox}
-\[ R^2 = 1 - \frac{SSE}{SSTO} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}\]
-\end{mathbox}
+<div class="mathbox">
+<p><span class="math display">\[ R^2 = 1 - \frac{SSE}{SSTO} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}\]</span></p>
+</div>
 
 In R, `lm()` will calculate R-Squared ($R^2$) for us, but we can also see that it equals the value from the formula above. 
 
@@ -783,7 +729,7 @@ glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.608         0.604 0.281      160. 1.18e-22     1  -14.9  35.7  43.7
-## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 - Is there a "good" value of $R^2$? Same answer as correlation -- no.
@@ -816,9 +762,7 @@ augment(lm.gpa, data = sat) %>%
     theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-48-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" />
 
 What do you think?
 
@@ -828,15 +772,9 @@ What do you think?
 Studying the residuals can highlight subtle non-linear patterns and thickening in the original scatterplot. Think the residual plot as a magnifying glass that helps you see these patterns.
 
 
-\begin{reflect}
-If there is a pattern in the residuals, then we are systematically over
-or underpredicting our outcomes. What if we are systematically
-overpredicting the outcome for a group? What if we are systematically
-underpredicting the outcome for a different group? Consider a model for
-predicting home values for Zillow or consider an admissions model
-predicting college GPA. What are the real human consequences if there is
-a pattern in the residuals?
-\end{reflect}
+<div class="reflect">
+<p>If there is a pattern in the residuals, then we are systematically over or underpredicting our outcomes. What if we are systematically overpredicting the outcome for a group? What if we are systematically underpredicting the outcome for a different group? Consider a model for predicting home values for Zillow or consider an admissions model predicting college GPA. What are the real human consequences if there is a pattern in the residuals?</p>
+</div>
 
 ### Sensitivity Analysis
 
@@ -855,9 +793,7 @@ dat %>%
   theme_classic() 
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-51-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-51-1.png" width="672" style="display: block; margin: auto;" />
 
 ```r
 dat %>%
@@ -868,9 +804,7 @@ dat %>%
   theme_classic() 
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-51-2} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-51-2.png" width="672" style="display: block; margin: auto;" />
 
 ```r
 #compare conclusions
@@ -957,9 +891,7 @@ gapminder %>%
   theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-52-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-52-1.png" width="672" style="display: block; margin: auto;" />
 
 Based on this plot, we see that the spread is roughly equal around the curved relationship (-> focus on transforming $X$) and that it is concave down and positive (quadrant 2: top left). This suggests that we focus on going down the ladder with $X$. 
 
@@ -977,9 +909,7 @@ gapminder %>%
   theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-53-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" />
 
 Not quite straight. Let's keep going.
 
@@ -993,9 +923,7 @@ gapminder %>%
   theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-54-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-54-1.png" width="672" style="display: block; margin: auto;" />
 
 Not quite straight. Let's keep going.
 
@@ -1009,9 +937,7 @@ gapminder %>%
   theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-55-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" />
 
 Getting better. Let's try to keep going.
 
@@ -1026,9 +952,7 @@ gapminder %>%
   theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-56-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" />
 
 TOO FAR! Back up. Let's stick with log(gdpPercap).
 
@@ -1045,9 +969,7 @@ gapminder %>%
   theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-57-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" />
 
 That doesn't change it much. Maybe this is as good as we are going to get. 
 
@@ -1120,9 +1042,7 @@ dat %>%
     theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-59-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-59-1.png" width="672" style="display: block; margin: auto;" />
 
 ```r
 dat %>%
@@ -1136,9 +1056,9 @@ dat %>%
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                           203.97                             20.16  
+##                          190.588                            23.728  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                            -5.12
+##                           -5.347
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
@@ -1149,9 +1069,7 @@ require(gam)
 plot(gam(y ~ s(x), data = dat))
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-60-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" />
 
 
 
@@ -1275,15 +1193,10 @@ $$\hbox{Predicted Price} = 174653 + 65261 \times 0 = \$ 174,653$$
 
 The difference between these predicted prices is $\hat{\beta}_1$ = \$65,261, the estimated value of the "slope" for the indicator variable.
 
-\begin{reflect}
-So is this how much a fireplace is worth? If I installed a fireplace in
-my house, should the value of my house go up \$65,260?
-
-\textbf{No}, because we should not make causal statements based on
-observational data without thinking deeply about the context. What could
-be confounding this relationship? What third variable may be related to
-both the price and whether or not a house has a fireplace?
-\end{reflect}
+<div class="reflect">
+<p>So is this how much a fireplace is worth? If I installed a fireplace in my house, should the value of my house go up $65,260?</p>
+<p><strong>No</strong>, because we should not make causal statements based on observational data without thinking deeply about the context. What could be confounding this relationship? What third variable may be related to both the price and whether or not a house has a fireplace?</p>
+</div>
 
 ### Confounder Adjustment
 
@@ -1297,9 +1210,7 @@ homes %>%
     theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-66-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" />
 
 Is the presence of a fireplace related to area of living space?
 
@@ -1311,9 +1222,7 @@ homes %>%
     theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-67-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" />
 
 We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, `Living.Area` could confound the relationship between `AnyFireplace` and `Price` because it is related to both variables. That is, it is possible that Living Area is a cause of having a fireplace (if you have a bigger house, you have more space to put in a fireplace) and Living Area also clearly is a cause of Price (the bigger the house, the more it costs).
 
@@ -1409,9 +1318,7 @@ homes %>%
     theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-69-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-69-1.png" width="672" style="display: block; margin: auto;" />
 
 or we could use our model to plot the lines for us.
 
@@ -1425,9 +1332,7 @@ lm.home2 %>%
     theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-70-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-70-1.png" width="672" style="display: block; margin: auto;" />
 
 Let's try and fit two separate lines to these two groups of homes, home with any fireplaces and home with no fireplaces. Do these lines have the same intercepts? Same slopes?
 
@@ -1440,9 +1345,7 @@ homes %>%
     theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-71-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-71-1.png" width="672" style="display: block; margin: auto;" />
 
 In this case, it looks as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, the increase in your average price for every 1 square foot is greater for a home with a fireplace than that for homes without fireplaces (slopes are different).
 
@@ -1451,18 +1354,12 @@ In this case, it looks as though having a fireplace in your house slightly chang
 
 We can allow for different slopes within one regression model (!), rather than fitting two separate models. 
 
-\begin{reflect}
-When should we fit only one model; when should we fit separate models?
-
-If we fit separate models, we are \textbf{stratifying} and then
-modeling. But what if some of the strata are small?
-
-Fitting one model allows us to ``borrow information across groups.''
-
-There is no one right answer. Researchers struggle with this decision
-\href{https://www.ncbi.nlm.nih.gov/pubmed/22125224}{to stratify or not
-to stratify}.
-\end{reflect}
+<div class="reflect">
+<p>When should we fit only one model; when should we fit separate models?</p>
+<p>If we fit separate models, we are <strong>stratifying</strong> and then modeling. But what if some of the strata are small?</p>
+<p>Fitting one model allows us to “borrow information across groups.”</p>
+<p>There is no one right answer. Researchers struggle with this decision <a href="https://www.ncbi.nlm.nih.gov/pubmed/22125224">to stratify or not to stratify</a>.</p>
+</div>
 
 - If we add a variable in the model (without an interaction), it only changes the intercept.
 
@@ -1631,9 +1528,7 @@ boot %>%
     theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-76-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-76-1.png" width="672" style="display: block; margin: auto;" />
 
 We see that if we were to have a slightly different sample (drawn from our "fake" population), then the difference in the slope could be as long as 0 and as large as 50.
 
@@ -1689,12 +1584,9 @@ boot %>%
 ## 1 7.686552 45.43513
 ```
 
-\begin{reflect}
-Based on this evidence, do you think it is possible that the slopes are
-the same for the two types of homes (with and without fireplaces)? How
-would you justify your answer? Consider the plausible values of the
-difference in slopes given by the interval above.
-\end{reflect}
+<div class="reflect">
+<p>Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes (with and without fireplaces)? How would you justify your answer? Consider the plausible values of the difference in slopes given by the interval above.</p>
+</div>
 
 ### Redundancy and Multicollinearity {#redundant}
 
@@ -1733,9 +1625,7 @@ homes %>%
   theme_classic()
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-81-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-81-1.png" width="672" style="display: block; margin: auto;" />
 
 ```r
 homes %>%
@@ -1773,9 +1663,7 @@ source('Data/ggavplot.R')
 ggAVPLOTS(lm.home4)
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-82-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-82-1.png" width="672" style="display: block; margin: auto;" />
 
 If we were to remove `Rooms` as it seems to be redundant, containing similar information as `Bedrooms`, we get a bit different estimated slope coefficients.
 
@@ -1818,7 +1706,7 @@ glance(lm.home4)
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.532         0.531 67388.      491. 1.58e-282     4 -21662. 43335. 43368.
-## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 ```r
@@ -1830,7 +1718,7 @@ glance(lm.home5)
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.530         0.529 67552.      648. 6.15e-282     3 -21666. 43343. 43370.
-## # ... with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 **Fun Fact**: Adding an explanatory variable $X$ to the model will always increase R-squared or keep it the same. 
@@ -1883,9 +1771,7 @@ In a DAG, we have circles or **nodes** that represented variables and arrow or *
 ## Error in get(genname, envir = envir) : object 'testthat_print' not found
 ```
 
-
-
-\begin{center}\includegraphics{03-linear-regression_files/figure-latex/unnamed-chunk-85-1} \end{center}
+<img src="03-linear-regression_files/figure-html/unnamed-chunk-85-1.png" width="672" style="display: block; margin: auto;" />
 
 
 

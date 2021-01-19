@@ -248,15 +248,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="logistic-model-evaluation.html"><a href="logistic-model-evaluation.html"><i class="fa fa-check"></i><b>4.5</b> Logistic Model Evaluation</a></li>
 <li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
+<li class="chapter" data-level="4.7" data-path="chapter-4-major-takeaways.html"><a href="chapter-4-major-takeaways.html"><i class="fa fa-check"></i><b>4.7</b> Chapter 4 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="randvariability.html"><a href="randvariability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
-<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a></li>
-<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a></li>
-<li class="chapter" data-level="5.3" data-path="simulating-random-sampling-from-a-population.html"><a href="simulating-random-sampling-from-a-population.html"><i class="fa fa-check"></i><b>5.3</b> Simulating Random Sampling from a Population</a></li>
-<li class="chapter" data-level="5.4" data-path="irl-bootstrapping.html"><a href="irl-bootstrapping.html"><i class="fa fa-check"></i><b>5.4</b> IRL: Bootstrapping</a></li>
-<li class="chapter" data-level="5.5" data-path="simulating-randomization-into-groups.html"><a href="simulating-randomization-into-groups.html"><i class="fa fa-check"></i><b>5.5</b> Simulating Randomization into Groups</a></li>
-<li class="chapter" data-level="5.6" data-path="irl-randomization-tests.html"><a href="irl-randomization-tests.html"><i class="fa fa-check"></i><b>5.6</b> IRL: Randomization Tests</a></li>
-<li class="chapter" data-level="5.7" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.7</b> Chapter 5 Major Takeaways</a></li>
+<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="sampling-variability.html"><a href="sampling-variability.html#simulating-random-sampling-from-a-population"><i class="fa fa-check"></i><b>5.1.1</b> Simulating Random Sampling from a Population</a></li>
+<li class="chapter" data-level="5.1.2" data-path="sampling-variability.html"><a href="sampling-variability.html#irl-bootstrapping"><i class="fa fa-check"></i><b>5.1.2</b> IRL: Bootstrapping</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="randomization-variability.html"><a href="randomization-variability.html#simulating-randomization-into-groups"><i class="fa fa-check"></i><b>5.2.1</b> Simulating Randomization into Groups</a></li>
+<li class="chapter" data-level="5.2.2" data-path="randomization-variability.html"><a href="randomization-variability.html#irl-randomization-tests"><i class="fa fa-check"></i><b>5.2.2</b> IRL: Randomization Tests</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.3</b> Chapter 5 Major Takeaways</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>6</b> Randomness and Probability</a><ul>
 <li class="chapter" data-level="6.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>6.1</b> Three Types of Probability</a></li>
@@ -367,18 +370,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.1.1</span> Bootstrap Standard Error Estimate</h3>
 <p>We started this chapter with a question about arrival delay times in the winter compared to the summer. Based on one sample of 100 flights, we estimated that in the winter, the delay times are on average about 0.6 minutes less than in the summer. How certain are we about this number?</p>
 <p>Let’s resample our sample and quantify our uncertainty through bootstrapping.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="standard-error.html#cb298-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
-<span id="cb298-2"><a href="standard-error.html#cb298-2"></a>    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
-<span id="cb298-3"><a href="standard-error.html#cb298-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
-<span id="cb298-4"><a href="standard-error.html#cb298-4"></a><span class="st">      </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season)) <span class="co"># Fit linear model</span></span>
-<span id="cb298-5"><a href="standard-error.html#cb298-5"></a>)</span>
-<span id="cb298-6"><a href="standard-error.html#cb298-6"></a></span>
-<span id="cb298-7"><a href="standard-error.html#cb298-7"></a></span>
-<span id="cb298-8"><a href="standard-error.html#cb298-8"></a><span class="co"># Bootstrap Standard Error Estimates of coefficients</span></span>
-<span id="cb298-9"><a href="standard-error.html#cb298-9"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb298-10"><a href="standard-error.html#cb298-10"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
-<span id="cb298-11"><a href="standard-error.html#cb298-11"></a>        <span class="dt">se_Intercept =</span> <span class="kw">sd</span>(Intercept),</span>
-<span id="cb298-12"><a href="standard-error.html#cb298-12"></a>        <span class="dt">se_seasonwinter =</span> <span class="kw">sd</span>(seasonwinter))</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="standard-error.html#cb237-1"></a>boot_data &lt;-<span class="st"> </span>mosaic<span class="op">::</span><span class="kw">do</span>(<span class="dv">1000</span>)<span class="op">*</span>( </span>
+<span id="cb237-2"><a href="standard-error.html#cb237-2"></a>    flights_samp <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
+<span id="cb237-3"><a href="standard-error.html#cb237-3"></a><span class="st">      </span><span class="kw">sample_frac</span>(<span class="dt">replace =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Generate by resampling with replacement</span></span>
+<span id="cb237-4"><a href="standard-error.html#cb237-4"></a><span class="st">      </span><span class="kw">with</span>(<span class="kw">lm</span>(arr_delay <span class="op">~</span><span class="st"> </span>season)) <span class="co"># Fit linear model</span></span>
+<span id="cb237-5"><a href="standard-error.html#cb237-5"></a>)</span>
+<span id="cb237-6"><a href="standard-error.html#cb237-6"></a></span>
+<span id="cb237-7"><a href="standard-error.html#cb237-7"></a></span>
+<span id="cb237-8"><a href="standard-error.html#cb237-8"></a><span class="co"># Bootstrap Standard Error Estimates of coefficients</span></span>
+<span id="cb237-9"><a href="standard-error.html#cb237-9"></a>boot_data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb237-10"><a href="standard-error.html#cb237-10"></a><span class="st">    </span><span class="kw">summarize</span>(</span>
+<span id="cb237-11"><a href="standard-error.html#cb237-11"></a>        <span class="dt">se_Intercept =</span> <span class="kw">sd</span>(Intercept),</span>
+<span id="cb237-12"><a href="standard-error.html#cb237-12"></a>        <span class="dt">se_seasonwinter =</span> <span class="kw">sd</span>(seasonwinter))</span></code></pre></div>
 <pre><code>##   se_Intercept se_seasonwinter
 ## 1     5.331612        6.781946</code></pre>
 <p>The standard error for the regression coefficient for <code>seasonwinter</code> is 6.8 minutes using the bootstrapping technique. That tells us that on average, the difference in mean arrival delays between winter and summer could be 6.8 minutes greater or smaller. Also, this tells us that our sample estimate could be off the true difference in the population by as much as 2*SE = 2*6.8 = 13.6 minutes (think back to the 68-95-99.7 Rule). In the context of the scale of the observed difference (half a minute), we are very uncertain!</p>
@@ -391,8 +394,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The other tool we can use to get our standard errors is with mathematical theory and probability. Using probability, we can write out equations to estimate the standard error. If you are interested in learning about these equations, you should take Mathematical Statistics!</p>
 <p>For this class, you just need to know that R knows these equations and calculates the classical standard error for us.</p>
 <p>In fact, you’ve already been looking at them in the output of the fit linear model. With the tidy output below, look for the column that says <code>std.error</code>. These are the <strong>classical standard errors</strong>.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="standard-error.html#cb300-1"></a>lm.delay <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb300-2"><a href="standard-error.html#cb300-2"></a><span class="st">  </span><span class="kw">tidy</span>() <span class="co">#SE for each estimate is in the std.error column</span></span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="standard-error.html#cb239-1"></a>lm.delay <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb239-2"><a href="standard-error.html#cb239-2"></a><span class="st">  </span><span class="kw">tidy</span>() <span class="co">#SE for each estimate is in the std.error column</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   term         estimate std.error statistic p.value
 ##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;

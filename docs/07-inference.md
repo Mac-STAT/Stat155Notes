@@ -31,7 +31,7 @@ lm.delay %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term         estimate std.error statistic p.value
 ##   <chr>           <dbl>     <dbl>     <dbl>   <dbl>
 ## 1 (Intercept)     6.69       4.87    1.37     0.172
@@ -104,7 +104,7 @@ lm.delay %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term         estimate std.error statistic p.value
 ##   <chr>           <dbl>     <dbl>     <dbl>   <dbl>
 ## 1 (Intercept)     6.69       4.87    1.37     0.172
@@ -130,36 +130,10 @@ A **confidence interval** (also known as an interval estimate) is an interval of
 Above, we used the standard error (SE) to create an interval by going up 2 SE's and going down SE's from the estimate. 
 
 $$\text{Estimate }\pm 2*SE(\text{Estimate}) = (\text{Estimate} - 2*\text{SE}, \text{Estimate} + 2*\text{SE})$$
+
 ### Properties of Confidence Intervals
 
 So, how "good" of a guess is this? If our sampling distribution is roughly Normal (unimodal, symmetric), then we know that the sample estimate in about 95% of the random samples should be within 2 standard deviations of the true population parameter. 
-
-
-```r
-## Plots area between x1 and x2 for the standard normal
-## To plot tails, let x1 = -4 or x2 = 4
-plot_area_std_normal <- function(x1, x2, title = "") {
-    x <- seq(-4, 4, 0.01)
-    y <- dnorm(x)
-    plot(x, y, type = "l", main = title, xlab = "x", ylab = "Density")
-    area <- pnorm(x2) - pnorm(x1)
-    bool <- x >= x1 & x <= x2
-    x_shaded <- x[bool]
-    y_shaded <- y[bool]
-    if (x1 == -4) {
-        area <- pnorm(x2)
-        x1 <- NULL
-    }
-    if (x2 == 4) {
-        area <- 1-pnorm(x1)
-        x2 <- NULL
-    }
-    abline(v = c(x1, x2), col = "red", lty = "dashed", lwd = 2)
-    polygon(x = c(x_shaded, tail(x_shaded, 1), head(x_shaded, 1)), y = c(y_shaded, 0, 0), col = "darkorchid")
-    text(x = 3, y = 0.3, paste("Area =", round(area, 3)))
-}
-plot_area_std_normal(-2, 2, title = "P(-2 < X < 2)")
-```
 
 <img src="07-inference_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
 
@@ -201,7 +175,7 @@ Let's look at the confidence intervals for the first 100 random samples from the
 <img src="07-inference_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" />
 
 ```
-## # A tibble: 2 x 3
+## # A tibble: 2 × 3
 ##   SlopeCover     n  prop
 ##   <chr>      <int> <dbl>
 ## 1 No            24 0.048
@@ -209,27 +183,6 @@ Let's look at the confidence intervals for the first 100 random samples from the
 ```
 
 This makes sense given our **interval construction process**. If the estimate is within 2 standard errors of the true population parameter (between the dashed lines below), then the interval will contain the true population parameter. If the estimate is not within 2 standard errors of the true population parameter (outside the dashed lines below), then the interval will NOT contain the true population parameter.
-
-
-```r
-dat <- data.frame(z = seq(-4,4,by=.01))
-dat <- dat %>% mutate(f = dnorm(z))
-dat2 <- data.frame(x = c(1,-2.3), y = c(0.01,0.03), x1 = c(1,-2.3) - 2, x2 =c(1,-2.3) + 2, y1 = c(0.01,0.03), y2= c(0.01,0.03))
-
-dat %>%
-  ggplot(aes(x = z, y = f)) + 
-  geom_line(color='grey') + 
-  geom_hline(yintercept = 0) + 
-  geom_vline(xintercept = c(-2,2,0),linetype = c('dashed','dashed','solid')) + 
-  geom_point(data = dat2, aes(x = x, y=y),color = 'blue') + 
-  geom_segment(data=dat2, aes(x =x1, xend = x2, y = y1, yend=y2),color = 'blue') + 
-  labs(x = 'Number of SEs away from Population Parameter Value',y='') +
-  scale_x_continuous(breaks=c(-2,0,2)) + 
-  theme_classic() +
-  theme(axis.line.y=element_blank(),
-      axis.text.y=element_blank(),
-      axis.ticks.y=element_blank())
-```
 
 <img src="07-inference_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" />
 
@@ -364,8 +317,8 @@ Rather than using the classical approach to create confidence intervals, we can 
 # Bootstrap Confidence Interval
 boot_data %>% 
     summarize(
-        lb = quantile(seasonwinter, 0.025),
-        ub = quantile(seasonwinter, 0.975))
+        lb = quantile(seasonwinter, 0.025), # alpha/2
+        ub = quantile(seasonwinter, 0.975)) # 1 - alpha/2
 ```
 
 ```
@@ -381,30 +334,36 @@ In the modern age, computing power allows us to perform bootstrapping easily to 
 
 If certain assumptions hold, the mathematical theory proves to be just as accurate and less computationally-intensive than bootstrapping. Many scientists using statistics right now learned the theory because when they learned statistics, computers were not powerful enough to handle techniques such as bootstrapping.
 
-Why do we teach both the mathematical theory and bootstrapping? You will encounter both types of techniques in your fields, and you'll need to have an understanding of what these techniques are to bridge the gap until statistical inference uses modern computational techniques more widely.
+**Why do we teach both the mathematical theory and bootstrapping?** You will encounter both types of techniques in your fields, and you'll need to have an understanding of these techniques until modern computational techniques become more widely used.
 
 ### Confidence Interval Interpretation
 
-So how should we talk about these intervals the we create?
+**So how can and should we talk about these intervals?**
 
 In general, this is what we know about confidence intervals:
 
-- The estimated interval provides plausible values for true population parameter based on our sample data.
+- The estimated interval provides *plausible values* for true population parameter based on our sample data.
 - Assuming the sampling distribution model is accurate, we are 95% confident that our confidence interval of (lower value, upper value) contains the true population parameter.
-- We are confident in the interval construction process because we expect 95% of samples to lead to intervals that contain the true population parameter value. We just don't know if our particular interval from our sample contains that true population parameter value or not.
+- We are confident in the interval construction process because *we expect 95% of samples to lead to intervals that contain the true population parameter value*. We just don't know if our particular interval from our sample contains that true population parameter value or not.
 - It is useful to notice whether a slope of 0 or odds ratio of 1 is a plausible value because these values indicate no differences.
 
-Most importantly, we should **incorporate the data context and describe the population parameter we are trying to learn about**. For example, let's interpret the bootstrap confidence interval of (-13.9,	12.3) from above; notice how we rounded the lower and upper values so as to not overstate our certainty. 
 
-- Based on a sample of 100 flights from NYC, we estimate that the true mean arrival delays are between 13.9 minutes shorter and 12.3 minutes longer in winter as compared to summer months in NYC. [Notice the data context]
-- We created this interval estimate such that we'd expect that 95% of the time, we'd capture the true difference in seasons but we cannot know for sure for this interval. [Notice how we've written out the population parameter in context]
-- Additionally, this interval is quite wide (and containing 0) highlighting our uncertainty and direction of the relationship between season and delay times. [Notice how we are acknowledging the uncertainty in our conclusions]
+<div class="reflect">
+<p>Most importantly, how can we incorporate the data context in our interpretation?</p>
+</div>
+ 
+
+For example, let's interpret the bootstrap confidence interval of (-13.9,	12.3) from above; notice how we rounded the lower and upper values so as to not overstate our certainty. 
+
+- Based on a sample of 100 flights from NYC, we estimate that the true mean arrival delays are between 13.9 minutes shorter and 12.3 minutes longer in winter as compared to summer months in NYC. [*Notice the data context*]
+- We created this interval estimate such that we'd expect that 95% of the time, we'd capture the true difference in seasons but we cannot know for sure for this interval. [*Notice how we've written out the population parameter in context*]
+- Additionally, this interval is quite wide (and containing 0) highlighting our uncertainty and direction of the relationship between season and delay times. [*Notice how we are acknowledging the uncertainty in our conclusions*]
 
 
 
 ### More Examples
 
-We'll discuss a few more examples of models and confidence intervals based on those models. 
+To demonstrate code and interpretations, we'll discuss examples of confidence intervals based on a few more models. 
 
 #### Linear Regression Model
 
@@ -420,7 +379,7 @@ lm.delay2 %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)    -2.59    1.86       -1.39 1.66e- 1
@@ -482,7 +441,7 @@ glm.afternoon %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term         estimate std.error statistic p.value
 ##   <chr>           <dbl>     <dbl>     <dbl>   <dbl>
 ## 1 (Intercept)    -0.123     0.286    -0.428   0.668
@@ -670,7 +629,7 @@ Test statistics are random variables! Why? Because they are based on our random 
 
 What test statistics are we likely to get if $H_0$ is true? The distribution of the test statistic introduced above "under $H_0$" (that is, if $H_0$ is true) is shown below. Note that it is centered at 0. This distribution shows that if indeed the population parameter equals the null value, there is variation in the test statistics we might obtain from random samples, but most test statistics are around zero.
 
-<img src="07-inference_files/figure-html/unnamed-chunk-26-1.png" width="768" style="display: block; margin: auto;" />
+<img src="07-inference_files/figure-html/unnamed-chunk-27-1.png" width="768" style="display: block; margin: auto;" />
 
 It would be very unlikely for us to get a pretty large (extreme) test statistic if indeed $H_0$ were true. Why? The density drops rapidly at more extreme values.
 
@@ -689,12 +648,12 @@ Suppose that our observed test statistic for a slope coefficient is 2. What test
 
 The p-value is the area under the curve of the probability density function in those "as or more extreme" regions.
 
-<img src="07-inference_files/figure-html/unnamed-chunk-27-1.png" width="960" style="display: block; margin: auto;" />
+<img src="07-inference_files/figure-html/unnamed-chunk-28-1.png" width="960" style="display: block; margin: auto;" />
 
 
 Suppose the test statistic for a slope coefficient is -0.5. This means that the estimated slope is half of a standard error away from 0, which indicates no relationship. This is not the far and happens quite frequently, about 62% of the time, when the true slope is actually 0.
 
-<img src="07-inference_files/figure-html/unnamed-chunk-28-1.png" width="960" style="display: block; margin: auto;" />
+<img src="07-inference_files/figure-html/unnamed-chunk-29-1.png" width="960" style="display: block; margin: auto;" />
 
 
 #### Making Decisions
@@ -794,7 +753,7 @@ mod_homes %>% tidy()
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic   p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)   13439.   4992.        2.69 7.17e-  3
@@ -843,7 +802,7 @@ mod_movies %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic     p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>       <dbl>
 ## 1 (Intercept)   0.152     0.0296     5.15  0.000000258

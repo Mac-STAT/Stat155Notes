@@ -140,11 +140,12 @@ A **confidence interval** (also known as an interval estimate) is an interval of
 Above, we used the standard error (SE) to create an interval by going up 2 SE's and going down SE's from the estimate. 
 
 $$\text{Estimate }\pm 2*SE(\text{Estimate}) = (\text{Estimate} - 2*\text{SE}, \text{Estimate} + 2*\text{SE})$$
+
 ### Properties of Confidence Intervals
 
 So, how "good" of a guess is this? If our sampling distribution is roughly Normal (unimodal, symmetric), then we know that the sample estimate in about 95% of the random samples should be within 2 standard deviations of the true population parameter. 
 
-```{r}
+```{r echo=FALSE}
 ## Plots area between x1 and x2 for the standard normal
 ## To plot tails, let x1 = -4 or x2 = 4
 plot_area_std_normal <- function(x1, x2, title = "") {
@@ -247,7 +248,7 @@ sim_data %>%
 
 This makes sense given our **interval construction process**. If the estimate is within 2 standard errors of the true population parameter (between the dashed lines below), then the interval will contain the true population parameter. If the estimate is not within 2 standard errors of the true population parameter (outside the dashed lines below), then the interval will NOT contain the true population parameter.
 
-```{r}
+```{r echo=FALSE}
 dat <- data.frame(z = seq(-4,4,by=.01))
 dat <- dat %>% mutate(f = dnorm(z))
 dat2 <- data.frame(x = c(1,-2.3), y = c(0.01,0.03), x1 = c(1,-2.3) - 2, x2 =c(1,-2.3) + 2, y1 = c(0.01,0.03), y2= c(0.01,0.03))
@@ -368,8 +369,8 @@ Rather than using the classical approach to create confidence intervals, we can 
 # Bootstrap Confidence Interval
 boot_data %>% 
     summarize(
-        lb = quantile(seasonwinter, 0.025),
-        ub = quantile(seasonwinter, 0.975))
+        lb = quantile(seasonwinter, 0.025), # alpha/2
+        ub = quantile(seasonwinter, 0.975)) # 1 - alpha/2
 ```
 
 This interval construction process has the same general properties that the classical approach and the same interpretation, which we'll talk about next.
@@ -380,30 +381,36 @@ In the modern age, computing power allows us to perform bootstrapping easily to 
 
 If certain assumptions hold, the mathematical theory proves to be just as accurate and less computationally-intensive than bootstrapping. Many scientists using statistics right now learned the theory because when they learned statistics, computers were not powerful enough to handle techniques such as bootstrapping.
 
-Why do we teach both the mathematical theory and bootstrapping? You will encounter both types of techniques in your fields, and you'll need to have an understanding of what these techniques are to bridge the gap until statistical inference uses modern computational techniques more widely.
+**Why do we teach both the mathematical theory and bootstrapping?** You will encounter both types of techniques in your fields, and you'll need to have an understanding of these techniques until modern computational techniques become more widely used.
 
 ### Confidence Interval Interpretation
 
-So how should we talk about these intervals the we create?
+**So how can and should we talk about these intervals?**
 
 In general, this is what we know about confidence intervals:
 
-- The estimated interval provides plausible values for true population parameter based on our sample data.
+- The estimated interval provides *plausible values* for true population parameter based on our sample data.
 - Assuming the sampling distribution model is accurate, we are 95% confident that our confidence interval of (lower value, upper value) contains the true population parameter.
-- We are confident in the interval construction process because we expect 95% of samples to lead to intervals that contain the true population parameter value. We just don't know if our particular interval from our sample contains that true population parameter value or not.
+- We are confident in the interval construction process because *we expect 95% of samples to lead to intervals that contain the true population parameter value*. We just don't know if our particular interval from our sample contains that true population parameter value or not.
 - It is useful to notice whether a slope of 0 or odds ratio of 1 is a plausible value because these values indicate no differences.
 
-Most importantly, we should **incorporate the data context and describe the population parameter we are trying to learn about**. For example, let's interpret the bootstrap confidence interval of (-13.9,	12.3) from above; notice how we rounded the lower and upper values so as to not overstate our certainty. 
 
-- Based on a sample of 100 flights from NYC, we estimate that the true mean arrival delays are between 13.9 minutes shorter and 12.3 minutes longer in winter as compared to summer months in NYC. [Notice the data context]
-- We created this interval estimate such that we'd expect that 95% of the time, we'd capture the true difference in seasons but we cannot know for sure for this interval. [Notice how we've written out the population parameter in context]
-- Additionally, this interval is quite wide (and containing 0) highlighting our uncertainty and direction of the relationship between season and delay times. [Notice how we are acknowledging the uncertainty in our conclusions]
+```{block type="reflect", echo=TRUE}
+Most importantly, how can we incorporate the data context in our interpretation?
+```
+ 
+
+For example, let's interpret the bootstrap confidence interval of (-13.9,	12.3) from above; notice how we rounded the lower and upper values so as to not overstate our certainty. 
+
+- Based on a sample of 100 flights from NYC, we estimate that the true mean arrival delays are between 13.9 minutes shorter and 12.3 minutes longer in winter as compared to summer months in NYC. [*Notice the data context*]
+- We created this interval estimate such that we'd expect that 95% of the time, we'd capture the true difference in seasons but we cannot know for sure for this interval. [*Notice how we've written out the population parameter in context*]
+- Additionally, this interval is quite wide (and containing 0) highlighting our uncertainty and direction of the relationship between season and delay times. [*Notice how we are acknowledging the uncertainty in our conclusions*]
 
 
 
 ### More Examples
 
-We'll discuss a few more examples of models and confidence intervals based on those models. 
+To demonstrate code and interpretations, we'll discuss examples of confidence intervals based on a few more models. 
 
 #### Linear Regression Model
 

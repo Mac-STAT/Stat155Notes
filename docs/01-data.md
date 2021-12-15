@@ -10,14 +10,16 @@ Because data are at the center of all of these endeavors, we will first take tim
 
 ## What is Data?
 
-Data is *anything* that contains information. We typically think of data being stored in spreadsheets, but it can come in many other formats such as images or collections of text (whether 280 character tweets or fictional novels). 
+**Data** *is anything that contains information.* 
+
+We typically think of data being stored in spreadsheets, but it can come in many other formats such as images or collections of text (whether 280 character tweets or fictional novels). 
 
 For example, we can take the pixels of digital images or text from one of the State of the Union addresses and transform them into a tidy, rectangular format. Below we show the top 10 words from the most recent State of the Union address given in the United States (excluding words such as "the", "and", "or", etc.). Notice that we've taken a string of text and converted it to rectangular shape with rows and columns. In this case, each row represents one word and the columns we have are the word and the number of times it appears in the text.
 
 
 
 ```
-## # A tibble: 11 x 2
+## # A tibble: 11 × 2
 ##    word          n
 ##    <chr>     <int>
 ##  1 american     31
@@ -35,12 +37,21 @@ For example, we can take the pixels of digital images or text from one of the St
 
 *If you are interested in analyzing text as data, check out resources such as [Text Mining with R](https://www.tidytextmining.com/) after you complete this course.*
 
+### Tidy Data
+
 One of the first steps of working with any data is to reformat it as a **tidy data** set.
 
-**Tidy data** is a table with the following characteristics:
+**Tidy data** *is a table with the following characteristics*:
 
 - Each row corresponds to an **observation** / **unit** / **case** (e.g., a person, classroom, country, image, word).
 - Each column corresponds to a characteristic or feature or **variable** for those units (e.g. age, average classroom grade, average county income, intensity of red pixels, number of times the word "together" is used).
+
+The following graphic from the book [R for Data Science](http://r4ds.had.co.nz/), by Garrett Grolemund and Hadley Wickham illustrates the features of tidy data.
+
+![The components of a tidy dataset. [Chapter 12](http://r4ds.had.co.nz/tidy-data.html) of R for Data Science](Photos/tidy.png)
+
+
+### Types of Variables
 
 Variables can be either **categorical** or **quantitative**.
 
@@ -49,10 +60,6 @@ Variables can be either **categorical** or **quantitative**.
 - **Quantitative variable:** *A characteristic with measured numerical values with units.*
 
 *Note: Any quantitative variable can be converted into a categorical variable by creating categories defined by intervals or bins of values.* 
-
-The following graphic from the book [R for Data Science](http://r4ds.had.co.nz/), by Garrett Grolemund and Hadley Wickham illustrates the features of tidy data.
-
-![The components of a tidy dataset. [Chapter 12](http://r4ds.had.co.nz/tidy-data.html) of R for Data Science](Photos/tidy.png)
 
 The transformation process from raw data to a tidy data format is often called **feature extraction** and is not a short or easy task. In this introductory course, we will typically work with data that are already in a tidy format.
 

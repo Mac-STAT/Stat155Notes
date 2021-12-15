@@ -92,7 +92,7 @@ model.glm %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>   <dbl>
 ## 1 (Intercept)   15.0       7.38       2.04  0.0415
@@ -115,7 +115,7 @@ tidy(model.glm) %>%
 ```
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   term        estimate
 ##   <chr>          <dbl>
 ## 1 (Intercept)   15.0  
@@ -154,7 +154,7 @@ tidy(model.glm) %>%
 ```
 
 ```
-## # A tibble: 2 x 3
+## # A tibble: 2 × 3
 ##   term        estimate estimate_exp
 ##   <chr>          <dbl>        <dbl>
 ## 1 (Intercept)   15.0    3412315.   
@@ -238,7 +238,7 @@ model.glm %>%
 ```
 
 ```
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ## # Groups:   Fail [2]
 ##    Fail predictFail     n correct  prop
 ##   <dbl> <lgl>       <int> <lgl>   <dbl>
@@ -300,7 +300,7 @@ augment(model.glm, type.predict ='response') %>%
 ```
 
 ```
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ## # Groups:   Fail [2]
 ##    Fail predictFail     n correct  prop
 ##   <dbl> <lgl>       <int> <lgl>   <dbl>

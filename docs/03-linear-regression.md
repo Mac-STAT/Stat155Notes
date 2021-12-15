@@ -271,7 +271,7 @@ body %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)    -3.19     5.50     -0.580 5.62e- 1
@@ -353,7 +353,7 @@ tshirt_mod %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)    -3.19     5.50     -0.580 5.62e- 1
@@ -380,7 +380,7 @@ tshirt_mod2 %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic   p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)   101.       0.330     305.  3.14e-321
@@ -473,7 +473,7 @@ sat %>%
 ```
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   HighHSGPA   Cor
 ##   <lgl>     <dbl>
 ## 1 FALSE     0.316
@@ -490,7 +490,7 @@ sat %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)    1.10     0.167       6.58 1.98e- 9
@@ -591,7 +591,7 @@ sat %>%
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##   `max(high_GPA)`
 ##             <dbl>
 ## 1               4
@@ -654,7 +654,7 @@ sat %>%
 ```
 
 ```
-## # A tibble: 1 x 2
+## # A tibble: 1 × 2
 ##   `sd(univ_GPA)` `2 * sd(univ_GPA)`
 ##            <dbl>              <dbl>
 ## 1          0.447              0.894
@@ -725,7 +725,7 @@ glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 ```
 
 ```
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.608         0.604 0.281      160. 1.18e-22     1  -14.9  35.7  43.7
@@ -882,7 +882,7 @@ Practice: Which quadrant of the circle does this relationship below resemble?
 
 
 ```r
-require(gapminder)
+library(gapminder)
 
 gapminder %>% 
   filter(year > 2005) %>%
@@ -989,7 +989,7 @@ lm.gap %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)     4.95     3.86       1.28 2.02e- 1
@@ -1056,9 +1056,9 @@ dat %>%
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          190.588                            23.728  
+##                          209.366                            17.901  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -5.347
+##                           -4.937
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
@@ -1164,10 +1164,10 @@ lm.home %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term             estimate std.error statistic  p.value
 ##   <chr>               <dbl>     <dbl>     <dbl>    <dbl>
-## 1 (Intercept)       174653.     3419.      51.1 0.      
+## 1 (Intercept)       174653.     3419.      51.1 0       
 ## 2 AnyFireplaceTRUE   65261.     4522.      14.4 1.17e-44
 ```
 
@@ -1287,7 +1287,7 @@ lm.home2 %>%
 ```
 
 ```
-## # A tibble: 3 x 5
+## # A tibble: 3 × 5
 ##   term             estimate std.error statistic   p.value
 ##   <chr>               <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)        13599.   4992.        2.72 6.51e-  3
@@ -1426,7 +1426,7 @@ lm.home3 %>%
 ```
 
 ```
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   term                         estimate std.error statistic  p.value
 ##   <chr>                           <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)                   40901.    8235.        4.97 7.47e- 7
@@ -1486,7 +1486,7 @@ lm.home3 %>%
 ```
 
 ```
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   term                         estimate std.error statistic  p.value
 ##   <chr>                           <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)                   40901.    8235.        4.97 7.47e- 7
@@ -1558,7 +1558,7 @@ lm.home3 %>%
 ```
 
 ```
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   term                         estimate std.error statistic  p.value
 ##   <chr>                           <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)                   40901.    8235.        4.97 7.47e- 7
@@ -1602,7 +1602,7 @@ lm.home4 %>%
 ```
 
 ```
-## # A tibble: 5 x 5
+## # A tibble: 5 × 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)  18937.    6871.        2.76 5.91e- 3
@@ -1677,7 +1677,7 @@ lm.home5 %>%
 ```
 
 ```
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   term        estimate std.error statistic   p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
 ## 1 (Intercept)   21323.   6844.        3.12 1.86e-  3
@@ -1702,7 +1702,7 @@ glance(lm.home4)
 ```
 
 ```
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.532         0.531 67388.      491. 1.58e-282     4 -21662. 43335. 43368.
@@ -1714,7 +1714,7 @@ glance(lm.home5)
 ```
 
 ```
-## # A tibble: 1 x 12
+## # A tibble: 1 × 12
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.530         0.529 67552.      648. 6.15e-282     3 -21666. 43343. 43370.
@@ -1765,11 +1765,6 @@ Choose $X$ variables (& their form) that:
 A full overview of causal inference is beyond the scope of this course, but a first good step in this direction is to consider a **causal model**, which is a representation of the causal mechanism by which data were generated. We typically visualize these models with a graphical structure called a **directed acyclic graph or DAG** for short. 
 
 In a DAG, we have circles or **nodes** that represented variables and arrow or **directed edges** that indicate the causal pathway (arrows point in the direction of the hypothesized casual effect). 
-
-
-```
-## Error in get(genname, envir = envir) : object 'testthat_print' not found
-```
 
 <img src="03-linear-regression_files/figure-html/unnamed-chunk-85-1.png" width="672" style="display: block; margin: auto;" />
 

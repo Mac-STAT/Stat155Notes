@@ -826,7 +826,7 @@ Our friend [J.W. Tukey](https://en.wikipedia.org/wiki/John_Tukey) (the same guy 
 Practice: Which quadrant of the circle does this relationship below resemble? 
 
 ```{r}
-require(gapminder)
+library(gapminder)
 
 gapminder %>% 
   filter(year > 2005) %>%

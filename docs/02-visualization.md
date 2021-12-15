@@ -267,7 +267,7 @@ Whickham %>%
 ```
 
 ```
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ## # Groups:   outcome [2]
 ##   outcome smoker     n relfreq
 ##   <fct>   <fct>  <int>   <dbl>
@@ -286,7 +286,7 @@ Whickham %>%
 ```
 
 ```
-## # A tibble: 4 x 4
+## # A tibble: 4 × 4
 ## # Groups:   smoker [2]
 ##   outcome smoker     n relfreq
 ##   <fct>   <fct>  <int>   <dbl>
@@ -530,10 +530,10 @@ NHANES %>%
 ```
 
 ```
-## # A tibble: 1 x 3
-##   `mean(SleepHrsNight, na… `median(SleepHrsNight, … `mean(SleepHrsNight, trim =…
-##                      <dbl>                    <int>                        <dbl>
-## 1                     6.93                        7                         6.95
+## # A tibble: 1 × 3
+##   `mean(SleepHrsNight, na.rm = TRUE)` `median(SleepHrsNig… `mean(SleepHrsNight,…
+##                                 <dbl>                <int>                 <dbl>
+## 1                                6.93                    7                  6.95
 ```
 
 ```r
@@ -667,7 +667,7 @@ NHANES %>%
 ```
 
 ```
-## # A tibble: 1 x 4
+## # A tibble: 1 × 4
 ##   `diff(range(SleepHr… `IQR(SleepHrsNight… `sd(SleepHrsNight… `var(SleepHrsNigh…
 ##                  <int>               <dbl>              <dbl>              <dbl>
 ## 1                   10                   2               1.35               1.81
@@ -684,7 +684,12 @@ NHANES %>%
 
 
 ```r
-ceo %>% summarize(diff(range(salary)), IQR(salary), sd(salary), var(salary))
+ceo %>%
+  summarize(
+    diff(range(salary)), 
+    IQR(salary), 
+    sd(salary), 
+    var(salary))
 ```
 
 ```
@@ -712,7 +717,7 @@ sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
 ```
-## [1] 0.6733333
+## [1] 0.6906667
 ```
 
 So with this data set, about 68% of the data values fall within 1 SD of the mean.

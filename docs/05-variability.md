@@ -65,7 +65,7 @@ flights_samp1 %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term            estimate std.error statistic p.value
 ##   <chr>              <dbl>     <dbl>     <dbl>   <dbl>
 ## 1 (Intercept)         14.4      6.38      2.26  0.0258
@@ -89,7 +89,7 @@ flights_samp2 %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term            estimate std.error statistic p.value
 ##   <chr>              <dbl>     <dbl>     <dbl>   <dbl>
 ## 1 (Intercept)         3.15      4.46     0.707   0.481
@@ -258,7 +258,7 @@ flights_samp1 %>%
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term            estimate std.error statistic p.value
 ##   <chr>              <dbl>     <dbl>     <dbl>   <dbl>
 ## 1 (Intercept)         14.4      6.38      2.26  0.0258
@@ -387,7 +387,7 @@ flights_samp500 %>%
 ```
 
 ```
-## # A tibble: 2 x 3
+## # A tibble: 2 × 3
 ##   day_hour  median  mean
 ##   <chr>      <dbl> <dbl>
 ## 1 afternoon     -1 12.6 

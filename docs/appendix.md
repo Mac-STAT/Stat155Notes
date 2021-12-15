@@ -17,44 +17,6 @@
 ```
 
 ```
-## Loading required package: xml2
-```
-
-```
-## Loading required package: lattice
-```
-
-```
-## Loading required package: ggformula
-```
-
-```
-## Loading required package: ggstance
-```
-
-```
-## 
-## Attaching package: 'ggstance'
-```
-
-```
-## The following objects are masked from 'package:ggplot2':
-## 
-##     geom_errorbarh, GeomErrorbarh
-```
-
-```
-## 
-## New to ggformula?  Try the tutorials: 
-## 	learnr::run_tutorial("introduction", package = "ggformula")
-## 	learnr::run_tutorial("refining", package = "ggformula")
-```
-
-```
-## Loading required package: Matrix
-```
-
-```
 ## Registered S3 method overwritten by 'mosaic':
 ##   method                           from   
 ##   fortify.SpatialPolygonsDataFrame ggplot2
@@ -64,10 +26,6 @@
 ## 
 ## The 'mosaic' package masks several functions from core packages in order to add 
 ## additional features.  The original behavior of these functions should not be affected by this.
-## 
-## Note: If you use the Matrix package, be sure to load it BEFORE loading mosaic.
-## 
-## Have you tried the ggformula package for your plots?
 ```
 
 ```

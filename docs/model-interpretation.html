@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.6 Model Interpretation | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.6 Model Interpretation | STAT 155 Notes" />
   <meta property="og:type" content="book" />
@@ -32,7 +32,8 @@
   
 <link rel="prev" href="properties-of-least-squares-line.html"/>
 <link rel="next" href="model-evaluation.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,22 +50,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -84,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -117,6 +119,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -133,13 +136,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href = "./">STAT 155 Notes</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="data-collection-and-quality.html"><a href="data-collection-and-quality.html"><i class="fa fa-check"></i><b>1</b> Data Collection and Quality</a><ul>
-<li class="chapter" data-level="1.1" data-path="what-is-data.html"><a href="what-is-data.html"><i class="fa fa-check"></i><b>1.1</b> What is Data?</a></li>
+<li class="chapter" data-level="1" data-path="data-collection-and-quality.html"><a href="data-collection-and-quality.html"><i class="fa fa-check"></i><b>1</b> Data Collection and Quality</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="what-is-data.html"><a href="what-is-data.html"><i class="fa fa-check"></i><b>1.1</b> What is Data?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="what-is-data.html"><a href="what-is-data.html#tidy-data"><i class="fa fa-check"></i><b>1.1.1</b> Tidy Data</a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-data.html"><a href="what-is-data.html#types-of-variables"><i class="fa fa-check"></i><b>1.1.2</b> Types of Variables</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="data-context.html"><a href="data-context.html"><i class="fa fa-check"></i><b>1.2</b> Data Context</a></li>
-<li class="chapter" data-level="1.3" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>1.3</b> Sampling</a><ul>
+<li class="chapter" data-level="1.3" data-path="sampling.html"><a href="sampling.html"><i class="fa fa-check"></i><b>1.3</b> Sampling</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="sampling.html"><a href="sampling.html#sampling-bias"><i class="fa fa-check"></i><b>1.3.1</b> Sampling Bias</a></li>
 <li class="chapter" data-level="1.3.2" data-path="sampling.html"><a href="sampling.html#random-sampling"><i class="fa fa-check"></i><b>1.3.2</b> Random Sampling</a></li>
 <li class="chapter" data-level="1.3.3" data-path="sampling.html"><a href="sampling.html#nonresponse-bias"><i class="fa fa-check"></i><b>1.3.3</b> Nonresponse bias</a></li>
@@ -150,23 +160,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.7" data-path="ethical-considerations.html"><a href="ethical-considerations.html"><i class="fa fa-check"></i><b>1.7</b> Ethical Considerations</a></li>
 <li class="chapter" data-level="1.8" data-path="chapter-1-major-takeaways.html"><a href="chapter-1-major-takeaways.html"><i class="fa fa-check"></i><b>1.8</b> Chapter 1 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a><ul>
+<li class="chapter" data-level="2" data-path="visualizing-data.html"><a href="visualizing-data.html"><i class="fa fa-check"></i><b>2</b> Visualizing Data</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="good-visualization-principles.html"><a href="good-visualization-principles.html"><i class="fa fa-check"></i><b>2.1</b> Good Visualization Principles</a></li>
-<li class="chapter" data-level="2.2" data-path="brief-intro-to-r.html"><a href="brief-intro-to-r.html"><i class="fa fa-check"></i><b>2.2</b> Brief Intro to R</a><ul>
+<li class="chapter" data-level="2.2" data-path="brief-intro-to-r.html"><a href="brief-intro-to-r.html"><i class="fa fa-check"></i><b>2.2</b> Brief Intro to R</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="brief-intro-to-r.html"><a href="brief-intro-to-r.html#basic-syntax"><i class="fa fa-check"></i><b>2.2.1</b> Basic Syntax</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="anatomy-of-a-ggplot-command.html"><a href="anatomy-of-a-ggplot-command.html"><i class="fa fa-check"></i><b>2.3</b> Anatomy of a ggplot command</a></li>
-<li class="chapter" data-level="2.4" data-path="one-categorical-variable.html"><a href="one-categorical-variable.html"><i class="fa fa-check"></i><b>2.4</b> One Categorical Variable</a><ul>
+<li class="chapter" data-level="2.4" data-path="one-categorical-variable.html"><a href="one-categorical-variable.html"><i class="fa fa-check"></i><b>2.4</b> One Categorical Variable</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="one-categorical-variable.html"><a href="one-categorical-variable.html#bar-plot"><i class="fa fa-check"></i><b>2.4.1</b> Bar Plot</a></li>
 <li class="chapter" data-level="2.4.2" data-path="one-categorical-variable.html"><a href="one-categorical-variable.html#pie-chart"><i class="fa fa-check"></i><b>2.4.2</b> Pie Chart</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html"><i class="fa fa-check"></i><b>2.5</b> Two Categorical Variables</a><ul>
+<li class="chapter" data-level="2.5" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html"><i class="fa fa-check"></i><b>2.5</b> Two Categorical Variables</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html#side-by-side-bar-plot"><i class="fa fa-check"></i><b>2.5.1</b> Side by Side Bar Plot</a></li>
 <li class="chapter" data-level="2.5.2" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html#stacked-bar-plot"><i class="fa fa-check"></i><b>2.5.2</b> Stacked Bar Plot</a></li>
 <li class="chapter" data-level="2.5.3" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html#stacked-bar-plot-relative-frequencies"><i class="fa fa-check"></i><b>2.5.3</b> Stacked Bar Plot (Relative Frequencies)</a></li>
 <li class="chapter" data-level="2.5.4" data-path="two-categorical-variables.html"><a href="two-categorical-variables.html#mosaic-plot"><i class="fa fa-check"></i><b>2.5.4</b> Mosaic Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html"><i class="fa fa-check"></i><b>2.6</b> One Quantitative Variable</a><ul>
+<li class="chapter" data-level="2.6" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html"><i class="fa fa-check"></i><b>2.6</b> One Quantitative Variable</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#histogram"><i class="fa fa-check"></i><b>2.6.1</b> Histogram</a></li>
 <li class="chapter" data-level="2.6.2" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#center"><i class="fa fa-check"></i><b>2.6.2</b> Center</a></li>
 <li class="chapter" data-level="2.6.3" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#boxplot"><i class="fa fa-check"></i><b>2.6.3</b> Boxplot</a></li>
@@ -174,18 +189,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.5" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#intro-zscore"><i class="fa fa-check"></i><b>2.6.5</b> Some data accounting</a></li>
 <li class="chapter" data-level="2.6.6" data-path="one-quantitative-variable.html"><a href="one-quantitative-variable.html#z-scores"><i class="fa fa-check"></i><b>2.6.6</b> Z-scores</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="one-quant-and-one-cat-variable.html"><a href="one-quant-and-one-cat-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quant. and One Cat. Variable</a><ul>
-<li class="chapter" data-level="2.7.1" data-path="one-quant-and-one-cat-variable.html"><a href="one-quant-and-one-cat-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
-<li class="chapter" data-level="2.7.2" data-path="one-quant-and-one-cat-variable.html"><a href="one-quant-and-one-cat-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
-<li class="chapter" data-level="2.7.3" data-path="one-quant-and-one-cat-variable.html"><a href="one-quant-and-one-cat-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
+<li class="chapter" data-level="2.7" data-path="one-quant.-and-one-cat.-variable.html"><a href="one-quant.-and-one-cat.-variable.html"><i class="fa fa-check"></i><b>2.7</b> One Quant. and One Cat. Variable</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="one-quant.-and-one-cat.-variable.html"><a href="one-quant.-and-one-cat.-variable.html#multiple-histograms"><i class="fa fa-check"></i><b>2.7.1</b> Multiple Histograms</a></li>
+<li class="chapter" data-level="2.7.2" data-path="one-quant.-and-one-cat.-variable.html"><a href="one-quant.-and-one-cat.-variable.html#multiple-boxplots"><i class="fa fa-check"></i><b>2.7.2</b> Multiple Boxplots</a></li>
+<li class="chapter" data-level="2.7.3" data-path="one-quant.-and-one-cat.-variable.html"><a href="one-quant.-and-one-cat.-variable.html#is-this-a-real-difference"><i class="fa fa-check"></i><b>2.7.3</b> Is this a Real Difference?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a><ul>
+<li class="chapter" data-level="2.8" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html"><i class="fa fa-check"></i><b>2.8</b> Two Quantitative Variables</a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#scatterplot"><i class="fa fa-check"></i><b>2.8.1</b> Scatterplot</a></li>
 <li class="chapter" data-level="2.8.2" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#correlation-coefficient"><i class="fa fa-check"></i><b>2.8.2</b> Correlation Coefficient</a></li>
 <li class="chapter" data-level="2.8.3" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#properties"><i class="fa fa-check"></i><b>2.8.3</b> Properties</a></li>
 <li class="chapter" data-level="2.8.4" data-path="two-quantitative-variables.html"><a href="two-quantitative-variables.html#is-correlation-always-the-right-way-to-judge-strength"><i class="fa fa-check"></i><b>2.8.4</b> Is correlation always the right way to judge strength?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.9" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html"><i class="fa fa-check"></i><b>2.9</b> Three or more variables</a><ul>
+<li class="chapter" data-level="2.9" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html"><i class="fa fa-check"></i><b>2.9</b> Three or more variables</a>
+<ul>
 <li class="chapter" data-level="2.9.1" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#a-bivariate-scatterplot"><i class="fa fa-check"></i><b>2.9.1</b> A bivariate scatterplot</a></li>
 <li class="chapter" data-level="2.9.2" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-color"><i class="fa fa-check"></i><b>2.9.2</b> Enriching with color</a></li>
 <li class="chapter" data-level="2.9.3" data-path="three-or-more-variables.html"><a href="three-or-more-variables.html#enriching-with-shape"><i class="fa fa-check"></i><b>2.9.3</b> Enriching with shape</a></li>
@@ -196,90 +214,108 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.10" data-path="chapter-2-major-takeaways.html"><a href="chapter-2-major-takeaways.html"><i class="fa fa-check"></i><b>2.10</b> Chapter 2 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="linear-regression-models.html"><a href="linear-regression-models.html"><i class="fa fa-check"></i><b>3</b> Linear Regression Models</a><ul>
+<li class="chapter" data-level="3" data-path="linear-regression-models.html"><a href="linear-regression-models.html"><i class="fa fa-check"></i><b>3</b> Linear Regression Models</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="modeling-goals.html"><a href="modeling-goals.html"><i class="fa fa-check"></i><b>3.1</b> Modeling Goals</a></li>
 <li class="chapter" data-level="3.2" data-path="lines.html"><a href="lines.html"><i class="fa fa-check"></i><b>3.2</b> Lines</a></li>
-<li class="chapter" data-level="3.3" data-path="best-fitting-line.html"><a href="best-fitting-line.html"><i class="fa fa-check"></i><b>3.3</b> “Best” fitting line</a><ul>
+<li class="chapter" data-level="3.3" data-path="best-fitting-line.html"><a href="best-fitting-line.html"><i class="fa fa-check"></i><b>3.3</b> “Best” fitting line</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="best-fitting-line.html"><a href="best-fitting-line.html#first-idea"><i class="fa fa-check"></i><b>3.3.1</b> First idea</a></li>
 <li class="chapter" data-level="3.3.2" data-path="best-fitting-line.html"><a href="best-fitting-line.html#second-idea"><i class="fa fa-check"></i><b>3.3.2</b> Second idea</a></li>
 <li class="chapter" data-level="3.3.3" data-path="best-fitting-line.html"><a href="best-fitting-line.html#third-idea"><i class="fa fa-check"></i><b>3.3.3</b> Third idea</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="least-squares.html"><a href="least-squares.html"><i class="fa fa-check"></i><b>3.4</b> Least Squares</a></li>
-<li class="chapter" data-level="3.5" data-path="properties-of-least-squares-line.html"><a href="properties-of-least-squares-line.html"><i class="fa fa-check"></i><b>3.5</b> Properties of Least Squares Line</a><ul>
+<li class="chapter" data-level="3.5" data-path="properties-of-least-squares-line.html"><a href="properties-of-least-squares-line.html"><i class="fa fa-check"></i><b>3.5</b> Properties of Least Squares Line</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="properties-of-least-squares-line.html"><a href="properties-of-least-squares-line.html#real-companies"><i class="fa fa-check"></i><b>3.5.1</b> Real companies</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="model-interpretation.html"><a href="model-interpretation.html"><i class="fa fa-check"></i><b>3.6</b> Model Interpretation</a><ul>
+<li class="chapter" data-level="3.6" data-path="model-interpretation.html"><a href="model-interpretation.html"><i class="fa fa-check"></i><b>3.6</b> Model Interpretation</a>
+<ul>
 <li class="chapter" data-level="3.6.1" data-path="model-interpretation.html"><a href="model-interpretation.html#intercept-hatbeta_0"><i class="fa fa-check"></i><b>3.6.1</b> Intercept (<span class="math inline">\(\hat{\beta}_0\)</span>)</a></li>
 <li class="chapter" data-level="3.6.2" data-path="model-interpretation.html"><a href="model-interpretation.html#slope-hatbeta_1"><i class="fa fa-check"></i><b>3.6.2</b> Slope (<span class="math inline">\(\hat{\beta}_1\)</span>)</a></li>
 <li class="chapter" data-level="3.6.3" data-path="model-interpretation.html"><a href="model-interpretation.html#least-squares-regression-line-haty-hatbeta_0-hatbeta_1x"><i class="fa fa-check"></i><b>3.6.3</b> Least Squares Regression Line (<span class="math inline">\(\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x\)</span>)</a></li>
 <li class="chapter" data-level="3.6.4" data-path="model-interpretation.html"><a href="model-interpretation.html#correlation-vs.-causation"><i class="fa fa-check"></i><b>3.6.4</b> Correlation vs. Causation</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="model-evaluation.html"><a href="model-evaluation.html"><i class="fa fa-check"></i><b>3.7</b> Model Evaluation</a><ul>
+<li class="chapter" data-level="3.7" data-path="model-evaluation.html"><a href="model-evaluation.html"><i class="fa fa-check"></i><b>3.7</b> Model Evaluation</a>
+<ul>
 <li class="chapter" data-level="3.7.1" data-path="model-evaluation.html"><a href="model-evaluation.html#prediction"><i class="fa fa-check"></i><b>3.7.1</b> Prediction</a></li>
 <li class="chapter" data-level="3.7.2" data-path="model-evaluation.html"><a href="model-evaluation.html#prediction-errors"><i class="fa fa-check"></i><b>3.7.2</b> Prediction Errors</a></li>
 <li class="chapter" data-level="3.7.3" data-path="model-evaluation.html"><a href="model-evaluation.html#r2"><i class="fa fa-check"></i><b>3.7.3</b> <span class="math inline">\(R^2\)</span></a></li>
 </ul></li>
-<li class="chapter" data-level="3.8" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html"><i class="fa fa-check"></i><b>3.8</b> Conditions for Linear Regression Models</a><ul>
+<li class="chapter" data-level="3.8" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html"><i class="fa fa-check"></i><b>3.8</b> Conditions for Linear Regression Models</a>
+<ul>
 <li class="chapter" data-level="3.8.1" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#residual-plot"><i class="fa fa-check"></i><b>3.8.1</b> Residual Plot</a></li>
 <li class="chapter" data-level="3.8.2" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#sensitivity-analysis"><i class="fa fa-check"></i><b>3.8.2</b> Sensitivity Analysis</a></li>
 <li class="chapter" data-level="3.8.3" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#issues-and-solutions"><i class="fa fa-check"></i><b>3.8.3</b> Issues and Solutions</a></li>
 <li class="chapter" data-level="3.8.4" data-path="conditions-for-linear-regression-models.html"><a href="conditions-for-linear-regression-models.html#solutions-for-curvature"><i class="fa fa-check"></i><b>3.8.4</b> Solutions for Curvature</a></li>
 </ul></li>
-<li class="chapter" data-level="3.9" data-path="multiple.html"><a href="multiple.html"><i class="fa fa-check"></i><b>3.9</b> Multiple Linear Regression</a><ul>
+<li class="chapter" data-level="3.9" data-path="multiple.html"><a href="multiple.html"><i class="fa fa-check"></i><b>3.9</b> Multiple Linear Regression</a>
+<ul>
 <li class="chapter" data-level="3.9.1" data-path="multiple.html"><a href="multiple.html#indicator-variables"><i class="fa fa-check"></i><b>3.9.1</b> Indicator Variables</a></li>
 <li class="chapter" data-level="3.9.2" data-path="multiple.html"><a href="multiple.html#confounder-adjustment"><i class="fa fa-check"></i><b>3.9.2</b> Confounder Adjustment</a></li>
 <li class="chapter" data-level="3.9.3" data-path="multiple.html"><a href="multiple.html#interaction-variables"><i class="fa fa-check"></i><b>3.9.3</b> Interaction Variables</a></li>
 <li class="chapter" data-level="3.9.4" data-path="multiple.html"><a href="multiple.html#is-the-difference-real"><i class="fa fa-check"></i><b>3.9.4</b> Is the Difference Real?</a></li>
 <li class="chapter" data-level="3.9.5" data-path="multiple.html"><a href="multiple.html#redundant"><i class="fa fa-check"></i><b>3.9.5</b> Redundancy and Multicollinearity</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="selecting-a-model.html"><a href="selecting-a-model.html"><i class="fa fa-check"></i><b>3.10</b> Selecting a Model</a><ul>
+<li class="chapter" data-level="3.10" data-path="selecting-a-model.html"><a href="selecting-a-model.html"><i class="fa fa-check"></i><b>3.10</b> Selecting a Model</a>
+<ul>
 <li class="chapter" data-level="3.10.1" data-path="selecting-a-model.html"><a href="selecting-a-model.html#satisfying-conditions"><i class="fa fa-check"></i><b>3.10.1</b> Satisfying conditions</a></li>
 <li class="chapter" data-level="3.10.2" data-path="selecting-a-model.html"><a href="selecting-a-model.html#provide-useful-model"><i class="fa fa-check"></i><b>3.10.2</b> Provide useful model</a></li>
 </ul></li>
 <li class="chapter" data-level="3.11" data-path="dag.html"><a href="dag.html"><i class="fa fa-check"></i><b>3.11</b> Causal Inference</a></li>
 <li class="chapter" data-level="3.12" data-path="chapter-3-major-takeaways.html"><a href="chapter-3-major-takeaways.html"><i class="fa fa-check"></i><b>3.12</b> Chapter 3 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="logistic.html"><a href="logistic.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a><ul>
+<li class="chapter" data-level="4" data-path="logistic.html"><a href="logistic.html"><i class="fa fa-check"></i><b>4</b> Logistic Regression Models</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="logistic-and-logit.html"><a href="logistic-and-logit.html"><i class="fa fa-check"></i><b>4.1</b> Logistic and Logit</a></li>
 <li class="chapter" data-level="4.2" data-path="fitting-the-model.html"><a href="fitting-the-model.html"><i class="fa fa-check"></i><b>4.2</b> Fitting the Model</a></li>
 <li class="chapter" data-level="4.3" data-path="coefficient-interpretation.html"><a href="coefficient-interpretation.html"><i class="fa fa-check"></i><b>4.3</b> Coefficient Interpretation</a></li>
-<li class="chapter" data-level="4.4" data-path="logistic-model-prediction.html"><a href="logistic-model-prediction.html"><i class="fa fa-check"></i><b>4.4</b> Logistic Model Prediction</a><ul>
+<li class="chapter" data-level="4.4" data-path="logistic-model-prediction.html"><a href="logistic-model-prediction.html"><i class="fa fa-check"></i><b>4.4</b> Logistic Model Prediction</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="logistic-model-prediction.html"><a href="logistic-model-prediction.html#hard-predictionsclassifications"><i class="fa fa-check"></i><b>4.4.1</b> Hard Predictions/Classifications</a></li>
 </ul></li>
 <li class="chapter" data-level="4.5" data-path="logistic-model-evaluation.html"><a href="logistic-model-evaluation.html"><i class="fa fa-check"></i><b>4.5</b> Logistic Model Evaluation</a></li>
 <li class="chapter" data-level="4.6" data-path="alternative-classification-models.html"><a href="alternative-classification-models.html"><i class="fa fa-check"></i><b>4.6</b> Alternative Classification Models</a></li>
 <li class="chapter" data-level="4.7" data-path="chapter-4-major-takeaways.html"><a href="chapter-4-major-takeaways.html"><i class="fa fa-check"></i><b>4.7</b> Chapter 4 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="randvariability.html"><a href="randvariability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a><ul>
-<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a><ul>
+<li class="chapter" data-level="5" data-path="randvariability.html"><a href="randvariability.html"><i class="fa fa-check"></i><b>5</b> Random Variability</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="sampling-variability.html"><a href="sampling-variability.html"><i class="fa fa-check"></i><b>5.1</b> Sampling Variability</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="sampling-variability.html"><a href="sampling-variability.html#simulating-random-sampling-from-a-population"><i class="fa fa-check"></i><b>5.1.1</b> Simulating Random Sampling from a Population</a></li>
 <li class="chapter" data-level="5.1.2" data-path="sampling-variability.html"><a href="sampling-variability.html#irl-bootstrapping"><i class="fa fa-check"></i><b>5.1.2</b> IRL: Bootstrapping</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a><ul>
+<li class="chapter" data-level="5.2" data-path="randomization-variability.html"><a href="randomization-variability.html"><i class="fa fa-check"></i><b>5.2</b> Randomization Variability</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="randomization-variability.html"><a href="randomization-variability.html#simulating-randomization-into-groups"><i class="fa fa-check"></i><b>5.2.1</b> Simulating Randomization into Groups</a></li>
 <li class="chapter" data-level="5.2.2" data-path="randomization-variability.html"><a href="randomization-variability.html#irl-randomization-tests"><i class="fa fa-check"></i><b>5.2.2</b> IRL: Randomization Tests</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="chapter-5-major-takeaways.html"><a href="chapter-5-major-takeaways.html"><i class="fa fa-check"></i><b>5.3</b> Chapter 5 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>6</b> Randomness and Probability</a><ul>
+<li class="chapter" data-level="6" data-path="randomness-and-probability.html"><a href="randomness-and-probability.html"><i class="fa fa-check"></i><b>6</b> Randomness and Probability</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="three-types-of-probability.html"><a href="three-types-of-probability.html"><i class="fa fa-check"></i><b>6.1</b> Three Types of Probability</a></li>
-<li class="chapter" data-level="6.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html"><i class="fa fa-check"></i><b>6.2</b> Theoretical Probability Rules</a><ul>
+<li class="chapter" data-level="6.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html"><i class="fa fa-check"></i><b>6.2</b> Theoretical Probability Rules</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#diagnotic-testing-and-probability"><i class="fa fa-check"></i><b>6.2.1</b> Diagnotic Testing and Probability</a></li>
 <li class="chapter" data-level="6.2.2" data-path="theoretical-probability-rules.html"><a href="theoretical-probability-rules.html#court-arguments-and-probability"><i class="fa fa-check"></i><b>6.2.2</b> Court Arguments and Probability</a></li>
 </ul></li>
 <li class="chapter" data-level="6.3" data-path="random-variable.html"><a href="random-variable.html"><i class="fa fa-check"></i><b>6.3</b> Random Variable</a></li>
-<li class="chapter" data-level="6.4" data-path="probability-models.html"><a href="probability-models.html"><i class="fa fa-check"></i><b>6.4</b> Probability Models</a><ul>
+<li class="chapter" data-level="6.4" data-path="probability-models.html"><a href="probability-models.html"><i class="fa fa-check"></i><b>6.4</b> Probability Models</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="probability-models.html"><a href="probability-models.html#using-probability-mass-functions"><i class="fa fa-check"></i><b>6.4.1</b> Using probability mass functions</a></li>
 <li class="chapter" data-level="6.4.2" data-path="probability-models.html"><a href="probability-models.html#using-probability-density-functions"><i class="fa fa-check"></i><b>6.4.2</b> Using probability density functions</a></li>
 <li class="chapter" data-level="6.4.3" data-path="probability-models.html"><a href="probability-models.html#expected-value-and-variance"><i class="fa fa-check"></i><b>6.4.3</b> Expected value and variance</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="bernoullibinomial-model.html"><a href="bernoullibinomial-model.html"><i class="fa fa-check"></i><b>6.5</b> Bernoulli/Binomial Model</a></li>
 <li class="chapter" data-level="6.6" data-path="normal-model.html"><a href="normal-model.html"><i class="fa fa-check"></i><b>6.6</b> Normal Model</a></li>
-<li class="chapter" data-level="6.7" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html"><i class="fa fa-check"></i><b>6.7</b> Sampling Distribution and CLT</a><ul>
+<li class="chapter" data-level="6.7" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html"><i class="fa fa-check"></i><b>6.7</b> Sampling Distribution and CLT</a>
+<ul>
 <li class="chapter" data-level="6.7.1" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html#sampling-distributions"><i class="fa fa-check"></i><b>6.7.1</b> Sampling distributions</a></li>
 <li class="chapter" data-level="6.7.2" data-path="sampling-distribution-and-clt.html"><a href="sampling-distribution-and-clt.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>6.7.2</b> The Central Limit Theorem</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html"><i class="fa fa-check"></i><b>6.8</b> Z-scores and the Student’s “t” distribution</a><ul>
+<li class="chapter" data-level="6.8" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html"><i class="fa fa-check"></i><b>6.8</b> Z-scores and the Student’s “t” distribution</a>
+<ul>
 <li class="chapter" data-level="6.8.1" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#gossets-work"><i class="fa fa-check"></i><b>6.8.1</b> Gosset’s Work</a></li>
 <li class="chapter" data-level="6.8.2" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#beer-helps-the-field-of-statistics"><i class="fa fa-check"></i><b>6.8.2</b> Beer Helps the Field of Statistics</a></li>
 <li class="chapter" data-level="6.8.3" data-path="z-scores-and-the-students-t-distribution.html"><a href="z-scores-and-the-students-t-distribution.html#students-t-model"><i class="fa fa-check"></i><b>6.8.3</b> Student’s T Model</a></li>
@@ -287,36 +323,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.9" data-path="regression-model-sampling-distributions.html"><a href="regression-model-sampling-distributions.html"><i class="fa fa-check"></i><b>6.9</b> Regression Model Sampling Distributions</a></li>
 <li class="chapter" data-level="6.10" data-path="chapter-6-major-takeaways.html"><a href="chapter-6-major-takeaways.html"><i class="fa fa-check"></i><b>6.10</b> Chapter 6 Major Takeaways</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>7</b> Statistical Inference</a><ul>
-<li class="chapter" data-level="7.1" data-path="standard-error.html"><a href="standard-error.html"><i class="fa fa-check"></i><b>7.1</b> Standard Error</a><ul>
+<li class="chapter" data-level="7" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>7</b> Statistical Inference</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="standard-error.html"><a href="standard-error.html"><i class="fa fa-check"></i><b>7.1</b> Standard Error</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="standard-error.html"><a href="standard-error.html#bootstrap-standard-error-estimate"><i class="fa fa-check"></i><b>7.1.1</b> Bootstrap Standard Error Estimate</a></li>
 <li class="chapter" data-level="7.1.2" data-path="standard-error.html"><a href="standard-error.html#classical-standard-error-estimate"><i class="fa fa-check"></i><b>7.1.2</b> Classical Standard Error Estimate</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7.2</b> Confidence Intervals</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#interval-construction-process"><i class="fa fa-check"></i><b>7.2.1</b> Interval Construction Process</a></li>
-<li class="chapter" data-level="7.2.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>7.2.2</b> Confidence Interval Interpretation</a></li>
-<li class="chapter" data-level="7.2.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#more-examples"><i class="fa fa-check"></i><b>7.2.3</b> More Examples</a></li>
+<li class="chapter" data-level="7.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>7.2</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#properties-of-confidence-intervals"><i class="fa fa-check"></i><b>7.2.1</b> Properties of Confidence Intervals</a></li>
+<li class="chapter" data-level="7.2.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#interval-construction-process"><i class="fa fa-check"></i><b>7.2.2</b> Interval Construction Process</a></li>
+<li class="chapter" data-level="7.2.3" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-interval-interpretation"><i class="fa fa-check"></i><b>7.2.3</b> Confidence Interval Interpretation</a></li>
+<li class="chapter" data-level="7.2.4" data-path="confidence-intervals.html"><a href="confidence-intervals.html#more-examples"><i class="fa fa-check"></i><b>7.2.4</b> More Examples</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7.3</b> Hypothesis Testing</a><ul>
+<li class="chapter" data-level="7.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7.3</b> Hypothesis Testing</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-procedure"><i class="fa fa-check"></i><b>7.3.1</b> Hypothesis Test Procedure</a></li>
 <li class="chapter" data-level="7.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-errors"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesis Testing Errors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#statistical-significance-v.-practical-significance"><i class="fa fa-check"></i><b>7.3.3</b> Statistical Significance v. Practical Significance</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>7.4</b> Model Selection</a><ul>
+<li class="chapter" data-level="7.4" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>7.4</b> Model Selection</a>
+<ul>
 <li class="chapter" data-level="7.4.1" data-path="model-selection.html"><a href="model-selection.html#testing-individual-slopes"><i class="fa fa-check"></i><b>7.4.1</b> Testing Individual Slopes</a></li>
 <li class="chapter" data-level="7.4.2" data-path="model-selection.html"><a href="model-selection.html#nested-tests"><i class="fa fa-check"></i><b>7.4.2</b> Nested Tests</a></li>
 <li class="chapter" data-level="7.4.3" data-path="model-selection.html"><a href="model-selection.html#summary-of-model-selection-methods"><i class="fa fa-check"></i><b>7.4.3</b> Summary of Model Selection Methods</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="appendix-a-theoretical-probability.html"><a href="appendix-a-theoretical-probability.html"><i class="fa fa-check"></i><b>8</b> Appendix A - Theoretical Probability</a><ul>
-<li class="chapter" data-level="8.1" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>8.1</b> Probability Rules</a><ul>
+<li class="chapter" data-level="8" data-path="appendix-a---theoretical-probability.html"><a href="appendix-a---theoretical-probability.html"><i class="fa fa-check"></i><b>8</b> Appendix A - Theoretical Probability</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="probability-rules.html"><a href="probability-rules.html"><i class="fa fa-check"></i><b>8.1</b> Probability Rules</a>
+<ul>
 <li class="chapter" data-level="8.1.1" data-path="probability-rules.html"><a href="probability-rules.html#disjointmutually-exclusive"><i class="fa fa-check"></i><b>8.1.1</b> Disjoint/Mutually Exclusive</a></li>
 <li class="chapter" data-level="8.1.2" data-path="probability-rules.html"><a href="probability-rules.html#independence"><i class="fa fa-check"></i><b>8.1.2</b> Independence</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="theory-of-random-variable.html"><a href="theory-of-random-variable.html"><i class="fa fa-check"></i><b>8.2</b> Theory of Random Variable</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="probability-models.html"><a href="probability-models.html#probability-models"><i class="fa fa-check"></i><b>8.2.1</b> Probability Models</a></li>
+<li class="chapter" data-level="8.2" data-path="theory-of-random-variable.html"><a href="theory-of-random-variable.html"><i class="fa fa-check"></i><b>8.2</b> Theory of Random Variable</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="theory-of-random-variable.html"><a href="theory-of-random-variable.html#probability-models-1"><i class="fa fa-check"></i><b>8.2.1</b> Probability Models</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>8.3</b> Discrete Random Variables</a><ul>
+<li class="chapter" data-level="8.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>8.3</b> Discrete Random Variables</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>8.3.1</b> Expected Value</a></li>
 <li class="chapter" data-level="8.3.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>8.3.2</b> Variance</a></li>
 <li class="chapter" data-level="8.3.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#joint-distributions"><i class="fa fa-check"></i><b>8.3.3</b> Joint Distributions</a></li>
@@ -324,13 +370,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3.5" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#correlation"><i class="fa fa-check"></i><b>8.3.5</b> Correlation</a></li>
 <li class="chapter" data-level="8.3.6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#a-few-named-probability-models"><i class="fa fa-check"></i><b>8.3.6</b> A Few Named Probability Models</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>8.4</b> Continuous Random Variables</a><ul>
+<li class="chapter" data-level="8.4" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html"><i class="fa fa-check"></i><b>8.4</b> Continuous Random Variables</a>
+<ul>
 <li class="chapter" data-level="8.4.1" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#expected-value-1"><i class="fa fa-check"></i><b>8.4.1</b> Expected Value</a></li>
 <li class="chapter" data-level="8.4.2" data-path="continuous-random-variables.html"><a href="continuous-random-variables.html#a-few-named-probability-models-1"><i class="fa fa-check"></i><b>8.4.2</b> A Few Named Probability Models</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="random-variation.html"><a href="random-variation.html"><i class="fa fa-check"></i><b>8.5</b> Random Variation</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="definitions.html"><a href="definitions.html"><i class="fa fa-check"></i><b>9</b> Definitions</a><ul>
+<li class="chapter" data-level="9" data-path="definitions.html"><a href="definitions.html"><i class="fa fa-check"></i><b>9</b> Definitions</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="chapter-1.html"><a href="chapter-1.html"><i class="fa fa-check"></i><b>9.1</b> Chapter 1</a></li>
 <li class="chapter" data-level="9.2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>9.2</b> Chapter 2</a></li>
 <li class="chapter" data-level="9.3" data-path="chapter-3.html"><a href="chapter-3.html"><i class="fa fa-check"></i><b>9.3</b> Chapter 3</a></li>
@@ -359,20 +407,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="model-interpretation" class="section level2">
+<div id="model-interpretation" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Model Interpretation</h2>
 <p>Let’s look at the summary output of the <code>lm()</code> function in R again. We’ll highlight some of the most important pieces of this output and discuss how you interpret them.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="model-interpretation.html#cb85-1"></a>tshirt_mod &lt;-<span class="st"> </span>body <span class="op">%&gt;%</span></span>
-<span id="cb85-2"><a href="model-interpretation.html#cb85-2"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>Neck))</span>
-<span id="cb85-3"><a href="model-interpretation.html#cb85-3"></a></span>
-<span id="cb85-4"><a href="model-interpretation.html#cb85-4"></a>tshirt_mod <span class="op">%&gt;%</span></span>
-<span id="cb85-5"><a href="model-interpretation.html#cb85-5"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 5
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="model-interpretation.html#cb85-1" aria-hidden="true" tabindex="-1"></a>tshirt_mod <span class="ot">&lt;-</span> body <span class="sc">%&gt;%</span></span>
+<span id="cb85-2"><a href="model-interpretation.html#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Chest <span class="sc">~</span> Neck))</span>
+<span id="cb85-3"><a href="model-interpretation.html#cb85-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-4"><a href="model-interpretation.html#cb85-4" aria-hidden="true" tabindex="-1"></a>tshirt_mod <span class="sc">%&gt;%</span></span>
+<span id="cb85-5"><a href="model-interpretation.html#cb85-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)    -3.19     5.50     -0.580 5.62e- 1
 ## 2 Neck            2.74     0.145    18.9   4.59e-50</code></pre>
-<div id="intercept-hatbeta_0" class="section level3">
+<div id="intercept-hatbeta_0" class="section level3" number="3.6.1">
 <h3><span class="header-section-number">3.6.1</span> Intercept (<span class="math inline">\(\hat{\beta}_0\)</span>)</h3>
 <ul>
 <li><strong>Where to find:</strong> In the table called “Coefficients”, look for the number under “Estimate” for “(Intercept)”. It is -3.1885 for this model.</li>
@@ -380,21 +428,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Interpretation:</strong> If Neck size = 0, then the person doesn’t exist. In this context, the intercept doesn’t make much sense to interpret.</li>
 <li><strong>Discussion:</strong> If the intercept doesn’t make sense in the context, we might refit the model with the <span class="math inline">\(x\)</span> variable once it is <strong>centered</strong>. That is, the mean of <span class="math inline">\(x\)</span> for all individuals in the sample is computed, and this mean is subtracted from each person’s <span class="math inline">\(x\)</span> value. In this case, the intercept is interpreted as the average value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x\)</span> is at its (sample) mean value. See the example below – we get an intercept of 100.66, which is the average Chest size for customers with average Neck size. We could also choose to center Neck size at a value other than the mean. For example, we could center it at 30 cm by subtracting 30 from the Neck size of all cases.</li>
 </ul>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="model-interpretation.html#cb87-1"></a>body &lt;-<span class="st"> </span>body <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb87-2"><a href="model-interpretation.html#cb87-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">CNeck =</span> Neck <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(Neck))</span>
-<span id="cb87-3"><a href="model-interpretation.html#cb87-3"></a></span>
-<span id="cb87-4"><a href="model-interpretation.html#cb87-4"></a>tshirt_mod2 &lt;-<span class="st"> </span>body <span class="op">%&gt;%</span></span>
-<span id="cb87-5"><a href="model-interpretation.html#cb87-5"></a><span class="st">  </span><span class="kw">with</span>(<span class="kw">lm</span>(Chest <span class="op">~</span><span class="st"> </span>CNeck))</span>
-<span id="cb87-6"><a href="model-interpretation.html#cb87-6"></a>       </span>
-<span id="cb87-7"><a href="model-interpretation.html#cb87-7"></a>tshirt_mod2 <span class="op">%&gt;%</span></span>
-<span id="cb87-8"><a href="model-interpretation.html#cb87-8"></a><span class="st">  </span><span class="kw">tidy</span>()</span></code></pre></div>
-<pre><code>## # A tibble: 2 x 5
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="model-interpretation.html#cb87-1" aria-hidden="true" tabindex="-1"></a>body <span class="ot">&lt;-</span> body <span class="sc">%&gt;%</span> </span>
+<span id="cb87-2"><a href="model-interpretation.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CNeck =</span> Neck <span class="sc">-</span> <span class="fu">mean</span>(Neck))</span>
+<span id="cb87-3"><a href="model-interpretation.html#cb87-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-4"><a href="model-interpretation.html#cb87-4" aria-hidden="true" tabindex="-1"></a>tshirt_mod2 <span class="ot">&lt;-</span> body <span class="sc">%&gt;%</span></span>
+<span id="cb87-5"><a href="model-interpretation.html#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Chest <span class="sc">~</span> CNeck))</span>
+<span id="cb87-6"><a href="model-interpretation.html#cb87-6" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb87-7"><a href="model-interpretation.html#cb87-7" aria-hidden="true" tabindex="-1"></a>tshirt_mod2 <span class="sc">%&gt;%</span></span>
+<span id="cb87-8"><a href="model-interpretation.html#cb87-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)   101.       0.330     305.  3.14e-321
 ## 2 CNeck           2.74     0.145      18.9 4.59e- 50</code></pre>
 </div>
-<div id="slope-hatbeta_1" class="section level3">
+<div id="slope-hatbeta_1" class="section level3" number="3.6.2">
 <h3><span class="header-section-number">3.6.2</span> Slope (<span class="math inline">\(\hat{\beta}_1\)</span>)</h3>
 <ul>
 <li><strong>Where to find:</strong> In the table called “Coefficients”, look for the number under “Estimate” for the name of the variable, “Neck” or “CNeck”. It is 2.7369 for this model. (Note: the slopes for both <code>tshirt_mod</code> and <code>tshirt_mod2</code> are the same. Why?)</li>
@@ -405,7 +453,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Discussion:</strong> Note that the interpretations are not written about an individual because the least squares line (our fit model) is a description of the <strong>general trend</strong> in the population. The slope describes the change in the average, not the change for one person.</li>
 </ul>
 </div>
-<div id="least-squares-regression-line-haty-hatbeta_0-hatbeta_1x" class="section level3">
+<div id="least-squares-regression-line-haty-hatbeta_0-hatbeta_1x" class="section level3" number="3.6.3">
 <h3><span class="header-section-number">3.6.3</span> Least Squares Regression Line (<span class="math inline">\(\hat{y} = \hat{\beta}_0 + \hat{\beta}_1x\)</span>)</h3>
 <ul>
 <li><strong>Where to find:</strong> In the table called “Coefficients”, all of the values that you need to write down the formula of the line are in the “Estimate” column.</li>
@@ -414,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong>Discussion:</strong> The “within the observed range of <span class="math inline">\(x\)</span>” phrase is very important. We can’t predict values of <span class="math inline">\(y\)</span> for values of <span class="math inline">\(x\)</span> that are very different from what we have in our data. Trying to do so is a big no-no called <strong>extrapolation</strong>. We’ll discuss this more in a bit.</li>
 </ul>
 </div>
-<div id="correlation-vs.-causation" class="section level3">
+<div id="correlation-vs.-causation" class="section level3" number="3.6.4">
 <h3><span class="header-section-number">3.6.4</span> Correlation vs. Causation</h3>
 <center>
 <img src="Photos/correlation.png" alt="xkcd: Correlation" />
@@ -460,6 +508,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -480,6 +529,10 @@ gitbook.start({
 "text": null
 },
 "download": ["Stat155Notes.pdf"],
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

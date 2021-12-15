@@ -31,7 +31,7 @@ tidy(lm.home3)
 ```
 
 ```
-## # A tibble: 4 x 5
+## # A tibble: 4 × 5
 ##   term                         estimate std.error statistic  p.value
 ##   <chr>                           <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)                   40901.    8235.        4.97 7.47e- 7

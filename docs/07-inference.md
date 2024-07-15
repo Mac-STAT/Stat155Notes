@@ -12,7 +12,8 @@ Let's remember our goal of "turning data into information." Based on a sample da
 Let's do some statistical inference based on a simple random sample (SRS) of 100 flights leaving NYC in 2013. 
 
 <div class="reflect">
-<p>What is our population of interest? What population could we generalize to?</p>
+<p>What is our population of interest? What population could we
+generalize to?</p>
 </div>
 
 
@@ -22,7 +23,7 @@ Based on this sample of 100 flights, we can estimate the difference in the mean 
 If we had a different sample of 100 flights, how much different might that estimate be? 
 
 
-```r
+``` r
 lm.delay <- flights_samp %>%
   with(lm(arr_delay ~ season))
 
@@ -62,7 +63,7 @@ We started this chapter with a question about arrival delay times in the winter 
 Let's resample our sample and quantify our uncertainty through bootstrapping. 
 
 
-```r
+``` r
 boot_data <- mosaic::do(1000)*( 
     flights_samp %>% # Start with the SAMPLE (not the FULL POPULATION)
       sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
@@ -98,7 +99,7 @@ For this class, you just need to know that R knows these equations and calculate
 In fact, you've already been looking at them in the output of the fit linear model. With the tidy output below, look for the column that says `std.error`. These are the **classical standard errors**. 
 
 
-```r
+``` r
 lm.delay %>% 
   tidy() #SE for each estimate is in the std.error column
 ```
@@ -119,7 +120,8 @@ These are two *different* ways of quantifying the random variability and uncerta
 Using either estimate of the standard error, based on the sample data, our best guess is that the mean arrival delays is about 0.6 minutes less in winter than in summer but we might be off by about 13.6 minutes. So we could say that our best guess at the difference in mean arrival delays is $0.6\pm 13.6$ minutes, which is an interval estimate of the true population value.   
 
 <div class="reflect">
-<p>How “good” of a guess is the interval estimate? Is the population value in the interval or not? How might we know?</p>
+<p>How “good” of a guess is the interval estimate? Is the population
+value in the interval or not? How might we know?</p>
 </div>
 
 
@@ -141,7 +143,7 @@ So, how "good" of a guess is this? If our sampling distribution is roughly Norma
 You can either trust the mathematical theory or we can simulate the sampling distribution by drawing from our population because in this rare circumstance, we have access to all flights in the population.
 
 
-```r
+``` r
 sim_data <- mosaic::do(500)*( 
     flights %>% 
       sample_n(size = 100) %>%  # Generate samples of 100 flights
@@ -214,7 +216,7 @@ $$\text{Estimate }\pm z^* *SE(\text{Estimate})$$
 With linear and logistic regression models, we can have R create the confidence intervals for the slope coefficients.
 
 
-```r
+``` r
 # Classical Confidence Interval for Models
 confint(lm.delay) #default level is 0.95
 ```
@@ -225,7 +227,7 @@ confint(lm.delay) #default level is 0.95
 ## seasonwinter -14.183889 12.87457
 ```
 
-```r
+``` r
 confint(lm.delay, level = 0.99)
 ```
 
@@ -235,7 +237,7 @@ confint(lm.delay, level = 0.99)
 ## seasonwinter -18.563924 17.25460
 ```
 
-```r
+``` r
 confint(lm.delay, level = 0.90)
 ```
 
@@ -249,7 +251,7 @@ confint(lm.delay, level = 0.90)
 See code below to find the $z^*$ values for other confidence levels beyond 95% to create the intervals manually. 
 
 
-```r
+``` r
 alpha <- 0.05 
 abs(qnorm(alpha/2)) #z* for 95% CI
 ```
@@ -258,7 +260,7 @@ abs(qnorm(alpha/2)) #z* for 95% CI
 ## [1] 1.959964
 ```
 
-```r
+``` r
 alpha <- 0.01 
 abs(qnorm(alpha/2)) #z* for 99% CI
 ```
@@ -267,7 +269,7 @@ abs(qnorm(alpha/2)) #z* for 99% CI
 ## [1] 2.575829
 ```
 
-```r
+``` r
 alpha <- 0.1 
 abs(qnorm(alpha/2)) #z* for 90% CI
 ```
@@ -282,15 +284,30 @@ The fact that confidence intervals can be created as above is rooted in probabil
 
 <div class="mathbox">
 <p>(Optional) Deriving confidence intervals from theory</p>
-<p>We know that for a regression coefficient, the sampling distribution of regression coefficient estimates are approximately Normal and thus the standardized version is approximately Normal with mean 0 and standard deviation 1.</p>
-<p><span class="math display">\[\frac{\hat{\beta} - \beta}{SE(\hat{\beta})} \sim \text{Normal}(0,1)\]</span></p>
-<p>From there we can write a probability statement using the 68-95-99.7 rule of the normal distribution and rearrange the expression using algebra:</p>
-<p><span class="math display">\[P(-2\leq\frac{\hat{\beta} - \beta}{SE(\hat{\beta})}\leq2) = 0.95\]</span></p>
-<p><span class="math display">\[P(-2 *SE(\hat{\beta})\leq\hat{\beta} - \beta \leq2 *SE(\hat{\beta}) ) = 0.95\]</span></p>
-<p><span class="math display">\[P(-2* SE(\hat{\beta})-\hat{\beta} \leq  -\beta \leq2 *SE(\hat{\beta})-\hat{\beta} ) = 0.95\]</span></p>
-<p><span class="math display">\[P(2 *SE(\hat{\beta})+\hat{\beta} \geq \beta \geq -2* SE(\hat{\beta})+\hat{\beta} ) = 0.95\]</span></p>
-<p><span class="math display">\[P(\hat{\beta}-2 *SE(\hat{\beta}) \leq \beta \leq\hat{\beta}+2 *SE(\hat{\beta}) ) = 0.95\]</span></p>
-<p>You’ve seen the Student T distribution introduced in the previous chapter. We used the Normal distribution in this derivation, but it turns out that the Student t distribution is more accurate for linear regression coefficients (especially if sample size is small). The normal distribution is appropriate for logistic regression coefficients.</p>
+<p>We know that for a regression coefficient, the sampling distribution
+of regression coefficient estimates are approximately Normal and thus
+the standardized version is approximately Normal with mean 0 and
+standard deviation 1.</p>
+<p><span class="math display">\[\frac{\hat{\beta} -
+\beta}{SE(\hat{\beta})} \sim \text{Normal}(0,1)\]</span></p>
+<p>From there we can write a probability statement using the 68-95-99.7
+rule of the normal distribution and rearrange the expression using
+algebra:</p>
+<p><span class="math display">\[P(-2\leq\frac{\hat{\beta} -
+\beta}{SE(\hat{\beta})}\leq2) = 0.95\]</span></p>
+<p><span class="math display">\[P(-2 *SE(\hat{\beta})\leq\hat{\beta} -
+\beta \leq2 *SE(\hat{\beta}) ) = 0.95\]</span></p>
+<p><span class="math display">\[P(-2* SE(\hat{\beta})-\hat{\beta}
+\leq  -\beta \leq2 *SE(\hat{\beta})-\hat{\beta} ) = 0.95\]</span></p>
+<p><span class="math display">\[P(2 *SE(\hat{\beta})+\hat{\beta} \geq
+\beta \geq -2* SE(\hat{\beta})+\hat{\beta} ) = 0.95\]</span></p>
+<p><span class="math display">\[P(\hat{\beta}-2 *SE(\hat{\beta}) \leq
+\beta \leq\hat{\beta}+2 *SE(\hat{\beta}) ) = 0.95\]</span></p>
+<p>You’ve seen the Student T distribution introduced in the previous
+chapter. We used the Normal distribution in this derivation, but it
+turns out that the Student t distribution is more accurate for linear
+regression coefficients (especially if sample size is small). The normal
+distribution is appropriate for logistic regression coefficients.</p>
 </div>
 
 #### Via Bootstrapping
@@ -302,7 +319,7 @@ Once we have a distribution of sample statistics based on the generated data set
 Let's return to the example of predicting arrival delays as a function of season. We bootstrapped the data already, but here is the code we used.
 
 
-```r
+``` r
 boot_data <- mosaic::do(1000)*( 
     flights_samp %>% # Start with the SAMPLE (not the FULL POPULATION)
       sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
@@ -313,7 +330,7 @@ boot_data <- mosaic::do(1000)*(
 Rather than using the classical approach to create confidence intervals, we can find the middle $(1-\alpha)$*100% (if $\alpha = 0.05$, 95%) of the bootstrap sampling distribution to give us lower and upper bounds for our interval estimate. 
 
 
-```r
+``` r
 # Bootstrap Confidence Interval
 boot_data %>% 
     summarize(
@@ -349,7 +366,8 @@ In general, this is what we know about confidence intervals:
 
 
 <div class="reflect">
-<p>Most importantly, how can we incorporate the data context in our interpretation?</p>
+<p>Most importantly, how can we incorporate the data context in our
+interpretation?</p>
 </div>
  
 
@@ -370,7 +388,7 @@ To demonstrate code and interpretations, we'll discuss examples of confidence in
 Using the flight data, how well can the departure delay predict the arrival delay? What is the effect of departing 1 more minute later? Does that correspond to 1 minute later in arrival on average? Let's look at the estimated slope between departure and arrival delays for the sample of 100 flights from NYC.
 
 
-```r
+``` r
 lm.delay2 <- flights_samp %>%
   with(lm(arr_delay ~ dep_delay))
        
@@ -389,7 +407,7 @@ lm.delay2 %>%
 The classical 95% CI for the slope is given with by
 
 
-```r
+``` r
 confint(lm.delay2)
 ```
 
@@ -402,7 +420,7 @@ confint(lm.delay2)
 or with bootstrapping,
 
 
-```r
+``` r
 boot_data <- mosaic::do(1000)*( 
     flights_samp %>% # Start with the SAMPLE (not the FULL POPULATION)
       sample_frac(replace = TRUE) %>% # Generate by resampling with replacement
@@ -429,7 +447,7 @@ boot_data %>%
 Are the same proportion of afternoon flights in the winter and the summer? Let's fit a logistic regression model and see what our sample of 100 flights indicates.
 
 
-```r
+``` r
 flights_samp <- flights_samp %>%
   mutate(afternoon = flights_samp$day_hour == 'afternoon')
 
@@ -451,7 +469,7 @@ glm.afternoon %>%
 The output for the model gives standard errors for the slopes, so we can create the classical confidence intervals for the slopes first, 
 
 
-```r
+``` r
 confint(glm.afternoon) #confidence interval for the slope
 ```
 
@@ -464,7 +482,7 @@ confint(glm.afternoon) #confidence interval for the slope
 Or with bootstrapping,
 
 
-```r
+``` r
 #confidence interval for the slope
 
 boot_data <- mosaic::do(1000)*( 
@@ -489,7 +507,7 @@ For logistic regression, we exponentiate the slopes to get an more interpretable
 Here, we are comparing the odds of having a flight in the afternoon between winter months (numerator) and summer months (denominator). Is 1 in the interval? If so, what does that tell you?
 
 
-```r
+``` r
 confint(glm.afternoon) %>% 
   exp()
 ```
@@ -500,7 +518,7 @@ confint(glm.afternoon) %>%
 ## seasonwinter 0.7347692 3.593553
 ```
 
-```r
+``` r
 boot_data %>%
   summarize(
     lower = quantile(seasonwinter, 0.025),
@@ -522,7 +540,7 @@ Imagine we are on a plane, we left 15 minutes late, how late will arrive? We've 
 A classical CI can give us an interval estimate of what the prediction should be (if we had data on all flights).
 
 
-```r
+``` r
 predict(lm.delay2, newdata = data.frame(dep_delay = 15), interval = 'confidence')
 ```
 
@@ -544,7 +562,7 @@ We also know that every flight is different (different length, different weather
 So to get a better prediction for our arrival delay, we can account for the size of errors or residuals by creating a **prediction interval**. This interval will be much wider than the confidence interval because it takes into account how far the true values are from the prediction line. 
 
 
-```r
+``` r
 predict(lm.delay2, newdata = data.frame(dep_delay = 15), interval = 'prediction')
 ```
 
@@ -744,7 +762,7 @@ $$t_{obs} = \text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\
 **Linear Regression Example:** Below we fit a linear regression model of house price on living area:
 
 
-```r
+``` r
 homes <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt")
 mod_homes <- homes %>%
   with(lm(Price ~ Living.Area))
@@ -777,7 +795,7 @@ The `statistic` column is the test statistic equal to `estimate/std.error`, and 
 Is this consistent with conclusions from a confidence interval?    
 
 
-```r
+``` r
 confint(mod_homes)
 ```
 
@@ -793,7 +811,7 @@ The interval does not include 0 so we conclude that 0 is not supported as a plau
 **Logistic Regression Example:** Below we fit a logistic regression model of whether a movie made a profit (response) on whether it is a history film:
 
 
-```r
+``` r
 movies <- read.csv("https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1")
 mod_movies <- movies %>%
   with(glm( profit ~ History, family = "binomial"))
@@ -819,7 +837,7 @@ Try yourself!
 - Is this consistent with the confidence interval?
 
 
-```r
+``` r
 confint(mod_movies)
 ```
 
@@ -879,7 +897,7 @@ We can compare these models in R using the `anova()` function.
 **Linear Regression Example:** Below we fit a larger linear regression model of house price using living area, the number of bedrooms, and the number of bathrooms:
 
 
-```r
+``` r
 mod_homes_full <- homes %>%
   with(lm(Price ~ Living.Area + Bedrooms + Bathrooms))
 
@@ -914,7 +932,7 @@ Notice that we get the smaller nested model by removing `Bedrooms` and `Bathroom
 **Logistic Regression Example:** Below we fit a larger logistic regression model of whether a movie made a profit (response) based on whether it is a history, drama, comedy, or a family film:
 
 
-```r
+``` r
 mod_movies_full <- movies %>%
   with(glm( profit ~ History + Drama + Comedy + Family, family = "binomial"))
 
@@ -1042,7 +1060,7 @@ If we have a small data set and we want to fully use all of the data in our trai
 where $MSE_i$ is the MSE based on the $i$th group as the test group. In practice, one performs k-fold CV with $k=5$ or $k=10$ as it reduces the computational time and it also is more accurate. 
 
 
-```r
+``` r
 require(boot)
 cv.err <- cv.glm(data,glm1, K = 5)
 sqrt(cv.err$delta[1]) #out of sample average prediction error

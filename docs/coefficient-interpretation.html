@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.3 Coefficient Interpretation | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.3 Coefficient Interpretation | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
-  
   <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
+  <meta name="github-repo" content="mac-stat/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="4.3 Coefficient Interpretation | STAT 155 Notes" />
@@ -21,7 +20,7 @@
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
-<meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint, Grinde)" />
+<meta name="author" content="Macalester Statistics Faculty" />
 
 
 
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="fitting-the-model.html"/>
 <link rel="next" href="logistic-model-prediction.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,14 +48,14 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -407,11 +410,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="coefficient-interpretation" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Coefficient Interpretation</h2>
+<div id="coefficient-interpretation" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Coefficient Interpretation<a href="coefficient-interpretation.html#coefficient-interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s take a look at the estimates from the model. What do they mean?</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="coefficient-interpretation.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model.glm) <span class="sc">%&gt;%</span></span>
-<span id="cb181-2"><a href="coefficient-interpretation.html#cb181-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="coefficient-interpretation.html#cb181-1" tabindex="-1"></a><span class="fu">tidy</span>(model.glm) <span class="sc">%&gt;%</span></span>
+<span id="cb181-2"><a href="coefficient-interpretation.html#cb181-2" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 2
 ##   term        estimate
 ##   &lt;chr&gt;          &lt;dbl&gt;
@@ -423,48 +426,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Our model is
 </p>
 <p>
-<span class="math display"><span class="math display">\[\log\left(\frac{p}{1-p}\right) = \log\left(\frac{E[Y|X]}{1-E[Y|X]}\right) = \beta_0 +\beta_1X\]</span></span>
+<span class="math display"><span class="math display">\[\log\left(\frac{p}{1-p}\right) =
+\log\left(\frac{E[Y|X]}{1-E[Y|X]}\right) = \beta_0
++\beta_1X\]</span></span>
 </p>
 <p>
 Imagine considering a particular value of <span class="math inline"><span class="math inline">\(X=x\)</span></span> (such as temperature = <span class="math inline"><span class="math inline">\(x\)</span></span>),
 </p>
 <p>
-<span class="math display"><span class="math display">\[\log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right) = \beta_0 +\beta_1x\]</span></span>
+<span class="math display"><span class="math display">\[\log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right) =
+\beta_0 +\beta_1x\]</span></span>
 </p>
 <p>
-If we increase <span class="math inline"><span class="math inline">\(X\)</span></span> by 1, then we expected a change in our outcome or chance of success, <span class="math inline"><span class="math inline">\(E[Y|X = x+1]\)</span></span>,
+If we increase <span class="math inline"><span class="math inline">\(X\)</span></span> by 1, then we
+expected a change in our outcome or chance of success, <span class="math inline"><span class="math inline">\(E[Y|X = x+1]\)</span></span>,
 </p>
 <p>
-<span class="math display"><span class="math display">\[\log\left(\frac{E[Y|X= x+1]}{1-E[Y|X= x+1]}\right) = \beta_0 +\beta_1(x+1)\]</span></span>
+<span class="math display"><span class="math display">\[\log\left(\frac{E[Y|X= x+1]}{1-E[Y|X=
+x+1]}\right) = \beta_0 +\beta_1(x+1)\]</span></span>
 </p>
 <p>
 Let’s find the difference between these two equations,
 </p>
 <p>
-<span class="math display"><span class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)- \log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  (\beta_0 +\beta_1(x+1)) - ( \beta_0 +\beta_1x)\]</span></span> and simplify the right hand side (we love it when things cancel!),
+<span class="math display"><span class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)-
+\log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  (\beta_0 +\beta_1(x+1)) -
+( \beta_0 +\beta_1x)\]</span></span> and simplify the right hand side (we love
+it when things cancel!),
 </p>
 <p>
-<span class="math display"><span class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)- \log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  \beta_1\]</span></span> and then simplify the left hand side (using our rules of logarithms),
+<span class="math display"><span class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)-
+\log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  \beta_1\]</span></span> and then
+simplify the left hand side (using our rules of logarithms),
 </p>
 <p>
-<span class="math display"><span class="math display">\[\log\left( \frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right) = \beta_1\]</span></span>
+<span class="math display"><span class="math display">\[\log\left(
+\frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right) =
+\beta_1\]</span></span>
 </p>
 <p>
 Let’s exponentiate both sides,
 </p>
 <p>
-<span class="math display"><span class="math display">\[\left( \frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right)= e^{\beta_1}\]</span></span>
+<span class="math display"><span class="math display">\[\left(
+\frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right)=
+e^{\beta_1}\]</span></span>
 </p>
 <p>
-<span class="math display"><span class="math display">\[\left( \frac{\hbox{Odds of Success when }X=x+1}{\hbox{Odds of Success when }X=x}\right)= e^{\beta_1}\]</span></span>
+<span class="math display"><span class="math display">\[\left( \frac{\hbox{Odds of Success when
+}X=x+1}{\hbox{Odds of Success when }X=x}\right)=
+e^{\beta_1}\]</span></span>
 </p>
 </div>
 <p>After that algebra, we find that <span class="math inline">\(e^{\beta_1}\)</span> is equal to the <strong>odds ratio</strong>, the ratio of the odds of success between two groups of values (those with <span class="math inline">\(X=x+1\)</span> and those with <span class="math inline">\(X=x\)</span>, 1 unit apart)</p>
 <p>When we fit the model to the o-ring experimental data, we estimate the coefficients to be <span class="math inline">\(\hat{\beta}_0 = 15.04\)</span> and <span class="math inline">\(\hat{\beta}_1 = -0.232\)</span>. So the estimated odds ratio is <span class="math inline">\(e^{\hat{\beta}_1} = e^{-0.232} = 0.793\)</span> for an increase in one degree Fahrenheit in temperature (Temperature=T+1 v. Temperature=T).</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="coefficient-interpretation.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(model.glm) <span class="sc">%&gt;%</span></span>
-<span id="cb183-2"><a href="coefficient-interpretation.html#cb183-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate) <span class="sc">%&gt;%</span></span>
-<span id="cb183-3"><a href="coefficient-interpretation.html#cb183-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">estimate_exp =</span> <span class="fu">exp</span>(estimate)) <span class="sc">%&gt;%</span></span>
-<span id="cb183-4"><a href="coefficient-interpretation.html#cb183-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">estimate_exp =</span> <span class="fu">round</span>(estimate_exp,<span class="dv">3</span>)) <span class="co">#round to 3 decimal places</span></span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="coefficient-interpretation.html#cb183-1" tabindex="-1"></a><span class="fu">tidy</span>(model.glm) <span class="sc">%&gt;%</span></span>
+<span id="cb183-2"><a href="coefficient-interpretation.html#cb183-2" tabindex="-1"></a>  <span class="fu">select</span>(term, estimate) <span class="sc">%&gt;%</span></span>
+<span id="cb183-3"><a href="coefficient-interpretation.html#cb183-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">estimate_exp =</span> <span class="fu">exp</span>(estimate)) <span class="sc">%&gt;%</span></span>
+<span id="cb183-4"><a href="coefficient-interpretation.html#cb183-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">estimate_exp =</span> <span class="fu">round</span>(estimate_exp,<span class="dv">3</span>)) <span class="co">#round to 3 decimal places</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##   term        estimate estimate_exp
 ##   &lt;chr&gt;          &lt;dbl&gt;        &lt;dbl&gt;
@@ -487,7 +506,6 @@ Let’s exponentiate both sides,
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -528,7 +546,7 @@ gitbook.start({
 },
 "download": ["Stat155Notes.pdf"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -545,7 +563,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -26,18 +26,29 @@ In fact, we'll let the chance of failure outcome (when $Y=0$), $1-p$, be modeled
 
 $$1-p = \frac{1}{1 + e^{\beta_0 +\beta_1X}}$$
 <div class="mathbox">
-<p>With a bit of algebra and rearranging terms, we can write this equation in terms of <span class="math inline">\(p\)</span>, the chance of success.</p>
-<p><span class="math display">\[1-p = \frac{1}{1 + e^{\beta_0 +\beta_1X}}\]</span> <span class="math display">\[p = 1-\frac{1}{1 + e^{\beta_0 +\beta_1X}}\]</span></p>
-<p><span class="math display">\[p = 
-\frac{1 + e^{\beta_0 +\beta_1X}}{1 + e^{\beta_0 +\beta_1X}}-\frac{1}{1 + e^{\beta_0 +\beta_1X}}\]</span></p>
-<p><span class="math display">\[p = \frac{e^{\beta_0 +\beta_1X}}{1 + e^{\beta_0 +\beta_1X}}\]</span></p>
+<p>With a bit of algebra and rearranging terms, we can write this
+equation in terms of <span class="math inline">\(p\)</span>, the chance
+of success.</p>
+<p><span class="math display">\[1-p = \frac{1}{1 + e^{\beta_0
++\beta_1X}}\]</span> <span class="math display">\[p = 1-\frac{1}{1 +
+e^{\beta_0 +\beta_1X}}\]</span></p>
+<p><span class="math display">\[p =
+\frac{1 + e^{\beta_0 +\beta_1X}}{1 + e^{\beta_0 +\beta_1X}}-\frac{1}{1 +
+e^{\beta_0 +\beta_1X}}\]</span></p>
+<p><span class="math display">\[p = \frac{e^{\beta_0 +\beta_1X}}{1 +
+e^{\beta_0 +\beta_1X}}\]</span></p>
 </div>
 
 Let's define one more term. The **odds** of a success is the ratio of the chance of success to the chance of failure, odds $=p/(1-p)$.
 
 <div class="mathbox">
-<p>With a bit more algebra and rearranging terms, we can write the above model as a linear regression model.</p>
-<p><span class="math display">\[p/(1-p) = \frac{e^{\beta_0 +\beta_1X}}{1 + e^{\beta_0 +\beta_1X}}/\frac{1}{1 + e^{\beta_0 +\beta_1X}}\]</span> <span class="math display">\[p/(1-p) = e^{\beta_0 +\beta_1X}\]</span> <span class="math display">\[\log(p/(1-p)) = \beta_0 +\beta_1X\]</span></p>
+<p>With a bit more algebra and rearranging terms, we can write the above
+model as a linear regression model.</p>
+<p><span class="math display">\[p/(1-p) = \frac{e^{\beta_0 +\beta_1X}}{1
++ e^{\beta_0 +\beta_1X}}/\frac{1}{1 + e^{\beta_0 +\beta_1X}}\]</span>
+<span class="math display">\[p/(1-p) = e^{\beta_0 +\beta_1X}\]</span>
+<span class="math display">\[\log(p/(1-p)) = \beta_0
++\beta_1X\]</span></p>
 </div>
 
 This is a **simple logistic regression model**. On the left hand side, we have the natural log of the odds of success for a given value of $X$. The log odds is called the **logit** function. Think of this as a transformed version of our expected outcome for a given value of $X$. On the right hand side, we have a familiar linear model equation. 
@@ -57,7 +68,7 @@ In R, we do this with the **g**eneralized **l**inear **m**odel function, `glm()`
 For a data set, let's go back in history to January 28, 1986. On this day, the U.S. space shuttle called Challenger took off and tragically exploded about one minute after the launch. After the incident, scientists ruled that the disaster was due to an o-ring seal failure. Let's look at experimental data on the o-rings prior to the fateful day.
 
 
-```r
+``` r
 require(vcd)
 data(SpaceShuttle)
 
@@ -73,14 +84,15 @@ SpaceShuttle %>%
 <img src="04-logistic-regression_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" />
 
 <div class="reflect">
-<p>What are the plots above telling us about the relationship between chance of o-ring failure and temperature?</p>
+<p>What are the plots above telling us about the relationship between
+chance of o-ring failure and temperature?</p>
 </div>
 
 
 Let's fit a simple logistic regression model with one explanatory variable to predict the chance of o-ring failure (which is our "success" here -- we know it sounds morbid) based on the temperature using the experimental data. 
 
 
-```r
+``` r
 SpaceShuttle <- SpaceShuttle %>%
   mutate(Fail = ifelse(Fail == 'yes', 1, 0))
 
@@ -109,7 +121,7 @@ $$\log\left(\frac{\hat{p}}{1-\hat{p}}\right) = 15.0429 -0.2322\cdot Temperature$
 Let's take a look at the estimates from the model. What do they mean?
 
 
-```r
+``` r
 tidy(model.glm) %>%
   select(term, estimate)
 ```
@@ -126,18 +138,40 @@ The slope coefficient (-0.232) tells you how much the predicted log odds of o-ri
 
 <div class="mathbox">
 <p>Our model is</p>
-<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) = \log\left(\frac{E[Y|X]}{1-E[Y|X]}\right) = \beta_0 +\beta_1X\]</span></p>
-<p>Imagine considering a particular value of <span class="math inline">\(X=x\)</span> (such as temperature = <span class="math inline">\(x\)</span>),</p>
-<p><span class="math display">\[\log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right) = \beta_0 +\beta_1x\]</span></p>
-<p>If we increase <span class="math inline">\(X\)</span> by 1, then we expected a change in our outcome or chance of success, <span class="math inline">\(E[Y|X = x+1]\)</span>,</p>
-<p><span class="math display">\[\log\left(\frac{E[Y|X= x+1]}{1-E[Y|X= x+1]}\right) = \beta_0 +\beta_1(x+1)\]</span></p>
+<p><span class="math display">\[\log\left(\frac{p}{1-p}\right) =
+\log\left(\frac{E[Y|X]}{1-E[Y|X]}\right) = \beta_0
++\beta_1X\]</span></p>
+<p>Imagine considering a particular value of <span
+class="math inline">\(X=x\)</span> (such as temperature = <span
+class="math inline">\(x\)</span>),</p>
+<p><span
+class="math display">\[\log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right) =
+\beta_0 +\beta_1x\]</span></p>
+<p>If we increase <span class="math inline">\(X\)</span> by 1, then we
+expected a change in our outcome or chance of success, <span
+class="math inline">\(E[Y|X = x+1]\)</span>,</p>
+<p><span class="math display">\[\log\left(\frac{E[Y|X= x+1]}{1-E[Y|X=
+x+1]}\right) = \beta_0 +\beta_1(x+1)\]</span></p>
 <p>Let’s find the difference between these two equations,</p>
-<p><span class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)- \log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  (\beta_0 +\beta_1(x+1)) - ( \beta_0 +\beta_1x)\]</span> and simplify the right hand side (we love it when things cancel!),</p>
-<p><span class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)- \log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  \beta_1\]</span> and then simplify the left hand side (using our rules of logarithms),</p>
-<p><span class="math display">\[\log\left( \frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right) = \beta_1\]</span></p>
+<p><span
+class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)-
+\log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  (\beta_0 +\beta_1(x+1)) -
+( \beta_0 +\beta_1x)\]</span> and simplify the right hand side (we love
+it when things cancel!),</p>
+<p><span
+class="math display">\[\log\left(\frac{E[Y|X=x+1]}{1-E[Y|X=x+1]}\right)-
+\log\left(\frac{E[Y|X=x]}{1-E[Y|X=x]}\right)=  \beta_1\]</span> and then
+simplify the left hand side (using our rules of logarithms),</p>
+<p><span class="math display">\[\log\left(
+\frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right) =
+\beta_1\]</span></p>
 <p>Let’s exponentiate both sides,</p>
-<p><span class="math display">\[\left( \frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right)= e^{\beta_1}\]</span></p>
-<p><span class="math display">\[\left( \frac{\hbox{Odds of Success when }X=x+1}{\hbox{Odds of Success when }X=x}\right)= e^{\beta_1}\]</span></p>
+<p><span class="math display">\[\left(
+\frac{E[Y|X=x+1]/(1-E[Y|X=x+1])}{E[Y|X=x]/(1-E[Y|X=x])}\right)=
+e^{\beta_1}\]</span></p>
+<p><span class="math display">\[\left( \frac{\hbox{Odds of Success when
+}X=x+1}{\hbox{Odds of Success when }X=x}\right)=
+e^{\beta_1}\]</span></p>
 </div>
 
 After that algebra, we find that $e^{\beta_1}$ is equal to the **odds ratio**, the ratio of the odds of success between two groups of values (those with $X=x+1$ and those with $X=x$, 1 unit apart)
@@ -146,7 +180,7 @@ After that algebra, we find that $e^{\beta_1}$ is equal to the **odds ratio**, t
 When we fit the model to the o-ring experimental data, we estimate the coefficients to be $\hat{\beta}_0 = 15.04$ and $\hat{\beta}_1 = -0.232$. So the estimated odds ratio is $e^{\hat{\beta}_1} = e^{-0.232} = 0.793$ for an increase in one degree Fahrenheit in temperature (Temperature=T+1 v. Temperature=T). 
 
 
-```r
+``` r
 tidy(model.glm) %>%
   select(term, estimate) %>%
   mutate(estimate_exp = exp(estimate)) %>%
@@ -175,7 +209,7 @@ In this case, we have an odds ratio < 1 which means that the estimated odds of o
 On January 28, 1986, the temperature was 26 degrees F. Let's predict the chance of "success," which is a failure of o-rings in our data context, at that temperature.  
 
 
-```r
+``` r
 #type = 'response' gives predicted chance, rather than predicted odds
 predict(model.glm, newdata = data.frame(Temperature = 26), type = 'response') 
 ```
@@ -196,7 +230,7 @@ But if we had to decide whether or not we should let the shuttle launch go, how 
 It depends. Let's look at a boxplot of **predicted probabilities** of "success" compared to the true outcomes.
 
 
-```r
+``` r
 model.glm %>%
   augment(type.predict = 'response') %>%
   ggplot(aes(x = factor(Fail), y = .fitted)) + 
@@ -210,7 +244,7 @@ model.glm %>%
 If we used a threshold of 0.8, then we'd say that for any experiment with a predicted chance of o-ring failure 0.8 or greater, we'll predict that there will be o-ring failure. As with any predictions, we may make an error. With this threshold, what is our **accuracy** (# of correctly predicted/# of data points)? 
 
 
-```r
+``` r
 model.glm %>%
   augment(type.predict = 'response') %>%
   ggplot(aes(x = factor(Fail), y = .fitted)) + 
@@ -225,7 +259,7 @@ model.glm %>%
 In the table below, we see that there were 3 data points in which we correctly predicted o-ring failure (using a threshold of 0.8). There were 4 data points in which we erroneously predicted that it wouldn't fail when it actually did, and we correctly predicted no failure for 16 data points. So in total, our accuracy is (16+3)/(16+4+3) =  0.82 or 82%. 
 
 
-```r
+``` r
 threshold <- 0.80
 
 model.glm %>%
@@ -262,18 +296,31 @@ The **specificity** of a prediction model is the true negatives divided by the f
 <div class="mathbox">
 <p>To recap,</p>
 <ul>
-<li><p>The <strong>accuracy</strong> is the overall percentage of correctly predicted outcomes out of the total number of outcome values</p></li>
-<li><p>The <strong>false negative rate (FNR)</strong> is the percentage of incorrectly predicted outcomes out of the <span class="math inline">\(Y=1\)</span> “success” outcomes (conditional on “success”)</p></li>
-<li><p>The <strong>sensitivity</strong> is the percentage of correctly predicted outcomes out of the <span class="math inline">\(Y=1\)</span> “success” outcomes (conditional on “success”); 1 - FNR</p></li>
-<li><p>The <strong>false positive rate (FPR)</strong> is the percentage of incorrectly predicted outcomes out of the <span class="math inline">\(Y=0\)</span> “failure” outcomes (conditional on “failure” or “no success”)</p></li>
-<li><p>The <strong>specificity</strong> is the percentage of correctly predicted outcomes out of the <span class="math inline">\(Y=0\)</span> “failure” outcomes (conditional on “failure” or “no success”); 1 - FPR</p></li>
+<li><p>The <strong>accuracy</strong> is the overall percentage of
+correctly predicted outcomes out of the total number of outcome
+values</p></li>
+<li><p>The <strong>false negative rate (FNR)</strong> is the percentage
+of incorrectly predicted outcomes out of the <span
+class="math inline">\(Y=1\)</span> “success” outcomes (conditional on
+“success”)</p></li>
+<li><p>The <strong>sensitivity</strong> is the percentage of correctly
+predicted outcomes out of the <span class="math inline">\(Y=1\)</span>
+“success” outcomes (conditional on “success”); 1 - FNR</p></li>
+<li><p>The <strong>false positive rate (FPR)</strong> is the percentage
+of incorrectly predicted outcomes out of the <span
+class="math inline">\(Y=0\)</span> “failure” outcomes (conditional on
+“failure” or “no success”)</p></li>
+<li><p>The <strong>specificity</strong> is the percentage of correctly
+predicted outcomes out of the <span class="math inline">\(Y=0\)</span>
+“failure” outcomes (conditional on “failure” or “no success”); 1 -
+FPR</p></li>
 </ul>
 </div>
 
 
 What if we used a lower threshold to reduce the number of false negatives (those with very real human consequences)? Let's lower it to 0.25 so that we predict o-ring failure more easily. 
 
-```r
+``` r
 model.glm %>%
   augment(type.predict = 'response') %>%
   ggplot(aes(x = factor(Fail), y = .fitted)) + 
@@ -288,7 +335,7 @@ model.glm %>%
 Let's find our accuracy: (10+4)/(10+3+6+4) = 0.61. Worse than before, but let's check false negative rate: 3/(3+4) = 0.43. That's lower. But now we have a non-zero false positive rate: 6/(6+10) = 0.375. So of the experiments with no o-ring failure, we predicted incorrectly 37.5% of the time. 
 
 
-```r
+``` r
 threshold <- 0.25
 
 augment(model.glm, type.predict ='response') %>%

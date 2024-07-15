@@ -6,4 +6,4 @@ rmd_files: ["index.Rmd", "01-data.Rmd", "02-visualization.Rmd", "03-linear-regre
 delete_merged_file: true
 output_dir: "docs"
 new_session: yes
-repo: https://github.com/bcheggeseth/Stat155Notes/
+repo: https://github.com/mac-stat/Stat155Notes/

@@ -11,7 +11,9 @@ Broadly, a model is a simplified representation of the world. When we build mode
 One goal when building models is **prediction**. Given data on a **response** or **outcome variable**, $Y$, and one or more **predictor or explanatory variables**, $X$, the goal is to find a mathematical function, $f$, of $X$ that gives good predictions of $Y$.  For example, we might want to be able to predict a customer's chest size knowing their neck size. This $X$ may be a single variable, but it is most often a set of variables. We'll be building up to multivariate modeling over the course of this chapter. 
 
 <div class="reflect">
-<p>Can you think of some other concrete examples in which we’d want a model to do prediction? Consider what predictions might be made about you every day.</p>
+<p>Can you think of some other concrete examples in which we’d want a
+model to do prediction? Consider what predictions might be made about
+you every day.</p>
 </div>
 
 What are the qualities of a good model and function, $f$? We want to find an $f(X)$ such that if we plug in a value of $X$ such as $X=x$, we'll get a good predictor of the observed outcome values $y$. In other words, we want the model prediction $\hat{y}=f(x)$ (read, "y hat") to be close to the observed outcome value. We want $y-\hat{y}$ to be small. This difference between the observed value and the prediction, $y-\hat{y}$, is called a **residual**. We'll discuss residuals more later.
@@ -19,7 +21,8 @@ What are the qualities of a good model and function, $f$? We want to find an $f(
 Another goal when building models is **description**. We want a model to "explain" the relationship between the $X$ and $Y$ variables. Note that an overly complicated model may not be that useful here because it can't help us *understand* the relationship. A more complex model may, however, produce better predictions. [George Box](https://en.wikipedia.org/wiki/George_E._P._Box) is often quoted "All models are wrong but some are useful." Depending on our goal, one model may be more useful than another.
 
 <div class="reflect">
-<p>Can you think of some concrete examples in which we’d want a model to do explain a phenomenon? Consider how policy decisions get made.</p>
+<p>Can you think of some concrete examples in which we’d want a model to
+do explain a phenomenon? Consider how policy decisions get made.</p>
 </div>
 
 To begin, we will consider a simple, but powerful model in which we limit this function, $f(X)$, to be a straight line with a y-intercept, $\beta_0$, and slope, $\beta_1$. ($\beta$ is the Greek letter beta.) The $E[Y | X]$ below stands for the **expected value** of the response variable $Y$ for a *given* value of $X$. 
@@ -39,8 +42,14 @@ The little hat on top of $\hat{y}$ means that we're talking about a predicted or
 <div class="mathbox">
 <p>In the past, you may have seen the equation of a line as</p>
 <p><span class="math display">\[y = mx + b\]</span></p>
-<p>where <span class="math inline">\(m\)</span> is the slope and <span class="math inline">\(b\)</span> is the y-intercept. We will be using different notation so that it can generalize to multiple linear regression.</p>
-<p>The y-intercept is the value when <span class="math inline">\(x=0\)</span> and the slope is change in <span class="math inline">\(y\)</span> for each 1 unit increase of <span class="math inline">\(x\)</span> (“rise over run”).</p>
+<p>where <span class="math inline">\(m\)</span> is the slope and <span
+class="math inline">\(b\)</span> is the y-intercept. We will be using
+different notation so that it can generalize to multiple linear
+regression.</p>
+<p>The y-intercept is the value when <span
+class="math inline">\(x=0\)</span> and the slope is change in <span
+class="math inline">\(y\)</span> for each 1 unit increase of <span
+class="math inline">\(x\)</span> (“rise over run”).</p>
 </div>
 
 
@@ -49,7 +58,7 @@ The little hat on top of $\hat{y}$ means that we're talking about a predicted or
 Let's return to the thought experiment in which you were a manufacturer of button-down dress shirts.
 
 
-```r
+``` r
 body <- read.delim("Data/bodyfat.txt")
 
 body %>%
@@ -62,13 +71,14 @@ body %>%
 <img src="03-linear-regression_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" />
 
 <div class="reflect">
-<p>If you were to add one or multiple lines to the plot above to help you make business decisions, where would you want it (or them)?</p>
+<p>If you were to add one or multiple lines to the plot above to help
+you make business decisions, where would you want it (or them)?</p>
 </div>
 
 Let's say you were only going to make one size of shirt. You might want to add a horizontal line at the mean Chest size and a vertical line at the mean Neck size. 
 
 
-```r
+``` r
 body %>%
     ggplot(aes(x = Neck, y = Chest)) +
     geom_point(color = 'steelblue') + 
@@ -99,7 +109,9 @@ What if we wanted to be able to make more sizes? Could we get a pretty good sens
 </div>
 
 <div class="reflect">
-<p>Stop and think about the data collection process. If you were measuring your own neck size, how precise do you think you could get? What factors might impact that precision?</p>
+<p>Stop and think about the data collection process. If you were
+measuring your own neck size, how precise do you think you could get?
+What factors might impact that precision?</p>
 </div>
 
 We can see from this scatterplot that there is generally a linear relationship between neck and chest size. Perhaps we can find one line to describe the relationship between neck size and chest size and use that line to decide on sizes later.
@@ -126,7 +138,9 @@ $$ E[Y | X] =  \beta_0 + \beta_1\,X $$
 that gives us the "best" fit to the $n$ points on a scatterplot, $(x_i,y_i)$ where $i=1,...,n$. 
 
 <div class="reflect">
-<p>What do we mean by “best”? In general, we’d like good predictions and a model that describes the average relationship. But we need to be more precise about what we mean by “best”.</p>
+<p>What do we mean by “best”? In general, we’d like good predictions and
+a model that describes the average relationship. But we need to be more
+precise about what we mean by “best”.</p>
 </div>
 
 ### First idea
@@ -167,7 +181,7 @@ The large values of the sum of squared residuals are dominating this image, so l
 We can limit our search to $\beta_0 \in (-10,10)$ and $\beta_1 \in (2,3)$.
 
 
-```r
+``` r
 beta0 <- seq(-10, 10, by = 0.05)
 beta1 <- seq(2, 3, by = 0.05)
 b <- expand.grid(beta0,beta1)
@@ -184,14 +198,23 @@ b[ss == min(ss),]
 We have the minimum point. Over the grid of pairs of values, the minimum sum of squared residuals happens when the intercept is -3.7 and the slope is 2.75.
 
 <div class="mathbox">
-<p>(Optional) Alternative ways (faster than exhaustive search) to find the minimum sum of squared residuals:</p>
+<p>(Optional) Alternative ways (faster than exhaustive search) to find
+the minimum sum of squared residuals:</p>
 <ul>
-<li>We could try a numerical optimization algorithm such as steepest descent.</li>
-<li>We could use multivariable calculus (find partial derivatives, set equal to 0, and solve).</li>
+<li>We could try a numerical optimization algorithm such as steepest
+descent.</li>
+<li>We could use multivariable calculus (find partial derivatives, set
+equal to 0, and solve).</li>
 </ul>
-<p>To get started on the calculus, solve the following two equations for the two unknowns (<span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span>):</p>
-<p><span class="math display">\[\frac{\partial }{\partial \beta_0}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]</span> <span class="math display">\[\frac{\partial }{\partial \beta_1}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]</span></p>
-<p>If you are a math/stat/physics/cs major, you should try this by hand and see if you can get the solutions below.</p>
+<p>To get started on the calculus, solve the following two equations for
+the two unknowns (<span class="math inline">\(\beta_0\)</span> and <span
+class="math inline">\(\beta_1\)</span>):</p>
+<p><span class="math display">\[\frac{\partial }{\partial
+\beta_0}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]</span>
+<span class="math display">\[\frac{\partial }{\partial
+\beta_1}\sum_{i=1}^n (y_i - (\beta_0 + \beta_1\,x_i))^2 = 0\]</span></p>
+<p>If you are a math/stat/physics/cs major, you should try this by hand
+and see if you can get the solutions below.</p>
 </div>
 
 If you find the minimum using calculus (super useful class!), you'll find that we can write the Least Squares solution in an equation format as functions of summary statistics (!), the estimated slope is
@@ -207,7 +230,7 @@ where $\bar{x}$ is the mean of the variable on the x-axis, $\bar{y}$ is the mean
 Let's do that calculation "by hand" first in R.
 
 
-```r
+``` r
 body %>%
     summarize(
       sy = sd(Chest), 
@@ -229,7 +252,7 @@ body %>%
 Wow. That was quite a bit of coding. From now on, we'll take the shortcut and use the `lm()` function which stands for **l**inear **m**odel. This function gives us the least squares solution to the "best" fitting line, as defined by minimizing the sum of squared residuals.
 
 
-```r
+``` r
 body %>% with(lm(Chest ~ Neck)) # When you see ~, think "as a function of"
 ```
 
@@ -243,7 +266,7 @@ body %>% with(lm(Chest ~ Neck)) # When you see ~, think "as a function of"
 ##      -3.188        2.737
 ```
 
-```r
+``` r
 #or you can use the following code:
 #lm(Chest ~ Neck, data = body)
 ```
@@ -264,7 +287,7 @@ $$s_e = \sqrt{\frac{\sum^n_{i=1} (y_i-\hat{y}_i)^2}{n-2}}  = \sqrt{\frac{\sum^n_
 In R: the standard deviation of the residuals, $s_e$, is referred to as the "residual standard error". Don't confuse this with "Std. Error," which is something else that we'll get to later in the semester.
 
 
-```r
+``` r
 body %>%
     with(lm(Chest ~ Neck)) %>% 
     tidy()
@@ -285,7 +308,7 @@ $$ \widehat{\hbox{Chest}} = -3.18 + 2.73\,\hbox{Neck}$$
 If you have a neck size of 38 cm, then we predict the chest size of an ideal shirt is about 100.5 cm:
 
 
-```r
+``` r
 # The intercept and slope are rounded here first (not great):
 -3.18 + 2.73*38
 ```
@@ -294,7 +317,7 @@ If you have a neck size of 38 cm, then we predict the chest size of an ideal shi
 ## [1] 100.56
 ```
 
-```r
+``` r
 # The intercept and slope are not rounded before prediction (better!)
 body %>%
     with(lm(Chest ~ Neck)) %>% 
@@ -310,7 +333,9 @@ body %>%
 Given your neck size, we can probably predict your chest size within 5 to 10 cm since $s_e = 5.22$ (1 to 2 SD's -- recall Section \@ref(intro-zscore)). 
 
 <div class="reflect">
-<p>If you were a shirt manufacturer, is this a good enough prediction? What is the impact on the customer? Think of if the prediction were an overestimate (loose) or an underestimate (too tight).</p>
+<p>If you were a shirt manufacturer, is this a good enough prediction?
+What is the impact on the customer? Think of if the prediction were an
+overestimate (loose) or an underestimate (too tight).</p>
 </div>
 
 ### Real companies
@@ -335,7 +360,10 @@ For Brooks Brothers, the red boxes are a bit below the least squares line for th
 
 
 <div class="reflect">
-<p>We haven’t told you how the customer data we’ve been using was collected. As you compared the brand sizes to this sample data, what assumptions were you making about the population that the sample was drawn from?</p>
+<p>We haven’t told you how the customer data we’ve been using was
+collected. As you compared the brand sizes to this sample data, what
+assumptions were you making about the population that the sample was
+drawn from?</p>
 <p>What questions do you have about the sampling procedure?</p>
 </div>
 
@@ -344,7 +372,7 @@ For Brooks Brothers, the red boxes are a bit below the least squares line for th
 Let's look at the summary output of the `lm()` function in R again. We'll highlight some of the most important pieces of this output and discuss how you interpret them.
 
 
-```r
+``` r
 tshirt_mod <- body %>%
   with(lm(Chest ~ Neck))
 
@@ -368,7 +396,7 @@ tshirt_mod %>%
 - **Discussion:** If the intercept doesn't make sense in the context, we might refit the model with the $x$ variable once it is **centered**. That is, the mean of $x$ for all individuals in the sample is computed, and this mean is subtracted from each person's $x$ value. In this case, the intercept is interpreted as the average value of $y$ when $x$ is at its (sample) mean value. See the example below -- we get an intercept of 100.66, which is the average Chest size for customers with average Neck size. We could also choose to center Neck size at a value other than the mean. For example, we could center it at 30 cm by subtracting 30 from the Neck size of all cases.
 
 
-```r
+``` r
 body <- body %>% 
   mutate(CNeck = Neck - mean(Neck))
 
@@ -383,7 +411,7 @@ tshirt_mod2 %>%
 ## # A tibble: 2 × 5
 ##   term        estimate std.error statistic   p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>     <dbl>
-## 1 (Intercept)   101.       0.330     305.  3.14e-321
+## 1 (Intercept)   101.       0.330     305.  3.13e-321
 ## 2 CNeck           2.74     0.145      18.9 4.59e- 50
 ```
 
@@ -439,12 +467,12 @@ Let's consider another data example. Can we predict your college grade point ave
 
 
 
-```r
+``` r
 sat <- read_csv("Data/sat.csv")
 ```
 
 
-```r
+``` r
 sat %>%
     ggplot(aes(x = high_GPA, y = univ_GPA)) +
     geom_point(color = 'steelblue') +
@@ -465,7 +493,7 @@ First things first. Let's describe the scatterplot.
 The code below computes the correlation coefficients separately for students with high school GPAs above 3 and for students with high school GPAs less than or equal to 3. We see that the correlation is higher for the high GPA group.
 
 
-```r
+``` r
 sat %>%
     mutate(HighHSGPA = high_GPA > 3) %>%
     group_by(HighHSGPA) %>%
@@ -483,7 +511,7 @@ sat %>%
 Let's build a model to predict college GPA based on high school GPA based on this sample data. Since we noted that there was a linear relationship, let's fit a linear model by finding the least squares regression line.
 
 
-```r
+``` r
 sat %>%
   with(lm(univ_GPA ~ high_GPA)) %>%
   tidy()
@@ -509,7 +537,7 @@ Let's plug in a few values for the High School GPA to get predicted College GPA'
 $$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 2 = 2.44 $$
 
 
-```r
+``` r
 ## Calculation by hand; rounded before prediction
 1.09 + 0.675*2
 ```
@@ -518,7 +546,7 @@ $$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 2 = 2.44 $$
 ## [1] 2.44
 ```
 
-```r
+``` r
 ## Calcuation using R's predict() function
 sat %>%
   with(lm(univ_GPA ~ high_GPA)) %>%
@@ -534,7 +562,7 @@ sat %>%
 $$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 3.5 = 3.45 $$
 
 
-```r
+``` r
 1.09 + 0.675*3.5 #rounded before prediction
 ```
 
@@ -542,7 +570,7 @@ $$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 3.5 = 3.45 $$
 ## [1] 3.4525
 ```
 
-```r
+``` r
 sat %>%
   with(lm(univ_GPA ~ high_GPA)) %>%
   predict(newdata = data.frame(high_GPA = 3.5)) #rounded after prediction
@@ -557,7 +585,7 @@ sat %>%
 $$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 4.5 = 4.13 $$
 
 
-```r
+``` r
 1.09 + 0.675*4.5 #rounded before prediction
 ```
 
@@ -565,7 +593,7 @@ $$ \hbox{Predicted College GPA} = 1.09 + 0.675 \times 4.5 = 4.13 $$
 ## [1] 4.1275
 ```
 
-```r
+``` r
 sat %>%
   with(lm(univ_GPA ~ high_GPA)) %>%
   predict(newdata = data.frame(high_GPA = 4.5)) #rounded after prediction 
@@ -577,7 +605,9 @@ sat %>%
 ```
 
 <div class="reflect">
-<p>Does it make sense to use this model for high school GPA’s &gt; 4? Some high schools have a max GPA of 5.0 due to the weighting of advanced courses.</p>
+<p>Does it make sense to use this model for high school GPA’s &gt; 4?
+Some high schools have a max GPA of 5.0 due to the weighting of advanced
+courses.</p>
 </div>
 
 - What is the maximum high school GPA in this data set? 
@@ -585,7 +615,7 @@ sat %>%
 
 
 
-```r
+``` r
 sat %>%
     summarize(max(high_GPA)) # Max high school GPA in this data set
 ```
@@ -606,7 +636,7 @@ Recall that a residual, $e_i$, for the $i$th data point is the difference betwee
 If the residuals were approximately unimodal and symmetric, we expect about 95% of the residuals to be within 2 standard deviations of 0 (the mean residual). (Recall Section \@ref(intro-zscore).) Let's check: the distribution of residuals is unimodal and roughly symmetric, but we see more large residuals that we might usually expect. Let's keep that in mind. 
 
 
-```r
+``` r
 sat %>%
   with(lm(univ_GPA ~ high_GPA)) %>%
   augment() %>%
@@ -621,7 +651,7 @@ sat %>%
 Below we calculate $SSE$ (the sum of squared errors/residuals), and the standard deviation of the residuals ($s_e$).
 
 
-```r
+``` r
 lm.gpa <- sat %>%
   with(lm(univ_GPA ~ high_GPA))
 
@@ -635,7 +665,7 @@ s
 ## [1] 0.2814443
 ```
 
-```r
+``` r
 2*s
 ```
 
@@ -646,7 +676,7 @@ s
 Using this model (that is, using your high school GPA), we can predict your college GPA within about $0.56$ GPA points. Is this useful? Is predicting within a margin of $0.56$ GPA points good enough? Let's compare this model margin of error with the margin of error predicting with just the mean:
 
 
-```r
+``` r
 sat %>%
   summarize(
     sd(univ_GPA), 
@@ -669,7 +699,7 @@ $$ SSTO = \sum{(y_i -\bar{y})^2} $$
 $SSTO$ is the numerator of the standard deviation of $Y$ (without knowing anything about $X$).
 
 
-```r
+``` r
 SSTO <- sat %>%
   summarize(SSTO = sum((univ_GPA - mean(univ_GPA))^2)) %>%
   pull()
@@ -705,14 +735,15 @@ Two extreme cases:
 
 
 <div class="mathbox">
-<p><span class="math display">\[ R^2 = 1 - \frac{SSE}{SSTO} = 1 - \frac{ \sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}\]</span></p>
+<p><span class="math display">\[ R^2 = 1 - \frac{SSE}{SSTO} = 1 - \frac{
+\sum{(y_i - \hat{y_i})^2}}{ \sum{(y_i - \bar{y})^2}}\]</span></p>
 </div>
 
 In R, `lm()` will calculate R-Squared ($R^2$) for us, but we can also see that it equals the value from the formula above. 
 
 
 
-```r
+``` r
 1 - SSE/SSTO
 ```
 
@@ -720,7 +751,7 @@ In R, `lm()` will calculate R-Squared ($R^2$) for us, but we can also see that i
 ## [1] 0.6077187
 ```
 
-```r
+``` r
 glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 ```
 
@@ -729,7 +760,7 @@ glance(lm.gpa) #r.squared = R^2, sigma = s_e (ignore the rest)
 ##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
 ##       <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>
 ## 1     0.608         0.604 0.281      160. 1.18e-22     1  -14.9  35.7  43.7
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 - Is there a "good" value of $R^2$? Same answer as correlation -- no.
@@ -752,7 +783,7 @@ We have talked about ways to measure if the model is a good fit to the data. But
 To check the first two conditions, we look at the original scatterplot as well as a plot of the *residuals* against *fitted or predicted values*,
 
 
-```r
+``` r
 augment(lm.gpa, data = sat) %>%
     ggplot(aes(x = .fitted, y = .resid)) +
     geom_point() +
@@ -773,7 +804,13 @@ Studying the residuals can highlight subtle non-linear patterns and thickening i
 
 
 <div class="reflect">
-<p>If there is a pattern in the residuals, then we are systematically over or underpredicting our outcomes. What if we are systematically overpredicting the outcome for a group? What if we are systematically underpredicting the outcome for a different group? Consider a model for predicting home values for Zillow or consider an admissions model predicting college GPA. What are the real human consequences if there is a pattern in the residuals?</p>
+<p>If there is a pattern in the residuals, then we are systematically
+over or underpredicting our outcomes. What if we are systematically
+overpredicting the outcome for a group? What if we are systematically
+underpredicting the outcome for a different group? Consider a model for
+predicting home values for Zillow or consider an admissions model
+predicting college GPA. What are the real human consequences if there is
+a pattern in the residuals?</p>
 </div>
 
 ### Sensitivity Analysis
@@ -785,7 +822,7 @@ See the example below. See how the relationship changes with the addition of one
 
 
 
-```r
+``` r
 dat %>%
   ggplot(aes(x = x,y = y)) + 
   geom_point() + 
@@ -795,7 +832,7 @@ dat %>%
 
 <img src="03-linear-regression_files/figure-html/unnamed-chunk-51-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+``` r
 dat %>%
   filter(x < 15 & y < 5) %>% #filter out outliers
   ggplot(aes(x,y)) + 
@@ -806,7 +843,7 @@ dat %>%
 
 <img src="03-linear-regression_files/figure-html/unnamed-chunk-51-2.png" width="672" style="display: block; margin: auto;" />
 
-```r
+``` r
 #compare conclusions
 ```
 
@@ -881,7 +918,7 @@ Our friend [J.W. Tukey](https://en.wikipedia.org/wiki/John_Tukey) (the same guy 
 Practice: Which quadrant of the circle does this relationship below resemble? 
 
 
-```r
+``` r
 library(gapminder)
 
 gapminder %>% 
@@ -900,7 +937,7 @@ Try these transformations until you find a relationship that is roughly straight
 Let's try going down the ladder.
 
 
-```r
+``` r
 gapminder %>% 
   filter(year > 2005) %>%
   mutate(TgdpPercap = sqrt(gdpPercap)) %>% #power = 1/2
@@ -914,7 +951,7 @@ gapminder %>%
 Not quite straight. Let's keep going.
 
 
-```r
+``` r
 gapminder %>% 
   filter(year > 2005) %>%
   mutate(TgdpPercap = gdpPercap^(1/3)) %>% #power = 1/3
@@ -928,7 +965,7 @@ gapminder %>%
 Not quite straight. Let's keep going.
 
 
-```r
+``` r
 gapminder %>% 
   filter(year > 2005) %>%
   mutate(TgdpPercap = log(gdpPercap)) %>% #power = 0
@@ -942,7 +979,7 @@ gapminder %>%
 Getting better. Let's try to keep going.
 
 
-```r
+``` r
 #power = -1 (added a negative sign to maintain positive relationship)
 gapminder %>% 
   filter(year > 2005) %>%
@@ -959,7 +996,7 @@ TOO FAR! Back up. Let's stick with log(gdpPercap).
 Now we see some unequal spread so let's also try transforming $Y$.
 
 
-```r
+``` r
 gapminder %>% 
   filter(year > 2005) %>%
   mutate(TgdpPercap = log(gdpPercap)) %>% 
@@ -978,7 +1015,7 @@ Transformations can't make relationships look exactly linear with equal spread, 
 Let's try and fit a model with these two variables.
 
 
-```r
+``` r
 lm.gap <- gapminder %>% 
   filter(year > 2005) %>%
   mutate(TgdpPercap = log(gdpPercap)) %>% 
@@ -1030,7 +1067,7 @@ The additive increase of $\beta_1$ units in the expected value of $log(\hbox{Lif
 We could also model curved relationships by including higher power terms in a [multiple linear regression model][Multiple Linear Regression] like the example below. By using `poly()` (short for polynomial), we now include $X$ and $X^2$ as variables in the model.
 
 
-```r
+``` r
 x <- rnorm(100, 5, 1)
 y <- 200 + 20*x - 5*x^2 + rnorm(100,sd = 10)
 dat <- data.frame(x,y)
@@ -1044,7 +1081,7 @@ dat %>%
 
 <img src="03-linear-regression_files/figure-html/unnamed-chunk-59-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+``` r
 dat %>%
   with(lm(y ~ poly(x, degree = 2, raw = TRUE)))
 ```
@@ -1056,15 +1093,15 @@ dat %>%
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          209.366                            17.901  
+##                          202.646                            20.525  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -4.937
+##                           -5.214
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!
 
 
-```r
+``` r
 require(gam)
 plot(gam(y ~ s(x), data = dat))
 ```
@@ -1090,7 +1127,7 @@ $$ E[Y |X_1,...,X_k ] = \beta_0 + \beta_1\,X_{1} + \cdots + \beta_k\,X_{k}  $$
 Let's talk about a new data example: home prices. We want to build a model to predict the price of a home based on its many characteristics. We have a dataset of homes recently sold in New England with many variables such as the age of the home, the land value, whether or not it has central air conditioning, the number of fireplaces, the sale price, and more...
 
 
-```r
+``` r
 homes <- read.delim('Data/Saratoga.txt')
 head(homes)
 ```
@@ -1127,7 +1164,7 @@ head(homes)
 In New England, fireplaces are often used as a way to provide supplementary heat to the house. Let's study the impact a fireplace has on the sale price of a home. In particular, we only care if the home has 1 or more fireplaces or no fireplaces. So we make a new variable, `AnyFireplace`, that is `TRUE` if there is at least one fireplace in a home and `FALSE` otherwise.
 
 
-```r
+``` r
 homes <- homes %>%
     mutate(AnyFireplace = Fireplaces > 0)
 ```
@@ -1155,7 +1192,7 @@ The difference between the expected price is $\beta_1$, the value of the "slope"
 To get an estimate of $\beta_1$, we need to fit our model to the data. In fact, R creates this indicator variable for you when you include a categorical variable as an $X$ variable the `lm()` function.
 
 
-```r
+``` r
 lm.home <- homes %>%
   with(lm(Price ~ AnyFireplace))
 
@@ -1179,7 +1216,7 @@ and our predicted price for a house with a fireplace (indicator variable = 1) is
 $$ \hbox{Predicted Price} = 174653 + 65261 \times 1 = \$ 239,914 $$
 
 
-```r
+``` r
 174653 + 65261*1
 ```
 
@@ -1194,8 +1231,13 @@ $$\hbox{Predicted Price} = 174653 + 65261 \times 0 = \$ 174,653$$
 The difference between these predicted prices is $\hat{\beta}_1$ = \$65,261, the estimated value of the "slope" for the indicator variable.
 
 <div class="reflect">
-<p>So is this how much a fireplace is worth? If I installed a fireplace in my house, should the value of my house go up $65,260?</p>
-<p><strong>No</strong>, because we should not make causal statements based on observational data without thinking deeply about the context. What could be confounding this relationship? What third variable may be related to both the price and whether or not a house has a fireplace?</p>
+<p>So is this how much a fireplace is worth? If I installed a fireplace
+in my house, should the value of my house go up $65,260?</p>
+<p><strong>No</strong>, because we should not make causal statements
+based on observational data without thinking deeply about the context.
+What could be confounding this relationship? What third variable may be
+related to both the price and whether or not a house has a
+fireplace?</p>
 </div>
 
 ### Confounder Adjustment
@@ -1203,7 +1245,7 @@ The difference between these predicted prices is $\hat{\beta}_1$ = \$65,261, the
 Let's consider the size of the house. Is price related to the area of living space (square footage)?
 
 
-```r
+``` r
 homes %>%
     ggplot(aes(x = Living.Area, y = Price)) + 
     geom_point(color = 'steelblue') +
@@ -1215,7 +1257,7 @@ homes %>%
 Is the presence of a fireplace related to area of living space?
 
 
-```r
+``` r
 homes %>%
     ggplot(aes(x = AnyFireplace, y = Living.Area)) + 
     geom_boxplot() +
@@ -1278,7 +1320,7 @@ Another way to describe $\beta_1$ is that it is the difference between the inter
 To get the estimates of $\beta_0,\beta_1,$ and $\beta_2$, we fit the model in R,
 
 
-```r
+``` r
 lm.home2 <- homes %>%
   with(lm(Price ~ AnyFireplace + Living.Area))
 
@@ -1309,7 +1351,7 @@ Note that the "slope" for the indicator variable is very different with the addi
 Let's look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines). We can create the lines manually,
 
 
-```r
+``` r
 homes %>%
     ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
     geom_point() +
@@ -1323,7 +1365,7 @@ homes %>%
 or we could use our model to plot the lines for us.
 
 
-```r
+``` r
 lm.home2 %>%
     augment() %>%
     ggplot(aes(x = Living.Area, color = AnyFireplace)) + 
@@ -1337,7 +1379,7 @@ lm.home2 %>%
 Let's try and fit two separate lines to these two groups of homes, home with any fireplaces and home with no fireplaces. Do these lines have the same intercepts? Same slopes?
 
 
-```r
+``` r
 homes %>%
     ggplot(aes(x = Living.Area, y = Price, color = AnyFireplace)) + 
     geom_point() +
@@ -1355,10 +1397,15 @@ In this case, it looks as though having a fireplace in your house slightly chang
 We can allow for different slopes within one regression model (!), rather than fitting two separate models. 
 
 <div class="reflect">
-<p>When should we fit only one model; when should we fit separate models?</p>
-<p>If we fit separate models, we are <strong>stratifying</strong> and then modeling. But what if some of the strata are small?</p>
-<p>Fitting one model allows us to “borrow information across groups.”</p>
-<p>There is no one right answer. Researchers struggle with this decision <a href="https://www.ncbi.nlm.nih.gov/pubmed/22125224">to stratify or not to stratify</a>.</p>
+<p>When should we fit only one model; when should we fit separate
+models?</p>
+<p>If we fit separate models, we are <strong>stratifying</strong> and
+then modeling. But what if some of the strata are small?</p>
+<p>Fitting one model allows us to “borrow information across
+groups.”</p>
+<p>There is no one right answer. Researchers struggle with this decision
+<a href="https://www.ncbi.nlm.nih.gov/pubmed/22125224">to stratify or
+not to stratify</a>.</p>
 </div>
 
 - If we add a variable in the model (without an interaction), it only changes the intercept.
@@ -1417,7 +1464,7 @@ What this means in the context of this model of price as a function of living ar
 If we fit this model with interaction terms, we get the following estimates:
 
 
-```r
+``` r
 lm.home3 <- homes %>%
   with(lm(Price ~ AnyFireplace*Living.Area))
 
@@ -1445,7 +1492,7 @@ lm.home3 %>%
 
 
 
-```r
+``` r
 40901.29 + -37610.41*1
 ```
 
@@ -1453,7 +1500,7 @@ lm.home3 %>%
 ## [1] 3290.88
 ```
 
-```r
+``` r
 92.36391 + 26.85*1
 ```
 
@@ -1480,7 +1527,7 @@ lm.home3 %>%
 We could ask: is there *really* a difference in the slopes for Living Area and Price between homes with and without a fireplace?
 
 
-```r
+``` r
 lm.home3 %>% 
   tidy()
 ```
@@ -1511,7 +1558,7 @@ If we ask ourselves this question, we are assuming a few things:
 - Repeat.
 
 
-```r
+``` r
 set.seed(333) ## Setting the seed ensures that our results are reproducible
 ## Repeat the sampling and regression modeling 1000 times
 boot <- do(1000)*(
@@ -1540,7 +1587,7 @@ This process of resampling from the sample is called **Bootstrapping** and it is
 Let's first look at the variability of the difference in slopes across the bootstrap samples. The standard deviation of the bootstrap estimates will be similar to the `Std. Error` from the linear model output.
 
 
-```r
+``` r
 boot %>%
   summarize(sd(Living.Area.AnyFireplaceTRUE)) 
 ```
@@ -1550,7 +1597,7 @@ boot %>%
 ## 1                         9.332937
 ```
 
-```r
+``` r
 #this is going to be of similar magnitude (not exactly the same) to the Std. Error for the Living.Area.AnyFireplaceTRUE coefficient in output
 
 lm.home3 %>%
@@ -1572,7 +1619,7 @@ This standard deviation is somewhat close to the $6.459$ for Living.Area.AnyFire
 To get an interval of plausible values for the difference in the slopes, we look at the histogram and take the middle 95%. The lower end will be the 2.5th percentile and the upper end will be the 97.5th percentile.
 
 
-```r
+``` r
 boot %>%
   summarize(
     lower = quantile(Living.Area.AnyFireplaceTRUE, 0.025), 
@@ -1585,7 +1632,10 @@ boot %>%
 ```
 
 <div class="reflect">
-<p>Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes (with and without fireplaces)? How would you justify your answer? Consider the plausible values of the difference in slopes given by the interval above.</p>
+<p>Based on this evidence, do you think it is possible that the slopes
+are the same for the two types of homes (with and without fireplaces)?
+How would you justify your answer? Consider the plausible values of the
+difference in slopes given by the interval above.</p>
 </div>
 
 ### Redundancy and Multicollinearity {#redundant}
@@ -1593,7 +1643,7 @@ boot %>%
 Beyond fireplaces and living area, there are other characteristics that may impact the price of a home. Typically, homes for sale are advertised with the square footage, the number of bedrooms, and the number of bathrooms in addition to the total number of rooms in the house. In general, we'd expect a positive relationship between each of these and the home price. Let's fit a model with those four explanatory variables.
 
 
-```r
+``` r
 lm.home4 <- homes %>% 
   with( lm(Price ~ Living.Area + Bedrooms + Bathrooms + Rooms))
 
@@ -1618,7 +1668,7 @@ Remember, the coefficients are the change in the expected price for a 1 unit cha
 
 
 
-```r
+``` r
 homes %>%
   ggplot(aes(x = Rooms, y = Bedrooms)) + 
   geom_point() +
@@ -1627,7 +1677,7 @@ homes %>%
 
 <img src="03-linear-regression_files/figure-html/unnamed-chunk-81-1.png" width="672" style="display: block; margin: auto;" />
 
-```r
+``` r
 homes %>%
   summarize(cor(Rooms, Bedrooms))
 ```
@@ -1658,7 +1708,7 @@ In the second (upper right) scatterplot, we see a weak negative relationship bet
 With `Rooms` and `Bathrooms`, we see positive but weak relationships after accounting for the other explanatory variables. In fact, the slope of these lines are equal to the estimated coefficients from the summary. 
 
 
-```r
+``` r
 source('Data/ggavplot.R')
 ggAVPLOTS(lm.home4)
 ```
@@ -1668,7 +1718,7 @@ ggAVPLOTS(lm.home4)
 If we were to remove `Rooms` as it seems to be redundant, containing similar information as `Bedrooms`, we get a bit different estimated slope coefficients.
 
 
-```r
+``` r
 lm.home5 <- homes %>% 
   with(lm(Price ~ Living.Area + Bedrooms + Bathrooms ))
 
@@ -1697,7 +1747,7 @@ We can see that WITHOUT `Rooms`, we explained 52.9% of the variation in home `Pr
 So `Rooms` doesn't add a lot to the explanatory power of the model. 
 
 
-```r
+``` r
 glance(lm.home4)
 ```
 
@@ -1706,10 +1756,10 @@ glance(lm.home4)
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.532         0.531 67388.      491. 1.58e-282     4 -21662. 43335. 43368.
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
-```r
+``` r
 glance(lm.home5)
 ```
 
@@ -1718,7 +1768,7 @@ glance(lm.home5)
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       <dbl>         <dbl>  <dbl>     <dbl>     <dbl> <dbl>   <dbl>  <dbl>  <dbl>
 ## 1     0.530         0.529 67552.      648. 6.15e-282     3 -21666. 43343. 43370.
-## # … with 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
+## # ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>
 ```
 
 **Fun Fact**: Adding an explanatory variable $X$ to the model will always increase R-squared or keep it the same. 

@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.7 One Quant. and One Cat. Variable | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.7 One Quant. and One Cat. Variable | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
-  
   <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
+  <meta name="github-repo" content="mac-stat/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="2.7 One Quant. and One Cat. Variable | STAT 155 Notes" />
@@ -21,7 +20,7 @@
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
-<meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint, Grinde)" />
+<meta name="author" content="Macalester Statistics Faculty" />
 
 
 
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="one-quantitative-variable.html"/>
 <link rel="next" href="two-quantitative-variables.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,14 +48,14 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -407,35 +410,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="one-quant.-and-one-cat.-variable" class="section level2" number="2.7">
-<h2><span class="header-section-number">2.7</span> One Quant. and One Cat. Variable</h2>
+<div id="one-quant.-and-one-cat.-variable" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> One Quant. and One Cat. Variable<a href="one-quant.-and-one-cat.-variable.html#one-quant.-and-one-cat.-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s return to the NHANES data. We noticed variation in the amount people sleep. Why do some people sleep more than others? Are there any other characteristics that may be able to <em>explain that variation</em>?</p>
 <p>Let’s look at the distribution of hours of sleep at night within subsets or groups of the NHANES data.</p>
-<div id="multiple-histograms" class="section level3" number="2.7.1">
-<h3><span class="header-section-number">2.7.1</span> Multiple Histograms</h3>
+<div id="multiple-histograms" class="section level3 hasAnchor" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Multiple Histograms<a href="one-quant.-and-one-cat.-variable.html#multiple-histograms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Does the recorded binary gender explain the variability in the hours of sleep?</strong></p>
 <div class="reflect">
 <p>
-What are the <em>ethical implications</em> of collecting gender identity as a binary variable (male/female) if some individuals do not identify with these categories?
+What are the <em>ethical implications</em> of collecting gender
+identity as a binary variable (male/female) if some individuals do not
+identify with these categories?
 </p>
 <p>
-What might be the <em>causal mechanism</em> between gender identity and sleep? Might you be more interested in hormone levels, which might not necessarily correspond to gender identity? How might you change the data collection procedure so that the data can address the underlying research question?
+What might be the <em>causal mechanism</em> between gender identity
+and sleep? Might you be more interested in hormone levels, which might
+not necessarily correspond to gender identity? How might you change the
+data collection procedure so that the data can address the underlying
+research question?
 </p>
 </div>
 <p>Let’s make a histogram for each gender category by adding <code>facet_grid(. ~ Gender)</code> which separates the data into groups defined by the variable, <code>Gender</code>, and creates two plots along the x-axis.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="one-quant.-and-one-cat.-variable.html#cb46-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb46-2"><a href="one-quant.-and-one-cat.-variable.html#cb46-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
-<span id="cb46-3"><a href="one-quant.-and-one-cat.-variable.html#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb46-4"><a href="one-quant.-and-one-cat.-variable.html#cb46-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb46-5"><a href="one-quant.-and-one-cat.-variable.html#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(. <span class="sc">~</span> Gender) <span class="sc">+</span> </span>
-<span id="cb46-6"><a href="one-quant.-and-one-cat.-variable.html#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="one-quant.-and-one-cat.-variable.html#cb46-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="one-quant.-and-one-cat.-variable.html#cb46-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
+<span id="cb46-3"><a href="one-quant.-and-one-cat.-variable.html#cb46-3" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb46-4"><a href="one-quant.-and-one-cat.-variable.html#cb46-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb46-5"><a href="one-quant.-and-one-cat.-variable.html#cb46-5" tabindex="-1"></a>    <span class="fu">facet_grid</span>(. <span class="sc">~</span> Gender) <span class="sc">+</span> </span>
+<span id="cb46-6"><a href="one-quant.-and-one-cat.-variable.html#cb46-6" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="reflect">
 <p>
-Do you notice any differences in sleep hour distributions between males and females?
+Do you notice any differences in sleep hour distributions between
+males and females?
 </p>
 <p>
-What is easy to compare and what is hard to compare between the two histograms?
+What is easy to compare and what is hard to compare between the two
+histograms?
 </p>
 </div>
 <p><strong>Does the number of children a woman has explain the variability in the hours of sleep?</strong></p>
@@ -444,31 +455,34 @@ What is easy to compare and what is hard to compare between the two histograms?
 Who have we excluded from our analysis by asking this question?
 </p>
 </div>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="one-quant.-and-one-cat.-variable.html#cb47-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb47-2"><a href="one-quant.-and-one-cat.-variable.html#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(nBabies)) <span class="sc">%&gt;%</span> </span>
-<span id="cb47-3"><a href="one-quant.-and-one-cat.-variable.html#cb47-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
-<span id="cb47-4"><a href="one-quant.-and-one-cat.-variable.html#cb47-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb47-5"><a href="one-quant.-and-one-cat.-variable.html#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb47-6"><a href="one-quant.-and-one-cat.-variable.html#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(. <span class="sc">~</span> <span class="fu">factor</span>(nBabies), <span class="at">ncol =</span> <span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb47-7"><a href="one-quant.-and-one-cat.-variable.html#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb47-8"><a href="one-quant.-and-one-cat.-variable.html#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="one-quant.-and-one-cat.-variable.html#cb47-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="one-quant.-and-one-cat.-variable.html#cb47-2" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(nBabies)) <span class="sc">%&gt;%</span> </span>
+<span id="cb47-3"><a href="one-quant.-and-one-cat.-variable.html#cb47-3" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
+<span id="cb47-4"><a href="one-quant.-and-one-cat.-variable.html#cb47-4" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb47-5"><a href="one-quant.-and-one-cat.-variable.html#cb47-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb47-6"><a href="one-quant.-and-one-cat.-variable.html#cb47-6" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(. <span class="sc">~</span> <span class="fu">factor</span>(nBabies), <span class="at">ncol =</span> <span class="dv">4</span>) <span class="sc">+</span> </span>
+<span id="cb47-7"><a href="one-quant.-and-one-cat.-variable.html#cb47-7" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb47-8"><a href="one-quant.-and-one-cat.-variable.html#cb47-8" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-51-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>The 0 to 12 labels at the top of each of these panels correspond to the number of babies a woman had.</p>
 <div class="reflect">
 <p>
-Do you notice any differences in sleep hour distributions between these groups?
+Do you notice any differences in sleep hour distributions between
+these groups?
 </p>
 <p>
-Note the x and y axes are the same for all of the groups to facilitate comparison. What is easy to compare and what is hard to compare between the histograms?
+Note the x and y axes are the same for all of the groups to
+facilitate comparison. What is easy to compare and what is hard to
+compare between the histograms?
 </p>
 </div>
 <p><strong>Does the number of days someone has felt depressed explain the variability in the hours of sleep?</strong></p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="one-quant.-and-one-cat.-variable.html#cb48-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb48-2"><a href="one-quant.-and-one-cat.-variable.html#cb48-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
-<span id="cb48-3"><a href="one-quant.-and-one-cat.-variable.html#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb48-4"><a href="one-quant.-and-one-cat.-variable.html#cb48-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb48-5"><a href="one-quant.-and-one-cat.-variable.html#cb48-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(. <span class="sc">~</span> Depressed) <span class="sc">+</span> </span>
-<span id="cb48-6"><a href="one-quant.-and-one-cat.-variable.html#cb48-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="one-quant.-and-one-cat.-variable.html#cb48-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb48-2"><a href="one-quant.-and-one-cat.-variable.html#cb48-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
+<span id="cb48-3"><a href="one-quant.-and-one-cat.-variable.html#cb48-3" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb48-4"><a href="one-quant.-and-one-cat.-variable.html#cb48-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb48-5"><a href="one-quant.-and-one-cat.-variable.html#cb48-5" tabindex="-1"></a>    <span class="fu">facet_grid</span>(. <span class="sc">~</span> Depressed) <span class="sc">+</span> </span>
+<span id="cb48-6"><a href="one-quant.-and-one-cat.-variable.html#cb48-6" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-53-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>What’s the rightmost “NA” category? Some individuals in this study did not answer questions about days that they might have felt depressed, but they did report their hours of sleep per night.</p>
 <div class="reflect">
@@ -477,38 +491,40 @@ What type of biases might be at play here?
 </p>
 </div>
 </div>
-<div id="multiple-boxplots" class="section level3" number="2.7.2">
-<h3><span class="header-section-number">2.7.2</span> Multiple Boxplots</h3>
+<div id="multiple-boxplots" class="section level3 hasAnchor" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> Multiple Boxplots<a href="one-quant.-and-one-cat.-variable.html#multiple-boxplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s visualize the same information but with boxplots instead of histograms and see if we can glean any other information.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="one-quant.-and-one-cat.-variable.html#cb49-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb49-2"><a href="one-quant.-and-one-cat.-variable.html#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Gender, <span class="at">y =</span> SleepHrsNight)) <span class="sc">+</span></span>
-<span id="cb49-3"><a href="one-quant.-and-one-cat.-variable.html#cb49-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb49-4"><a href="one-quant.-and-one-cat.-variable.html#cb49-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Binary Gender&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb49-5"><a href="one-quant.-and-one-cat.-variable.html#cb49-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="one-quant.-and-one-cat.-variable.html#cb49-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb49-2"><a href="one-quant.-and-one-cat.-variable.html#cb49-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Gender, <span class="at">y =</span> SleepHrsNight)) <span class="sc">+</span></span>
+<span id="cb49-3"><a href="one-quant.-and-one-cat.-variable.html#cb49-3" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb49-4"><a href="one-quant.-and-one-cat.-variable.html#cb49-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Binary Gender&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb49-5"><a href="one-quant.-and-one-cat.-variable.html#cb49-5" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-55-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="one-quant.-and-one-cat.-variable.html#cb50-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb50-2"><a href="one-quant.-and-one-cat.-variable.html#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(nBabies), <span class="at">y =</span> SleepHrsNight)) <span class="sc">+</span></span>
-<span id="cb50-3"><a href="one-quant.-and-one-cat.-variable.html#cb50-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb50-4"><a href="one-quant.-and-one-cat.-variable.html#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Number of Babies&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb50-5"><a href="one-quant.-and-one-cat.-variable.html#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="one-quant.-and-one-cat.-variable.html#cb50-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="one-quant.-and-one-cat.-variable.html#cb50-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(nBabies), <span class="at">y =</span> SleepHrsNight)) <span class="sc">+</span></span>
+<span id="cb50-3"><a href="one-quant.-and-one-cat.-variable.html#cb50-3" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb50-4"><a href="one-quant.-and-one-cat.-variable.html#cb50-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Number of Babies&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb50-5"><a href="one-quant.-and-one-cat.-variable.html#cb50-5" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="one-quant.-and-one-cat.-variable.html#cb51-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb51-2"><a href="one-quant.-and-one-cat.-variable.html#cb51-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Depressed), <span class="at">y =</span> SleepHrsNight)) <span class="sc">+</span></span>
-<span id="cb51-3"><a href="one-quant.-and-one-cat.-variable.html#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb51-4"><a href="one-quant.-and-one-cat.-variable.html#cb51-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Days Depressed&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb51-5"><a href="one-quant.-and-one-cat.-variable.html#cb51-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="one-quant.-and-one-cat.-variable.html#cb51-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb51-2"><a href="one-quant.-and-one-cat.-variable.html#cb51-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(Depressed), <span class="at">y =</span> SleepHrsNight)) <span class="sc">+</span></span>
+<span id="cb51-3"><a href="one-quant.-and-one-cat.-variable.html#cb51-3" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb51-4"><a href="one-quant.-and-one-cat.-variable.html#cb51-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Days Depressed&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb51-5"><a href="one-quant.-and-one-cat.-variable.html#cb51-5" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="reflect">
 <p>
-What is easy to compare and what is hard to compare between the boxplots?
+What is easy to compare and what is hard to compare between the
+boxplots?
 </p>
 <p>
-Why might you use multiple boxplots instead of multiple histograms?
+Why might you use multiple boxplots instead of multiple
+histograms?
 </p>
 </div>
 </div>
-<div id="is-this-a-real-difference" class="section level3" number="2.7.3">
-<h3><span class="header-section-number">2.7.3</span> Is this a Real Difference?</h3>
+<div id="is-this-a-real-difference" class="section level3 hasAnchor" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> Is this a Real Difference?<a href="one-quant.-and-one-cat.-variable.html#is-this-a-real-difference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If we notice differences in the the sleep distributions for groups based on self-reported Depression, is it a “REAL” difference? That is, is there a difference in the general U.S. population? Remember, we only have a random <em>sample</em> of the population. <em>NHANES is supposed to be a representative sample of the U.S. population collected using a probability sampling procedure.</em></p>
 <p>What if there were no “REAL” difference? Then the Depressed group labels wouldn’t be related to the hours of sleep.</p>
 <p><strong>Investigation Plan:</strong></p>
@@ -518,37 +534,42 @@ Why might you use multiple boxplots instead of multiple histograms?
 <li>Repeat steps 1 and 2 many times (say 1000 times).</li>
 <li>Look at the differences based on random shuffles &amp; compare to the observed difference.</li>
 </ol>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="one-quant.-and-one-cat.-variable.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mosaic) </span>
-<span id="cb52-2"><a href="one-quant.-and-one-cat.-variable.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co">#TRUE or FALSE (converted Depressed to a 2 category variable)</span></span>
-<span id="cb52-3"><a href="one-quant.-and-one-cat.-variable.html#cb52-3" aria-hidden="true" tabindex="-1"></a>NHANES <span class="ot">&lt;-</span> NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb52-4"><a href="one-quant.-and-one-cat.-variable.html#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">DepressedMost =</span> (Depressed <span class="sc">==</span> <span class="st">&#39;Most&#39;</span>)) </span>
-<span id="cb52-5"><a href="one-quant.-and-one-cat.-variable.html#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-6"><a href="one-quant.-and-one-cat.-variable.html#cb52-6" aria-hidden="true" tabindex="-1"></a>obsdiff <span class="ot">&lt;-</span> NHANES <span class="sc">%&gt;%</span> </span>
-<span id="cb52-7"><a href="one-quant.-and-one-cat.-variable.html#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(SleepHrsNight <span class="sc">~</span> DepressedMost)) <span class="sc">%&gt;%</span></span>
-<span id="cb52-8"><a href="one-quant.-and-one-cat.-variable.html#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb52-9"><a href="one-quant.-and-one-cat.-variable.html#cb52-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&#39;DepressedMostTRUE&#39;</span>)</span>
-<span id="cb52-10"><a href="one-quant.-and-one-cat.-variable.html#cb52-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-11"><a href="one-quant.-and-one-cat.-variable.html#cb52-11" aria-hidden="true" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span>(</span>
-<span id="cb52-12"><a href="one-quant.-and-one-cat.-variable.html#cb52-12" aria-hidden="true" tabindex="-1"></a>  NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb52-13"><a href="one-quant.-and-one-cat.-variable.html#cb52-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">with</span>(<span class="fu">lm</span>(SleepHrsNight <span class="sc">~</span> <span class="fu">shuffle</span>(DepressedMost)))</span>
-<span id="cb52-14"><a href="one-quant.-and-one-cat.-variable.html#cb52-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb52-15"><a href="one-quant.-and-one-cat.-variable.html#cb52-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-16"><a href="one-quant.-and-one-cat.-variable.html#cb52-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Randomly shuffle the DepressedMost labels </span></span>
-<span id="cb52-17"><a href="one-quant.-and-one-cat.-variable.html#cb52-17" aria-hidden="true" tabindex="-1"></a><span class="co">#assuming no real difference in sleep</span></span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="one-quant.-and-one-cat.-variable.html#cb52-1" tabindex="-1"></a><span class="fu">library</span>(mosaic) </span>
+<span id="cb52-2"><a href="one-quant.-and-one-cat.-variable.html#cb52-2" tabindex="-1"></a><span class="co">#TRUE or FALSE (converted Depressed to a 2 category variable)</span></span>
+<span id="cb52-3"><a href="one-quant.-and-one-cat.-variable.html#cb52-3" tabindex="-1"></a>NHANES <span class="ot">&lt;-</span> NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb52-4"><a href="one-quant.-and-one-cat.-variable.html#cb52-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">DepressedMost =</span> (Depressed <span class="sc">==</span> <span class="st">&#39;Most&#39;</span>)) </span>
+<span id="cb52-5"><a href="one-quant.-and-one-cat.-variable.html#cb52-5" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="one-quant.-and-one-cat.-variable.html#cb52-6" tabindex="-1"></a>obsdiff <span class="ot">&lt;-</span> NHANES <span class="sc">%&gt;%</span> </span>
+<span id="cb52-7"><a href="one-quant.-and-one-cat.-variable.html#cb52-7" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(SleepHrsNight <span class="sc">~</span> DepressedMost)) <span class="sc">%&gt;%</span></span>
+<span id="cb52-8"><a href="one-quant.-and-one-cat.-variable.html#cb52-8" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb52-9"><a href="one-quant.-and-one-cat.-variable.html#cb52-9" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">&#39;DepressedMostTRUE&#39;</span>)</span>
+<span id="cb52-10"><a href="one-quant.-and-one-cat.-variable.html#cb52-10" tabindex="-1"></a></span>
+<span id="cb52-11"><a href="one-quant.-and-one-cat.-variable.html#cb52-11" tabindex="-1"></a>sim <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span>(</span>
+<span id="cb52-12"><a href="one-quant.-and-one-cat.-variable.html#cb52-12" tabindex="-1"></a>  NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb52-13"><a href="one-quant.-and-one-cat.-variable.html#cb52-13" tabindex="-1"></a>    <span class="fu">with</span>(<span class="fu">lm</span>(SleepHrsNight <span class="sc">~</span> <span class="fu">shuffle</span>(DepressedMost)))</span>
+<span id="cb52-14"><a href="one-quant.-and-one-cat.-variable.html#cb52-14" tabindex="-1"></a>)</span>
+<span id="cb52-15"><a href="one-quant.-and-one-cat.-variable.html#cb52-15" tabindex="-1"></a></span>
+<span id="cb52-16"><a href="one-quant.-and-one-cat.-variable.html#cb52-16" tabindex="-1"></a><span class="co">#Randomly shuffle the DepressedMost labels </span></span>
+<span id="cb52-17"><a href="one-quant.-and-one-cat.-variable.html#cb52-17" tabindex="-1"></a><span class="co">#assuming no real difference in sleep</span></span></code></pre></div>
 <p>Below, we have a histogram of 1000 values calculated by randomly shuffling individuals in the sample into two groups (assuming no relationship between depression and sleep) and then finding the difference in the mean amount of sleep. The red vertical line showed the observed difference in mean amount of sleep in the data.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="one-quant.-and-one-cat.-variable.html#cb53-1" aria-hidden="true" tabindex="-1"></a>sim <span class="sc">%&gt;%</span></span>
-<span id="cb53-2"><a href="one-quant.-and-one-cat.-variable.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> DepressedMostTRUE)) <span class="sc">+</span> </span>
-<span id="cb53-3"><a href="one-quant.-and-one-cat.-variable.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span></span>
-<span id="cb53-4"><a href="one-quant.-and-one-cat.-variable.html#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> estimate), obsdiff, <span class="at">color =</span> <span class="st">&#39;red&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb53-5"><a href="one-quant.-and-one-cat.-variable.html#cb53-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Difference in Mean Hours of Sleep&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Counts&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb53-6"><a href="one-quant.-and-one-cat.-variable.html#cb53-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="one-quant.-and-one-cat.-variable.html#cb53-1" tabindex="-1"></a>sim <span class="sc">%&gt;%</span></span>
+<span id="cb53-2"><a href="one-quant.-and-one-cat.-variable.html#cb53-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> DepressedMostTRUE)) <span class="sc">+</span> </span>
+<span id="cb53-3"><a href="one-quant.-and-one-cat.-variable.html#cb53-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb53-4"><a href="one-quant.-and-one-cat.-variable.html#cb53-4" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="fu">aes</span>(<span class="at">xintercept =</span> estimate), obsdiff, <span class="at">color =</span> <span class="st">&#39;red&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb53-5"><a href="one-quant.-and-one-cat.-variable.html#cb53-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Difference in Mean Hours of Sleep&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Counts&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb53-6"><a href="one-quant.-and-one-cat.-variable.html#cb53-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="reflect">
 <p>
-The observed difference in mean hours of sleep (red line) is quite far from the distribution of differences that results when we break the association between depression status and sleep hours (through randomized shuffling of group labels). Thus, it is unlikely to get a difference that large if there were no relationhip.
+The observed difference in mean hours of sleep (red line) is quite
+far from the distribution of differences that results when we break the
+association between depression status and sleep hours (through
+randomized shuffling of group labels). Thus, it is unlikely to get a
+difference that large if there were no relationhip.
 </p>
 <p>
-What do you think this indicates? How might you use this as evidence for or against a “real” population difference?
+What do you think this indicates? How might you use this as evidence
+for or against a “real” population difference?
 </p>
 </div>
 </div>
@@ -563,7 +584,6 @@ What do you think this indicates? How might you use this as evidence for or agai
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -604,7 +624,7 @@ gitbook.start({
 },
 "download": ["Stat155Notes.pdf"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -621,7 +641,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

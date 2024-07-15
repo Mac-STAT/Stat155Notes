@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.6 One Quantitative Variable | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.6 One Quantitative Variable | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
-  
   <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
+  <meta name="github-repo" content="mac-stat/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="2.6 One Quantitative Variable | STAT 155 Notes" />
@@ -21,7 +20,7 @@
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
-<meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint, Grinde)" />
+<meta name="author" content="Macalester Statistics Faculty" />
 
 
 
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="two-categorical-variables.html"/>
 <link rel="next" href="one-quant.-and-one-cat.-variable.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,14 +48,14 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -407,40 +410,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="one-quantitative-variable" class="section level2" number="2.6">
-<h2><span class="header-section-number">2.6</span> One Quantitative Variable</h2>
+<div id="one-quantitative-variable" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> One Quantitative Variable<a href="one-quantitative-variable.html#one-quantitative-variable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Next, we use data from one of the largest ongoing health studies in the USA, named NHANES. In particular, we will focus on data from the NHANES between 2009-2012 (Source: CDC). For more info about NHANES: <a href="https://www.cdc.gov/nchs/nhanes/index.htm" class="uri">https://www.cdc.gov/nchs/nhanes/index.htm</a>.</p>
 <p>Since sleep is vitally important to daily functioning, let’s look at the number of hours of sleep respondents reported.</p>
-<div id="histogram" class="section level3" number="2.6.1">
-<h3><span class="header-section-number">2.6.1</span> Histogram</h3>
+<div id="histogram" class="section level3 hasAnchor" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Histogram<a href="one-quantitative-variable.html#histogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One main graphical summary we use for quantitative variables is a histogram. It resembles a bar plot, but there are a few key differences:</p>
 <ul>
 <li>The x-axis is a number line that is divided into intervals called <strong>bins</strong>. Bins technically do not all have to be of equal width but almost always are. When making histograms in R, R chooses a default bin width, but you have options to change the number and/or width of the bins/intervals.</li>
 <li>The <strong>height</strong> of the bars shows either the <strong>frequency within intervals</strong> (counts of units that fall into that bin/interval) or the <strong>density</strong> (fraction of units that fall into that bin/interval).</li>
 <li>Gaps between bars are meaningful. They indicate absence of values within an interval.</li>
 </ul>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="one-quantitative-variable.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(NHANES)</span>
-<span id="cb24-2"><a href="one-quantitative-variable.html#cb24-2" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="one-quantitative-variable.html#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="one-quantitative-variable.html#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb24-5"><a href="one-quantitative-variable.html#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Counts&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb24-6"><a href="one-quantitative-variable.html#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="one-quantitative-variable.html#cb24-1" tabindex="-1"></a><span class="fu">data</span>(NHANES)</span>
+<span id="cb24-2"><a href="one-quantitative-variable.html#cb24-2" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="one-quantitative-variable.html#cb24-3" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="one-quantitative-variable.html#cb24-4" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb24-5"><a href="one-quantitative-variable.html#cb24-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Counts&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb24-6"><a href="one-quantitative-variable.html#cb24-6" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Note the warning message above: “Removed __ rows containing non-finite values (stat_bin).” Sometimes there is missing information for a variable for some units in the dataset. We cannot plot these because we don’t know their values! This warning message is just a friendly reminder from R to let you know what it is doing.</p>
 <p>Also note the message that R gives about bin width to remind us that we can choose this if we wish. If we want to specify the width of the intervals or bins, we can specify <code>binwidth = DESIRED_BIN_WIDTH</code> within <code>geom_histogram</code>.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="one-quantitative-variable.html#cb25-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="one-quantitative-variable.html#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
-<span id="cb25-3"><a href="one-quantitative-variable.html#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb25-4"><a href="one-quantitative-variable.html#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Counts&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb25-5"><a href="one-quantitative-variable.html#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="one-quantitative-variable.html#cb25-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="one-quantitative-variable.html#cb25-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="one-quantitative-variable.html#cb25-3" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb25-4"><a href="one-quantitative-variable.html#cb25-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Counts&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb25-5"><a href="one-quantitative-variable.html#cb25-5" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Lastly, notice that the y-axis in the previous two histograms has been the counts (or frequency) within each sleep hour interval. We can adjust this to <strong>density</strong>, which is relative frequency adjusted for the width of interval so that the sum of the areas of the bars (height x width) equals 1.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="one-quantitative-variable.html#cb26-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="one-quantitative-variable.html#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
-<span id="cb26-3"><a href="one-quantitative-variable.html#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb26-4"><a href="one-quantitative-variable.html#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">adjust =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb26-5"><a href="one-quantitative-variable.html#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Density&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb26-6"><a href="one-quantitative-variable.html#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="one-quantitative-variable.html#cb26-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="one-quantitative-variable.html#cb26-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SleepHrsNight)) <span class="sc">+</span></span>
+<span id="cb26-3"><a href="one-quantitative-variable.html#cb26-3" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb26-4"><a href="one-quantitative-variable.html#cb26-4" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">adjust =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb26-5"><a href="one-quantitative-variable.html#cb26-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Hours of Sleep (hours)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Density&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb26-6"><a href="one-quantitative-variable.html#cb26-6" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The smooth curved line on this plot is called a <strong>density plot</strong>. It is essentially a smoother version of the histogram. Both the area under a density plot and the total area of all the rectangles in a density histogram equal 1.</p>
 <p>When describing a distribution, we focus on three aspects of the histogram:</p>
@@ -452,22 +455,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Here is another data set for comparison. Here are the annual salaries for the highest paid CEOs in 2016 (Source: NYTimes). To get the data, we are scraping the data from a NYTimes website. For fun, you can look at the code below.</p>
 <p>Let’s create a density histogram of the annual salaries for the highest paid CEO’s in the U.S. in 2016.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="one-quantitative-variable.html#cb27-1" aria-hidden="true" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="one-quantitative-variable.html#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary)) <span class="sc">+</span></span>
-<span id="cb27-3"><a href="one-quantitative-variable.html#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb27-4"><a href="one-quantitative-variable.html#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb27-5"><a href="one-quantitative-variable.html#cb27-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Salary ($ Millions)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Density&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb27-6"><a href="one-quantitative-variable.html#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="one-quantitative-variable.html#cb27-1" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="one-quantitative-variable.html#cb27-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> salary)) <span class="sc">+</span></span>
+<span id="cb27-3"><a href="one-quantitative-variable.html#cb27-3" tabindex="-1"></a>    <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">binwidth =</span> <span class="dv">5</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb27-4"><a href="one-quantitative-variable.html#cb27-4" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb27-5"><a href="one-quantitative-variable.html#cb27-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Salary ($ Millions)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Density&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb27-6"><a href="one-quantitative-variable.html#cb27-6" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We note that some of the highest salaries were close to 200 million U.S. dollars (in 2016), but the majority of the salaries in this sample are closer to 50 million U.D. dollars.</p>
 <div class="reflect">
 <p>
-Is this distribution of salaries left-skewed or right-skewed? In what populations do you think salaries might be left-skewed? Right-skewed?
+Is this distribution of salaries left-skewed or right-skewed? In what
+populations do you think salaries might be left-skewed?
+Right-skewed?
 </p>
 </div>
 </div>
-<div id="center" class="section level3" number="2.6.2">
-<h3><span class="header-section-number">2.6.2</span> Center</h3>
+<div id="center" class="section level3 hasAnchor" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> Center<a href="one-quantitative-variable.html#center" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are some choices for numerically summarizing the center of a distribution:</p>
 <ul>
 <li><strong>Mean</strong>: The sum of the values divided by the number of values (sample size), <span class="math inline">\(\bar{y} = \frac{\sum^n_{i=1}y_i}{n}\)</span>
@@ -485,16 +490,21 @@ Is this distribution of salaries left-skewed or right-skewed? In what population
 </ul>
 <div class="mathbox">
 <p>
-The Greek capital letter sigma, <span class="math inline"><span class="math inline">\(\sum\)</span></span>, is used in mathematics to denote a sum. We let <span class="math inline"><span class="math inline">\(y_i\)</span></span> represent the value of the <span class="math inline"><span class="math inline">\(i\)</span></span>th person for a variable called <span class="math inline"><span class="math inline">\(y\)</span></span>. So <span class="math inline"><span class="math inline">\(\sum^n_{i=1}y_i\)</span></span> is the sum of all the <span class="math inline"><span class="math inline">\(n\)</span></span> values of a variable <span class="math inline"><span class="math inline">\(y\)</span></span>, all the way from the 1st person to the <span class="math inline"><span class="math inline">\(n\)</span></span>th person.
+The Greek capital letter sigma, <span class="math inline"><span class="math inline">\(\sum\)</span></span>, is used in mathematics to denote a
+sum. We let <span class="math inline"><span class="math inline">\(y_i\)</span></span> represent the value
+of the <span class="math inline"><span class="math inline">\(i\)</span></span>th person for a variable
+called <span class="math inline"><span class="math inline">\(y\)</span></span>. So <span class="math inline"><span class="math inline">\(\sum^n_{i=1}y_i\)</span></span> is the sum of all the
+<span class="math inline"><span class="math inline">\(n\)</span></span> values of a variable <span class="math inline"><span class="math inline">\(y\)</span></span>, all the way from the 1st person to the
+<span class="math inline"><span class="math inline">\(n\)</span></span>th person.
 </p>
 </div>
 <p>We can calculate all of these in R.</p>
 <ul>
 <li><strong>Hours of sleep per night from the NHANES dataset</strong></li>
 </ul>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="one-quantitative-variable.html#cb28-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="one-quantitative-variable.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(SleepHrsNight) <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="one-quantitative-variable.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="one-quantitative-variable.html#cb28-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="one-quantitative-variable.html#cb28-2" tabindex="-1"></a>  <span class="fu">select</span>(SleepHrsNight) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="one-quantitative-variable.html#cb28-3" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>##  SleepHrsNight   
 ##  Min.   : 2.000  
 ##  1st Qu.: 6.000  
@@ -503,22 +513,25 @@ The Greek capital letter sigma, <span class="math inline"><span class="math inli
 ##  3rd Qu.: 8.000  
 ##  Max.   :12.000  
 ##  NA&#39;s   :2245</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="one-quantitative-variable.html#cb30-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="one-quantitative-variable.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb30-3"><a href="one-quantitative-variable.html#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb30-4"><a href="one-quantitative-variable.html#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">median</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb30-5"><a href="one-quantitative-variable.html#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(SleepHrsNight, <span class="at">trim =</span> <span class="fl">0.05</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co"># na.rm = TRUE removes missing values </span></span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="one-quantitative-variable.html#cb30-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="one-quantitative-variable.html#cb30-2" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb30-3"><a href="one-quantitative-variable.html#cb30-3" tabindex="-1"></a>    <span class="fu">mean</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb30-4"><a href="one-quantitative-variable.html#cb30-4" tabindex="-1"></a>    <span class="fu">median</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb30-5"><a href="one-quantitative-variable.html#cb30-5" tabindex="-1"></a>    <span class="fu">mean</span>(SleepHrsNight, <span class="at">trim =</span> <span class="fl">0.05</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co"># na.rm = TRUE removes missing values </span></span></code></pre></div>
 <pre><code>## # A tibble: 1 × 3
-##   `mean(SleepHrsNight, na.rm = TRUE)` `median(SleepHrsNig… `mean(SleepHrsNight,…
-##                                 &lt;dbl&gt;                &lt;int&gt;                 &lt;dbl&gt;
-## 1                                6.93                    7                  6.95</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="one-quantitative-variable.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Trimmed mean: trim 5% from both tails before taking mean</span></span></code></pre></div>
+##   mean(SleepHrsNight, na.rm = TR…¹ median(SleepHrsNight…² mean(SleepHrsNight, …³
+##                              &lt;dbl&gt;                  &lt;int&gt;                  &lt;dbl&gt;
+## 1                             6.93                      7                   6.95
+## # ℹ abbreviated names: ¹​`mean(SleepHrsNight, na.rm = TRUE)`,
+## #   ²​`median(SleepHrsNight, na.rm = TRUE)`,
+## #   ³​`mean(SleepHrsNight, trim = 0.05, na.rm = TRUE)`</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="one-quantitative-variable.html#cb32-1" tabindex="-1"></a><span class="co">#Trimmed mean: trim 5% from both tails before taking mean</span></span></code></pre></div>
 <ul>
 <li><strong>CEO salary information from NYT</strong></li>
 </ul>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="one-quantitative-variable.html#cb33-1" aria-hidden="true" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
-<span id="cb33-2"><a href="one-quantitative-variable.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(salary) <span class="sc">%&gt;%</span></span>
-<span id="cb33-3"><a href="one-quantitative-variable.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>()  <span class="co"># Note the differences between mean and median</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="one-quantitative-variable.html#cb33-1" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="one-quantitative-variable.html#cb33-2" tabindex="-1"></a>  <span class="fu">select</span>(salary) <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="one-quantitative-variable.html#cb33-3" tabindex="-1"></a>  <span class="fu">summary</span>()  <span class="co"># Note the differences between mean and median</span></span></code></pre></div>
 <pre><code>##      salary     
 ##  Min.   :13.00  
 ##  1st Qu.:14.68  
@@ -526,18 +539,18 @@ The Greek capital letter sigma, <span class="math inline"><span class="math inli
 ##  Mean   :19.67  
 ##  3rd Qu.:21.20  
 ##  Max.   :98.00</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="one-quantitative-variable.html#cb35-1" aria-hidden="true" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
-<span id="cb35-2"><a href="one-quantitative-variable.html#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb35-3"><a href="one-quantitative-variable.html#cb35-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(salary), </span>
-<span id="cb35-4"><a href="one-quantitative-variable.html#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">median</span>(salary), </span>
-<span id="cb35-5"><a href="one-quantitative-variable.html#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(salary, <span class="at">trim =</span> <span class="fl">0.05</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="one-quantitative-variable.html#cb35-1" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="one-quantitative-variable.html#cb35-2" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb35-3"><a href="one-quantitative-variable.html#cb35-3" tabindex="-1"></a>    <span class="fu">mean</span>(salary), </span>
+<span id="cb35-4"><a href="one-quantitative-variable.html#cb35-4" tabindex="-1"></a>    <span class="fu">median</span>(salary), </span>
+<span id="cb35-5"><a href="one-quantitative-variable.html#cb35-5" tabindex="-1"></a>    <span class="fu">mean</span>(salary, <span class="at">trim =</span> <span class="fl">0.05</span>))</span></code></pre></div>
 <pre><code>##   mean(salary) median(salary) mean(salary, trim = 0.05)
 ## 1      19.6715           16.9                  18.30056</code></pre>
 <p>Note that the mean, median, and trimmed mean are all fairly close for the sleep hours distribution, which looks fairly symmetric.</p>
 <p>Note also that the mean, median, and trimmed mean are somewhat different for the salary distribution, which looks right skewed. Often with right skewed distributions, the mean tends to be higher than the median because particularly large values are being summed in the calculation. The median and trimmed mean are not as sensitive to these outliers because of the sorting that is involved in their calculation.</p>
 </div>
-<div id="boxplot" class="section level3" number="2.6.3">
-<h3><span class="header-section-number">2.6.3</span> Boxplot</h3>
+<div id="boxplot" class="section level3 hasAnchor" number="2.6.3">
+<h3><span class="header-section-number">2.6.3</span> Boxplot<a href="one-quantitative-variable.html#boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>An alternative graphical summary is a boxplot, which is a simplification of the histogram. The plot consists of</p>
 <ul>
 <li>A Box: the bottom of the box is at the 25th percentile (<span class="math inline">\(Q1\)</span>) and top of the box is at the 75th percentile (<span class="math inline">\(Q3\)</span>)</li>
@@ -547,22 +560,25 @@ The Greek capital letter sigma, <span class="math inline"><span class="math inli
 </ul>
 <div class="mathbox">
 <p>
-A percentile is a measure indicating the value below which a given percentage of observations in a group of observations fall. So the 25th percentile is the value at which 25% of the values are below. The 95th percentile is the point at which 95% of the observations are below.
+A percentile is a measure indicating the value below which a given
+percentage of observations in a group of observations fall. So the 25th
+percentile is the value at which 25% of the values are below. The 95th
+percentile is the point at which 95% of the observations are below.
 </p>
 </div>
 <p>Here is a boxplot of the sleep amount from NHANES.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="one-quantitative-variable.html#cb37-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a href="one-quantitative-variable.html#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> SleepHrsNight)) <span class="sc">+</span></span>
-<span id="cb37-3"><a href="one-quantitative-variable.html#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb37-4"><a href="one-quantitative-variable.html#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb37-5"><a href="one-quantitative-variable.html#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="one-quantitative-variable.html#cb37-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="one-quantitative-variable.html#cb37-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> SleepHrsNight)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="one-quantitative-variable.html#cb37-3" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb37-4"><a href="one-quantitative-variable.html#cb37-4" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;Hours of Sleep (hours)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb37-5"><a href="one-quantitative-variable.html#cb37-5" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Compare that to the boxplot of the CEO salaries.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="one-quantitative-variable.html#cb38-1" aria-hidden="true" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
-<span id="cb38-2"><a href="one-quantitative-variable.html#cb38-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> salary)) <span class="sc">+</span></span>
-<span id="cb38-3"><a href="one-quantitative-variable.html#cb38-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb38-4"><a href="one-quantitative-variable.html#cb38-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;Salary ($M)&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb38-5"><a href="one-quantitative-variable.html#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="one-quantitative-variable.html#cb38-1" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
+<span id="cb38-2"><a href="one-quantitative-variable.html#cb38-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> salary)) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="one-quantitative-variable.html#cb38-3" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb38-4"><a href="one-quantitative-variable.html#cb38-4" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&#39;Salary ($M)&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb38-5"><a href="one-quantitative-variable.html#cb38-5" tabindex="-1"></a>    <span class="fu">theme_classic</span>() </span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Note: In these 2 plots above, the x-axis has number labels, but they don’t mean anything.</p>
 <p>Let’s put the boxplots next to the histograms so we can better compare the two types of visualizations. Also, let’s add the mean (red dashed), median (blue dotted), and 5% trimmed mean (purple dash-dot) as annotations.</p>
@@ -572,12 +588,15 @@ A percentile is a measure indicating the value below which a given percentage of
 <p>For CEO salaries, the mean and 5% trimmed mean are a bit higher than the median. <strong>The mean is always pulled toward the long tail.</strong></p>
 <div class="reflect">
 <p>
-What would the boxplot look like if all of the values were exactly the same? Sometimes when making multiple boxplots for each of multiple groups, a group may only have one value or a small number of values that all happen to be identical. What will this look like?
+What would the boxplot look like if all of the values were exactly
+the same? Sometimes when making multiple boxplots for each of multiple
+groups, a group may only have one value or a small number of values that
+all happen to be identical. What will this look like?
 </p>
 </div>
 </div>
-<div id="spread" class="section level3" number="2.6.4">
-<h3><span class="header-section-number">2.6.4</span> Spread</h3>
+<div id="spread" class="section level3 hasAnchor" number="2.6.4">
+<h3><span class="header-section-number">2.6.4</span> Spread<a href="one-quantitative-variable.html#spread" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are some choices for numerically summarizing the spread of a distribution:</p>
 <ul>
 <li><strong>Range</strong>: the maximum value - the minimum value
@@ -609,76 +628,87 @@ What would the boxplot look like if all of the values were exactly the same? Som
 <ul>
 <li><strong>Hours of sleep per night from the NHANES dataset</strong></li>
 </ul>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="one-quantitative-variable.html#cb39-1" aria-hidden="true" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
-<span id="cb39-2"><a href="one-quantitative-variable.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb39-3"><a href="one-quantitative-variable.html#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">range</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
-<span id="cb39-4"><a href="one-quantitative-variable.html#cb39-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">IQR</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb39-5"><a href="one-quantitative-variable.html#cb39-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
-<span id="cb39-6"><a href="one-quantitative-variable.html#cb39-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">var</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="one-quantitative-variable.html#cb39-1" tabindex="-1"></a>NHANES <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="one-quantitative-variable.html#cb39-2" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb39-3"><a href="one-quantitative-variable.html#cb39-3" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">range</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
+<span id="cb39-4"><a href="one-quantitative-variable.html#cb39-4" tabindex="-1"></a>    <span class="fu">IQR</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb39-5"><a href="one-quantitative-variable.html#cb39-5" tabindex="-1"></a>    <span class="fu">sd</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb39-6"><a href="one-quantitative-variable.html#cb39-6" tabindex="-1"></a>    <span class="fu">var</span>(SleepHrsNight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 4
-##   `diff(range(SleepHr… `IQR(SleepHrsNight… `sd(SleepHrsNight… `var(SleepHrsNigh…
-##                  &lt;int&gt;               &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;
-## 1                   10                   2               1.35               1.81</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="one-quantitative-variable.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># range gives max and min; take difference betwee max and min</span></span>
-<span id="cb41-2"><a href="one-quantitative-variable.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># IQR = Q3-Q1</span></span>
-<span id="cb41-3"><a href="one-quantitative-variable.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># sd = standard deviation</span></span>
-<span id="cb41-4"><a href="one-quantitative-variable.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># var = variance</span></span></code></pre></div>
+##   diff(range(SleepHrsNight, na.r…¹ IQR(SleepHrsNight, n…² sd(SleepHrsNight, na…³
+##                              &lt;int&gt;                  &lt;dbl&gt;                  &lt;dbl&gt;
+## 1                               10                      2                   1.35
+## # ℹ abbreviated names: ¹​`diff(range(SleepHrsNight, na.rm = TRUE))`,
+## #   ²​`IQR(SleepHrsNight, na.rm = TRUE)`, ³​`sd(SleepHrsNight, na.rm = TRUE)`
+## # ℹ 1 more variable: `var(SleepHrsNight, na.rm = TRUE)` &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="one-quantitative-variable.html#cb41-1" tabindex="-1"></a><span class="co"># range gives max and min; take difference betwee max and min</span></span>
+<span id="cb41-2"><a href="one-quantitative-variable.html#cb41-2" tabindex="-1"></a><span class="co"># IQR = Q3-Q1</span></span>
+<span id="cb41-3"><a href="one-quantitative-variable.html#cb41-3" tabindex="-1"></a><span class="co"># sd = standard deviation</span></span>
+<span id="cb41-4"><a href="one-quantitative-variable.html#cb41-4" tabindex="-1"></a><span class="co"># var = variance</span></span></code></pre></div>
 <ul>
 <li><strong>CEO salary information from NYT</strong></li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="one-quantitative-variable.html#cb42-1" aria-hidden="true" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
-<span id="cb42-2"><a href="one-quantitative-variable.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb42-3"><a href="one-quantitative-variable.html#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">range</span>(salary)), </span>
-<span id="cb42-4"><a href="one-quantitative-variable.html#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">IQR</span>(salary), </span>
-<span id="cb42-5"><a href="one-quantitative-variable.html#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(salary), </span>
-<span id="cb42-6"><a href="one-quantitative-variable.html#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">var</span>(salary))</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="one-quantitative-variable.html#cb42-1" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="one-quantitative-variable.html#cb42-2" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb42-3"><a href="one-quantitative-variable.html#cb42-3" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">range</span>(salary)), </span>
+<span id="cb42-4"><a href="one-quantitative-variable.html#cb42-4" tabindex="-1"></a>    <span class="fu">IQR</span>(salary), </span>
+<span id="cb42-5"><a href="one-quantitative-variable.html#cb42-5" tabindex="-1"></a>    <span class="fu">sd</span>(salary), </span>
+<span id="cb42-6"><a href="one-quantitative-variable.html#cb42-6" tabindex="-1"></a>    <span class="fu">var</span>(salary))</span></code></pre></div>
 <pre><code>##   diff(range(salary)) IQR(salary) sd(salary) var(salary)
 ## 1                  85       6.525   9.452969    89.35863</code></pre>
 </div>
-<div id="intro-zscore" class="section level3" number="2.6.5">
-<h3><span class="header-section-number">2.6.5</span> Some data accounting</h3>
+<div id="intro-zscore" class="section level3 hasAnchor" number="2.6.5">
+<h3><span class="header-section-number">2.6.5</span> Some data accounting<a href="one-quantitative-variable.html#intro-zscore" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We’ve looked at different measures of the spread of a distribution. Do some measures of spread encompass a lot of the data? Just a little? Can we be more precise about how much of the data is encompassed by intervals created from different spread measures?</p>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="reflect">
 <p>
-What percentage of the data is between the blue dotted lines (length of interval is range)?
+What percentage of the data is between the blue dotted lines (length
+of interval is range)?
 </p>
 <p>
-What percentage of the data is between the purple solid lines (length of interval is IQR)?
+What percentage of the data is between the purple solid lines (length
+of interval is IQR)?
 </p>
 <p>
-What percentage of the data is between the green dashed lines (length of interval is 2*SD)?
+What percentage of the data is between the green dashed lines (length
+of interval is 2*SD)?
 </p>
 </div>
 <p>The code below computes the fraction of data points, <code>x</code>, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="one-quantitative-variable.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x <span class="sc">&gt;</span> <span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fu">sd</span>(x) <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="fu">mean</span>(x) <span class="sc">+</span> <span class="fu">sd</span>(x))<span class="sc">/</span><span class="fu">length</span>(x)</span></code></pre></div>
-<pre><code>## [1] 0.6906667</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="one-quantitative-variable.html#cb44-1" tabindex="-1"></a><span class="fu">sum</span>(x <span class="sc">&gt;</span> <span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fu">sd</span>(x) <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="fu">mean</span>(x) <span class="sc">+</span> <span class="fu">sd</span>(x))<span class="sc">/</span><span class="fu">length</span>(x)</span></code></pre></div>
+<pre><code>## [1] 0.6766667</code></pre>
 <p>So with this data set, about 68% of the data values fall within 1 SD of the mean.</p>
 <div class="reflect">
 <p>
-If we had a different data set, do you know that answer to the following questions? <em>You should know the answer to 2 of them at this point…</em>
+If we had a different data set, do you know that answer to the
+following questions? <em>You should know the answer to 2 of them at this
+point…</em>
 </p>
 <ul>
 <li>
 <p>
-What percentage of the data would be between the minimum and maximum (blue dotted lines above)?
+What percentage of the data would be between the minimum and
+maximum (blue dotted lines above)?
 </p>
 </li>
 <li>
 <p>
-What percentage of the data would be between bottom and top of the box (purple solid lines above)?
+What percentage of the data would be between bottom and top of
+the box (purple solid lines above)?
 </p>
 </li>
 <li>
 <p>
-What percentage of the data would be between 1 SD below the mean and 1 SD above the mean (green dashed lines)?
+What percentage of the data would be between 1 SD below the mean
+and 1 SD above the mean (green dashed lines)?
 </p>
 </li>
 </ul>
 </div>
 </div>
-<div id="z-scores" class="section level3" number="2.6.6">
-<h3><span class="header-section-number">2.6.6</span> Z-scores</h3>
+<div id="z-scores" class="section level3 hasAnchor" number="2.6.6">
+<h3><span class="header-section-number">2.6.6</span> Z-scores<a href="one-quantitative-variable.html#z-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>How do you decide when an outlier is really unusual (think: athletic victory being very impressive or a data point that may be a typing error such as a human weight of 3000 lbs)?</p>
 <p>If the observation is far from the rest of the measurements in the data, we tend to say that the value is unusual. We want to quantify this idea of “unusual”.</p>
 <p>To do this, we often calculate a <strong>z-score</strong>, a standardized data value which we denote with the letter, <span class="math inline">\(z\)</span>. To calculate a z-score,</p>
@@ -690,10 +720,16 @@ What percentage of the data would be between 1 SD below the mean and 1 SD above 
 <p>The z-score tells you how many standard deviations the observation is above or below the mean.</p>
 <div class="reflect">
 <p>
-Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5. That means that you got an 85 on the exam because your exam is one SD above the mean (<span class="math inline"><span class="math inline">\(mean + z \times SD = 80 + 1 \times 5\)</span></span>).
+Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5.
+That means that you got an 85 on the exam because your exam is one SD
+above the mean (<span class="math inline"><span class="math inline">\(mean + z \times SD = 80 + 1
+\times 5\)</span></span>).
 </p>
 <p>
-If you got a z = -2 on an exam with mean = 80 and SD = 5, that means you got a 70 on the exam because your exam is two SD below the mean (<span class="math inline"><span class="math inline">\(mean + z \times SD = 80 + -2 \times 5\)</span></span>).
+If you got a z = -2 on an exam with mean = 80 and SD = 5, that means
+you got a 70 on the exam because your exam is two SD below the mean
+(<span class="math inline"><span class="math inline">\(mean + z \times SD = 80 + -2 \times
+5\)</span></span>).
 </p>
 </div>
 <p>In general, it is quite common to have z-scores between -3 and 3, but fairly unusual to have them greater than 3 or less than -3.</p>
@@ -707,13 +743,19 @@ If you got a z = -2 on an exam with mean = 80 and SD = 5, that means you got a 7
 <p>However, we do know that z-scores of 5 or larger in magnitude (ignoring negative sign) are very unusual, no matter the shape of the histogram/distribution. For those inclined, see the mathematical theorem below that tells us this.</p>
 <div class="mathbox">
 <p>
-(Optional) Chebyshev’s inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number <span class="math inline"><span class="math inline">\(k\)</span></span> &gt; 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than <span class="math inline"><span class="math inline">\(k\)</span></span> is less than or equal to <span class="math inline"><span class="math inline">\(1/k^2\)</span></span>,
+(Optional) Chebyshev’s inequality gives bounds for the percentages no
+matter the shape of the distribution. It states that for any real number
+<span class="math inline"><span class="math inline">\(k\)</span></span> &gt; 0, the chance of getting a
+z-score greater in magnitude (ignoring the negative sign) than <span class="math inline"><span class="math inline">\(k\)</span></span> is less than or equal to <span class="math inline"><span class="math inline">\(1/k^2\)</span></span>,
 </p>
 <p>
-<span class="math display"><span class="math display">\[P\left(|Z| \geq k\right) \leq \frac{1}{k^2}\]</span></span> where <span class="math inline"><span class="math inline">\(Z = \frac{|X - \mu|}{\sigma}\)</span></span> is a z-score, <span class="math inline"><span class="math inline">\(\mu\)</span></span> is the mean, and <span class="math inline"><span class="math inline">\(\sigma\)</span></span> is the standard deviation.
+<span class="math display"><span class="math display">\[P\left(|Z| \geq k\right) \leq
+\frac{1}{k^2}\]</span></span> where <span class="math inline"><span class="math inline">\(Z = \frac{|X -
+\mu|}{\sigma}\)</span></span> is a z-score, <span class="math inline"><span class="math inline">\(\mu\)</span></span> is the mean, and <span class="math inline"><span class="math inline">\(\sigma\)</span></span> is the standard deviation.
 </p>
 <p>
-If we plug in values for <span class="math inline"><span class="math inline">\(k\)</span></span>, we see that the chance of getting a z-score
+If we plug in values for <span class="math inline"><span class="math inline">\(k\)</span></span>, we
+see that the chance of getting a z-score
 </p>
 <ul>
 <li>
@@ -727,7 +769,9 @@ at least 5 in magnitude (&gt; 5 or &lt; -5) is less than <span class="math inlin
 </li>
 </ul>
 <p>
-This is true for any shaped distribution (skewed, bimodal, etc.). See <a href="https://en.wikipedia.org/wiki/Markov%27s_inequality">proof here</a> based on probability theory.
+This is true for any shaped distribution (skewed, bimodal, etc.). See
+<a href="https://en.wikipedia.org/wiki/Markov%27s_inequality">proof
+here</a> based on probability theory.
 </p>
 </div>
 <p>In summary, for a quantitative variable,</p>
@@ -748,7 +792,6 @@ This is true for any shaped distribution (skewed, bimodal, etc.). See <a href="h
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -789,7 +832,7 @@ gitbook.start({
 },
 "download": ["Stat155Notes.pdf"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -806,7 +849,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

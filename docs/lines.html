@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.2 Lines | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.2 Lines | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
-  
   <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
+  <meta name="github-repo" content="mac-stat/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="3.2 Lines | STAT 155 Notes" />
@@ -21,7 +20,7 @@
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
-<meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint, Grinde)" />
+<meta name="author" content="Macalester Statistics Faculty" />
 
 
 
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="modeling-goals.html"/>
 <link rel="next" href="best-fitting-line.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,14 +48,14 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -407,30 +410,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="lines" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Lines</h2>
+<div id="lines" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Lines<a href="lines.html#lines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s return to the thought experiment in which you were a manufacturer of button-down dress shirts.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="lines.html#cb70-1" aria-hidden="true" tabindex="-1"></a>body <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;Data/bodyfat.txt&quot;</span>)</span>
-<span id="cb70-2"><a href="lines.html#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb70-3"><a href="lines.html#cb70-3" aria-hidden="true" tabindex="-1"></a>body <span class="sc">%&gt;%</span></span>
-<span id="cb70-4"><a href="lines.html#cb70-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Neck, <span class="at">y =</span> Chest)) <span class="sc">+</span></span>
-<span id="cb70-5"><a href="lines.html#cb70-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb70-6"><a href="lines.html#cb70-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Neck size (cm)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Chest size (cm)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb70-7"><a href="lines.html#cb70-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="lines.html#cb70-1" tabindex="-1"></a>body <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;Data/bodyfat.txt&quot;</span>)</span>
+<span id="cb70-2"><a href="lines.html#cb70-2" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="lines.html#cb70-3" tabindex="-1"></a>body <span class="sc">%&gt;%</span></span>
+<span id="cb70-4"><a href="lines.html#cb70-4" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Neck, <span class="at">y =</span> Chest)) <span class="sc">+</span></span>
+<span id="cb70-5"><a href="lines.html#cb70-5" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb70-6"><a href="lines.html#cb70-6" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Neck size (cm)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Chest size (cm)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb70-7"><a href="lines.html#cb70-7" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="reflect">
 <p>
-If you were to add one or multiple lines to the plot above to help you make business decisions, where would you want it (or them)?
+If you were to add one or multiple lines to the plot above to help
+you make business decisions, where would you want it (or them)?
 </p>
 </div>
 <p>Let’s say you were only going to make one size of shirt. You might want to add a horizontal line at the mean Chest size and a vertical line at the mean Neck size.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="lines.html#cb71-1" aria-hidden="true" tabindex="-1"></a>body <span class="sc">%&gt;%</span></span>
-<span id="cb71-2"><a href="lines.html#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Neck, <span class="at">y =</span> Chest)) <span class="sc">+</span></span>
-<span id="cb71-3"><a href="lines.html#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb71-4"><a href="lines.html#cb71-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(body<span class="sc">$</span>Chest)) <span class="sc">+</span></span>
-<span id="cb71-5"><a href="lines.html#cb71-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(body<span class="sc">$</span>Neck)) <span class="sc">+</span></span>
-<span id="cb71-6"><a href="lines.html#cb71-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Neck size (cm)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Chest size (cm)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb71-7"><a href="lines.html#cb71-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="lines.html#cb71-1" tabindex="-1"></a>body <span class="sc">%&gt;%</span></span>
+<span id="cb71-2"><a href="lines.html#cb71-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Neck, <span class="at">y =</span> Chest)) <span class="sc">+</span></span>
+<span id="cb71-3"><a href="lines.html#cb71-3" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb71-4"><a href="lines.html#cb71-4" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(body<span class="sc">$</span>Chest)) <span class="sc">+</span></span>
+<span id="cb71-5"><a href="lines.html#cb71-5" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">mean</span>(body<span class="sc">$</span>Neck)) <span class="sc">+</span></span>
+<span id="cb71-6"><a href="lines.html#cb71-6" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Neck size (cm)&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Chest size (cm)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb71-7"><a href="lines.html#cb71-7" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can see that a shirt made to these specifications would fit the “average person.” However, this might not serve your market very well. For many people, the shirt would be too tight because their chest and/or neck sizes would be larger than average. For many people, the shirt would be too large because they chest and/or neck sizes would be smaller than average.</p>
 <p>Let’s try something else. Let’s allow ourselves 5 different sizes (XS, S, M, L, XL). Then, we can cut the neck size variable into 5 groups of equal length and estimate the mean chest sizes within each of these groups.</p>
@@ -449,7 +453,9 @@ What are the pros and cons of having a larger number of sizes?
 </div>
 <div class="reflect">
 <p>
-Stop and think about the data collection process. If you were measuring your own neck size, how precise do you think you could get? What factors might impact that precision?
+Stop and think about the data collection process. If you were
+measuring your own neck size, how precise do you think you could get?
+What factors might impact that precision?
 </p>
 </div>
 <p>We can see from this scatterplot that there is generally a linear relationship between neck and chest size. Perhaps we can find one line to describe the relationship between neck size and chest size and use that line to decide on sizes later.</p>
@@ -476,7 +482,6 @@ What does line tell us for our business venture?
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -517,7 +522,7 @@ gitbook.start({
 },
 "download": ["Stat155Notes.pdf"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -534,7 +539,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

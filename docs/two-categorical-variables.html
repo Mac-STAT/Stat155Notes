@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.5 Two Categorical Variables | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.5 Two Categorical Variables | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
-  
   <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
+  <meta name="github-repo" content="mac-stat/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="2.5 Two Categorical Variables | STAT 155 Notes" />
@@ -21,7 +20,7 @@
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
-<meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint, Grinde)" />
+<meta name="author" content="Macalester Statistics Faculty" />
 
 
 
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="one-categorical-variable.html"/>
 <link rel="next" href="one-quantitative-variable.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,14 +48,14 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -407,51 +410,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="two-categorical-variables" class="section level2" number="2.5">
-<h2><span class="header-section-number">2.5</span> Two Categorical Variables</h2>
+<div id="two-categorical-variables" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Two Categorical Variables<a href="two-categorical-variables.html#two-categorical-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now, let’s consider two other variables in the same Whickham data set. What is the relationship between the 20-year mortality outcome and smoking status at the beginning of the study?</p>
-<div id="side-by-side-bar-plot" class="section level3" number="2.5.1">
-<h3><span class="header-section-number">2.5.1</span> Side by Side Bar Plot</h3>
+<div id="side-by-side-bar-plot" class="section level3 hasAnchor" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Side by Side Bar Plot<a href="two-categorical-variables.html#side-by-side-bar-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are a few options for visualizing the relationship between two categorical variables. One option is to use a bar plot and add bars for different categories next to each other, called a <strong>side-by-side bar plot</strong>. For these plots,</p>
 <ul>
 <li>The <strong>height of the bars</strong> shows the frequency of the categories within subsets.</li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="two-categorical-variables.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Numerical summary (frequency and overall relative frequency)</span></span>
-<span id="cb13-2"><a href="two-categorical-variables.html#cb13-2" aria-hidden="true" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="two-categorical-variables.html#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(outcome, smoker) <span class="sc">%&gt;%</span></span>
-<span id="cb13-4"><a href="two-categorical-variables.html#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relfreq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="two-categorical-variables.html#cb13-1" tabindex="-1"></a><span class="do">## Numerical summary (frequency and overall relative frequency)</span></span>
+<span id="cb13-2"><a href="two-categorical-variables.html#cb13-2" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="two-categorical-variables.html#cb13-3" tabindex="-1"></a>  <span class="fu">count</span>(outcome, smoker) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="two-categorical-variables.html#cb13-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relfreq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code></pre></div>
 <pre><code>##   outcome smoker   n   relfreq
 ## 1   Alive     No 502 0.3820396
 ## 2   Alive    Yes 443 0.3371385
 ## 3    Dead     No 230 0.1750381
 ## 4    Dead    Yes 139 0.1057839</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="two-categorical-variables.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Graphical summary (side-by-side bar plot)</span></span>
-<span id="cb15-2"><a href="two-categorical-variables.html#cb15-2" aria-hidden="true" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="two-categorical-variables.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> smoker, <span class="at">fill =</span> outcome)) <span class="sc">+</span> </span>
-<span id="cb15-4"><a href="two-categorical-variables.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="two-categorical-variables.html#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Smoker Status&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Counts&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;20 Year Mortality&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb15-6"><a href="two-categorical-variables.html#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb15-7"><a href="two-categorical-variables.html#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="two-categorical-variables.html#cb15-1" tabindex="-1"></a><span class="do">## Graphical summary (side-by-side bar plot)</span></span>
+<span id="cb15-2"><a href="two-categorical-variables.html#cb15-2" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="two-categorical-variables.html#cb15-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> smoker, <span class="at">fill =</span> outcome)) <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="two-categorical-variables.html#cb15-4" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="two-categorical-variables.html#cb15-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Smoker Status&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Counts&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;20 Year Mortality&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb15-6"><a href="two-categorical-variables.html#cb15-6" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb15-7"><a href="two-categorical-variables.html#cb15-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="reflect">
 <p>
-What additional information do you gain by considering smoking status?
+What additional information do you gain by considering smoking
+status?
 </p>
 </div>
 </div>
-<div id="stacked-bar-plot" class="section level3" number="2.5.2">
-<h3><span class="header-section-number">2.5.2</span> Stacked Bar Plot</h3>
+<div id="stacked-bar-plot" class="section level3 hasAnchor" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Stacked Bar Plot<a href="two-categorical-variables.html#stacked-bar-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Another way to show the same data is by stacking the bars on top of each other with a category. For a <strong>stacked bar plot</strong>,</p>
 <ul>
 <li>The <strong>height</strong> of the entire bar shows the <strong>marginal distribution</strong> (frequency of the X variable, ignoring the other variable).</li>
 <li>The <strong>relative heights</strong> show <strong>conditional distributions</strong> (frequencies within subsets), but it is hard to compare distributions between bars because the overall heights differ.</li>
 <li>The <strong>widths</strong> of the bars have no meaning.</li>
 </ul>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="two-categorical-variables.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Numerical summary (conditional distribution - conditioning on outcome)</span></span>
-<span id="cb16-2"><a href="two-categorical-variables.html#cb16-2" aria-hidden="true" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
-<span id="cb16-3"><a href="two-categorical-variables.html#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(outcome, smoker) <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="two-categorical-variables.html#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(outcome) <span class="sc">%&gt;%</span></span>
-<span id="cb16-5"><a href="two-categorical-variables.html#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">relfreq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) </span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="two-categorical-variables.html#cb16-1" tabindex="-1"></a><span class="do">## Numerical summary (conditional distribution - conditioning on outcome)</span></span>
+<span id="cb16-2"><a href="two-categorical-variables.html#cb16-2" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="two-categorical-variables.html#cb16-3" tabindex="-1"></a>    <span class="fu">count</span>(outcome, smoker) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="two-categorical-variables.html#cb16-4" tabindex="-1"></a>    <span class="fu">group_by</span>(outcome) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="two-categorical-variables.html#cb16-5" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">relfreq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) </span></code></pre></div>
 <pre><code>## # A tibble: 4 × 4
 ## # Groups:   outcome [2]
 ##   outcome smoker     n relfreq
@@ -460,11 +464,11 @@ What additional information do you gain by considering smoking status?
 ## 2 Alive   Yes      443   0.469
 ## 3 Dead    No       230   0.623
 ## 4 Dead    Yes      139   0.377</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="two-categorical-variables.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Numerical summary (conditional distribution - conditioning on smoker)</span></span>
-<span id="cb18-2"><a href="two-categorical-variables.html#cb18-2" aria-hidden="true" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="two-categorical-variables.html#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(outcome, smoker) <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="two-categorical-variables.html#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(smoker) <span class="sc">%&gt;%</span></span>
-<span id="cb18-5"><a href="two-categorical-variables.html#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">relfreq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) </span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="two-categorical-variables.html#cb18-1" tabindex="-1"></a><span class="do">## Numerical summary (conditional distribution - conditioning on smoker)</span></span>
+<span id="cb18-2"><a href="two-categorical-variables.html#cb18-2" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="two-categorical-variables.html#cb18-3" tabindex="-1"></a>    <span class="fu">count</span>(outcome, smoker) <span class="sc">%&gt;%</span></span>
+<span id="cb18-4"><a href="two-categorical-variables.html#cb18-4" tabindex="-1"></a>    <span class="fu">group_by</span>(smoker) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="two-categorical-variables.html#cb18-5" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">relfreq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) </span></code></pre></div>
 <pre><code>## # A tibble: 4 × 4
 ## # Groups:   smoker [2]
 ##   outcome smoker     n relfreq
@@ -473,71 +477,76 @@ What additional information do you gain by considering smoking status?
 ## 2 Alive   Yes      443   0.761
 ## 3 Dead    No       230   0.314
 ## 4 Dead    Yes      139   0.239</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="two-categorical-variables.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Graphical summary (stacked bar plot)</span></span>
-<span id="cb20-2"><a href="two-categorical-variables.html#cb20-2" aria-hidden="true" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
-<span id="cb20-3"><a href="two-categorical-variables.html#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> smoker, <span class="at">fill =</span> outcome)) <span class="sc">+</span> </span>
-<span id="cb20-4"><a href="two-categorical-variables.html#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
-<span id="cb20-5"><a href="two-categorical-variables.html#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Smoker Status&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Counts&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;20 Year Mortality&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb20-6"><a href="two-categorical-variables.html#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb20-7"><a href="two-categorical-variables.html#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="two-categorical-variables.html#cb20-1" tabindex="-1"></a><span class="do">## Graphical summary (stacked bar plot)</span></span>
+<span id="cb20-2"><a href="two-categorical-variables.html#cb20-2" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="two-categorical-variables.html#cb20-3" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> smoker, <span class="at">fill =</span> outcome)) <span class="sc">+</span> </span>
+<span id="cb20-4"><a href="two-categorical-variables.html#cb20-4" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span> </span>
+<span id="cb20-5"><a href="two-categorical-variables.html#cb20-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Smoker Status&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Counts&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;20 Year Mortality&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb20-6"><a href="two-categorical-variables.html#cb20-6" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="two-categorical-variables.html#cb20-7" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="reflect">
 <p>
-What information is highlighted when you stack the bars as compared to having them side-by-side?
+What information is highlighted when you stack the bars as compared
+to having them side-by-side?
 </p>
 </div>
 </div>
-<div id="stacked-bar-plot-relative-frequencies" class="section level3" number="2.5.3">
-<h3><span class="header-section-number">2.5.3</span> Stacked Bar Plot (Relative Frequencies)</h3>
+<div id="stacked-bar-plot-relative-frequencies" class="section level3 hasAnchor" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Stacked Bar Plot (Relative Frequencies)<a href="two-categorical-variables.html#stacked-bar-plot-relative-frequencies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can adjust the stacked bar plot to make the heights the same, so that you can compare conditional distributions. For a <strong>stacked bar plot based on proportions</strong> (also called a <strong>proportional bar plot</strong>),</p>
 <ul>
 <li>The <strong>relative heights</strong> show <strong>conditional distributions</strong> (relative frequencies within subsets).</li>
 <li>The <strong>widths</strong> of the bars have no meaning.</li>
 </ul>
 <p>The code below computes the conditional distributions first (fractions of outcomes within the two smoking groups) and then plots these proportions.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="two-categorical-variables.html#cb21-1" aria-hidden="true" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
-<span id="cb21-2"><a href="two-categorical-variables.html#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> smoker, <span class="at">fill =</span> outcome)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="two-categorical-variables.html#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="two-categorical-variables.html#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Smoker Status&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Proportion&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;20 Year Mortality&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb21-5"><a href="two-categorical-variables.html#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb21-6"><a href="two-categorical-variables.html#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="two-categorical-variables.html#cb21-1" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="two-categorical-variables.html#cb21-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> smoker, <span class="at">fill =</span> outcome)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="two-categorical-variables.html#cb21-3" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="two-categorical-variables.html#cb21-4" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Smoker Status&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Proportion&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;20 Year Mortality&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb21-5"><a href="two-categorical-variables.html#cb21-5" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb21-6"><a href="two-categorical-variables.html#cb21-6" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="mosaic-plot" class="section level3" number="2.5.4">
-<h3><span class="header-section-number">2.5.4</span> Mosaic Plot</h3>
+<div id="mosaic-plot" class="section level3 hasAnchor" number="2.5.4">
+<h3><span class="header-section-number">2.5.4</span> Mosaic Plot<a href="two-categorical-variables.html#mosaic-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The best (Prof. Heggeseth’s opinion) graphic for two categorical variables is a variation on the stacked bar plot called a <strong>mosaic plot</strong>. The total heights of the bars are the same so we can compare the conditional distributions. For a <strong>mosaic plot</strong>,</p>
 <ul>
 <li>The <strong>relative height</strong> of the bars shows the <strong>conditional distribution</strong> (relative frequency within subsets).</li>
 <li>The <strong>width</strong> of the bars shows the <strong>marginal distribution</strong> (relative frequency of the X variable, ignoring the other variable).</li>
 <li>Making mosaic plots in R requires another package: <code>ggmosaic</code></li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="two-categorical-variables.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span>
-<span id="cb22-2"><a href="two-categorical-variables.html#cb22-2" aria-hidden="true" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="two-categorical-variables.html#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb22-4"><a href="two-categorical-variables.html#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(outcome, smoker), <span class="at">fill =</span> outcome)) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="two-categorical-variables.html#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Smoker Status&#39;</span>, <span class="at">y =</span> <span class="st">&#39;&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;20 Year Mortality&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb22-6"><a href="two-categorical-variables.html#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb22-7"><a href="two-categorical-variables.html#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="two-categorical-variables.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span>
+<span id="cb22-2"><a href="two-categorical-variables.html#cb22-2" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="two-categorical-variables.html#cb22-3" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb22-4"><a href="two-categorical-variables.html#cb22-4" tabindex="-1"></a>    <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(outcome, smoker), <span class="at">fill =</span> outcome)) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="two-categorical-variables.html#cb22-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Smoker Status&#39;</span>, <span class="at">y =</span> <span class="st">&#39;&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;20 Year Mortality&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb22-6"><a href="two-categorical-variables.html#cb22-6" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb22-7"><a href="two-categorical-variables.html#cb22-7" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="reflect">
 <p>
-What information is highlighted when you focus on relative frequency in the mosaic plots as compared to other bar plots?
+What information is highlighted when you focus on relative frequency
+in the mosaic plots as compared to other bar plots?
 </p>
 </div>
 <p>With this type of plot, you can see that there are more non-smokers than smokers. Also, you see that there is a higher mortality rate for non-smokers.</p>
 <div class="reflect">
 <p>
-Does our data suggest that smoking <em>is associated</em> with a lower mortality rate? Does our data suggest that smoking <em>reduces</em> mortality? Note the difference in these two questions - the second implies a cause and effect relationship.
+Does our data suggest that smoking <em>is associated</em> with a
+lower mortality rate? Does our data suggest that smoking
+<em>reduces</em> mortality? Note the difference in these two questions -
+the second implies a cause and effect relationship.
 </p>
 </div>
 <p>Let’s consider a third variable here, age distribution. We can create the same plot, separately for each age group.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="two-categorical-variables.html#cb23-1" aria-hidden="true" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="two-categorical-variables.html#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb23-3"><a href="two-categorical-variables.html#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(outcome, smoker), <span class="at">fill =</span> outcome)) <span class="sc">+</span> </span>
-<span id="cb23-4"><a href="two-categorical-variables.html#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>( . <span class="sc">~</span> ageCat) <span class="sc">+</span> </span>
-<span id="cb23-5"><a href="two-categorical-variables.html#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Smoker Status&#39;</span>, <span class="at">y =</span> <span class="st">&#39;&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;20 Year Mortality&#39;</span>) <span class="sc">+</span> </span>
-<span id="cb23-6"><a href="two-categorical-variables.html#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb23-7"><a href="two-categorical-variables.html#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="two-categorical-variables.html#cb23-1" tabindex="-1"></a>Whickham <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="two-categorical-variables.html#cb23-2" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-3"><a href="two-categorical-variables.html#cb23-3" tabindex="-1"></a>    <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(outcome, smoker), <span class="at">fill =</span> outcome)) <span class="sc">+</span> </span>
+<span id="cb23-4"><a href="two-categorical-variables.html#cb23-4" tabindex="-1"></a>    <span class="fu">facet_grid</span>( . <span class="sc">~</span> ageCat) <span class="sc">+</span> </span>
+<span id="cb23-5"><a href="two-categorical-variables.html#cb23-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Smoker Status&#39;</span>, <span class="at">y =</span> <span class="st">&#39;&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;20 Year Mortality&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb23-6"><a href="two-categorical-variables.html#cb23-6" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;lightblue&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb23-7"><a href="two-categorical-variables.html#cb23-7" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="02-visualization_files/figure-html/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div class="reflect">
 <p>
@@ -546,7 +555,9 @@ What do you gain by creating plots within subgroups?
 </div>
 <div class="reflect">
 <p>
-How is it that our conclusions are exactly the opposite if we consider the relationship between smoking and mortality within age subsets? What might be going on?
+How is it that our conclusions are exactly the opposite if we
+consider the relationship between smoking and mortality within age
+subsets? What might be going on?
 </p>
 </div>
 <p>This is called <strong>Simpson’s Paradox,</strong> which is a situation in which you come to two different conclusions if you look at results overall versus within subsets (e.g. age groups).</p>
@@ -564,7 +575,6 @@ How is it that our conclusions are exactly the opposite if we consider the relat
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -605,7 +615,7 @@ gitbook.start({
 },
 "download": ["Stat155Notes.pdf"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -622,7 +632,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

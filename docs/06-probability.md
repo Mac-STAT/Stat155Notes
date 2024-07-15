@@ -7,7 +7,7 @@ Now that we have some intuition about random variability, we will formalize some
 Recall the regression model we built to predict home price as a function of square footage and fireplaces in Section \@ref(multiple). 
 
 
-```r
+``` r
 homes <- read.delim("http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt")
 homes <- homes %>%
     mutate(AnyFireplace = Fireplaces > 0)
@@ -25,7 +25,7 @@ To allow for different slopes among homes with and without a fireplace, we used 
 But is this true for the larger population of homes in the area? Is each square foot worth exactly \$26.85 more, on average, in homes with a fireplace than in homes without a fireplace?
 
 
-```r
+``` r
 lm.home3 <- lm(Price ~ AnyFireplace*Living.Area, data = homes)
 tidy(lm.home3)
 ```
@@ -57,7 +57,8 @@ For a much more in-depth discussion of probability (calculus-based), take STAT/M
 ## Three Types of Probability
 
 <div class="reflect">
-<p>What is the probability of rolling a 1 on a six-sided die? How do you know this? How can you justify that number?</p>
+<p>What is the probability of rolling a 1 on a six-sided die? How do you
+know this? How can you justify that number?</p>
 </div>
 
 There are three types of probability.
@@ -67,7 +68,9 @@ There are three types of probability.
 2. **Theoretical Probability:** If you don't have time to toss a die a million times, you could calculate probabilities based on mathematical theory and assumptions. When tossing a balanced die, you would assume that each side is equally likely to land face-up. Thus the chance of rolling a 1, is 1/6 for a six-sided die.
 
 <div class="reflect">
-<p>What is the probability that you’ll talk to someone you do not know this week? What does that number represent? How can you justify that number?</p>
+<p>What is the probability that you’ll talk to someone you do not know
+this week? What does that number represent? How can you justify that
+number?</p>
 </div>
 
 3. **Subjective Probability:** If you use a number between 0 and 1 (100%) to reflect your uncertainty in an outcome (rather than based on empirical evidence or mathematical theory), then you are using subjective probability. 
@@ -108,10 +111,15 @@ For more details on theoretical probability, please see [Appendix A]. This mater
 Let's start by taking a moment to consider a recent [Washington Post article](https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c) that discusses the role of probability in medical diagnostics. Before you read the whole article, consider a question.
 
 <div class="reflect">
-<p>Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of every 1,000 people will have it).</p>
-<p>The test to detect Disease X has a false-positive rate of 5 percent (meaning that out of every 100 subjects who do not have Disease X, 5 will falsely test positive for it).</p>
-<p>The test’s accuracy is 99 percent (meaning that out of every 100 who do have Disease X, 99 will correctly test positive for it).</p>
-<p>If a patient’s test result comes back positive, what is the probability that this patient actually has the disease?</p>
+<p>Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out
+of every 1,000 people will have it).</p>
+<p>The test to detect Disease X has a false-positive rate of 5 percent
+(meaning that out of every 100 subjects who do not have Disease X, 5
+will falsely test positive for it).</p>
+<p>The test’s accuracy is 99 percent (meaning that out of every 100 who
+do have Disease X, 99 will correctly test positive for it).</p>
+<p>If a patient’s test result comes back positive, what is the
+probability that this patient actually has the disease?</p>
 </div>
 
 If you said the probability is 95%, then you are wrong, but almost half of the doctors surveyed in 2014 thought exactly the same thing.
@@ -343,7 +351,7 @@ If a random variable $X$ is modeled with a Normal model, we also say that "$X$ f
 <img src="06-probability_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" />
 
 
-```r
+``` r
 pnorm(1) - pnorm(-1) 
 ```
 
@@ -351,7 +359,7 @@ pnorm(1) - pnorm(-1)
 ## [1] 0.6826895
 ```
 
-```r
+``` r
 #pnorm(1) gives the area under the curve to the left of 1
 #pnorm(-1) gives the area under the curve to the left of -1
 ```
@@ -361,7 +369,7 @@ pnorm(1) - pnorm(-1)
 <img src="06-probability_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" />
 
 
-```r
+``` r
 pnorm(2) - pnorm(-2)
 ```
 
@@ -374,7 +382,7 @@ pnorm(2) - pnorm(-2)
 <img src="06-probability_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" />
 
 
-```r
+``` r
 pnorm(3) - pnorm(-3)
 ```
 

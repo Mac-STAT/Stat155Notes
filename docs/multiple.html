@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.9 Multiple Linear Regression | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.9 Multiple Linear Regression | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
-  
   <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
+  <meta name="github-repo" content="mac-stat/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="3.9 Multiple Linear Regression | STAT 155 Notes" />
@@ -21,7 +20,7 @@
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
-<meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint, Grinde)" />
+<meta name="author" content="Macalester Statistics Faculty" />
 
 
 
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="conditions-for-linear-regression-models.html"/>
 <link rel="next" href="selecting-a-model.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,14 +48,14 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -407,8 +410,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="multiple" class="section level2" number="3.9">
-<h2><span class="header-section-number">3.9</span> Multiple Linear Regression</h2>
+<div id="multiple" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> Multiple Linear Regression<a href="multiple.html#multiple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As we’ve alluded to, we can generalize the idea of a simple linear regression model by including many predictor variables (<span class="math inline">\(X\)</span>’s). A <strong>multiple linear regression model</strong> can be written as:</p>
 <p><span class="math display">\[ E[Y |X_1,...,X_k ] = \beta_0 + \beta_1\,X_{1} + \cdots + \beta_k\,X_{k}  \]</span></p>
 <ul>
@@ -421,8 +424,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>Let’s talk about a new data example: home prices. We want to build a model to predict the price of a home based on its many characteristics. We have a dataset of homes recently sold in New England with many variables such as the age of the home, the land value, whether or not it has central air conditioning, the number of fireplaces, the sale price, and more…</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="multiple.html#cb137-1" aria-hidden="true" tabindex="-1"></a>homes <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&#39;Data/Saratoga.txt&#39;</span>)</span>
-<span id="cb137-2"><a href="multiple.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(homes)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="multiple.html#cb137-1" tabindex="-1"></a>homes <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&#39;Data/Saratoga.txt&#39;</span>)</span>
+<span id="cb137-2"><a href="multiple.html#cb137-2" tabindex="-1"></a><span class="fu">head</span>(homes)</span></code></pre></div>
 <pre><code>##    Price Lot.Size Waterfront Age Land.Value New.Construct Central.Air Fuel.Type
 ## 1 132500     0.09          0  42      50000             0           0         3
 ## 2 181115     0.92          0   0      22300             0           0         2
@@ -445,11 +448,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5     3
 ## 6     8</code></pre>
 <p>*The exception to the interpretation comment above is if some of our <span class="math inline">\(X\)</span> variables are strongly correlated (called <strong>multicollinearity</strong>). In this case, we cannot hold all other variables constant (at least not well) because if we increase the value of one variable, then variables highly correlated with it will also likely change in value.</p>
-<div id="indicator-variables" class="section level3" number="3.9.1">
-<h3><span class="header-section-number">3.9.1</span> Indicator Variables</h3>
+<div id="indicator-variables" class="section level3 hasAnchor" number="3.9.1">
+<h3><span class="header-section-number">3.9.1</span> Indicator Variables<a href="multiple.html#indicator-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In New England, fireplaces are often used as a way to provide supplementary heat to the house. Let’s study the impact a fireplace has on the sale price of a home. In particular, we only care if the home has 1 or more fireplaces or no fireplaces. So we make a new variable, <code>AnyFireplace</code>, that is <code>TRUE</code> if there is at least one fireplace in a home and <code>FALSE</code> otherwise.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="multiple.html#cb139-1" aria-hidden="true" tabindex="-1"></a>homes <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span></span>
-<span id="cb139-2"><a href="multiple.html#cb139-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">AnyFireplace =</span> Fireplaces <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="multiple.html#cb139-1" tabindex="-1"></a>homes <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span></span>
+<span id="cb139-2"><a href="multiple.html#cb139-2" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">AnyFireplace =</span> Fireplaces <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div>
 <p>In order to include this information in our linear regression model, we need to turn that categorical variable (<code>AnyFireplace</code> with values of <code>TRUE</code> or <code>FALSE</code>) into a quantitative variable using an <strong>indicator variable</strong>, which has a numeric value of 0 or 1:</p>
 <p><span class="math display">\[ \hbox{AnyFireplaceTRUE} = \begin{cases}1 \quad \text{ if a home has at least one fireplace}\\ 0\quad \text{ if a home does not have a fireplace} \end{cases}\]</span>
 Our model is written as</p>
@@ -464,11 +467,11 @@ Our model is written as</p>
 The difference between the expected price is <span class="math inline">\(\beta_1\)</span>, the value of the “slope” coefficient for the indicator variable (also referred to as the <code>AnyFireplaceTRUE</code> coefficient).</p></li>
 </ul>
 <p>To get an estimate of <span class="math inline">\(\beta_1\)</span>, we need to fit our model to the data. In fact, R creates this indicator variable for you when you include a categorical variable as an <span class="math inline">\(X\)</span> variable the <code>lm()</code> function.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="multiple.html#cb140-1" aria-hidden="true" tabindex="-1"></a>lm.home <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span></span>
-<span id="cb140-2"><a href="multiple.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> AnyFireplace))</span>
-<span id="cb140-3"><a href="multiple.html#cb140-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb140-4"><a href="multiple.html#cb140-4" aria-hidden="true" tabindex="-1"></a>lm.home <span class="sc">%&gt;%</span></span>
-<span id="cb140-5"><a href="multiple.html#cb140-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="multiple.html#cb140-1" tabindex="-1"></a>lm.home <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span></span>
+<span id="cb140-2"><a href="multiple.html#cb140-2" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> AnyFireplace))</span>
+<span id="cb140-3"><a href="multiple.html#cb140-3" tabindex="-1"></a></span>
+<span id="cb140-4"><a href="multiple.html#cb140-4" tabindex="-1"></a>lm.home <span class="sc">%&gt;%</span></span>
+<span id="cb140-5"><a href="multiple.html#cb140-5" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   term             estimate std.error statistic  p.value
 ##   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -478,33 +481,38 @@ The difference between the expected price is <span class="math inline">\(\beta_1
 <p><span class="math display">\[ \hbox{Predicted Price} = 174653 + 65261\,\hbox{AnyFireplaceTRUE} \]</span>
 and our predicted price for a house with a fireplace (indicator variable = 1) is</p>
 <p><span class="math display">\[ \hbox{Predicted Price} = 174653 + 65261 \times 1 = \$ 239,914 \]</span></p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="multiple.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="dv">174653</span> <span class="sc">+</span> <span class="dv">65261</span><span class="sc">*</span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="multiple.html#cb142-1" tabindex="-1"></a><span class="dv">174653</span> <span class="sc">+</span> <span class="dv">65261</span><span class="sc">*</span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 239914</code></pre>
 <p>and the predicted price for a house without a fireplace (indicator variable = 0) is</p>
 <p><span class="math display">\[\hbox{Predicted Price} = 174653 + 65261 \times 0 = \$ 174,653\]</span></p>
 <p>The difference between these predicted prices is <span class="math inline">\(\hat{\beta}_1\)</span> = $65,261, the estimated value of the “slope” for the indicator variable.</p>
 <div class="reflect">
 <p>
-So is this how much a fireplace is worth? If I installed a fireplace in my house, should the value of my house go up $65,260?
+So is this how much a fireplace is worth? If I installed a fireplace
+in my house, should the value of my house go up $65,260?
 </p>
 <p>
-<strong>No</strong>, because we should not make causal statements based on observational data without thinking deeply about the context. What could be confounding this relationship? What third variable may be related to both the price and whether or not a house has a fireplace?
+<strong>No</strong>, because we should not make causal statements
+based on observational data without thinking deeply about the context.
+What could be confounding this relationship? What third variable may be
+related to both the price and whether or not a house has a
+fireplace?
 </p>
 </div>
 </div>
-<div id="confounder-adjustment" class="section level3" number="3.9.2">
-<h3><span class="header-section-number">3.9.2</span> Confounder Adjustment</h3>
+<div id="confounder-adjustment" class="section level3 hasAnchor" number="3.9.2">
+<h3><span class="header-section-number">3.9.2</span> Confounder Adjustment<a href="multiple.html#confounder-adjustment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s consider the size of the house. Is price related to the area of living space (square footage)?</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="multiple.html#cb144-1" aria-hidden="true" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
-<span id="cb144-2"><a href="multiple.html#cb144-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Living.Area, <span class="at">y =</span> Price)) <span class="sc">+</span> </span>
-<span id="cb144-3"><a href="multiple.html#cb144-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span></span>
-<span id="cb144-4"><a href="multiple.html#cb144-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="multiple.html#cb144-1" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
+<span id="cb144-2"><a href="multiple.html#cb144-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Living.Area, <span class="at">y =</span> Price)) <span class="sc">+</span> </span>
+<span id="cb144-3"><a href="multiple.html#cb144-3" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;steelblue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb144-4"><a href="multiple.html#cb144-4" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Is the presence of a fireplace related to area of living space?</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="multiple.html#cb145-1" aria-hidden="true" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
-<span id="cb145-2"><a href="multiple.html#cb145-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> AnyFireplace, <span class="at">y =</span> Living.Area)) <span class="sc">+</span> </span>
-<span id="cb145-3"><a href="multiple.html#cb145-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb145-4"><a href="multiple.html#cb145-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="multiple.html#cb145-1" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
+<span id="cb145-2"><a href="multiple.html#cb145-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> AnyFireplace, <span class="at">y =</span> Living.Area)) <span class="sc">+</span> </span>
+<span id="cb145-3"><a href="multiple.html#cb145-3" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb145-4"><a href="multiple.html#cb145-4" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We see that the amount of living area differs between homes with fireplaces and homes without fireplaces. Thus, <code>Living.Area</code> could confound the relationship between <code>AnyFireplace</code> and <code>Price</code> because it is related to both variables. That is, it is possible that Living Area is a cause of having a fireplace (if you have a bigger house, you have more space to put in a fireplace) and Living Area also clearly is a cause of Price (the bigger the house, the more it costs).</p>
 <p>Let’s put <code>Living.Area</code> in the model along with <code>AnyFireplace</code> to account for it (to control or adjust for it),</p>
@@ -540,11 +548,11 @@ E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &amp;= \beta_0 + \beta
 \end{align*}\]</span></p>
 <p>Another way to describe <span class="math inline">\(\beta_1\)</span> is that it is the difference between the intercepts.</p>
 <p>To get the estimates of <span class="math inline">\(\beta_0,\beta_1,\)</span> and <span class="math inline">\(\beta_2\)</span>, we fit the model in R,</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="multiple.html#cb146-1" aria-hidden="true" tabindex="-1"></a>lm.home2 <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span></span>
-<span id="cb146-2"><a href="multiple.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> AnyFireplace <span class="sc">+</span> Living.Area))</span>
-<span id="cb146-3"><a href="multiple.html#cb146-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-4"><a href="multiple.html#cb146-4" aria-hidden="true" tabindex="-1"></a>lm.home2 <span class="sc">%&gt;%</span> </span>
-<span id="cb146-5"><a href="multiple.html#cb146-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="multiple.html#cb146-1" tabindex="-1"></a>lm.home2 <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span></span>
+<span id="cb146-2"><a href="multiple.html#cb146-2" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> AnyFireplace <span class="sc">+</span> Living.Area))</span>
+<span id="cb146-3"><a href="multiple.html#cb146-3" tabindex="-1"></a></span>
+<span id="cb146-4"><a href="multiple.html#cb146-4" tabindex="-1"></a>lm.home2 <span class="sc">%&gt;%</span> </span>
+<span id="cb146-5"><a href="multiple.html#cb146-5" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 5
 ##   term             estimate std.error statistic   p.value
 ##   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -559,45 +567,50 @@ E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &amp;= \beta_0 + \beta
 </ul>
 <p>Note that the “slope” for the indicator variable is very different with the addition of Living.Area. This suggests that <code>Living.Area</code> was confounding the relationship between <code>Price</code> and <code>AnyFireplace</code>.</p>
 <p>Let’s look back at the relationship between Living.Area and Price and color the scatterplot by AnyFireplace. So we are now looking at three variables at a time. The above model with AnyFireplace and Living.Area results in two lines for Living.Area v. Price, with different intercepts but the same slope (parallel lines). We can create the lines manually,</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="multiple.html#cb148-1" aria-hidden="true" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
-<span id="cb148-2"><a href="multiple.html#cb148-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Living.Area, <span class="at">y =</span> Price, <span class="at">color =</span> AnyFireplace)) <span class="sc">+</span> </span>
-<span id="cb148-3"><a href="multiple.html#cb148-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb148-4"><a href="multiple.html#cb148-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">13599.164</span> , <span class="at">slope =</span> <span class="fl">111.218</span>, <span class="at">color =</span> scales<span class="sc">::</span><span class="fu">hue_pal</span>()(<span class="dv">2</span>)[<span class="dv">1</span>]) <span class="sc">+</span></span>
-<span id="cb148-5"><a href="multiple.html#cb148-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">13599.164</span> <span class="sc">+</span> <span class="fl">5567.377</span>, <span class="at">slope =</span> <span class="fl">111.218</span> , <span class="at">color =</span> scales<span class="sc">::</span><span class="fu">hue_pal</span>()(<span class="dv">2</span>)[<span class="dv">2</span>]) <span class="sc">+</span></span>
-<span id="cb148-6"><a href="multiple.html#cb148-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="multiple.html#cb148-1" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
+<span id="cb148-2"><a href="multiple.html#cb148-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Living.Area, <span class="at">y =</span> Price, <span class="at">color =</span> AnyFireplace)) <span class="sc">+</span> </span>
+<span id="cb148-3"><a href="multiple.html#cb148-3" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb148-4"><a href="multiple.html#cb148-4" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">13599.164</span> , <span class="at">slope =</span> <span class="fl">111.218</span>, <span class="at">color =</span> scales<span class="sc">::</span><span class="fu">hue_pal</span>()(<span class="dv">2</span>)[<span class="dv">1</span>]) <span class="sc">+</span></span>
+<span id="cb148-5"><a href="multiple.html#cb148-5" tabindex="-1"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">13599.164</span> <span class="sc">+</span> <span class="fl">5567.377</span>, <span class="at">slope =</span> <span class="fl">111.218</span> , <span class="at">color =</span> scales<span class="sc">::</span><span class="fu">hue_pal</span>()(<span class="dv">2</span>)[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb148-6"><a href="multiple.html#cb148-6" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-69-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>or we could use our model to plot the lines for us.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="multiple.html#cb149-1" aria-hidden="true" tabindex="-1"></a>lm.home2 <span class="sc">%&gt;%</span></span>
-<span id="cb149-2"><a href="multiple.html#cb149-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">augment</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb149-3"><a href="multiple.html#cb149-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Living.Area, <span class="at">color =</span> AnyFireplace)) <span class="sc">+</span> </span>
-<span id="cb149-4"><a href="multiple.html#cb149-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> Price)) <span class="sc">+</span></span>
-<span id="cb149-5"><a href="multiple.html#cb149-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
-<span id="cb149-6"><a href="multiple.html#cb149-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="multiple.html#cb149-1" tabindex="-1"></a>lm.home2 <span class="sc">%&gt;%</span></span>
+<span id="cb149-2"><a href="multiple.html#cb149-2" tabindex="-1"></a>    <span class="fu">augment</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb149-3"><a href="multiple.html#cb149-3" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Living.Area, <span class="at">color =</span> AnyFireplace)) <span class="sc">+</span> </span>
+<span id="cb149-4"><a href="multiple.html#cb149-4" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> Price)) <span class="sc">+</span></span>
+<span id="cb149-5"><a href="multiple.html#cb149-5" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> .fitted)) <span class="sc">+</span></span>
+<span id="cb149-6"><a href="multiple.html#cb149-6" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-70-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Let’s try and fit two separate lines to these two groups of homes, home with any fireplaces and home with no fireplaces. Do these lines have the same intercepts? Same slopes?</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="multiple.html#cb150-1" aria-hidden="true" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
-<span id="cb150-2"><a href="multiple.html#cb150-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Living.Area, <span class="at">y =</span> Price, <span class="at">color =</span> AnyFireplace)) <span class="sc">+</span> </span>
-<span id="cb150-3"><a href="multiple.html#cb150-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb150-4"><a href="multiple.html#cb150-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb150-5"><a href="multiple.html#cb150-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="multiple.html#cb150-1" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
+<span id="cb150-2"><a href="multiple.html#cb150-2" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Living.Area, <span class="at">y =</span> Price, <span class="at">color =</span> AnyFireplace)) <span class="sc">+</span> </span>
+<span id="cb150-3"><a href="multiple.html#cb150-3" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb150-4"><a href="multiple.html#cb150-4" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb150-5"><a href="multiple.html#cb150-5" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-71-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In this case, it looks as though having a fireplace in your house slightly changes the relationship between Living.Area and Price. In fact, the increase in your average price for every 1 square foot is greater for a home with a fireplace than that for homes without fireplaces (slopes are different).</p>
 </div>
-<div id="interaction-variables" class="section level3" number="3.9.3">
-<h3><span class="header-section-number">3.9.3</span> Interaction Variables</h3>
+<div id="interaction-variables" class="section level3 hasAnchor" number="3.9.3">
+<h3><span class="header-section-number">3.9.3</span> Interaction Variables<a href="multiple.html#interaction-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can allow for different slopes within one regression model (!), rather than fitting two separate models.</p>
 <div class="reflect">
 <p>
-When should we fit only one model; when should we fit separate models?
+When should we fit only one model; when should we fit separate
+models?
 </p>
 <p>
-If we fit separate models, we are <strong>stratifying</strong> and then modeling. But what if some of the strata are small?
+If we fit separate models, we are <strong>stratifying</strong> and
+then modeling. But what if some of the strata are small?
 </p>
 <p>
-Fitting one model allows us to “borrow information across groups.”
+Fitting one model allows us to “borrow information across
+groups.”
 </p>
 <p>
-There is no one right answer. Researchers struggle with this decision <a href="https://www.ncbi.nlm.nih.gov/pubmed/22125224">to stratify or not to stratify</a>.
+There is no one right answer. Researchers struggle with this decision
+<a href="https://www.ncbi.nlm.nih.gov/pubmed/22125224">to stratify or
+not to stratify</a>.
 </p>
 </div>
 <ul>
@@ -640,11 +653,11 @@ E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &amp;= \beta_0 + \beta
 </ul>
 <p>What this means in the context of this model of price as a function of living area and fireplaces: different slopes means that the average rate of price increase for every additional square foot is <strong>different between homes with and without fireplaces</strong>.</p>
 <p>If we fit this model with interaction terms, we get the following estimates:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="multiple.html#cb151-1" aria-hidden="true" tabindex="-1"></a>lm.home3 <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span></span>
-<span id="cb151-2"><a href="multiple.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> AnyFireplace<span class="sc">*</span>Living.Area))</span>
-<span id="cb151-3"><a href="multiple.html#cb151-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb151-4"><a href="multiple.html#cb151-4" aria-hidden="true" tabindex="-1"></a>lm.home3 <span class="sc">%&gt;%</span></span>
-<span id="cb151-5"><a href="multiple.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="multiple.html#cb151-1" tabindex="-1"></a>lm.home3 <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span></span>
+<span id="cb151-2"><a href="multiple.html#cb151-2" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> AnyFireplace<span class="sc">*</span>Living.Area))</span>
+<span id="cb151-3"><a href="multiple.html#cb151-3" tabindex="-1"></a></span>
+<span id="cb151-4"><a href="multiple.html#cb151-4" tabindex="-1"></a>lm.home3 <span class="sc">%&gt;%</span></span>
+<span id="cb151-5"><a href="multiple.html#cb151-5" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 5
 ##   term                         estimate std.error statistic  p.value
 ##   &lt;chr&gt;                           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -659,9 +672,9 @@ E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &amp;= \beta_0 + \beta
 \hbox{Predicted Price} &amp;= 40901.29 + -37610.41 \times 1 + 92.36391 \times \hbox{Living.Area} + 26.85 \times \hbox{Living.Area} \times 1 \\
 &amp; = \$3,290.88 + \$119.21 \times \hbox{Living.Area}
 \end{align*}\]</span></p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="multiple.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fl">40901.29</span> <span class="sc">+</span> <span class="sc">-</span><span class="fl">37610.41</span><span class="sc">*</span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="multiple.html#cb153-1" tabindex="-1"></a><span class="fl">40901.29</span> <span class="sc">+</span> <span class="sc">-</span><span class="fl">37610.41</span><span class="sc">*</span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 3290.88</code></pre>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="multiple.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fl">92.36391</span> <span class="sc">+</span> <span class="fl">26.85</span><span class="sc">*</span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="multiple.html#cb155-1" tabindex="-1"></a><span class="fl">92.36391</span> <span class="sc">+</span> <span class="fl">26.85</span><span class="sc">*</span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 119.2139</code></pre>
 <ul>
 <li>Homes without fireplace (indicator = 0):</li>
@@ -676,11 +689,11 @@ E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &amp;= \beta_0 + \beta
 <li><span class="math inline">\(\$26.85\)</span> is the difference in the estimated slopes between homes with and without a fireplace (or, put another way, <span class="math inline">\(\$26.85\)</span> is the difference in the estimated “effect” of living area on price between homes with and without a fireplace, where the “effect” of living area on price is the change in average price associated with a 1 square foot increase in living area)</li>
 </ul>
 </div>
-<div id="is-the-difference-real" class="section level3" number="3.9.4">
-<h3><span class="header-section-number">3.9.4</span> Is the Difference Real?</h3>
+<div id="is-the-difference-real" class="section level3 hasAnchor" number="3.9.4">
+<h3><span class="header-section-number">3.9.4</span> Is the Difference Real?<a href="multiple.html#is-the-difference-real" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We could ask: is there <em>really</em> a difference in the slopes for Living Area and Price between homes with and without a fireplace?</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="multiple.html#cb157-1" aria-hidden="true" tabindex="-1"></a>lm.home3 <span class="sc">%&gt;%</span> </span>
-<span id="cb157-2"><a href="multiple.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="multiple.html#cb157-1" tabindex="-1"></a>lm.home3 <span class="sc">%&gt;%</span> </span>
+<span id="cb157-2"><a href="multiple.html#cb157-2" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 5
 ##   term                         estimate std.error statistic  p.value
 ##   &lt;chr&gt;                           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -703,20 +716,20 @@ E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &amp;= \beta_0 + \beta
 <li>Estimate the least squares regression line.</li>
 <li>Repeat.</li>
 </ul>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="multiple.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">333</span>) <span class="do">## Setting the seed ensures that our results are reproducible</span></span>
-<span id="cb159-2"><a href="multiple.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Repeat the sampling and regression modeling 1000 times</span></span>
-<span id="cb159-3"><a href="multiple.html#cb159-3" aria-hidden="true" tabindex="-1"></a>boot <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span>(</span>
-<span id="cb159-4"><a href="multiple.html#cb159-4" aria-hidden="true" tabindex="-1"></a>    homes <span class="sc">%&gt;%</span></span>
-<span id="cb159-5"><a href="multiple.html#cb159-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample_frac</span>(<span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb159-6"><a href="multiple.html#cb159-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> Living.Area<span class="sc">*</span>AnyFireplace))</span>
-<span id="cb159-7"><a href="multiple.html#cb159-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb159-8"><a href="multiple.html#cb159-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb159-9"><a href="multiple.html#cb159-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Plot the distribution of the 1000 slope differences</span></span>
-<span id="cb159-10"><a href="multiple.html#cb159-10" aria-hidden="true" tabindex="-1"></a>boot <span class="sc">%&gt;%</span></span>
-<span id="cb159-11"><a href="multiple.html#cb159-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Living.Area.AnyFireplaceTRUE)) <span class="sc">+</span></span>
-<span id="cb159-12"><a href="multiple.html#cb159-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb159-13"><a href="multiple.html#cb159-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Bootstrap Difference in Slopes&#39;</span>) <span class="sc">+</span></span>
-<span id="cb159-14"><a href="multiple.html#cb159-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="multiple.html#cb159-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">333</span>) <span class="do">## Setting the seed ensures that our results are reproducible</span></span>
+<span id="cb159-2"><a href="multiple.html#cb159-2" tabindex="-1"></a><span class="do">## Repeat the sampling and regression modeling 1000 times</span></span>
+<span id="cb159-3"><a href="multiple.html#cb159-3" tabindex="-1"></a>boot <span class="ot">&lt;-</span> <span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span>(</span>
+<span id="cb159-4"><a href="multiple.html#cb159-4" tabindex="-1"></a>    homes <span class="sc">%&gt;%</span></span>
+<span id="cb159-5"><a href="multiple.html#cb159-5" tabindex="-1"></a>    <span class="fu">sample_frac</span>(<span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb159-6"><a href="multiple.html#cb159-6" tabindex="-1"></a>    <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> Living.Area<span class="sc">*</span>AnyFireplace))</span>
+<span id="cb159-7"><a href="multiple.html#cb159-7" tabindex="-1"></a>)</span>
+<span id="cb159-8"><a href="multiple.html#cb159-8" tabindex="-1"></a></span>
+<span id="cb159-9"><a href="multiple.html#cb159-9" tabindex="-1"></a><span class="do">## Plot the distribution of the 1000 slope differences</span></span>
+<span id="cb159-10"><a href="multiple.html#cb159-10" tabindex="-1"></a>boot <span class="sc">%&gt;%</span></span>
+<span id="cb159-11"><a href="multiple.html#cb159-11" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Living.Area.AnyFireplaceTRUE)) <span class="sc">+</span></span>
+<span id="cb159-12"><a href="multiple.html#cb159-12" tabindex="-1"></a>    <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb159-13"><a href="multiple.html#cb159-13" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Bootstrap Difference in Slopes&#39;</span>) <span class="sc">+</span></span>
+<span id="cb159-14"><a href="multiple.html#cb159-14" tabindex="-1"></a>    <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-76-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We see that if we were to have a slightly different sample (drawn from our “fake” population), then the difference in the slope could be as long as 0 and as large as 50.</p>
 <p>This process of resampling from the sample is called <strong>Bootstrapping</strong> and it is used to:</p>
@@ -725,14 +738,14 @@ E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &amp;= \beta_0 + \beta
 <li>Provide an interval of plausible values for the estimate (the difference in slopes here).</li>
 </ol>
 <p>Let’s first look at the variability of the difference in slopes across the bootstrap samples. The standard deviation of the bootstrap estimates will be similar to the <code>Std. Error</code> from the linear model output.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="multiple.html#cb160-1" aria-hidden="true" tabindex="-1"></a>boot <span class="sc">%&gt;%</span></span>
-<span id="cb160-2"><a href="multiple.html#cb160-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">sd</span>(Living.Area.AnyFireplaceTRUE)) </span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="multiple.html#cb160-1" tabindex="-1"></a>boot <span class="sc">%&gt;%</span></span>
+<span id="cb160-2"><a href="multiple.html#cb160-2" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">sd</span>(Living.Area.AnyFireplaceTRUE)) </span></code></pre></div>
 <pre><code>##   sd(Living.Area.AnyFireplaceTRUE)
 ## 1                         9.332937</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="multiple.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co">#this is going to be of similar magnitude (not exactly the same) to the Std. Error for the Living.Area.AnyFireplaceTRUE coefficient in output</span></span>
-<span id="cb162-2"><a href="multiple.html#cb162-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-3"><a href="multiple.html#cb162-3" aria-hidden="true" tabindex="-1"></a>lm.home3 <span class="sc">%&gt;%</span></span>
-<span id="cb162-4"><a href="multiple.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="multiple.html#cb162-1" tabindex="-1"></a><span class="co">#this is going to be of similar magnitude (not exactly the same) to the Std. Error for the Living.Area.AnyFireplaceTRUE coefficient in output</span></span>
+<span id="cb162-2"><a href="multiple.html#cb162-2" tabindex="-1"></a></span>
+<span id="cb162-3"><a href="multiple.html#cb162-3" tabindex="-1"></a>lm.home3 <span class="sc">%&gt;%</span></span>
+<span id="cb162-4"><a href="multiple.html#cb162-4" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 5
 ##   term                         estimate std.error statistic  p.value
 ##   &lt;chr&gt;                           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -742,26 +755,29 @@ E[\hbox{Price}| \hbox{AnyFireplace = FALSE, Living.Area}] &amp;= \beta_0 + \beta
 ## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5</code></pre>
 <p>This standard deviation is somewhat close to the <span class="math inline">\(6.459\)</span> for Living.Area.AnyFireplaceTRUE coefficient in the Std. Error column of the <code>tidy(lm.home3)</code> output above.</p>
 <p>To get an interval of plausible values for the difference in the slopes, we look at the histogram and take the middle 95%. The lower end will be the 2.5th percentile and the upper end will be the 97.5th percentile.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="multiple.html#cb164-1" aria-hidden="true" tabindex="-1"></a>boot <span class="sc">%&gt;%</span></span>
-<span id="cb164-2"><a href="multiple.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb164-3"><a href="multiple.html#cb164-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">lower =</span> <span class="fu">quantile</span>(Living.Area.AnyFireplaceTRUE, <span class="fl">0.025</span>), </span>
-<span id="cb164-4"><a href="multiple.html#cb164-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">upper =</span> <span class="fu">quantile</span>(Living.Area.AnyFireplaceTRUE, <span class="fl">0.975</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="multiple.html#cb164-1" tabindex="-1"></a>boot <span class="sc">%&gt;%</span></span>
+<span id="cb164-2"><a href="multiple.html#cb164-2" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb164-3"><a href="multiple.html#cb164-3" tabindex="-1"></a>    <span class="at">lower =</span> <span class="fu">quantile</span>(Living.Area.AnyFireplaceTRUE, <span class="fl">0.025</span>), </span>
+<span id="cb164-4"><a href="multiple.html#cb164-4" tabindex="-1"></a>    <span class="at">upper =</span> <span class="fu">quantile</span>(Living.Area.AnyFireplaceTRUE, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##      lower    upper
 ## 1 7.686552 45.43513</code></pre>
 <div class="reflect">
 <p>
-Based on this evidence, do you think it is possible that the slopes are the same for the two types of homes (with and without fireplaces)? How would you justify your answer? Consider the plausible values of the difference in slopes given by the interval above.
+Based on this evidence, do you think it is possible that the slopes
+are the same for the two types of homes (with and without fireplaces)?
+How would you justify your answer? Consider the plausible values of the
+difference in slopes given by the interval above.
 </p>
 </div>
 </div>
-<div id="redundant" class="section level3" number="3.9.5">
-<h3><span class="header-section-number">3.9.5</span> Redundancy and Multicollinearity</h3>
+<div id="redundant" class="section level3 hasAnchor" number="3.9.5">
+<h3><span class="header-section-number">3.9.5</span> Redundancy and Multicollinearity<a href="multiple.html#redundant" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Beyond fireplaces and living area, there are other characteristics that may impact the price of a home. Typically, homes for sale are advertised with the square footage, the number of bedrooms, and the number of bathrooms in addition to the total number of rooms in the house. In general, we’d expect a positive relationship between each of these and the home price. Let’s fit a model with those four explanatory variables.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="multiple.html#cb166-1" aria-hidden="true" tabindex="-1"></a>lm.home4 <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span> </span>
-<span id="cb166-2"><a href="multiple.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>( <span class="fu">lm</span>(Price <span class="sc">~</span> Living.Area <span class="sc">+</span> Bedrooms <span class="sc">+</span> Bathrooms <span class="sc">+</span> Rooms))</span>
-<span id="cb166-3"><a href="multiple.html#cb166-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb166-4"><a href="multiple.html#cb166-4" aria-hidden="true" tabindex="-1"></a>lm.home4 <span class="sc">%&gt;%</span> </span>
-<span id="cb166-5"><a href="multiple.html#cb166-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="multiple.html#cb166-1" tabindex="-1"></a>lm.home4 <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span> </span>
+<span id="cb166-2"><a href="multiple.html#cb166-2" tabindex="-1"></a>  <span class="fu">with</span>( <span class="fu">lm</span>(Price <span class="sc">~</span> Living.Area <span class="sc">+</span> Bedrooms <span class="sc">+</span> Bathrooms <span class="sc">+</span> Rooms))</span>
+<span id="cb166-3"><a href="multiple.html#cb166-3" tabindex="-1"></a></span>
+<span id="cb166-4"><a href="multiple.html#cb166-4" tabindex="-1"></a>lm.home4 <span class="sc">%&gt;%</span> </span>
+<span id="cb166-5"><a href="multiple.html#cb166-5" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 5
 ##   term        estimate std.error statistic  p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
@@ -772,13 +788,13 @@ Based on this evidence, do you think it is possible that the slopes are the same
 ## 5 Rooms         3400.    1110.        3.06 2.22e- 3</code></pre>
 <p>If we look at the estimates of the slope coefficients, are you surprised to see that <code>Bedrooms</code> has a negative slope estimate?</p>
 <p>Remember, the coefficients are the change in the expected price for a 1 unit change in that variable, keeping all other variables fixed. Is it <em>possible</em> to keep <code>Rooms</code> fixed while adding an additional <code>Bedroom</code>? In practice, that would mean you need to convert an existing room to a <code>Bedroom</code>. Let’s look at a scatterplot between these two variables. If it is not realistic or possible to fix one variable while increasing the other, we cannot interpret the slope coefficients in the standard way.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="multiple.html#cb168-1" aria-hidden="true" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
-<span id="cb168-2"><a href="multiple.html#cb168-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Rooms, <span class="at">y =</span> Bedrooms)) <span class="sc">+</span> </span>
-<span id="cb168-3"><a href="multiple.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb168-4"><a href="multiple.html#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="multiple.html#cb168-1" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
+<span id="cb168-2"><a href="multiple.html#cb168-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Rooms, <span class="at">y =</span> Bedrooms)) <span class="sc">+</span> </span>
+<span id="cb168-3"><a href="multiple.html#cb168-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb168-4"><a href="multiple.html#cb168-4" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-81-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="multiple.html#cb169-1" aria-hidden="true" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
-<span id="cb169-2"><a href="multiple.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">cor</span>(Rooms, Bedrooms))</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="multiple.html#cb169-1" tabindex="-1"></a>homes <span class="sc">%&gt;%</span></span>
+<span id="cb169-2"><a href="multiple.html#cb169-2" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="fu">cor</span>(Rooms, Bedrooms))</span></code></pre></div>
 <pre><code>##   cor(Rooms, Bedrooms)
 ## 1            0.6718633</code></pre>
 <p>These two characteristics are positively correlated because the count of <code>Rooms</code> is defined as the number of <code>Bedrooms</code> plus the number of other rooms in the house. So they contain some similar information about a home. Knowing how many rooms a house has, you can could have a pretty good guess at how many bedrooms it has. Maybe one of these variables is a bit redundant.</p>
@@ -798,15 +814,15 @@ Based on this evidence, do you think it is possible that the slopes are the same
 <p>If we look at the example below, we see a fairly strong positive relationship in the first (upper left) scatterplot. What we can conclude is that living area has quite a bit of unique information not contained in <code>Bedrooms</code>, <code>Rooms</code>, and <code>Bathrooms</code> that can explain variation in home price. Another way to phrase this is that after adjusting for or accounting for the number of <code>Bedrooms</code>, <code>Rooms</code>, and <code>Bathrooms</code>, we see a moderately strong positive linear relationship between <code>Living.Area</code> and <code>Price</code>.</p>
 <p>In the second (upper right) scatterplot, we see a weak negative relationship between <code>Bedrooms</code> and <code>Price</code> after accounting for the square footage of the living area, the number of bathrooms, and the number of rooms. So there isn’t much unique information about bedrooms that can help explain the variation in price that isn’t already contained in <code>Rooms</code>, <code>Bathrooms</code>, and <code>Living.Area</code>. Since the slope is negative, we might conclude that converting an existing room (keeping square footage and number of rooms fixed) to a bedroom slightly decreases the estimated expected home price.</p>
 <p>With <code>Rooms</code> and <code>Bathrooms</code>, we see positive but weak relationships after accounting for the other explanatory variables. In fact, the slope of these lines are equal to the estimated coefficients from the summary.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="multiple.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;Data/ggavplot.R&#39;</span>)</span>
-<span id="cb171-2"><a href="multiple.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggAVPLOTS</span>(lm.home4)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="multiple.html#cb171-1" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&#39;Data/ggavplot.R&#39;</span>)</span>
+<span id="cb171-2"><a href="multiple.html#cb171-2" tabindex="-1"></a><span class="fu">ggAVPLOTS</span>(lm.home4)</span></code></pre></div>
 <p><img src="03-linear-regression_files/figure-html/unnamed-chunk-82-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>If we were to remove <code>Rooms</code> as it seems to be redundant, containing similar information as <code>Bedrooms</code>, we get a bit different estimated slope coefficients.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="multiple.html#cb172-1" aria-hidden="true" tabindex="-1"></a>lm.home5 <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span> </span>
-<span id="cb172-2"><a href="multiple.html#cb172-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> Living.Area <span class="sc">+</span> Bedrooms <span class="sc">+</span> Bathrooms ))</span>
-<span id="cb172-3"><a href="multiple.html#cb172-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-4"><a href="multiple.html#cb172-4" aria-hidden="true" tabindex="-1"></a>lm.home5 <span class="sc">%&gt;%</span> </span>
-<span id="cb172-5"><a href="multiple.html#cb172-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="multiple.html#cb172-1" tabindex="-1"></a>lm.home5 <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span> </span>
+<span id="cb172-2"><a href="multiple.html#cb172-2" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> Living.Area <span class="sc">+</span> Bedrooms <span class="sc">+</span> Bathrooms ))</span>
+<span id="cb172-3"><a href="multiple.html#cb172-3" tabindex="-1"></a></span>
+<span id="cb172-4"><a href="multiple.html#cb172-4" tabindex="-1"></a>lm.home5 <span class="sc">%&gt;%</span> </span>
+<span id="cb172-5"><a href="multiple.html#cb172-5" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 4 × 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -819,18 +835,18 @@ Based on this evidence, do you think it is possible that the slopes are the same
 <p>We can see that WITH <code>Rooms</code>, we explained 53.2% of the variation in home <code>Price</code>.</p>
 <p>We can see that WITHOUT <code>Rooms</code>, we explained 52.9% of the variation in home <code>Price</code>.</p>
 <p>So <code>Rooms</code> doesn’t add a lot to the explanatory power of the model.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="multiple.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.home4)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="multiple.html#cb174-1" tabindex="-1"></a><span class="fu">glance</span>(lm.home4)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 12
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     0.532         0.531 67388.      491. 1.58e-282     4 -21662. 43335. 43368.
-## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="multiple.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(lm.home5)</span></code></pre></div>
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="multiple.html#cb176-1" tabindex="-1"></a><span class="fu">glance</span>(lm.home5)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 12
 ##   r.squared adj.r.squared  sigma statistic   p.value    df  logLik    AIC    BIC
 ##       &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
 ## 1     0.530         0.529 67552.      648. 6.15e-282     3 -21666. 43343. 43370.
-## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
+## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;</code></pre>
 <p><strong>Fun Fact</strong>: Adding an explanatory variable <span class="math inline">\(X\)</span> to the model will always increase R-squared or keep it the same.</p>
 <p>In general, we’d like the most simple model (with the fewest <span class="math inline">\(X\)</span> variables) that does a good job for our goals. If R-squared never goes down when you add an explanatory variable, we need a different tool to help us decide whether to add a variable.</p>
 <p>Remember that
@@ -850,7 +866,6 @@ Based on this evidence, do you think it is possible that the slopes are the same
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -891,7 +906,7 @@ gitbook.start({
 },
 "download": ["Stat155Notes.pdf"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -908,7 +923,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

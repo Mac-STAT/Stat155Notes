@@ -6,14 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.2 Theoretical Probability Rules | STAT 155 Notes</title>
   <meta name="description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.2 Theoretical Probability Rules | STAT 155 Notes" />
   <meta property="og:type" content="book" />
   
-  
   <meta property="og:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
-  <meta name="github-repo" content="bcheggeseth/Stat155Notes" />
+  <meta name="github-repo" content="mac-stat/Stat155Notes" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="6.2 Theoretical Probability Rules | STAT 155 Notes" />
@@ -21,7 +20,7 @@
   <meta name="twitter:description" content="This includes notes for Introduction to Statistical Modeling (STAT 155) at Macalester College." />
   
 
-<meta name="author" content="Macalester Statistics Faculty (Heggeseth, Myint, Grinde)" />
+<meta name="author" content="Macalester Statistics Faculty" />
 
 
 
@@ -32,8 +31,8 @@
   
 <link rel="prev" href="three-types-of-probability.html"/>
 <link rel="next" href="random-variable.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -49,14 +48,14 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -92,7 +91,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +104,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -407,8 +410,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="theoretical-probability-rules" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Theoretical Probability Rules</h2>
+<div id="theoretical-probability-rules" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Theoretical Probability Rules<a href="theoretical-probability-rules.html#theoretical-probability-rules" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To understand theoretical probability, we need to define a few terms and set some rules for working with probabilities (known as axioms).</p>
 <p>The <strong>sample space</strong>, <span class="math inline">\(S\)</span>, is the set of all possible outcomes of a random process.</p>
 <ul>
@@ -440,21 +443,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p>For more details on theoretical probability, please see [Appendix A]. This material is optional but available for those of you who want to understand the mathematical reasoning behind the rest of the chapter.</p>
-<div id="diagnotic-testing-and-probability" class="section level3" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> Diagnotic Testing and Probability</h3>
+<div id="diagnotic-testing-and-probability" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Diagnotic Testing and Probability<a href="theoretical-probability-rules.html#diagnotic-testing-and-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s start by taking a moment to consider a recent <a href="https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c">Washington Post article</a> that discusses the role of probability in medical diagnostics. Before you read the whole article, consider a question.</p>
 <div class="reflect">
 <p>
-Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out of every 1,000 people will have it).
+Say that Disease X has a prevalence of 1 in 1,000 (meaning that 1 out
+of every 1,000 people will have it).
 </p>
 <p>
-The test to detect Disease X has a false-positive rate of 5 percent (meaning that out of every 100 subjects who do not have Disease X, 5 will falsely test positive for it).
+The test to detect Disease X has a false-positive rate of 5 percent
+(meaning that out of every 100 subjects who do not have Disease X, 5
+will falsely test positive for it).
 </p>
 <p>
-The test’s accuracy is 99 percent (meaning that out of every 100 who do have Disease X, 99 will correctly test positive for it).
+The test’s accuracy is 99 percent (meaning that out of every 100 who
+do have Disease X, 99 will correctly test positive for it).
 </p>
 <p>
-If a patient’s test result comes back positive, what is the probability that this patient actually has the disease?
+If a patient’s test result comes back positive, what is the
+probability that this patient actually has the disease?
 </p>
 </div>
 <p>If you said the probability is 95%, then you are wrong, but almost half of the doctors surveyed in 2014 thought exactly the same thing.</p>
@@ -480,8 +488,8 @@ P(D \mid +) &amp;= \frac{P(D \text{ and } +)}{P(+)} &amp;\text{Rule 5*}\\
 <p>The third line above (<span class="math inline">\(P(D \mid +) = \frac{P(+ \mid D) P(D)}{P( + \mid D) P(D) + P( + \mid \text{ no }D) P(\text{no }D)}\)</span>) is often called <strong>Bayes’ Rule</strong>. The important idea to take from this is that what we condition on can make a big difference in the resulting probability.</p>
 <p>Now, take some time to read the full <a href="https://www.washingtonpost.com/news/posteverything/wp/2018/10/05/feature/doctors-are-surprisingly-bad-at-reading-lab-results-its-putting-us-all-at-risk/?utm_term=.73d08eefca3c">Washington Post article</a>.</p>
 </div>
-<div id="court-arguments-and-probability" class="section level3" number="6.2.2">
-<h3><span class="header-section-number">6.2.2</span> Court Arguments and Probability</h3>
+<div id="court-arguments-and-probability" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Court Arguments and Probability<a href="theoretical-probability-rules.html#court-arguments-and-probability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The concept of conditional probability also plays an important role in the judicial system in the U.S. The foundation of the judicial system is the concept of “innocent until proven guilty”. Decisions are supposed to be based from a point of view of assuming that the defendant is innocent. Thus, jurors are supposed to decide the chances of seeing this evidence assuming innocence. That is, evidence is presented to jurors as the conditional probability: <span class="math inline">\(P(\text{ evidence } \mid \text{ innocent })\)</span>.</p>
 <p>Unfortunately, many prosecutors try to make the wrong argument by flipping the conditional probability, whether maliciously or due to a lack of statistical knowledge. They sometimes mistakenly try to argue that it is unlikely that a person is innocent given the evidence that is presented, <span class="math inline">\(P(\text{ innocent } \mid \text{ evidence })\)</span>.</p>
 <p>This can be dangerous. We know that <span class="math inline">\(P(\text{ evidence } \mid \text{ innocent }) \not = P(\text{ innocent } \mid \text{ evidence })\)</span> based on the disease testing example above. Generally, <span class="math inline">\(P(A \mid B)\)</span> is not equal to (and can be very different from) <span class="math inline">\(P(B \mid A)\)</span>.</p>
@@ -498,7 +506,6 @@ P(D \mid +) &amp;= \frac{P(D \text{ and } +)}{P(+)} &amp;\text{Rule 5*}\\
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -539,7 +546,7 @@ gitbook.start({
 },
 "download": ["Stat155Notes.pdf"],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -556,7 +563,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

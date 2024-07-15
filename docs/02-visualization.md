@@ -45,7 +45,7 @@ While you'll be learning about and using R throughout the course, this is not a 
 For this class, we will have data that we want to pass to a function that performs a particular operation (does something cool) on our data. Thus, we'll pass **inputs** as arguments to a **function**:
 
 
-```r
+``` r
 FunctionName(argument1 = a1, argument2 = a2,..., argumentk = ak)
 ```
 
@@ -55,7 +55,7 @@ Note the `FunctionName` and the use of parantheses. Inside the parantheses, the 
 We may want to save the **output** of the function by assigning it a name using the assignment operator, `<-`:
 
 
-```r
+``` r
 OutputName <- FunctionName(argument1 = a1, argument2 = a2,..., argumentk = ak)
 ```
 
@@ -63,14 +63,14 @@ OutputName <- FunctionName(argument1 = a1, argument2 = a2,..., argumentk = ak)
 R allows us to be lazy and not include the argument name as long as we provide the input in the correct order:
 
 
-```r
+``` r
 OutputName <- FunctionName(a1, a2,..., ak)
 ```
 
 We can also **nest** functions by first performing one operation and then passing that as an input into another function. In the code below, `Function1()` would first run with the input `data` and create some output that is then passed as the first input in `Function2()`. So R evaluates functions from the inside-out. 
 
 
-```r
+``` r
 Function2(Function1(data))
 ```
 
@@ -79,7 +79,7 @@ As we go through real examples below, notice the names of the functions that we 
 Additionally, we are going to use a shortcut that makes our code more readable. It is called a **pipe** and looks like `%>%`. What this does is pass the output on its left as the first argument to the function on the right. The following two sections of code do exactly the same thing but the second is easier to read. For this code, we take data and summarize the variable height and then take the mean of the heights. 
 
 
-```r
+``` r
 summarize(data, mean(height))
 
 data %>%
@@ -101,7 +101,7 @@ To learn more about visualizing data with the ggplot2 R package, see [Hadley Wic
 In this course, we'll largely construct visualizations using the `ggplot()` function from the `ggplot2` R package. NOTE: `gg` is short for "grammar of graphics". Plots constructed from the `ggplot()` function are constructed in layers, and the syntax used to create plots is meant to reflect this layered construction. As you read through the rest of this chapter, pay attention to how the syntax generally follows this structure:
 
 
-```r
+``` r
 data %>%
     ggplot(aes(x = X_AXIS_VARIABLE, y = Y_AXIS_VARIABLE)) +
     VISUAL_LAYER1 +
@@ -113,7 +113,8 @@ We pass the aesthetic mapping from the data set to the plot with `aes()`. The vi
 
 
 <div class="reflect">
-<p>What are the function names in the example above? There are only two as it is written right now.</p>
+<p>What are the function names in the example above? There are only two
+as it is written right now.</p>
 </div>
 
 
@@ -126,7 +127,7 @@ Let's first consider the age distribution of this sample. Age, depending on how 
 **Distribution:** *the way something is spread out (the way in which values vary).*
 
 
-```r
+``` r
 # Note: anything to the right of a hashtag is a comment and is not evaluated as R code
 
 library(dplyr) # Load the dplyr package
@@ -151,7 +152,8 @@ head(Whickham)
 ```
 
 <div class="reflect">
-<p>What do you lose when you convert a quantitative variable to a categorical variable? What do you gain?</p>
+<p>What do you lose when you convert a quantitative variable to a
+categorical variable? What do you gain?</p>
 </div>
 
 ### Bar Plot
@@ -163,7 +165,7 @@ One of the best ways to show the distribution of one categorical variable is wit
 
 
 
-```r
+``` r
 ## Numerical summary (frequency and relative frequency)
 Whickham %>%
     count(ageCat) %>%
@@ -178,7 +180,7 @@ Whickham %>%
 ## 4 (67.5,84.1] 192 0.1461187
 ```
 
-```r
+``` r
 ## Graphical summary (bar plot)
 Whickham %>%
     ggplot(aes(x = ageCat)) + 
@@ -217,7 +219,7 @@ There are a few options for visualizing the relationship between two categorical
 - The **height of the bars** shows the frequency of the categories within subsets.
 
 
-```r
+``` r
 ## Numerical summary (frequency and overall relative frequency)
 Whickham %>%
   count(outcome, smoker) %>%
@@ -232,7 +234,7 @@ Whickham %>%
 ## 4    Dead    Yes 139 0.1057839
 ```
 
-```r
+``` r
 ## Graphical summary (side-by-side bar plot)
 Whickham %>%
   ggplot(aes(x = smoker, fill = outcome)) + 
@@ -245,7 +247,8 @@ Whickham %>%
 <img src="02-visualization_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" />
 
 <div class="reflect">
-<p>What additional information do you gain by considering smoking status?</p>
+<p>What additional information do you gain by considering smoking
+status?</p>
 </div>
 
 ### Stacked Bar Plot
@@ -258,7 +261,7 @@ Another way to show the same data is by stacking the bars on top of each other w
 
 
 
-```r
+``` r
 ## Numerical summary (conditional distribution - conditioning on outcome)
 Whickham %>%
     count(outcome, smoker) %>%
@@ -277,7 +280,7 @@ Whickham %>%
 ## 4 Dead    Yes      139   0.377
 ```
 
-```r
+``` r
 ## Numerical summary (conditional distribution - conditioning on smoker)
 Whickham %>%
     count(outcome, smoker) %>%
@@ -296,7 +299,7 @@ Whickham %>%
 ## 4 Dead    Yes      139   0.239
 ```
 
-```r
+``` r
 ## Graphical summary (stacked bar plot)
 Whickham %>%
     ggplot(aes(x = smoker, fill = outcome)) + 
@@ -309,7 +312,8 @@ Whickham %>%
 <img src="02-visualization_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" />
 
 <div class="reflect">
-<p>What information is highlighted when you stack the bars as compared to having them side-by-side?</p>
+<p>What information is highlighted when you stack the bars as compared
+to having them side-by-side?</p>
 </div>
 
 ### Stacked Bar Plot (Relative Frequencies)
@@ -323,7 +327,7 @@ The code below computes the conditional distributions first (fractions of outcom
 
 
 
-```r
+``` r
 Whickham %>%
     ggplot(aes(x = smoker, fill = outcome)) +
     geom_bar(position = "fill") +
@@ -343,7 +347,7 @@ The best (Prof. Heggeseth's opinion) graphic for two categorical variables is a 
 - Making mosaic plots in R requires another package: `ggmosaic`
 
 
-```r
+``` r
 library(ggmosaic)
 Whickham %>%
     ggplot() +
@@ -356,19 +360,23 @@ Whickham %>%
 <img src="02-visualization_files/figure-html/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" />
 
 <div class="reflect">
-<p>What information is highlighted when you focus on relative frequency in the mosaic plots as compared to other bar plots?</p>
+<p>What information is highlighted when you focus on relative frequency
+in the mosaic plots as compared to other bar plots?</p>
 </div>
 
 With this type of plot, you can see that there are more non-smokers than smokers. Also, you see that there is a higher mortality rate for non-smokers. 
 
 <div class="reflect">
-<p>Does our data suggest that smoking <em>is associated</em> with a lower mortality rate? Does our data suggest that smoking <em>reduces</em> mortality? Note the difference in these two questions - the second implies a cause and effect relationship.</p>
+<p>Does our data suggest that smoking <em>is associated</em> with a
+lower mortality rate? Does our data suggest that smoking
+<em>reduces</em> mortality? Note the difference in these two questions -
+the second implies a cause and effect relationship.</p>
 </div>
 
 Let's consider a third variable here, age distribution. We can create the same plot, separately for each age group. 
 
 
-```r
+``` r
 Whickham %>%
     ggplot() +
     geom_mosaic(aes(x = product(outcome, smoker), fill = outcome)) + 
@@ -385,7 +393,9 @@ Whickham %>%
 </div>
 
 <div class="reflect">
-<p>How is it that our conclusions are exactly the opposite if we consider the relationship between smoking and mortality within age subsets? What might be going on?</p>
+<p>How is it that our conclusions are exactly the opposite if we
+consider the relationship between smoking and mortality within age
+subsets? What might be going on?</p>
 </div>
 
 This is called **Simpson's Paradox,** which is a situation in which you come to two different conclusions if you look at results overall versus within subsets (e.g. age groups).
@@ -410,7 +420,7 @@ One main graphical summary we use for quantitative variables is a histogram. It 
 - Gaps between bars are meaningful. They indicate absence of values within an interval.
 
 
-```r
+``` r
 data(NHANES)
 NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
@@ -426,7 +436,7 @@ Note the warning message above: "Removed __ rows containing non-finite values (s
 Also note the message that R gives about bin width to remind us that we can choose this if we wish. If we want to specify the width of the intervals or bins, we can specify `binwidth = DESIRED_BIN_WIDTH` within `geom_histogram`.
 
 
-```r
+``` r
 NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(binwidth = 1, fill = "steelblue") + 
@@ -439,7 +449,7 @@ NHANES %>%
 Lastly, notice that the y-axis in the previous two histograms has been the counts (or frequency) within each sleep hour interval. We can adjust this to **density**, which is relative frequency adjusted for the width of interval so that the sum of the areas of the bars (height x width) equals 1. 
 
 
-```r
+``` r
 NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(aes(y = ..density..), binwidth = 1, fill = "steelblue") + 
@@ -467,7 +477,7 @@ Here is another data set for comparison. Here are the annual salaries for the hi
 Let's create a density histogram of the annual salaries for the highest paid CEO's in the U.S. in 2016.
 
 
-```r
+``` r
 ceo %>%
     ggplot(aes(x = salary)) +
     geom_histogram(aes(y = ..density..), binwidth = 5, fill = "steelblue") + 
@@ -481,7 +491,9 @@ ceo %>%
 We note that some of the highest salaries were close to 200 million U.S. dollars (in 2016), but the majority of the salaries in this sample are closer to 50 million U.D. dollars.
 
 <div class="reflect">
-<p>Is this distribution of salaries left-skewed or right-skewed? In what populations do you think salaries might be left-skewed? Right-skewed?</p>
+<p>Is this distribution of salaries left-skewed or right-skewed? In what
+populations do you think salaries might be left-skewed?
+Right-skewed?</p>
 </div>
 
 ### Center
@@ -496,7 +508,15 @@ There are some choices for numerically summarizing the center of a distribution:
     + A good compromise, but not widely used.
     
 <div class="mathbox">
-<p>The Greek capital letter sigma, <span class="math inline">\(\sum\)</span>, is used in mathematics to denote a sum. We let <span class="math inline">\(y_i\)</span> represent the value of the <span class="math inline">\(i\)</span>th person for a variable called <span class="math inline">\(y\)</span>. So <span class="math inline">\(\sum^n_{i=1}y_i\)</span> is the sum of all the <span class="math inline">\(n\)</span> values of a variable <span class="math inline">\(y\)</span>, all the way from the 1st person to the <span class="math inline">\(n\)</span>th person.</p>
+<p>The Greek capital letter sigma, <span
+class="math inline">\(\sum\)</span>, is used in mathematics to denote a
+sum. We let <span class="math inline">\(y_i\)</span> represent the value
+of the <span class="math inline">\(i\)</span>th person for a variable
+called <span class="math inline">\(y\)</span>. So <span
+class="math inline">\(\sum^n_{i=1}y_i\)</span> is the sum of all the
+<span class="math inline">\(n\)</span> values of a variable <span
+class="math inline">\(y\)</span>, all the way from the 1st person to the
+<span class="math inline">\(n\)</span>th person.</p>
 </div>
 
 We can calculate all of these in R.
@@ -504,7 +524,7 @@ We can calculate all of these in R.
 - **Hours of sleep per night from the NHANES dataset**
 
 
-```r
+``` r
 NHANES %>%
   select(SleepHrsNight) %>%
   summary()
@@ -521,7 +541,7 @@ NHANES %>%
 ##  NA's   :2245
 ```
 
-```r
+``` r
 NHANES %>%
   summarize(
     mean(SleepHrsNight, na.rm = TRUE),
@@ -531,19 +551,22 @@ NHANES %>%
 
 ```
 ## # A tibble: 1 × 3
-##   `mean(SleepHrsNight, na.rm = TRUE)` `median(SleepHrsNig… `mean(SleepHrsNight,…
-##                                 <dbl>                <int>                 <dbl>
-## 1                                6.93                    7                  6.95
+##   mean(SleepHrsNight, na.rm = TR…¹ median(SleepHrsNight…² mean(SleepHrsNight, …³
+##                              <dbl>                  <int>                  <dbl>
+## 1                             6.93                      7                   6.95
+## # ℹ abbreviated names: ¹​`mean(SleepHrsNight, na.rm = TRUE)`,
+## #   ²​`median(SleepHrsNight, na.rm = TRUE)`,
+## #   ³​`mean(SleepHrsNight, trim = 0.05, na.rm = TRUE)`
 ```
 
-```r
+``` r
 #Trimmed mean: trim 5% from both tails before taking mean
 ```
 
 - **CEO salary information from NYT**
 
 
-```r
+``` r
 ceo %>%
   select(salary) %>%
   summary()  # Note the differences between mean and median
@@ -559,7 +582,7 @@ ceo %>%
 ##  Max.   :98.00
 ```
 
-```r
+``` r
 ceo %>%
   summarize(
     mean(salary), 
@@ -586,13 +609,16 @@ An alternative graphical summary is a boxplot, which is a simplification of the 
 - Points: If any points are beyond $1.5 \times (Q3-Q1)$ from the box edges, they are considered outliers and are plotted separately
 
 <div class="mathbox">
-<p>A percentile is a measure indicating the value below which a given percentage of observations in a group of observations fall. So the 25th percentile is the value at which 25% of the values are below. The 95th percentile is the point at which 95% of the observations are below.</p>
+<p>A percentile is a measure indicating the value below which a given
+percentage of observations in a group of observations fall. So the 25th
+percentile is the value at which 25% of the values are below. The 95th
+percentile is the point at which 95% of the observations are below.</p>
 </div>
 
 Here is a boxplot of the sleep amount from NHANES.
 
 
-```r
+``` r
 NHANES %>%
     ggplot(aes(y = SleepHrsNight)) +
     geom_boxplot() + 
@@ -605,7 +631,7 @@ NHANES %>%
 Compare that to the boxplot of the CEO salaries. 
 
 
-```r
+``` r
 ceo %>%
     ggplot(aes(y = salary)) +
     geom_boxplot() + 
@@ -628,7 +654,10 @@ For the hours of sleep, the mean, median, and 5% trimmed mean are all pretty muc
 For CEO salaries, the mean and 5% trimmed mean are a bit higher than the median. **The mean is always pulled toward the long tail.** 
 
 <div class="reflect">
-<p>What would the boxplot look like if all of the values were exactly the same? Sometimes when making multiple boxplots for each of multiple groups, a group may only have one value or a small number of values that all happen to be identical. What will this look like?</p>
+<p>What would the boxplot look like if all of the values were exactly
+the same? Sometimes when making multiple boxplots for each of multiple
+groups, a group may only have one value or a small number of values that
+all happen to be identical. What will this look like?</p>
 </div>
 
 ### Spread
@@ -657,7 +686,7 @@ We can calculate all of these in R.
 - **Hours of sleep per night from the NHANES dataset**
 
 
-```r
+``` r
 NHANES %>%
   summarize(
     diff(range(SleepHrsNight, na.rm = TRUE)), 
@@ -668,12 +697,15 @@ NHANES %>%
 
 ```
 ## # A tibble: 1 × 4
-##   `diff(range(SleepHr… `IQR(SleepHrsNight… `sd(SleepHrsNight… `var(SleepHrsNigh…
-##                  <int>               <dbl>              <dbl>              <dbl>
-## 1                   10                   2               1.35               1.81
+##   diff(range(SleepHrsNight, na.r…¹ IQR(SleepHrsNight, n…² sd(SleepHrsNight, na…³
+##                              <int>                  <dbl>                  <dbl>
+## 1                               10                      2                   1.35
+## # ℹ abbreviated names: ¹​`diff(range(SleepHrsNight, na.rm = TRUE))`,
+## #   ²​`IQR(SleepHrsNight, na.rm = TRUE)`, ³​`sd(SleepHrsNight, na.rm = TRUE)`
+## # ℹ 1 more variable: `var(SleepHrsNight, na.rm = TRUE)` <dbl>
 ```
 
-```r
+``` r
 # range gives max and min; take difference betwee max and min
 # IQR = Q3-Q1
 # sd = standard deviation
@@ -683,7 +715,7 @@ NHANES %>%
 - **CEO salary information from NYT**
 
 
-```r
+``` r
 ceo %>%
   summarize(
     diff(range(salary)), 
@@ -704,30 +736,38 @@ We've looked at different measures of the spread of a distribution. Do some meas
 <img src="02-visualization_files/figure-html/unnamed-chunk-41-1.png" width="672" style="display: block; margin: auto;" />
 
 <div class="reflect">
-<p>What percentage of the data is between the blue dotted lines (length of interval is range)?</p>
-<p>What percentage of the data is between the purple solid lines (length of interval is IQR)?</p>
-<p>What percentage of the data is between the green dashed lines (length of interval is 2*SD)?</p>
+<p>What percentage of the data is between the blue dotted lines (length
+of interval is range)?</p>
+<p>What percentage of the data is between the purple solid lines (length
+of interval is IQR)?</p>
+<p>What percentage of the data is between the green dashed lines (length
+of interval is 2*SD)?</p>
 </div>
 
 The code below computes the fraction of data points, `x`, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean. 
 
 
-```r
+``` r
 sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
 ```
-## [1] 0.6906667
+## [1] 0.6766667
 ```
 
 So with this data set, about 68% of the data values fall within 1 SD of the mean.
 
 <div class="reflect">
-<p>If we had a different data set, do you know that answer to the following questions? <em>You should know the answer to 2 of them at this point…</em></p>
+<p>If we had a different data set, do you know that answer to the
+following questions? <em>You should know the answer to 2 of them at this
+point…</em></p>
 <ul>
-<li><p>What percentage of the data would be between the minimum and maximum (blue dotted lines above)?</p></li>
-<li><p>What percentage of the data would be between bottom and top of the box (purple solid lines above)?</p></li>
-<li><p>What percentage of the data would be between 1 SD below the mean and 1 SD above the mean (green dashed lines)?</p></li>
+<li><p>What percentage of the data would be between the minimum and
+maximum (blue dotted lines above)?</p></li>
+<li><p>What percentage of the data would be between bottom and top of
+the box (purple solid lines above)?</p></li>
+<li><p>What percentage of the data would be between 1 SD below the mean
+and 1 SD above the mean (green dashed lines)?</p></li>
 </ul>
 </div>
 
@@ -747,8 +787,14 @@ To do this, we often calculate a **z-score**, a standardized data value which we
 The z-score tells you how many standard deviations the observation is above or below the mean. 
 
 <div class="reflect">
-<p>Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5. That means that you got an 85 on the exam because your exam is one SD above the mean (<span class="math inline">\(mean + z \times SD = 80 + 1 \times 5\)</span>).</p>
-<p>If you got a z = -2 on an exam with mean = 80 and SD = 5, that means you got a 70 on the exam because your exam is two SD below the mean (<span class="math inline">\(mean + z \times SD = 80 + -2 \times 5\)</span>).</p>
+<p>Say that you got a z-score of 1 on an exam with mean = 80 and SD = 5.
+That means that you got an 85 on the exam because your exam is one SD
+above the mean (<span class="math inline">\(mean + z \times SD = 80 + 1
+\times 5\)</span>).</p>
+<p>If you got a z = -2 on an exam with mean = 80 and SD = 5, that means
+you got a 70 on the exam because your exam is two SD below the mean
+(<span class="math inline">\(mean + z \times SD = 80 + -2 \times
+5\)</span>).</p>
 </div>
 
 In general, it is quite common to have z-scores between -3 and 3, but fairly unusual to have them greater than 3 or less than -3. 
@@ -764,15 +810,30 @@ This is not true for every histogram, but it will be true for a particularly spe
 However, we do know that z-scores of 5 or larger in magnitude (ignoring negative sign) are very unusual, no matter the shape of the histogram/distribution. For those inclined, see the mathematical theorem below that tells us this. 
 
 <div class="mathbox">
-<p>(Optional) Chebyshev’s inequality gives bounds for the percentages no matter the shape of the distribution. It states that for any real number <span class="math inline">\(k\)</span> &gt; 0, the chance of getting a z-score greater in magnitude (ignoring the negative sign) than <span class="math inline">\(k\)</span> is less than or equal to <span class="math inline">\(1/k^2\)</span>,</p>
-<p><span class="math display">\[P\left(|Z| \geq k\right) \leq \frac{1}{k^2}\]</span> where <span class="math inline">\(Z = \frac{|X - \mu|}{\sigma}\)</span> is a z-score, <span class="math inline">\(\mu\)</span> is the mean, and <span class="math inline">\(\sigma\)</span> is the standard deviation.</p>
-<p>If we plug in values for <span class="math inline">\(k\)</span>, we see that the chance of getting a z-score</p>
+<p>(Optional) Chebyshev’s inequality gives bounds for the percentages no
+matter the shape of the distribution. It states that for any real number
+<span class="math inline">\(k\)</span> &gt; 0, the chance of getting a
+z-score greater in magnitude (ignoring the negative sign) than <span
+class="math inline">\(k\)</span> is less than or equal to <span
+class="math inline">\(1/k^2\)</span>,</p>
+<p><span class="math display">\[P\left(|Z| \geq k\right) \leq
+\frac{1}{k^2}\]</span> where <span class="math inline">\(Z = \frac{|X -
+\mu|}{\sigma}\)</span> is a z-score, <span
+class="math inline">\(\mu\)</span> is the mean, and <span
+class="math inline">\(\sigma\)</span> is the standard deviation.</p>
+<p>If we plug in values for <span class="math inline">\(k\)</span>, we
+see that the chance of getting a z-score</p>
 <ul>
-<li>at least 3 in magnitude (&gt; 3 or &lt; -3) is less than <span class="math inline">\((1/3^2) = 0.11 = 11\%\)</span>.</li>
-<li>at least 4 in magnitude (&gt; 4 or &lt; -4) is less than <span class="math inline">\((1/4^2) = 0.06 = 6\%\)</span>.</li>
-<li>at least 5 in magnitude (&gt; 5 or &lt; -5) is less than <span class="math inline">\((1/5^2) = 0.04 = 4\%\)</span>.</li>
+<li>at least 3 in magnitude (&gt; 3 or &lt; -3) is less than <span
+class="math inline">\((1/3^2) = 0.11 = 11\%\)</span>.</li>
+<li>at least 4 in magnitude (&gt; 4 or &lt; -4) is less than <span
+class="math inline">\((1/4^2) = 0.06 = 6\%\)</span>.</li>
+<li>at least 5 in magnitude (&gt; 5 or &lt; -5) is less than <span
+class="math inline">\((1/5^2) = 0.04 = 4\%\)</span>.</li>
 </ul>
-<p>This is true for any shaped distribution (skewed, bimodal, etc.). See <a href="https://en.wikipedia.org/wiki/Markov%27s_inequality">proof here</a> based on probability theory.</p>
+<p>This is true for any shaped distribution (skewed, bimodal, etc.). See
+<a href="https://en.wikipedia.org/wiki/Markov%27s_inequality">proof
+here</a> based on probability theory.</p>
 </div>
 
 
@@ -796,14 +857,20 @@ Let's look at the distribution of hours of sleep at night within subsets or grou
 **Does the recorded binary gender explain the variability in the hours of sleep?**
 
 <div class="reflect">
-<p>What are the <em>ethical implications</em> of collecting gender identity as a binary variable (male/female) if some individuals do not identify with these categories?</p>
-<p>What might be the <em>causal mechanism</em> between gender identity and sleep? Might you be more interested in hormone levels, which might not necessarily correspond to gender identity? How might you change the data collection procedure so that the data can address the underlying research question?</p>
+<p>What are the <em>ethical implications</em> of collecting gender
+identity as a binary variable (male/female) if some individuals do not
+identify with these categories?</p>
+<p>What might be the <em>causal mechanism</em> between gender identity
+and sleep? Might you be more interested in hormone levels, which might
+not necessarily correspond to gender identity? How might you change the
+data collection procedure so that the data can address the underlying
+research question?</p>
 </div>
 
 Let's make a histogram for each gender category by adding `facet_grid(. ~ Gender)` which separates the data into groups defined by the variable, `Gender`, and creates two plots along the x-axis. 
 
 
-```r
+``` r
 NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(binwidth = 1, fill = "steelblue") + 
@@ -815,8 +882,10 @@ NHANES %>%
 <img src="02-visualization_files/figure-html/unnamed-chunk-48-1.png" width="672" style="display: block; margin: auto;" />
 
 <div class="reflect">
-<p>Do you notice any differences in sleep hour distributions between males and females?</p>
-<p>What is easy to compare and what is hard to compare between the two histograms?</p>
+<p>Do you notice any differences in sleep hour distributions between
+males and females?</p>
+<p>What is easy to compare and what is hard to compare between the two
+histograms?</p>
 </div>
 
 **Does the number of children a woman has explain the variability in the hours of sleep?** 
@@ -826,7 +895,7 @@ NHANES %>%
 </div>
 
 
-```r
+``` r
 NHANES %>%
     filter(!is.na(nBabies)) %>% 
     ggplot(aes(x = SleepHrsNight)) +
@@ -842,14 +911,17 @@ NHANES %>%
 The 0 to 12 labels at the top of each of these panels correspond to the number of babies a woman had. 
 
 <div class="reflect">
-<p>Do you notice any differences in sleep hour distributions between these groups?</p>
-<p>Note the x and y axes are the same for all of the groups to facilitate comparison. What is easy to compare and what is hard to compare between the histograms?</p>
+<p>Do you notice any differences in sleep hour distributions between
+these groups?</p>
+<p>Note the x and y axes are the same for all of the groups to
+facilitate comparison. What is easy to compare and what is hard to
+compare between the histograms?</p>
 </div>
 
 **Does the number of days someone has felt depressed explain the variability in the hours of sleep?**
 
 
-```r
+``` r
 NHANES %>%
     ggplot(aes(x = SleepHrsNight)) +
     geom_histogram(binwidth = 1, fill = "steelblue") + 
@@ -871,7 +943,7 @@ What's the rightmost "NA" category? Some individuals in this study did not answe
 Let's visualize the same information but with boxplots instead of histograms and see if we can glean any other information.
 
 
-```r
+``` r
 NHANES %>%
     ggplot(aes(x = Gender, y = SleepHrsNight)) +
     geom_boxplot() + 
@@ -883,7 +955,7 @@ NHANES %>%
 
 
 
-```r
+``` r
 NHANES %>%
     ggplot(aes(x = factor(nBabies), y = SleepHrsNight)) +
     geom_boxplot() + 
@@ -895,7 +967,7 @@ NHANES %>%
 
 
 
-```r
+``` r
 NHANES %>%
     ggplot(aes(x = factor(Depressed), y = SleepHrsNight)) +
     geom_boxplot() + 
@@ -906,8 +978,10 @@ NHANES %>%
 <img src="02-visualization_files/figure-html/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" />
 
 <div class="reflect">
-<p>What is easy to compare and what is hard to compare between the boxplots?</p>
-<p>Why might you use multiple boxplots instead of multiple histograms?</p>
+<p>What is easy to compare and what is hard to compare between the
+boxplots?</p>
+<p>Why might you use multiple boxplots instead of multiple
+histograms?</p>
 </div>
 
 ### Is this a Real Difference?
@@ -925,7 +999,7 @@ What if there were no "REAL" difference? Then the Depressed group labels wouldn'
 
 
 
-```r
+``` r
 library(mosaic) 
 #TRUE or FALSE (converted Depressed to a 2 category variable)
 NHANES <- NHANES %>%
@@ -950,7 +1024,7 @@ sim <- do(1000)*(
 Below, we have a histogram of 1000 values calculated by randomly shuffling individuals in the sample into two groups (assuming no relationship between depression and sleep) and then finding the difference in the mean amount of sleep. The red vertical line showed the observed difference in mean amount of sleep in the data.
 
 
-```r
+``` r
 sim %>%
   ggplot(aes(x = DepressedMostTRUE)) + 
   geom_histogram(fill = 'steelblue') +
@@ -962,8 +1036,13 @@ sim %>%
 <img src="02-visualization_files/figure-html/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" />
 
 <div class="reflect">
-<p>The observed difference in mean hours of sleep (red line) is quite far from the distribution of differences that results when we break the association between depression status and sleep hours (through randomized shuffling of group labels). Thus, it is unlikely to get a difference that large if there were no relationhip.</p>
-<p>What do you think this indicates? How might you use this as evidence for or against a “real” population difference?</p>
+<p>The observed difference in mean hours of sleep (red line) is quite
+far from the distribution of differences that results when we break the
+association between depression status and sleep hours (through
+randomized shuffling of group labels). Thus, it is unlikely to get a
+difference that large if there were no relationhip.</p>
+<p>What do you think this indicates? How might you use this as evidence
+for or against a “real” population difference?</p>
 </div>
 
 
@@ -979,7 +1058,7 @@ Imagine that you are an entrepreneur selling button-down dress shirts. Clothing 
 When you have two quantitative variables, a **scatterplot** is the main appropriate graphical display of the relationship. Each point represents the neck and chest size of one customer.
 
 
-```r
+``` r
 body <- read.delim("Data/bodyfat.txt")
 
 body %>%
@@ -999,7 +1078,9 @@ What do you notice about:
 4. **Unusual** features (outliers, differences in variability in $y$ variable across different values of $x$ variable)
 
 <div class="reflect">
-<p>How might you use this information to determine shirt sizes for your new business venture? Come up with a few ways you could define sizes such as small, medium, large, extra large, etc.</p>
+<p>How might you use this information to determine shirt sizes for your
+new business venture? Come up with a few ways you could define sizes
+such as small, medium, large, extra large, etc.</p>
 </div>
 
 Suppose instead of *Chest* in inches and *Neck size* in cm, we plotted *Chest* in inches and *Neck size* in inches. 
@@ -1009,7 +1090,7 @@ Suppose instead of *Chest* in inches and *Neck size* in cm, we plotted *Chest* i
 Look at the plot in inches below. Does this plot look the same as the centimeters plot?
 
 
-```r
+``` r
 body %>%
   ggplot(aes(x = Neck/2.54, y = Chest/2.54)) +
   geom_point(color = 'steelblue') + 
@@ -1034,9 +1115,12 @@ The blue points in the upper right (Quadrant 1) and lower left (Quadrant 3) quad
 The red points in the upper left (Quadrant 2) and lower right (Quadrant 4) quadrants are positive in one and negative in the other. This means that those individuals are either above average in Neck Size but below average in Chest Size (lower right) or they are below average in Neck Size and above average in Chest Size (upper left). If we multiply the z-scores of the Neck and Chest values for the red points, we will get a negative value. 
 
 <div class="reflect">
-<p>If we were to have a weaker positive relationship, how would this plot change?</p>
-<p>If we were to have a stronger positive relationship, how would this plot change?</p>
-<p>If we were to have a negative relationship, how would this plot change?</p>
+<p>If we were to have a weaker positive relationship, how would this
+plot change?</p>
+<p>If we were to have a stronger positive relationship, how would this
+plot change?</p>
+<p>If we were to have a negative relationship, how would this plot
+change?</p>
 </div>
 
 We want one number to represent **strength** and **direction** of a linear relationship.
@@ -1069,7 +1153,7 @@ Let's look at the correlation for the entire sample first. Then let's calculate 
 
 
 
-```r
+``` r
 body %>%
   summarize(cor(Neck, Chest)) # All data points used in calculation
 ```
@@ -1079,7 +1163,7 @@ body %>%
 ## 1        0.7688109
 ```
 
-```r
+``` r
 body %>%
     filter(Neck > 35 & Neck < 40) %>% # Keep individuals with Neck size between 35cm and 40cm
       summarize(cor(Neck, Chest)) # Only middle subset of data points used in calculation
@@ -1111,8 +1195,19 @@ Let's look at a few scatterplot examples and the corresponding correlation.
 <img src="02-visualization_files/figure-html/unnamed-chunk-69-1.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-2.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-3.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-4.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-5.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-6.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-7.png" width="960" style="display: block; margin: auto;" /><img src="02-visualization_files/figure-html/unnamed-chunk-69-8.png" width="960" style="display: block; margin: auto;" />
 
 <div class="mathbox">
-<p>(Optional) Here are other equivalent expressions for <span class="math inline">\(r\)</span> for the mathematically intrigued:</p>
-<p><span class="math display">\[ r = \frac{\sum z_x z_y}{n-1}  \]</span> <span class="math display">\[ = \frac{\sum{\frac{(x_i-\bar{x})}{s_x}\times\frac{(y_i-\bar{y})}{s_y}}}{n-1}\]</span> <span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}\]</span> <span class="math display">\[= \frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}\]</span> <span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum{(x_i-\bar{x})^2}}\sqrt{\sum{(y_i-\bar{y})^2}}}\]</span> <span class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}\]</span></p>
+<p>(Optional) Here are other equivalent expressions for <span
+class="math inline">\(r\)</span> for the mathematically intrigued:</p>
+<p><span class="math display">\[ r = \frac{\sum z_x z_y}{n-1}  \]</span>
+<span class="math display">\[ =
+\frac{\sum{\frac{(x_i-\bar{x})}{s_x}\times\frac{(y_i-\bar{y})}{s_y}}}{n-1}\]</span>
+<span class="math display">\[=
+\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1) s_x s_y}\]</span> <span
+class="math display">\[=
+\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{(n-1)\sqrt{\sum{\frac{(x_i-\bar{x})^2}{n-1}}}\sqrt{\sum{\frac{(y_i-\bar{y})^2}{n-1}}}}\]</span>
+<span
+class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum{(x_i-\bar{x})^2}}\sqrt{\sum{(y_i-\bar{y})^2}}}\]</span>
+<span
+class="math display">\[=\frac{\sum{(x_i-\bar{x})(y_i-\bar{y})}}{\sqrt{\sum{(x_i-\bar{x})^2\sum{(y_i-\bar{y})^2}}}}\]</span></p>
 </div>
 
 
@@ -1144,7 +1239,7 @@ Let's look at another data set, the 1985 Current Population Survey. This is a sm
 Our primary interest is the `wage` variable which gives the hourly wage for each individual in the data set in US dollars. What is the relationship between years of education and hourly wage?
 
 
-```r
+``` r
 data(CPS85) # Load the data from the R package CPS85
 
 CPS85 %>%
@@ -1163,7 +1258,7 @@ We can see that years of education and hourly wage are positively correlated. Wh
 We can enrich this bivariate scatterplot by showing additional information via color.
 
 
-```r
+``` r
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, color = age)) +
     geom_point() +
@@ -1176,7 +1271,7 @@ CPS85 %>%
 Adding color for a quantitative variable, age, does not reveal any obvious patterns; that is, we don't see obvious clustering by color. Perhaps this is because there are too many colors (remember Visualization Principle #6: Use Color Appropriately). Are any patterns revealed if we use 4 age categories instead?
 
 
-```r
+``` r
 CPS85 %>%
     mutate(age_cat = cut(age, 4)) %>%
     ggplot(aes(x = educ, y = wage, color = age_cat)) +
@@ -1195,7 +1290,7 @@ With 4 age categories, no age patterns are evident, but this does help us see th
 We can also encode information via point shape. Here we let shape encode marital status.
 
 
-```r
+``` r
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, shape = married)) +
     geom_point() +
@@ -1212,7 +1307,7 @@ Often encoding information with color is preferable to encoding it with shapes b
 The size of a point is useful for conveying the magnitude of a quantitative variable. For example, we may wish to see non-categorized age information with point size.
 
 
-```r
+``` r
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, size = age)) +
     geom_point(alpha = 0.2) + #alpha specifies the level of transparency of the points
@@ -1229,7 +1324,7 @@ Panels (or facets) are a great way to see how relationships differ between level
 Let's look at the relationship between hourly wage and years of education across job sectors. The following creates a row of plots of this relationship over job sectors.
 
 
-```r
+``` r
 CPS85 %>%
     mutate(MorethanHS = educ > 12) %>% 
     ggplot(aes(x = MorethanHS, y = wage)) +
@@ -1244,7 +1339,7 @@ CPS85 %>%
 With a small change in notation (`sector ~ .` versus `. ~ sector`) and flipt the coordinates, we can create a column of plots.
 
 
-```r
+``` r
 CPS85 %>%
     mutate(MorethanHS = educ > 12) %>% 
     ggplot(aes(x = MorethanHS, y = wage)) +
@@ -1260,7 +1355,7 @@ CPS85 %>%
 We can also create panels according to two categorical variables. How do the relationships additionally differ by union status?
 
 
-```r
+``` r
 CPS85 %>%
     mutate(MorethanHS = educ > 12) %>% 
     ggplot(aes(x = MorethanHS, y = wage)) +
@@ -1280,7 +1375,7 @@ If we have a scatterplot, we may want to get an understanding of the overall rel
 
 
 
-```r
+``` r
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, color = married)) +
     geom_point() +
@@ -1297,7 +1392,7 @@ CPS85 %>%
 The combination of these different visual features can result in powerful visual understanding. Let's combine paneling with color information to explore if there are marital status patterns between union or not union job subgroups.
 
 
-```r
+``` r
 CPS85 %>%
     ggplot(aes(x = educ, y = wage, color = married)) +
     geom_point() +

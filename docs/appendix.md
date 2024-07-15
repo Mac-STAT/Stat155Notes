@@ -424,7 +424,7 @@ $$f(x) =  \frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$
 <img src="appendix_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 
-```r
+``` r
 pnorm(1) - pnorm(-1) #pnorm is the cdf
 ```
 
@@ -437,7 +437,7 @@ pnorm(1) - pnorm(-1) #pnorm is the cdf
 <img src="appendix_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 
-```r
+``` r
 pnorm(2) - pnorm(-2)
 ```
 
@@ -448,7 +448,7 @@ pnorm(2) - pnorm(-2)
 - $P(-3\leq X \leq 3) = F(3) - F(-3) = 0.997$
 
 
-```r
+``` r
 pnorm(3) - pnorm(-3)
 ```
 
@@ -469,7 +469,7 @@ If $n=1000$ and $p=0.2$, let's compare $P(X=200)$ and $P(199.5\leq Y\leq 200.5)$
 <img src="appendix_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 
-```r
+``` r
 dbinom(200,size = n, p = p)
 ```
 
@@ -477,7 +477,7 @@ dbinom(200,size = n, p = p)
 ## [1] 0.03152536
 ```
 
-```r
+``` r
 pnorm(200.5,mean = n*p, sd = sqrt(n*p*(1-p))) - pnorm(199.5,mean = n*p, sd = sqrt(n*p*(1-p)))
 ```
 
@@ -490,7 +490,7 @@ If $n=1000$ and $p=0.2$, let's compare $P(200\leq X\leq 210)$ and $P(199.5\leq Y
 <img src="appendix_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 
-```r
+``` r
 sum(dbinom(200:210,size = n, p = p))
 ```
 
@@ -498,7 +498,7 @@ sum(dbinom(200:210,size = n, p = p))
 ## [1] 0.3100719
 ```
 
-```r
+``` r
 pnorm(210.5,mean = n*p, sd = sqrt(n*p*(1-p))) - pnorm(199.5,mean = n*p, sd = sqrt(n*p*(1-p)))
 ```
 
@@ -513,7 +513,7 @@ How big does $n$ have to be for the Normal approximation to be appropriate?
 For $p=0.2$, that means that $n\geq 50$.
 
 
-```r
+``` r
 n = 50
 p = 0.2
 barplot(dbinom(0:n,size = n, p = p),names.arg=0:n,ylab='Probability',main='n = 50, p = 0.2')

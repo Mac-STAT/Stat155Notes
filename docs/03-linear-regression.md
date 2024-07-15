@@ -1093,9 +1093,9 @@ dat %>%
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          202.646                            20.525  
+##                          207.574                            17.505  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -5.214
+##                           -4.841
 ```
 
 A more advanced solution (which is not going to be covered in class) is a **generalized additive model** (GAM), which allows you to specify which variables have non-linear relationships with $Y$ and estimates that relationship for you using spline functions (super cool stuff!). We won't talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!

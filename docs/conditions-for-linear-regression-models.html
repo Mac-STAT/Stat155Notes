@@ -631,9 +631,9 @@ The additive increase of <span class="math inline">\(\beta_1\)</span> units in t
 ## 
 ## Coefficients:
 ##                      (Intercept)  poly(x, degree = 2, raw = TRUE)1  
-##                          202.646                            20.525  
+##                          207.574                            17.505  
 ## poly(x, degree = 2, raw = TRUE)2  
-##                           -5.214</code></pre>
+##                           -4.841</code></pre>
 <p>A more advanced solution (which is not going to be covered in class) is a <strong>generalized additive model</strong> (GAM), which allows you to specify which variables have non-linear relationships with <span class="math inline">\(Y\)</span> and estimates that relationship for you using spline functions (super cool stuff!). We won’t talk about how this model is fit or how to interpret the output, but there are other cool solutions out there that you can learn about in future Statistics classes!</p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="conditions-for-linear-regression-models.html#cb136-1" tabindex="-1"></a><span class="fu">require</span>(gam)</span>
 <span id="cb136-2"><a href="conditions-for-linear-regression-models.html#cb136-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">gam</span>(y <span class="sc">~</span> <span class="fu">s</span>(x), <span class="at">data =</span> dat))</span></code></pre></div>

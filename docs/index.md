@@ -14,7 +14,7 @@ description: "This includes notes for Introduction to Statistical Modeling (STAT
 This book contains notes for STAT 155 at Macalester College. It contains definitions, data examples, and R code explanations that provide a foundation for the activities we will do in class.
 
 
-Contributors:  [Kelsey Grinde](https://kegrinde.github.io/), [Brianna Heggeseth](https://bcheggeseth.github.io), [Leslie Myint](https://lmyint.github.io)
+Contributors:  [Kelsey Grinde](https://kegrinde.github.io/), [Brianna Heggeseth](https://bcheggeseth.github.io), [Leslie Myint](https://www.lesliemyint.org/)
 
 *When* you find typos, please email bheggese@macalester.edu.
 

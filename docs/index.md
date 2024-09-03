@@ -1,7 +1,7 @@
 --- 
 title: "STAT 155 Notes"
 author: "Macalester Statistics Faculty"
-date: "Updated: 2024-07-15"
+date: "Updated: 2024-09-03"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes

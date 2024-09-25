@@ -674,7 +674,7 @@ of interval is 2*SD)?
 </div>
 <p>The code below computes the fraction of data points, <code>x</code>, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="one-quantitative-variable.html#cb44-1" tabindex="-1"></a><span class="fu">sum</span>(x <span class="sc">&gt;</span> <span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fu">sd</span>(x) <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="fu">mean</span>(x) <span class="sc">+</span> <span class="fu">sd</span>(x))<span class="sc">/</span><span class="fu">length</span>(x)</span></code></pre></div>
-<pre><code>## [1] 0.686</code></pre>
+<pre><code>## [1] 0.6933333</code></pre>
 <p>So with this data set, about 68% of the data values fall within 1 SD of the mean.</p>
 <div class="reflect">
 <p>

@@ -748,7 +748,7 @@ sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
 ```
-## [1] 0.6746667
+## [1] 0.6873333
 ```
 
 So with this data set, about 68% of the data values fall within 1 SD of the mean.

@@ -888,7 +888,7 @@ E[Y \mid A, B, C] = \beta_0 + \beta_1 A + \beta_2 B + \beta_3 C
 $$ and the smaller model
 
 $$
-E[Y \mid B] = \beta_0 + \beta_1 A
+E[Y \mid A] = \beta_0 + \beta_1 A
 $$
 
 The F-test that compares the larger model to the smaller model in this case determines whether or not the relationship between $Y$ and *both* $B$ and $C$ is statistically significant, adjusting for $A$.

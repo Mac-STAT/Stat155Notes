@@ -345,6 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-procedure"><i class="fa fa-check"></i><b>7.3.1</b> Hypothesis Test Procedure</a></li>
 <li class="chapter" data-level="7.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-errors"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesis Testing Errors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#statistical-significance-v.-practical-significance"><i class="fa fa-check"></i><b>7.3.3</b> Statistical Significance v. Practical Significance</a></li>
+<li class="chapter" data-level="7.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#f-tests"><i class="fa fa-check"></i><b>7.3.4</b> Hypotheses involving more than one coefficient</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>7.4</b> Model Selection</a>
 <ul>
@@ -649,11 +650,7 @@ all happen to be identical. What will this look like?
 <li><strong>CEO salary information from NYT</strong></li>
 </ul>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="one-quantitative-variable.html#cb42-1" tabindex="-1"></a>ceo <span class="sc">%&gt;%</span></span>
-<span id="cb42-2"><a href="one-quantitative-variable.html#cb42-2" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb42-3"><a href="one-quantitative-variable.html#cb42-3" tabindex="-1"></a>    <span class="fu">diff</span>(<span class="fu">range</span>(salary)), </span>
-<span id="cb42-4"><a href="one-quantitative-variable.html#cb42-4" tabindex="-1"></a>    <span class="fu">IQR</span>(salary), </span>
-<span id="cb42-5"><a href="one-quantitative-variable.html#cb42-5" tabindex="-1"></a>    <span class="fu">sd</span>(salary), </span>
-<span id="cb42-6"><a href="one-quantitative-variable.html#cb42-6" tabindex="-1"></a>    <span class="fu">var</span>(salary))</span></code></pre></div>
+<span id="cb42-2"><a href="one-quantitative-variable.html#cb42-2" tabindex="-1"></a>    <span class="fu">summarize</span>(<span class="fu">diff</span>(<span class="fu">range</span>(salary)), <span class="fu">IQR</span>(salary), <span class="fu">sd</span>(salary), <span class="fu">var</span>(salary))</span></code></pre></div>
 <pre><code>##   diff(range(salary)) IQR(salary) sd(salary) var(salary)
 ## 1                  85       6.525   9.452969    89.35863</code></pre>
 </div>
@@ -677,7 +674,7 @@ of interval is 2*SD)?
 </div>
 <p>The code below computes the fraction of data points, <code>x</code>, that fall between the lower bound of 1 SD below the mean and the upper bound of 1 SD above the mean.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="one-quantitative-variable.html#cb44-1" tabindex="-1"></a><span class="fu">sum</span>(x <span class="sc">&gt;</span> <span class="fu">mean</span>(x) <span class="sc">-</span> <span class="fu">sd</span>(x) <span class="sc">&amp;</span> x <span class="sc">&lt;</span> <span class="fu">mean</span>(x) <span class="sc">+</span> <span class="fu">sd</span>(x))<span class="sc">/</span><span class="fu">length</span>(x)</span></code></pre></div>
-<pre><code>## [1] 0.6893333</code></pre>
+<pre><code>## [1] 0.6746667</code></pre>
 <p>So with this data set, about 68% of the data values fall within 1 SD of the mean.</p>
 <div class="reflect">
 <p>

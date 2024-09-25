@@ -150,6 +150,9 @@ making-decisions
 procedure-summary
 hypothesis-testing-errors
 statistical-significance-v.-practical-significance
+f-tests
+nested-models
+f-tests-in-r
 model-selection
 testing-individual-slopes
 suggested-actions

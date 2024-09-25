@@ -345,6 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-procedure"><i class="fa fa-check"></i><b>7.3.1</b> Hypothesis Test Procedure</a></li>
 <li class="chapter" data-level="7.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-errors"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesis Testing Errors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#statistical-significance-v.-practical-significance"><i class="fa fa-check"></i><b>7.3.3</b> Statistical Significance v. Practical Significance</a></li>
+<li class="chapter" data-level="7.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#f-tests"><i class="fa fa-check"></i><b>7.3.4</b> Hypotheses involving more than one coefficient</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>7.4</b> Model Selection</a>
 <ul>
@@ -412,14 +413,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="standard-error" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Standard Error<a href="standard-error.html#standard-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In Chapter 5, we talked about how our estimates might vary if we had a different sample of data. This random variability could be due to random sampling or randomness if the data values. In order to get a sense of the uncertainty of our information as it relates to the true population, we need to quantify this variability across potential samples of data.</p>
-<p>The tricky piece is that we do not get to observe more than one sample in real life. We have to imagine all other possible samples without actually observing them.</p>
-<p>In Chapter 5, one tool we used was <strong>bootstrapping,</strong> in which we resampled from our sample (with replacement) to mimic the other possible samples. The variation in the bootstrap estimates could be used.</p>
-<p>In Chapter 6, another tool we used was <strong>probability,</strong> in which we use mathematical theory and assumption to help us imagine the other possible samples. We can estimate the standard deviation of a random variable. We’ll refer to this as the <strong>classical approach</strong> as compared to the <strong>bootstrap approach</strong>.</p>
-<p>Using either of these techniques, we can calculate the <strong>standard error (SE)</strong> of a sample estimate which is the estimated standard deviation across all possible random samples. In other words, the standard error is our best guess of the standard deviation of the sampling distribution, the distribution of sample values across all possible samples of the same size.</p>
+<p>In Chapter 5, we talked about how our estimates might vary if we had a different sample of data.
+This random variability could be due to random sampling or randomness if the data values.
+In order to get a sense of the uncertainty of our information as it relates to the true population, we need to quantify this variability across potential samples of data.</p>
+<p>The tricky piece is that we do not get to observe more than one sample in real life.
+We have to imagine all other possible samples without actually observing them.</p>
+<p>In Chapter 5, one tool we used was <strong>bootstrapping,</strong> in which we resampled from our sample (with replacement) to mimic the other possible samples.
+The variation in the bootstrap estimates could be used.</p>
+<p>In Chapter 6, another tool we used was <strong>probability,</strong> in which we use mathematical theory and assumption to help us imagine the other possible samples.
+We can estimate the standard deviation of a random variable.
+We’ll refer to this as the <strong>classical approach</strong> as compared to the <strong>bootstrap approach</strong>.</p>
+<p>Using either of these techniques, we can calculate the <strong>standard error (SE)</strong> of a sample estimate which is the estimated standard deviation across all possible random samples.
+In other words, the standard error is our best guess of the standard deviation of the sampling distribution, the distribution of sample values across all possible samples of the same size.</p>
 <div id="bootstrap-standard-error-estimate" class="section level3 hasAnchor" number="7.1.1">
 <h3><span class="header-section-number">7.1.1</span> Bootstrap Standard Error Estimate<a href="standard-error.html#bootstrap-standard-error-estimate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We started this chapter with a question about arrival delay times in the winter compared to the summer. Based on one sample of 100 flights, we estimated that in the winter, the delay times are on average about 0.6 minutes less than in the summer. How certain are we about this number?</p>
+<p>We started this chapter with a question about arrival delay times in the winter compared to the summer.
+Based on one sample of 100 flights, we estimated that in the winter, the delay times are on average about 0.6 minutes less than in the summer.
+How certain are we about this number?</p>
 <p>Let’s resample our sample and quantify our uncertainty through bootstrapping.</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="standard-error.html#cb236-1" tabindex="-1"></a>boot_data <span class="ot">&lt;-</span> mosaic<span class="sc">::</span><span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span>( </span>
 <span id="cb236-2"><a href="standard-error.html#cb236-2" tabindex="-1"></a>    flights_samp <span class="sc">%&gt;%</span> <span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
@@ -435,16 +445,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb236-12"><a href="standard-error.html#cb236-12" tabindex="-1"></a>        <span class="at">se_seasonwinter =</span> <span class="fu">sd</span>(seasonwinter))</span></code></pre></div>
 <pre><code>##   se_Intercept se_seasonwinter
 ## 1     5.331612        6.781946</code></pre>
-<p>The standard error for the regression coefficient for <code>seasonwinter</code> is 6.8 minutes using the bootstrapping technique. That tells us that on average, the difference in mean arrival delays between winter and summer could be 6.8 minutes greater or smaller. Also, this tells us that our sample estimate could be off the true difference in the population by as much as 2*SE = 2*6.8 = 13.6 minutes (think back to the 68-95-99.7 Rule). In the context of the scale of the observed difference (half a minute), we are very uncertain!</p>
+<p>The standard error for the regression coefficient for <code>seasonwinter</code> is 6.8 minutes using the bootstrapping technique.
+That tells us that on average, the difference in mean arrival delays between winter and summer could be 6.8 minutes greater or smaller.
+Also, this tells us that our sample estimate could be off the true difference in the population by as much as 2*SE = 2*6.8 = 13.6 minutes (think back to the 68-95-99.7 Rule).
+In the context of the scale of the observed difference (half a minute), we are very uncertain!</p>
 <p>If the standard error was 0.1 minutes rather than 6.8 minutes, we’d be much more certain that there is about a half a minute difference in the mean arrival delays between winter and summer.</p>
-<p>You’ll notice that the code above has exactly the same structure as the bootstrapping code in Chapter 5. We <em>calculate the bootstrap standard error by calculating the standard deviation of the bootstrap estimates</em>. We ran this code in Chapter 5 to summarize the spread of our bootstrap sampling distribution. We didn’t name it the standard error quite yet. Also note that every time you run this code, you’ll get slightly different estimate of the standard error because bootstrapping is a random process.</p>
-<p>Focus on the magnitude of the standard error and consider the number of significant digits of both the estimate and the SE. If our estimate might be off by almost 15 minutes, we should worry too much about the hundredths of a minute in our estimate.</p>
+<p>You’ll notice that the code above has exactly the same structure as the bootstrapping code in Chapter 5.
+We <em>calculate the bootstrap standard error by calculating the standard deviation of the bootstrap estimates</em>.
+We ran this code in Chapter 5 to summarize the spread of our bootstrap sampling distribution.
+We didn’t name it the standard error quite yet.
+Also note that every time you run this code, you’ll get slightly different estimate of the standard error because bootstrapping is a random process.</p>
+<p>Focus on the magnitude of the standard error and consider the number of significant digits of both the estimate and the SE.
+If our estimate might be off by almost 15 minutes, we should worry too much about the hundredths of a minute in our estimate.</p>
 </div>
 <div id="classical-standard-error-estimate" class="section level3 hasAnchor" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> Classical Standard Error Estimate<a href="standard-error.html#classical-standard-error-estimate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The other tool we can use to get our standard errors is with mathematical theory and probability. Using probability, we can write out equations to estimate the standard error. If you are interested in learning about these equations, you should take Mathematical Statistics!</p>
+<p>The other tool we can use to get our standard errors is with mathematical theory and probability.
+Using probability, we can write out equations to estimate the standard error.
+If you are interested in learning about these equations, you should take Mathematical Statistics!</p>
 <p>For this class, you just need to know that R knows these equations and calculates the classical standard error for us.</p>
-<p>In fact, you’ve already been looking at them in the output of the fit linear model. With the tidy output below, look for the column that says <code>std.error</code>. These are the <strong>classical standard errors</strong>.</p>
+<p>In fact, you’ve already been looking at them in the output of the fit linear model.
+With the tidy output below, look for the column that says <code>std.error</code>.
+These are the <strong>classical standard errors</strong>.</p>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="standard-error.html#cb238-1" tabindex="-1"></a>lm.delay <span class="sc">%&gt;%</span> </span>
 <span id="cb238-2"><a href="standard-error.html#cb238-2" tabindex="-1"></a>  <span class="fu">tidy</span>() <span class="co">#SE for each estimate is in the std.error column</span></span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
@@ -453,8 +475,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 1 (Intercept)     6.69       4.87    1.37     0.172
 ## 2 seasonwinter   -0.655      6.82   -0.0960   0.924</code></pre>
 <p>You’ll notice that for the <code>seasonwinter</code> regression coefficient, the equations give a standard error of 6.817 minutes, which when rounded is the same as the rounded bootstrap standard error of 6.8 minutes.</p>
-<p>These are two <em>different</em> ways of quantifying the random variability and uncertainty in our sample estimates only using ONE observed sample of data. In practice, we only need to use one of these approaches because they should give us similar values assuming a few conditions hold.</p>
-<p>Using either estimate of the standard error, based on the sample data, our best guess is that the mean arrival delays is about 0.6 minutes less in winter than in summer but we might be off by about 13.6 minutes. So we could say that our best guess at the difference in mean arrival delays is <span class="math inline">\(0.6\pm 13.6\)</span> minutes, which is an interval estimate of the true population value.</p>
+<p>These are two <em>different</em> ways of quantifying the random variability and uncertainty in our sample estimates only using ONE observed sample of data.
+In practice, we only need to use one of these approaches because they should give us similar values assuming a few conditions hold.</p>
+<p>Using either estimate of the standard error, based on the sample data, our best guess is that the mean arrival delays is about 0.6 minutes less in winter than in summer but we might be off by about 13.6 minutes.
+So we could say that our best guess at the difference in mean arrival delays is <span class="math inline">\(0.6\pm 13.6\)</span> minutes, which is an interval estimate of the true population value.</p>
 <div class="reflect">
 <p>
 How “good” of a guess is the interval estimate? Is the population

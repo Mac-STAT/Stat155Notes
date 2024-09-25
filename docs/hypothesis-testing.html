@@ -345,6 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-procedure"><i class="fa fa-check"></i><b>7.3.1</b> Hypothesis Test Procedure</a></li>
 <li class="chapter" data-level="7.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-errors"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesis Testing Errors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#statistical-significance-v.-practical-significance"><i class="fa fa-check"></i><b>7.3.3</b> Statistical Significance v. Practical Significance</a></li>
+<li class="chapter" data-level="7.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#f-tests"><i class="fa fa-check"></i><b>7.3.4</b> Hypotheses involving more than one coefficient</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>7.4</b> Model Selection</a>
 <ul>
@@ -412,8 +413,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="hypothesis-testing" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Hypothesis Testing<a href="hypothesis-testing.html#hypothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Hypothesis testing is another tool that can be used for statistical inference. Let’s warm up to the ideas of hypothesis testing by considering two broad types of scientific questions: (1) <em>Is there</em> a relationship? (2) <em>What</em> is the relationship?</p>
-<p>Suppose that we are thinking about the relationship between housing prices and square footage. Accounting for sampling variation…</p>
+<p>Hypothesis testing is another tool that can be used for statistical inference.
+Let’s warm up to the ideas of hypothesis testing by considering two broad types of scientific questions: (1) <em>Is there</em> a relationship?
+(2) <em>What</em> is the relationship?</p>
+<p>Suppose that we are thinking about the relationship between housing prices and square footage.
+Accounting for sampling variation…</p>
 <ul>
 <li>…<strong>is there</strong> a real relationship between price and living area?</li>
 <li>…<strong>what</strong> is the real relationship between price and living area?</li>
@@ -429,7 +433,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Look at the estimate and the values in the interval</li>
 </ul></li>
 </ul>
-<p><strong>Hypothesis testing</strong> is a general framework for answering questions of the first type. It is a general framework for making decisions between two “theories”.</p>
+<p><strong>Hypothesis testing</strong> is a general framework for answering questions of the first type.
+It is a general framework for making decisions between two “theories”.</p>
 <ul>
 <li><p><strong>Example 1</strong><br />
 Decide between: true support for a law = 50% vs. true support <span class="math inline">\(\neq\)</span> 50%</p></li>
@@ -440,7 +445,8 @@ In the model <span class="math inline">\(\text{Price} = \beta_0 + \beta_1\text{L
 <h3><span class="header-section-number">7.3.1</span> Hypothesis Test Procedure<a href="hypothesis-testing.html#hypothesis-test-procedure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="hypotheses" class="section level4 hasAnchor" number="7.3.1.1">
 <h4><span class="header-section-number">7.3.1.1</span> Hypotheses<a href="hypothesis-testing.html#hypotheses" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In a hypothesis test, we use data to decide between two “hypotheses” about the population. These hypotheses can be described using mathematical notation and words.</p>
+<p>In a hypothesis test, we use data to decide between two “hypotheses” about the population.
+These hypotheses can be described using mathematical notation and words.</p>
 <ol style="list-style-type: decimal">
 <li><strong>Null hypothesis</strong> (<span class="math inline">\(H_0\)</span> = “H naught”)<br />
 </li>
@@ -464,40 +470,72 @@ In the model <span class="math inline">\(\text{Price} = \beta_0 + \beta_1\text{L
 </div>
 <div id="test-statistics" class="section level4 hasAnchor" number="7.3.1.2">
 <h4><span class="header-section-number">7.3.1.2</span> Test statistics<a href="hypothesis-testing.html#test-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Let’s consider an example research question: Is there a relationship between house price and living area? We can try to answer that with the linear regression model below:</p>
+<p>Let’s consider an example research question: Is there a relationship between house price and living area?
+We can try to answer that with the linear regression model below:</p>
 <p><span class="math display">\[E[\text{Price} | \text{Living Area}] = \beta_0 + \beta_1\text{Living Area}\]</span></p>
 <p>We would phrase our null and alternative hypotheses using mathematical notation as follows:</p>
-<p><span class="math display">\[H_0: \beta_1 = 0 \qquad \text{vs.} \qquad H_A: \beta_1 \neq 0\]</span>
-In words, the null hypothesis <span class="math inline">\(H_0\)</span> describes the situation of “no relationship” because it hypothesizes that the true slope <span class="math inline">\(\beta_1\)</span> is 0. The alternative hypothesis posits a real relationship: the true population slope <span class="math inline">\(\beta_1\)</span> is not 0. That is, there is not no relationship. (<em>Double negatives!</em>)</p>
-<p>To gather evidence, we collect data and fit a model. From the model, we can compute a <strong>test statistic</strong>, which tells us how far the observed data is from the null hypothesis. The test statistic is a <em>discrepancy measure</em> where large values indicate higher discrepancy with the null hypothesis, <span class="math inline">\(H_0\)</span>.</p>
-<p>When we are studying slopes in a linear model, the test statistic is the distance from the null hypothesis value of 0 (the <strong>null value</strong>) in terms of standard errors. The test statistic for testing one slope coefficient is:</p>
+<p><span class="math display">\[H_0: \beta_1 = 0 \qquad \text{vs.} \qquad H_A: \beta_1 \neq 0\]</span> In words, the null hypothesis <span class="math inline">\(H_0\)</span> describes the situation of “no relationship” because it hypothesizes that the true slope <span class="math inline">\(\beta_1\)</span> is 0.
+The alternative hypothesis posits a real relationship: the true population slope <span class="math inline">\(\beta_1\)</span> is not 0.
+That is, there is not no relationship.
+(<em>Double negatives!</em>)</p>
+<p>To gather evidence, we collect data and fit a model.
+From the model, we can compute a <strong>test statistic</strong>, which tells us how far the observed data is from the null hypothesis.
+The test statistic is a <em>discrepancy measure</em> where large values indicate higher discrepancy with the null hypothesis, <span class="math inline">\(H_0\)</span>.</p>
+<p>When we are studying slopes in a linear model, the test statistic is the distance from the null hypothesis value of 0 (the <strong>null value</strong>) in terms of standard errors.
+The test statistic for testing one slope coefficient is:</p>
 <p><span class="math display">\[T= \text{Test statistic} = \frac{\text{estimate} - \text{null value}}{\text{std. error of estimate}}\]</span></p>
-<p>It looks like a z-score. It expresses: how far away is our slope estimate from the null value in units of standard error? With large values (in magnitude) of the test statistic, our data (and our estimate) is discrepant with what the null hypothesis proposes because our estimate is quite far away from the null value in standard error units. A large test statistic makes us start to doubt the null value.</p>
+<p>It looks like a z-score.
+It expresses: how far away is our slope estimate from the null value in units of standard error?
+With large values (in magnitude) of the test statistic, our data (and our estimate) is discrepant with what the null hypothesis proposes because our estimate is quite far away from the null value in standard error units.
+A large test statistic makes us start to doubt the null value.</p>
 </div>
 <div id="accounting-for-uncertainty" class="section level4 hasAnchor" number="7.3.1.3">
 <h4><span class="header-section-number">7.3.1.3</span> Accounting for Uncertainty<a href="hypothesis-testing.html#accounting-for-uncertainty" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Test statistics are random variables! Why? Because they are based on our random sample of data. Thus, it will be helpful to understand the sampling distributions of test statistics.</p>
-<p>What test statistics are we likely to get if <span class="math inline">\(H_0\)</span> is true? The distribution of the test statistic introduced above “under <span class="math inline">\(H_0\)</span>” (that is, if <span class="math inline">\(H_0\)</span> is true) is shown below. Note that it is centered at 0. This distribution shows that if indeed the population parameter equals the null value, there is variation in the test statistics we might obtain from random samples, but most test statistics are around zero.</p>
+<p>Test statistics are random variables!
+Why?
+Because they are based on our random sample of data.
+Thus, it will be helpful to understand the sampling distributions of test statistics.</p>
+<p>What test statistics are we likely to get if <span class="math inline">\(H_0\)</span> is true?
+The distribution of the test statistic introduced above “under <span class="math inline">\(H_0\)</span>” (that is, if <span class="math inline">\(H_0\)</span> is true) is shown below.
+Note that it is centered at 0.
+This distribution shows that if indeed the population parameter equals the null value, there is variation in the test statistics we might obtain from random samples, but most test statistics are around zero.</p>
 <p><img src="07-inference_files/figure-html/unnamed-chunk-27-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>It would be very unlikely for us to get a pretty large (extreme) test statistic if indeed <span class="math inline">\(H_0\)</span> were true. Why? The density drops rapidly at more extreme values.</p>
-<p>How large in magnitude must the test statistic be in order to make a decision between <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>? We will use another metric called a <strong>p-value</strong>. This allows us to account for the variability and randomness of our sample data.</p>
-<p><strong>Assuming <span class="math inline">\(H_0\)</span> is true</strong>, we ask: What is the chance of observing a test statistic which is “as or even more extreme” than the one we just saw? This conditional probability is called a <strong>p-value</strong>, <span class="math inline">\(P(|T| \geq t_{obs} | H_0\text{ is true})\)</span>.</p>
-<p>If our test statistic is large, then our estimate is quite far away from the null value (in standard error units), and then the chance of observing someone this large or larger (assuming <span class="math inline">\(H_0\)</span> is true) would be very small. <strong>A large test statistic leads to a small p-value.</strong></p>
-<p>If our test statistic is small, then our estimate is quite close to the null value (in standard error units), and then the chance of observing someone this large or larger (assuming <span class="math inline">\(H_0\)</span> is true) would be very large. <strong>A small test statistic leads to a large p-value.</strong></p>
-<p>Suppose that our observed test statistic for a slope coefficient is 2. What test statistics are “as or more extreme”?</p>
+<p>It would be very unlikely for us to get a pretty large (extreme) test statistic if indeed <span class="math inline">\(H_0\)</span> were true.
+Why?
+The density drops rapidly at more extreme values.</p>
+<p>How large in magnitude must the test statistic be in order to make a decision between <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>?
+We will use another metric called a <strong>p-value</strong>.
+This allows us to account for the variability and randomness of our sample data.</p>
+<p><strong>Assuming</strong> <span class="math inline">\(H_0\)</span> is true, we ask: What is the chance of observing a test statistic which is “as or even more extreme” than the one we just saw?
+This conditional probability is called a <strong>p-value</strong>, <span class="math inline">\(P(|T| \geq t_{obs} | H_0\text{ is true})\)</span>.</p>
+<p>If our test statistic is large, then our estimate is quite far away from the null value (in standard error units), and then the chance of observing someone this large or larger (assuming <span class="math inline">\(H_0\)</span> is true) would be very small.
+<strong>A large test statistic leads to a small p-value.</strong></p>
+<p>If our test statistic is small, then our estimate is quite close to the null value (in standard error units), and then the chance of observing someone this large or larger (assuming <span class="math inline">\(H_0\)</span> is true) would be very large.
+<strong>A small test statistic leads to a large p-value.</strong></p>
+<p>Suppose that our observed test statistic for a slope coefficient is 2.
+What test statistics are “as or more extreme”?</p>
 <ul>
 <li>Absolute value of test statistic is at least 2: <span class="math inline">\(|\text{Test statistic}| \geq 2\)</span></li>
 <li>In other words: <span class="math inline">\(\text{Test statistic} \geq 2\)</span> or <span class="math inline">\(\text{Test statistic} \leq -2\)</span></li>
 </ul>
 <p>The p-value is the area under the curve of the probability density function in those “as or more extreme” regions.</p>
 <p><img src="07-inference_files/figure-html/unnamed-chunk-28-1.png" width="960" style="display: block; margin: auto;" /></p>
-<p>Suppose the test statistic for a slope coefficient is -0.5. This means that the estimated slope is half of a standard error away from 0, which indicates no relationship. This is not the far and happens quite frequently, about 62% of the time, when the true slope is actually 0.</p>
+<p>Suppose the test statistic for a slope coefficient is -0.5.
+This means that the estimated slope is half of a standard error away from 0, which indicates no relationship.
+This is not the far and happens quite frequently, about 62% of the time, when the true slope is actually 0.</p>
 <p><img src="07-inference_files/figure-html/unnamed-chunk-29-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="making-decisions" class="section level4 hasAnchor" number="7.3.1.4">
 <h4><span class="header-section-number">7.3.1.4</span> Making Decisions<a href="hypothesis-testing.html#making-decisions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>If the p-value is “small”, then we reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span>. Why? A small p-value (by definition) says that if the null hypotheses were indeed true, we are unlikely to have seen such an extreme discrepancy measure (test statistic). We made an assumption that the null is true, and operating under that assumption, we observed something odd and unusual. This makes us reconsider our null hypothesis.</p>
-<p>How small is small enough for a p-value? We will set a threshold <span class="math inline">\(\alpha\)</span> ahead of time, before looking at the data. P-values less than this threshold will be “small enough”. When we talk about errors of the decisions associated with rejecting or not rejecting the null hypothesis, the meaning of <span class="math inline">\(\alpha\)</span> will become more clear.</p>
+<p>If the p-value is “small”, then we reject <span class="math inline">\(H_0\)</span> in favor of <span class="math inline">\(H_A\)</span>.
+Why?
+A small p-value (by definition) says that if the null hypotheses were indeed true, we are unlikely to have seen such an extreme discrepancy measure (test statistic).
+We made an assumption that the null is true, and operating under that assumption, we observed something odd and unusual.
+This makes us reconsider our null hypothesis.</p>
+<p>How small is small enough for a p-value?
+We will set a threshold <span class="math inline">\(\alpha\)</span> ahead of time, before looking at the data.
+P-values less than this threshold will be “small enough”.
+When we talk about errors of the decisions associated with rejecting or not rejecting the null hypothesis, the meaning of <span class="math inline">\(\alpha\)</span> will become more clear.</p>
 </div>
 <div id="procedure-summary" class="section level4 hasAnchor" number="7.3.1.5">
 <h4><span class="header-section-number">7.3.1.5</span> Procedure Summary<a href="hypothesis-testing.html#procedure-summary" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -518,16 +556,29 @@ In words, the null hypothesis <span class="math inline">\(H_0\)</span> describes
 <div id="hypothesis-testing-errors" class="section level3 hasAnchor" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Hypothesis Testing Errors<a href="hypothesis-testing.html#hypothesis-testing-errors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Just as with model predictions, we may make errors when doing hypothesis tests.</p>
-<p>We may decide to reject <span class="math inline">\(H_0\)</span> when it is actually true. We may decide to not reject <span class="math inline">\(H_0\)</span> when it is actually false.</p>
+<p>We may decide to reject <span class="math inline">\(H_0\)</span> when it is actually true.
+We may decide to not reject <span class="math inline">\(H_0\)</span> when it is actually false.</p>
 <p>We give these two types of errors names.</p>
-<p><strong>Type 1 Error</strong> is when you reject <span class="math inline">\(H_0\)</span> when it is actually true. This is a false positive because you are concluding there is a real relationship when there is none. This would happen if one study published that coffee causes cancer in one group of people, but no one else could actually replicate that result since coffee doesn’t actually cause cancer.</p>
-<p><strong>Type 2 Error</strong> is when you don’t reject <span class="math inline">\(H_0\)</span> when it is actually false. This is a false negative because you would conclude there is no real relationship when there is a real relationship. This happens when our sample size is not large enough to detect the real relationship due to the large amount of noise due to sampling variability.</p>
-<p>We care about both of these types of errors. Sometimes we prioritize one over the other. Based on the framework presented, we control the chance of a Type 1 error through the confidence level/p-value threshold we used. In fact, the chance of a Type 1 Error is <span class="math inline">\(\alpha\)</span>,</p>
+<p><strong>Type 1 Error</strong> is when you reject <span class="math inline">\(H_0\)</span> when it is actually true.
+This is a false positive because you are concluding there is a real relationship when there is none.
+This would happen if one study published that coffee causes cancer in one group of people, but no one else could actually replicate that result since coffee doesn’t actually cause cancer.</p>
+<p><strong>Type 2 Error</strong> is when you don’t reject <span class="math inline">\(H_0\)</span> when it is actually false.
+This is a false negative because you would conclude there is no real relationship when there is a real relationship.
+This happens when our sample size is not large enough to detect the real relationship due to the large amount of noise due to sampling variability.</p>
+<p>We care about both of these types of errors.
+Sometimes we prioritize one over the other.
+Based on the framework presented, we control the chance of a Type 1 error through the confidence level/p-value threshold we used.
+In fact, the chance of a Type 1 Error is <span class="math inline">\(\alpha\)</span>,</p>
 <p><span class="math display">\[P(\text{ Type 1 Error }) = P(\text{ Reject }H_0 ~|~H_0\text{ is true} ) =  \alpha\]</span></p>
-<p>Let <span class="math inline">\(\alpha = 0.05\)</span> for a moment. If the null hypothesis (<span class="math inline">\(H_0\)</span>) is actually true, then about 5% of the time, we’d get unusual test statistics due to random sample data. With those samples, we would incorrectly conclude that there was a real relationship.</p>
+<p>Let <span class="math inline">\(\alpha = 0.05\)</span> for a moment.
+If the null hypothesis (<span class="math inline">\(H_0\)</span>) is actually true, then about 5% of the time, we’d get unusual test statistics due to random sample data.
+With those samples, we would incorrectly conclude that there was a real relationship.</p>
 <p>The chance of a Type 2 Error is often notated as <span class="math inline">\(\beta\)</span> (but this is not the same value as the slope),</p>
 <p><span class="math display">\[P(\text{ Type 2 Error }) = P(\text{ Fail to Reject }H_0 ~|~H_0\text{ is false} ) =  \beta\]</span></p>
-<p>We control the chance of a Type 2 error when choosing the sample size. With a larger sample size <span class="math inline">\(n\)</span>, we will be able to more accurately detect real relationships. The <strong>power</strong> of a test, the ability to detect real relationships, is <span class="math inline">\(P(\text{Reject }H_0 ~|~H_0\text{ is false}) = 1 - \beta\)</span>. In order to calculate these two probabilities, we’d need to know the value (or at least a good idea) of the true effect.</p>
+<p>We control the chance of a Type 2 error when choosing the sample size.
+With a larger sample size <span class="math inline">\(n\)</span>, we will be able to more accurately detect real relationships.
+The <strong>power</strong> of a test, the ability to detect real relationships, is <span class="math inline">\(P(\text{Reject }H_0 ~|~H_0\text{ is false}) = 1 - \beta\)</span>.
+In order to calculate these two probabilities, we’d need to know the value (or at least a good idea) of the true effect.</p>
 <p>To recap,</p>
 <ul>
 <li>If we lower <span class="math inline">\(\alpha\)</span>, the threshold we use to determine the p-value is small enough to reject <span class="math inline">\(H_0\)</span>, we can reduce the chance of a Type 1 Error.</li>
@@ -539,9 +590,21 @@ In words, the null hypothesis <span class="math inline">\(H_0\)</span> describes
 <h3><span class="header-section-number">7.3.3</span> Statistical Significance v. Practical Significance<a href="hypothesis-testing.html#statistical-significance-v.-practical-significance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The common underlying question that we ask as Statisticians is “Is there a real relationship in the population?”</p>
 <p>We can use confidence intervals or hypothesis testing to help us answer this question.</p>
-<p>If we note that the no relationship value is NOT in the confidence interval or the p-value is less then <span class="math inline">\(\alpha\)</span>, we can say that there is significant evidence to suggest that there is a real relationship. We can conclude there is a <strong>statistically significant</strong> relationship because the relationship we observed it is unlikely be due only to sampling variabliliy.</p>
-<p>But as we discussed in class, there are two ways you can control the width of a confidence interval. If we increase the sample size <span class="math inline">\(n\)</span>, the standard error decreases and thus decreasing the width of the interval. If we decrease our confidence level (increase <span class="math inline">\(\alpha\)</span>), then we decrease the width of the interval.</p>
-<p>A relationship is <strong>practically significant</strong> if the estimated effect is large enough to impact real life decisions. For example, an Internet company may run a study on website design. Since data on observed clicks is fairly cheap to obtain, their sample size is 1 million people (!). With large data sets, we will conclude almost every relationship is statistically significant because the variability will be incredibly small. That doesn’t mean we should always change the website design. How large of an impact did the size of the font make on user behavior? That depends on the business model. On the other hand, in-person human studies are expensive to run and sample sizes tended to be in the 100’s. There may be a true relationship but we can’t distinguish the “signal” from the “noise” due to the higher levels of sampling variability. While we may not always have statistical significance, the estimated effect is important to consider when designing the next study.</p>
+<p>If we note that the no relationship value is NOT in the confidence interval or the p-value is less then <span class="math inline">\(\alpha\)</span>, we can say that there is significant evidence to suggest that there is a real relationship.
+We can conclude there is a <strong>statistically significant</strong> relationship because the relationship we observed it is unlikely be due only to sampling variabliliy.</p>
+<p>But as we discussed in class, there are two ways you can control the width of a confidence interval.
+If we increase the sample size <span class="math inline">\(n\)</span>, the standard error decreases and thus decreasing the width of the interval.
+If we decrease our confidence level (increase <span class="math inline">\(\alpha\)</span>), then we decrease the width of the interval.</p>
+<p>A relationship is <strong>practically significant</strong> if the estimated effect is large enough to impact real life decisions.
+For example, an Internet company may run a study on website design.
+Since data on observed clicks is fairly cheap to obtain, their sample size is 1 million people (!).
+With large data sets, we will conclude almost every relationship is statistically significant because the variability will be incredibly small.
+That doesn’t mean we should always change the website design.
+How large of an impact did the size of the font make on user behavior?
+That depends on the business model.
+On the other hand, in-person human studies are expensive to run and sample sizes tended to be in the 100’s.
+There may be a true relationship but we can’t distinguish the “signal” from the “noise” due to the higher levels of sampling variability.
+While we may not always have statistical significance, the estimated effect is important to consider when designing the next study.</p>
 <p>Hypothesis tests are useful in determining statistical significance (Answering: “Is there a relationship?”).</p>
 <p>Confidence intervals are more useful in determining practical significance (Answering: “What is the relationship?”)</p>
 <p><strong>Recommended Readings about P-values and Limitations of Hypothesis Testing</strong>:</p>
@@ -550,6 +613,159 @@ In words, the null hypothesis <span class="math inline">\(H_0\)</span> describes
 <li><a href="https://www.tandfonline.com/doi/full/10.1080/00031305.2019.1583913">Moving to a World Beyond “p &lt; 0.05”</a></li>
 <li><a href="https://www.nature.com/news/scientific-method-statistical-errors-1.14700">Scientific method: Statistical errors</a></li>
 </ul>
+</div>
+<div id="f-tests" class="section level3 hasAnchor" number="7.3.4">
+<h3><span class="header-section-number">7.3.4</span> Hypotheses involving more than one coefficient<a href="hypothesis-testing.html#f-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far we’ve considered hypothesis tests involving a <em>single</em> regression coefficient.
+However, when we are interested in testing whether the relationship between our outcome and <em>more than one</em> predictor is <em>simultaneously</em> statistically significant, we need a re-frame our hypothesis tests in terms of multiple coefficients.</p>
+<p>Suppose, for example, we are interested in the association between the sepal length of an iris and the species type of that iris (setosa, versicolor, or virginica).
+We can fit a simple linear regression model with species type as a multi-level categorical predictor, as follows:</p>
+<p><span class="math display">\[
+E[\text{Sepal.Length} \mid \text{Species}] = \beta_0 + \beta_1 \text{Versicolor} + \beta_2 \text{Virginica}
+\]</span></p>
+<p>Note that <em>neither</em> <span class="math inline">\(\beta_1\)</span> nor <span class="math inline">\(\beta_2\)</span> alone correspond to the relationship between species type and sepal length!
+They correspond to the difference in expected sepal length, comparing each of those species to the reference group (the setosa species) separately.</p>
+<p>If species and sepal length were truly unrelated, the null hypothesis would involve both of these coefficients.
+We can write our null and alternative hypotheses as:</p>
+<p><span class="math display">\[
+H_0: \beta_1, \beta_2 = 0 \quad \text{vs.} \quad H_1: \text{At least one of } \beta_1, \beta_2 \neq 0
+\]</span></p>
+<p>Here, the null hypothesis described the situation of “no relationship” because it hypothesizes that the differences in outcome between <em>all</em> groups defined by out multi-level categorical predictor are truly <span class="math inline">\(0\)</span>.
+The alternative posits that there is <em>some</em> difference in outcome between at least one of the groups.</p>
+<p>A null hypothesis where <em>more than one</em> coefficient is set equal to zero requires what is referred to as an <strong>F-test</strong>.</p>
+<div id="nested-models" class="section level4 hasAnchor" number="7.3.4.1">
+<h4><span class="header-section-number">7.3.4.1</span> Nested Models<a href="hypothesis-testing.html#nested-models" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Nested models are one such case where F-tests can be used to directly compare the larger model and the smaller <strong>nested model</strong>.
+If you’ve removed one or more variables from a model, the result is a smaller nested model.
+An example of two models that are nested would be:</p>
+<p><span class="math display">\[
+E[Y \mid A, B, C] = \beta_0 + \beta_1 A + \beta_2 B + \beta_3 C
+\]</span> and the smaller model</p>
+<p><span class="math display">\[
+E[Y \mid B] = \beta_0 + \beta_1 A
+\]</span></p>
+<p>The F-test that compares the larger model to the smaller model in this case determines whether or not the relationship between <span class="math inline">\(Y\)</span> and <em>both</em> <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> is statistically significant, adjusting for <span class="math inline">\(A\)</span>.
+In symbols, our null and alternative hypotheses comparing these models can be written as</p>
+<p><span class="math display">\[
+H_0: \beta_2, \beta_3 = 0 \quad \text{vs.} \quad H_A: \text{At least one of }\beta_2, \beta_3 \neq 0
+\]</span></p>
+<p>The test statistic for this nested test compares the smaller model to the larger, full model.
+For a linear regression model, this is sometimes referred to as a <strong>nested</strong> F-test, and the test statistic is a ratio comparing the sum of squared residuals of either model (F <span class="math inline">\(\sim\)</span> 1 if <span class="math inline">\(H_0\)</span> is true).
+For logistic regression, this nested test is called a <strong>likelihood ratio test</strong> and the test statistic is a ratio comparing the likelihood or “goodness” of a model (<span class="math inline">\(\chi \sim 1\)</span> if <span class="math inline">\(H_0\)</span> is true).
+The larger the test statistic, the bigger the difference is between the small modeler model and the larger model.</p>
+<p>For this reason, F-tests are sometimes used as a metric for doing model selection/comparison.
+More details on this application of F-tests are given in Section <a href="model-selection.html#model-selection">7.4</a>.</p>
+</div>
+<div id="f-tests-in-r" class="section level4 hasAnchor" number="7.3.4.2">
+<h4><span class="header-section-number">7.3.4.2</span> F-Tests in R<a href="hypothesis-testing.html#f-tests-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>There are two primary ways to conduct F-tests in R that we will cover in this course.
+The first you already know how to do (surprise!), and the second will use the <code>anova</code> function.
+If you are familiar with the term “Analysis of Variance”, you may have heard of the <code>anova</code> function already!
+In this case, we will use the function primarily because it makes it quite simple to conduct nested F-tests.</p>
+<p>Recall our example from above, where we were interested in the relationship between sepal length of irises and species type.
+Our null hypothesis was that the coefficients for both the versicolor species, <span class="math inline">\(\beta_1\)</span>, <em>and</em> the virginica species, <span class="math inline">\(\beta_2\)</span> were equal to zero.
+Note that if our null hypothesis is <em>true</em>, our linear regression model simplifies to:</p>
+<p><span class="math display">\[
+\begin{aligned}
+E[\text{Sepal.Length} \mid \text{Species}] &amp; = \beta_0 + \beta_1 \text{Versicolor} + \beta_2 \text{Virginica} \\
+&amp; = \beta_0 + \beta_1 * 0 + \beta_2 * 0 \\
+&amp; = \beta_0
+\end{aligned}
+\]</span></p>
+<p>The above model is sometimes referred to as a “constant-only” or “intercept-only” model.
+The summary output from <code>lm</code> (or <code>glm</code>, if you were doing logistic regression) provides an <strong>overall</strong> F-statistic and corresponding p-value for the hypothesis test where <span class="math inline">\(H_0\)</span> is such that <em>all regression coefficients</em> in your model are equal to zero.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="hypothesis-testing.html#cb277-1" tabindex="-1"></a><span class="fu">data</span>(iris) </span>
+<span id="cb277-2"><a href="hypothesis-testing.html#cb277-2" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> iris, Sepal.Length <span class="sc">~</span> Species) </span>
+<span id="cb277-3"><a href="hypothesis-testing.html#cb277-3" tabindex="-1"></a><span class="fu">summary</span>(mod)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Sepal.Length ~ Species, data = iris)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.6880 -0.3285 -0.0060  0.3120  1.3120 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)         5.0060     0.0728  68.762  &lt; 2e-16 ***
+## Speciesversicolor   0.9300     0.1030   9.033 8.77e-16 ***
+## Speciesvirginica    1.5820     0.1030  15.366  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5148 on 147 degrees of freedom
+## Multiple R-squared:  0.6187, Adjusted R-squared:  0.6135 
+## F-statistic: 119.3 on 2 and 147 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>From the output above, the F-statistic is 119.3, with a corresponding p-value <span class="math inline">\(&lt; 2.2 \times 10^{-16}\)</span>.
+From this hypothesis test, we would conclude that there <em>is</em> a statistically significant association between species and sepal length of irises, at a 0.05 significant level.</p>
+<p>If the null hypothesis involves more than a single regression coefficient being set to zero, <em>and</em> there are additional covariates in our model (such that the “null” model is not an intercept-only model), we need to use the <code>anova</code> function in R to conduct our F-test.</p>
+<p><strong>Linear Regression Example:</strong> Below we fit a larger linear regression model of house price using living area, the number of bedrooms, and the number of bathrooms, and compare it to a model of house price using only living area as a predictor:</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="hypothesis-testing.html#cb279-1" tabindex="-1"></a>homes <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(<span class="st">&quot;http://sites.williams.edu/rdeveaux/files/2014/09/Saratoga.txt&quot;</span>)</span>
+<span id="cb279-2"><a href="hypothesis-testing.html#cb279-2" tabindex="-1"></a></span>
+<span id="cb279-3"><a href="hypothesis-testing.html#cb279-3" tabindex="-1"></a>mod_homes <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span></span>
+<span id="cb279-4"><a href="hypothesis-testing.html#cb279-4" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> Living.Area))</span>
+<span id="cb279-5"><a href="hypothesis-testing.html#cb279-5" tabindex="-1"></a></span>
+<span id="cb279-6"><a href="hypothesis-testing.html#cb279-6" tabindex="-1"></a>mod_homes_full <span class="ot">&lt;-</span> homes <span class="sc">%&gt;%</span></span>
+<span id="cb279-7"><a href="hypothesis-testing.html#cb279-7" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(Price <span class="sc">~</span> Living.Area <span class="sc">+</span> Bedrooms <span class="sc">+</span> Bathrooms))</span>
+<span id="cb279-8"><a href="hypothesis-testing.html#cb279-8" tabindex="-1"></a></span>
+<span id="cb279-9"><a href="hypothesis-testing.html#cb279-9" tabindex="-1"></a><span class="fu">anova</span>(mod_homes,mod_homes_full)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: Price ~ Living.Area
+## Model 2: Price ~ Living.Area + Bedrooms + Bathrooms
+##   Res.Df        RSS Df  Sum of Sq      F    Pr(&gt;F)    
+## 1   1726 8.2424e+12                                   
+## 2   1724 7.8671e+12  2 3.7534e+11 41.126 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Notice that we get the smaller nested model by removing <code>Bedrooms</code> and <code>Bathrooms</code> from the larger model.
+This means that they are nested and can be compared using the nested F-test.</p>
+<ul>
+<li><p>What are <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>, in words?
+<span class="math inline">\(H_0\)</span>: The number of Bathrooms and Bedrooms does not have an impact on average price after accounting for living area.
+<span class="math inline">\(H_A\)</span>: The number of Bathrooms or Bedrooms does have an impact on average price after accounting for living area.</p></li>
+<li><p>What is the test statistic?
+The F = 41.126 is the test statistic.
+Unlike the test for slopes, this test statistic does not have a nice interpretation.
+It seems quite far from 1 (which is what F should be close to if <span class="math inline">\(H_0\)</span> were true), but there are no rules for “how far is far”.</p></li>
+<li><p>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?
+The p-value of <span class="math inline">\(&lt; 2.2*10^{-16}\)</span> is well below the threshold suggesting that it is very unlikely to have observed a difference between these two models as big as we did if the smaller model were true.
+Thus, we reject <span class="math inline">\(H_0\)</span> in favor of the larger model.</p></li>
+</ul>
+<p><strong>Logistic Regression Example:</strong> Below we fit a larger logistic regression model of whether a movie made a profit (response) based on whether it is a history, drama, comedy, or a family film, compared to a model with only history as a predictor:</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="hypothesis-testing.html#cb281-1" tabindex="-1"></a>movies <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://www.dropbox.com/s/73ad25v1epe0vpd/tmdb_movies.csv?dl=1&quot;</span>)</span>
+<span id="cb281-2"><a href="hypothesis-testing.html#cb281-2" tabindex="-1"></a></span>
+<span id="cb281-3"><a href="hypothesis-testing.html#cb281-3" tabindex="-1"></a>mod_movies <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span></span>
+<span id="cb281-4"><a href="hypothesis-testing.html#cb281-4" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">glm</span>( profit <span class="sc">~</span> History, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>))</span>
+<span id="cb281-5"><a href="hypothesis-testing.html#cb281-5" tabindex="-1"></a></span>
+<span id="cb281-6"><a href="hypothesis-testing.html#cb281-6" tabindex="-1"></a>mod_movies_full <span class="ot">&lt;-</span> movies <span class="sc">%&gt;%</span></span>
+<span id="cb281-7"><a href="hypothesis-testing.html#cb281-7" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">glm</span>( profit <span class="sc">~</span> History <span class="sc">+</span> Drama <span class="sc">+</span> Comedy <span class="sc">+</span> Family, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>))</span>
+<span id="cb281-8"><a href="hypothesis-testing.html#cb281-8" tabindex="-1"></a></span>
+<span id="cb281-9"><a href="hypothesis-testing.html#cb281-9" tabindex="-1"></a><span class="fu">anova</span>(mod_movies,mod_movies_full,<span class="at">test=</span><span class="st">&#39;LRT&#39;</span>) <span class="co">#test=&#39;LRT&#39; is needed for logistic models</span></span></code></pre></div>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: profit ~ History
+## Model 2: profit ~ History + Drama + Comedy + Family
+##   Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
+## 1      4801     6630.3                          
+## 2      4798     6555.3  3   74.941 3.729e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Notice that we get the smaller nested model by removing <code>Drama</code>, <code>Comedy</code>, and <code>Family</code> from the larger model.
+This means that they are nested and can be compared using the nested test.</p>
+<ul>
+<li><p>What are <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_A\)</span>?
+<span class="math inline">\(H_0\)</span>: Indicators of Drama, Comedy, and Family do not have an impact on whether a movie makes a profit, after accounting for an indicator of History.
+<span class="math inline">\(H_A\)</span>: Indicators of Drama, Comedy, or Family do have an impact on whether a movie makes a profit, after accounting for an indicator of History.</p></li>
+<li><p>What is the test statistic?
+The Deviance = 74.941 is the test statistic.
+Unlike the test for slopes, this test statistic does not have a nice interpretation.
+It seems quite far from 1 (which is it should be close to if <span class="math inline">\(H_0\)</span> were true), but there are no rules for “how far is far”.</p></li>
+<li><p>For a threshold <span class="math inline">\(\alpha = 0.05\)</span>, what is the decision regarding <span class="math inline">\(H_0\)</span>?
+The p-value of <span class="math inline">\(3.729 * 10^{-16}\)</span> is well below the threshold suggesting that it is very unlikely to have observed a difference between these two models as big as we did if the smaller model were true.
+Thus, we reject <span class="math inline">\(H_0\)</span> in favor of the larger model.</p></li>
+</ul>
+</div>
 </div>
 </div>
             </section>

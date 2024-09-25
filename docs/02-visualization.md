@@ -717,11 +717,7 @@ NHANES %>%
 
 ``` r
 ceo %>%
-  summarize(
-    diff(range(salary)), 
-    IQR(salary), 
-    sd(salary), 
-    var(salary))
+    summarize(diff(range(salary)), IQR(salary), sd(salary), var(salary))
 ```
 
 ```
@@ -752,7 +748,7 @@ sum(x > mean(x) - sd(x) & x < mean(x) + sd(x))/length(x)
 ```
 
 ```
-## [1] 0.6893333
+## [1] 0.6746667
 ```
 
 So with this data set, about 68% of the data values fall within 1 SD of the mean.

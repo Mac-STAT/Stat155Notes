@@ -345,6 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-procedure"><i class="fa fa-check"></i><b>7.3.1</b> Hypothesis Test Procedure</a></li>
 <li class="chapter" data-level="7.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-errors"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesis Testing Errors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#statistical-significance-v.-practical-significance"><i class="fa fa-check"></i><b>7.3.3</b> Statistical Significance v. Practical Significance</a></li>
+<li class="chapter" data-level="7.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#f-tests"><i class="fa fa-check"></i><b>7.3.4</b> Hypotheses involving more than one coefficient</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>7.4</b> Model Selection</a>
 <ul>
@@ -412,7 +413,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="statistical-inference" class="section level1 hasAnchor" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Statistical Inference<a href="statistical-inference.html#statistical-inference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Let’s remember our goal of “turning data into information.” Based on a sample data set, we want to be able to say something about the larger population of interest or the general phenomena (not just the data you have collected). If our data is representative of the general population/phenomena, then our sample estimates provide some information but we also need to account for the uncertainty of our estimates due to randomness in the data collection process. Putting our estimates <em>in the context of uncertainty &amp; random variability</em> is called <strong>statistical inference</strong>. In statistical inference, we care about using sample data to make statements about “truths” in the larger population.</p>
+<p>Let’s remember our goal of “turning data into information.” Based on a sample data set, we want to be able to say something about the larger population of interest or the general phenomena (not just the data you have collected).
+If our data is representative of the general population/phenomena, then our sample estimates provide some information but we also need to account for the uncertainty of our estimates due to randomness in the data collection process.
+Putting our estimates <em>in the context of uncertainty &amp; random variability</em> is called <strong>statistical inference</strong>.
+In statistical inference, we care about using sample data to make statements about “truths” in the larger population.</p>
 <ul>
 <li>To make causal inferences in the sample, we need to account for all possible confounding variables, or we need to randomize the “treatment” and assure there are no other possible reasons for an observed effect.</li>
 <li>To generalize to a larger population, we need the sample to be representative of the larger population. Ideally, that sample would be randomly drawn from the population. If we actually have a census in that we have data on country, state, or county-level, then we can consider the observed data as a “snapshot in time”. There are random processes that govern how things behave over time, and we have just observed one period in time.</li>
@@ -424,7 +428,9 @@ What is our population of interest? What population could we
 generalize to?
 </p>
 </div>
-<p>Based on this sample of 100 flights, we can estimate the difference in the mean arrival delay times between flights in the winter compared to the summer. The fit linear regression model suggests that flights in the winter have on average are about half a minute less delayed than summer flights. Do you think that is true for all flights?</p>
+<p>Based on this sample of 100 flights, we can estimate the difference in the mean arrival delay times between flights in the winter compared to the summer.
+The fit linear regression model suggests that flights in the winter have on average are about half a minute less delayed than summer flights.
+Do you think that is true for all flights?</p>
 <p>If we had a different sample of 100 flights, how much different might that estimate be?</p>
 <div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="statistical-inference.html#cb234-1" tabindex="-1"></a>lm.delay <span class="ot">&lt;-</span> flights_samp <span class="sc">%&gt;%</span></span>
 <span id="cb234-2"><a href="statistical-inference.html#cb234-2" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(arr_delay <span class="sc">~</span> season))</span>
@@ -436,7 +442,9 @@ generalize to?
 ##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 (Intercept)     6.69       4.87    1.37     0.172
 ## 2 seasonwinter   -0.655      6.82   -0.0960   0.924</code></pre>
-<p>You’ve had a taste of random variation in Chapter 5 and how that plays a role in the conclusions we can draw. In this chapter, we will formalize two techniques that we use to do perform statistical inference: confidence intervals and hypothesis tests. First, we need to formalize the idea of random variation.</p>
+<p>You’ve had a taste of random variation in Chapter 5 and how that plays a role in the conclusions we can draw.
+In this chapter, we will formalize two techniques that we use to do perform statistical inference: confidence intervals and hypothesis tests.
+First, we need to formalize the idea of random variation.</p>
 </div>
             </section>
 

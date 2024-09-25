@@ -345,6 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.1" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-test-procedure"><i class="fa fa-check"></i><b>7.3.1</b> Hypothesis Test Procedure</a></li>
 <li class="chapter" data-level="7.3.2" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-errors"><i class="fa fa-check"></i><b>7.3.2</b> Hypothesis Testing Errors</a></li>
 <li class="chapter" data-level="7.3.3" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#statistical-significance-v.-practical-significance"><i class="fa fa-check"></i><b>7.3.3</b> Statistical Significance v. Practical Significance</a></li>
+<li class="chapter" data-level="7.3.4" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#f-tests"><i class="fa fa-check"></i><b>7.3.4</b> Hypotheses involving more than one coefficient</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="model-selection.html"><a href="model-selection.html"><i class="fa fa-check"></i><b>7.4</b> Model Selection</a>
 <ul>
@@ -412,12 +413,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="confidence-intervals" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Confidence Intervals<a href="confidence-intervals.html#confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <strong>confidence interval</strong> (also known as an interval estimate) is an interval of plausible values of the unknown population parameter of interest based on randomly generated sample data. We construct these intervals in a way so that we can know how “good” of a guess the interval is of the true population parameter value. The interval computed from one sample may include or contain the true value of the parameter but it may not.</p>
+<p>A <strong>confidence interval</strong> (also known as an interval estimate) is an interval of plausible values of the unknown population parameter of interest based on randomly generated sample data.
+We construct these intervals in a way so that we can know how “good” of a guess the interval is of the true population parameter value.
+The interval computed from one sample may include or contain the true value of the parameter but it may not.</p>
 <p>Above, we used the standard error (SE) to create an interval by going up 2 SE’s and going down SE’s from the estimate.</p>
 <p><span class="math display">\[\text{Estimate }\pm 2*SE(\text{Estimate}) = (\text{Estimate} - 2*\text{SE}, \text{Estimate} + 2*\text{SE})\]</span></p>
 <div id="properties-of-confidence-intervals" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Properties of Confidence Intervals<a href="confidence-intervals.html#properties-of-confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>So, how “good” of a guess is this? If our sampling distribution is roughly Normal (unimodal, symmetric), then we know that the sample estimate in about 95% of the random samples should be within 2 standard deviations of the true population parameter.</p>
+<p>So, how “good” of a guess is this?
+If our sampling distribution is roughly Normal (unimodal, symmetric), then we know that the sample estimate in about 95% of the random samples should be within 2 standard deviations of the true population parameter.</p>
 <p><img src="07-inference_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>You can either trust the mathematical theory or we can simulate the sampling distribution by drawing from our population because in this rare circumstance, we have access to all flights in the population.</p>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="confidence-intervals.html#cb240-1" tabindex="-1"></a>sim_data <span class="ot">&lt;-</span> mosaic<span class="sc">::</span><span class="fu">do</span>(<span class="dv">500</span>)<span class="sc">*</span>( </span>
@@ -437,32 +441,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb240-15"><a href="confidence-intervals.html#cb240-15" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&#39;Estimates of seasonwinter&#39;</span>,<span class="at">title=</span><span class="st">&#39;Sampling Distribution with lines indicating middle 95%&#39;</span>) <span class="sc">+</span> </span>
 <span id="cb240-16"><a href="confidence-intervals.html#cb240-16" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="07-inference_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Based on the simulation of drawing from the population, we see that 95% of the samples have estimated slopes between -19.1 and 13.9. If we take the population values (center of this distribution) and add and subtract 2 standard deviations, then we get -20.1 and 14.2.</p>
+<p>Based on the simulation of drawing from the population, we see that 95% of the samples have estimated slopes between -19.1 and 13.9.
+If we take the population values (center of this distribution) and add and subtract 2 standard deviations, then we get -20.1 and 14.2.</p>
 <p>So if we take each 1000 simulated random samples from the population and create an interval estimate by adding and subtracting 2 standard errors (estimates of the standard deviation), we can check to see how often those intervals contain the true population value at the center of the distribution.</p>
-<p>Let’s look at the confidence intervals for the first 100 random samples from the population. The dashed line indicates the true population value of the slope coefficient (yes, we are in the rare circumstance in which we have access to the true population). We’ve created one line for each interval and colored the according to whether or not the interval covers or contains the true population value. In the first 100 intervals, we see that 95% of the intervals contain the true population value and 5% do not. In the 500 random samples generated, close to 95% of them have intervals that contain the true population parameter. When we get one of these samples, we never know if we are one of the 95% or one of the 5%.</p>
+<p>Let’s look at the confidence intervals for the first 100 random samples from the population.
+The dashed line indicates the true population value of the slope coefficient (yes, we are in the rare circumstance in which we have access to the true population).
+We’ve created one line for each interval and colored the according to whether or not the interval covers or contains the true population value.
+In the first 100 intervals, we see that 95% of the intervals contain the true population value and 5% do not.
+In the 500 random samples generated, close to 95% of them have intervals that contain the true population parameter.
+When we get one of these samples, we never know if we are one of the 95% or one of the 5%.</p>
 <p><img src="07-inference_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre><code>## # A tibble: 2 × 3
 ##   SlopeCover     n  prop
 ##   &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt;
 ## 1 No            24 0.048
 ## 2 Yes          476 0.952</code></pre>
-<p>This makes sense given our <strong>interval construction process</strong>. If the estimate is within 2 standard errors of the true population parameter (between the dashed lines below), then the interval will contain the true population parameter. If the estimate is not within 2 standard errors of the true population parameter (outside the dashed lines below), then the interval will NOT contain the true population parameter.</p>
+<p>This makes sense given our <strong>interval construction process</strong>.
+If the estimate is within 2 standard errors of the true population parameter (between the dashed lines below), then the interval will contain the true population parameter.
+If the estimate is not within 2 standard errors of the true population parameter (outside the dashed lines below), then the interval will NOT contain the true population parameter.</p>
 <p><img src="07-inference_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="interval-construction-process" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> Interval Construction Process<a href="confidence-intervals.html#interval-construction-process" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In the intervals we constructed above, we used 95% confidence intervals. That 95% is the confidence level of the interval estimate.</p>
-<p>The <strong>confidence level</strong> represents the proportion of possible random samples and thus confidence intervals that contain the true value of the unknown population parameter. Typically, the confidence level is abstractly represented by <span class="math inline">\((1-\alpha)\)</span> such that if <span class="math inline">\(\alpha = 0.05\)</span>, then the confidence level is 95% or 0.95.</p>
-<p>What is <span class="math inline">\(\alpha\)</span>? We will define <span class="math inline">\(\alpha\)</span> when we get to hypothesis testing, but for now, we will describe <span class="math inline">\(\alpha\)</span> as an error probability. We want the error probability to be low and we want the confidence level, <span class="math inline">\((1-\alpha)\)</span>, to be high.</p>
-<p>We will now formally discuss two ways of creating confidence intervals. One was have already introduced, which is the classical approach, and the other approach uses bootstrapping.</p>
+<p>In the intervals we constructed above, we used 95% confidence intervals.
+That 95% is the confidence level of the interval estimate.</p>
+<p>The <strong>confidence level</strong> represents the proportion of possible random samples and thus confidence intervals that contain the true value of the unknown population parameter.
+Typically, the confidence level is abstractly represented by <span class="math inline">\((1-\alpha)\)</span> such that if <span class="math inline">\(\alpha = 0.05\)</span>, then the confidence level is 95% or 0.95.</p>
+<p>What is <span class="math inline">\(\alpha\)</span>?
+We will define <span class="math inline">\(\alpha\)</span> when we get to hypothesis testing, but for now, we will describe <span class="math inline">\(\alpha\)</span> as an error probability.
+We want the error probability to be low and we want the confidence level, <span class="math inline">\((1-\alpha)\)</span>, to be high.</p>
+<p>We will now formally discuss two ways of creating confidence intervals.
+One was have already introduced, which is the classical approach, and the other approach uses bootstrapping.</p>
 <div id="via-classical-theory" class="section level4 hasAnchor" number="7.2.2.1">
 <h4><span class="header-section-number">7.2.2.1</span> Via Classical Theory<a href="confidence-intervals.html#via-classical-theory" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If we can use probability theory to approximate the sampling distribution, then we can create a confidence interval by taking taking our estimate and adding and subtracting a margin of error:</p>
 <p><span class="math display">\[\text{Estimate }\pm \text{ Margin of Error}\]</span></p>
 <p>The margin of error is typically constructed using z-scores from the sampling distribution (such as <span class="math inline">\(z^* = 2\)</span> that corresponds to a 95% confidence interval or <span class="math inline">\(\alpha = 0.05\)</span>) and an estimate of the standard deviation of the estimate, called a <strong>standard error</strong>.</p>
 <p>Once we have an estimate of the standard deviation (through a formula or R output) and an approximate sampling distribution, we can create the interval estimate:</p>
-<p><span class="math display">\[\text{Estimate }\pm z^* *SE(\text{Estimate})\]</span>
-With linear and logistic regression models, we can have R create the confidence intervals for the slope coefficients.</p>
+<p><span class="math display">\[\text{Estimate }\pm z^* *SE(\text{Estimate})\]</span> With linear and logistic regression models, we can have R create the confidence intervals for the slope coefficients.</p>
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="confidence-intervals.html#cb242-1" tabindex="-1"></a><span class="co"># Classical Confidence Interval for Models</span></span>
 <span id="cb242-2"><a href="confidence-intervals.html#cb242-2" tabindex="-1"></a><span class="fu">confint</span>(lm.delay) <span class="co">#default level is 0.95</span></span></code></pre></div>
 <pre><code>##                   2.5 %   97.5 %
@@ -486,7 +502,8 @@ With linear and logistic regression models, we can have R create the confidence 
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="confidence-intervals.html#cb252-1" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.1</span> </span>
 <span id="cb252-2"><a href="confidence-intervals.html#cb252-2" tabindex="-1"></a><span class="fu">abs</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)) <span class="co">#z* for 90% CI</span></span></code></pre></div>
 <pre><code>## [1] 1.644854</code></pre>
-<p>The fact that confidence intervals can be created as above is rooted in probability theory. If you would like to see how the form above is derived, see the Math Box below.</p>
+<p>The fact that confidence intervals can be created as above is rooted in probability theory.
+If you would like to see how the form above is derived, see the Math Box below.</p>
 <div class="mathbox">
 <p>
 (Optional) Deriving confidence intervals from theory
@@ -538,8 +555,10 @@ distribution is appropriate for logistic regression coefficients.
 <div id="via-bootstrapping" class="section level4 hasAnchor" number="7.2.2.2">
 <h4><span class="header-section-number">7.2.2.2</span> Via Bootstrapping<a href="confidence-intervals.html#via-bootstrapping" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In order to quantify the sampling variability, we can treat our sample as our “fake population” and generate repeated samples from this “population” using the technique of bootstrapping.</p>
-<p>Once we have a distribution of sample statistics based on the generated data sets, we’ll create a confidence interval by finding the <span class="math inline">\(\alpha/2\)</span>th percentile and the <span class="math inline">\((1-\alpha/2)\)</span>th percentile for our lower and upper bounds. For example, for a 95% bootstrap confidence interval, <span class="math inline">\(\alpha = 0.05\)</span> and you would find the values that are the 2.5th and 97.5th percentiles.</p>
-<p>Let’s return to the example of predicting arrival delays as a function of season. We bootstrapped the data already, but here is the code we used.</p>
+<p>Once we have a distribution of sample statistics based on the generated data sets, we’ll create a confidence interval by finding the <span class="math inline">\(\alpha/2\)</span>th percentile and the <span class="math inline">\((1-\alpha/2)\)</span>th percentile for our lower and upper bounds.
+For example, for a 95% bootstrap confidence interval, <span class="math inline">\(\alpha = 0.05\)</span> and you would find the values that are the 2.5th and 97.5th percentiles.</p>
+<p>Let’s return to the example of predicting arrival delays as a function of season.
+We bootstrapped the data already, but here is the code we used.</p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="confidence-intervals.html#cb254-1" tabindex="-1"></a>boot_data <span class="ot">&lt;-</span> mosaic<span class="sc">::</span><span class="fu">do</span>(<span class="dv">1000</span>)<span class="sc">*</span>( </span>
 <span id="cb254-2"><a href="confidence-intervals.html#cb254-2" tabindex="-1"></a>    flights_samp <span class="sc">%&gt;%</span> <span class="co"># Start with the SAMPLE (not the FULL POPULATION)</span></span>
 <span id="cb254-3"><a href="confidence-intervals.html#cb254-3" tabindex="-1"></a>      <span class="fu">sample_frac</span>(<span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="co"># Generate by resampling with replacement</span></span>
@@ -557,8 +576,10 @@ distribution is appropriate for logistic regression coefficients.
 </div>
 <div id="probability-theory-vs.-bootstrapping" class="section level4 hasAnchor" number="7.2.2.3">
 <h4><span class="header-section-number">7.2.2.3</span> Probability Theory vs. Bootstrapping<a href="confidence-intervals.html#probability-theory-vs.-bootstrapping" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>In the modern age, computing power allows us to perform bootstrapping easily to create confidence intervals. Before computing was as powerful as it is today, scientists needed mathematical theory to provide simple formulas for confidence intervals.</p>
-<p>If certain assumptions hold, the mathematical theory proves to be just as accurate and less computationally-intensive than bootstrapping. Many scientists using statistics right now learned the theory because when they learned statistics, computers were not powerful enough to handle techniques such as bootstrapping.</p>
+<p>In the modern age, computing power allows us to perform bootstrapping easily to create confidence intervals.
+Before computing was as powerful as it is today, scientists needed mathematical theory to provide simple formulas for confidence intervals.</p>
+<p>If certain assumptions hold, the mathematical theory proves to be just as accurate and less computationally-intensive than bootstrapping.
+Many scientists using statistics right now learned the theory because when they learned statistics, computers were not powerful enough to handle techniques such as bootstrapping.</p>
 <p><strong>Why do we teach both the mathematical theory and bootstrapping?</strong> You will encounter both types of techniques in your fields, and you’ll need to have an understanding of these techniques until modern computational techniques become more widely used.</p>
 </div>
 </div>
@@ -590,7 +611,10 @@ interpretation?
 <p>To demonstrate code and interpretations, we’ll discuss examples of confidence intervals based on a few more models.</p>
 <div id="linear-regression-model" class="section level4 hasAnchor" number="7.2.4.1">
 <h4><span class="header-section-number">7.2.4.1</span> Linear Regression Model<a href="confidence-intervals.html#linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Using the flight data, how well can the departure delay predict the arrival delay? What is the effect of departing 1 more minute later? Does that correspond to 1 minute later in arrival on average? Let’s look at the estimated slope between departure and arrival delays for the sample of 100 flights from NYC.</p>
+<p>Using the flight data, how well can the departure delay predict the arrival delay?
+What is the effect of departing 1 more minute later?
+Does that correspond to 1 minute later in arrival on average?
+Let’s look at the estimated slope between departure and arrival delays for the sample of 100 flights from NYC.</p>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="confidence-intervals.html#cb257-1" tabindex="-1"></a>lm.delay2 <span class="ot">&lt;-</span> flights_samp <span class="sc">%&gt;%</span></span>
 <span id="cb257-2"><a href="confidence-intervals.html#cb257-2" tabindex="-1"></a>  <span class="fu">with</span>(<span class="fu">lm</span>(arr_delay <span class="sc">~</span> dep_delay))</span>
 <span id="cb257-3"><a href="confidence-intervals.html#cb257-3" tabindex="-1"></a>       </span>
@@ -619,11 +643,13 @@ interpretation?
 <span id="cb261-10"><a href="confidence-intervals.html#cb261-10" tabindex="-1"></a>    <span class="at">upper =</span> <span class="fu">quantile</span>(dep_delay, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##       lower    upper
 ## 1 0.9259392 1.189972</code></pre>
-<p><strong>Interpretation:</strong> If the flight’s departure is delayed an additional minute, then I’m 95% confident that we’d expect the arrival delay to be increased by 0.88 to 1.12 minutes, on average. This makes sense in this context since leaving a minute later on average leads to arriving a minute later give or take tenths of a second.</p>
+<p><strong>Interpretation:</strong> If the flight’s departure is delayed an additional minute, then I’m 95% confident that we’d expect the arrival delay to be increased by 0.88 to 1.12 minutes, on average.
+This makes sense in this context since leaving a minute later on average leads to arriving a minute later give or take tenths of a second.</p>
 </div>
 <div id="logistic-regression-model" class="section level4 hasAnchor" number="7.2.4.2">
 <h4><span class="header-section-number">7.2.4.2</span> Logistic Regression Model<a href="confidence-intervals.html#logistic-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Are the same proportion of afternoon flights in the winter and the summer? Let’s fit a logistic regression model and see what our sample of 100 flights indicates.</p>
+<p>Are the same proportion of afternoon flights in the winter and the summer?
+Let’s fit a logistic regression model and see what our sample of 100 flights indicates.</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="confidence-intervals.html#cb263-1" tabindex="-1"></a>flights_samp <span class="ot">&lt;-</span> flights_samp <span class="sc">%&gt;%</span></span>
 <span id="cb263-2"><a href="confidence-intervals.html#cb263-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">afternoon =</span> flights_samp<span class="sc">$</span>day_hour <span class="sc">==</span> <span class="st">&#39;afternoon&#39;</span>)</span>
 <span id="cb263-3"><a href="confidence-intervals.html#cb263-3" tabindex="-1"></a></span>
@@ -657,8 +683,11 @@ interpretation?
 <span id="cb267-12"><a href="confidence-intervals.html#cb267-12" tabindex="-1"></a>    <span class="at">upper =</span> <span class="fu">quantile</span>(seasonwinter, <span class="fl">0.975</span>))</span></code></pre></div>
 <pre><code>##        lower   upper
 ## 1 -0.2719337 1.23918</code></pre>
-<p>For logistic regression, we exponentiate the slopes to get an more interpretable value, <strong>the odds ratio</strong>. The tricky thing is that we need to exponentiate after we create the confidence interval for the slope, rather than before.</p>
-<p>Here, we are comparing the odds of having a flight in the afternoon between winter months (numerator) and summer months (denominator). Is 1 in the interval? If so, what does that tell you?</p>
+<p>For logistic regression, we exponentiate the slopes to get an more interpretable value, <strong>the odds ratio</strong>.
+The tricky thing is that we need to exponentiate after we create the confidence interval for the slope, rather than before.</p>
+<p>Here, we are comparing the odds of having a flight in the afternoon between winter months (numerator) and summer months (denominator).
+Is 1 in the interval?
+If so, what does that tell you?</p>
 <div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="confidence-intervals.html#cb269-1" tabindex="-1"></a><span class="fu">confint</span>(glm.afternoon) <span class="sc">%&gt;%</span> </span>
 <span id="cb269-2"><a href="confidence-intervals.html#cb269-2" tabindex="-1"></a>  <span class="fu">exp</span>()</span></code></pre></div>
 <pre><code>##                  2.5 %   97.5 %
@@ -671,27 +700,37 @@ interpretation?
 <span id="cb271-5"><a href="confidence-intervals.html#cb271-5" tabindex="-1"></a>  <span class="fu">exp</span>()</span></code></pre></div>
 <pre><code>##       lower    upper
 ## 1 0.7619048 3.452783</code></pre>
-<p><strong>Interpretation:</strong> Flights from NYC in the winter have about the same odds of being an afternoon flight as compared to the summer time. I’m 95% confident that the odds of a flight being in the afternoon is between 0.7 and 1.5 times the odds in the summer. We conclude that we don’t have any evidence there any more afternoon flights in the winter versus the summer leaving from NYC.</p>
+<p><strong>Interpretation:</strong> Flights from NYC in the winter have about the same odds of being an afternoon flight as compared to the summer time.
+I’m 95% confident that the odds of a flight being in the afternoon is between 0.7 and 1.5 times the odds in the summer.
+We conclude that we don’t have any evidence there any more afternoon flights in the winter versus the summer leaving from NYC.</p>
 </div>
 <div id="confidence-intervals-for-prediction" class="section level4 hasAnchor" number="7.2.4.3">
 <h4><span class="header-section-number">7.2.4.3</span> Confidence Intervals for Prediction<a href="confidence-intervals.html#confidence-intervals-for-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Imagine we are on a plane, we left 15 minutes late, how late will arrive? We’ve already looked at the slope measuring the relationship, but what about predicting the arrival delay? Since we only have a sample of 100 flights, we are a bit unsure of our prediction.</p>
+<p>Imagine we are on a plane, we left 15 minutes late, how late will arrive?
+We’ve already looked at the slope measuring the relationship, but what about predicting the arrival delay?
+Since we only have a sample of 100 flights, we are a bit unsure of our prediction.</p>
 <p>A classical CI can give us an interval estimate of what the prediction should be (if we had data on all flights).</p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="confidence-intervals.html#cb273-1" tabindex="-1"></a><span class="fu">predict</span>(lm.delay2, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">dep_delay =</span> <span class="dv">15</span>), <span class="at">interval =</span> <span class="st">&#39;confidence&#39;</span>)</span></code></pre></div>
 <pre><code>##        fit      lwr      upr
 ## 1 12.47558 8.881202 16.06996</code></pre>
 <p>This is taking into account how uncertain we are about our model prediction because our model is based on sample data rather than population data.</p>
-<p><strong>Interpretation:</strong> I’m 95% confident that flights from NYC that left 15 minutes late will arrive on average between 8.9 and 16 minutes. It is interesting that we estimate the average arrival delay for a flight that left 15 minutes late to be as low as 8.9 minutes suggesting that maybe flights can typically make up time in the air. We could investigate this by studying the differences in arrival and departure delays.</p>
+<p><strong>Interpretation:</strong> I’m 95% confident that flights from NYC that left 15 minutes late will arrive on average between 8.9 and 16 minutes.
+It is interesting that we estimate the average arrival delay for a flight that left 15 minutes late to be as low as 8.9 minutes suggesting that maybe flights can typically make up time in the air.
+We could investigate this by studying the differences in arrival and departure delays.</p>
 </div>
 <div id="prediction-intervals" class="section level4 hasAnchor" number="7.2.4.4">
 <h4><span class="header-section-number">7.2.4.4</span> Prediction Intervals<a href="confidence-intervals.html#prediction-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We also know that every flight is different (different length, different weather conditions, etc), so the true arrival delay won’t be exactly what we predict.</p>
-<p>So to get a better prediction for our arrival delay, we can account for the size of errors or residuals by creating a <strong>prediction interval</strong>. This interval will be much wider than the confidence interval because it takes into account how far the true values are from the prediction line.</p>
+<p>So to get a better prediction for our arrival delay, we can account for the size of errors or residuals by creating a <strong>prediction interval</strong>.
+This interval will be much wider than the confidence interval because it takes into account how far the true values are from the prediction line.</p>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="confidence-intervals.html#cb275-1" tabindex="-1"></a><span class="fu">predict</span>(lm.delay2, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">dep_delay =</span> <span class="dv">15</span>), <span class="at">interval =</span> <span class="st">&#39;prediction&#39;</span>)</span></code></pre></div>
 <pre><code>##        fit       lwr      upr
 ## 1 12.47558 -22.86868 47.81985</code></pre>
-<p>You’ll notice that the prediction interval is wider than the confidence intervals. In fact, the prediction interval incorporates information about the standard deviation of residuals to account for the average size of prediction error. To learn more, take Mathematical Statistics.</p>
-<p><strong>Interpretation:</strong> I predict that 95% of flights from NYC that leave 15 minutes late will arrive on average between 23 minutes early and 48 minutes late. This is a huge range which suggests that the departure delay is only one factor in determine when a flight arrives at its destination.</p>
+<p>You’ll notice that the prediction interval is wider than the confidence intervals.
+In fact, the prediction interval incorporates information about the standard deviation of residuals to account for the average size of prediction error.
+To learn more, take Mathematical Statistics.</p>
+<p><strong>Interpretation:</strong> I predict that 95% of flights from NYC that leave 15 minutes late will arrive on average between 23 minutes early and 48 minutes late.
+This is a huge range which suggests that the departure delay is only one factor in determine when a flight arrives at its destination.</p>
 </div>
 </div>
 </div>

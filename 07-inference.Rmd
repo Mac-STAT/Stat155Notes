@@ -995,7 +995,7 @@ This means that they are nested and can be compared using the nested test.
     The p-value of $3.729 * 10^{-16}$ is well below the threshold suggesting that it is very unlikely to have observed a difference between these two models as big as we did if the smaller model were true.
     Thus, we reject $H_0$ in favor of the larger model.
 
-## Model Selection 
+## Model Selection
 
 For this class, we will use hypothesis testing primarily as a way to help us decide which variables should be included in an model.
 This is referred to as **model selection** or **variable selection**.

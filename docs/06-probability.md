@@ -40,11 +40,11 @@ tidy(lm.home3)
 ## 4 AnyFireplaceTRUE:Living.Area     26.9      6.46      4.16 3.38e- 5
 ```
 
-Probably not. In fact, our sample is just one random sample from the larger population of homes in upstate New York. If we had gotten a slightly different sample of homes, then we would have different estimates for each of the regression coefficients. We explored this sampling variation in [Chapter 5](#randvariability) using bootstrapping.
+Probably not. In fact, our sample is just one random sample from the larger population of homes in upstate New York at a given time. If we had gotten a slightly different sample of homes, then we would have different estimates for each of the regression coefficients. We explored this sampling variation in [Chapter 5](#randvariability) using bootstrapping.
 
 Let's connect our goals to the terms **statistic**, **estimate**, and **parameter**. 
 
-The interaction coefficient is a **statistic**. It (as well as the other coefficient estimates) is a numerical summary of our data that was estimated from a **sample**. The actual numerical value of the interaction coefficient in the R output is called the **estimate**. If we had a census, a full set of data on all homes in upstate New York, we could fit the same linear regression model. The coefficient estimates given to us by R would represent population **parameters** because they are computed from the whole population, rather than a sample. By understanding **how much** statistics vary from sample to sample, we can start to **quantify the amount of uncertainty** in our estimates. Because the process of obtaining a sample is a type of random process, we will spend some time discussing formal probability.
+The interaction coefficient is a **statistic**. It (as well as the other coefficient estimates) is a numerical summary of our data that was estimated from a **sample**. The actual numerical value of the interaction coefficient in the R output is called the **estimate**. If we had a census, a full set of data on all homes in upstate New York at a given time, we could fit the same linear regression model. The coefficient estimates given to us by R would represent finite (i.e., at a fixed time) population parameters because they are computed from the whole population at that fixed time, rather than a sample. To conduct statistical inference, we imagine that there is some underlying process governing the populations that we observe at a fixed time, where the **parameters** of that governing process are what are estimated by our statistical models. By understanding **how much** statistics vary from sample to sample, we can start to **quantify the amount of uncertainty** in our estimates. Because the process of obtaining a sample is a type of random process, we will spend some time discussing formal probability.
 
 This chapter briefly discusses the theory of formal probability so that we have terminology and basic concepts to understand and discuss random events. This framework provides a way of thinking about **uncertainty**, **random variability**, and **average behavior in the long run.**
 
@@ -52,7 +52,7 @@ A **random process** or **random event** is any process/event whose outcome is g
 
 We've used the term "chances" up until now. We are now going to use "probability" as an equivalent word for "chance".
 
-For a much more in-depth discussion of probability (calculus-based), take STAT/MATH 354 (Probability). 
+For a much more in-depth discussion of probability (calculus-based), take STAT/MATH 354 (Probability). For a more detailed understanding of finite populations, underlying governing processes ("superpopulations"), censuses, and general philosophy regarding sampling, take a course on survey statistics.
 
 ## Three Types of Probability
 
